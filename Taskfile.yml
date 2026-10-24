@@ -27,6 +27,8 @@ vars:
     sh: |
       python3 -c 'import json; v = json.load(open("version.json")); print("{major}.{minor}".format(**v) + (".{patch}".format(**v) if v["patch"] else ""))'
   NAME: agent-operating-rules-{{.VERSION}}
+  # The public copy. Only the mirror job of CI pushes to it.
+  MIRROR: git@github.com:thecastandbloomgroup/agent-operating-rules.git
 
 tasks:
   format:
@@ -92,8 +94,24 @@ tasks:
       - mkdir -p ../dist
       - python3 -m zipfile -c '../dist/{{.NAME}}.zip' '{{.NAME}}'
 
+  mirror:
+    desc: The mirror stage. Push the checked-out commit to main of the GitHub mirror, with the deploy key in the file GITHUB_MIRROR_KEY. CI runs it on main after package
+    requires:
+      vars: [GITHUB_MIRROR_KEY]
+    vars:
+      # A copy of the key that ends with a newline and only its owner reads,
+      # as ssh requires.
+      KEY: /tmp/github-mirror-key
+    env:
+      # The committed host key of GitHub, from
+      # https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints.
+      GIT_SSH_COMMAND: ssh -i {{.KEY}} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile={{.ROOT_DIR}}/.github-known-hosts
+    cmds:
+      - umask 077 && awk 1 '{{.GITHUB_MIRROR_KEY}}' > '{{.KEY}}'
+      - git push '{{.MIRROR}}' HEAD:refs/heads/main
+
   ci:
-    desc: "Run every stage in the order of CI: review, build, test, docs, package"
+    desc: "Run every stage in the order of CI: review, build, test, docs, package. It leaves out mirror, which only CI runs"
     cmds:
       - task: review
       - task: build

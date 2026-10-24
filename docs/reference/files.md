@@ -31,3 +31,4 @@
 | uv.lock                                | The versions and hashes of the tools and their dependencies                                      | uv                             |
 | .python-version                        | The Python version that uv uses                                                                  | uv                             |
 | .pymarkdown.json                       | The settings of the Markdown lint                                                                | task lint                      |
+| .github-known-hosts                    | The public host key that GitHub publishes, so ssh refuses any other server                       | task mirror                    |

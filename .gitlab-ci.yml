@@ -1,8 +1,8 @@
-# Five stages. Each job calls the task of its stage (Taskfile.yml), so a job
+# Six stages. Each job calls the task of its stage (Taskfile.yml), so a job
 # runs the same step that a person runs with task <name>. task ci runs the
-# five tasks in this order on a machine. docs/reference/tasks-and-ci.md
-# describes each job.
-stages: [review, build, test, docs, package]
+# first five tasks in this order on a machine. Only CI runs mirror.
+# docs/reference/tasks-and-ci.md describes each job.
+stages: [review, build, test, docs, package, mirror]
 
 # uv in GitLab CI, as in https://docs.astral.sh/uv/guides/integration/gitlab/.
 # The build folder is a separate mount, so uv copies files instead of linking.
@@ -19,7 +19,8 @@ default:
         files: [uv.lock]
       paths: [$UV_CACHE_DIR]
   before_script:
-    - apk add --no-cache curl
+    # git and ssh for the mirror job.
+    - apk add --no-cache curl git openssh-client
     # Task 3.53.1 for the architecture of the runner. The checksum stops any
     # other file.
     - |
@@ -64,3 +65,15 @@ package:
   artifacts:
     paths: ['dist/*.zip']
     expire_in: 1 month
+
+# GitHub gets main only after every other stage passes on main. The deploy
+# key is a protected file variable, so other branches do not get it. GitHub
+# refuses a push from a shallow clone to a new repository, so clone it all.
+mirror:
+  stage: mirror
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - task mirror
