@@ -1,0 +1,102 @@
+# The tasks of this repository. Each CI job calls one of them (.gitlab-ci.yml),
+# so a person runs the same step on a machine with task <name>. task ci runs
+# every stage in order. docs/reference/tasks-and-ci.md describes each task.
+version: '3'
+
+vars:
+  # uv run syncs .venv with uv.lock before each tool runs. GitLab sets CI, and
+  # there --locked fails when uv.lock does not match pyproject.toml.
+  UV_RUN: uv run{{if .CI}} --locked{{end}}
+  RULES: sources/model-operating-rules.md
+  # The Markdown files that format may change and lint reads, each folder
+  # recursively. The rules file is not one: it is the system prompt, and only
+  # a new version changes its text. lint reads it with its own exceptions.
+  MARKDOWN: README.md docs tests
+  # The lint rules that the rules file of version 2.1 breaks: MD034, the bare
+  # URLs of references 9 and 11, and MD040, the self-test block with no
+  # language. Remove them from this list in the next version of the rules.
+  RULES_FILE_LINT_EXCEPTIONS: md034,md040
+  # The files and folders of a release. They keep their paths in .build/ and
+  # in the zip, so bin/deterministic-tests.py finds sources/banned-words.txt.
+  RELEASE_FILES: README.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md
+  VERSION:
+    sh: |
+      python3 -c 'import json; print("{major}.{minor}.{patch}".format(**json.load(open("version.json"))))'
+  # The version line of the rules file leaves out a patch part of 0: 2.1.0 is "Version 2.1".
+  RULES_VERSION:
+    sh: |
+      python3 -c 'import json; v = json.load(open("version.json")); print("{major}.{minor}".format(**v) + (".{patch}".format(**v) if v["patch"] else ""))'
+  NAME: agent-operating-rules-{{.VERSION}}
+
+tasks:
+  format:
+    desc: Format the Python scripts with ruff and the Markdown files with mdformat. CHECK=true changes no file, and fails when a file needs a change
+    vars:
+      FLAG: '{{if eq (.CHECK | default "false") "true"}}--check{{end}}'
+    cmds:
+      - '{{.UV_RUN}} ruff format {{.FLAG}} .'
+      - '{{.UV_RUN}} mdformat --number {{.FLAG}} {{.MARKDOWN}}'
+
+  lint:
+    desc: Lint the Python scripts with ruff, and the Markdown files with pymarkdown and the settings of .pymarkdown.json. The rules file has its own exceptions, RULES_FILE_LINT_EXCEPTIONS
+    cmds:
+      - '{{.UV_RUN}} ruff check .'
+      - '{{.UV_RUN}} pymarkdown --config .pymarkdown.json scan -r {{.MARKDOWN}}'
+      - '{{.UV_RUN}} pymarkdown --config .pymarkdown.json --disable-rules {{.RULES_FILE_LINT_EXCEPTIONS}} scan {{.RULES}}'
+
+  review:
+    desc: The review stage. Check the format, then lint
+    cmds:
+      - task: format
+        vars: {CHECK: 'true'}
+      - task: lint
+
+  build:
+    desc: The build stage. Check that the version line of the rules file matches version.json, then copy the release files to .build/agent-operating-rules-<version>, each at its own path
+    preconditions:
+      - sh: grep -qF 'Version {{.RULES_VERSION}}, ' {{.RULES}}
+        msg: "{{.RULES}} does not say Version {{.RULES_VERSION}}. Change its version line or version.json"
+    cmds:
+      - rm -rf '.build/{{.NAME}}'
+      - mkdir -p '.build/{{.NAME}}'
+      - tar -cf - {{.RELEASE_FILES}} | tar -xf - -C '.build/{{.NAME}}'
+
+  test:
+    desc: The test stage. Run bin/deterministic-tests.py --check on the rules file at the instruction limit, then on README.md and the evaluation tests at the description limit. It fails on a finding
+    cmds:
+      - python3 bin/deterministic-tests.py --check --instructions {{.RULES}}
+      - for: [README.md, tests/evaluation/evaluation-tests.md]
+        cmd: python3 bin/deterministic-tests.py --check {{.ITEM}}
+
+  docs:
+    desc: The docs stage. Run bin/deterministic-tests.py --check on each page of docs/ at the description limit, then bin/check-links.py on docs/ and README.md
+    vars:
+      PAGES:
+        sh: find docs -name '*.md' | sort
+    cmds:
+      - for: {var: PAGES}
+        cmd: python3 bin/deterministic-tests.py --check {{.ITEM}}
+      - python3 bin/check-links.py docs README.md
+
+  package:
+    desc: The package stage. Run build, then zip .build/agent-operating-rules-<version> into dist/agent-operating-rules-<version>.zip
+    cmds:
+      - task: build
+      - task: zip
+
+  zip:
+    desc: Zip .build/agent-operating-rules-<version> into dist/, with paths that start at that folder
+    internal: true
+    dir: .build
+    cmds:
+      - mkdir -p ../dist
+      - python3 -m zipfile -c '../dist/{{.NAME}}.zip' '{{.NAME}}'
+
+  ci:
+    desc: "Run every stage in the order of CI: review, build, test, docs, package"
+    cmds:
+      - task: review
+      - task: build
+      - task: test
+      - task: docs
+      - task: package

@@ -1,0 +1,3 @@
+# Banned word list
+
+The rules file names the banned categories in 4.4 and gives a few examples of each. The full list lives in `banned-words.txt`, not in the rules file, for two reasons. A list grows, and every word added to the rules file costs tokens on every request. A list in a separate file can grow at no cost to the prompt. The file also holds a category the rules file names but does not list. That is idioms and non-literal phrases (4.2.3), such as "trap" or "low-hanging fruit". `deterministic-tests.py` reads the file and reports hits by category. Words in quotes in the source text are exempt, so the rules file can name a banned word as an example.

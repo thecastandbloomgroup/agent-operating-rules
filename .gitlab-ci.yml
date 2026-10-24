@@ -1,0 +1,66 @@
+# Five stages. Each job calls the task of its stage (Taskfile.yml), so a job
+# runs the same step that a person runs with task <name>. task ci runs the
+# five tasks in this order on a machine. docs/reference/tasks-and-ci.md
+# describes each job.
+stages: [review, build, test, docs, package]
+
+# uv in GitLab CI, as in https://docs.astral.sh/uv/guides/integration/gitlab/.
+# The build folder is a separate mount, so uv copies files instead of linking.
+variables:
+  UV_VERSION: "0.12.23"
+  PYTHON_VERSION: "3.12"
+  UV_LINK_MODE: copy
+  UV_CACHE_DIR: .uv-cache
+
+default:
+  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-alpine
+  cache:
+    - key:
+        files: [uv.lock]
+      paths: [$UV_CACHE_DIR]
+  before_script:
+    - apk add --no-cache curl
+    # Task 3.53.1 for the architecture of the runner. The checksum stops any
+    # other file.
+    - |
+      case "$(uname -m)" in
+        x86_64) arch=amd64; sum=a54a408f6861ff921f6e87774180db31bacd8c1e7c944ca696db9fea49a82fc7 ;;
+        aarch64) arch=arm64; sum=e3ad19101493a0112e1f22ae8ccc54bf03e533b1076a0ca1e6c782a09ad2e588 ;;
+      esac
+      curl -fsSL -o /tmp/task.tar.gz "https://github.com/go-task/task/releases/download/v3.53.1/task_linux_$arch.tar.gz"
+      echo "$sum  /tmp/task.tar.gz" | sha256sum -c -
+      tar -xzf /tmp/task.tar.gz -C /usr/local/bin task
+  # Keep only the files in the cache that uv cannot build again fast.
+  after_script:
+    - uv cache prune --ci
+
+review:
+  stage: review
+  script:
+    - task review
+
+build:
+  stage: build
+  script:
+    - task build
+  artifacts:
+    paths: [.build/]
+    expire_in: 1 week
+
+test:
+  stage: test
+  script:
+    - task test
+
+docs:
+  stage: docs
+  script:
+    - task docs
+
+package:
+  stage: package
+  script:
+    - task package
+  artifacts:
+    paths: ['dist/*.zip']
+    expire_in: 1 month

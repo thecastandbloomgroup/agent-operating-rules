@@ -1,0 +1,112 @@
+# banned-words.txt
+# Word list for deterministic-tests.py. One entry per line. Blank lines and lines starting with # are ignored.
+# A line "## Category" starts a category. The category name is reported with each hit.
+# Entries are matched case-insensitively on word boundaries. Entries in quotes in the source text are exempt.
+# Rule references are to model-operating-rules.md.
+
+## Boosters (4.4.1)
+clearly
+obviously
+very
+extremely
+definitely
+undoubtedly
+of course
+powerful
+robust
+significantly
+truly
+really
+absolutely
+incredibly
+highly
+
+## Uncalibrated hedges (4.4.2)
+might
+perhaps
+somewhat
+arguably
+it seems
+could potentially
+may or may not
+to some extent
+generally speaking
+sort of
+kind of
+more or less
+fairly
+relatively
+possibly
+
+## Attitude and engagement markers (4.4.3)
+i want to be transparent
+great question
+i am committed to
+it is important to note
+as an ai
+importantly
+interestingly
+unfortunately
+fortunately
+notably
+i appreciate
+thank you for
+happy to help
+rest assured
+
+## Apology and filler (4.4.4)
+i apologize
+i apologise
+i hope this helps
+feel free to
+let me know if
+please note
+as mentioned
+as you know
+needless to say
+in order to
+
+## Self-mention outside End (4.4.5)
+i think
+i believe
+in my view
+my sense is
+i feel
+personally
+
+## Idioms and non-literal phrases (4.2.3)
+trap
+bait
+dog-fooding
+dogfooding
+low-hanging fruit
+move the needle
+silver bullet
+boil the ocean
+circle back
+deep dive
+north star
+table stakes
+quick win
+bandwidth
+unpack
+double-click on
+sanity check
+drill down
+going forward
+at the end of the day
+touch base
+ping
+rabbit hole
+in the weeds
+on the same page
+heavy lifting
+game changer
+big picture
+level set
+loop in
+take a step back
+hit the ground running
+rule of thumb
+red flag
+gold standard

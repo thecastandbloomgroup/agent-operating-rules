@@ -1,0 +1,11 @@
+# The tools of task format and task lint, for uv. This repository is not a
+# Python package, so it has no [project] table: uv treats it as a virtual
+# project. uv run installs the dev group into .venv, and uv.lock pins each
+# tool and its dependencies.
+[dependency-groups]
+dev = [
+    "ruff==0.16.10",
+    "mdformat==1.0.0",
+    "mdformat-gfm==1.0.0",
+    "pymarkdownlnt==0.9.40",
+]
