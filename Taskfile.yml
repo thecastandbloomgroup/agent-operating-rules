@@ -64,8 +64,9 @@ tasks:
       - tar -cf - {{.RELEASE_FILES}} | tar -xf - -C '.build/{{.NAME}}'
 
   test:
-    desc: The test stage. Run bin/deterministic-tests.py --check on the rules file at the instruction limit, then on README.md and the evaluation tests at the description limit. It fails on a finding
+    desc: The test stage. Run the unit tests of bin/ in tests/unit/. Then run bin/deterministic-tests.py --check on the rules file at the instruction limit, and on README.md and the evaluation tests at the description limit. It fails on a finding
     cmds:
+      - python3 -m unittest discover -s tests/unit
       - python3 bin/deterministic-tests.py --check --instructions {{.RULES}}
       - for: [README.md, tests/evaluation/evaluation-tests.md]
         cmd: python3 bin/deterministic-tests.py --check {{.ITEM}}

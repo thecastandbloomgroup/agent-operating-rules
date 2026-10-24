@@ -19,6 +19,7 @@
 | sources/banned-words.txt               | Word list read by deterministic-tests.py, by category                                            | People, deterministic-tests.py |
 | bin/deterministic-tests.py             | Tests with a fixed expected result: sentence length, dashes, banned words, citations, references | People, CI                     |
 | bin/check-links.py                     | Finds each relative link to a file that does not exist                                           | task docs                      |
+| tests/unit/test_bin.py                 | The unit tests of the scripts in bin/, with unittest of the standard library                     | task test                      |
 | tests/evaluation/evaluation-tests.md   | Prompts and a rubric for the judgment rules in Sections 6.4 and 6.5                              | People, graders                |
 | tests/evaluation/evaluation-results.md | Log of evaluation runs: one block per model per date, plus a cross-model summary                 | People                         |
 | tests/evaluation/evaluation-scores.csv | One row per prompt per grader; the data behind any summary or chart                              | People, scripts                |

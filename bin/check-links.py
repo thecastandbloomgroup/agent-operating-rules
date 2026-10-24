@@ -29,5 +29,6 @@ if __name__ == "__main__":
     bad = [
         f"{page}: {target}" for page in pages(sys.argv[1:]) for target in broken(page)
     ]
-    print("\n".join(bad))
+    for line in bad:
+        print(line)
     sys.exit(1 if bad else 0)

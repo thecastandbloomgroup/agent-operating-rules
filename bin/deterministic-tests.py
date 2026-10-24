@@ -57,9 +57,12 @@ def syllables(word):
 
 
 def readability(sents):
-    """Grade the prose sentences only, so that table rows and code do not count as one long sentence."""
+    """Grade the prose sentences only, so that table rows and code do not count as one long sentence.
+    A page with no prose sentence has no grade."""
+    if not sents:
+        return None, None
     words = [w for s in sents for w in re.findall(r"[A-Za-z]+", s)]
-    sents = max(1, len(sents))
+    sents = len(sents)
     nw = max(1, len(words))
     syl = sum(syllables(w) for w in words)
     fk = 0.39 * nw / sents + 11.8 * syl / nw - 15.59
@@ -189,7 +192,8 @@ def failures(R):
         "banned words (4.2.3, 4.4)": R["banned_total"] == 0,
         "nominalizations (4.2.4)": not R["nominalizations"],
         "gerund nouns (4.1.6)": not R["gerund_nouns"],
-        "Flesch-Kincaid grade over 10 (4.1.7)": R["fk_grade"] <= 10,
+        "Flesch-Kincaid grade over 10 (4.1.7)": R["fk_grade"] is None
+        or R["fk_grade"] <= 10,
         "citations out of order (5.4.1)": R["citation_order_ok"],
         "more than one citation on a line (5.4.1)": not R["multi_citation_lines"],
         "no blank line between references (5.4.1)": R["refs_blank_line_separated"]
