@@ -107,7 +107,9 @@ tasks:
       # https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints.
       GIT_SSH_COMMAND: ssh -i {{.KEY}} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile={{.ROOT_DIR}}/.github-known-hosts
     cmds:
-      - umask 077 && awk 1 '{{.GITHUB_MIRROR_KEY}}' > '{{.KEY}}'
+      # The shell of Task has no umask, so make the empty file with its mode first.
+      - install -m 600 /dev/null '{{.KEY}}'
+      - awk 1 '{{.GITHUB_MIRROR_KEY}}' > '{{.KEY}}'
       - git push '{{.MIRROR}}' HEAD:refs/heads/main
 
   ci:
