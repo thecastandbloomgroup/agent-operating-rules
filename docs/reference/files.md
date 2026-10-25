@@ -9,6 +9,7 @@
 | tests/   | The tests of the sources, and the records of each test run                | yes    |
 | docs/    | Tutorials, how-to guides, reference and explanation                       | yes    |
 | .build/  | The release folder that task build makes                                  | no     |
+| .task/   | The checksum of the sources of task build, so Task skips a second build   | no     |
 | dist/    | The release zip that task package makes                                   | no     |
 
 ## Each file
@@ -26,10 +27,6 @@
 | tests/evaluation/results/              | Raw model responses, one folder per model, one file per prompt                                   | People, graders                |
 | README.md                              | What the rules file is, and why one file serves all models                                       | People                         |
 | version.json                           | The version, as its Semantic Versioning parts                                                    | People, task build             |
-| Taskfile.yml                           | The tasks of each CI stage                                                                       | People, CI                     |
+| Taskfile.yml                           | The tasks of each CI stage, and the pinned versions of the format and lint tools                 | People, CI                     |
 | .gitlab-ci.yml                         | The GitLab pipeline: one job per stage, and each job calls its task                              | GitLab                         |
-| pyproject.toml                         | The exact versions of the format and lint tools, in the dev group of uv                          | uv                             |
-| uv.lock                                | The versions and hashes of the tools and their dependencies                                      | uv                             |
-| .python-version                        | The Python version that uv uses                                                                  | uv                             |
 | .pymarkdown.json                       | The settings of the Markdown lint                                                                | task lint                      |
-| .github-known-hosts                    | The public host key that GitHub publishes, so ssh refuses any other server                       | task mirror                    |

@@ -1,8 +1,10 @@
-# Six stages. Each job calls the task of its stage (Taskfile.yml), so a job
-# runs the same step that a person runs with task <name>. task ci runs the
-# first five tasks in this order on a machine. Only CI runs mirror.
+# Five stages, in this order: review, build, test, docs, package. review runs
+# format, then lint. Each job calls the task of its stage (Taskfile.yml), so a
+# job runs the same step that a person runs with task <name>. task ci runs the
+# five tasks in this order on a machine. The push mirror of GitLab, not a job,
+# copies main to GitHub (docs/how-to/set-up-the-github-mirror.md).
 # docs/reference/tasks-and-ci.md describes each job.
-stages: [review, build, test, docs, package, mirror]
+stages: [review, build, test, docs, package]
 
 # uv in GitLab CI, as in https://docs.astral.sh/uv/guides/integration/gitlab/.
 # The build folder is a separate mount, so uv copies files instead of linking.
@@ -12,17 +14,21 @@ variables:
   UV_LINK_MODE: copy
   UV_CACHE_DIR: .uv-cache
 
+# A new commit on a branch cancels the jobs of its older pipeline, so they
+# use no more minutes.
+workflow:
+  auto_cancel:
+    on_new_commit: interruptible
+
+# A job gets no cache unless it names one. A job with dependencies: [] gets
+# no artifacts of an earlier job. So each job downloads only what its task uses.
 default:
   image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-alpine
-  cache:
-    - key:
-        files: [uv.lock]
-      paths: [$UV_CACHE_DIR]
+  interruptible: true
   before_script:
-    # git and ssh for the mirror job.
-    - apk add --no-cache curl git openssh-client
     # Task 3.53.1 for the architecture of the runner. The checksum stops any
     # other file.
+    - apk add --no-cache curl
     - |
       case "$(uname -m)" in
         x86_64) arch=amd64; sum=a54a408f6861ff921f6e87774180db31bacd8c1e7c944ca696db9fea49a82fc7 ;;
@@ -31,49 +37,50 @@ default:
       curl -fsSL -o /tmp/task.tar.gz "https://github.com/go-task/task/releases/download/v3.53.1/task_linux_$arch.tar.gz"
       echo "$sum  /tmp/task.tar.gz" | sha256sum -c -
       tar -xzf /tmp/task.tar.gz -C /usr/local/bin task
+
+# Only review runs the tools of uv, so only it gets its cache.
+.uv-cache:
+  cache:
+    - key:
+        files: [Taskfile.yml]
+      paths: [$UV_CACHE_DIR]
   # Keep only the files in the cache that uv cannot build again fast.
   after_script:
     - uv cache prune --ci
 
 review:
   stage: review
+  extends: .uv-cache
   script:
     - task review
 
+# .task/ holds the checksum of build, so the package job skips build.
 build:
   stage: build
   script:
     - task build
   artifacts:
-    paths: [.build/]
+    paths: [.build/, .task/]
     expire_in: 1 week
 
 test:
   stage: test
+  dependencies: []
   script:
     - task test
 
 docs:
   stage: docs
+  dependencies: []
   script:
     - task docs
 
+# Only the artifacts of build: the files of the release and their checksum.
 package:
   stage: package
+  dependencies: [build]
   script:
     - task package
   artifacts:
     paths: ['dist/*.zip']
     expire_in: 1 month
-
-# GitHub gets main only after every other stage passes on main. The deploy
-# key is a protected file variable, so other branches do not get it. GitHub
-# refuses a push from a shallow clone to a new repository, so clone it all.
-mirror:
-  stage: mirror
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  variables:
-    GIT_DEPTH: "0"
-  script:
-    - task mirror

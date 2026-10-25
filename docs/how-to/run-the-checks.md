@@ -6,7 +6,7 @@ Run the checks before you push a change. They are the same checks that CI runs.
 
 Install Task 3.53.1 or later from <https://taskfile.dev/installation/>. Install uv from <https://docs.astral.sh/uv/getting-started/installation/>. Install Python 3.10 or later.
 
-The first task that needs a tool runs `uv run`. uv makes the folder `.venv` and installs the tools of `pyproject.toml` into it. This step needs a network connection. When `uv.lock` does not exist, uv writes it. Commit `uv.lock`, because CI fails without it.
+The tasks run each format and lint tool with `uvx`, at the version that `Taskfile.yml` pins. The tools stay in the cache of uv, so no `.venv` folder appears. The first run needs a network connection. Each worktree of the repository then uses the same cache.
 
 ## Run every stage
 
@@ -14,7 +14,7 @@ The first task that needs a tool runs `uv run`. uv makes the folder `.venv` and 
 task ci
 ```
 
-The task runs review, build, test, docs and package, in that order. It stops at the first stage that fails.
+The task runs review, build, test, docs and package, in that order. Review runs format with `CHECK=true` first, then lint. It skips no stage. It stops at the first stage that fails.
 
 ## Run one stage
 

@@ -4,9 +4,13 @@
 version: '3'
 
 vars:
-  # uv run syncs .venv with uv.lock before each tool runs. GitLab sets CI, and
-  # there --locked fails when uv.lock does not match pyproject.toml.
-  UV_RUN: uv run{{if .CI}} --locked{{end}}
+  # uvx runs each tool at its pinned version from the cache of uv, with no
+  # .venv in the folder. So each worktree uses the same cache. uvx does not
+  # read .python-version, so the Python version is here.
+  UVX: uvx --python 3.12
+  RUFF: '{{.UVX}} ruff@0.16.10'
+  MDFORMAT: '{{.UVX}} --with mdformat-gfm==1.0.0 mdformat@1.0.0'
+  PYMARKDOWN: '{{.UVX}} --from pymarkdownlnt==0.9.40 pymarkdown'
   RULES: sources/model-operating-rules.md
   # The Markdown files that format may change and lint reads, each folder
   # recursively. The rules file is not one: it is the system prompt, and only
@@ -27,8 +31,6 @@ vars:
     sh: |
       python3 -c 'import json; v = json.load(open("version.json")); print("{major}.{minor}".format(**v) + (".{patch}".format(**v) if v["patch"] else ""))'
   NAME: agent-operating-rules-{{.VERSION}}
-  # The public copy. Only the mirror job of CI pushes to it.
-  MIRROR: git@github.com:thecastandbloomgroup/agent-operating-rules.git
 
 tasks:
   format:
@@ -36,18 +38,18 @@ tasks:
     vars:
       FLAG: '{{if eq (.CHECK | default "false") "true"}}--check{{end}}'
     cmds:
-      - '{{.UV_RUN}} ruff format {{.FLAG}} .'
-      - '{{.UV_RUN}} mdformat --number {{.FLAG}} {{.MARKDOWN}}'
+      - '{{.RUFF}} format {{.FLAG}} .'
+      - '{{.MDFORMAT}} --number {{.FLAG}} {{.MARKDOWN}}'
 
   lint:
     desc: Lint the Python scripts with ruff, and the Markdown files with pymarkdown and the settings of .pymarkdown.json. The rules file has its own exceptions, RULES_FILE_LINT_EXCEPTIONS
     cmds:
-      - '{{.UV_RUN}} ruff check .'
-      - '{{.UV_RUN}} pymarkdown --config .pymarkdown.json scan -r {{.MARKDOWN}}'
-      - '{{.UV_RUN}} pymarkdown --config .pymarkdown.json --disable-rules {{.RULES_FILE_LINT_EXCEPTIONS}} scan {{.RULES}}'
+      - '{{.RUFF}} check .'
+      - '{{.PYMARKDOWN}} --config .pymarkdown.json scan -r {{.MARKDOWN}}'
+      - '{{.PYMARKDOWN}} --config .pymarkdown.json --disable-rules {{.RULES_FILE_LINT_EXCEPTIONS}} scan {{.RULES}}'
 
   review:
-    desc: The review stage. Check the format, then lint
+    desc: The review stage. Check the format, then lint. Format MUST run before lint, so cmds runs them in this order
     cmds:
       - task: format
         vars: {CHECK: 'true'}
@@ -58,6 +60,19 @@ tasks:
     preconditions:
       - sh: grep -qF 'Version {{.RULES_VERSION}}, ' {{.RULES}}
         msg: "{{.RULES}} does not say Version {{.RULES_VERSION}}. Change its version line or version.json"
+    # Task keeps a checksum of the sources in .task/. When they and the folder
+    # are the same as at the last build, Task skips build. So package, and the
+    # package job of CI with .build/ and .task/ from the build job, do not copy
+    # the files again.
+    sources:
+      - Taskfile.yml
+      - README.md
+      - version.json
+      - sources/**/*
+      - bin/deterministic-tests.py
+      - tests/evaluation/evaluation-tests.md
+    generates:
+      - .build/{{.NAME}}/**/*
     cmds:
       - rm -rf '.build/{{.NAME}}'
       - mkdir -p '.build/{{.NAME}}'
@@ -95,26 +110,8 @@ tasks:
       - mkdir -p ../dist
       - python3 -m zipfile -c '../dist/{{.NAME}}.zip' '{{.NAME}}'
 
-  mirror:
-    desc: The mirror stage. Push the checked-out commit to main of the GitHub mirror, with the deploy key in the file GITHUB_MIRROR_KEY. CI runs it on main after package
-    requires:
-      vars: [GITHUB_MIRROR_KEY]
-    vars:
-      # A copy of the key that ends with a newline and only its owner reads,
-      # as ssh requires.
-      KEY: /tmp/github-mirror-key
-    env:
-      # The committed host key of GitHub, from
-      # https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints.
-      GIT_SSH_COMMAND: ssh -i {{.KEY}} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile={{.ROOT_DIR}}/.github-known-hosts
-    cmds:
-      # The shell of Task has no umask, so make the empty file with its mode first.
-      - install -m 600 /dev/null '{{.KEY}}'
-      - awk 1 '{{.GITHUB_MIRROR_KEY}}' > '{{.KEY}}'
-      - git push '{{.MIRROR}}' HEAD:refs/heads/main
-
   ci:
-    desc: "Run every stage in the order of CI: review, build, test, docs, package. It leaves out mirror, which only CI runs"
+    desc: "Run every stage in the order of CI: review, build, test, docs, package"
     cmds:
       - task: review
       - task: build
