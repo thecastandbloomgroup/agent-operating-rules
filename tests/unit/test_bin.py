@@ -61,6 +61,18 @@ class DeterministicTests(unittest.TestCase):
         self.assertIsInstance(report["fk_grade"], float)
         self.assertIsInstance(report["flesch_ease"], float)
 
+    def test_names_an_acronym_that_has_an_alias(self):
+        code, report = self.report("Write the BLUF first. It holds the answer.\n")
+        self.assertEqual(code, 1)
+        self.assertIn("banned words (4.2.3, 4.2.6, 4.4)", report["failures"])
+        hits = report["banned"]["Acronyms with an alias (4.2.6)"]
+        self.assertEqual([word for word, _ in hits], ["bluf"])
+
+    def test_no_finding_for_an_acronym_in_backticks(self):
+        code, report = self.report("The alias of `BLUF` is Headline.\n")
+        self.assertEqual(code, 0)
+        self.assertEqual(report["banned_total"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

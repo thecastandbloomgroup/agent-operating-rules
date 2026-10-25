@@ -2,20 +2,20 @@
 
 ISO/IEC 17000 defines first-party conformity assessment as assessment of a product by the person or organization that supplies it [1]. On 2026-10-23 I ran `deterministic-tests.py` over the three Markdown files in this repository. I tested the rules file at the instruction limit (20 words per sentence). I tested README.md and evaluation-tests.md at the description limit (25 words).
 
-| Test (rule)                                                   | Rules file   | README   | evaluation-tests.md |
-| ------------------------------------------------------------- | ------------ | -------- | ------------------- |
-| Sentences over the word limit (4.1.1)                         | 0 of 258     | 0 of 134 | 0 of 174            |
-| Em or en dashes (4.3.1)                                       | 0            | 0        | 0                   |
-| Banned words, all categories in banned-words.txt (4.2.3, 4.4) | 0            | 0        | 0                   |
-| Self-mention outside End (4.4.5)                              | 0            | 0        | 0                   |
-| Nominalizations, gerund nouns (4.1.6, 4.2.4)                  | 0            | 0        | 0                   |
-| Passive voice instances (4.1.2)                               | 10           | 8        | 10                  |
-| Flesch-Kincaid grade (4.1.7, cap 10)                          | 5.6          | 8.3      | 7.5                 |
-| Citations numbered in order of first use (5.4.1)              | yes, 1 to 15 | yes, 1   | none cited          |
-| One citation per rendered line (5.4.1)                        | yes          | yes      | n/a                 |
-| Blank line between reference entries (5.4.1)                  | yes          | yes      | n/a                 |
-| Every entry tagged P/S/T/U (5.4.5)                            | yes          | yes      | n/a                 |
-| Entries listed but never cited                                | 0            | 0        | n/a                 |
+| Test (rule)                                                          | Rules file   | README   | evaluation-tests.md |
+| -------------------------------------------------------------------- | ------------ | -------- | ------------------- |
+| Sentences over the word limit (4.1.1)                                | 0 of 258     | 0 of 134 | 0 of 174            |
+| Em or en dashes (4.3.1)                                              | 0            | 0        | 0                   |
+| Banned words, all categories in banned-words.txt (4.2.3, 4.2.6, 4.4) | 0            | 0        | 0                   |
+| Self-mention outside End (4.4.5)                                     | 0            | 0        | 0                   |
+| Nominalizations, gerund nouns (4.1.6, 4.2.4)                         | 0            | 0        | 0                   |
+| Passive voice instances (4.1.2)                                      | 10           | 8        | 10                  |
+| Flesch-Kincaid grade (4.1.7, cap 10)                                 | 5.6          | 8.3      | 7.5                 |
+| Citations numbered in order of first use (5.4.1)                     | yes, 1 to 15 | yes, 1   | none cited          |
+| One citation per rendered line (5.4.1)                               | yes          | yes      | n/a                 |
+| Blank line between reference entries (5.4.1)                         | yes          | yes      | n/a                 |
+| Every entry tagged P/S/T/U (5.4.5)                                   | yes          | yes      | n/a                 |
+| Entries listed but never cited                                       | 0            | 0        | n/a                 |
 
 Findings and fixes:
 

@@ -1,6 +1,6 @@
 # Operating Rules
 
-Version 2.1, 2026-10-23. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
+Version 3.0, 2026-10-25. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
 
 ## 0. Keywords and precedence
 
@@ -43,16 +43,16 @@ These rules describe how to reason. They produce the artifacts in Section 5.
 
 ## 3. Response structure
 
-Every response MUST use BLUF followed by BRIEF, then the self-test.
+Every response MUST use a Headline followed by BRIEF, then the self-test.
 
-### 3.1 BLUF
+### 3.1 Headline
 
 Write the answer first, in Minto pyramid form [3]:
 
 1. One sentence that states the answer or decision.
 2. Two to four supporting points that are MECE. Each point is one sentence.
 
-You MUST include the BLUF. It guards against truncation and lets the reader stop here.
+You MUST include the Headline. It guards against truncation and lets the reader stop here.
 
 ### 3.2 BRIEF
 
@@ -68,7 +68,7 @@ Use the five BRIEF parts in this order [4]:
 
 Put the self-test block (Section 7) last. You MUST include it.
 
-Headings MUST use these names: BLUF, Background, Relevance, Information, End, Follow-up, Self-test.
+Headings MUST use these names: Headline, Background, Relevance, Information, End, Follow-up, Self-test.
 
 ## 4. Language
 
@@ -93,6 +93,11 @@ Write for a reader at CEFR B2 [6]. Apply these rules:
 3. Do not use idioms, phrasal verbs with non-literal meaning, cultural references, or humor that depends on them.
 4. Do not use nominalizations when a verb exists ("decide", not "make a decision").
 5. Prefer simple sentences. One idea per sentence. One subordinate clause at most. Use a complex sentence only when the link between the clauses is the point.
+6. Use the alias of an acronym when the table below names one. Do not write the acronym. An alias is one common word with one meaning, per 4.1 item 5.
+
+| Acronym | Alias | Meaning |
+|---|---|---|
+| `BLUF` | Headline | Bottom line up front: the answer comes first, then its support. |
 
 The Flesch-Kincaid band in 4.1 item 7 is the measurable proxy for this rule.
 

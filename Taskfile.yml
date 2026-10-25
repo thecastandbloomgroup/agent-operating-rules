@@ -12,7 +12,7 @@ vars:
   # recursively. The rules file is not one: it is the system prompt, and only
   # a new version changes its text. lint reads it with its own exceptions.
   MARKDOWN: README.md docs tests
-  # The lint rules that the rules file of version 2.1 breaks: MD034, the bare
+  # The lint rules that the rules file of version 3.0 breaks: MD034, the bare
   # URLs of references 9 and 11, and MD040, the self-test block with no
   # language. Remove them from this list in the next version of the rules.
   RULES_FILE_LINT_EXCEPTIONS: md034,md040

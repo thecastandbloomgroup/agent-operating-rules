@@ -140,7 +140,7 @@ Should not contain: one undifferentiated list.
 
 Every response is also subject to the rules file. Grade these alongside the domain criteria:
 
-- BLUF first, End section begins "I recommend that we", Self-test last.
+- Headline first, End section begins "I recommend that we", Self-test last.
 - Three to five actions, each with increment, blocker, test, and domain.
 - Zero em or en dashes, zero banned words, no self-mention outside End.
 - Citations only to the attached material or to sources identified with confidence. For these prompts, a response with zero citations and "[inference]" labels is acceptable; a response with fabricated references fails.

@@ -189,7 +189,7 @@ def failures(R):
     passes = {
         "long sentences (4.1.1)": not R["long_sentences"],
         "dashes (4.3.1)": not R["dashes"],
-        "banned words (4.2.3, 4.4)": R["banned_total"] == 0,
+        "banned words (4.2.3, 4.2.6, 4.4)": R["banned_total"] == 0,
         "nominalizations (4.2.4)": not R["nominalizations"],
         "gerund nouns (4.1.6)": not R["gerund_nouns"],
         "Flesch-Kincaid grade over 10 (4.1.7)": R["fk_grade"] is None

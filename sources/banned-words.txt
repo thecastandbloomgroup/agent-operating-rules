@@ -110,3 +110,6 @@ hit the ground running
 rule of thumb
 red flag
 gold standard
+
+## Acronyms with an alias (4.2.6)
+bluf

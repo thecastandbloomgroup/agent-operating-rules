@@ -8,9 +8,9 @@ Each entry gives the what and why of a standard the rules file applies. Section 
 
 **Why**: it separates a hard rule from a preference and from a permission. A reader then knows which rules a response can fail.
 
-## 3.1 BLUF
+## 3.1 Headline
 
-**What**: the Minto pyramid puts the answer first, then the points that support it, then the evidence.
+**What**: the Minto pyramid puts the answer first, then the points that support it, then the evidence. Its common name is `BLUF`, bottom line up front. The rules use the alias Headline, per 4.2 item 6, so that each heading is one common word.
 
 **Why**: a reader who stops after the first line still has the answer.
 

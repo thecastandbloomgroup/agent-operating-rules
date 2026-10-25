@@ -19,7 +19,7 @@ Without `--check`, the script prints the report and exits with 0.
 | --------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------- |
 | `long_sentences`                  | Line, word count and start of each sentence over the limit (4.1.1)                                    | the list has an entry         |
 | `dashes`                          | Each line with an em dash or an en dash (4.3.1)                                                       | the list has an entry         |
-| `banned`, `banned_total`          | The hits of each category of `banned-words.txt` (4.2.3, 4.4)                                          | the total is more than 0      |
+| `banned`, `banned_total`          | The hits of each category of `banned-words.txt` (4.2.3, 4.2.6, 4.4)                                   | the total is more than 0      |
 | `nominalizations`                 | Each noun phrase that has a verb form (4.2.4)                                                         | the list has an entry         |
 | `gerund_nouns`                    | Each gerund used as a noun (4.1.6)                                                                    | the list has an entry         |
 | `passive_count`, `passive_sample` | The count of passive forms, and up to 8 of them (4.1.2)                                               | never                         |
