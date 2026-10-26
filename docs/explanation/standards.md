@@ -8,6 +8,12 @@ Each entry gives the what and why of a standard the rules file applies. Section 
 
 **Why**: it separates a hard rule from a preference and from a permission. A reader then knows which rules a response can fail.
 
+## 1.5 Thematic analysis
+
+**What**: thematic analysis groups qualitative data into themes, then checks each theme against the data. Braun and Clarke wrote the common method for psychology. In UX, Contextual Design groups notes from user interviews into an affinity diagram. Nielsen Norman Group teaches the method for user research. Its last step looks for data that does not support a theme.
+
+**Why**: numbers have a test and a baseline, and statements need one too. A count of sources shows how much support a theme has. A source that disagrees shows where the theme is weak. The count does not show how much a theme matters, so the rule asks for a reason when a theme with few sources still matters.
+
 ## 3.1 Headline
 
 **What**: the Minto pyramid puts the answer first, then the points that support it, then the evidence. Its common name is `BLUF`, bottom line up front. The rules use the alias Headline, per 4.2 item 6, so that each heading is one common word.
@@ -59,6 +65,8 @@ Each entry gives the what and why of a standard the rules file applies. Section 
 Two house rules sit on top of IEEE style. A blank line separates each reference entry, and no rendered line in the text carries more than one citation. Markdown joins single line breaks into one paragraph, so without the blank lines the References list renders as one block. One citation per line lets a reader scan the lineage of a passage down the margin. It also lets a script test each citation against the References list without parsing sentences.
 
 Source-type tags (P, S, T, U) mark each entry as primary, secondary, tertiary, or unclassified. A claim that drives the recommendation should rest on a primary or secondary source. The tag makes a weak chain visible without reading the source.
+
+The tag follows how the claim uses the source, not the source alone. One source can be primary for one claim and secondary for another. The Wikipedia page on primary, secondary, and tertiary sources gives this point with examples. That page is a failed proposal, not a Wikipedia policy, so the rules file does not cite it.
 
 ## 6.4 Task kinds
 
