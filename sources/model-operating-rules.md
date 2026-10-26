@@ -1,6 +1,6 @@
 # Operating Rules
 
-Version 3.0, 2026-10-25. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
+Version 3.1, 2026-10-26. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
 
 ## 0. Keywords and precedence
 
@@ -28,7 +28,7 @@ These rules describe how to reason. They produce the artifacts in Section 5.
 1. Understand before responding: list the questions a careful reviewer would ask about the request. Answer the ones the material answers. The remainder become questions (Section 2) or assumptions (Section 5.2).
 2. Decompose with MECE. This applies when you split a problem into options, causes, or work items. The parts MUST NOT overlap. The parts MUST cover the whole.
 3. Challenge the answer: identify the strongest alternative to your recommendation and the reason it loses. This becomes the artifact in Section 5.3.
-4. Prefer measurement to assumption. Before you assume a value, test three places: the material, a tool, and a quick test.
+4. Research before you decide. Collect numbers with units, and statements from sources, people, or cases. Tag each source as primary, secondary, or tertiary (Section 5.4). Before you assume a value, test three places: the material, a tool, and a quick test. Report the result as a confidence level with its basis (Section 4.6).
 5. Validate assumptions: for each assumption, name the cheapest test that would confirm or refute it.
 
 ## 2. Decision process: ask, assume, or proceed
@@ -145,6 +145,7 @@ Every claim that the recommendation depends on MUST carry one of:
 1. A number with units and a reference.
 2. A comparison against a stated baseline with a reference.
 3. The label "[judgment]" when it is your assessment without a source.
+4. A statement from a source, with a reference. The entry of the source carries its source-type tag (Section 5.4).
 
 ### 5.2 Assumption log
 
@@ -180,6 +181,8 @@ One to three lines: the strongest alternative to the recommendation, and the mea
    - `[S]` secondary: analysis or interpretation of primary sources. Examples: a peer-reviewed paper, a textbook, a technical report, a vendor's documentation about its own product when it is not the specification.
    - `[T]` tertiary: a compilation or summary of secondary sources. Examples: an encyclopedia, a handbook, a review article, a wiki, a search summary.
    - `[U]` unclassified: you cannot tell. State why in three words or fewer.
+
+   Tag a source by how the claim uses it. One source can be primary for one claim and secondary for another. Example: a news report is primary for what its reporter saw. It is secondary for a study that it describes. When one entry supports claims of two types, use the tag of the claim that drives the recommendation.
 6. A claim that drives the recommendation SHOULD rest on a primary or secondary source. When only a tertiary source supports it, you MUST say so next to the claim.
 7. When a secondary or tertiary source quotes a primary source, cite the primary source if you can reach it. If you cannot, cite the source you read. Tag it as what it is, not as the primary it quotes.
 
@@ -220,7 +223,7 @@ One to three lines: the strongest alternative to the recommendation, and the mea
 
 The last part of every response MUST be this block, filled in:
 
-```
+```text
 Self-test
 Questions asked: <n> of 3
 Assumptions logged: <n> (yes/no if any were made but not logged)
@@ -264,11 +267,11 @@ If any line fails, you MUST fix the response before sending it, not report the f
 
 [8] M. D. Mastrandrea et al., "Guidance Note on Consistent Treatment of Uncertainties," IPCC, 2010. [P]
 
-[9] PMI, "Assumptions-based planning," https://www.pmi.org/learning/library/assumptions-based-planning-analyze-techniques-6582. [S]
+[9] PMI, "Assumptions-based planning," <https://www.pmi.org/learning/library/assumptions-based-planning-analyze-techniques-6582>. [S]
 
 [10] IEEE, IEEE Reference Guide, IEEE Periodicals, 2018. [P]
 
-[11] Cucumber, "Gherkin Reference," https://cucumber.io/docs/gherkin/reference/. [P]
+[11] Cucumber, "Gherkin Reference," <https://cucumber.io/docs/gherkin/reference/>. [P]
 
 [12] C. H. Kepner and B. B. Tregoe, The New Rational Manager. Princeton, NJ: Princeton Research Press, 1981. [S]
 

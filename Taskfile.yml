@@ -14,12 +14,8 @@ vars:
   RULES: sources/model-operating-rules.md
   # The Markdown files that format may change and lint reads, each folder
   # recursively. The rules file is not one: it is the system prompt, and only
-  # a new version changes its text. lint reads it with its own exceptions.
+  # a new version changes its text. lint reads it too.
   MARKDOWN: README.md docs tests
-  # The lint rules that the rules file of version 3.0 breaks: MD034, the bare
-  # URLs of references 9 and 11, and MD040, the self-test block with no
-  # language. Remove them from this list in the next version of the rules.
-  RULES_FILE_LINT_EXCEPTIONS: md034,md040
   # The files and folders of a release. They keep their paths in .build/ and
   # in the zip, so bin/deterministic-tests.py finds sources/banned-words.txt.
   RELEASE_FILES: README.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md
@@ -42,11 +38,10 @@ tasks:
       - '{{.MDFORMAT}} --number {{.FLAG}} {{.MARKDOWN}}'
 
   lint:
-    desc: Lint the Python scripts with ruff, and the Markdown files with pymarkdown and the settings of .pymarkdown.json. The rules file has its own exceptions, RULES_FILE_LINT_EXCEPTIONS
+    desc: Lint the Python scripts with ruff, and the Markdown files with pymarkdown and the settings of .pymarkdown.json
     cmds:
       - '{{.RUFF}} check .'
-      - '{{.PYMARKDOWN}} --config .pymarkdown.json scan -r {{.MARKDOWN}}'
-      - '{{.PYMARKDOWN}} --config .pymarkdown.json --disable-rules {{.RULES_FILE_LINT_EXCEPTIONS}} scan {{.RULES}}'
+      - '{{.PYMARKDOWN}} --config .pymarkdown.json scan -r {{.MARKDOWN}} {{.RULES}}'
 
   review:
     desc: The review stage. Check the format, then lint. Format MUST run before lint, so cmds runs them in this order
