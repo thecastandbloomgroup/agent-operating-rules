@@ -1,5 +1,6 @@
 """Unit tests of the scripts in bin/. Run: python3 -m unittest discover -s tests/unit"""
 
+import importlib.util
 import json
 import subprocess
 import sys
@@ -72,6 +73,167 @@ class DeterministicTests(unittest.TestCase):
         code, report = self.report("The alias of `BLUF` is Headline.\n")
         self.assertEqual(code, 0)
         self.assertEqual(report["banned_total"], 0)
+
+
+def load(script):
+    """Import a script of bin/, whose name has a hyphen, as a module."""
+    spec = importlib.util.spec_from_file_location(
+        script.replace("-", "_"), BIN / script
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+EVAL = load("run-evaluation.py")
+
+
+class RunEvaluationPairs(unittest.TestCase):
+    def setUp(self):
+        self.cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+
+    def pair(self, ex, judge, second=None):
+        pair = {"executor": ex, "judge": judge}
+        if second:
+            pair["second_judge"] = second
+        return pair
+
+    def test_every_pair_of_pairs_json_is_valid(self):
+        for name, provider in self.cfg["providers"].items():
+            for pair in provider["pairs"]:
+                self.assertEqual(EVAL.check_pair(self.cfg, name, pair), [], name)
+
+    def test_refuses_a_judge_below_the_executor(self):
+        pair = self.pair(
+            {"model": "anthropic/claude-opus-5-5", "effort": "medium"},
+            {"model": "anthropic/claude-sonnet-5-5", "effort": "max"},
+        )
+        self.assertEqual(len(EVAL.check_pair(self.cfg, "anthropic", pair)), 1)
+
+    def test_same_model_needs_more_effort(self):
+        same = {"model": "xai/grok-4.7", "effort": "high"}
+        self.assertEqual(
+            len(EVAL.check_pair(self.cfg, "xai", self.pair(same, same))), 1
+        )
+        more = {"model": "xai/grok-4.7", "effort": "max"}
+        self.assertEqual(EVAL.check_pair(self.cfg, "xai", self.pair(same, more)), [])
+
+    def test_refuses_a_second_judge_of_the_same_provider(self):
+        pair = self.pair(
+            {"model": "anthropic/claude-sonnet-5-5", "effort": "medium"},
+            {"model": "anthropic/claude-opus-5-5", "effort": "high"},
+            {"model": "anthropic/claude-fable-5-1", "effort": "high"},
+        )
+        self.assertEqual(len(EVAL.check_pair(self.cfg, "anthropic", pair)), 1)
+
+    def test_plan_calls_nothing_and_exits_0(self):
+        result = run("run-evaluation.py", "--plan", "--prompts", "C1", "--samples", "1")
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("Estimate for 6 pairs", result.stdout)
+
+
+class RunEvaluationScores(unittest.TestCase):
+    def setUp(self):
+        text = (BIN.parent / "tests/evaluation/evaluation-tests.md").read_text()
+        self.prompts = {p["id"]: p for p in EVAL.parse_prompts(text)}
+
+    def judgment(self, value, r6=None):
+        scores = {c: {"score": value, "evidence": ""} for c in EVAL.CRITERIA}
+        scores["R6"]["score"] = r6
+        return {"scores": scores, "main_defect": ""}
+
+    def test_reads_13_prompts_and_the_r6_prompts_of_the_rubric(self):
+        self.assertEqual(len(self.prompts), 13)
+        r6 = sorted(i for i, p in self.prompts.items() if p["r6"])
+        self.assertEqual(r6, ["C1", "K1", "T1", "T2", "T3", "X1"])
+
+    def test_pass_needs_80_percent_and_every_gate(self):
+        _, total, available, gates, passed = EVAL.score(
+            self.judgment(2), self.prompts["C2"]
+        )
+        self.assertEqual((total, available, gates, passed), (16, 16, True, True))
+        low = self.judgment(2)
+        low["scores"]["R2"]["score"] = 0
+        self.assertFalse(EVAL.score(low, self.prompts["C2"])[3])
+
+    def test_r6_counts_only_where_it_applies(self):
+        _, total, available, _, _ = EVAL.score(
+            self.judgment(2, r6=2), self.prompts["K1"]
+        )
+        self.assertEqual((total, available), (18, 18))
+        _, total, available, _, _ = EVAL.score(
+            self.judgment(2, r6=2), self.prompts["K2"]
+        )
+        self.assertEqual((total, available), (16, 16))
+
+    def test_human_test_takes_gaps_failed_gates_and_a_sample(self):
+        def row(file, total, gates="yes"):
+            return {
+                "response_file": file,
+                "total": total,
+                "gates_passed": gates,
+                "date": "d",
+                "model": "m",
+                "provider": "p",
+                "rules_version": "v",
+                "prompt_id": "C1",
+                "domain": "Clear",
+            }
+
+        rows = [row("a", 16), row("a", 10), row("b", 16, "no"), row("b", 16)]
+        rows += [row(f"c{n}", 16) for n in range(5)]
+        chosen = {
+            r["response_file"]: r["reason"] for r in EVAL.human_test_rows(rows, "seed")
+        }
+        self.assertEqual(chosen["a"], "judges differ by more than 3 points")
+        self.assertEqual(chosen["b"], "a judge failed a gate")
+        self.assertEqual(sum(v == "random sample" for v in chosen.values()), 2)
+
+
+class RunEvaluationUnit(unittest.TestCase):
+    """One unit of work with a stub in place of the API: no network."""
+
+    def test_writes_the_response_the_judgments_and_one_row_per_judge(self):
+        cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+        pair = cfg["providers"]["anthropic"]["pairs"][0]
+        prompt = EVAL.parse_prompts(
+            (BIN.parent / "tests/evaluation/evaluation-tests.md").read_text()
+        )[1]
+        judgment = {
+            "scores": {c: {"score": 2, "evidence": "ok"} for c in EVAL.CRITERIA},
+            "main_defect": "none",
+        }
+        usage = {"input_tokens": 10, "output_tokens": 5, "cost": {"total_cost": 0.01}}
+
+        def stub(cfg, key, model, role, instructions, text, schema=None):
+            return (json.dumps(judgment) if schema else "# Headline\n"), usage, 0.1
+
+        original, EVAL.call = EVAL.call, stub
+        self.addCleanup(setattr, EVAL, "call", original)
+        with tempfile.TemporaryDirectory() as folder:
+            ctx = {
+                "date": "2026-10-26",
+                "version": "3.2.0",
+                "rules": "",
+                "schema": EVAL.judge_schema(),
+                "judge_instructions": "",
+            }
+            calls, rows, errors = EVAL.run_unit(
+                cfg, "key", Path(folder), ctx, "anthropic", pair, prompt, 1
+            )
+            response = Path(folder) / rows[0]["response_file"]
+            self.assertTrue(
+                response.read_text().startswith("anthropic/claude-sonnet-5-5")
+            )
+            self.assertEqual(len(list(Path(folder).rglob("*.json"))), 2)
+        self.assertEqual(errors, [])
+        self.assertEqual(len(calls), 3)
+        self.assertEqual(
+            [r["grader"] for r in rows],
+            ["anthropic/claude-opus-5-5@high", "openai/gpt-6-astra@high"],
+        )
+        self.assertTrue(all(r["pass"] == "yes" for r in rows))
+        self.assertEqual(set(rows[0]), set(EVAL.HEADER))
 
 
 if __name__ == "__main__":

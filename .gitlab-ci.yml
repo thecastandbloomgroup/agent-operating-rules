@@ -3,8 +3,10 @@
 # job runs the same step that a person runs with task <name>. task ci runs the
 # five tasks in this order on a machine. The push mirror of GitLab, not a job,
 # copies main to GitHub (docs/how-to/set-up-the-github-mirror.md).
+# The evaluate stage comes last. It runs only on main, when a person starts it
+# or a schedule runs it (docs/how-to/run-an-evaluation.md).
 # docs/reference/tasks-and-ci.md describes each job.
-stages: [review, build, test, docs, package]
+stages: [review, build, test, docs, package, evaluate]
 
 # uv in GitLab CI, as in https://docs.astral.sh/uv/guides/integration/gitlab/.
 # The build folder is a separate mount, so uv copies files instead of linking.
@@ -25,7 +27,7 @@ workflow:
 default:
   image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-alpine
   interruptible: true
-  before_script:
+  before_script: &install-task
     # Task 3.53.1 for the architecture of the runner. The checksum stops any
     # other file.
     - apk add --no-cache curl
@@ -84,3 +86,41 @@ package:
   artifacts:
     paths: ['dist/*.zip']
     expire_in: 1 month
+
+# The evaluation calls the Perplexity Agent API, which costs money, so it runs
+# on main only: when a person starts one job of the matrix, or when a pipeline
+# schedule runs. The Doppler service token is a protected, masked variable, so
+# no other branch gets it. The token reads one Doppler config, and doppler run
+# puts PERPLEXITY_API_KEY in the environment of the task only.
+# docs/how-to/set-up-doppler-for-evaluation.md gives the setup.
+evaluate:
+  stage: evaluate
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+      allow_failure: true
+  parallel:
+    matrix:
+      - PROVIDER: [anthropic, openai, google, moonshot, zai, xai]
+  # A cancelled run loses the calls it paid for, so a new commit does not cancel it.
+  interruptible: false
+  timeout: 2h
+  dependencies: []
+  variables:
+    SAMPLES: "3"
+    PROMPTS: ""
+  before_script:
+    - *install-task
+    # The Doppler CLI from its signed Alpine repository. The checksum of the
+    # signing key, taken on 2026-10-26, stops any other key.
+    - curl -fsSL --retry 3 -o /etc/apk/keys/cli@doppler-8004D9FF50437357.rsa.pub https://packages.doppler.com/public/cli/rsa.8004D9FF50437357.key
+    - echo "911d73fc4e2dee93f9a6309cad9ffec272db997c6e8b5b4ef360328eb8ecd574  /etc/apk/keys/cli@doppler-8004D9FF50437357.rsa.pub" | sha256sum -c -
+    - echo https://packages.doppler.com/public/cli/alpine/any-version/main >> /etc/apk/repositories
+    - apk add --no-cache doppler
+  script:
+    - doppler run -- task eval PROVIDER="$PROVIDER" SAMPLES="$SAMPLES" PROMPTS="$PROMPTS"
+  artifacts:
+    when: always
+    paths: [.eval/]
+    expire_in: 3 months

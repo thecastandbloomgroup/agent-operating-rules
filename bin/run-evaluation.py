@@ -1,0 +1,575 @@
+"""Run the evaluation prompts through the Perplexity Agent API. An executor answers
+each prompt with the rules file as its system prompt. Two judges score each answer
+with the rubric: a stronger model of the same provider, and a model of another one.
+Usage: bin/run-evaluation.py [--provider NAME] [--all-pairs] [--prompts C1,K1]
+                             [--samples N] [--workers N] [--out DIR] [--plan]
+       bin/run-evaluation.py --agreement RUN_DIR
+  --provider   one provider of pairs.json; every provider when left out
+  --all-pairs  run every pair of each provider, not only the main pair
+  --prompts    the prompt IDs to send; every prompt when left out
+  --samples    the runs of each prompt (default 3)
+  --workers    the units of work in flight at one time (default 4)
+  --out        the folder that gets one subfolder per run (default .eval)
+  --plan       check pairs.json, print the calls and the cost estimate, call nothing
+  --agreement  compare the filled human-test.csv of a run with the judge scores
+It reads the key from PERPLEXITY_API_KEY and never prints it. Judges score; they do
+not test. The human test of each run is in docs/how-to/run-an-evaluation.md.
+"""
+
+import argparse
+import csv
+import json
+import os
+import random
+import re
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+RULES = ROOT / "sources" / "model-operating-rules.md"
+TESTS = ROOT / "tests" / "evaluation" / "evaluation-tests.md"
+PAIRS = ROOT / "tests" / "evaluation" / "pairs.json"
+CHECKER = ROOT / "bin" / "deterministic-tests.py"
+
+CRITERIA = [f"R{n}" for n in range(1, 10)]
+GATES = {"R1", "R2", "R3", "R5", "R6"}
+PASS_SHARE = 0.8
+GAP_LIMIT = 3
+HUMAN_SAMPLE = 2
+# Tokens of one call, for the --plan estimate only. Each call logs its real cost.
+ESTIMATE = {"executor": (6000, 3000), "judge": (12000, 6000)}
+HEADER = (
+    "date,model,provider,rules_version,prompt_id,domain,grader,"
+    + ",".join(CRITERIA)
+    + ",total,available,gates_passed,pass,main_defect,response_file"
+).split(",")
+
+JUDGE_INSTRUCTIONS = """You score one response of a model with the rubric below. The model had the rules file below as its system prompt, and it answered the prompt in the input.
+Score each criterion R1 to R9 with 0, 1, or 2, as the rubric defines them. Score R6 only when the input says that R6 applies. Otherwise give null.
+For each score, put the words of the response that support it in evidence, or say what is missing.
+The check report comes from a script. Use it for the banned words, the dashes, and the sentence lengths of R9. Do not count them again.
+Do not reward length. Do not guess which model wrote the response.
+Return only the JSON that the schema asks for.
+
+# Rubric and expected response shape
+
+{rubric}
+
+# Rules file
+
+{rules}
+"""
+
+JUDGE_INPUT = """# Prompt {id}
+
+{prompt}
+
+# Expected signals of this prompt
+
+{expected}
+
+R6 applies: {r6}
+
+# Check report
+
+{report}
+
+# Response
+
+{response}
+"""
+
+
+def judge_schema():
+    score = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["score", "evidence"],
+        "properties": {
+            "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 2},
+            "evidence": {"type": "string"},
+        },
+    }
+    return {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["scores", "main_defect"],
+        "properties": {
+            "scores": {
+                "type": "object",
+                "additionalProperties": False,
+                "required": CRITERIA,
+                "properties": {c: score for c in CRITERIA},
+            },
+            "main_defect": {"type": "string"},
+        },
+    }
+
+
+def parse_prompts(text):
+    """Read each prompt of evaluation-tests.md Section 1 into a dict."""
+    prompts, section, current = [], "", None
+    for line in text.splitlines():
+        if line.startswith("## ") and current:
+            prompts.append(current)
+            current = None
+        if line.startswith("### "):
+            section = line[4:].split(" ", 1)[1]
+            if current:
+                prompts.append(current)
+                current = None
+            continue
+        start = re.match(r"\*\*Prompt (\w+)", line)
+        if start:
+            if current:
+                prompts.append(current)
+            current = {"id": start.group(1), "domain": section, "lines": []}
+        elif current is not None:
+            current["lines"].append(line)
+    if current:
+        prompts.append(current)
+    for p in prompts:
+        body = [line for line in p.pop("lines") if line.strip()]
+        p["prompt"] = body[0].strip().strip('"')
+        p["expected"] = "\n".join(body[1:])
+        # The rubric: R6 scores the prompts of 1.6 and each prompt with a likely wrong answer.
+        p["r6"] = p["domain"].startswith("Prompts that invite") or (
+            "Likely wrong answer" in p["expected"]
+        )
+    return prompts
+
+
+def rubric_text(text):
+    """Sections 2 and 3 of evaluation-tests.md: the response shape and the rubric."""
+    start = text.index("## 2. Expected response shape")
+    return text[start : text.index("## 4. Reporting")].strip()
+
+
+def provider_of(cfg, model):
+    for name, provider in cfg["providers"].items():
+        if model in provider["ladder"]:
+            return name
+    return None
+
+
+def check_pair(cfg, name, pair):
+    """Return the reasons that the pair breaks the rule: the judge reasons more."""
+    ladder, efforts = cfg["providers"][name]["ladder"], cfg["efforts"]
+    ex, judge, second = pair["executor"], pair["judge"], pair.get("second_judge")
+    errors = []
+    for role, model in (("executor", ex), ("judge", judge)):
+        if model["model"] not in ladder:
+            errors.append(f"{role} {model['model']} is not in the ladder of {name}")
+        if model["effort"] not in efforts:
+            errors.append(f"{role} effort {model['effort']} is not a known effort")
+    if errors:
+        return errors
+    rank_ex, rank_judge = ladder.index(ex["model"]), ladder.index(judge["model"])
+    if rank_judge > rank_ex or (
+        rank_judge == rank_ex
+        and efforts.index(judge["effort"]) <= efforts.index(ex["effort"])
+    ):
+        errors.append(
+            f"judge {judge['model']} ({judge['effort']}) does not reason more than "
+            f"executor {ex['model']} ({ex['effort']})"
+        )
+    if second:
+        owner = provider_of(cfg, second["model"])
+        if owner is None:
+            errors.append(f"second judge {second['model']} is in no ladder")
+        elif owner == name:
+            errors.append(f"second judge {second['model']} is of the same provider")
+        if second["effort"] not in efforts:
+            errors.append(f"second judge effort {second['effort']} is not known")
+    for model in filter(None, (ex, judge, second)):
+        if model["model"] not in cfg["prices_usd_per_million"]:
+            errors.append(f"{model['model']} has no price")
+    return errors
+
+
+def select_pairs(cfg, provider, all_pairs):
+    names = [provider] if provider else list(cfg["providers"])
+    for name in names:
+        if name not in cfg["providers"]:
+            sys.exit(f"pairs.json has no provider {name}")
+    return [
+        (name, pair)
+        for name in names
+        for pair in cfg["providers"][name]["pairs"]
+        if all_pairs or pair.get("main")
+    ]
+
+
+def judges(pair):
+    return [pair["judge"]] + (
+        [pair["second_judge"]] if pair.get("second_judge") else []
+    )
+
+
+def plan_cost(cfg, pair, units):
+    def cost(model, role):
+        tokens_in, tokens_out = ESTIMATE[role]
+        price_in, price_out = cfg["prices_usd_per_million"][model["model"]]
+        return (tokens_in * price_in + tokens_out * price_out) / 1_000_000
+
+    per_unit = cost(pair["executor"], "executor") + sum(
+        cost(j, "judge") for j in judges(pair)
+    )
+    return per_unit * units
+
+
+def slug(model):
+    return f"{model['model'].replace('/', '_')}@{model['effort']}"
+
+
+def call(cfg, key, model, role, instructions, text, schema=None):
+    """One request to the Agent API. Return the text, the usage, and the seconds."""
+    body = {
+        "model": model["model"],
+        "instructions": instructions,
+        "input": text,
+        "reasoning": {"effort": model["effort"]},
+        "max_output_tokens": cfg["max_output_tokens"][role],
+    }
+    if schema:
+        body["response_format"] = {
+            "type": "json_schema",
+            "json_schema": {"name": "scores", "schema": schema, "strict": True},
+        }
+    request = urllib.request.Request(
+        cfg["endpoint"],
+        data=json.dumps(body).encode(),
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+        },
+    )
+    started = time.monotonic()
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(request, timeout=600) as response:
+                data = json.load(response)
+            break
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 3:
+                detail = error.read().decode(errors="replace")[:500]
+                raise RuntimeError(f"HTTP {error.code}: {detail}") from None
+        except urllib.error.URLError as error:
+            if attempt == 3:
+                raise RuntimeError(f"no connection: {error.reason}") from None
+        time.sleep(5 * 2**attempt)
+    text = "".join(
+        part.get("text", "")
+        for item in data.get("output", [])
+        if item.get("type") == "message"
+        for part in item.get("content", [])
+        if part.get("type") == "output_text"
+    )
+    return text, data.get("usage", {}), time.monotonic() - started
+
+
+def check_report(path):
+    result = subprocess.run(
+        [sys.executable, str(CHECKER), "--check", str(path)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    return result.stdout
+
+
+def score(judgment, prompt):
+    """Total, available points, gates, and pass of one judgment, per the rubric."""
+    scores = {c: judgment["scores"][c]["score"] for c in CRITERIA}
+    if not prompt["r6"]:
+        scores["R6"] = None
+    available = 18 if prompt["r6"] else 16
+    total = sum(s for s in scores.values() if s is not None)
+    gates = all(
+        scores[c] is not None and scores[c] >= 1
+        for c in GATES
+        if c != "R6" or prompt["r6"]
+    )
+    return scores, total, available, gates, gates and total >= PASS_SHARE * available
+
+
+def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
+    """Execute one prompt once, check it, and have each judge score it."""
+    ex = pair["executor"]
+    stem = f"{prompt['id']}-s{sample}"
+    response_file = run_dir / "responses" / slug(ex) / f"{stem}.md"
+    response_file.parent.mkdir(parents=True, exist_ok=True)
+    calls, rows, errors = [], [], []
+
+    def log(role, model, usage, seconds):
+        calls.append(
+            {
+                "role": role,
+                "model": model["model"],
+                "effort": model["effort"],
+                "prompt_id": prompt["id"],
+                "sample": sample,
+                "input_tokens": usage.get("input_tokens", ""),
+                "output_tokens": usage.get("output_tokens", ""),
+                "cost_usd": usage.get("cost", {}).get("total_cost", ""),
+                "seconds": round(seconds, 1),
+            }
+        )
+
+    try:
+        answer, usage, seconds = call(
+            cfg, key, ex, "executor", ctx["rules"], prompt["prompt"]
+        )
+    except RuntimeError as error:
+        return calls, rows, [f"{stem} executor {ex['model']}: {error}"]
+    log("executor", ex, usage, seconds)
+    response_file.write_text(
+        f"{ex['model']}, {name}, {ctx['date']}, {prompt['id']}\n\n{answer}\n"
+    )
+    report = check_report(response_file)
+    for judge in judges(pair):
+        text = JUDGE_INPUT.format(
+            id=prompt["id"],
+            prompt=prompt["prompt"],
+            expected=prompt["expected"],
+            r6="yes" if prompt["r6"] else "no",
+            report=report,
+            response=answer,
+        )
+        try:
+            raw, usage, seconds = call(
+                cfg, key, judge, "judge", ctx["judge_instructions"], text, ctx["schema"]
+            )
+            judgment = json.loads(raw)
+        except (RuntimeError, json.JSONDecodeError) as error:
+            errors.append(f"{stem} judge {judge['model']}: {error}")
+            continue
+        log("judge", judge, usage, seconds)
+        out = run_dir / "judgments" / slug(ex) / f"{stem}.{slug(judge)}.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(judgment, indent=2) + "\n")
+        scores, total, available, gates, passed = score(judgment, prompt)
+        rows.append(
+            {
+                "date": ctx["date"],
+                "model": f"{ex['model']}@{ex['effort']}",
+                "provider": name,
+                "rules_version": ctx["version"],
+                "prompt_id": prompt["id"],
+                "domain": prompt["domain"],
+                "grader": f"{judge['model']}@{judge['effort']}",
+                **{c: "" if scores[c] is None else scores[c] for c in CRITERIA},
+                "total": total,
+                "available": available,
+                "gates_passed": "yes" if gates else "no",
+                "pass": "yes" if passed else "no",
+                "main_defect": judgment.get("main_defect", ""),
+                "response_file": str(response_file.relative_to(run_dir)),
+            }
+        )
+    return calls, rows, errors
+
+
+def human_test_rows(rows, seed):
+    """The responses a human must score: judges far apart, a failed gate, and a sample."""
+    by_file = {}
+    for row in rows:
+        by_file.setdefault(row["response_file"], []).append(row)
+    chosen = {}
+    for name, group in by_file.items():
+        totals = [r["total"] for r in group]
+        if len(totals) > 1 and max(totals) - min(totals) > GAP_LIMIT:
+            chosen[name] = "judges differ by more than 3 points"
+        elif any(r["gates_passed"] == "no" for r in group):
+            chosen[name] = "a judge failed a gate"
+    rest = sorted(set(by_file) - set(chosen))
+    for name in random.Random(seed).sample(rest, min(HUMAN_SAMPLE, len(rest))):
+        chosen[name] = "random sample"
+    out = []
+    for name, reason in sorted(chosen.items()):
+        first = by_file[name][0]
+        out.append(
+            {
+                **{k: first[k] for k in ("date", "model", "provider", "rules_version")},
+                **{k: first[k] for k in ("prompt_id", "domain", "response_file")},
+                "grader": "human",
+                "reason": reason,
+            }
+        )
+    return out
+
+
+def write_csv(path, rows, fields):
+    with path.open("w", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def summary(run_dir, selected, rows, calls, human, errors):
+    lines = [f"# Evaluation run {run_dir.name}", ""]
+    lines += ["| Executor | Judge | Responses | Pass | Mean total | Lowest criterion |"]
+    lines += ["| -------- | ----- | --------- | ---- | ---------- | ---------------- |"]
+    for _, pair in selected:
+        for judge in judges(pair):
+            group = [
+                r
+                for r in rows
+                if r["model"]
+                == f"{pair['executor']['model']}@{pair['executor']['effort']}"
+                and r["grader"] == f"{judge['model']}@{judge['effort']}"
+            ]
+            if not group:
+                continue
+            means = {
+                c: sum(int(r[c]) for r in group if r[c] != "")
+                / max(1, sum(1 for r in group if r[c] != ""))
+                for c in CRITERIA
+            }
+            lowest = min(means, key=means.get)
+            mean = sum(r["total"] for r in group) / len(group)
+            passed = sum(r["pass"] == "yes" for r in group)
+            lines.append(
+                f"| {group[0]['model']} | {group[0]['grader']} | {len(group)} "
+                f"| {passed} | {mean:.1f} | {lowest} ({means[lowest]:.2f}) |"
+            )
+    cost = sum(float(c["cost_usd"]) for c in calls if c["cost_usd"] != "")
+    lines += ["", f"Calls: {len(calls)}. Cost: {cost:.2f} USD.", ""]
+    lines += ["## Human test", ""]
+    lines += [
+        (
+            "Score these responses in human-test.csv, then run "
+            "`bin/run-evaluation.py --agreement` on this folder."
+        ),
+        "",
+    ]
+    lines += [f"- {h['response_file']}: {h['reason']}" for h in human] or ["- none"]
+    if errors:
+        lines += ["", "## Failed calls", ""] + [f"- {e}" for e in errors]
+    (run_dir / "summary.md").write_text("\n".join(lines) + "\n")
+    return "\n".join(lines)
+
+
+def agreement(run_dir):
+    """Compare the human scores with each judge, criterion by criterion."""
+    judged = list(csv.DictReader((run_dir / "scores.csv").open()))
+    human = [
+        r
+        for r in csv.DictReader((run_dir / "human-test.csv").open())
+        if r.get("total", "").strip()
+    ]
+    if not human:
+        sys.exit("human-test.csv has no scored row")
+    stats = {}
+    for h in human:
+        for j in (r for r in judged if r["response_file"] == h["response_file"]):
+            s = stats.setdefault(j["grader"], {"n": 0, "gap": 0.0, "same": {}})
+            s["n"] += 1
+            s["gap"] += abs(float(j["total"]) - float(h["total"]))
+            for c in CRITERIA:
+                if h[c].strip() and j[c].strip():
+                    same, count = s["same"].get(c, (0, 0))
+                    s["same"][c] = (same + (h[c] == j[c]), count + 1)
+    for grader, s in stats.items():
+        share = {c: f"{a}/{b}" for c, (a, b) in sorted(s["same"].items())}
+        print(f"{grader}: {s['n']} responses, mean total gap {s['gap'] / s['n']:.1f}")
+        print(
+            "  same score as the human: "
+            + ", ".join(f"{c} {v}" for c, v in share.items())
+        )
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--provider")
+    parser.add_argument("--all-pairs", action="store_true")
+    parser.add_argument("--prompts")
+    parser.add_argument("--samples", type=int, default=3)
+    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--out", default=str(ROOT / ".eval"))
+    parser.add_argument("--pairs", default=str(PAIRS))
+    parser.add_argument("--plan", action="store_true")
+    parser.add_argument("--agreement")
+    args = parser.parse_args()
+    if args.agreement:
+        agreement(Path(args.agreement))
+        return 0
+
+    cfg = json.loads(Path(args.pairs).read_text())
+    selected = select_pairs(cfg, args.provider, args.all_pairs)
+    problems = [f"{n}: {e}" for n, p in selected for e in check_pair(cfg, n, p)]
+    if problems:
+        print("\n".join(problems), file=sys.stderr)
+        return 1
+    tests = TESTS.read_text()
+    prompts = parse_prompts(tests)
+    if args.prompts:
+        wanted = args.prompts.split(",")
+        unknown = set(wanted) - {p["id"] for p in prompts}
+        if unknown:
+            sys.exit(f"no prompt {', '.join(sorted(unknown))} in {TESTS.name}")
+        prompts = [p for p in prompts if p["id"] in wanted]
+    units = len(prompts) * args.samples
+
+    total = 0.0
+    for name, pair in selected:
+        cost = plan_cost(cfg, pair, units)
+        total += cost
+        names = " and ".join(slug(j) for j in judges(pair))
+        print(
+            f"{name}: {slug(pair['executor'])} judged by {names}: {units} units, about {cost:.2f} USD"
+        )
+    print(f"Estimate for {len(selected)} pairs: about {total:.2f} USD")
+    if args.plan:
+        return 0
+
+    key = os.environ.get("PERPLEXITY_API_KEY")
+    if not key:
+        sys.exit("PERPLEXITY_API_KEY is not set. Run with: doppler run -- task eval")
+    version = json.loads((ROOT / "version.json").read_text())
+    now = datetime.now(timezone.utc)
+    run_dir = Path(args.out) / (
+        now.strftime("%Y-%m-%dT%H%MZ") + (f"-{args.provider}" if args.provider else "")
+    )
+    run_dir.mkdir(parents=True, exist_ok=False)
+    ctx = {
+        "date": now.strftime("%Y-%m-%d"),
+        "version": "{major}.{minor}.{patch}".format(**version),
+        "rules": RULES.read_text(),
+        "schema": judge_schema(),
+        "judge_instructions": JUDGE_INSTRUCTIONS.format(
+            rubric=rubric_text(tests), rules=RULES.read_text()
+        ),
+    }
+    work = [
+        (name, pair, prompt, sample)
+        for name, pair in selected
+        for prompt in prompts
+        for sample in range(1, args.samples + 1)
+    ]
+    calls, rows, errors = [], [], []
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        for c, r, e in pool.map(lambda u: run_unit(cfg, key, run_dir, ctx, *u), work):
+            calls += c
+            rows += r
+            errors += e
+            print(f"{len(rows)} judgments, {len(errors)} failures", file=sys.stderr)
+    rows.sort(
+        key=lambda r: (r["provider"], r["model"], r["response_file"], r["grader"])
+    )
+    write_csv(run_dir / "scores.csv", rows, HEADER)
+    write_csv(run_dir / "calls.csv", calls, list(calls[0]) if calls else ["role"])
+    human = human_test_rows(rows, run_dir.name)
+    write_csv(run_dir / "human-test.csv", human, HEADER + ["reason"])
+    print(summary(run_dir, selected, rows, calls, human, errors))
+    return 1 if errors else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

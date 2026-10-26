@@ -1,0 +1,108 @@
+{
+  "endpoint": "https://api.perplexity.ai/v1/agent",
+  "efforts": ["minimal", "low", "medium", "high", "xhigh", "max"],
+  "max_output_tokens": {"executor": 8000, "judge": 16000},
+  "providers": {
+    "anthropic": {
+      "ladder": [
+        "anthropic/claude-fable-5-1",
+        "anthropic/claude-opus-5-5",
+        "anthropic/claude-sonnet-5-5",
+        "anthropic/claude-haiku-5-5"
+      ],
+      "pairs": [
+        {
+          "main": true,
+          "executor": {"model": "anthropic/claude-sonnet-5-5", "effort": "medium"},
+          "judge": {"model": "anthropic/claude-opus-5-5", "effort": "high"},
+          "second_judge": {"model": "openai/gpt-6-astra", "effort": "high"}
+        },
+        {
+          "executor": {"model": "anthropic/claude-opus-5-5", "effort": "medium"},
+          "judge": {"model": "anthropic/claude-fable-5-1", "effort": "high"},
+          "second_judge": {"model": "openai/gpt-6-astra", "effort": "high"}
+        },
+        {
+          "executor": {"model": "anthropic/claude-haiku-5-5", "effort": "medium"},
+          "judge": {"model": "anthropic/claude-sonnet-5-5", "effort": "high"},
+          "second_judge": {"model": "openai/gpt-6-astra", "effort": "high"}
+        }
+      ]
+    },
+    "openai": {
+      "ladder": ["openai/gpt-6-astra", "openai/gpt-6.1-sol", "openai/gpt-6-luna"],
+      "pairs": [
+        {
+          "main": true,
+          "executor": {"model": "openai/gpt-6.1-sol", "effort": "medium"},
+          "judge": {"model": "openai/gpt-6-astra", "effort": "high"},
+          "second_judge": {"model": "anthropic/claude-opus-5-5", "effort": "high"}
+        },
+        {
+          "executor": {"model": "openai/gpt-6-luna", "effort": "medium"},
+          "judge": {"model": "openai/gpt-6.1-sol", "effort": "high"},
+          "second_judge": {"model": "anthropic/claude-opus-5-5", "effort": "high"}
+        }
+      ]
+    },
+    "google": {
+      "ladder": ["google/gemini-4-argon", "google/gemini-3.8-flash"],
+      "pairs": [
+        {
+          "main": true,
+          "executor": {"model": "google/gemini-3.8-flash", "effort": "medium"},
+          "judge": {"model": "google/gemini-4-argon", "effort": "high"},
+          "second_judge": {"model": "anthropic/claude-opus-5-5", "effort": "high"}
+        }
+      ]
+    },
+    "moonshot": {
+      "ladder": ["perplexity/kimi-k3"],
+      "pairs": [
+        {
+          "main": true,
+          "executor": {"model": "perplexity/kimi-k3", "effort": "low"},
+          "judge": {"model": "perplexity/kimi-k3", "effort": "max"},
+          "second_judge": {"model": "google/gemini-4-argon", "effort": "high"}
+        }
+      ]
+    },
+    "zai": {
+      "ladder": ["perplexity/glm-5.3", "perplexity/glm-5.3-flash"],
+      "pairs": [
+        {
+          "main": true,
+          "executor": {"model": "perplexity/glm-5.3-flash", "effort": "medium"},
+          "judge": {"model": "perplexity/glm-5.3", "effort": "high"},
+          "second_judge": {"model": "openai/gpt-6-astra", "effort": "high"}
+        }
+      ]
+    },
+    "xai": {
+      "ladder": ["xai/grok-4.7"],
+      "pairs": [
+        {
+          "main": true,
+          "executor": {"model": "xai/grok-4.7", "effort": "low"},
+          "judge": {"model": "xai/grok-4.7", "effort": "high"},
+          "second_judge": {"model": "google/gemini-4-argon", "effort": "high"}
+        }
+      ]
+    }
+  },
+  "prices_usd_per_million": {
+    "anthropic/claude-fable-5-1": [10.0, 50.0],
+    "anthropic/claude-opus-5-5": [4.0, 20.0],
+    "anthropic/claude-sonnet-5-5": [2.0, 10.0],
+    "anthropic/claude-haiku-5-5": [0.1, 0.5],
+    "openai/gpt-6-astra": [10.0, 50.0],
+    "openai/gpt-6.1-sol": [2.0, 10.0],
+    "openai/gpt-6-luna": [0.1, 0.5],
+    "google/gemini-4-argon": [2.0, 10.0],
+    "google/gemini-3.8-flash": [0.75, 3.75],
+    "perplexity/kimi-k3": [3.0, 15.0],
+    "perplexity/glm-5.3": [1.4, 4.4],
+    "perplexity/glm-5.3-flash": [0.15, 0.5],
+    "xai/grok-4.7": [2.0, 6.0]
+  }
+}

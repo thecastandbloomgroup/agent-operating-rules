@@ -74,9 +74,10 @@ tasks:
       - tar -cf - {{.RELEASE_FILES}} | tar -xf - -C '.build/{{.NAME}}'
 
   test:
-    desc: The test stage. Run the unit tests of bin/ in tests/unit/. Then run bin/deterministic-tests.py --check on the rules file at the instruction limit, and on README.md and the evaluation tests at the description limit. It fails on a finding
+    desc: The test stage. Run the unit tests of bin/ in tests/unit/, and check the pairs of tests/evaluation/pairs.json with no API call. Then run bin/deterministic-tests.py --check on the rules file at the instruction limit, and on README.md and the evaluation tests at the description limit. It fails on a finding
     cmds:
       - python3 -m unittest discover -s tests/unit
+      - python3 bin/run-evaluation.py --plan > /dev/null
       - python3 bin/deterministic-tests.py --check --instructions {{.RULES}}
       - for: [README.md, tests/evaluation/evaluation-tests.md]
         cmd: python3 bin/deterministic-tests.py --check {{.ITEM}}
@@ -104,6 +105,33 @@ tasks:
     cmds:
       - mkdir -p ../dist
       - python3 -m zipfile -c '../dist/{{.NAME}}.zip' '{{.NAME}}'
+
+  # The evaluation tasks call the Perplexity Agent API, which costs money, so
+  # task ci leaves them out. The arguments of eval and eval:plan are the same.
+  eval:
+    desc: Run the evaluation prompts through the Perplexity Agent API. An executor answers each prompt, and two judges score each answer. PROVIDER picks one provider of tests/evaluation/pairs.json, SAMPLES sets the runs of each prompt (default 3), PROMPTS picks prompts such as C1,K1, and ALL_PAIRS=true adds the pairs that are not main. It reads PERPLEXITY_API_KEY, so run it as doppler run -- task eval
+    vars: &eval-args
+      ARGS: >-
+        {{if .PROVIDER}}--provider {{.PROVIDER}}{{end}}
+        {{if .PROMPTS}}--prompts {{.PROMPTS}}{{end}}
+        {{if eq (.ALL_PAIRS | default "false") "true"}}--all-pairs{{end}}
+        --samples {{.SAMPLES | default 3}}
+    requires:
+      vars: [PERPLEXITY_API_KEY]
+    cmds:
+      - python3 bin/run-evaluation.py {{.ARGS}}
+
+  eval:plan:
+    desc: Check tests/evaluation/pairs.json, and print the calls and the cost estimate of task eval with the same arguments. It calls no API and needs no key
+    vars: *eval-args
+    cmds:
+      - python3 bin/run-evaluation.py --plan {{.ARGS}}
+
+  eval:probe:
+    desc: Send prompt C1 one time through each main pair, or the main pair of PROVIDER. Run it before the first full run, to see that each model answers and each judge returns its JSON
+    cmds:
+      - task: eval
+        vars: {PROVIDER: '{{.PROVIDER}}', PROMPTS: C1, SAMPLES: '1'}
 
   ci:
     desc: "Run every stage in the order of CI: review, build, test, docs, package"

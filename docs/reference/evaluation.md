@@ -33,6 +33,25 @@ In `evaluation-tests.md` Section 3. Nine criteria, each scored 0, 1, or 2.
 
 Pass: 80 percent of available points (18, or 16 without R6) and every gate at 1 or more. Two graders score each response independently. A gap over 3 points means the prompt's expected signals need revision, not the model.
 
+## Executors and judges
+
+`bin/run-evaluation.py` sends the prompts through the Perplexity Agent API. `tests/evaluation/pairs.json` sets the pairs. In each pair, the judge reasons more than the executor. The judge is a model higher in the order of its provider, or the same model at a higher effort. A second judge from another provider scores each answer too. So the two graders of the rubric are two models, and a model does not grade only the work of its own provider.
+
+The order of the models in each provider follows the price per million tokens on the models page of Perplexity, on 2026-10-26. That order is a judgment \[judgment\]: Perplexity does not publish a rank of reasoning.
+
+| Provider  | Order, highest first                       | Main pair: executor, judge                       | Second judge   |
+| --------- | ------------------------------------------ | ------------------------------------------------ | -------------- |
+| Anthropic | Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5 | Sonnet 5.5 (medium), Opus 5.5 (high)             | GPT-6 Astra    |
+| OpenAI    | GPT-6 Astra, GPT-6.1 Sol, GPT-6 Luna       | GPT-6.1 Sol (medium), GPT-6 Astra (high)         | Opus 5.5       |
+| Google    | Gemini 4 Argon, Gemini 3.8 Flash           | Gemini 3.8 Flash (medium), Gemini 4 Argon (high) | Opus 5.5       |
+| Moonshot  | Kimi K3                                    | Kimi K3 (low), Kimi K3 (max)                     | Gemini 4 Argon |
+| Z.AI      | GLM 5.3, GLM 5.3 Flash                     | GLM 5.3 Flash (medium), GLM 5.3 (high)           | GPT-6 Astra    |
+| xAI       | Grok 4.7                                   | Grok 4.7 (low), Grok 4.7 (high)                  | Gemini 4 Argon |
+
+Anthropic and OpenAI have more pairs, which `ALL_PAIRS=true` runs. A pair of one model at two efforts is valid only when the API uses the effort. Run `task eval:probe` to see the effort in `calls.csv` before a full run.
+
+The judges check. They do not test. Each run lists answers for a human test. The list holds each answer where the judges differ by more than 3 points or a gate failed, and two more at random. The human scores show how far each judge can be trusted on each criterion.
+
 ## Results
 
 No run has been recorded. When the first run is in, copy the cross-model summary row here.

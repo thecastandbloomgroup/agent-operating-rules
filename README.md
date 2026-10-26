@@ -21,7 +21,7 @@ The same request gets the same shape of answer from every model, so a reader can
 The [documentation](docs/README.md) has four kinds of page:
 
 - Tutorials: [check the first response of a model](docs/tutorials/check-a-response.md).
-- How-to guides: [make a change](docs/how-to/make-a-change.md), [run the checks](docs/how-to/run-the-checks.md), [record an evaluation run](docs/how-to/record-an-evaluation-run.md), [release a new version](docs/how-to/release-a-version.md).
+- How-to guides: [make a change](docs/how-to/make-a-change.md), [run the checks](docs/how-to/run-the-checks.md), [set up Doppler for the evaluation](docs/how-to/set-up-doppler-for-evaluation.md), [run an evaluation](docs/how-to/run-an-evaluation.md), [record an evaluation run](docs/how-to/record-an-evaluation-run.md), [release a new version](docs/how-to/release-a-version.md).
 - Reference: [files](docs/reference/files.md), [tasks and CI](docs/reference/tasks-and-ci.md), [deterministic tests](docs/reference/deterministic-tests.md), [evaluation](docs/reference/evaluation.md).
 - Explanation: [standards used](docs/explanation/standards.md), [cost](docs/explanation/cost.md), [banned word list](docs/explanation/banned-word-list.md), [conformity assessment](docs/explanation/conformity-assessment.md).
 
