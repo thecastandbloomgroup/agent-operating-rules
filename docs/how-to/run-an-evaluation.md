@@ -26,13 +26,13 @@ The task prints each call and an estimate of the cost. It calls no API. Each rea
 1. Send prompt C1 one time through each main pair. This shows that each model answers and each judge returns its scores:
 
    ```sh
-   doppler run -- task eval:probe
+   doppler run --only-secrets PERPLEXITY_TOKEN -- task eval:probe
    ```
 
 2. Run all the prompts for one provider, three times each:
 
    ```sh
-   doppler run -- task eval PROVIDER=anthropic
+   doppler run --only-secrets PERPLEXITY_TOKEN -- task eval PROVIDER=anthropic
    ```
 
 Use `PROMPTS=C1,K1` to send fewer prompts, `SAMPLES=1` to send each prompt one time, and `ALL_PAIRS=true` to add the pairs that are not main.

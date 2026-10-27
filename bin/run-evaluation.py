@@ -12,7 +12,7 @@ Usage: bin/run-evaluation.py [--provider NAME] [--all-pairs] [--prompts C1,K1]
   --out        the folder that gets one subfolder per run (default .eval)
   --plan       check pairs.json, print the calls and the cost estimate, call nothing
   --agreement  compare the filled human-test.csv of a run with the judge scores
-It reads the key from PERPLEXITY_API_KEY and never prints it. Judges score; they do
+It reads the key from PERPLEXITY_TOKEN and never prints it. Judges score; they do
 not test. The human test of each run is in docs/how-to/run-an-evaluation.md.
 """
 
@@ -529,9 +529,11 @@ def main():
     if args.plan:
         return 0
 
-    key = os.environ.get("PERPLEXITY_API_KEY")
+    key = os.environ.get("PERPLEXITY_TOKEN")
     if not key:
-        sys.exit("PERPLEXITY_API_KEY is not set. Run with: doppler run -- task eval")
+        sys.exit(
+            "PERPLEXITY_TOKEN is not set. Run with: doppler run --only-secrets PERPLEXITY_TOKEN -- task eval"
+        )
     version = json.loads((ROOT / "version.json").read_text())
     now = datetime.now(timezone.utc)
     run_dir = Path(args.out) / (

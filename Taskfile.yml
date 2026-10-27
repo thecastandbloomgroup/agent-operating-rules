@@ -109,7 +109,7 @@ tasks:
   # The evaluation tasks call the Perplexity Agent API, which costs money, so
   # task ci leaves them out. The arguments of eval and eval:plan are the same.
   eval:
-    desc: Run the evaluation prompts through the Perplexity Agent API. An executor answers each prompt, and two judges score each answer. PROVIDER picks one provider of tests/evaluation/pairs.json, SAMPLES sets the runs of each prompt (default 3), PROMPTS picks prompts such as C1,K1, and ALL_PAIRS=true adds the pairs that are not main. It reads PERPLEXITY_API_KEY, so run it as doppler run -- task eval
+    desc: Run the evaluation prompts through the Perplexity Agent API. An executor answers each prompt, and two judges score each answer. PROVIDER picks one provider of tests/evaluation/pairs.json, SAMPLES sets the runs of each prompt (default 3), PROMPTS picks prompts such as C1,K1, and ALL_PAIRS=true adds the pairs that are not main. It reads PERPLEXITY_TOKEN, so run it as doppler run --only-secrets PERPLEXITY_TOKEN -- task eval
     vars: &eval-args
       ARGS: >-
         {{if .PROVIDER}}--provider {{.PROVIDER}}{{end}}
@@ -117,7 +117,7 @@ tasks:
         {{if eq (.ALL_PAIRS | default "false") "true"}}--all-pairs{{end}}
         --samples {{.SAMPLES | default 3}}
     requires:
-      vars: [PERPLEXITY_API_KEY]
+      vars: [PERPLEXITY_TOKEN]
     cmds:
       - python3 bin/run-evaluation.py {{.ARGS}}
 

@@ -91,7 +91,8 @@ package:
 # on main only: when a person starts one job of the matrix, or when a pipeline
 # schedule runs. The Doppler service token is a protected, masked variable, so
 # no other branch gets it. The token reads one Doppler config, and doppler run
-# puts PERPLEXITY_API_KEY in the environment of the task only.
+# puts only PERPLEXITY_TOKEN in the environment of the task. The config holds
+# other secrets, and --only-secrets keeps them out of the job.
 # docs/how-to/set-up-doppler-for-evaluation.md gives the setup.
 evaluate:
   stage: evaluate
@@ -119,7 +120,7 @@ evaluate:
     - echo https://packages.doppler.com/public/cli/alpine/any-version/main >> /etc/apk/repositories
     - apk add --no-cache doppler
   script:
-    - doppler run -- task eval PROVIDER="$PROVIDER" SAMPLES="$SAMPLES" PROMPTS="$PROMPTS"
+    - doppler run --only-secrets PERPLEXITY_TOKEN -- task eval PROVIDER="$PROVIDER" SAMPLES="$SAMPLES" PROMPTS="$PROMPTS"
   artifacts:
     when: always
     paths: [.eval/]
