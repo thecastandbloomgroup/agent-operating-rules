@@ -274,6 +274,12 @@ def call(cfg, key, model, role, instructions, text, schema=None):
             if attempt == 3:
                 raise RuntimeError(f"no connection: {error.reason}") from None
         time.sleep(5 * 2**attempt)
+    # Reasoning tokens count toward max_output_tokens, so a model that thinks
+    # long can stop in the middle of its answer. Score no cut answer.
+    if data.get("status") == "incomplete":
+        reason = (data.get("incomplete_details") or {}).get("reason", "unknown")
+        used = data.get("usage", {}).get("output_tokens", "?")
+        raise RuntimeError(f"incomplete answer ({reason}) after {used} output tokens")
     text = "".join(
         part.get("text", "")
         for item in data.get("output", [])
@@ -327,6 +333,9 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
                 "sample": sample,
                 "input_tokens": usage.get("input_tokens", ""),
                 "output_tokens": usage.get("output_tokens", ""),
+                "reasoning_tokens": usage.get("output_tokens_details", {}).get(
+                    "reasoning_tokens", ""
+                ),
                 "cost_usd": usage.get("cost", {}).get("total_cost", ""),
                 "seconds": round(seconds, 1),
             }

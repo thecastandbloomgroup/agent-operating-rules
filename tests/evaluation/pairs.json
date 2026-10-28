@@ -1,7 +1,7 @@
 {
   "endpoint": "https://api.perplexity.ai/v1/agent",
   "efforts": ["minimal", "low", "medium", "high", "xhigh", "max"],
-  "max_output_tokens": {"executor": 8000, "judge": 16000},
+  "max_output_tokens": {"executor": 32000, "judge": 32000},
   "providers": {
     "anthropic": {
       "ladder": [

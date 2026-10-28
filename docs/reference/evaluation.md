@@ -52,6 +52,8 @@ Anthropic and OpenAI have more pairs, which `ALL_PAIRS=true` runs. A pair of one
 
 The judges return their scores in a JSON schema. Anthropic models refuse a schema with `minimum` or `maximum`, and Gemini models refuse a schema with `enum`. So the schema allows any integer, and `bin/run-evaluation.py` refuses a score that is not 0, 1, 2 or null.
 
+Reasoning tokens count toward `max_output_tokens`. Gemini 3.8 Flash used 12593 of them on prompt C1 before its answer. So the limit is 32000, and the runner logs a cut answer as a failed call, not as a scored answer. `calls.csv` shows the reasoning tokens of each call.
+
 The judges check. They do not test. Each run lists answers for a human test. The list holds each answer where the judges differ by more than 3 points or a gate failed, and two more at random. The human scores show how far each judge can be trusted on each criterion.
 
 ## Results

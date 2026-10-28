@@ -1,6 +1,8 @@
 """Unit tests of the scripts in bin/. Run: python3 -m unittest discover -s tests/unit"""
 
+import contextlib
 import importlib.util
+import io
 import json
 import subprocess
 import sys
@@ -201,6 +203,25 @@ class RunEvaluationScores(unittest.TestCase):
 
 class RunEvaluationUnit(unittest.TestCase):
     """One unit of work with a stub in place of the API: no network."""
+
+    def test_refuses_an_answer_cut_by_max_output_tokens(self):
+        cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+        body = {
+            "status": "incomplete",
+            "incomplete_details": {"reason": "max_output_tokens"},
+            "usage": {"output_tokens": 7996},
+            "output": [],
+        }
+
+        def urlopen(request, timeout):
+            return contextlib.nullcontext(io.BytesIO(json.dumps(body).encode()))
+
+        original = EVAL.urllib.request.urlopen
+        EVAL.urllib.request.urlopen = urlopen
+        self.addCleanup(setattr, EVAL.urllib.request, "urlopen", original)
+        model = {"model": "google/gemini-3.8-flash", "effort": "medium"}
+        with self.assertRaisesRegex(RuntimeError, "max_output_tokens"):
+            EVAL.call(cfg, "key", model, "executor", "", "text")
 
     def test_writes_the_response_the_judgments_and_one_row_per_judge(self):
         cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
