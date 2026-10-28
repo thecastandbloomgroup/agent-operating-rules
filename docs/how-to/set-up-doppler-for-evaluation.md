@@ -13,19 +13,22 @@ You need:
 ## Put the key in Doppler
 
 1. Sign in with `doppler login`.
-2. In the Doppler dashboard, open the project `cast-and-bloom`, then the config `dev`. Add the secret `PERPLEXITY_TOKEN` with the key as its value. Your machine reads this config.
-3. Add the same secret to the config `prd`. GitLab reads this config. You can use a second Perplexity key here, so you can stop one key without the other.
+2. In the Doppler dashboard, open the project `cast-and-bloom`, then the config `dev`. Add the secret `PERPLEXITY_TOKEN` with the key as its value. Your machine and GitLab both read this config.
 
 Use the dashboard for the value, not a command line. A command line keeps the key in the history of your shell.
 
-To see that the secret is there without its value, run `doppler secrets --project cast-and-bloom --config prd --only-names`.
+To see that the secret is there without its value, run `doppler secrets --project cast-and-bloom --config dev --only-names`.
 
 ## Give GitLab a service token
 
-1. Make a service token that reads the config `prd`:
+The script `bin/connect-doppler-to-gitlab.sh` does this section for you. From the folder `bin`, run `./connect-doppler-to-gitlab.sh`. It makes a service token that reads the config `dev`, and it pipes the token into the GitLab variable `DOPPLER_TOKEN`. The token does not show on the screen.
+
+To do the steps by hand:
+
+1. Make a service token that reads the config `dev`:
 
    ```sh
-   doppler configs tokens create gitlab-ci-evaluate --project cast-and-bloom --config prd --plain
+   doppler configs tokens create gitlab-ci-evaluate --project cast-and-bloom --config dev --plain
    ```
 
    The command prints the token one time. Copy it.
@@ -52,7 +55,7 @@ To see that the secret is there without its value, run `doppler secrets --projec
 3. Add two job variables: `PROMPTS` with the value `C1`, and `SAMPLES` with the value `1`. Then select **Run job**.
 4. The job sends one prompt to one pair, for about 0.63 USD. When it ends, open the artifact `.eval/<run>/summary.md`. It names the failed calls, if any.
 
-A 401 error means that the key in Doppler is wrong. A Doppler error about the token means that `DOPPLER_TOKEN` is wrong or not protected. A Doppler error about a missing secret means that `PERPLEXITY_TOKEN` is not in the config `prd`.
+A 401 error means that the key in Doppler is wrong. A Doppler error about the token means that `DOPPLER_TOKEN` is wrong or not protected. A Doppler error about a missing secret means that `PERPLEXITY_TOKEN` is not in the config `dev`.
 
 ## Use Doppler on your machine
 
@@ -62,11 +65,11 @@ A 401 error means that the key in Doppler is wrong. A Doppler error about the to
 ## Change a key or a token
 
 - To change the Perplexity key, change the secret in Doppler. GitLab needs no change.
-- To change the service token, make a new one and put it in the GitLab variable. Then revoke the old one: `doppler configs tokens revoke gitlab-ci-evaluate --project cast-and-bloom --config prd`.
+- To change the service token, make a new one and put it in the GitLab variable. Then find the slug of the old one with `doppler configs tokens --project cast-and-bloom --config dev`. Revoke it by its slug: `doppler configs tokens revoke --slug <slug> --project cast-and-bloom --config dev`.
 
 ## What the service token can read
 
-The config `prd` of `cast-and-bloom` holds other secrets, such as Mailgun keys and a GitLab token. A service token reads the whole config, so the GitLab variable can read those secrets too. Two things limit this:
+The config `dev` of `cast-and-bloom` holds other secrets, such as Mailgun keys and a GitLab token. GitLab reads `dev` and not `prd`, because the secrets of `dev` are for development and not for live use. A service token reads the whole config, so the GitLab variable can read those secrets too. Two things limit this:
 
 - `--only-secrets PERPLEXITY_TOKEN` puts only the key in the job. The other secrets do not reach the job or its log.
 - Only pipelines of `main` get `DOPPLER_TOKEN`, and only a merge request changes `main`.
