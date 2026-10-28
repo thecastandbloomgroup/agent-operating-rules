@@ -156,6 +156,15 @@ class RunEvaluationScores(unittest.TestCase):
         low["scores"]["R2"]["score"] = 0
         self.assertFalse(EVAL.score(low, self.prompts["C2"])[3])
 
+    def test_check_judgment_takes_only_0_1_2_or_null(self):
+        EVAL.check_judgment(self.judgment(2))
+        EVAL.check_judgment(self.judgment(None))
+        for value in (3, -1, True, "2"):
+            with self.assertRaises(ValueError):
+                EVAL.check_judgment(self.judgment(value))
+        with self.assertRaises(ValueError):
+            EVAL.check_judgment({"scores": {}, "main_defect": ""})
+
     def test_r6_counts_only_where_it_applies(self):
         _, total, available, _, _ = EVAL.score(
             self.judgment(2, r6=2), self.prompts["K1"]

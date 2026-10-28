@@ -92,7 +92,9 @@ def judge_schema():
         "additionalProperties": False,
         "required": ["score", "evidence"],
         "properties": {
-            "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 2},
+            # Anthropic rejects minimum and maximum, and Gemini rejects enum, so
+            # check_judgment tests the range of each score.
+            "score": {"type": ["integer", "null"]},
             "evidence": {"type": "string"},
         },
     }
@@ -110,6 +112,14 @@ def judge_schema():
             "main_defect": {"type": "string"},
         },
     }
+
+
+def check_judgment(judgment):
+    """Raise ValueError unless each criterion has a score of 0, 1, 2, or null."""
+    for c in CRITERIA:
+        value = judgment.get("scores", {}).get(c, {}).get("score", "missing")
+        if value not in (0, 1, 2, None) or isinstance(value, bool):
+            raise ValueError(f"score of {c} is {value!r}, not 0, 1, 2, or null")
 
 
 def parse_prompts(text):
@@ -347,7 +357,8 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
                 cfg, key, judge, "judge", ctx["judge_instructions"], text, ctx["schema"]
             )
             judgment = json.loads(raw)
-        except (RuntimeError, json.JSONDecodeError) as error:
+            check_judgment(judgment)
+        except (RuntimeError, ValueError) as error:
             errors.append(f"{stem} judge {judge['model']}: {error}")
             continue
         log("judge", judge, usage, seconds)

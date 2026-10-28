@@ -44,11 +44,13 @@ The order of the models in each provider follows the price per million tokens on
 | Anthropic | Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5 | Sonnet 5.5 (medium), Opus 5.5 (high)             | GPT-6 Astra    |
 | OpenAI    | GPT-6 Astra, GPT-6.1 Sol, GPT-6 Luna       | GPT-6.1 Sol (medium), GPT-6 Astra (high)         | Opus 5.5       |
 | Google    | Gemini 4 Argon, Gemini 3.8 Flash           | Gemini 3.8 Flash (medium), Gemini 4 Argon (high) | Opus 5.5       |
-| Moonshot  | Kimi K3                                    | Kimi K3 (low), Kimi K3 (max)                     | Gemini 4 Argon |
+| Moonshot  | Kimi K3                                    | Kimi K3 (low), Kimi K3 (high)                    | Gemini 4 Argon |
 | Z.AI      | GLM 5.3, GLM 5.3 Flash                     | GLM 5.3 Flash (medium), GLM 5.3 (high)           | GPT-6 Astra    |
 | xAI       | Grok 4.7                                   | Grok 4.7 (low), Grok 4.7 (high)                  | Gemini 4 Argon |
 
-Anthropic and OpenAI have more pairs, which `ALL_PAIRS=true` runs. A pair of one model at two efforts is valid only when the API uses the effort. Run `task eval:probe` to see the effort in `calls.csv` before a full run.
+Anthropic and OpenAI have more pairs, which `ALL_PAIRS=true` runs. A pair of one model at two efforts is valid only when the API uses the effort. Run `task eval:probe` to see the effort in `calls.csv` before a full run. Through Perplexity, Kimi K3 takes the efforts up to `high` and refuses `xhigh` and `max`.
+
+The judges return their scores in a JSON schema. Anthropic models refuse a schema with `minimum` or `maximum`, and Gemini models refuse a schema with `enum`. So the schema allows any integer, and `bin/run-evaluation.py` refuses a score that is not 0, 1, 2 or null.
 
 The judges check. They do not test. Each run lists answers for a human test. The list holds each answer where the judges differ by more than 3 points or a gate failed, and two more at random. The human scores show how far each judge can be trusted on each criterion.
 

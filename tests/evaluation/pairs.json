@@ -62,7 +62,7 @@
         {
           "main": true,
           "executor": {"model": "perplexity/kimi-k3", "effort": "low"},
-          "judge": {"model": "perplexity/kimi-k3", "effort": "max"},
+          "judge": {"model": "perplexity/kimi-k3", "effort": "high"},
           "second_judge": {"model": "google/gemini-4-argon", "effort": "high"}
         }
       ]
