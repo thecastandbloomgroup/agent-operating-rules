@@ -1,16 +1,24 @@
 """Run the evaluation prompts through the Perplexity Agent API. An executor answers
 each prompt with the rules file as its system prompt. Two judges score each answer
 with the rubric: a stronger model of the same provider, and a model of another one.
-Usage: bin/run-evaluation.py [--provider NAME] [--all-pairs] [--prompts C1,K1]
-                             [--samples N] [--workers N] [--out DIR] [--plan]
+Each provider writes its results to RUN_DIR/results/PROVIDER.jsonl, one line for
+each score, call, or failure, as soon as it has them. So several processes can run
+the providers of one run in parallel, and --merge makes the final view of the run.
+Usage: bin/run-evaluation.py [--provider NAME] [--run-id ID] [--all-pairs]
+                             [--prompts C1,K1] [--samples N] [--workers N]
+                             [--out DIR] [--plan]
+       bin/run-evaluation.py --merge RUN_DIR
        bin/run-evaluation.py --agreement RUN_DIR
   --provider   one provider of pairs.json; every provider when left out
+  --run-id     the name of the run folder; the UTC time when left out
   --all-pairs  run every pair of each provider, not only the main pair
   --prompts    the prompt IDs to send; every prompt when left out
   --samples    the runs of each prompt (default 3)
   --workers    the units of work in flight at one time (default 4)
   --out        the folder that gets one subfolder per run (default .eval)
   --plan       check pairs.json, print the calls and the cost estimate, call nothing
+  --merge      read the JSONL files of a run, and write scores.csv, calls.csv,
+               human-test.csv, and summary.md
   --agreement  compare the filled human-test.csv of a run with the judge scores
 It reads the key from PERPLEXITY_TOKEN and never prints it. Judges score; they do
 not test. The human test of each run is in docs/how-to/run-an-evaluation.md.
@@ -27,7 +35,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -44,6 +52,20 @@ GAP_LIMIT = 3
 HUMAN_SAMPLE = 2
 # Tokens of one call, for the --plan estimate only. Each call logs its real cost.
 ESTIMATE = {"executor": (6000, 3000), "judge": (12000, 6000)}
+CALL_FIELDS = [
+    "provider",
+    "role",
+    "status",
+    "model",
+    "effort",
+    "prompt_id",
+    "sample",
+    "input_tokens",
+    "output_tokens",
+    "reasoning_tokens",
+    "cost_usd",
+    "seconds",
+]
 HEADER = (
     "date,model,provider,rules_version,prompt_id,domain,grader,"
     + ",".join(CRITERIA)
@@ -238,6 +260,14 @@ def slug(model):
     return f"{model['model'].replace('/', '_')}@{model['effort']}"
 
 
+class CallError(RuntimeError):
+    """A failed call, with the usage of the API when it billed the call."""
+
+    def __init__(self, message, usage=None):
+        super().__init__(message)
+        self.usage = usage or {}
+
+
 def call(cfg, key, model, role, instructions, text, schema=None):
     """One request to the Agent API. Return the text, the usage, and the seconds."""
     body = {
@@ -269,17 +299,20 @@ def call(cfg, key, model, role, instructions, text, schema=None):
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 3:
                 detail = error.read().decode(errors="replace")[:500]
-                raise RuntimeError(f"HTTP {error.code}: {detail}") from None
+                raise CallError(f"HTTP {error.code}: {detail}") from None
         except urllib.error.URLError as error:
             if attempt == 3:
-                raise RuntimeError(f"no connection: {error.reason}") from None
+                raise CallError(f"no connection: {error.reason}") from None
         time.sleep(5 * 2**attempt)
     # Reasoning tokens count toward max_output_tokens, so a model that thinks
     # long can stop in the middle of its answer. Score no cut answer.
     if data.get("status") == "incomplete":
         reason = (data.get("incomplete_details") or {}).get("reason", "unknown")
         used = data.get("usage", {}).get("output_tokens", "?")
-        raise RuntimeError(f"incomplete answer ({reason}) after {used} output tokens")
+        raise CallError(
+            f"incomplete answer ({reason}) after {used} output tokens",
+            data.get("usage"),
+        )
     text = "".join(
         part.get("text", "")
         for item in data.get("output", [])
@@ -323,10 +356,12 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
     response_file.parent.mkdir(parents=True, exist_ok=True)
     calls, rows, errors = [], [], []
 
-    def log(role, model, usage, seconds):
+    def log(role, model, usage, seconds, status="ok"):
         calls.append(
             {
+                "provider": name,
                 "role": role,
+                "status": status,
                 "model": model["model"],
                 "effort": model["effort"],
                 "prompt_id": prompt["id"],
@@ -345,7 +380,8 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
         answer, usage, seconds = call(
             cfg, key, ex, "executor", ctx["rules"], prompt["prompt"]
         )
-    except RuntimeError as error:
+    except CallError as error:
+        log("executor", ex, error.usage, 0, "failed")
         return calls, rows, [f"{stem} executor {ex['model']}: {error}"]
     log("executor", ex, usage, seconds)
     response_file.write_text(
@@ -365,9 +401,15 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
             raw, usage, seconds = call(
                 cfg, key, judge, "judge", ctx["judge_instructions"], text, ctx["schema"]
             )
+        except CallError as error:
+            log("judge", judge, error.usage, 0, "failed")
+            errors.append(f"{stem} judge {judge['model']}: {error}")
+            continue
+        try:
             judgment = json.loads(raw)
             check_judgment(judgment)
-        except (RuntimeError, ValueError) as error:
+        except ValueError as error:
+            log("judge", judge, usage, seconds, "failed")
             errors.append(f"{stem} judge {judge['model']}: {error}")
             continue
         log("judge", judge, usage, seconds)
@@ -432,35 +474,29 @@ def write_csv(path, rows, fields):
         writer.writerows(rows)
 
 
-def summary(run_dir, selected, rows, calls, human, errors):
+def summary(run_dir, rows, calls, human, errors):
     lines = [f"# Evaluation run {run_dir.name}", ""]
     lines += ["| Executor | Judge | Responses | Pass | Mean total | Lowest criterion |"]
     lines += ["| -------- | ----- | --------- | ---- | ---------- | ---------------- |"]
-    for _, pair in selected:
-        for judge in judges(pair):
-            group = [
-                r
-                for r in rows
-                if r["model"]
-                == f"{pair['executor']['model']}@{pair['executor']['effort']}"
-                and r["grader"] == f"{judge['model']}@{judge['effort']}"
-            ]
-            if not group:
-                continue
-            means = {
-                c: sum(int(r[c]) for r in group if r[c] != "")
-                / max(1, sum(1 for r in group if r[c] != ""))
-                for c in CRITERIA
-            }
-            lowest = min(means, key=means.get)
-            mean = sum(r["total"] for r in group) / len(group)
-            passed = sum(r["pass"] == "yes" for r in group)
-            lines.append(
-                f"| {group[0]['model']} | {group[0]['grader']} | {len(group)} "
-                f"| {passed} | {mean:.1f} | {lowest} ({means[lowest]:.2f}) |"
-            )
+    groups = {}
+    for row in rows:
+        groups.setdefault((row["model"], row["grader"]), []).append(row)
+    for (model, grader), group in groups.items():
+        means = {
+            c: sum(int(r[c]) for r in group if r[c] != "")
+            / max(1, sum(1 for r in group if r[c] != ""))
+            for c in CRITERIA
+        }
+        lowest = min(means, key=means.get)
+        mean = sum(r["total"] for r in group) / len(group)
+        passed = sum(r["pass"] == "yes" for r in group)
+        lines.append(
+            f"| {model} | {grader} | {len(group)} "
+            f"| {passed} | {mean:.1f} | {lowest} ({means[lowest]:.2f}) |"
+        )
     cost = sum(float(c["cost_usd"]) for c in calls if c["cost_usd"] != "")
-    lines += ["", f"Calls: {len(calls)}. Cost: {cost:.2f} USD.", ""]
+    failed = sum(c["status"] == "failed" for c in calls)
+    lines += ["", f"Calls: {len(calls)}, {failed} failed. Cost: {cost:.2f} USD.", ""]
     lines += ["## Human test", ""]
     lines += [
         (
@@ -471,9 +507,57 @@ def summary(run_dir, selected, rows, calls, human, errors):
     ]
     lines += [f"- {h['response_file']}: {h['reason']}" for h in human] or ["- none"]
     if errors:
-        lines += ["", "## Failed calls", ""] + [f"- {e}" for e in errors]
+        lines += ["", "## Failed calls", ""]
+        lines += [f"- {e['provider']}: {e['message']}" for e in errors]
     (run_dir / "summary.md").write_text("\n".join(lines) + "\n")
     return "\n".join(lines)
+
+
+def write_records(out, name, calls, rows, errors):
+    """Add the results of one unit of work to the JSONL file of its provider."""
+    for record in (
+        [{"kind": "call", **c} for c in calls]
+        + [{"kind": "score", **r} for r in rows]
+        + [{"kind": "error", "provider": name, "message": e} for e in errors]
+    ):
+        out.write(json.dumps(record) + "\n")
+    out.flush()
+
+
+def read_results(run_dir):
+    """The scores, calls, and failures of each JSONL file of a run."""
+    files = sorted((run_dir / "results").glob("*.jsonl"))
+    if not files:
+        sys.exit(f"{run_dir / 'results'} has no JSONL file")
+    found = {"score": [], "call": [], "error": []}
+    for path in files:
+        for number, line in enumerate(path.read_text().splitlines(), 1):
+            if not line.strip():
+                continue
+            try:
+                record = json.loads(line)
+                found[record.pop("kind")].append(record)
+            except (ValueError, KeyError):
+                # A process that stops in the middle of a write leaves a cut line.
+                found["error"].append(
+                    {"provider": path.stem, "message": f"line {number} is not a record"}
+                )
+    return found["score"], found["call"], found["error"]
+
+
+def merge(run_dir):
+    """Write the final view of a run from the JSONL file of each provider."""
+    rows, calls, errors = read_results(run_dir)
+    rows.sort(
+        key=lambda r: (r["provider"], r["model"], r["response_file"], r["grader"])
+    )
+    calls.sort(key=lambda c: (c["provider"], c["prompt_id"], c["sample"], c["role"]))
+    write_csv(run_dir / "scores.csv", rows, HEADER)
+    write_csv(run_dir / "calls.csv", calls, CALL_FIELDS)
+    human = human_test_rows(rows, run_dir.name)
+    write_csv(run_dir / "human-test.csv", human, HEADER + ["reason"])
+    print(summary(run_dir, rows, calls, human, errors))
+    return 1 if errors else 0
 
 
 def agreement(run_dir):
@@ -514,12 +598,16 @@ def main():
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--out", default=str(ROOT / ".eval"))
     parser.add_argument("--pairs", default=str(PAIRS))
+    parser.add_argument("--run-id")
     parser.add_argument("--plan", action="store_true")
+    parser.add_argument("--merge")
     parser.add_argument("--agreement")
     args = parser.parse_args()
     if args.agreement:
         agreement(Path(args.agreement))
         return 0
+    if args.merge:
+        return merge(Path(args.merge))
 
     cfg = json.loads(Path(args.pairs).read_text())
     selected = select_pairs(cfg, args.provider, args.all_pairs)
@@ -556,10 +644,12 @@ def main():
         )
     version = json.loads((ROOT / "version.json").read_text())
     now = datetime.now(timezone.utc)
-    run_dir = Path(args.out) / (
-        now.strftime("%Y-%m-%dT%H%MZ") + (f"-{args.provider}" if args.provider else "")
-    )
-    run_dir.mkdir(parents=True, exist_ok=False)
+    run_dir = Path(args.out) / (args.run_id or now.strftime("%Y-%m-%dT%H%M%SZ"))
+    (run_dir / "results").mkdir(parents=True, exist_ok=True)
+    files = {name: run_dir / "results" / f"{name}.jsonl" for name, _ in selected}
+    taken = [str(f) for f in files.values() if f.exists()]
+    if taken:
+        sys.exit(f"{taken[0]} exists. Give the run a new --run-id.")
     ctx = {
         "date": now.strftime("%Y-%m-%d"),
         "version": "{major}.{minor}.{patch}".format(**version),
@@ -575,22 +665,26 @@ def main():
         for prompt in prompts
         for sample in range(1, args.samples + 1)
     ]
-    calls, rows, errors = [], [], []
+    handles = {name: path.open("a") for name, path in files.items()}
+    judged = failed = 0
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for c, r, e in pool.map(lambda u: run_unit(cfg, key, run_dir, ctx, *u), work):
-            calls += c
-            rows += r
-            errors += e
-            print(f"{len(rows)} judgments, {len(errors)} failures", file=sys.stderr)
-    rows.sort(
-        key=lambda r: (r["provider"], r["model"], r["response_file"], r["grader"])
-    )
-    write_csv(run_dir / "scores.csv", rows, HEADER)
-    write_csv(run_dir / "calls.csv", calls, list(calls[0]) if calls else ["role"])
-    human = human_test_rows(rows, run_dir.name)
-    write_csv(run_dir / "human-test.csv", human, HEADER + ["reason"])
-    print(summary(run_dir, selected, rows, calls, human, errors))
-    return 1 if errors else 0
+        futures = {
+            pool.submit(run_unit, cfg, key, run_dir, ctx, *unit): unit[0]
+            for unit in work
+        }
+        for future in as_completed(futures):
+            name = futures[future]
+            calls, rows, errors = future.result()
+            write_records(handles[name], name, calls, rows, errors)
+            judged, failed = judged + len(rows), failed + len(errors)
+            print(f"{name}: {judged} judgments, {failed} failures", file=sys.stderr)
+    for out in handles.values():
+        out.close()
+    # A failed call is a result too, so the run exits 0 and --merge reports it.
+    # In a parallel run, an exit of 1 would stop the other providers.
+    print(f"Wrote {', '.join(str(f) for f in files.values())}")
+    print(f"Merge with: bin/run-evaluation.py --merge {run_dir}")
+    return 0
 
 
 if __name__ == "__main__":

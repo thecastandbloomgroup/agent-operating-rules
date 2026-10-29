@@ -107,19 +107,54 @@ tasks:
       - python3 -m zipfile -c '../dist/{{.NAME}}.zip' '{{.NAME}}'
 
   # The evaluation tasks call the Perplexity Agent API, which costs money, so
-  # task ci leaves them out. The arguments of eval and eval:plan are the same.
+  # task ci leaves them out. task eval runs one process per provider at the
+  # same time, as deps. Each writes .eval/RUN/results/PROVIDER.jsonl, and then
+  # eval:merge writes the final view of the run from all of them. CI runs
+  # eval:provider in one job per provider, and eval:merge in one job after.
   eval:
-    desc: Run the evaluation prompts through the Perplexity Agent API. An executor answers each prompt, and two judges score each answer. PROVIDER picks one provider of tests/evaluation/pairs.json, SAMPLES sets the runs of each prompt (default 3), PROMPTS picks prompts such as C1,K1, and ALL_PAIRS=true adds the pairs that are not main. It reads PERPLEXITY_TOKEN, so run it as doppler run --only-secrets PERPLEXITY_TOKEN -- task eval
+    desc: Run the evaluation prompts through the Perplexity Agent API, each provider in parallel, then merge the results. An executor answers each prompt, and two judges score each answer. PROVIDER picks one provider of tests/evaluation/pairs.json, SAMPLES sets the runs of each prompt (default 3), PROMPTS picks prompts such as C1,K1, ALL_PAIRS=true adds the pairs that are not main, and RUN names the run folder. It reads PERPLEXITY_TOKEN
+    vars:
+      NOW:
+        sh: date -u +%Y-%m-%dT%H%M%SZ
+      RUN: '{{.RUN | default .NOW}}'
+      PROVIDERS:
+        sh: |
+          {{if .PROVIDER}}echo {{.PROVIDER}}{{else}}python3 -c 'import json; print(" ".join(json.load(open("tests/evaluation/pairs.json"))["providers"]))'{{end}}
+    requires:
+      vars: [PERPLEXITY_TOKEN]
+    deps:
+      - for: {var: PROVIDERS}
+        task: eval:provider
+        vars:
+          PROVIDER: '{{.ITEM}}'
+          RUN: '{{.RUN}}'
+          PROMPTS: '{{.PROMPTS}}'
+          SAMPLES: '{{.SAMPLES}}'
+          ALL_PAIRS: '{{.ALL_PAIRS}}'
+    cmds:
+      - task: eval:merge
+        vars: {RUN: '{{.RUN}}'}
+
+  eval:provider:
+    desc: Run the evaluation of one PROVIDER into .eval/RUN/results/PROVIDER.jsonl. task eval and the evaluate job of CI call it
     vars: &eval-args
       ARGS: >-
         {{if .PROVIDER}}--provider {{.PROVIDER}}{{end}}
+        {{if .RUN}}--run-id {{.RUN}}{{end}}
         {{if .PROMPTS}}--prompts {{.PROMPTS}}{{end}}
         {{if eq (.ALL_PAIRS | default "false") "true"}}--all-pairs{{end}}
         --samples {{.SAMPLES | default 3}}
     requires:
-      vars: [PERPLEXITY_TOKEN]
+      vars: [PERPLEXITY_TOKEN, PROVIDER, RUN]
     cmds:
       - python3 bin/run-evaluation.py {{.ARGS}}
+
+  eval:merge:
+    desc: Merge the JSONL file of each provider of .eval/RUN into scores.csv, calls.csv, human-test.csv and summary.md. It calls no API and needs no key
+    requires:
+      vars: [RUN]
+    cmds:
+      - python3 bin/run-evaluation.py --merge .eval/{{.RUN}}
 
   eval:plan:
     desc: Check tests/evaluation/pairs.json, and print the calls and the cost estimate of task eval with the same arguments. It calls no API and needs no key
@@ -128,7 +163,7 @@ tasks:
       - python3 bin/run-evaluation.py --plan {{.ARGS}}
 
   eval:probe:
-    desc: Send prompt C1 one time through each main pair, or the main pair of PROVIDER. Run it before the first full run, to see that each model answers and each judge returns its JSON
+    desc: Send prompt C1 one time through each main pair, or the main pair of PROVIDER, each provider in parallel. Run it before the first full run, to see that each model answers and each judge returns its JSON
     cmds:
       - task: eval
         vars: {PROVIDER: '{{.PROVIDER}}', PROMPTS: C1, SAMPLES: '1'}

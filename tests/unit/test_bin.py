@@ -4,6 +4,7 @@ import contextlib
 import importlib.util
 import io
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -264,6 +265,73 @@ class RunEvaluationUnit(unittest.TestCase):
         )
         self.assertTrue(all(r["pass"] == "yes" for r in rows))
         self.assertEqual(set(rows[0]), set(EVAL.HEADER))
+
+
+class RunEvaluationMerge(unittest.TestCase):
+    """The JSONL of each provider, merged into the final view of a run."""
+
+    def unit(self, folder, name, fail_second_judge=False):
+        cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+        pair = cfg["providers"][name]["pairs"][0]
+        prompt = EVAL.parse_prompts(
+            (BIN.parent / "tests/evaluation/evaluation-tests.md").read_text()
+        )[0]
+        judgment = {
+            "scores": {c: {"score": 2, "evidence": "ok"} for c in EVAL.CRITERIA},
+            "main_defect": "none",
+        }
+        usage = {"input_tokens": 10, "output_tokens": 5, "cost": {"total_cost": 0.5}}
+
+        def stub(cfg, key, model, role, instructions, text, schema=None):
+            if fail_second_judge and model == pair["second_judge"]:
+                raise EVAL.CallError("incomplete answer", usage)
+            return (json.dumps(judgment) if schema else "# Headline\n"), usage, 0.1
+
+        original, EVAL.call = EVAL.call, stub
+        self.addCleanup(setattr, EVAL, "call", original)
+        ctx = {
+            "date": "2026-10-28",
+            "version": "3.2.0",
+            "rules": "",
+            "schema": EVAL.judge_schema(),
+            "judge_instructions": "",
+        }
+        results = folder / "results"
+        results.mkdir(exist_ok=True)
+        with (results / f"{name}.jsonl").open("a") as out:
+            EVAL.write_records(
+                out,
+                name,
+                *EVAL.run_unit(cfg, "key", folder, ctx, name, pair, prompt, 1),
+            )
+
+    def test_merges_each_provider_and_reports_the_failed_calls(self):
+        with tempfile.TemporaryDirectory() as name:
+            folder = Path(name)
+            self.unit(folder, "anthropic")
+            self.unit(folder, "xai", fail_second_judge=True)
+            with (folder / "results" / "xai.jsonl").open("a") as out:
+                out.write('{"kind": "sco')
+            with contextlib.redirect_stdout(io.StringIO()) as printed:
+                code = EVAL.merge(folder)
+            scores = (folder / "scores.csv").read_text().splitlines()
+            calls = (folder / "calls.csv").read_text().splitlines()
+            self.assertTrue((folder / "human-test.csv").exists())
+        self.assertEqual(code, 1)
+        self.assertEqual(len(scores), 1 + 3)
+        self.assertEqual(calls[0].split(","), EVAL.CALL_FIELDS)
+        self.assertEqual(len(calls), 1 + 6)
+        self.assertEqual(sum(",failed," in c for c in calls), 1)
+        text = printed.getvalue()
+        self.assertIn("Calls: 6, 1 failed. Cost: 3.00 USD.", text)
+        self.assertIn("xai: C1-s1 judge google/gemini-4-argon: incomplete answer", text)
+        self.assertIn("xai: line 6 is not a record", text)
+
+    def test_the_ci_matrix_names_each_provider_of_pairs_json(self):
+        cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+        ci = (BIN.parent / ".gitlab-ci.yml").read_text()
+        matrix = re.search(r"- PROVIDER: \[(.*)\]", ci).group(1)
+        self.assertEqual([p.strip() for p in matrix.split(",")], list(cfg["providers"]))
 
 
 if __name__ == "__main__":

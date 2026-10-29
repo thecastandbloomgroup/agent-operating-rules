@@ -21,30 +21,46 @@ task eval:plan PROVIDER=anthropic
 
 The task prints each call and an estimate of the cost. It calls no API. Each real call logs its real cost in `calls.csv`.
 
+## How a run works
+
+Each provider runs in its own process, at the same time as the others. Each process adds its results to `.eval/<run>/results/<provider>.jsonl` as soon as it has them. Each line of the file is one score, one call or one failed call. A failed call is a line of the file, so it does not stop the other providers.
+
+When the providers end, `task eval:merge` reads all the JSONL files of the run. It writes the final view: `summary.md`, `scores.csv`, `calls.csv` and `human-test.csv`. The merge calls no API, so you can run it again at any time.
+
 ## Run on your machine
+
+The key is in `pass` as `perplexity-token`, or in Doppler.
 
 1. Send prompt C1 one time through each main pair. This shows that each model answers and each judge returns its scores:
 
    ```sh
-   doppler run --only-secrets PERPLEXITY_TOKEN -- task eval:probe
+   PERPLEXITY_TOKEN="$(pass show perplexity-token | head -1)" task eval:probe
    ```
 
-2. Run all the prompts for one provider, three times each:
+2. Run all the prompts of all the providers, three times each:
 
    ```sh
-   doppler run --only-secrets PERPLEXITY_TOKEN -- task eval PROVIDER=anthropic
+   PERPLEXITY_TOKEN="$(pass show perplexity-token | head -1)" task eval
    ```
 
-Use `PROMPTS=C1,K1` to send fewer prompts, `SAMPLES=1` to send each prompt one time, and `ALL_PAIRS=true` to add the pairs that are not main.
+With Doppler, start each command with `doppler run --only-secrets PERPLEXITY_TOKEN --` in place of the `PERPLEXITY_TOKEN=` part.
+
+Use `PROVIDER=anthropic` to run one provider, and `PROMPTS=C1,K1` to send fewer prompts. Use `SAMPLES=1` to send each prompt one time, and `ALL_PAIRS=true` to add the pairs that are not main. `RUN=<name>` names the run folder. Without it, the folder name is the UTC time.
+
+To merge a run again, for example after you remove a JSONL file:
+
+```sh
+task eval:merge RUN=<run>
+```
 
 ## Run in GitLab
 
 1. Open **Build**, then **Pipelines**, and open a pipeline of `main`.
-2. In the stage **evaluate**, select the job of one provider, for example `evaluate: [anthropic]`.
-3. Add job variables when you need them: `SAMPLES` and `PROMPTS`. Then select **Run job**.
-4. When the job ends, download its artifact. It holds the folder `.eval/` for 3 months.
+2. In the stage **evaluate**, start the job of each provider that you want, for example `evaluate: [anthropic]`. Add job variables when you need them: `SAMPLES`, `PROMPTS` and `ALL_PAIRS`. Then select **Run job**. The jobs run at the same time.
+3. When the provider jobs end, start the job `evaluate:report` in the stage **report**. It merges the JSONL files of all the provider jobs of the pipeline.
+4. Download the artifact of `evaluate:report`. It holds the final view in `.eval/pipeline-<ID>/` for 3 months.
 
-A pipeline schedule on `main` runs all six jobs. A full run of all six providers costs about 95 USD, so add a schedule only when you plan to read each run.
+If you start one more provider job later, start `evaluate:report` again. A pipeline schedule on `main` runs all six provider jobs, then the report. A full run of all six providers costs about 95 USD, so add a schedule only when you plan to read each run.
 
 ## Read a run
 
@@ -52,9 +68,10 @@ Each run makes one folder in `.eval/`:
 
 | File             | Content                                                                      |
 | ---------------- | ---------------------------------------------------------------------------- |
+| `results/`       | One JSONL file for each provider: each score, call and failed call           |
 | `summary.md`     | Pass count, mean score and lowest criterion of each pair and judge           |
 | `scores.csv`     | One row for each answer and judge, in the columns of `evaluation-scores.csv` |
-| `calls.csv`      | Model, effort, tokens, cost and time of each call                            |
+| `calls.csv`      | Provider, status, model, effort, tokens, cost and time of each call          |
 | `human-test.csv` | The answers that you must score                                              |
 | `responses/`     | The answers, one file for each prompt and sample                             |
 | `judgments/`     | The JSON of each judge, with the evidence for each score                     |

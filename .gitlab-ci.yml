@@ -6,7 +6,7 @@
 # The evaluate stage comes last. It runs only on main, when a person starts it
 # or a schedule runs it (docs/how-to/run-an-evaluation.md).
 # docs/reference/tasks-and-ci.md describes each job.
-stages: [review, build, test, docs, package, evaluate]
+stages: [review, build, test, docs, package, evaluate, report]
 
 # uv in GitLab CI, as in https://docs.astral.sh/uv/guides/integration/gitlab/.
 # The build folder is a separate mount, so uv copies files instead of linking.
@@ -94,6 +94,10 @@ package:
 # puts only PERPLEXITY_TOKEN in the environment of the task. The config holds
 # other secrets, and --only-secrets keeps them out of the job.
 # docs/how-to/set-up-doppler-for-evaluation.md gives the setup.
+#
+# Each job of the matrix runs one provider at the same time as the others, and
+# writes .eval/pipeline-ID/results/PROVIDER.jsonl. The job evaluate:report
+# merges the JSONL files of the pipeline into the final view of the run.
 evaluate:
   stage: evaluate
   rules:
@@ -111,6 +115,7 @@ evaluate:
   variables:
     SAMPLES: "3"
     PROMPTS: ""
+    ALL_PAIRS: "false"
   before_script:
     - *install-task
     # The Doppler CLI from its signed Alpine repository. The checksum of the
@@ -120,7 +125,27 @@ evaluate:
     - echo https://packages.doppler.com/public/cli/alpine/any-version/main >> /etc/apk/repositories
     - apk add --no-cache doppler
   script:
-    - doppler run --only-secrets PERPLEXITY_TOKEN -- task eval PROVIDER="$PROVIDER" SAMPLES="$SAMPLES" PROMPTS="$PROMPTS"
+    - doppler run --only-secrets PERPLEXITY_TOKEN -- task eval:provider PROVIDER="$PROVIDER" RUN="pipeline-$CI_PIPELINE_ID" SAMPLES="$SAMPLES" PROMPTS="$PROMPTS" ALL_PAIRS="$ALL_PAIRS"
+  artifacts:
+    when: always
+    paths: [.eval/]
+    expire_in: 3 months
+
+# The final view of the evaluation: scores.csv, calls.csv, human-test.csv and
+# summary.md, from the JSONL of each evaluate job of this pipeline that ran. A
+# schedule runs it after the evaluate stage. On a manual run, start it when
+# the provider jobs end, and again after each provider job you add. It takes
+# the artifacts of the earlier stages, and calls no API, so it needs no secret.
+evaluate:report:
+  stage: report
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+      allow_failure: true
+  script:
+    - task eval:merge RUN="pipeline-$CI_PIPELINE_ID"
   artifacts:
     when: always
     paths: [.eval/]
