@@ -11,6 +11,11 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Fixed
+
+- Each evaluation call runs in the background mode of the Agent API, and the runner polls it. Before, the API dropped a long call that held one connection open, so most calls at high effort failed.
+- A null `usage` in an answer of the API no longer stops the run of a provider.
+
 ## [0.3.0] - 2026-10-30
 
 ### Changed

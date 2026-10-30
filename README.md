@@ -42,6 +42,7 @@ The rules were tested in one harness only: the Perplexity Agent API at `https://
 - One prompt of `tests/evaluation/evaluation-tests.md` is the input, with its attached files. The call has no earlier messages.
 - The call gives the model no tools, so the model cannot search the web or run code.
 - Each model reasons at a set effort, and its answer can have at most 32,000 tokens.
+- The call runs in the background mode of the API, and the runner polls it every 5 seconds until it ends.
 
 Six models were the executors. Claude Sonnet 5.5, GPT-6.1-Sol, Gemini 3.8 Flash and GLM 5.3 Flash ran at medium effort. Kimi K3 and Grok 4.7 ran at low effort. The judges are Claude Opus 5.5, GPT-6-Astra, Gemini 4 Argon, Kimi K3, GLM 5.3 and Grok 4.7, at high effort. `tests/evaluation/pairs.json` holds each pair, and `tests/evaluation/results/` holds each run.
 

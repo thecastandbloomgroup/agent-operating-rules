@@ -282,6 +282,62 @@ class RunEvaluationUnit(unittest.TestCase):
         self.assertEqual(usage, {"input_tokens": 1})
         self.assertEqual(len(sleeps), 2)
 
+    def api(self, replies):
+        """Stub the API with one reply for each request, and record each request."""
+        requests, sleeps = [], []
+
+        def urlopen(request, timeout):
+            requests.append((request.get_method(), request.full_url, request.data))
+            return contextlib.nullcontext(
+                io.BytesIO(json.dumps(replies.pop(0)).encode())
+            )
+
+        original = EVAL.urllib.request.urlopen, EVAL.time.sleep
+        EVAL.urllib.request.urlopen, EVAL.time.sleep = urlopen, sleeps.append
+        self.addCleanup(setattr, EVAL.urllib.request, "urlopen", original[0])
+        self.addCleanup(setattr, EVAL.time, "sleep", original[1])
+        cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+        return cfg, requests, sleeps
+
+    def test_sends_in_the_background_and_polls_until_the_answer_is_done(self):
+        done = {
+            "id": "r1",
+            "status": "completed",
+            "usage": {"input_tokens": 3},
+            "output": [
+                {"type": "message", "content": [{"type": "output_text", "text": "OK"}]}
+            ],
+        }
+        replies = [
+            {"id": "r1", "status": "queued"},
+            {"id": "r1", "status": "in_progress"},
+            done,
+        ]
+        cfg, requests, sleeps = self.api(replies)
+        model = {"model": "anthropic/claude-opus-5-5", "effort": "high"}
+        text, usage, _ = EVAL.call(cfg, "key", model, "executor", "", "text")
+        self.assertEqual((text, usage), ("OK", {"input_tokens": 3}))
+        self.assertTrue(json.loads(requests[0][2])["background"])
+        self.assertEqual([m for m, _, _ in requests], ["POST", "GET", "GET"])
+        self.assertTrue(requests[1][1].endswith("/r1"))
+        self.assertEqual(sleeps, [EVAL.POLL_SECONDS] * 2)
+
+    def test_takes_a_null_usage_as_no_usage(self):
+        cfg, _, _ = self.api(
+            [{"id": "r1", "status": "completed", "usage": None, "output": []}]
+        )
+        model = {"model": "anthropic/claude-fable-5-1", "effort": "high"}
+        self.assertEqual(
+            EVAL.call(cfg, "key", model, "judge", "", "text")[:2], ("", {})
+        )
+
+    def test_refuses_a_failed_background_answer(self):
+        failed = {"id": "r1", "status": "failed", "error": {"message": "overloaded"}}
+        cfg, _, _ = self.api([failed])
+        model = {"model": "xai/grok-4.7", "effort": "low"}
+        with self.assertRaisesRegex(RuntimeError, "failed: overloaded"):
+            EVAL.call(cfg, "key", model, "executor", "", "text")
+
     def test_refuses_an_answer_cut_by_max_output_tokens(self):
         cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
         body = {

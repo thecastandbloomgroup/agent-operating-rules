@@ -56,6 +56,12 @@ HUMAN_SAMPLE = 2
 # the time that the Retry-After header asks for.
 ATTEMPTS = 6
 RETRY_CODES = (429, 500, 502, 503, 504)
+# Each call runs in the background mode of the Agent API, and the runner polls
+# it every POLL_SECONDS until it ends, for at most POLL_LIMIT seconds. A long
+# call that held one connection open was dropped by the API.
+POLL_SECONDS = 5
+POLL_LIMIT = 3600
+PENDING = ("queued", "in_progress")
 # Tokens of one call, for the --plan estimate only. Each call logs its real cost.
 ESTIMATE = {"executor": (6000, 3000), "judge": (12000, 6000)}
 CALL_FIELDS = [
@@ -300,21 +306,54 @@ def call(cfg, key, model, role, instructions, text, schema=None):
             "type": "json_schema",
             "json_schema": {"name": "scores", "schema": schema, "strict": True},
         }
+    body["background"] = True
+    started = time.monotonic()
+    data = send(key, "POST", cfg["endpoint"], body)
+    # A background answer comes back at once, queued. Each poll is a short
+    # request, so no connection stays open while the model reasons.
+    while data.get("status") in PENDING:
+        if time.monotonic() - started > POLL_LIMIT:
+            raise CallError(f"no answer after {POLL_LIMIT} seconds")
+        time.sleep(POLL_SECONDS)
+        data = send(key, "GET", f"{cfg['endpoint']}/{data['id']}")
+    usage = data.get("usage") or {}
+    if data.get("status") in ("failed", "cancelled"):
+        detail = (data.get("error") or {}).get("message", "no detail")
+        raise CallError(f"{data['status']}: {detail}", usage)
+    # Reasoning tokens count toward max_output_tokens, so a model that thinks
+    # long can stop in the middle of its answer. Score no cut answer.
+    if data.get("status") == "incomplete":
+        reason = (data.get("incomplete_details") or {}).get("reason", "unknown")
+        used = usage.get("output_tokens", "?")
+        raise CallError(
+            f"incomplete answer ({reason}) after {used} output tokens", usage
+        )
+    text = "".join(
+        part.get("text", "")
+        for item in data.get("output", [])
+        if item.get("type") == "message"
+        for part in item.get("content", [])
+        if part.get("type") == "output_text"
+    )
+    return text, usage, time.monotonic() - started
+
+
+def send(key, method, url, body=None):
+    """One request to the API, retried as ATTEMPTS says. Return its JSON."""
     request = urllib.request.Request(
-        cfg["endpoint"],
-        data=json.dumps(body).encode(),
+        url,
+        method=method,
+        data=json.dumps(body).encode() if body else None,
         headers={
             "Authorization": f"Bearer {key}",
             "Content-Type": "application/json",
         },
     )
-    started = time.monotonic()
     for attempt in range(ATTEMPTS):
         wait = 5 * 2**attempt + random.uniform(0, 5)
         try:
-            with urllib.request.urlopen(request, timeout=600) as response:
-                data = json.load(response)
-            break
+            with urllib.request.urlopen(request, timeout=120) as response:
+                return json.load(response)
         except urllib.error.HTTPError as error:
             if error.code not in RETRY_CODES or attempt == ATTEMPTS - 1:
                 detail = error.read().decode(errors="replace")[:500]
@@ -327,23 +366,6 @@ def call(cfg, key, model, role, instructions, text, schema=None):
                 reason = getattr(error, "reason", None) or error
                 raise CallError(f"no connection: {reason}") from None
         time.sleep(wait)
-    # Reasoning tokens count toward max_output_tokens, so a model that thinks
-    # long can stop in the middle of its answer. Score no cut answer.
-    if data.get("status") == "incomplete":
-        reason = (data.get("incomplete_details") or {}).get("reason", "unknown")
-        used = data.get("usage", {}).get("output_tokens", "?")
-        raise CallError(
-            f"incomplete answer ({reason}) after {used} output tokens",
-            data.get("usage"),
-        )
-    text = "".join(
-        part.get("text", "")
-        for item in data.get("output", [])
-        if item.get("type") == "message"
-        for part in item.get("content", [])
-        if part.get("type") == "output_text"
-    )
-    return text, data.get("usage", {}), time.monotonic() - started
 
 
 def check_report(path):

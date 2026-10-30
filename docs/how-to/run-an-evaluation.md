@@ -25,6 +25,8 @@ The task prints each call and an estimate of the cost. It calls no API. Each rea
 
 Each provider runs in its own process, at the same time as the others. Each process adds its results to `tests/evaluation/results/<run>/results/<provider>.jsonl` as soon as it has them. Each line of the file is one score, one call or one failed call. A failed call is a line of the file, so it does not stop the other providers.
 
+Each call runs in the background mode of the Agent API. The API answers at once with an ID, and the runner asks for the result every 5 seconds until the call ends. So no connection stays open while a model reasons.
+
 When the providers end, `task eval:merge` reads all the JSONL files of the run. It writes the final view: `summary.md`, `scores.csv`, `calls.csv` and `human-test.csv`. The merge calls no API, so you can run it again at any time.
 
 ## Run on your machine
