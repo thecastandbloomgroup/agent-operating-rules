@@ -50,11 +50,15 @@ default:
   after_script:
     - uv cache prune --ci
 
+# task commits reads the commits of the branch that main does not have, so
+# the job needs git and the history of main.
 review:
   stage: review
   extends: .uv-cache
   script:
-    - task review
+    - apk add --no-cache git
+    - git fetch --depth=200 origin "$CI_DEFAULT_BRANCH"
+    - task review RANGE="origin/$CI_DEFAULT_BRANCH..HEAD"
 
 # .task/ holds the checksum of build, so the package job skips build.
 build:

@@ -18,7 +18,13 @@ You need `git`, Task, uv, and the GitLab CLI `glab`, signed in to the project. T
 
 2. Make the change, and run `task ci`. Fix each failure.
 
-3. Commit the change, and push the branch:
+3. Commit the change. The subject of each commit MUST be a Conventional Commit, for example `fix(checks): find the References list under any heading`. The [release guide](release-a-version.md) lists the types. Check the subjects:
+
+   ```sh
+   task commits
+   ```
+
+   Push the branch:
 
    ```sh
    git push -u origin <branch>

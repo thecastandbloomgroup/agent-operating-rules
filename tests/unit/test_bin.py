@@ -44,6 +44,30 @@ class CheckLinks(unittest.TestCase):
         self.assertEqual(result.stdout, f"{self.dir / 'page.md'}: lost.md\n")
 
 
+class CheckCommits(unittest.TestCase):
+    def setUp(self):
+        self.module = load("check-commits.py")
+
+    def test_takes_each_type_with_a_scope_and_a_breaking_mark(self):
+        for subject in [
+            "feat: set up the repository",
+            "fix(ci): make the key file without umask",
+            "feat(rules)!: use the alias Headline",
+            "docs(eval): split a long sentence",
+        ]:
+            with self.subTest(subject=subject):
+                self.assertTrue(self.module.conventional(subject))
+
+    def test_refuses_a_subject_with_no_type_or_no_description(self):
+        for subject in ["Update README", "feature: add a check", "fix:", "fix(): x"]:
+            with self.subTest(subject=subject):
+                self.assertFalse(self.module.conventional(subject))
+
+    def test_every_commit_of_the_history_is_conventional(self):
+        result = run("check-commits.py", "HEAD")
+        self.assertEqual(result.returncode, 0, result.stdout)
+
+
 class DeterministicTests(unittest.TestCase):
     def report(self, text):
         with tempfile.TemporaryDirectory() as folder:

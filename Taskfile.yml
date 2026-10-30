@@ -16,12 +16,12 @@ vars:
   # recursively. The rules file is not one: it is the system prompt, and only
   # a new version changes its text. lint reads it too. The run folders of
   # tests/evaluation/results/ are not either: they hold model output unchanged.
-  MARKDOWN: README.md docs tests/evaluation/*.md tests/evaluation/results/README.md
+  MARKDOWN: README.md CHANGELOG.md docs tests/evaluation/*.md tests/evaluation/results/README.md
   # Format and lint skip the model output and the files that a prompt attaches.
   TEST_DATA: tests/evaluation/results,tests/evaluation/attachments
   # The files and folders of a release. They keep their paths in .build/ and
   # in the zip, so bin/deterministic-tests.py finds sources/banned-words.txt.
-  RELEASE_FILES: README.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md
+  RELEASE_FILES: README.md CHANGELOG.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md
   VERSION:
     sh: |
       python3 -c 'import json; print("{major}.{minor}.{patch}".format(**json.load(open("version.json"))))'
@@ -46,18 +46,29 @@ tasks:
       - '{{.RUFF}} check --extend-exclude {{.TEST_DATA}} .'
       - '{{.PYMARKDOWN}} --config .pymarkdown.json scan -r {{.MARKDOWN}} {{.RULES}}'
 
+  commits:
+    desc: Check that each commit of RANGE (default origin/main..HEAD) has a Conventional Commits subject, with bin/check-commits.py
+    cmds:
+      - python3 bin/check-commits.py '{{.RANGE | default "origin/main..HEAD"}}'
+
   review:
-    desc: The review stage. Check the format, then lint. Format MUST run before lint, so cmds runs them in this order
+    desc: The review stage. Check the format, then lint, then the commit subjects. Format MUST run before lint, so cmds runs them in this order
     cmds:
       - task: format
         vars: {CHECK: 'true'}
       - task: lint
+      - task: commits
 
   build:
-    desc: The build stage. Check that the version line of the rules file matches version.json, then copy the release files to .build/agent-operating-rules-<version>, each at its own path
+    desc: The build stage. Check that the major version is 0, that the version line of the rules file matches version.json, and that CHANGELOG.md has the version. Then copy the release files to .build/agent-operating-rules-<version>, each at its own path
     preconditions:
+      # Major version 0 is initial development: any release MAY break (semver.org, item 4).
+      - sh: python3 -c 'import json, sys; sys.exit(json.load(open("version.json"))["major"] != 0)'
+        msg: "version.json MUST keep the major version at 0"
       - sh: grep -qF 'Version {{.RULES_VERSION}}, ' {{.RULES}}
         msg: "{{.RULES}} does not say Version {{.RULES_VERSION}}. Change its version line or version.json"
+      - sh: grep -qF '## [{{.VERSION}}] - ' CHANGELOG.md
+        msg: "CHANGELOG.md has no section ## [{{.VERSION}}] - <date>. Add one"
     # Task keeps a checksum of the sources in .task/. When they and the folder
     # are the same as at the last build, Task skips build. So package, and the
     # package job of CI with .build/ and .task/ from the build job, do not copy
@@ -65,6 +76,7 @@ tasks:
     sources:
       - Taskfile.yml
       - README.md
+      - CHANGELOG.md
       - version.json
       - sources/**/*
       - bin/deterministic-tests.py
@@ -77,12 +89,12 @@ tasks:
       - tar -cf - {{.RELEASE_FILES}} | tar -xf - -C '.build/{{.NAME}}'
 
   test:
-    desc: The test stage. Run the unit tests of bin/ in tests/unit/, and check the pairs of tests/evaluation/pairs.json with no API call. Then run bin/deterministic-tests.py --check on the rules file at the instruction limit, and on README.md and the evaluation tests at the description limit. It fails on a finding
+    desc: The test stage. Run the unit tests of bin/ in tests/unit/, and check the pairs of tests/evaluation/pairs.json with no API call. Then run bin/deterministic-tests.py --check on the rules file at the instruction limit, and on README.md, CHANGELOG.md and the evaluation tests at the description limit. It fails on a finding
     cmds:
       - python3 -m unittest discover -s tests/unit
       - python3 bin/run-evaluation.py --plan > /dev/null
       - python3 bin/deterministic-tests.py --check --instructions {{.RULES}}
-      - for: [README.md, tests/evaluation/evaluation-tests.md]
+      - for: [README.md, CHANGELOG.md, tests/evaluation/evaluation-tests.md]
         cmd: python3 bin/deterministic-tests.py --check {{.ITEM}}
 
   docs:

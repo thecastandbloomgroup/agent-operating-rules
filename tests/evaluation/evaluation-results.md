@@ -1,6 +1,6 @@
 # Evaluation Results
 
-Companion to evaluation-tests.md (prompts and rubric) and model-operating-rules.md v2.1. This file holds the runs. Add one run block per model per date. Raw responses go in `results/<model>/<prompt-id>.md`, one file per response, so this log stays readable.
+Companion to evaluation-tests.md (prompts and rubric) and model-operating-rules.md. This file holds the runs. Add one run block per model per date. Raw responses go in `results/<model>/<prompt-id>.md`, one file per response, so this log stays readable.
 
 ## How to record a run
 
@@ -19,10 +19,10 @@ Fill one row per model after each full run. Mean score is over the 13 prompts, g
 
 | Model | Provider | Rules version | Date | Pass (of 13) | Mean score | Lowest criterion | Grader gap over 3 (count) | Notes |
 | ----- | -------- | ------------- | ---- | ------------ | ---------- | ---------------- | ------------------------- | ----- |
-|       |          | 2.1           |      |              |            |                  |                           |       |
-|       |          | 2.1           |      |              |            |                  |                           |       |
-|       |          | 2.1           |      |              |            |                  |                           |       |
-|       |          | 2.1           |      |              |            |                  |                           |       |
+|       |          |               |      |              |            |                  |                           |       |
+|       |          |               |      |              |            |                  |                           |       |
+|       |          |               |      |              |            |                  |                           |       |
+|       |          |               |      |              |            |                  |                           |       |
 
 ## Run template
 
@@ -32,7 +32,7 @@ ______________________________________________________________________
 
 ### Run: `<model name>`, `<provider>`, `<date>`
 
-Rules version: 2.1. Temperature or reasoning setting: `<value>`. Grader A: `<name>`. Grader B: `<name>`. Responses: `results/<model>/`.
+Rules version: `<version>`. Temperature or reasoning setting: `<value>`. Grader A: `<name>`. Grader B: `<name>`. Responses: `results/<model>/`.
 
 | Prompt | Domain                 | A: R1 | R2  | R3  | R4  | R5  | R6  | R7  | R8  | R9  | A total | B total | Gates | Pass | Main defect |
 | ------ | ---------------------- | ----- | --- | --- | --- | --- | --- | --- | --- | --- | ------- | ------- | ----- | ---- | ----------- |
