@@ -90,7 +90,7 @@ For each answer, read the response and the rubric. Fill in R1 to R9, `total`, `a
 python3 bin/run-evaluation.py --agreement tests/evaluation/results/<run>
 ```
 
-The command prints, for each judge, the mean gap between its total and yours. It also prints how often it gave your score on each criterion. When a judge often gives a different score from yours on a criterion, do not use its scores on that criterion. When you and both judges disagree with the expected answer of a prompt, change the prompt, as Section 5 of `evaluation-tests.md` says.
+The command prints, for each judge, the mean gap between its total and yours. It also prints how often it gave your score on each criterion. When a judge often gives a different score from yours on a criterion, do not use its scores on that criterion. When you and both judges disagree with the expected answer of a prompt, change the prompt, as Section 6 of `evaluation-tests.md` says. Log the change in its Section 5.
 
 ## Keep the result
 

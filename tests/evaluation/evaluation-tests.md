@@ -1,6 +1,6 @@
 # Evaluation Tests: Cynefin Classification in Recommendations
 
-Version 1.2, 2026-10-30. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
+Version 1.3, 2026-10-30. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
 
 ## Purpose
 
@@ -42,10 +42,10 @@ Should not contain: questions, probes, or a Cynefin note longer than one line.
 "Our API p95 latency rose from 120 ms to 900 ms after last week's release. The release touched the ORM layer, the cache config, and the connection pool. Logs, traces, and the diff are attached. Tell me what to do."
 
 Expected classification: Complicated. Cause and effect are knowable with analysis of the attached material.
-Expected action form: the first action names the analysis (bisect the diff, compare traces before and after). Build actions follow it and depend on it ("Step 2 MUST NOT start until Step 1 names the cause").
+Expected action form: the first action names the analysis (bisect the diff, compare traces before and after). Build actions follow it and depend on it ("Step 2 MUST NOT start until Step 1 names the cause"). An answer can also do the analysis itself on the attached data. When it names the cause with numbers from the files, that counts as the analysis, and a fix of that cause MAY come first.
 Should contain: an evidence section with numbers from the attachments. An assumption log if any figure is missing. A Kepner-Tregoe or Pugh layout if the model proposes a choice between fixes.
 Should not contain: a fix committed before the analysis; a probe (the answer is knowable, so probing is waste).
-Likely wrong answer: the model puts "revert the release" as action 1. That may be right as a stabiliser only if the prompt says production is down. It does not. Deduct under R3.
+Likely wrong answer: the model puts "revert the release" as action 1, without the data to name the cause. That may be right as a stabiliser only if the prompt says production is down. It does not. Deduct under R3.
 
 **Prompt K2 (non-software)**
 "We have three vendor proposals for a data warehouse, attached. Budget is 400k over three years. Recommend one."
@@ -124,9 +124,10 @@ Gate: a response that proposes a workshop before a formatter fails.
 **Prompt T2: a Complex task worded as Clear**
 "Just tell me the best prompt to make the model stop hallucinating."
 
-Expected classification: Complex. The model should refuse the premise that one best prompt exists, in one sentence, and then propose probes with a measure.
-Should contain: a measure (a labelled set and a hallucination rate), a baseline, a threshold, a sample size; the statement that leverage is a guess.
-Should not contain: a single prompt presented as the answer.
+Expected classification: Complex. No prompt is known to stop hallucination, so a prompt is a probe, not a fix. Per Section 0 of the rules, the explicit request comes first, so the answer gives the prompt that the user asks for.
+Expected action form: the prompt is the first Complex probe, with a measure. Other probes MAY run in parallel.
+Should contain: one starting prompt, a measure (a labelled set and a hallucination rate), a baseline, a threshold, a sample size, and the statement that leverage is a guess.
+Should not contain: a prompt presented as the final answer, with no measure; a refusal to give a prompt.
 
 **Prompt T3: Mixed domains in one ask**
 "Migrate our auth service from sessions to JWT, and while you are at it make sign-up conversion better."
@@ -170,6 +171,14 @@ Inter-grader difference above 3 points on any response means the rubric is uncle
 
 One row per model per prompt: prompt ID, model, grader A score, grader B score, gates passed (yes/no), one line on the main defect. Then one table per model: pass count out of 13, mean score, the criterion with the lowest mean. The criterion with the lowest mean across all models is the rule to fix first in the rules file.
 
-## 5. Source-type note
+## 5. Changes to the expected answers
+
+Each change follows a review of the judge notes and of the rules file.
+
+- Version 1.3, T2: the answer gives the prompt that the user asks for, as the first Complex probe. Before, the expected answer refused it, and that conflicted with Section 0 of the rules. In three runs, T2 passed 0 of 29 answers.
+- Version 1.3, K1: an analysis on the attached data counts as the analysis step. Version 1.2 added the data.
+- Version 1.3, H2: no change. Action 1 is a Chaotic stabiliser, then Complex probes. Most answers label H2 Confused, but an active crisis with no aligned owner is the Chaotic case.
+
+## 6. Source-type note
 
 The expected classifications in Section 1 are the author's judgment [judgment]. They were not validated against an external panel. Treat a persistent disagreement between a model and this file as a signal to review the expected answer, not only the model.
