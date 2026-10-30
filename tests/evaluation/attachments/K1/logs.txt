@@ -1,0 +1,17 @@
+2026-10-22T10:14:02.118Z INFO  api pod=api-2 GET /customers/88213/orders 200 912ms
+2026-10-22T10:14:02.344Z WARN  db  pod=api-2 pool exhausted: 8 of 8 connections in use, 11 waiters
+2026-10-22T10:14:02.351Z INFO  api pod=api-1 GET /customers/40177/orders 200 87ms
+2026-10-22T10:14:03.006Z WARN  db  pod=api-4 pool exhausted: 8 of 8 connections in use, 9 waiters
+2026-10-22T10:14:03.512Z INFO  cache pod=api-3 miss key=orders:customer:55120 ttl=60
+2026-10-22T10:14:04.770Z INFO  api pod=api-4 GET /customers/12904/orders 200 1204ms
+2026-10-22T10:14:07.901Z ERROR db  pod=api-2 PoolTimeout: acquire timed out after 5 s (8 in use, 14 waiters)
+2026-10-22T10:14:07.903Z INFO  api pod=api-2 GET /customers/77310/orders 503 5004ms
+2026-10-22T10:14:08.220Z INFO  api pod=api-3 GET /customers/66002/orders 200 143ms
+2026-10-22T10:14:09.415Z WARN  db  pod=api-1 pool exhausted: 8 of 8 connections in use, 6 waiters
+2026-10-22T10:14:10.002Z INFO  api pod=api-1 GET /customers/31877/orders 200 655ms
+2026-10-22T10:14:11.660Z INFO  cache pod=api-1 miss key=orders:customer:31877 ttl=60
+2026-10-22T10:14:12.118Z ERROR db  pod=api-4 PoolTimeout: acquire timed out after 5 s (8 in use, 12 waiters)
+2026-10-22T10:14:12.120Z INFO  api pod=api-4 GET /customers/90551/orders 503 5002ms
+2026-10-22T10:14:13.874Z INFO  api pod=api-2 GET /customers/88213/orders 200 64ms
+
+Note: "pool exhausted" warnings per hour: 2026-10-20 none, 2026-10-22 between 1,800 and 2,400.

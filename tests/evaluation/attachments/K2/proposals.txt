@@ -1,0 +1,31 @@
+Three proposals for a data warehouse, received 2026-10-10. Figures are as each vendor states them. All prices are in USD.
+
+Proposal 1: Northwind Analytics, managed cloud warehouse
+- Three-year cost: 372,000 (licence 300,000; migration services 48,000; training 24,000).
+- Pricing model: fixed annual licence for up to 20 TB; 9,000 per extra TB per year.
+- Current data: 14 TB, growth stated by our team as about 3 TB per year.
+- Query performance: vendor benchmark on a 10 TB sample: 2.1 s median for our 12 reference queries.
+- Availability: 99.9% SLA with service credits.
+- Migration: vendor team moves the 14 TB in 10 weeks.
+- Exit: export to Parquet at any time, no fee.
+- Support: business hours, 4-hour response for severity 1.
+
+Proposal 2: Bluepeak Data, consumption-priced warehouse
+- Three-year cost: estimate of 455,000 at our current query volume (compute 390,000; storage 40,000; onboarding 25,000).
+- Pricing model: pay per compute second and per TB stored; no cap.
+- Query performance: vendor benchmark on a 10 TB sample: 1.3 s median for our 12 reference queries.
+- Availability: 99.95% SLA with service credits.
+- Migration: tools only; our team does the move, estimated by the vendor at 16 weeks.
+- Exit: export to Parquet or CSV; egress fees of 0.08 per GB.
+- Support: 24/7, 1-hour response for severity 1.
+
+Proposal 3: Cedar Warehouse, self-hosted open-source stack with a support contract
+- Three-year cost: 286,000 (support contract 150,000; hardware lease 96,000; setup 40,000).
+- Pricing model: fixed; hardware sized for 30 TB.
+- Query performance: vendor benchmark on a 10 TB sample: 3.4 s median for our 12 reference queries.
+- Availability: no SLA; uptime depends on our operations team. Our team has one database engineer today.
+- Migration: setup partner moves the data in 12 weeks.
+- Exit: open formats; no fee.
+- Support: business hours, next-day response for severity 1.
+
+Not stated by any vendor: the cost of the staff time to run the system, and the price after year 3.

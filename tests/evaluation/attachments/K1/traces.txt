@@ -1,0 +1,17 @@
+Trace summary for GET /customers/{id}/orders, 10,000 sampled requests per window.
+Window A: 2026-10-20 09:00 to 17:00 UTC (release 2026.10.14).
+Window B: 2026-10-22 09:00 to 17:00 UTC (release 2026.10.21).
+
+Span                     | A p50 ms | A p95 ms | B p50 ms | B p95 ms
+------------------------ | -------- | -------- | -------- | --------
+http.request (total)     |       48 |      120 |      210 |      900
+db.pool.acquire          |        1 |        3 |      140 |      690
+cache.get                |        2 |        4 |        2 |        5
+cache miss rate          |      12% |        - |      31% |        -
+db.query orders          |       18 |       52 |       20 |       58
+db.query order_lines     |       11 |       30 |        9 |       26
+serialize                |        6 |       14 |        6 |       15
+
+Requests per second, peak: A 410, B 405.
+Error rate: A 0.02%, B 0.40%. In B, 96% of the errors are "PoolTimeout: acquire timed out after 5 s".
+Database server CPU, peak: A 38%, B 41%. Active DB connections from this service, peak: A 31, B 8.

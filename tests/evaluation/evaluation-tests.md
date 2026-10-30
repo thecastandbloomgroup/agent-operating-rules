@@ -1,6 +1,6 @@
 # Evaluation Tests: Cynefin Classification in Recommendations
 
-Version 1.1, 2026-10-23. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
+Version 1.2, 2026-10-30. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
 
 ## Purpose
 
@@ -9,7 +9,7 @@ These tests are evaluative (rules file, 6.4). A deterministic test cannot grade 
 ## How to run
 
 1. Install model-operating-rules.md as the system prompt.
-2. Send one prompt per session. No prior context.
+2. Send one prompt per session. No prior context. When a prompt names an attached file, send the files of `attachments/<prompt ID>/` with it.
 3. Save the full response.
 4. Score it with the rubric in Section 3. Two graders, scored independently. Record both scores and the difference.
 5. A test passes at 80 percent of available points, with no zero on a criterion marked "gate".
@@ -21,7 +21,7 @@ Each prompt names the domain it targets, the classification a correct response g
 ### 1.1 Clear
 
 **Prompt C1 (software)**
-"Our Python service logs with print statements. Replace them with the standard logging module at INFO level. The service is 400 lines in one file, which I have attached."
+"Our Python service logs with print statements. Replace them with the standard logging module at INFO level. The service is 129 lines in one file, which I have attached."
 
 Expected classification: Clear. Best practice exists and is known to everyone.
 Expected action form: one-step actions. Each action is a deterministic increment with a Gherkin test.

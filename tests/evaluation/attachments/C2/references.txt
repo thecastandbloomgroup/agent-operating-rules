@@ -1,0 +1,31 @@
+Author: Barbara Minto
+Title: The Pyramid Principle: Logic in Writing and Thinking
+Publisher: Pearson Education, London
+Year: 2009
+Edition: 3rd
+
+Author: Joseph McCormack
+Title: Brief: Make a Bigger Impact by Saying Less
+Publisher: Wiley, Hoboken, NJ
+Year: 2014
+
+Author: Ken Hyland
+Title: Metadiscourse: Exploring Interaction in Writing
+Publisher: Continuum, London
+Year: 2005
+
+Author: Stuart Pugh
+Title: Total Design: Integrated Methods for Successful Product Engineering
+Publisher: Addison-Wesley, Wokingham
+Year: 1991
+
+Author: Charles H. Kepner and Benjamin B. Tregoe
+Title: The New Rational Manager
+Publisher: Princeton Research Press, Princeton, NJ
+Year: 1981
+
+Author: Karen Holtzblatt and Hugh Beyer
+Title: Contextual Design: Design for Life
+Publisher: Morgan Kaufmann, Cambridge, MA
+Year: 2017
+Edition: 2nd

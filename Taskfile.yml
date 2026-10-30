@@ -17,7 +17,8 @@ vars:
   # a new version changes its text. lint reads it too. The run folders of
   # tests/evaluation/results/ are not either: they hold model output unchanged.
   MARKDOWN: README.md docs tests/evaluation/*.md tests/evaluation/results/README.md
-  RUN_FOLDERS: tests/evaluation/results
+  # Format and lint skip the model output and the files that a prompt attaches.
+  TEST_DATA: tests/evaluation/results,tests/evaluation/attachments
   # The files and folders of a release. They keep their paths in .build/ and
   # in the zip, so bin/deterministic-tests.py finds sources/banned-words.txt.
   RELEASE_FILES: README.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md
@@ -36,13 +37,13 @@ tasks:
     vars:
       FLAG: '{{if eq (.CHECK | default "false") "true"}}--check{{end}}'
     cmds:
-      - '{{.RUFF}} format {{.FLAG}} --extend-exclude {{.RUN_FOLDERS}} .'
+      - '{{.RUFF}} format {{.FLAG}} --extend-exclude {{.TEST_DATA}} .'
       - '{{.MDFORMAT}} --number {{.FLAG}} {{.MARKDOWN}}'
 
   lint:
     desc: Lint the Python scripts with ruff, and the Markdown files with pymarkdown and the settings of .pymarkdown.json
     cmds:
-      - '{{.RUFF}} check --extend-exclude {{.RUN_FOLDERS}} .'
+      - '{{.RUFF}} check --extend-exclude {{.TEST_DATA}} .'
       - '{{.PYMARKDOWN}} --config .pymarkdown.json scan -r {{.MARKDOWN}} {{.RULES}}'
 
   review:

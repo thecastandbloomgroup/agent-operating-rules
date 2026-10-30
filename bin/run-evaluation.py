@@ -43,6 +43,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RULES = ROOT / "sources" / "model-operating-rules.md"
 TESTS = ROOT / "tests" / "evaluation" / "evaluation-tests.md"
 PAIRS = ROOT / "tests" / "evaluation" / "pairs.json"
+ATTACHMENTS = ROOT / "tests" / "evaluation" / "attachments"
 CHECKER = ROOT / "bin" / "deterministic-tests.py"
 
 CRITERIA = [f"R{n}" for n in range(1, 10)]
@@ -181,6 +182,16 @@ def parse_prompts(text):
         p["r6"] = p["domain"].startswith("Prompts that invite") or (
             "Likely wrong answer" in p["expected"]
         )
+    return prompts
+
+
+def attach(prompts, folder=ATTACHMENTS):
+    """Add the files of attachments/ID/ to the text of prompt ID. The executor and
+    the judges get the same text, so a judge can check the numbers of an answer."""
+    for p in prompts:
+        for path in sorted((folder / p["id"]).glob("*")):
+            p["prompt"] += f"\n\n# Attached file: {path.name}\n\n````\n"
+            p["prompt"] += path.read_text().rstrip() + "\n````"
     return prompts
 
 
@@ -660,7 +671,7 @@ def main():
         print("\n".join(problems), file=sys.stderr)
         return 1
     tests = TESTS.read_text()
-    prompts = parse_prompts(tests)
+    prompts = attach(parse_prompts(tests))
     if args.prompts:
         wanted = args.prompts.split(",")
         unknown = set(wanted) - {p["id"] for p in prompts}

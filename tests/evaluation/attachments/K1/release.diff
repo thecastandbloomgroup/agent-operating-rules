@@ -1,0 +1,38 @@
+Release 2026.10.21 (deployed 2026-10-21 14:05 UTC). Diff against 2026.10.14.
+
+--- a/config/db.yaml
++++ b/config/db.yaml
+@@ -3,9 +3,9 @@ database:
+   host: orders-db.internal
+   port: 5432
+   pool:
+-    max_size: 50
++    max_size: 8
+     min_size: 5
+-    acquire_timeout_s: 30
++    acquire_timeout_s: 5
+     recycle_s: 1800
+
+--- a/config/cache.yaml
++++ b/config/cache.yaml
+@@ -1,6 +1,6 @@
+ cache:
+   backend: redis
+   host: cache.internal
+-  default_ttl_s: 300
++  default_ttl_s: 60
+   max_entries: 200000
+
+--- a/app/orm/orders.py
++++ b/app/orm/orders.py
+@@ -41,7 +41,9 @@ def orders_for_customer(session, customer_id):
+-    return session.query(Order).filter(Order.customer_id == customer_id).all()
++    return (
++        session.query(Order)
++        .options(selectinload(Order.lines))
++        .filter(Order.customer_id == customer_id)
++        .all()
++    )
+
+Commit message for config/db.yaml: "Lower pool size to match the new DB connection limit per service (ticket OPS-412)."
+Deployment note: the API runs 4 pods with 8 worker threads each (32 workers in total), unchanged in this release.

@@ -165,6 +165,13 @@ class RunEvaluationScores(unittest.TestCase):
         scores["R6"]["score"] = r6
         return {"scores": scores, "main_defect": ""}
 
+    def test_sends_the_attached_files_with_their_prompt(self):
+        prompts = {p["id"]: p for p in EVAL.attach(list(self.prompts.values()))}
+        for name in ["logs.txt", "traces.txt", "release.diff"]:
+            self.assertIn(f"# Attached file: {name}", prompts["K1"]["prompt"])
+        self.assertIn("PoolTimeout", prompts["K1"]["prompt"])
+        self.assertNotIn("# Attached file", prompts["T2"]["prompt"])
+
     def test_reads_13_prompts_and_the_r6_prompts_of_the_rubric(self):
         self.assertEqual(len(self.prompts), 13)
         r6 = sorted(i for i, p in self.prompts.items() if p["r6"])
