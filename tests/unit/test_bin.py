@@ -79,6 +79,24 @@ class DeterministicTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(report["banned_total"], 0)
 
+    def test_finds_the_references_under_each_form_of_heading(self):
+        for heading in ["## References", "**References**", "References:", "References"]:
+            with self.subTest(heading=heading):
+                code, report = self.report(
+                    f"The cat sat [1].\n\nIt slept [2].\n\n{heading}\n\n"
+                    "[1] A. Author, Cats, 2020. [S]\n\n[2] B. Author, Mats, 2021. [P]\n"
+                )
+                self.assertEqual(code, 0, report["failures"])
+                self.assertEqual(report["ref_entries"], 2)
+
+    def test_splits_at_the_last_references_heading(self):
+        code, report = self.report(
+            'The checker reads the "## References" heading [1].\n\n'
+            "## References\n\n[1] A. Author, Cats, 2020. [S]\n"
+        )
+        self.assertEqual(code, 0, report["failures"])
+        self.assertEqual(report["citations_first_appearance"], [1])
+
 
 def load(script):
     """Import a script of bin/, whose name has a hyphen, as a module."""

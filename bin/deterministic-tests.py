@@ -94,9 +94,18 @@ def is_list_sentence(s):
     return s.startswith("Examples:") or s.count(",") >= 5 or s.count("(") >= 3
 
 
+def split_references(text):
+    """The body and the References list. The rules name no form for the heading,
+    so take the last line that is only the word, as a heading, bold, or with a colon."""
+    heads = list(re.finditer(r"(?im)^[#\s]*\**References:?\**:?\s*$", text))
+    if not heads:
+        return text, ""
+    return text[: heads[-1].start()], text[heads[-1].end() :]
+
+
 def test(path, instructions=False):
     text = Path(path).read_text()
-    body, _, refs = text.partition("## References")
+    body, refs = split_references(text)
     R = {}
     sents = sentences(body)
     limit = 20 if instructions else 25
