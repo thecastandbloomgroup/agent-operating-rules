@@ -1,6 +1,7 @@
 """Unit tests of the scripts in bin/. Run: python3 -m unittest discover -s tests/unit"""
 
 import contextlib
+import http.client
 import importlib.util
 import io
 import json
@@ -9,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 
 BIN = Path(__file__).resolve().parents[2] / "bin"
@@ -205,6 +207,29 @@ class RunEvaluationScores(unittest.TestCase):
 class RunEvaluationUnit(unittest.TestCase):
     """One unit of work with a stub in place of the API: no network."""
 
+    def test_retries_a_dropped_connection_and_a_rate_limit(self):
+        cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
+        body = {"output": [], "usage": {"input_tokens": 1}}
+        failures = [
+            http.client.RemoteDisconnected("closed"),
+            urllib.error.HTTPError("url", 429, "busy", {"Retry-After": "1"}, None),
+        ]
+
+        def urlopen(request, timeout):
+            if failures:
+                raise failures.pop(0)
+            return contextlib.nullcontext(io.BytesIO(json.dumps(body).encode()))
+
+        sleeps = []
+        original = EVAL.urllib.request.urlopen, EVAL.time.sleep
+        EVAL.urllib.request.urlopen, EVAL.time.sleep = urlopen, sleeps.append
+        self.addCleanup(setattr, EVAL.urllib.request, "urlopen", original[0])
+        self.addCleanup(setattr, EVAL.time, "sleep", original[1])
+        model = {"model": "google/gemini-3.8-flash", "effort": "medium"}
+        _, usage, _ = EVAL.call(cfg, "key", model, "executor", "", "text")
+        self.assertEqual(usage, {"input_tokens": 1})
+        self.assertEqual(len(sleeps), 2)
+
     def test_refuses_an_answer_cut_by_max_output_tokens(self):
         cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())
         body = {
@@ -280,7 +305,12 @@ class RunEvaluationMerge(unittest.TestCase):
             "scores": {c: {"score": 2, "evidence": "ok"} for c in EVAL.CRITERIA},
             "main_defect": "none",
         }
-        usage = {"input_tokens": 10, "output_tokens": 5, "cost": {"total_cost": 0.5}}
+        usage = {
+            "input_tokens": 10,
+            "input_tokens_details": {"cache_read_input_tokens": 8},
+            "output_tokens": 5,
+            "cost": {"total_cost": 0.5},
+        }
 
         def stub(cfg, key, model, role, instructions, text, schema=None):
             if fail_second_judge and model == pair["second_judge"]:
@@ -324,6 +354,10 @@ class RunEvaluationMerge(unittest.TestCase):
         self.assertEqual(sum(",failed," in c for c in calls), 1)
         text = printed.getvalue()
         self.assertIn("Calls: 6, 1 failed. Cost: 3.00 USD.", text)
+        self.assertIn(
+            "| judge | google/gemini-4-argon@high | 1 | 10 | 0 | 8 | 5 | 0 | 0.50 |",
+            text,
+        )
         self.assertIn("xai: C1-s1 judge google/gemini-4-argon: incomplete answer", text)
         self.assertIn("xai: line 6 is not a record", text)
 

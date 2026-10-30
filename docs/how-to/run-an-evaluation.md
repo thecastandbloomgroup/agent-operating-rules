@@ -69,9 +69,9 @@ Each run makes one folder in `.eval/`:
 | File             | Content                                                                      |
 | ---------------- | ---------------------------------------------------------------------------- |
 | `results/`       | One JSONL file for each provider: each score, call and failed call           |
-| `summary.md`     | Pass count, mean score and lowest criterion of each pair and judge           |
+| `summary.md`     | Pass count, mean score, lowest criterion, and the tokens and cost of a model |
 | `scores.csv`     | One row for each answer and judge, in the columns of `evaluation-scores.csv` |
-| `calls.csv`      | Provider, status, model, effort, tokens, cost and time of each call          |
+| `calls.csv`      | Provider, status, model, effort, tokens with cache, cost and time of a call  |
 | `human-test.csv` | The answers that you must score                                              |
 | `responses/`     | The answers, one file for each prompt and sample                             |
 | `judgments/`     | The JSON of each judge, with the evidence for each score                     |

@@ -50,6 +50,11 @@ GATES = {"R1", "R2", "R3", "R5", "R6"}
 PASS_SHARE = 0.8
 GAP_LIMIT = 3
 HUMAN_SAMPLE = 2
+# The API refuses a burst of calls with 429, and can drop a long call. Retry
+# each call up to ATTEMPTS times, and wait 5, 10, 20, 40 and 80 seconds, or
+# the time that the Retry-After header asks for.
+ATTEMPTS = 6
+RETRY_CODES = (429, 500, 502, 503, 504)
 # Tokens of one call, for the --plan estimate only. Each call logs its real cost.
 ESTIMATE = {"executor": (6000, 3000), "judge": (12000, 6000)}
 CALL_FIELDS = [
@@ -61,6 +66,8 @@ CALL_FIELDS = [
     "prompt_id",
     "sample",
     "input_tokens",
+    "cache_write_tokens",
+    "cache_read_tokens",
     "output_tokens",
     "reasoning_tokens",
     "cost_usd",
@@ -291,19 +298,24 @@ def call(cfg, key, model, role, instructions, text, schema=None):
         },
     )
     started = time.monotonic()
-    for attempt in range(4):
+    for attempt in range(ATTEMPTS):
+        wait = 5 * 2**attempt + random.uniform(0, 5)
         try:
             with urllib.request.urlopen(request, timeout=600) as response:
                 data = json.load(response)
             break
         except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 3:
+            if error.code not in RETRY_CODES or attempt == ATTEMPTS - 1:
                 detail = error.read().decode(errors="replace")[:500]
                 raise CallError(f"HTTP {error.code}: {detail}") from None
-        except urllib.error.URLError as error:
-            if attempt == 3:
-                raise CallError(f"no connection: {error.reason}") from None
-        time.sleep(5 * 2**attempt)
+            asked = error.headers.get("Retry-After", "")
+            wait = max(wait, float(asked)) if asked.isdigit() else wait
+        # OSError covers URLError, a dropped connection, and a timeout.
+        except OSError as error:
+            if attempt == ATTEMPTS - 1:
+                reason = getattr(error, "reason", None) or error
+                raise CallError(f"no connection: {reason}") from None
+        time.sleep(wait)
     # Reasoning tokens count toward max_output_tokens, so a model that thinks
     # long can stop in the middle of its answer. Score no cut answer.
     if data.get("status") == "incomplete":
@@ -366,7 +378,14 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
                 "effort": model["effort"],
                 "prompt_id": prompt["id"],
                 "sample": sample,
+                # input_tokens includes the tokens written to and read from the cache.
                 "input_tokens": usage.get("input_tokens", ""),
+                "cache_write_tokens": usage.get("input_tokens_details", {}).get(
+                    "cache_creation_input_tokens", ""
+                ),
+                "cache_read_tokens": usage.get("input_tokens_details", {}).get(
+                    "cache_read_input_tokens", ""
+                ),
                 "output_tokens": usage.get("output_tokens", ""),
                 "reasoning_tokens": usage.get("output_tokens_details", {}).get(
                     "reasoning_tokens", ""
@@ -474,6 +493,30 @@ def write_csv(path, rows, fields):
         writer.writerows(rows)
 
 
+def token_table(calls):
+    """The tokens and cost of each model in each role, from the calls of a run."""
+    fields = ["input_tokens", "cache_write_tokens", "cache_read_tokens"]
+    fields += ["output_tokens", "reasoning_tokens", "cost_usd"]
+    lines = ["## Tokens and cost", ""]
+    lines += [
+        (
+            "| Role | Model | Calls | Input | Cache write | Cache read "
+            "| Output | Reasoning | Cost USD |"
+        )
+    ]
+    lines += ["| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+    groups = {}
+    for c in calls:
+        groups.setdefault((c["role"], f"{c['model']}@{c['effort']}"), []).append(c)
+    for (role, model), group in sorted(groups.items()):
+        sums = {f: sum(float(c.get(f) or 0) for c in group) for f in fields}
+        counts = " | ".join(f"{int(sums[f])}" for f in fields[:-1])
+        lines.append(
+            f"| {role} | {model} | {len(group)} | {counts} | {sums['cost_usd']:.2f} |"
+        )
+    return lines + [""]
+
+
 def summary(run_dir, rows, calls, human, errors):
     lines = [f"# Evaluation run {run_dir.name}", ""]
     lines += ["| Executor | Judge | Responses | Pass | Mean total | Lowest criterion |"]
@@ -497,6 +540,7 @@ def summary(run_dir, rows, calls, human, errors):
     cost = sum(float(c["cost_usd"]) for c in calls if c["cost_usd"] != "")
     failed = sum(c["status"] == "failed" for c in calls)
     lines += ["", f"Calls: {len(calls)}, {failed} failed. Cost: {cost:.2f} USD.", ""]
+    lines += token_table(calls)
     lines += ["## Human test", ""]
     lines += [
         (
