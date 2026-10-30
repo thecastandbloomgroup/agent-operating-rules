@@ -6,6 +6,7 @@ import importlib.util
 import io
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -63,6 +64,8 @@ class CheckCommits(unittest.TestCase):
             with self.subTest(subject=subject):
                 self.assertFalse(self.module.conventional(subject))
 
+    # The test job of CI has no git. The review job runs task commits with git.
+    @unittest.skipUnless(shutil.which("git"), "needs git")
     def test_every_commit_of_the_history_is_conventional(self):
         result = run("check-commits.py", "HEAD")
         self.assertEqual(result.returncode, 0, result.stdout)
