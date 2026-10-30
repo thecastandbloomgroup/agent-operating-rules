@@ -23,7 +23,7 @@ The task prints each call and an estimate of the cost. It calls no API. Each rea
 
 ## How a run works
 
-Each provider runs in its own process, at the same time as the others. Each process adds its results to `.eval/<run>/results/<provider>.jsonl` as soon as it has them. Each line of the file is one score, one call or one failed call. A failed call is a line of the file, so it does not stop the other providers.
+Each provider runs in its own process, at the same time as the others. Each process adds its results to `tests/evaluation/results/<run>/results/<provider>.jsonl` as soon as it has them. Each line of the file is one score, one call or one failed call. A failed call is a line of the file, so it does not stop the other providers.
 
 When the providers end, `task eval:merge` reads all the JSONL files of the run. It writes the final view: `summary.md`, `scores.csv`, `calls.csv` and `human-test.csv`. The merge calls no API, so you can run it again at any time.
 
@@ -58,13 +58,13 @@ task eval:merge RUN=<run>
 1. Open **Build**, then **Pipelines**, and open a pipeline of `main`.
 2. In the stage **evaluate**, start the job of each provider that you want, for example `evaluate: [anthropic]`. Add job variables when you need them: `SAMPLES`, `PROMPTS` and `ALL_PAIRS`. Then select **Run job**. The jobs run at the same time.
 3. When the provider jobs end, start the job `evaluate:report` in the stage **report**. It merges the JSONL files of all the provider jobs of the pipeline.
-4. Download the artifact of `evaluate:report`. It holds the final view in `.eval/pipeline-<ID>/` for 3 months.
+4. Download the artifact of `evaluate:report`. It holds the final view in `tests/evaluation/results/pipeline-<ID>/` for 3 months.
 
 If you start one more provider job later, start `evaluate:report` again. A pipeline schedule on `main` runs all six provider jobs, then the report. A full run of all six providers costs about 95 USD, so add a schedule only when you plan to read each run.
 
 ## Read a run
 
-Each run makes one folder in `.eval/`:
+Each run makes one folder in `tests/evaluation/results/`:
 
 | File             | Content                                                                      |
 | ---------------- | ---------------------------------------------------------------------------- |
@@ -87,11 +87,11 @@ Each run makes one folder in `.eval/`:
 For each answer, read the response and the rubric. Fill in R1 to R9, `total`, `available`, `gates_passed`, `pass` and `main_defect`. Do not read the judgments first. Then compare your scores with the judges:
 
 ```sh
-python3 bin/run-evaluation.py --agreement .eval/<run>
+python3 bin/run-evaluation.py --agreement tests/evaluation/results/<run>
 ```
 
 The command prints, for each judge, the mean gap between its total and yours. It also prints how often it gave your score on each criterion. When a judge often gives a different score from yours on a criterion, do not use its scores on that criterion. When you and both judges disagree with the expected answer of a prompt, change the prompt, as Section 5 of `evaluation-tests.md` says.
 
 ## Keep the result
 
-The folder `.eval/` is not in git. To keep a run, follow the [record an evaluation run](record-an-evaluation-run.md) page, and merge the result through a merge request.
+Each run folder is in `tests/evaluation/results/`, which is in git. To keep a run, commit its folder on a branch, follow the [record an evaluation run](record-an-evaluation-run.md) page, and merge the result through a merge request. To drop a run, delete its folder.

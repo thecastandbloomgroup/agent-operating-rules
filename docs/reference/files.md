@@ -2,16 +2,15 @@
 
 ## Folders
 
-| Folder   | Its job                                                                                              | In git |
-| -------- | ---------------------------------------------------------------------------------------------------- | ------ |
-| sources/ | What the repository delivers: the rules, and the data that the rules name                            | yes    |
-| bin/     | Programs that a person or a task runs                                                                | yes    |
-| tests/   | The tests of the sources, and the records of each test run                                           | yes    |
-| docs/    | Tutorials, how-to guides, reference and explanation                                                  | yes    |
-| .build/  | The release folder that task build makes                                                             | no     |
-| .task/   | The checksum of the sources of task build, so Task skips a second build                              | no     |
-| .eval/   | One folder for each evaluation run: `results/` with one JSONL file per provider, and the merged view | no     |
-| dist/    | The release zip that task package makes                                                              | no     |
+| Folder   | Its job                                                                   | In git |
+| -------- | ------------------------------------------------------------------------- | ------ |
+| sources/ | What the repository delivers: the rules, and the data that the rules name | yes    |
+| bin/     | Programs that a person or a task runs                                     | yes    |
+| tests/   | The tests of the sources, and the records of each test run                | yes    |
+| docs/    | Tutorials, how-to guides, reference and explanation                       | yes    |
+| .build/  | The release folder that task build makes                                  | no     |
+| .task/   | The checksum of the sources of task build, so Task skips a second build   | no     |
+| dist/    | The release zip that task package makes                                   | no     |
 
 ## Each file
 

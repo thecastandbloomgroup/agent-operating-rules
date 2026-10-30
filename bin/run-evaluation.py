@@ -15,7 +15,7 @@ Usage: bin/run-evaluation.py [--provider NAME] [--run-id ID] [--all-pairs]
   --prompts    the prompt IDs to send; every prompt when left out
   --samples    the runs of each prompt (default 3)
   --workers    the units of work in flight at one time (default 4)
-  --out        the folder that gets one subfolder per run (default .eval)
+  --out        the folder that gets one subfolder per run (default tests/evaluation/results)
   --plan       check pairs.json, print the calls and the cost estimate, call nothing
   --merge      read the JSONL files of a run, and write scores.csv, calls.csv,
                human-test.csv, and summary.md
@@ -640,7 +640,7 @@ def main():
     parser.add_argument("--prompts")
     parser.add_argument("--samples", type=int, default=3)
     parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--out", default=str(ROOT / ".eval"))
+    parser.add_argument("--out", default=str(ROOT / "tests/evaluation/results"))
     parser.add_argument("--pairs", default=str(PAIRS))
     parser.add_argument("--run-id")
     parser.add_argument("--plan", action="store_true")

@@ -96,7 +96,7 @@ package:
 # docs/how-to/set-up-doppler-for-evaluation.md gives the setup.
 #
 # Each job of the matrix runs one provider at the same time as the others, and
-# writes .eval/pipeline-ID/results/PROVIDER.jsonl. The job evaluate:report
+# writes tests/evaluation/results/pipeline-ID/results/PROVIDER.jsonl. The job evaluate:report
 # merges the JSONL files of the pipeline into the final view of the run.
 evaluate:
   stage: evaluate
@@ -128,7 +128,7 @@ evaluate:
     - doppler run --only-secrets PERPLEXITY_TOKEN -- task eval:provider PROVIDER="$PROVIDER" RUN="pipeline-$CI_PIPELINE_ID" SAMPLES="$SAMPLES" PROMPTS="$PROMPTS" ALL_PAIRS="$ALL_PAIRS"
   artifacts:
     when: always
-    paths: [.eval/]
+    paths: [tests/evaluation/results/]
     expire_in: 3 months
 
 # The final view of the evaluation: scores.csv, calls.csv, human-test.csv and
@@ -148,5 +148,5 @@ evaluate:report:
     - task eval:merge RUN="pipeline-$CI_PIPELINE_ID"
   artifacts:
     when: always
-    paths: [.eval/]
+    paths: [tests/evaluation/results/]
     expire_in: 3 months

@@ -53,7 +53,7 @@ To do the steps by hand:
 1. Open **Build**, then **Pipelines**, and open the last pipeline of `main`.
 2. Find the stage **evaluate**. Select the job `evaluate: [anthropic]`.
 3. Add two job variables: `PROMPTS` with the value `C1`, and `SAMPLES` with the value `1`. Then select **Run job**.
-4. The job sends one prompt to one pair, for about 0.63 USD. When it ends, open the artifact `.eval/<run>/summary.md`. It names the failed calls, if any.
+4. The job sends one prompt to one pair, for about 0.63 USD. When it ends, open the artifact `tests/evaluation/results/<run>/summary.md`. It names the failed calls, if any.
 
 A 401 error means that the key in Doppler is wrong. A Doppler error about the token means that `DOPPLER_TOKEN` is wrong or not protected. A Doppler error about a missing secret means that `PERPLEXITY_TOKEN` is not in the config `dev`.
 
