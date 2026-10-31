@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking:** the evaluation tests are now version 1.4. H2 expects Complicated work on the facts after the Chaotic stabiliser, then Complex probes. A holding statement that commits to no facts counts as part of the stabiliser.
+
 ## [0.3.1] - 2026-10-31
 
 ### Added

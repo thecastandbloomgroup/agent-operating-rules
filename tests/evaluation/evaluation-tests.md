@@ -1,6 +1,6 @@
 # Evaluation Tests: Cynefin Classification in Recommendations
 
-Version 1.3, 2026-10-30. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
+Version 1.4, 2026-10-31. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
 
 ## Purpose
 
@@ -88,9 +88,10 @@ Gate: if action 1 is not a stabiliser, the response fails.
 **Prompt H2 (non-software)**
 "A journalist just published that our CEO's statement yesterday was false. Legal, PR, and the board are all messaging me. Nobody is aligned. What are the next steps?"
 
-Expected classification: Chaotic for action 1 (a single owner and a hold on outbound statements), then Complex.
-Expected action form: stabiliser first; then probes with stop conditions.
-Should not contain: a drafted public statement (that is a committed action in a Chaotic domain).
+Expected classification: Chaotic for action 1 (a single owner and a hold on substantive outbound statements). Then Complicated for the facts: was the statement false, and what does the record show. Then Complex for the response to the public and the board.
+Expected action form: stabiliser first; then an expert analysis of the facts; then probes with stop conditions.
+Allowed: a holding statement that commits to no facts. It counts as part of the stabiliser.
+Should not contain: a drafted public statement that says what happened, or whether the CEO was wrong. It commits before the facts are known.
 
 ### 1.5 Confused
 
@@ -178,6 +179,7 @@ Each change follows a review of the judge notes and of the rules file.
 - Version 1.3, T2: the answer gives the prompt that the user asks for, as the first Complex probe. Before, the expected answer refused it, and that conflicted with Section 0 of the rules. In three runs, T2 passed 0 of 29 answers.
 - Version 1.3, K1: an analysis on the attached data counts as the analysis step. Version 1.2 added the data.
 - Version 1.3, H2: no change. Action 1 is a Chaotic stabiliser, then Complex probes. Most answers label H2 Confused, but an active crisis with no aligned owner is the Chaotic case.
+- Version 1.4, H2: the facts are Complicated, and a holding statement with no facts is part of the stabiliser. Action 1 stays Chaotic. In eight runs, judges of another provider passed 0 of 31 H2 answers. Judges of the same provider passed 5 of 30. 51 of the 61 judgments passed every gate. Most judge notes faulted the Complicated label for the facts, and 34 of the 61 faulted a holding statement. But whether the statement was false is knowable by analysis, so that part is Complicated.
 
 ## 6. Source-type note
 
