@@ -11,6 +11,12 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-31
+
+### Added
+
+- The evaluation runs of 2026-10-28 to 2026-10-30 and their three write-ups, in `tests/evaluation/results/`.
+
 ### Fixed
 
 - Each evaluation call runs in the background mode of the Agent API, and the runner polls it. Before, the API dropped a long call that held one connection open, so most calls at high effort failed.
@@ -84,4 +90,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.2.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.0...v0.2.1
 [0.2.2]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.1...v0.2.2
 [0.3.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.2...v0.3.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.0...main
+[0.3.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.0...v0.3.1
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.1...main
