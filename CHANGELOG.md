@@ -11,6 +11,11 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `bin/record-evaluation.py` and `task eval:record` write the record of all runs: `evaluation-scores.csv`, the summary and run blocks of `evaluation-results.md`, and the results of the evaluation reference. A `combined-from.txt` in a run folder names the partial runs that it combines.
+- The record of the runs of 2026-10-29 and 2026-10-30. Before, those three files held only their templates.
+
 ### Changed
 
 - **Breaking:** the evaluation tests are now version 1.4. H2 expects Complicated work on the facts after the Chaotic stabiliser, then Complex probes. A holding statement that commits to no facts counts as part of the stabiliser.

@@ -171,6 +171,12 @@ tasks:
     cmds:
       - python3 bin/run-evaluation.py --merge tests/evaluation/results/{{.RUN}}
 
+  eval:record:
+    desc: Write the record of all runs of tests/evaluation/results into evaluation-scores.csv, evaluation-results.md and docs/reference/evaluation.md, then format them. It calls no API and needs no key
+    cmds:
+      - python3 bin/record-evaluation.py
+      - '{{.MDFORMAT}} --number tests/evaluation/evaluation-results.md docs/reference/evaluation.md'
+
   eval:plan:
     desc: Check tests/evaluation/pairs.json, and print the calls and the cost estimate of task eval with the same arguments. It calls no API and needs no key
     vars: *eval-args

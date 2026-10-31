@@ -478,3 +478,61 @@ class RunEvaluationMerge(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RecordEvaluation(unittest.TestCase):
+    FIELDS = "date,model,provider,rules_version,prompt_id,domain,grader,R1,R2,R3,R4,R5,R6,R7,R8,R9,total,available,gates_passed,pass,main_defect,response_file"
+
+    def setUp(self):
+        self.module = load("record-evaluation.py")
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.dir = Path(folder.name)
+
+    def write_run(self, name, prompts, passed="no"):
+        lines = [self.FIELDS]
+        for prompt in prompts:
+            for grader, total in (("a/judge@high", 14), ("b/judge@high", 9)):
+                lines.append(
+                    f"2026-10-29,a/model@low,a,3.2.0,{prompt},Complex,{grader},"
+                    f"1,1,2,2,2,,2,2,1,{total},16,yes,{passed},"
+                    f'"First sentence. Second sentence.",responses/a/{prompt}-s1.md'
+                )
+        (self.dir / name).mkdir()
+        (self.dir / name / "scores.csv").write_text("\n".join(lines) + "\n")
+
+    def test_skips_the_runs_that_another_run_combines(self):
+        self.write_run("part", ["C1"])
+        self.write_run("whole", ["C1", "C2"])
+        (self.dir / "whole" / "combined-from.txt").write_text("part\n")
+        self.assertEqual(list(self.module.read_runs(self.dir)), ["whole"])
+
+    def test_renames_an_old_rules_version(self):
+        self.write_run("run", ["C1"])
+        rows = self.module.read_runs(self.dir)["run"]
+        self.assertEqual(rows[0]["rules_version"], "0.2.2")
+
+    def test_records_a_run_with_five_prompts_only(self):
+        self.write_run("small", ["C1", "C2", "K1", "K2"])
+        self.write_run("large", ["C1", "C2", "K1", "K2", "X1"])
+        runs = self.module.read_runs(self.dir)
+        self.assertFalse(self.module.recorded(runs["small"]))
+        self.assertTrue(self.module.recorded(runs["large"]))
+
+    def test_grader_a_is_the_judge_of_the_same_provider(self):
+        self.write_run("run", ["C1", "C2"], passed="yes")
+        rows = self.module.read_runs(self.dir)["run"]
+        # Two answers, each 14 from grader A and 9 from grader B, so both gaps are over 3.
+        self.assertEqual(
+            self.module.summary(rows),
+            ["2", "2 of 2", "2 of 2", "11.5", "R1 (1.00)", "2"],
+        )
+
+    def test_a_block_names_the_domain_of_a_t_prompt_and_one_sentence_of_defect(self):
+        self.write_run("run", ["T2"])
+        rows = self.module.read_runs(self.dir)["run"]
+        checker = load("deterministic-tests.py")
+        text = self.module.block("run", "a/model@low", rows, checker, self.dir)
+        self.assertIn("| T2 | Complex (worded Clear) |", text)
+        self.assertIn("| First sentence. |", text)
+        self.assertNotIn("Second sentence", text)

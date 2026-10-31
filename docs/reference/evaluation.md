@@ -58,10 +58,15 @@ The judges check. They do not test. Each run lists answers for a human test. The
 
 ## Results
 
-No run has been recorded. When the first run is in, copy the cross-model summary row here.
+`bin/record-evaluation.py` writes this table from the runs of all 13 prompts. Each run of `evaluation-results.md` has its own row and table there. Grader A is the judge of the same provider, and grader B is the judge of another provider.
 
-| Model | Provider | Rules version | Date | Pass (of 13) | Mean score | Lowest criterion |
-| ----- | -------- | ------------- | ---- | ------------ | ---------- | ---------------- |
-|       |          |               |      |              |            |                  |
+| Model                                | Runs | Answers | Pass, grader A | Pass, grader B | Mean score | Lowest criterion |
+| ------------------------------------ | ---- | ------- | -------------- | -------------- | ---------- | ---------------- |
+| `anthropic/claude-sonnet-5-5@medium` | 3    | 39      | 8 of 39        | 2 of 39        | 11.0       | R6 (0.83)        |
+| `google/gemini-3.8-flash@medium`     | 3    | 36      | 5 of 35        | 2 of 36        | 10.7       | R6 (0.94)        |
+| `perplexity/kimi-k3@low`             | 3    | 38      | 13 of 30       | 4 of 38        | 11.4       | R1 (1.04)        |
+| `openai/gpt-6.1-sol@medium`          | 3    | 39      | 5 of 39        | 5 of 39        | 10.4       | R6 (0.50)        |
+| `xai/grok-4.7@low`                   | 3    | 19      | 0 of 4         | 3 of 19        | 10.7       | R2 (0.91)        |
+| `perplexity/glm-5.3-flash@medium`    | 3    | 34      | 10 of 28       | 0 of 34        | 10.6       | R9 (0.92)        |
 
-The criterion with the lowest mean across all models names the rule to fix first in the rules file.
+The criterion with the lowest mean across all models is R2 (0.96). It names the rule to fix first: Section 6.5, the domain of each action.

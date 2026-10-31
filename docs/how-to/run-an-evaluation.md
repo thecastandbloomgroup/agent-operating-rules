@@ -55,6 +55,12 @@ To merge a run again, for example after you remove a JSONL file:
 task eval:merge RUN=<run>
 ```
 
+To add the run to the record of all runs in `evaluation-results.md`, `evaluation-scores.csv` and the [evaluation reference](../reference/evaluation.md):
+
+```sh
+task eval:record
+```
+
 ## Run in GitLab
 
 1. Open **Build**, then **Pipelines**, and open a pipeline of `main`.
