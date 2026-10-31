@@ -11,6 +11,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-31
+
 ### Added
 
 - `bin/record-evaluation.py` and `task eval:record` write the record of all runs: `evaluation-scores.csv`, the summary and run blocks of `evaluation-results.md`, and the results of the evaluation reference. A `combined-from.txt` in a run folder names the partial runs that it combines.
@@ -18,6 +20,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Changed
 
+- **Breaking:** the self-test block of Section 7 has a new line, `Actions in End with a Cynefin domain label: <n> of <n>`. The line after it checks only the order of the domains and the probe caps. In the runs at rules 0.2.2, judges of another provider gave R1 (a domain for every action) full points in 29 of 205 judgments.
+- Section 6.3 asks for the domain by one of the five names of Section 6.5. Some answers gave a task kind, such as Deterministic, as the domain.
 - **Breaking:** the evaluation tests are now version 1.4. H2 expects Complicated work on the facts after the Chaotic stabiliser, then Complex probes. A holding statement that commits to no facts counts as part of the stabiliser.
 
 ## [0.3.1] - 2026-10-31
@@ -100,4 +104,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.2.2]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.1...v0.2.2
 [0.3.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.2...v0.3.0
 [0.3.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.0...v0.3.1
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.1...main
+[0.4.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.1...v0.4.0
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.4.0...main

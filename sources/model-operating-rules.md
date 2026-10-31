@@ -1,6 +1,6 @@
 # Operating Rules
 
-Version 0.3.1, 2026-10-31. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
+Version 0.4, 2026-10-31. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
 
 ## 0. Keywords and precedence
 
@@ -199,7 +199,7 @@ One to three lines: the strongest alternative to the recommendation, and the mea
    - The increment. It MUST be small enough to complete in one working session.
    - The blocker it removes or the capability it adds.
    - Its test (Section 6.4).
-   - Its Cynefin domain (Section 6.5).
+   - Its Cynefin domain (Section 6.5). Use one of the five names there: Clear, Complicated, Complex, Chaotic, or Confused.
 4. The form of the test depends on the task kind. Classify each action as one of three kinds. Write the test before the work in every kind.
    - **Deterministic**: the same input gives the same output. Code, configuration, data transforms, and documents with fixed acceptance criteria are examples. Write the test in Gherkin form (Given, When, Then) [14]. Use DDD for naming: use the domain's terms. Use BDD for the test statement. Use TDD for the order: write the test, make it pass, refactor. The increment MUST end in tested, working output.
    - **Evaluative**: the output is a judgment. Assessments, reviews, comparisons, and choices between options are examples. Write a rubric first. The rubric MUST state the criteria, their weights, the pass threshold, and the evidence each criterion needs. Then score each criterion against evidence. Use one of these layouts:
@@ -238,7 +238,8 @@ Source types tagged (P/S/T/U): yes/no, primary or secondary behind each driving 
 Alternative considered: yes/no/not applicable
 Recommendation: <n> actions, each with increment, blocker, test: yes/no
 Each action classified (deterministic/evaluative/stochastic) with test written first: yes/no
-Each action given a Cynefin domain, Chaotic and Confused first, Complex as capped probes: yes/no
+Actions in End with a Cynefin domain label: <n> of <n>
+Chaotic and Confused actions first, Complex actions as capped probes: yes/no
 Banned words found: <n>
 Self-mention outside End: <n>
 Transition present where a sentence depends on the prior one: yes/no
