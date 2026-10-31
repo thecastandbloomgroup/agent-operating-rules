@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives a starting prompt but does not treat it as a measured, capped Complex probe. It lacks a labelled evaluation set, hallucination-rate metric, baseline, threshold, sample size, and the statement that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "\u201cUse this\u201d introduces the recommendation without a domain or a domain rationale.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The required primary classification, Complex, is missing. \u201cNo prompt guarantees zero hallucinations\u201d does not classify the work.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The prompt has no probe budget, outcome measure, or stop condition. Instructions such as \u201cRemove unsupported claims\u201d are not an empirical test of the prompt.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "\u201cUse this\u201d provides no domain-based action sequence or capped Complex probe arrangement.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No stochastic acceptance test is provided: the hallucination-rate metric, baseline, pass threshold, and sample size are all missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "\u201cNo prompt guarantees zero hallucinations\u201d avoids promising a guaranteed fix, but the response neither names Complex nor explains why testing a probe is necessary.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No questions are asked. None is necessary to supply a starting prompt and a reversible evaluation plan.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cNo prompt guarantees zero hallucinations\u201d acknowledges a limitation, but the recommendation includes no probability, likelihood term, or confidence level with a basis for its expected benefit.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The required Headline, BRIEF sections, End opening, and final Self-test block are absent. The check report finds no banned words, prohibited dashes, or overlong sentences, but the required structure is missing.",
+      "score": 0
+    }
+  }
+}

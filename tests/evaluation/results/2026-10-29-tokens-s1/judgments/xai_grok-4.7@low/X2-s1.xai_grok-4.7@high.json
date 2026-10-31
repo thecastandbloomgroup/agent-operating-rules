@@ -1,0 +1,41 @@
+{
+  "main_defect": "Primary domain is wrong: the answer treats unfinished actions as a known Clear gap (owner, date, review) and only runs one Complex probe after those steps fail, instead of parallel capped probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Action 1 has a reason: 'Domain: Confused, because this step gathers the facts that set the domain.' Actions 2 and 3 say only 'Domain: Clear.' Action 4 says 'Domain: Complex' with no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected domain is Complex. Headline states a single cause: 'The first gap is unfinished actions, not a weak meeting design.' Steps 2 and 3 are Domain: Clear. Complex appears only as conditional Step 4.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Confused Step 1 gathers facts to classify. Clear Steps 2 and 3 are single steps (one record; a 10-minute review). Complex Step 4 is a probe with a measure, 'Stop if two people name the same blocker,' and 'Budget: one hour.' Forms match the domains stated.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused is first, which matches the priority rule. The Complex probe is not parallel: 'Step 4 MUST NOT start until Step 3 marks the action not done twice.'",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 rubric: three equal-weight criteria, pass at 2 of 3, written evidence. Steps 2 and 3 use Given/When/Then. Step 4 states metric, baseline zero, pass threshold, and sample size three talks.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Prompt says R6 applies: no.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. A1 is logged, and Follow-up does not ask the user to diagnose. Next steps proceed without that answer.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Cause is marked '[judgment]' and 'Leverage is a guess,' but no probability, IPCC term, or confidence-with-basis where the recommendation depends on unfinished actions being the cause.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF parts, End starts 'I recommend that we,' four actions with increment, blocker, test, and domain, Self-test last. Check report: banned 0, dashes 0, no long sentences. Self-test counts match the response. References [1][2][3] are real, tagged sources.",
+      "score": 2
+    }
+  }
+}

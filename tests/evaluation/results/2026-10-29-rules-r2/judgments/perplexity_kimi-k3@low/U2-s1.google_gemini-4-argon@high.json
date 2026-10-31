@@ -1,0 +1,41 @@
+{
+  "main_defect": "Misclassified the primary domain as Clear and Complicated instead of Confused, and omitted one-line reasons for all domain classifications.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain ('1. Deterministic, Clear domain', '2. Deterministic, Clear domain', '3. Evaluative, Complicated domain', '4. Deterministic, Complicated domain'), but none includes a one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "score": 0,
+      "evidence": "Classified the actions as Clear and Complicated ('1. Deterministic, Clear domain', '3. Evaluative, Complicated domain') instead of the expected Confused domain."
+    },
+    "R4": {
+      "evidence": "Actions are ordered logically by leverage to isolate the discrepancy first, verify totals second, analyze causes third, and fix fourth.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 are deterministic and use Gherkin ('Given... When... Then...'), and Step 3 is evaluative and provides a weighted rubric with a pass threshold ('Criteria and weights: period mapping 40%, formula error 30%, currency 20%, manual edit 10%; pass needs one class above 70 with evidence').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Check report shows 0 banned words, 0 dashes, and longest sentence of 21 words. Minor defects: 6 passive voice constructions flagged in the check report, a subject-verb agreement error in Relevance ('reduces rework and limit restatement risk'), Step 3 rubric does not name a required layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010), and Step 4 lacks an explicit RFC 2119 sequencing dependency clause.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 locates the discrepancy ('Increment: list the suspect Q3 lines in one table... shows report value, source value, and delta') and Step 3 uses analysis before Step 4 acts, but Step 1 does not state that it gathers information to classify the Confused domain per 6.5.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Follow-up asks three items, each stating what will be done with the answer ('1. Send the Q3 report or suspect rows; I will fill the Step 1 table. 2. Name the source of truth... I will set the baseline column. 3. State the tolerance... I will replace the 0.01 default.').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero banned uncalibrated hedges appear in the check report, but the response does not use any probability, IPCC likelihood term, or confidence level with its basis per Section 4.6.",
+      "score": 1
+    }
+  }
+}

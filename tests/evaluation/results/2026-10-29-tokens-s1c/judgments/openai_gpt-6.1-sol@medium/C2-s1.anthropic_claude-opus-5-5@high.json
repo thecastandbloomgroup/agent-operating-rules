@@ -1,0 +1,41 @@
+{
+  "main_defect": "The domain label 'Clear' appears on every action with no one-line reason. The Self-test reports 0 questions, yet the Headline asks the user to paste the list. The check script also flags citations [1] and [2] as having no parsed reference entries.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action has 'Domain: Clear.' (Steps 1, 2, 3), but no action gives a one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions are 'Domain: Clear', which matches the expected Clear classification for IEEE formatting.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one step: 'Paste the plain-text list', 'Convert the supplied entries into one numbered reference list', 'Check completeness and flag missing information.' No probes or analysis-first steps appear.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear and follow dependency and leverage order: Step 1 'removes the missing-input blocker', and Steps 2 and 3 are marked 'after Step 1' and 'after Step 2'.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present for each deterministic action, for example 'Given the entries, when formatted, then each reference follows the relevant IEEE format.' The kind is correct, though the Step 1 outcome ('source details are available') is weak.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The material lacks the list, so one request is justified: 'Please paste the reference list, because no entries appear in the message.' It states its use: 'The formatted list will use IEEE numbered references.' This is one request with its use stated.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No recommendation depends on an uncertain fact, and no uncalibrated hedges appear (the check report shows 0 hedges).",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All headings are present and in order, End begins 'I recommend that we', and the check report shows 0 dashes and 0 banned words. Defects: the Self-test says 'Questions asked: 0 of 3' although the Headline requests input. The Headline's first sentence is a request, not an answer. The check script reports 'citation with no reference' (ref_entries 0) because the References block sits under a bold label.",
+      "score": 1
+    }
+  }
+}

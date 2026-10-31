@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as Confused, then Complicated and Clear. It names follow-through as the likely single cause and ranks committed fixes. Only one action, the format trial, is a capped probe, where the prompt expects two or three parallel probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain: Step 1 'Confused, so this step gathers what we need to classify the work', Step 2 'Complicated, because Step 1 picks the practice', Step 4 'Complex, so leverage is a guess'. Step 3 says only 'Cynefin: Clear.' and gives no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. The response classifies the problem as 'Confused' and then labels the main fixes Complicated (Step 2) and Clear (Step 3). It asserts 'the cause is most likely there' (follow-through). Only the secondary format trial is Complex, so the primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Forms match the domains the response chose. Step 1 classifies first, Step 2 follows the analysis, and Step 4 has a budget of 'three retrospectives' and a stop condition. Against the correct Complex domain, however, Steps 2 and 3 are committed changes ('Then exactly one action exists'), not safe-to-fail probes. Only one probe exists.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Confused goes first and the Complex trial is 'Run it in parallel with Steps 2 and 3' with a cap. However, the human-system interventions that should be parallel, unranked probes are ranked by leverage ('take these four actions in order'). That is a minor misorder relative to the expected shape.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a rubric with criteria, weights, a threshold, and evidence. Step 4 has a metric, a baseline, '20 points above the baseline', and 'Sample size: three retrospectives'. Steps 2 and 3 change team behavior, which 6.4 lists as stochastic, yet they get Gherkin tests that check only compliance ('exactly one action exists'), not effect.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The gaps go into the assumption log (A1 to A3) with validation steps. No question asks the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The driving claim is calibrated: 'This is likely (66 to 100%) [judgment].' The probe states 'leverage is a guess' as Section 6.5 requires. No uncalibrated hedges appear.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins 'I recommend that we', and the Self-test comes last. Defects: the check report flags one 27-word sentence ('Four causes are possible...'), but the Self-test claims 'Longest sentence: 20 words', which is inconsistent. The Headline opens with 'I recommend that we', a self-mention outside End. The script reports cites_unlisted 1 and 2 with ref_entries 0, although a References list appears under Follow-up.",
+      "score": 1
+    }
+  }
+}

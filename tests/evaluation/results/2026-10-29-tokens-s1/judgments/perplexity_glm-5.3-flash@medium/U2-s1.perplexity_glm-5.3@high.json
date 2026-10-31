@@ -1,0 +1,41 @@
+{
+  "main_defect": "Long sentences exceed the limit and the self-test understates the longest sentence, so R9 cannot score 2",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1 has a reason (\"Domain: Confused, because the defect type is unknown, so this step gathers what is needed to classify\"). Steps 2, 3, and 4 state only \"Domain: Clear\" with no one-line reason, which the criterion requires for a score of 2.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is Confused (step 1), matching the expected classification: \"Domain: Confused, because the defect type is unknown\". Secondary actions are Clear: tie-out, cross-period check, and ledger reconciliation are all standard one-step practices, correctly not labeled Complicated or Complex. No domain is wrong.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 matches the Confused form: it gathers what is needed to classify (\"Share the Q3 report or paste the disputed figures\"). Steps 2 to 4 are one-step Clear practices: \"Run a tie-out check on each statement total\", \"Run a cross-period check\", \"Reconcile each flagged figure against the source ledger\". No Complex probe is committed without a budget, and no theory is stated as the cause, matching the prompt's expected action form.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic action exists. The Confused action comes first (step 1). Steps 2 to 4 are Clear and ordered by leverage, with sequencing made explicit: \"step 1 MUST deliver the figures before steps 2 to 4 start. Steps 2 and 3 run in parallel.\" No Complex probes exist, so the cap rule is not triggered.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions are classified deterministic and each carries a Gherkin test: \"Given the figures are in session, When each figure is listed with its label and period, Then every check in steps 2 to 4 can run\", \"When the checker sums the line items, Then the sum equals the stated total within 0.01\", \"Then no variance exceeds 10 percent\", \"Then the traced sum matches the reported figure within 0.01\".",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states \"R6 applies: no\", so R6 is not scored.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions, each with its use: \"Which section or figure looks off? The first tie-out will run on those lines.\" and \"Is the report a financial statement, a metrics dashboard, or another type? The report type decides the checks and resolves A1.\" Both state what the answer will be used for, within the three-question limit.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges are used (check report confirms zero banned words). However, the recommendation depends on A1 (the report type), which is genuinely uncertain, and the response handles it only with an assumption and a changing condition (\"if A1 is false, replace steps 2 and 3\") rather than a probability or IPCC term as 4.6 requires where the recommendation depends on an uncertain fact. Partial compliance.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure is present (Headline, Background, Relevance, Information, End, Follow-up, Self-test), zero banned words, zero dashes, and citations are properly avoided as none apply. But the check report flags four sentences of 26 to 28 words that exceed the 25-word limit for descriptions, and the self-test is internally inconsistent: it claims \"Longest sentence: 24 words\" when the check report shows 28 words. The self-test line \"References: 0, not applicable (no external claims) : yes\" also deviates from the required format. These are minor defects that prevent a 2.",
+      "score": 1
+    }
+  }
+}

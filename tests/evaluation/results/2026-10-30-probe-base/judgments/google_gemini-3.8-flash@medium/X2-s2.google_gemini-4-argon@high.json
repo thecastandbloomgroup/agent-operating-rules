@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies a Complex human-systems problem primarily as Clear, diagnoses specific root causes without evidence, and prescribes a strictly sequential three-step plan instead of parallel safe-to-fail probes.",
+  "scores": {
+    "R7": {
+      "evidence": "Asked zero questions ('Questions asked: 0 of 3'), logged two assumptions (A1 and A2) in Information, and did not ask the user to diagnose the problem.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure, word count, and banned-word checks pass, but the check report flags 'more than one citation on a line (5.4.1)' on line 21 ('...[1]. When teams limit work in process for improvements to one item, completion rates rise [2].'), and the Self-test writes 'Assumptions logged: 2 (yes)' for whether unlogged assumptions were made.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain, but Steps 1 and 2 only state 'Cynefin domain: Clear.' without a one-line reason, while only Step 3 includes a reason ('Cynefin domain: Complex. Leverage is a guess because team engagement varies.').",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 and 2 match their stated Clear domain as single steps, and Step 3 includes a stop condition ('Safe-to-fail boundary: Stop after two sprints if completion remains zero'), but the actions are locked into a sequential pipeline rather than run as parallel Complex probes.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Instead of running Complex probes in parallel per Section 6.5, the response sequences all three actions strictly ('Step 2 MUST NOT start until the test in Step 1 passes', 'Step 3 MUST NOT start until Step 2 passes').",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 2 and 3 use Gherkin and a stochastic metric with sample size, but Step 1 classifies a deterministic count ('Exactly one actionable ticket exists') as Evaluative and uses a single 100%-weight criterion instead of a Kepner-Tregoe, Pugh, or ISO/IEC 25010 rubric.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response uses an uncalibrated expression ('Retrospective failure usually stems from three causes') and contains no probabilities, IPCC likelihood terms, or confidence levels with a stated basis where the recommendation depends on uncertain causes.",
+      "score": 0
+    },
+    "R2": {
+      "score": 0,
+      "evidence": "The prompt describes a Complex human system, but the response classifies the primary interventions (Steps 1 and 2) as 'Cynefin domain: Clear.' and states unverified root causes in the Headline ('The team identifies several broad issues but assigns no single owner [judgment].')."
+    },
+    "R6": {
+      "score": null,
+      "evidence": "R6 does not apply to Prompt X2."
+    }
+  }
+}

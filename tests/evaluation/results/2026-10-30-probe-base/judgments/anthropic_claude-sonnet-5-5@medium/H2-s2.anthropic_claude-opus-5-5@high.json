@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response puts the later work in Confused and Complicated, not Complex. It commits to publishing a holding statement instead of running safe-to-fail probes with a measure, stop condition, and budget. It also states no calibrated uncertainty.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain tag, for example \"(Chaotic, deterministic.)\", \"(Confused, evaluative.)\" and \"(Complicated, deterministic.)\". No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1 is correctly Chaotic: \"Name one decision owner and freeze all outside messages.\" The expected later domain is Complex. The response instead labels Step 2 Confused and Steps 3 and 4 Complicated, so the secondary actions are wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises first, and Step 2 gathers facts to classify (\"The mark classifies the next domain\"). Both match their domains. Step 3, \"Publish a holding statement\", is a committed one-step action labelled Complicated but names no analysis. No action is a safe-to-fail probe with a stop condition and budget.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order is Chaotic, then Confused, then Complicated, which fits the declared domains. The dependencies conflict: Step 2 says \"Step 3 MUST NOT start until this step reports\", but Step 3 says \"This step MUST NOT start until Step 1 is complete.\" No Complex probes run in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic Steps 1 and 3 use Gherkin (Given/When/Then). The evaluative Steps 2 and 4 use rubrics with criteria, weights, a pass threshold (\"80 of 100 per claim\", \"at least 70 of 100\") and the evidence each criterion needs. Step 4 uses the Kepner-Tregoe layout.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The unknowns (the user's role, whether a public reply exists, whether the company is listed) are logged as assumptions A1 to A3, each with a validation step.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability or IPCC term appears, even though the recommendation depends on whether the CEO statement is false. That uncertainty is handled only through conditionals (\"If Step 2 shows the statement is true...\"). A3 uses the uncalibrated wording \"The company may be listed on a stock exchange\".",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present, End begins with \"I recommend that we\", the Self-test is last, and the check report shows zero banned words and zero dashes. The response has internal inconsistencies, so the Self-test is not fully consistent with it. A3's \"If wrong: remove the disclosure item from the Step 3 checklist\" refers to an item Step 3 does not contain, and Follow-up says \"A3 is true: add a disclosure check\". The dependencies for Step 3 conflict. The Self-test answers \"Complex as capped probes: yes\" although the response contains no Complex action.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The two tracks are identified but have contradictory dependencies. The conversion probe also lacks a specified sample size and a concrete resource cap.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions carry domain labels, including \"Complicated, deterministic\" and \"Clear, deterministic\". However, Steps 3 and 4 lack a one-line reason explaining their domain classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The main classifications are correct: \"Write the token design\" is Complicated, and \"Run two sign-up probes\" is Complex. However, \"Instrument the sign-up funnel\" is labeled Confused merely because the loss point is unknown. Missing baseline data does not establish domain confusion.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The migration uses a design review before implementation, and the conversion action names probes, a measure, and a stop condition. However, \"Budget: only Step 1 events plus the experiment tool you already run\" identifies resources without bounding effort, expenditure, or exposure.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Steps 4 and 5 wait on Step 3\" contradicts \"Step 5 runs in parallel with Steps 2 to 4.\" The conversion probe unnecessarily waits for auth implementation rather than following its own measurement dependency.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Migration tests use \"Given valid credentials, When login completes, Then...\" and the design action supplies weighted rubric criteria. However, the stochastic test says \"sample size comes from a power calculation on the baseline\" without specifying a sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response distinguishes \"Write the token design (Complicated, evaluative)\" addressing \"revocation risk\" from \"Run two sign-up probes (Complex, stochastic)\" addressing \"unmeasured conversion friction\". It explains that probe leverage \"is a guess until Step 1 reports.\"",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Three questions each state a use: \"Steps 2 to 4 wait on this\", \"Step 5 uses it as a baseline\", and \"It changes the revocation table in Step 2.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Leverage here is a guess\" and \"It loses only if A1 is true\" identify uncertainty, but no probability, IPCC likelihood term, or confidence level with its basis calibrates the material assumptions.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, Self-test reports \"Questions asked: 2 of 3\" despite three questions, and \"Longest sentence: 25 words\" despite the reported 37-word sentence. Citations also start at [19] and share lines.",
+      "score": 1
+    }
+  }
+}

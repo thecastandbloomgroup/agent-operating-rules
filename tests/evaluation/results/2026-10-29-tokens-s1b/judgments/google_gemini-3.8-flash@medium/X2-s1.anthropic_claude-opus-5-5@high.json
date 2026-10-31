@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as Clear and Complicated work. It states one root cause (too many untracked commitments) as the answer and commits to a single fix. The only probe, Step 4, comes last behind dependency gates instead of running in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step has a 'Cynefin domain:' line (Clear, Complicated, Clear, Complex). No step gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. The response labels Steps 1 to 3 Clear or Complicated and builds the plan on 'Action items fail because teams create too many commitments without tracking them as real sprint work [judgment]'. Only Step 4 is labeled Complex, and it only checks the chosen fix.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Steps 1 and 3 are one-step actions for the Clear label, and Step 2 names a rubric analysis for Complicated, so the forms fit the stated labels. Step 4 'Run a two-sprint probe' has no stop condition and no explicit budget. No safe-to-fail probes test competing causes such as format, facilitator, or a cap on action items.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Step 4 MUST NOT start until Step 3 passes' puts the Complex probe last in a chain. Section 6.5 says Complex probes run in parallel, each capped. The Clear and Complicated steps are ordered by dependency, which is acceptable.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 have Gherkin tests (Given/When/Then). Step 2 has a rubric with criteria, 50% weights, evidence per criterion, and an 80% threshold, but it names no KT or Pugh layout. Step 4 gives a metric, a baseline of 0%, a threshold of 100%, and a sample size of 2 sprints. All required fields are present for each kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. Unknowns become A1 (sprint length) and A2 (authority), each with a validation step. The response asks the user no diagnostic question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on an uncertain causal claim: 'Action items fail because teams create too many commitments'. This claim carries only a [judgment] label, with no probability, IPCC term, or confidence level. The '0% completion over prior sprints' baseline is also asserted without calibration. The response contains no calibrated statement anywhere.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, and Self-test are present in order. End begins 'I recommend that we', and the check report shows 0 banned words and 0 dashes. Defects: the Self-test says 'Complex as capped probes: yes', but Step 4 has no stop condition or budget. The script flags 'citation with no reference' because the reference list sits inside Follow-up. The [2] Scrum Guide 2020 claim ('at least one high-priority improvement item') matches the 2017 text, not the 2020 text.",
+      "score": 1
+    }
+  }
+}

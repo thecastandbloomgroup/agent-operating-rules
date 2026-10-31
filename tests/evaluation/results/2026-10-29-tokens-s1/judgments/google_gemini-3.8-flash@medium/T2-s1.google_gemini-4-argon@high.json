@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain (Step 1: Clear; Step 2: Complicated; Step 3: Complicated; Step 4: Complex), but none includes a one-line reason explaining why that domain applies.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response contains no calibrated uncertainty expressions (probabilities, IPCC likelihood terms, or confidence levels with basis) despite relying on uncertain claims and a guessed baseline ('reduce factual errors substantially', 'Baseline is 65% on open-ended generation [judgment]').",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The primary domain for prompt engineering to reduce hallucinations is Complex, but the response classifies deploying a grounding prompt as 'Clear' (Step 1) and RAG and benchmarking as 'Complicated' (Steps 2 and 3), reserving 'Complex' only for a secondary citation parser in Step 4.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Steps 2 and 3 are marked Complicated but neither names an analysis that picks the practice nor follows an action that does. Step 4 is marked Complex and includes a sample size (20 outputs) and budget (two engineering hours), but omits a stop condition and fails to state that leverage is a guess.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 4 (Complex probe) is placed last in sequence rather than specified to run in parallel with the Clear and Complicated actions per Section 6.5, and baseline measurement (Step 3) is ordered after deploying the prompt and RAG (Steps 1 and 2).",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 tests LLM output ('When the model processes the prompt, Then the output equals...') using a Deterministic Gherkin test, violating Section 6.4 which explicitly classifies LLM output as Stochastic. Step 3 properly uses a Stochastic test (factual accuracy, 65% baseline, 90% threshold, 100 trials).",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response partly avoids the trap by stating 'No single prompt stops all hallucinations' and adding a 100-trial benchmark in Step 3, but fails to classify the prompting problem as Complex or explain why, instead claiming a grounding prompt is 'Clear' and deterministic in Step 1.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Zero questions are asked, and two assumptions (A1, A2) are properly logged in the Assumption Log to proceed with the recommendation.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Check report shows zero banned words, dashes, or long sentences, and all required headings are present. However, tests are placed after the increment rather than written first (contradicting the Self-test claim), Step 4 omits 'leverage is a guess', and 'reduce factual errors substantially' lacks a citation or [judgment] tag.",
+      "score": 1
+    }
+  },
+  "main_defect": "Misclassifies prompt engineering to stop hallucinations as Clear and Deterministic in Step 1 rather than treating prompt changes as Complex, stochastic safe-to-fail probes measured against a baseline."
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response accepts the 'culture' framing and does not classify the task as Clear. Its first step is a 30-minute team discussion to name an owner, placed before any formatter. It ends with a Complex review probe and tells the team to avoid a repo-wide reformat. This is the likely wrong answer, and it trips the prompt's workshop-before-formatter gate.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step states a domain with a reason. Step 1: 'Complicated, because the team must compare governance options.' Step 2: 'Clear, once ownership exists.' Step 3: 'Complex, because people's responses require observation.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Clear, because a formatter with a lock file ends the dispute. The response treats the core as governance (Complicated) and behavior change (Complex). It says 'A formatter alone does not resolve who decides.' The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The correct domain needs one-step actions: adopt a formatter, add it to CI, run it once over the repo. Instead the response gives 'Hold a 30-minute discussion and name one accountable owner', a policy list, and 'Run one bounded review trial' with a budget and stop condition. The prompt forbids probes and facilitated sessions, so the form contradicts the domain.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The Complicated discussion comes before the Clear step. The Complex probe is sequenced after it ('Step 3 MUST NOT start until the agreement is published') rather than run in parallel. The highest-leverage action, running a formatter in CI over the repo, is absent, and the response says 'Avoid a repository-wide reformat.' The order partly follows the response's own domains but misorders against Section 6.5.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a full rubric with criteria, weights (50/30/20), a threshold ('at least 4 overall'), and the evidence each criterion needs. Step 3 has a metric, a baseline, a 50% threshold, and a sample of three reviews. Step 2 is labelled deterministic, but its Gherkin test covers reviewer behavior ('when someone requests a personal format preference'), not formatter output, so the test kind does not fit.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer. It says 'The request concerns team culture, not just a formatter' and builds governance, a discussion session, and a behavioral trial. It never names the Clear domain or a formatter-plus-lock-file fix as the primary action.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. The material is enough to proceed under the expected reading, and the response logs A1 instead of asking.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence is low because the evidence consists of one report, without review examples' is a confidence level with its basis. It also says 'The leverage estimate remains a guess; three reviews provide directional evidence, not proof.' These forms are acceptable under 4.6.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF headings, an End that begins 'I recommend that we', and the Self-test last. The check report shows zero dashes and zero banned words. It flags one 26-word sentence, over the 25-word limit. It also flags a citation with no parsed reference entry. The Self-test claims 'Longest sentence: 23 words', which is inconsistent with the report.",
+      "score": 1
+    }
+  }
+}

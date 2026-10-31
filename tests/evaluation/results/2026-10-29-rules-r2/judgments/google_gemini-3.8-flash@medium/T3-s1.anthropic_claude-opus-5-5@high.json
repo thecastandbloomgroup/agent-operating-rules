@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response cites references that look fabricated or misattributed: [1] is an unverifiable Unbounce report, and [3] (RFC 7519) and [2] (RFC 8725) do not support the overhead and revocation claims. Yet the Self-test reports all sources as identified with confidence. The two tracks also share one numbered list, and Step 4 waits on the conversion experiment, so they are not sequenced separately.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain line ('Cynefin domain: Complicated.', 'Clear.', 'Complex.', 'Complicated.'). No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration design (Step 1) is Complicated and the sign-up experiment (Step 3) is Complex, which matches the expected classification. Step 2 is marked Clear because it implements the design chosen in Step 1, which is defensible. Step 4 is Complicated and follows the Step 1 analysis.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 is analysis-first and Step 2 is one step. Step 3 is a probe with a measure and a budget ('two-week testing budget') but has no stop condition. It also does not say that its leverage is a guess, and it claims the outcome ('Increases sign-up completion').",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The probe runs in parallel and is capped ('Step 3 runs in parallel with Step 2 under a two-week testing budget'). However, 'Step 4 MUST NOT start until Step 2 passes and Step 3 finishes' couples the migration to the Complex probe. This contradicts the headline's 'separate work streams'.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a rubric with criteria, weights, and a threshold, but it does not state the evidence each criterion needs. Steps 2 and 4 use Gherkin (Given/When/Then). Step 3 states the metric, baseline, threshold ('>10% relative lift'), and sample size ('2,000 visitors per variant'). Each test has the right kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The headline splits the work ('Decouple the authentication migration from the sign-up conversion work'), and the domains differ. However, the actions sit in one interleaved numbered list with a cross-track dependency. The response never says why conversion is Complex and migration is Complicated.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks two questions, each with a stated use. Q2 ('set the exact sample size for the Step 3 experiment') conflicts with rule 2.4, because Step 3 already fixes the sample size at 2,000. Q1 (cookie domain scope) is not shown to be costly to reverse.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response has no uncalibrated hedges, but it gives no probability, IPCC term, or confidence level anywhere. The recommendation depends on uncertain facts: A2 (form friction causes drop-off) and the expected lift. The Complex probe's leverage is not labelled a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins 'I recommend that we', and the Self-test comes last. The script reports Flesch-Kincaid 10.1 (over 10) and flags citations without parsed reference entries. Reference [1] looks fabricated, and [2] and [3] are misattributed. This contradicts the Self-test line 'all from session or identified with confidence: yes'. The Background labels the user's own request '[inference]'.",
+      "score": 1
+    }
+  }
+}

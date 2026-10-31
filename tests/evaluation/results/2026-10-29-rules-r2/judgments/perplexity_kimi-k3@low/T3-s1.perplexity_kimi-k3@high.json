@@ -1,0 +1,41 @@
+{
+  "main_defect": "The stochastic conversion test does not state an explicit numeric sample size or baseline (only duration and traffic share), and the Self-test is inconsistent with the artifact: it claims a longest sentence of 24 words while the check report finds 29, and line 21 carries two citations on one rendered line against rule 5.4.1.",
+  "scores": {
+    "R1": {
+      "evidence": "Action 1 gives a reason (\"Domain: Confused, because the baselines decide later sizing\") and Action 2 gives one (\"library choice follows an RFC 7519 conformance check\"), but Action 3 states only \"Domain: Complicated.\" with no reason, and Action 4 offers form (\"treat as a capped probe\") rather than a domain reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domains match Section 1 expectations: migration Actions 2-3 are Complicated and conversion Action 4 is Complex. However, Action 1 (instrumenting funnels and dashboards, deterministic work) is classified Confused, though its domain is knowable and it is not needed to classify the other actions, which are already classified.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Forms match domains: Action 2 names its analysis (\"library choice follows an RFC 7519 conformance check\"), Actions 2-3 are one-step deterministic increments, Action 4 is a safe-to-fail probe with measure (\"Metric: completion rate\"), stop condition (\"guardrail metrics ... regress\"), and budget (\"5% of traffic\"), and Action 1 gathers classification data per the Confused rule.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused action goes first, Complicated actions follow ordered by dependency (\"Step 3 MUST NOT start until the test in Step 2 passes\"), and the Complex probe is capped and sequenced after the measurement it depends on (\"Baseline depends on Step 1\"), which is a stated dependency rather than a leverage claim.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Migration actions use Gherkin correctly (\"Given valid credentials, When login runs with the flag on, Then a signed JWT with correct claims returns...\"). The conversion action is the right stochastic form but incomplete: it states metric and threshold (\"+10% relative lift, 80% power, minimum 2 weeks\") but no explicit sample size or baseline, both of which rule 6.4 requires in the acceptance test.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The likely wrong answer (one undifferentiated list or bundled release) is avoided: the Headline splits the work (\"Split this into two projects\"), names each domain, and the alternative section says why bundling loses (\"a conversion change and an auth change share no code path, and a joint release doubles rollback scope\").",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Three questions, each with its stated use: \"What stack and framework...? The answer selects the JWT library for Step 2\", \"What is the current sign-up completion rate...? The answer sets the sample size for Step 4\", and \"Are there mobile or third-party clients on sessions? The answer changes the cutover window in Step 3.\" Assumptions A1-A3 cover the likely answers, so no recommendation depends on an unanswered question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear (banned list empty). Material uncertainty is handled quantitatively or labeled: \"80% power\", \"thousands of visitors per variant [3] [inference: exact number depends on the baseline rate]\", and revocation risk labeled \"[judgment]\".",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, Self-test), zero banned words, zero dashes, zero self-mention outside End. Defects from the check report: four sentences exceed limits (29, 27, 26, 26 words), line 21 has two citations on one line (\"[1][2]\") violating 5.4.1, and the Self-test is inconsistent with the artifact, claiming \"Longest sentence: 24 words\" when the report finds 29.",
+      "score": 1
+    }
+  }
+}

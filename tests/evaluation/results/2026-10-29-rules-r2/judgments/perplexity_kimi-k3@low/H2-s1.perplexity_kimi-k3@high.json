@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response stabilises first correctly (Chaotic action 1), but then treats the rest as Complicated and Clear instead of Complex. It commits to a 48-hour substantive statement on a schedule with no safe-to-fail probes and no stop conditions, and the self-test falsely claims 'Complex as capped probes: yes'. Step 5 also lacks its own test.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain ('Cynefin: Chaotic', 'Cynefin: Complicated', 'This is Clear practice in crisis response'), but only Actions 1 and 4 give a one-line reason. Actions 2, 3, and 5 give labels without justifying the domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary correct: Action 1 is Chaotic stabilisation, matching the expected signal. But the expected classification is 'then Complex'; the response labels Step 3 'Complicated', Step 4 'Clear', and Step 5 'Complicated', with no Complex domain anywhere, so a secondary domain is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action matches its stated domain's form: Step 1 stabilises first (one spokesperson, hold on outbound replies), Step 3 names its analysis (rubric with criteria, weights, threshold), Step 4 is a single one-step best practice, Step 5 follows the Step 3 analysis. Time budgets exist but the committed scheduled release would contradict a true probe form; that misclassification is counted under R2.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic actions come first (Steps 1 and 2), which is correct. Minor misorder: Step 4 (due within 4 hours, 'before verification ends') is numbered after Step 3 (due within 24 hours) with no dependency clause reconciling the timing conflict, and Complex probes are absent rather than run parallel and capped.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic actions use Gherkin ('Given an inbound press query, When any staff member receives it, Then the single spokesperson responds'); Step 3's evaluative task has a rubric with criteria, weights, and pass threshold. But Step 5's deterministic release has no test; 'Step 5 MUST NOT start until Step 3 passes its rubric' is a dependency, not a test of the release.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Not applicable; the prompt states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions in Follow-up, each with its stated use: 'Your answer decides the exact text for Step 3', 'Your answer shapes the rebuttal or correction in Step 5', 'Your answer decides whether legal review precedes all public statements'. The recommendation does not wait on the answers; assumptions are logged instead.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges per the check report. Uncertain claims are labeled ('[judgment]' on reputational harm and on the rebuttal alternative), and the recommendation is hedged with an explicit condition: 'If A3 proves false, replace Step 4's timing with \"only after legal clearance.\"'",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last. Check report shows zero banned words, zero dashes, no long sentences, fk_grade 8.5. Minor defects: the self-test is inconsistent with the response ('Complex as capped probes: yes' though no Complex probes exist; 'each with increment, blocker, test: yes' though Step 5 has no test), and the check report flags 'citation with no reference' (cites_unlisted [1], ref_entries 0) despite the [1] entry appearing under References.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats an uncertain human-system problem as a proven follow-through failure. It prescribes a fixed process instead of parallel, capped Complex probes with measures and stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains, but Step 3 gives only \"Domain: Clear\" without explaining that classification. The other actions include domain reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Retros stopped producing change because the actions from them have no owner, no date, and no review\" asserts an unsupported cause. The actions use Confused, Clear, and Complicated, never recognizing the primary Complex domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 gathers records and Step 4 names an analysis, which fit their stated domains. However, \"Adopt the one-action rule\" commits to a remedy rather than testing a safe-to-fail intervention with a budget and stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Fix the follow-through loop before you change the retro format\" imposes a fixed order on untested interventions. No capped Complex probes run in parallel. \"Steps 2 and 3 run in parallel with Step 4\" also conflicts with Step 4 needing four cycles after Step 3 starts.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present, and Step 4 specifies \"completion percentage,\" a baseline, \"50 percent,\" and \"four cycles.\" However, the intervention tests check records and agenda placement rather than variable behavioral outcomes, and tests appear after the work descriptions.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\" matches the response. It does not ask the user to diagnose the problem; remaining information gaps can be investigated through reversible actions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"The symptom is a follow-through failure\" and \"new formats would raise idea count and still produce zero closed actions\" express unsupported certainty. No probability, likelihood term, or confidence level with a basis qualifies these recommendation-driving claims.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The response includes Headline, BRIEF sections, four actions, an End beginning \"I recommend that we\", and Self-test last. However, the check report identifies one banned expression, a 33-word sentence, and an uncited reference. Self-test incorrectly reports \"Banned words found: 0,\" \"Longest sentence: 21 words,\" and tests written first.",
+      "score": 1
+    }
+  }
+}

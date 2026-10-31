@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response classifies only one action as Complex without stating that leverage is a guess, omits required rubric fields on its evaluative test, and uses no calibrated uncertainty terms.",
+  "scores": {
+    "R5": {
+      "evidence": "All four actions state the work before the test (violating 6.4 'Write the test before the work in every kind'). Action 2 ('Test (evaluative): each case gets one label; a third reviewer resolves disagreements; output is a count per class') lacks criteria, weights, pass threshold, and evidence per criterion. Action 1's stochastic test lacks a baseline.",
+      "score": 1
+    },
+    "R6": {
+      "score": 1,
+      "evidence": "Avoids jumping straight to analysing failures by building the evaluation set in Step 1 and marks Step 3 as Complex, but classifies Step 1 as Clear and Step 2 as Complicated and does not explain why the problem is Complex."
+    },
+    "R7": {
+      "evidence": "Asks 0 questions and logs 3 assumptions (A1 to A3) with all required fields.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uses no probability, IPCC likelihood term, or confidence level with basis anywhere in the response, and uses the uncalibrated hedge 'usually' in Information ('Error classes in summarisation are usually factual addition...').",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 3 is a capped probe ('two prompt variants, one week budget, stop if no gain'), but omits the mandatory 6.5 statement for Complex actions that 'Leverage is a guess. Say so.'",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Orders Step 1 (Clear) and Step 2 (Complicated) first with an explicit dependency ('Step 2 MUST NOT start until this test passes') to reduce uncertainty, then runs Step 3 (Complex probe) and Step 4 (Clear) in parallel ('Steps 3 and 4 can run in parallel once Step 2 finishes').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Zero banned words, zero dashes, FK grade 6.3, and longest sentence 19 words per check report, with all required sections present. Minor defects: Self-test claims 'with test written first: yes' when every action states the increment before the test, and qualitative themes in Information omit supporting and disagreeing source counts (5.1.5).",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "States a domain for all four actions ('Domain: Clear', 'Domain: Complicated', 'Domain: Complex', 'Domain: Clear'), but gives no one-line reason for why each action belongs to its domain.",
+      "score": 1
+    },
+    "R2": {
+      "score": 1,
+      "evidence": "Tags the main fix (Action 3) as Complex, but misclassifies Action 1 (defining a rubric and sampling when 'wrong' is undefined) and Action 4 (automated fact-checking of LLM summaries) as Clear, and Action 2 as Complicated."
+    }
+  }
+}

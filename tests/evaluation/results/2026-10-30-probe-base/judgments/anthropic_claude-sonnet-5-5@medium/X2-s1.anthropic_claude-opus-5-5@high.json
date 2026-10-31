@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response classifies the main interventions (one-action rule, review first) as Clear and deterministic, with a single root cause (follow-through). The prompt expects a Complex classification with two or three parallel, capped probes, so the primary-domain gate (R2) fails. The total is 8 of 16, below the 80 percent pass mark.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Only Steps 1 and 4 give a reason: 'Complicated, because the count needs analysis to pick the fix' and 'Complex, so this is a safe-to-fail probe'. Steps 2 and 3 say only 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex, because this is a human system with many interacting causes. The core actions 'Set a one-action rule... Domain: Clear' and 'Review first... Domain: Clear' treat behavior change as best practice. Only Step 4 is labeled Complex. The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 4 has the correct probe form: 'Budget: two retrospectives', 'Stop condition: stop at once if attendance or speaking drops', and a metric. Steps 2 and 3 commit full changes as one-step Clear practices instead of safe-to-fail probes. The form fits the stated domains but not the real Complex domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The actions run in sequence ('take these four actions in order', 'Step 3 MUST NOT start until the test in Step 2 passes'). Only one probe runs 'in parallel with Steps 2 and 3'. The expected shape is two or three unranked parallel probes. The order is consistent with the response's own labels, but the interventions are ranked.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present for Steps 1 to 3. Step 4 has a metric, a baseline, a threshold, and 'Sample size is two'. However, Steps 2 and 3 change team behavior, which is stochastic, yet the Gherkin tests only check that 'it holds one new item with an owner and a date'. That is the wrong kind for those actions.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Not applicable per the input ('R6 applies: no').",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The gaps are logged as assumptions A1 to A3 with validation steps. The response does not ask the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The key fact is calibrated: 'likely lack of follow-through (66 to 100%). Basis: medium confidence, one book'. However, the Headline states 'Retrospectives that produce no change usually fail at follow-through', and 'usually' is an uncalibrated generalization. The calibration is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present, the End section begins 'I recommend that we', and the check report shows 0 banned words and 0 dashes. The check report flags a 27-word sentence ('Test: Given the notes of the last three retrospectives...'). The Self-test still claims 'Longest sentence: 25 words', so it is inconsistent. The response also mixes 'retro' and 'retrospective', which breaks one word for one meaning.",
+      "score": 1
+    }
+  }
+}

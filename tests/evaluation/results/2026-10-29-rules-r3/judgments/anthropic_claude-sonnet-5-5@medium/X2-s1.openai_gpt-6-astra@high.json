@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as a Confused diagnosis followed by Clear fixes. It assumes follow-through failures and offers only one bounded probe, rather than parallel probes of competing explanations.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains. Step 1 explains that it gathers facts to classify the work, and Step 4 explains its probe form. Steps 2 and 3 state only 'Cynefin domain: Clear', without classification reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action is classified as 'Confused', followed by two 'Clear' interventions. The underlying human-system problem is Complex. Only the format change receives that classification.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The forms match the stated domains: Step 1 'gathers the facts that classify the rest'; Steps 2 and 3 each add one agenda step; Step 4 specifies a measure, 'Budget: two meetings', and a stop condition. This does not remedy the classification error scored under R2.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The numbered list puts the Confused action first and makes the capped probe parallel. However, 'Steps 2 and 3 can run now' allows the prescribed fixes before the classification work establishes their relevance.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 2 and 3 provide Given/When/Then tests. Step 4 specifies a metric, baseline, threshold, and two-retrospective sample. Step 1's evaluative test instead passes on 'at least 80% of items scored with evidence', a coverage measure rather than a weighted judgment; no criterion scores or prescribed decision-analysis layout appear.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with three logged assumptions and validation steps rather than asking the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'It is likely (66 to 100%) that missing follow-through ... is the main cause' supplies calibrated language and a judgment basis. However, 'Most stalled retrospectives lack follow-through', 'too many actions with no owner', and 'nobody checks results' assert unsupported premises without equivalent qualification.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, four actions, and a final Self-test are present. The check report finds no banned words, prohibited dashes, or long sentences. However, 'Claims with evidence or [judgment] label: yes' is inconsistent with unsupported claims such as 'Each retrospective without a result costs the team an hour of attention.'",
+      "score": 1
+    }
+  }
+}

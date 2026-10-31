@@ -1,0 +1,41 @@
+{
+  "main_defect": "The evaluative rubric is incomplete: criteria, weights, and a threshold appear, but evidence requirements for each criterion are not specified. The Self-test also incorrectly claims that tests precede the work.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain: 'Clear', 'Complicated', and 'Complicated'. However, they lack one-line reasons explaining their domain classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Re-send the three proposal documents' is correctly Clear. Confirming decision weights and scoring vendors are correctly Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Clear action is one step, and vendor scoring names 'a Pugh matrix' or 'a Kepner-Tregoe table'. However, 'Confirm the weights in A1 or supply your own' names no analysis for choosing those weights.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Document collection precedes weight confirmation and scoring. 'Step 3 MUST NOT start until Step 1 passes its test and Step 2 ends' makes the dependencies explicit.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 includes 'Given', 'When', and 'Then'. Evaluative tests include weights and 'a pass threshold of 70 of 100', but do not specify evidence requirements for each criterion. Tests also follow the work instructions.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions have stated uses: reattached pricing and terms 'become the scoring evidence'; hard constraints determine which vendors to 'drop ... before scoring'.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'No claim about any vendor is possible in this response' appropriately limits conclusions to the available evidence. The procedural recommendation requires documents and weight confirmation before scoring, rather than depending on uncertain vendor claims.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required headings, End opening, three actions, and final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but sentences of 26, 26, and 31 words contradict 'Longest sentence: 25 words'. The claim 'test written first: yes' also contradicts the action layout.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The plan starts with a stabiliser, but omits the incident record and switches to diagnosis without securing recovery when rollback is unsuitable or fails.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions have domain tags, including '[Chaotic, deterministic]' and '[Complicated, evaluative]'. Only Chaotic receives a classification reason; the other actions lack one-line domain explanations.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 correctly uses Chaotic. However, Steps 2 and 4 use Clear rather than the expected Complicated follow-on work, and no action establishes logs and a timeline.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Roll back the last deploy before 09:12' correctly stabilises first. However, 'replace Step 1 with Step 3 and diagnose from the error logs first' abandons stabilisation while the outage remains unresolved.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The numbered plan puts the Chaotic action first, but its fallback replaces that action with diagnosis. It never establishes a dependency requiring restoration before later Complicated analysis.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin tests and a Pugh matrix are present. However, '5 minutes of traffic' supplies no sample size for variable recovery outcomes. The matrix lists error rates, blast radius, and revert cost, but assigns weights to different criteria and supplies no evidence-backed scores.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Both questions state uses: 'pick the rollback target' and 'decide if rollback is safe'. However, the response already recommends rollback while asking questions on which that recommendation depends, contrary to the ask-or-assume requirement and the prompt's no-question expectation.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "'Rollback is the fastest path' and 'Every 500 since 09:12 points to one recent change' drive the recommendation. Neither has a calibrated probability or confidence level with a basis; assumption labels alone do not provide calibration.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. Defects include citations numbered 18 then 16, two Background sentences despite the prompt's limit, and unsupported Self-test claims such as 'primary behind each driving claim: yes'.",
+      "score": 1
+    }
+  }
+}

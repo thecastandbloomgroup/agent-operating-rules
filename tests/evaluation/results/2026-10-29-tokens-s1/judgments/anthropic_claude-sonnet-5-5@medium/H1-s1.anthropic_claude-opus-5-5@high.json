@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test is inconsistent with the response: it reports a longest sentence of 24 words, but the script found a 30-word sentence in the Step 1 test. The response also gives no per-action domain reasons and no calibrated likelihood for A1, the assumption the rollback depends on.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain line: 'Domain: Chaotic. Kind: deterministic.', 'Domain: Clear.', 'Domain: Complicated.', 'Domain: Clear.' None has a one-line reason. Only the Information section links the outage to Chaotic: 'The Cynefin framework assigns an outage with unknown cause to the Chaotic domain'.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 rollback is Chaotic, which is correct. Step 3 log diagnosis is Complicated, which is correct. Paging a responder and sending the exec brief are tagged Clear. Both are known best-practice single steps, so Clear is defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises: 'Roll back the newest change.' The Clear steps are one-step: one page, one message. Step 3 names the analysis: 'read the top error message for the 09:12 window and name one failing dependency', with a rubric.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Chaotic rollback comes first. Step 2 runs 'in parallel with Step 1'. The Complicated step is gated: 'Step 3 MUST NOT start until the Step 1 test fails.' There is no analysis before the stabiliser.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The deterministic steps use Gherkin, for example 'Given the last change is reverted, When a test user submits checkout, Then the response is 200 and the error rate falls below 1% within 3 minutes.' The evaluative Step 3 has a rubric with criteria, weights of 50% each, a pass score of 70%, and evidence 'from the logs'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' Self-test: 'Questions asked: 0 of 3'. Unknowns are logged as A1 to A3 instead. A3 cites 'the user has not answered' although no question was asked, which is a minor inconsistency.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability, IPCC term, or confidence level appears anywhere. The whole recommendation depends on A1 ('A deploy or config change happened near 09:12'), and A1 has no likelihood. There are no uncalibrated hedges either.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All sections are present in order. End begins 'I recommend that we'. There are 0 banned words and 0 dashes per the check report. The script flags a 30-word sentence ('Test, written first: Given the last change is reverted, When...'), which exceeds the limit, yet the Self-test says 'Longest sentence: 24 words'. The script also flags cites_unlisted [1,2], although a References list with tagged entries appears under Follow-up. Background has three sentences, against the prompt's expected signal of one.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response labels all three actions Clear, but the expected domain is Confused. The report and sources are not attached and the cause is unknown, so the first action should say it gathers evidence to classify the problem. This fails gate R2.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain. Only Step 1 gives a reason: \"Clear domain, meaning the method is known.\" Steps 2 and 3 say only \"Deterministic; Clear domain.\"",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All actions are classified \"Clear domain\". The expected classification is Confused, because no report or source is available and the nature of the discrepancy is unknown. This is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1, \"Establish the evidence... Collect that table and its source extract,\" and Step 3, \"Produce a short difference list,\" roughly match the expected form of locating the discrepancy and diffing against the source. However, the actions are framed as Clear one-step actions. Step 1 does not say it gathers what is needed to classify the domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order is sensible: evidence first, then the arithmetic check and the source comparison, with the dependency \"after Step 1\". However, the Confused-first trade-off rule is not applied explicitly, because no action is labeled Confused.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Every action is marked Deterministic and has a Gherkin test. For example: \"Given the table, when totals and percentages are recalculated, then each result matches within the stated rounding rule.\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks one question: \"Can you share the report and its source figures... and mark the suspect section?\" The stated use is vague: \"These will support the comparison above.\" It does not say how the answer changes the next action.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, the response gives no probability or IPCC term for any uncertain fact, for example how likely the error is arithmetic or a source mismatch. It uses only [judgment] labels.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete, and the check report shows zero banned words and zero dashes. However, the Self-test says \"Assumptions logged: 0 (none made)\" even though the response implicitly assumes one suspect table and a stated rounding rule. It also claims \"Source types tagged: yes\" with zero references. It has 6 passive constructions.",
+      "score": 1
+    }
+  }
+}

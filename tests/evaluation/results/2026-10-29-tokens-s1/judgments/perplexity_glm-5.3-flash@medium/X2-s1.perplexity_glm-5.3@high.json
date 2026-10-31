@@ -1,0 +1,41 @@
+{
+  "main_defect": "Response treats the problem as Clear with a single judged root cause (follow-through), while the prompt expects Complex classification with parallel probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain: '1. Adopt the one action rule (Clear, deterministic)', '4. Probe the format later (Complex, stochastic, capped)'. Reasons given: 'Steps 1 to 3 are Clear work, so their leverage estimates are reliable [18]' and 'Step 4 is a safe to fail probe: small, measured, with a stop condition [18]'. The reason for Steps 1 to 3 is a single group line rather than a per-action line, but each action is covered.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Expected classification is Complex ('human systems, many interacting causes'). The response's primary actions are Clear: 'The failure step here is follow-through, not attendance or the format' and 'I recommend that we fix the output rule before the format'. It states a single root cause as its basis ('Failure step: follow-through, not format [judgment]') and defers the only Complex probe to Step 4. Primary domain is wrong, so this gate fails.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Against its own stated domains, the forms match. Steps 1 to 3 are one-step Clear actions ('end each retrospective with exactly one action, one owner, and one date'). Step 4 is a probe with budget and stop condition: 'Stop condition: two cycles of falling completion, then revert. Budget: two cycles, nothing more.'",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Complex probe is not run in parallel. 'Step 4 MUST NOT start until Step 2 has run for two cycles.' The rules say Complex probes run in parallel with Clear actions unless the Clear work reduces the probe's uncertainty; the baseline argument ('Baseline: the two cycles before the probe') gives partial cover, but the expected signal is 'probes in parallel, not ranked', and the response ranks the probe last.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin: 'Given the team closes a retrospective, when the event ends, then the backlog holds one owned, dated action.' The stochastic step states 'Metric: share of actions completed. Baseline: the two cycles before the probe. Pass threshold: no drop below baseline' with a two-cycle budget as sample size.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3' and 'Open questions: none.' The material does not answer the diagnostic questions, so assumptions A1 and A2 are logged and validation tests are named instead ('Validate by: read the notes and backlog entries from the last two retrospectives'). This matches the permitted zero-question case.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: moderate; basis: the theme above, backed by two independent practitioner sources, plus the report in the request.' A confidence level with a stated basis, used where the recommendation depends on it. The hedge on Step 4 ('its threshold works as a stop rule, not as a proof') is also calibrated to sample size.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline first, all BRIEF parts, End begins 'I recommend that we', self-test last, four actions each with increment, blocker, test, domain. Zero banned words and zero dashes per the check report. However, the check reports failures: a 27-word sentence ('If the completion check passes but change still stalls...'), citations out of order (5.4.1), and more than one citation on a line. The self-test also claims 'Longest sentence: 24 words', which is inconsistent with the 27-word sentence found, so the self-test is not fully consistent.",
+      "score": 1
+    }
+  }
+}

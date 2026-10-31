@@ -1,0 +1,41 @@
+{
+  "main_defect": "The conversion ask is never treated as Complex. Step 3 is only a deterministic baseline report, so the response has no safe-to-fail probe and no metric with a baseline, threshold, and sample size for improving sign-up conversion.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 and 2 give a domain with a reason: \"Complicated, meaning expertise can establish cause and effect\" and \"Clear, meaning the approved contract defines the expected result.\" Step 3 gives only \"Domain: Complicated.\" with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration track is correctly Complicated, and Step 2 is defensibly Clear. The conversion track is labelled Complicated only (\"Establish the sign-up baseline independently... Domain: Complicated\"). Complex never appears for conversion improvement, so the secondary track is misclassified.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Both Complicated steps name their analysis: \"Analysis: trace credentials from creation through validation and invalidation\" and \"Analysis: reconcile event definitions, duplicate users, and completion events.\" The Clear Step 2 is a single step. Each form matches the domain it was given.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions are present. Step 1 comes before Step 2 with an explicit dependency: \"Step 2 MUST NOT start until Step 1 passes.\" Step 3 runs in parallel: \"Run Step 3 alongside Steps 1 and 2.\" The order is sound by leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All three tests use Gherkin (\"Given... when... then\"), which fits the deterministic steps. The conversion goal, however, needs a stochastic test with metric, baseline, threshold, and sample size, and none is given. The response lacks the expected difference in test form between the two tracks.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoids one undifferentiated list. It separates the tracks: \"Measure sign-up conversion independently from the authentication migration\" and \"a shared release makes security regressions and conversion changes harder to attribute.\" It never names conversion as Complex or says why, so the avoidance is only partial.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "There are two questions, each with a stated use: \"These determine where to inspect and implement the migration\" and \"These determine token lifecycle constraints before implementation.\" The recommendation does not depend on either answer.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges, but the response gives no probability or IPCC term anywhere. Uncertain facts behind the recommendation rely on \"[judgment]\" alone. Examples are whether revocation is required and whether the migration affects conversion.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings are present in order, and End begins \"I recommend that we\" with 3 actions. The check report shows 0 banned words, 0 dashes, and no long sentences. A References entry [1] appears under Follow-up, so the script's \"citation with no reference\" flag is a parsing artefact. Defects: the check report gives Flesch-Kincaid grade 11.0, above the limit of 10. The Self-test claims \"Complex as capped probes: yes\" with no Complex action, and \"Assumptions logged: 2 (yes)\" is an odd format.",
+      "score": 1
+    }
+  }
+}

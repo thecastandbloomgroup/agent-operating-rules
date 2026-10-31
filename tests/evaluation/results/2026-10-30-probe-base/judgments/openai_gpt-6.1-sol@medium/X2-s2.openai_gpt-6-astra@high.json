@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats a Complex human-system problem as a Complicated audit followed by Clear administrative tasks, instead of parallel, capped probes with measures and stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions name domains. Steps 1 and 2 explain them, but Step 3 only states \"Domain: Clear\" without a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Domain: Complicated, meaning the cause requires analysis\" frames the primary problem as analytically diagnosable. The expected primary domain is Complex because interacting human causes require experiments; no action receives that classification.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Audit the last three retrospectives,\" \"Write one change agreement,\" and \"Reserve the next review\" prescribe administrative steps rather than safe-to-fail probes. The response supplies no Complex probes with defined measures, stop conditions, and experiment budgets.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "\"Take these three steps, in order\" and \"Start after Step 2 passes\" impose a sequential plan. The expected Complex probes are absent rather than run in parallel with budget caps.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present, such as \"Given the available records, when the audit ends, then each action has a recorded status and first failed stage.\" However, these test document completion rather than the evaluative diagnosis or variable effects of team changes. No evaluative rubric or stochastic metric, baseline, threshold, and sample size is supplied.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input explicitly states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\" is consistent with the response. It proceeds without asking the user to diagnose the problem and logs its assumption about team control.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Moderate confidence in this approach, based on your symptom and the improvement principle above\" gives a confidence level with its basis. \"The specific failure stage remains untested\" acknowledges the unresolved diagnosis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, three actions, and a final Self-test are present. The check report confirms zero banned words and zero prohibited dashes. However, it reports sentences of 31 and 37 words, contradicting \"Longest sentence: 24 words.\" The Self-test also claims compliance with Complex capped probes despite their absence.",
+      "score": 1
+    }
+  }
+}

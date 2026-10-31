@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, Steps 2 and 3 are labelled Complicated and planned as committed analysis and release work. The expected design was Complex probes with a measure, a stop condition, and a budget. Step 3 commits to releasing a public response.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain with a short reason: \"Domain: Chaotic, stabilize first.\" \"Domain: Complicated, use claim-by-claim source comparison.\" \"Domain: Complicated, use the source comparison and Legal's obligation review.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 is \"Chaotic, stabilize first.\" The secondary actions are wrong. Steps 2 and 3 are labelled Complicated, but the expected domain after stabilisation is Complex, given unaligned stakeholders and unknown facts.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a correct stabiliser: one lead, one spokesperson, and a pause on \"new discretionary commentary.\" Steps 2 and 3 use an analysis-first form. They have no probe, budget, or stop condition. Step 3 commits to \"An authorized response and release plan,\" which is a full commitment, not a safe-to-fail probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Under its own domain labels, the order is consistent. The Chaotic action comes first, and the Complicated actions follow in dependency order: \"Step 3 MUST NOT release disputed factual claims before Step 2 verifies them.\" It also notes that \"urgent preservation and deadline checks start immediately.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Every action is labelled Deterministic with a Gherkin test. That fits Steps 1 and 2. Step 3 is a choice between the response branches (\"If false / If supported / If unresolved\"), so it is evaluative and needs a rubric with weights and a threshold. Its Gherkin test is the wrong kind.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks zero questions and logs the gaps as A1 and A2, each with \"Validate by\" and \"If wrong\" fields. Under Section 2 it proceeds on assumptions, which is acceptable.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence in the coordination approach, based on the reported lack of alignment; low confidence about the allegation without source documents.\" This is a confidence level with its basis. It appears where the branched recommendation depends on the unverified allegation.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present, with zero banned words and zero dashes per the check report. The check report flags a 37-word sentence (\"A journalist disputes yesterday's CEO statement, while Legal...\"), but the Self-test claims \"Longest sentence: 25 words.\" The Self-test also says \"Complex as capped probes: yes\" although the response has no Complex actions. So the Self-test is inconsistent with the response.",
+      "score": 1
+    }
+  }
+}

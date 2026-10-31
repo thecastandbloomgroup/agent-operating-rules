@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions miss the Complex domain (using Complicated and Clear instead of safe-to-fail probes with budgets and stop conditions), and the End section violates several Section 6 and Self-test rules (missing task kind on Action 2, missing blockers on Actions 4 and 5, missing test on Action 5, and omitting calibrated uncertainty).",
+  "scores": {
+    "R2": {
+      "evidence": "Action 1 ( and 2) is rightly classified as Chaotic, but subsequent actions are classified as Complicated (Actions 3, 5) and Clear (Action 4) instead of Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Actions 1 and 2 use stabilisers for Chaotic, Action 3 uses analysis for Complicated, and Action 4 uses a one-step holding statement, but because Complex is missed, there are no safe-to-fail probes with stop conditions and budgets.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic actions (Steps 1 and 2) are placed first, but Step 4 (within 4 hours, before verification ends) is ordered after Step 3 (within 24 hours), and Complex parallel probes are absent.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Action 2 omits the task kind classification, Action 5 omits a test entirely ('splits into the Step 3 evaluation plus this deterministic release'), Action 3's rubric lacks a named layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010), and tests are written at the end of each step rather than first.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks three questions in Follow-up, each stating what will be done with the answer ('Your answer decides the exact text for Step 3', 'Your answer shapes the rebuttal or correction in Step 5', 'Your answer decides whether legal review precedes all public statements').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero banned uncalibrated hedges appear in the check report, but the response fails to state any probability, IPCC likelihood term, or confidence level with its basis where the recommendation depends on uncertain facts.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain (1: Chaotic, 2: Chaotic, 3: Complicated, 4: Clear, 5: Complicated), but Actions 2, 3, and 5 do not include a one-line reason for their domain classification.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Zero banned words, zero dashes, and all sentences under 25 words (max 24), but the Self-test is inconsistent with the text (Actions 4 and 5 omit blockers, Action 2 omits task kind, Action 5 omits a test, and tests are not written first), and Follow-up questions duplicate assumptions A1 to A3 in violation of Section 2.4."
+    }
+  }
+}

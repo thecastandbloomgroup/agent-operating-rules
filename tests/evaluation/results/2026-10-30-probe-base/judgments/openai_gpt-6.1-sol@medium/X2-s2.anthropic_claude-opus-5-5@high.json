@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a human-system problem as Complicated and Clear, not Complex. It offers a sequential audit-then-fix plan instead of two or three parallel safe-to-fail probes, each with a measure, stop condition, and budget. The R2 gate therefore fails.",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1: \"Domain: Complicated, meaning the cause requires analysis\". Step 2: \"Domain: Clear, meaning the required fields and completion test are known.\" Step 3 gives only \"Domain: Clear.\" with no reason. Every action has a domain, but one lacks a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex (human system, many interacting causes). The response labels its actions Complicated, Clear, and Clear, and labels nothing Complex. The Self-test still claims \"Complex as capped probes: yes\". This is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Each form matches its own label. Step 1 is analysis-first (\"Trace each action through selection, ownership, execution, and review\"), and Steps 2 and 3 are one-step. However, no action is a probe with a budget or stop condition, which the correct Complex domain requires. Introducing a behavioural change in Step 2 is labelled Clear.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The steps are strictly sequential: \"take these three steps, in order\", with \"Start after Step 1 passes\" and \"Start after Step 2 passes\". There are no parallel capped Complex probes. The order is internally coherent by dependency but ignores the Complex rule to run probes in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin tests appear for all three steps, for example \"Given the available records, when the audit ends, then each action has a recorded status and first failed stage.\" The audit is evaluative and needs a rubric. Whether the change works is stochastic team behaviour, and no test gives a metric, baseline, threshold, or sample size (\"this step tests the agreement, not the change's eventual effect\").",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3.\" The response logs assumption A1 instead of asking the user to diagnose the cause. This matches the expected signal.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Moderate confidence in this approach, based on your symptom and the improvement principle above. The specific failure stage remains untested.\" This is a confidence level with a basis, but the basis is weak. The key uncertain fact, that format is not the cause (\"This loses initially because your report shows no evidence\"), carries no probability or IPCC term.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins \"I recommend that we\", and the Self-test comes last. The check report shows zero dashes and zero banned words. It flags two long sentences (31 and 37 words), but the Self-test states \"Longest sentence: 24 words\". The Self-test also claims \"Complex as capped probes: yes\" with no Complex action present. The Self-test is therefore inconsistent with the response.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 1 bundles two parts (add tracking, then read 30 days of data) in one Clear action. That breaks the one-step form and the one-session increment, and it conflicts with A2, which says no tracking exists yet. The response also has smaller inconsistencies: citation numbering (1, 2, 16), and a Headline that says the migration goes first while the End runs the steps in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step names a domain: 'Cynefin: Clear', 'Cynefin: Complicated, and the scored comparison is the analysis that picks the practice', 'Cynefin: Complicated', 'Cynefin: Complex, so this is a safe-to-fail probe'. Steps 1 and 3 give no reason for their domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Both tracks get the expected domains. The token design (Step 2) and the dual-auth endpoint (Step 3) are Complicated. The sign-up experiment (Step 4) is Complex. The instrumentation (Step 1) is Clear, which is defensible. All are correct.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 2 is analysis-first ('the scored comparison is the analysis that picks the practice'). Step 3 waits on it ('MUST NOT start until the rubric in Step 2 passes'). Step 4 is a probe with a measure, a stop condition ('drops 2 points') and a budget ('four weeks'). However, the Clear Step 1 is not one step: 'add event tracking for each sign-up step and read 30 days of data'. The 30-day read does not fit one session when A2 holds, and its Gherkin test covers only the tracking part.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 and Step 2 run in parallel, and the Complex probe is capped and parallel: 'Step 4 runs in parallel with Step 3'. However, the Headline says 'migrate auth to JWT first, and test sign-up changes as a separate experiment'. Also, 'Step 4 MUST NOT run during the Step 3 cutover' sits next to 'runs in parallel with Step 3', which leaves the order ambiguous.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic Steps 1 and 3 use Gherkin ('Given a user holds a valid JWT ... Then the service returns 200 / And a token with an unexpected algorithm returns 401'). The evaluative Step 2 uses a Pugh rubric with weights and a '+3 against sessions' threshold. The stochastic Step 4 has a metric, a baseline, a threshold and a sample size ('95% confidence, 80% power', 'about 14,000 visits per arm'). The only gap is that the rubric does not state which evidence each criterion needs.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids one undifferentiated list. It states the split explicitly: 'Split this request into two linked projects'. It gives the reason: 'The two goals have different test types, so one plan cannot test both' and 'shipping both together hides the cause of any change.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The gaps are handled as assumptions A1 to A4, each with a validation step and a condition. Note that A4 cites 'the user has not answered', but the response asked no question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The confounding claim carries 'high confidence, because both change the same sign-up path'. However, A3 (traffic is enough for an A/B test) and A4 (immediate revocation is required) drive Steps 2 and 4 but carry no probability or IPCC term.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All sections are present, and the End begins 'I recommend that we'. The check report shows 0 banned words and 0 dashes. It also reports 'citations out of order (5.4.1)': the numbers run [1], [2], [16]. Background has four sentences against a limit of three. The Self-test says the citations conform, but they do not.",
+      "score": 1
+    }
+  }
+}

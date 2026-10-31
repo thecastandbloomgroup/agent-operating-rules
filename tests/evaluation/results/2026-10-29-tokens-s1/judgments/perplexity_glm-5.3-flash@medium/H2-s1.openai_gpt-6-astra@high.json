@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Complex action commits to a public release rather than a bounded, safe-to-fail probe. Calling it a \u201ccapped probe\u201d does not limit its exposure or supply a valid stochastic acceptance test.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions name a domain. The response explains Chaotic through \u201cstop unaligned output\u201d and Complex through unpredictable audience reaction, but provides no explicit classification rationale for the Clear and Complicated actions.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The labels fit the stated work: \u201cChaotic\u201d for the freeze, \u201cClear\u201d for record collection and an approval procedure, \u201cComplicated\u201d for factual review, and \u201cComplex\u201d for audience response. The main errors concern action form and sequencing.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 5 says \u201cthe spokesperson releases it.\u201d This commits the full public response rather than conducting a safe-to-fail probe. Monitoring for 24 hours and stopping engagement do not bound the initial release.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The Chaotic freeze comes first, but \u201cName one spokesperson and one approval path\u201d waits until Step 4. Step 1 already requires referral to a \u201c[named spokesperson],\u201d so the sequence delays a prerequisite for stabilisation.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic actions include Given/When/Then tests, and Step 3 supplies weighted criteria. However, Step 5's stochastic test checks draft consistency and reactions without a baseline, measurable reaction threshold, or sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three follow-up questions each state a use: \u201crefine the Step 3 rubric,\u201d determine \u201cwho must approve Step 5,\u201d and add a correction to Step 1.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cThe audience reaction is not predictable\u201d and \u201cLeverage on coverage tone is a guess [judgment]\u201d acknowledge uncertainty without a probability, IPCC likelihood term, or confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, the required End opening, five actions, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but five overlong sentences, including one of 47 words, contradict \u201cLongest sentence: 24 words.\u201d The Self-test also claims zero questions despite three follow-ups.",
+      "score": 1
+    }
+  }
+}

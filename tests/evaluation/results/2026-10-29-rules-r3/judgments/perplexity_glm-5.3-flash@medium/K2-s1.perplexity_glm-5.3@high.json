@@ -1,0 +1,41 @@
+{
+  "main_defect": "Citation numbering appears out of order of first appearance ([17] before [16]), one line carries two citations, three sentences exceed the length limits (26, 37, and 27 words), and the self-test reports a longest sentence of 23 words, which contradicts the measured 37.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain (\"Domain: Clear.\", \"Domain: Complicated.\", \"Domain: Complicated.\", \"Domain: Complex, so this is a safe-to-fail probe with a stated budget\"), but steps 1 through 3 state the domain without a one-line reason; only step 4 gives one.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary classification is Complicated and steps 2 and 3 are correctly Complicated (\"Kind: evaluative (Kepner-Tregoe layout). Domain: Complicated.\"). However, the expected classification for this prompt is Complicated with an evaluative action and no probe; step 4 introduces a Complex probe (\"Domain: Complex, so this is a safe-to-fail probe\"), which the expected signals say should not appear.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a one-step Clear action (\"attach the three files or paste their cost and scope tables\"); steps 2 and 3 are analysis-first Complicated actions (rubric, Pugh matrix); step 4 is a probe with a measure (p95 latency), a stop condition, and a budget (40 engineering hours). Forms match the stated domains.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist. The Clear action that removes the largest blocker comes first (\"Blocker: no evaluation input exists\"), the Complicated actions follow in dependency order (\"Step 3 MUST NOT start until the test in Step 2 passes\"), and the Complex probe runs last, capped by its budget and only against the winner.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 is deterministic with a Gherkin test (\"Given three proposals are readable, When I extract each cost table, Then each shows a 3-year TCO\"); steps 2 and 3 are evaluative with the rubric fixed before scoring (criteria, weights 40/20/15/15/10, evidence per score, weights summing to 100%); step 4 is stochastic with metric (p95 latency), threshold, sample size (n = 500), and budget cap.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable; the input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question asked, within the limit of three, and it states its use: \"please attach the three proposals or paste their pricing and scope tables. I will use them to fill the rubric in Step 2 and score Step 3 in the same pass.\" No question is asked whose answer the material already contains.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear (check report banned_total 0). The material uncertainties are handled through the assumption log (A1, A2 with validation tests) and [judgment] labels rather than uncalibrated hedging, and no recommendation depends on an unstated probability.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is present: Headline first, End begins \"I recommend that we\", self-test last, zero banned words, zero em or en dashes. Defects remain: three long sentences (26, 37, 27 words per the check report) violate the length limits; the self-test reports \"Longest sentence: 23 words\", which is internally inconsistent with the actual maximum of 37; citations appear out of order of first appearance ([17] before [16]) and one line carries two citations, violating 5.4.1.",
+      "score": 1
+    }
+  }
+}

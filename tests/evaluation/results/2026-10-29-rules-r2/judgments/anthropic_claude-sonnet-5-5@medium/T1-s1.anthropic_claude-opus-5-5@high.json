@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response adds a four-week Complex probe on review friction and makes formatter choice a Complicated scored session. The expected answer is a Clear set of one-step actions. The response also never says that the 'culture' framing is wrong or that the real domain is Clear.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain, but not every one gives a reason. Step 1: 'Complicated, because analysis picks among good practices.' Step 2: 'Clear, because the tool has a standard setup.' Step 3: 'Cynefin domain: Clear.' has no reason. Step 4: 'Complex, so leverage is a guess' states a consequence, not a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The core formatter work is Clear (Steps 2 and 3), so the primary domain is right. Step 1 is tagged Complicated ('score three candidate formatters'). Step 4 is a Complex probe ('Run a four-week probe on the review rule'). The expected signals call for Clear one-step actions with no probes.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action's form fits its stated domain: Step 1 is analysis-first, Steps 2 and 3 are one-step, and Step 4 is a probe with 'Stop condition' and 'Budget: 30 minutes per week'. However, the probe and the multi-candidate scoring session go beyond the expected one-step form ('Should not contain: probes').",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Complicated) comes before Steps 2 and 3 (Clear), with explicit dependencies ('Step 2 MUST NOT start until Step 1 names a winner'). The Complex probe runs 'in parallel with Steps 1 to 3' and is capped by its budget. No Chaotic or Confused actions are present.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 has a rubric with weights 40/30/30, 'Pass threshold: 70 of 100', and evidence ('run each candidate on 20 existing files'). Steps 2 and 3 have Gherkin tests. Step 4 is stochastic, with metric, 'Baseline is the last 20 reviews', 'a drop of at least 80%', and a sample of 'over 20 new reviews'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids a workshop and puts the formatter first: 'A formatter enforces the choice'. It notes that 'The cause is missing decision authority, not missing knowledge of styles [inference]'. However, it never states that the domain is Clear or that the 'culture' wording misleads. It also keeps a Complex friction probe, which partly accepts the culture framing.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The unknowns are logged as A1 to A4, each with a reason, a validation test, and an if-wrong impact.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'I rate this about 80% likely to work here [judgment]' gives a probability for the claim the plan depends on. The Complex step states 'leverage is a guess'. There are no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All sections are present in order, End begins 'I recommend that we', and the Self-test is last. The check report shows 0 banned words, 0 dashes, and no long sentences. Minor defects: self-mention outside End ('I rate this about 80% likely' in Information, 'I logged the unknowns as assumptions' in Follow-up) conflicts with the Self-test line 'Self-mention outside End: 0'. The Follow-up line also recaps the process, which 8.3 forbids.",
+      "score": 1
+    }
+  }
+}

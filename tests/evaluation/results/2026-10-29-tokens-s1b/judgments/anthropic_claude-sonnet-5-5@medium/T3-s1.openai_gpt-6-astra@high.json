@@ -1,0 +1,41 @@
+{
+  "main_defect": "The conversion probe defers its sample size instead of specifying one, leaving its stochastic acceptance test incomplete.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state a domain. Steps 1 and 2 explain why, but Step 3 only says \"Cynefin: Complicated\" without a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The token design and implementation actions are \"Complicated\"; the sign-up probe is \"Complex\". These correctly distinguish knowable engineering choices from uncertain user behavior.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 2 names \"a Pugh matrix\", Step 3 waits for that analysis, and Step 4 supplies a measure, stop condition, and \"Budget: two weeks\". However, Step 1 prescribes instrumentation without naming the analysis that selects its approach.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Step 3 MUST NOT start until Step 2 passes.\" The conversion probe waits for baseline data and \"runs in parallel with Step 3\", with a two-week cap.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The engineering tests use \"Given\", \"When\", and \"Then\". The design rubric includes weights and a pass threshold. However, \"The sample size per arm comes from the Step 1 baseline\" defers the required sample size rather than specifying it.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "\"The JWT work is analyzable, but the conversion work is a probe, because its cause and effect are not known.\" The actions preserve this distinction instead of treating both goals as one engineering change.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" Missing facts are logged with inexpensive validation, including \"check the security policy for a revocation rule\" and \"query the event store for sign-up events\", rather than requiring unnecessary user questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence in the split plan: high confidence, because the argument rests on design logic, not on data about your system.\" The conversion action also acknowledges that \"leverage is a guess\" and conditions acceptance on measured results.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports sentences of 26, 27, and 30 words, contradicting \"Longest sentence: 22 words\".",
+      "score": 1
+    }
+  }
+}

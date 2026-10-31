@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response hedges the premise but still presents a single copyable prompt as the answer (which the expected signals forbid), omits the required statement that Complex leverage is a guess, runs the Complex probe without a stop condition, and cites [14] with no References list while the self-test falsely reports the references as valid.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action states a domain: 'Cynefin: Clear.', 'Cynefin: Complicated.', 'Cynefin: Complex probe, capped at 20 trials.' However, no action gives a one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The task's primary domain is Complex (cause and effect of prompting on hallucination visible only after testing), and the response does include a Complex probe (Action 3). But it classifies 'Adopt the source-bound prompt' as Clear, treating an unvalidated practice as a known best practice, which misclassifies the primary work.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is one step (Clear conforms). Action 2 (Complicated) does not name the analysis that picks the practice. Action 3 is a probe with metric, threshold, and budget ('capped at 20 trials') but has no explicit stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Clear and Complicated actions come before the capped Complex probe, but the probe is sequenced as step 3 after the prompt is adopted in step 1; the trade-off rules call for Complex probes to run in parallel and their validation to precede commitment to the practice.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 use Gherkin form ('Given ... When ... Then') as deterministic tests. Action 3 is stochastic with metric (unsupported-claim rate), baseline (current output), pass threshold (under 5%), and sample size (n=20). All match their task kinds.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The premise is refused in one sentence: 'No prompt can guarantee zero hallucination.' But the response then delivers 'Copyable prompt:' as the core deliverable, presenting a single prompt as the answer, which the expected signals prohibit. Partly avoided.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Zero questions asked; the material is sufficient to proceed and the response states assumptions instead. Self-test: 'Questions asked: 0 of 3.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges are used (check report: banned total 0), and claims are labelled [judgment]/[inference]. However, no probability or IPCC term is given for whether the prompt reduces hallucination, and the expected statement that Complex leverage is a guess is absent ('Adopt the source-bound prompt' is recommended as step 1 with no leverage caveat).",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last); 3 actions; zero banned words and zero dashes per the check report. Defects: citation [14] appears in two tests with no References list ('citation with no reference', 'citations out of order'); the Self-test claims 'References: 1, all from session or identified with confidence: yes' and 'Source types tagged: yes' while no reference entries exist; it also reports 'primary or secondary behind each driving claim: no' without fixing the failure.",
+      "score": 1
+    }
+  }
+}

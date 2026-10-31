@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Complex probe in Step 3 is capped with budget and stop condition, but the response never states that leverage is a guess (expected signal); Step 2 is labelled evaluative yet its test has no rubric with criteria, weights, and pass threshold; domains are stated for every action but with no one-line reason.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain tag: Step 1 \"Domain: Clear\", Step 2 \"Domain: Complicated\", Step 3 \"Domain: Complex\", Step 4 \"Domain: Clear\", but none gives a one-line reason for the label.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "@The primary fix action is correctly tagged Complex (\"Domain: Complex, run as a capped probe\"), matching the expected Complex classification, and the first action creates the record rather than analysing failures as if recorded. Secondary labels (Clear for the eval set and the monitoring fixture check, Complicated for error classification) are defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "@The Complex probe has a measure (\"dominant-class error rate drops by at least half\"), a stop condition (\"stop if no gain\"), and a budget (\"two prompt variants, one week budget\"). However the response never says leverage is a guess, and Section 6.5 requires that for Complex actions; the closest statement is \"Fixing the largest class first gives the highest return per change [judgment]\".",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "@Order follows the trade-off rules: Clear Step 1 first, Complicated Step 2 next (\"Step 2 MUST NOT start until this test passes\"), the Complex probe runs only after classification because its input depends on it, and monitoring runs in parallel (\"Steps 3 and 4 can run in parallel once Step 2 finishes\"). No leverage ranking is stated with confidence.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "@Step 3's stochastic test has metric, baseline, threshold, and sample size; Step 4's deterministic test is Gherkin (\"Given a known-bad summary fixture, When the check runs, Then it flags the case\"). But Step 2 is classified evaluative and its test (\"each case gets one label; a third reviewer resolves disagreements; output is a count per class\") has no rubric with criteria, weights, pass threshold, and evidence as Section 6.4 requires.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "@Avoids the likely wrong answer: instead of \"analyse the failures\" on nonexistent records, the headline and Step 1 build the measure first (\"Build a measurement harness before changing the summariser... Sample 200 past conversations with their summaries\"), and the fix is named Complex with the reason given in the alternative considered (\"no baseline exists, so we cannot tell improvement from regression\").",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "@Zero questions asked; the open points (agent labelling time, log storage, meaning of \"wrong\") are handled as logged assumptions A1 to A3 each with a cheapest validation test, per Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "@No uncalibrated hedges (check report banned_total 0); material uncertainties are handled through the assumption log with validate-by tests, and judgement claims carry the [judgment] label. No statement weakens the recommendation with an untagged hedge.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "@Full structure: Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, Self-test last. Check report: zero banned words, zero em/en dashes, no sentences over limits, FK grade 6.3. Zero citations with [judgment] labels is acceptable per the response-shape note. Self-test lines match the response (0 questions, 3 assumptions, 4 actions, 0 banned, 0 dashes).",
+      "score": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions are misclassified as Confused and Complex instead of Complicated analysis, tests are written after the work with incomplete evaluative/stochastic fields, and Actions 3 to 5 omit required blocker and increment fields despite the self-test claiming they are present.",
+  "scores": {
+    "R2": {
+      "evidence": "Action 1 is rightly classified as Chaotic, but Action 2 ('open the deploy log and dashboard') is classified as Confused and Action 4 ('check the newest dependency failure. Look at payment gateway and database health dashboards') is classified as a Complex probe instead of Complicated analysis.",
+      "score": 1
+    },
+    "R3": {
+      "score": 1,
+      "evidence": "Action 1 stabilises first ('Start the rollback'), Action 2 gathers data to classify, and Actions 3 and 5 are single steps, but Action 4 ('Cynefin: Complex probe, capped at three minutes') omits the required statement that leverage is a guess per Section 6.5."
+    },
+    "R4": {
+      "evidence": "Chaotic is placed first (Action 1), Confused second (Action 2), Clear actions third and fifth, and the Complex probe is capped at three minutes.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions are asked ('Questions asked: 0 of 3'); the response logs three assumptions (A1 to A3) and proceeds.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain, and Actions 1 and 2 include a reason ('Chaotic, stabilise first'; 'Confused, this classifies the incident'), but Actions 3, 4, and 5 state only the domain or cap without a one-line reason ('Cynefin: Clear', 'Cynefin: Complex probe, capped at three minutes').",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "All five actions put the test after the work description instead of before it. Action 2's evaluative rubric omits criteria weights, required evidence, and a required layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010), and Action 4's stochastic test ('dependency error rate back at its 7-day baseline for 5 minutes') omits a sample size and a pass threshold distinct from the baseline.",
+      "score": 1
+    },
+    "R6": {
+      "score": null,
+      "evidence": "R6 does not apply to this prompt."
+    },
+    "R8": {
+      "evidence": "The script found zero banned uncalibrated hedges, but the response contains no probabilities, IPCC likelihood terms, or confidence levels with basis despite relying on unverified assumptions (A1 to A3) and making frequency claims ('Nearly every full-outage case').",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Check report shows 0 banned words, 0 dashes, and 0 long sentences, and all required headings are present. However, Actions 3 and 4 omit the blocker/capability, Action 5 omits both the increment and the blocker/capability, Information contains no evidence claims with citations or '[judgment]' labels, and the Self-test is inconsistent with the text in claiming 'Recommendation: 5 actions, each with increment, blocker, test: yes' and 'test written first: yes'.",
+      "score": 1
+    }
+  }
+}

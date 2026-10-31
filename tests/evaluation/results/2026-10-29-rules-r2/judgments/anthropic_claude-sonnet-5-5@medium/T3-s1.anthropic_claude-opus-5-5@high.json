@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test reports 'Longest sentence: 24 words', but the check report flags a 28-word Headline sentence. That sentence exceeds the 25-word limit, and the inconsistency breaks the rule that the Self-test must be fixed before sending. A second gap: the response states no calibrated uncertainty for the traffic or baseline assumptions that Step 4 depends on.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: Step 1 'Domain: Clear', Step 2 'Domain: Complicated', Step 3 'Domain: Complicated', Step 4 'Domain: Complex'. Only Step 2 ('The analysis in this step picks the practice.') gives a one-line reason for its domain. Step 4 adds 'The leverage of this probe is a guess.' Steps 1 and 3 give no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration is classified Complicated (Step 2 design scoring, Step 3 endpoint move). The conversion probe is Complex (Step 4). Instrumentation is Clear (Step 1), which is reasonable for adding three events. All match the expected classification.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 Clear is one step (add three events). Step 2 Complicated names the analysis ('one Pugh matrix'). Step 3 Complicated follows it ('Step 3 MUST NOT start until this rubric passes'). Step 4 Complex is 'one safe-to-fail probe' with a metric, a stop ('end the test if the test group falls 3 points below control after 1,000 visitors per group') and a budget ('14 days and 10% of traffic').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Clear baseline comes first because the probe depends on it ('Step 4 MUST NOT start until Step 1 has 7 days of data'). The Complicated steps follow by dependency. The Complex probe is capped and set in parallel: 'Step 4 MAY run in parallel with Steps 2 and 3 when A4 is true'. Step 4 also MUST NOT ship with a Step 3 change to the sign-up path. This follows the trade-off rules.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Gherkin for deterministic Steps 1 and 3. Weighted rubric for evaluative Step 2: 'Weights: revocation speed 30, security 30... Pass: weighted score of 3.5 or more'. Metric for stochastic Step 4: 'Metric: sign-up completion rate', 'Baseline: the Step 1 rate', 'Pass: a gain of 2 points', 'Sample size: compute per group from the Step 1 rate, at 80% power'. The sample size is a method, not a number, but it is justified by the missing baseline.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the single undifferentiated list. The Headline says 'Run two separate tracks'. It justifies each track: the migration needs a design check because JWT 'adds a revocation problem', and 'Conversion work is an experiment, so it needs a stop rule and a budget.' The two tracks use different test forms (Gherkin and rubric for migration, metric for conversion) and carry separate dependency clauses.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The unknowns (flag tool, session store, traffic, sign-up token) are logged as A1 to A4, each with a validation test and an impact. This is appropriate because each guess is cheap to reverse.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No banned hedges appear. However, the response gives no probability, IPCC term, or confidence with basis anywhere. A3 ('Traffic is high enough for an A/B test') drives the Step 4 design, yet its fallback says only 'lower the confidence', which is not calibrated. 'The leverage of this probe is a guess' is also not calibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order. The End begins 'I recommend that we'. The Self-test comes last. The check report shows 0 banned words and 0 dashes. The check report flags a 28-word sentence ('A JWT (JSON Web Token, a signed token that holds user claims...'), which exceeds the 25-word description limit. The Self-test claims 'Longest sentence: 24 words', so it is inconsistent. The 'cites_unlisted' flag is a script artifact: References [1] and [2] are present and tagged under Follow-up.",
+      "score": 1
+    }
+  }
+}

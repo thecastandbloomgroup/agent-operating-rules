@@ -1,0 +1,41 @@
+{
+  "main_defect": "The stabiliser is correctly first, but the secondary domains are misclassified: Step 2 is tagged Confused and Step 4 is tagged Complex probe, where the prompt expects Complicated log and dependency analysis after stabilisation. The Self-test also overstates conformance: Step 5 has no increment and no blocker statement, yet the Self-test claims all five actions have increment, blocker, and test; the Background is two sentences where the prompt caps it at one.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain tag ('Cynefin: Chaotic' Step 1, 'Cynefin: Confused' Step 2, 'Cynefin: Clear' Steps 3 and 5, 'Cynefin: Complex probe' Step 4), and Steps 1 and 2 give reasons ('stabilise first', 'this classifies the incident'), but Steps 3 and 5 state 'Clear' with no one-line reason, so a 2 is not earned.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain correct: Step 1 'Cynefin: Chaotic, stabilise first' matches the expected Chaotic stabiliser. Secondary actions misclassified: Step 2 (checking deploy log and dashboard for what changed between 08:30 and 09:15) is tagged Confused and Step 4 (reading payment gateway and database health dashboards) is tagged Complex probe, where the expected classification is Complicated analysis after stabilisation.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Forms match: Step 1 is a one-command rollback that stabilises first; Step 2 gathers what classifies the incident; Step 4 is a capped probe with a measure and 'stop condition of three minutes' and 'capped at three minutes'; Steps 3 and 5 are single-step Clear actions. Step 2 also names its analysis ('Confirm what changed between 08:30 and 09:15').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic first ('Start the rollback...'), Confused next ('Step 2 MUST run in parallel with Step 1'), then the Clear status post, then the Complex probe gated on the stabiliser ('Step 4 MUST NOT start until the test in Step 1 runs for five minutes'), with explicit dependency clauses per 6.6.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 stochastic: 'error rate below 1% for 5 minutes at normal traffic, baseline is 100% errors now'. Step 2 evaluative rubric: three criteria with 'pass when two of three match'. Steps 3 and 5 deterministic Gherkin ('Given the channel, When you post, Then...'). Step 4 stochastic: 'dependency error rate back at its 7-day baseline for 5 minutes'. Tests are stated within each action before execution.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable; the prompt states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked ('Questions asked: 0 of 3'), matching the expected signal that the response should not contain a question; uncertainty is handled through three logged assumptions (A1 to A3), each with a validate-by test and an if-wrong fallback per Section 2.3.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges (check report: banned_total 0), but the driving fact behind Step 1 is uncertain and never calibrated: the Headline claims 'Nearly every full-outage case since a specific start time traces to a recent deploy' and the rollback depends on A1 ('a deploy or config change happened near 09:12') with no probability, IPCC term, or confidence-with-basis; only the assumption log and 'If A1 is false, replace Step 1 with Step 4' mitigate.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline, Background, Relevance, Information, End, Follow-up, Self-test last), End begins 'I recommend that we', and the check report shows zero banned words, zero em/en dashes, no overlong sentences, and FK grade 6.5. Defects: Background is two sentences where the prompt caps it at one; Step 5 states neither an increment nor a blocker, yet the Self-test claims '5 actions, each with increment, blocker, test: yes'; Headline point 1 carries no evidence label or [judgment] tag while the Self-test asserts all claims are labeled, so the Self-test is not internally consistent.",
+      "score": 1
+    }
+  }
+}

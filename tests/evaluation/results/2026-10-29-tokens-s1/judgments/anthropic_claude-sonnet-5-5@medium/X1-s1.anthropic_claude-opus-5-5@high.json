@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response never names Complex as the real domain of the summariser problem or says why. It tags the measurement-building first step as Confused, so that step is not a capped probe as the expected signals require.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain. Only Step 1 ('Confused, so this step gathers what we need to classify the problem') and Step 4 ('Complex, so this is a safe-to-fail probe') carry a reason. Steps 2 and 3 say only 'Domain: Clear' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary improvement action is right: 'Run one capped trial of a prompt change... Domain: Complex'. The expected classification is Complex, and the first probe should build the measure. Step 1 ('Label a sample of 50 summaries') is tagged 'Confused' instead, so a secondary action is misclassified.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each form matches the domain the response chose. Confused Step 1 gathers data to classify. Clear Steps 2 and 3 are one-step build tasks with Gherkin tests. Complex Step 4 is a probe with 'Budget: one week and two variants' and 'Stop condition: no gain after two variants'.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Confused step is listed first, and Step 4 waits on the baseline ('MUST NOT start until the baseline in Step 3 exists'), which 6.5 allows. However, 'Step 2 runs in parallel with Step 1' starts a Clear action before the Confused output that 'decides the rest'. The button's reason list depends on the Step 1 error types, so this is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a rubric with weights ('factual accuracy (weight 50%), missing key action (30%), invented content (20%)'), an 80% agreement threshold, and the evidence needed. Steps 2 and 3 use Given/When/Then. Step 4 states metric, baseline, 'Pass threshold: baseline plus 10 percentage points', and 'Sample size: 200 new tickets'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the likely wrong answer: it does not treat the problem as Complicated or analyse unrecorded failures. It creates the record first ('Label a sample of 50 summaries', 'Add a \"Wrong\" button'). It never names Complex as the real domain of the problem or explains that cause and effect are visible only afterward. It calls the first step Confused instead.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The unknowns are logged as A1 to A3, each with a validation test and impact. 'Questions asked: 0 of 3'.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Some uncertainty is calibrated: 'Confidence in any error rate is low (one unquantified source)' and 'its leverage is a guess'. The rest is not. 'Summary errors usually fall into three types' uses an uncalibrated frequency word on a fact that A2 and Step 4 depend on. No probability is given for A3 (click rate) or the error rate.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings appear in order. End begins 'I recommend that we'. There are 4 actions, and Self-test is last. The check report shows 0 banned words, 0 dashes, and no long sentences. The script flag 'citation with no reference' appears spurious: entries [1] and [2] are listed under Follow-up, tagged [P], and come from the provided rules file. The Self-test is consistent apart from small points.",
+      "score": 2
+    }
+  }
+}

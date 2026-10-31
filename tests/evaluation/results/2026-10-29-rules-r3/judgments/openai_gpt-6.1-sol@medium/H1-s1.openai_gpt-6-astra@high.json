@@ -1,0 +1,41 @@
+{
+  "main_defect": "Service restoration is deferred until Step 3, after incident administration and diagnosis. Step 1 does not stop the checkout failure, so the response fails the stabiliser-first gate.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain label, but Step 4 states only 'Domain: Clear' without a one-line reason. Steps 2 and 3 explain their reliance on analysis.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 correctly names 'Chaotic', and Steps 2 and 3 name 'Complicated'. Step 4 names 'Clear', contrary to the expected Complicated classification for subsequent actions.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 says 'Declare your highest applicable customer-impact incident level', page responders, and 'Pause deployments and unrelated changes'. These do not restore checkout. 'Restore the last healthy release or flag state' appears only in Step 3.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'Find the safest recovery target, minutes 1 to 3' precedes 'Apply one reversible mitigation, minutes 3 to 7'. Actual stabilisation therefore follows analysis rather than coming first.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Each action includes a 'Given ... when ... then' test. However, Step 2 asks responders to 'Select a recovery action from evidence' while calling this deterministic evidence collection. That evaluative choice lacks criteria, weights, a pass threshold, and evidence-based scoring.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked. The response proceeds and logs the access assumption: 'You have incident access', with a validation step and fallback.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Your report establishes the symptom and start time, but not the cause' and 'recovery unverified' acknowledge limits. However, the recommendation concerning the 'suspected failure mechanism' supplies no probability or confidence level with its basis.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, and a final Self-test are present. End begins 'I recommend that we'. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, Background has two sentences despite the prompt's one-sentence limit, and the Self-test overstates task-kind conformance.",
+      "score": 1
+    }
+  }
+}

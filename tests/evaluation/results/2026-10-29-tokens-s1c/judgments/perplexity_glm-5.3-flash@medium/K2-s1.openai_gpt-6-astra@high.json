@@ -1,0 +1,41 @@
+{
+  "main_defect": "Test conformance is incomplete, material uncertainty is uncalibrated, and the Self-test overstates compliance.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions carry domain labels: 'Cynefin: Clear', 'Cynefin: Clear', and 'Cynefin: Complicated'. However, they lack explicit one-line reasons for those classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Obtaining the proposals and confirming budget scope are correctly classified as Clear. 'Score the three proposals with the rubric above' correctly classifies the primary vendor-selection task as Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Clear actions are single steps: 'Re-attach or paste the three proposals' and 'Confirm the budget scope with the owner'. The Complicated action names its analysis: 'Score the three proposals with the rubric above, gate on TCO, and name the winner.' No probe is proposed.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The response removes the missing-evidence blocker first, confirms the budget baseline next, and evaluates afterward: 'Step 3 MUST NOT start until Steps 1 and 2 are done.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The evaluative rubric supplies criteria, weights, a budget gate, and evidence requirements before scoring. However, Step 2's deterministic test, 'the owner states what the 400k includes, in one sentence', lacks Given/When/Then. The deterministic tests also follow their work instructions rather than preceding them.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One explicit request seeks the missing proposals and states its use: 'I will use them to fill the rubric, name the winning vendor, and show the score table behind that pick.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'For the most likely answer, A1 holds and the files arrive as sent' gives no probability, permitted likelihood term, or confidence basis. 'Only a few days of delay' also asserts an unsupported timing assumption used to justify waiting.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but flags long sentences and citation-order defects. 'Longest sentence: 24 words' contradicts the report's 30-word maximum, and the claim that every test is written first contradicts the action layout.",
+      "score": 1
+    }
+  }
+}

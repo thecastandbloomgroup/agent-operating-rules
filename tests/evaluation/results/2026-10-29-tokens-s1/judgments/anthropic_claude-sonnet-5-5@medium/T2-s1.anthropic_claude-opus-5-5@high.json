@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Headline says \"a grounding prompt with a refusal rule cuts it most, so use the prompt in Section End, Step 2.\" This presents a single prompt as the answer, with an unsupported leverage claim. It undercuts the Complex probe framing in the End section.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a Cynefin line with a reason. Step 1: \"Complicated. An expert can design the set by analysis.\" Step 2: \"Complex. This is a probe with a budget of one session.\" Step 3: \"Complicated. Analysis picks which documents to attach.\" Step 4: \"Complex. This is a safe-to-fail probe.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary prompt-change action (Step 2) is Complex, as expected, and so is the check pass (Step 4). The Complicated labels for test-set design (Step 1) and document selection (Step 3) are defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Both Complex probes have a measure, a stop condition (\"Stop if the rate does not fall after three runs\"; \"Stop if the answers get worse or the cost doubles\") and a budget (\"one session\"). The Complicated actions only say \"An expert can design the set by analysis\" and \"Analysis picks which documents to attach\". They do not name the analysis that picks the practice.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (baseline) comes first, which reduces the uncertainty of the probes. Step 4 runs \"in parallel with Step 3\". However, the Complicated Step 3 \"MUST NOT start until the Step 2 test passes or the stop condition fires.\" That orders a Clear or Complicated action behind a Complex probe instead of running them in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Every action is stochastic with a metric (\"share of answers with an unsupported claim\"). Step 1 sets the baseline, a threshold of \"half the baseline\" and \"n = 50\". Step 2 adds \"refuses at least 90% of the 25 unanswerable questions\" over three runs. Step 4 uses \"n = 50\". Step 3's threshold (\"lower than in Step 2\", five questions times three runs) is weak but still present.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response states \"No single prompt stops hallucination\" and labels the prompt step Complex with \"The leverage is a guess.\" The Headline still gives the likely wrong answer: \"a grounding prompt with a refusal rule cuts it most, so use the prompt in Section End, Step 2.\"",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The missing task, model and sources are handled as assumptions A1 and A2, each with a validation and an impact, so no question was needed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response gives \"Confidence: moderate. Two papers support the methods, and no run on your model exists yet,\" which is a confidence level with a basis. But the Headline claim \"cuts it most\" carries no probability. \"treat the result as a signal\" for n = 50 is not calibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present and in order, End begins \"I recommend that we\", and the Self-test is last. The check report shows 0 banned words, 0 dashes and no long sentences. The references appear real and are tagged [S]. The \"References\" label is not a heading, and the script flagged \"citation with no reference\". The Self-test line \"Claims with evidence or [judgment] label: yes\" is inconsistent with the unsupported Headline claim \"cuts it most\".",
+      "score": 1
+    }
+  }
+}

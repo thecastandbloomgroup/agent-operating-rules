@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 (replacing the print statements) is misclassified as Complicated instead of Clear, and the Clear actions lack a one-line reason for their domain classification.",
+  "scores": {
+    "R4": {
+      "evidence": "Steps 1, 2, 3, and 4 are Clear and Complicated actions ordered logically by dependency and blocker removal: 'Step 2 MUST NOT start until the test in Step 1 passes.'",
+      "score": 2
+    },
+    "R5": {
+      "score": 2,
+      "evidence": "All four actions are tagged 'Kind: deterministic' and begin with a Gherkin test ('Test: Given ... When ... Then ...')."
+    },
+    "R3": {
+      "evidence": "Steps 1, 2, and 4 are one-step actions matching Clear, but Step 3 is labeled 'Domain: Complicated' while written as a single-pass replacement ('Replace those calls in one pass') without an analysis step.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Classified Steps 1, 2, and 4 as Clear (without stating why), but fell into the expected trap on Step 3: 'Domain: Complicated, because the level choice needs a read of each string.'",
+      "score": 1
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asked zero questions ('Questions asked: 0 of 3'), matching the requirement to ask no questions."
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges in the check report ('Uncalibrated hedges (4.4.2): []').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Zero banned words, zero dashes, and max sentence length of 20 words, but uses an unpermitted top-level 'References' heading (causing the check report failure 'citation with no reference') and adds an unnecessary conditional hedge in Follow-up whose fallback repeats A2 verbatim.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a domain, but Steps 1, 2, and 4 state 'Domain: Clear.' without a one-line reason; only Step 3 includes a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Steps 1, 2, and 4 are classified as Clear, but Step 3 (replacing the print statements) is wrongly classified as 'Domain: Complicated' by inventing an INFO/ERROR split not requested in the prompt.",
+      "score": 1
+    }
+  }
+}

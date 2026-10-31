@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 1 mistakes missing baseline data for a Confused domain and combines work from both tracks. The conversion probe also lacks a specified sample size.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains. Step 4 explains that effects are 'visible only afterward,' but Step 3 states 'Cynefin domain: Complicated' without explaining why.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration actions are 'Complicated' and the conversion probe is 'Complex,' correctly. Step 1 incorrectly uses 'Confused (we cannot yet tell how the conversion work behaves)': missing a baseline does not make the domain unknown.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 requires an engineer or security reviewer to 'pick the algorithm and key storage first.' Step 4 includes a measure, budget, and stop condition. However, Step 1 does not gather evidence to classify the domain, and Step 3 lacks analysis selecting its revocation approach.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The action labeled Confused goes first. 'Step 3 MUST NOT start until the test in Step 2 passes.' The conversion probe waits for its baseline, then runs 'in parallel with Steps 2 and 3,' capped at 'two weeks and one developer day.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Migration tests use 'Given,' 'When,' and 'Then.' The conversion test supplies a metric, baseline, and significance threshold, but defers sample size to 'a power calculation at 80% power' without specifying a target effect or resulting sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response explicitly proposes 'two separate changes, not one release.' It identifies migration as Complicated with expert design choices, and conversion as Complex because 'the effect of any change is visible only afterward.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' Missing details are handled through four logged assumptions, each with a validation step and consequence if wrong, rather than unnecessary blocking questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'A JWT migration alone is unlikely (0 to 33%) to raise conversion' provides calibrated uncertainty. However, A1 uses the uncalibrated 'possibly a mobile app,' and A4 merely says to 'lower the confidence.'",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The supplied check reports one banned word and a 26-word sentence, contradicting 'Banned words found: 0' and 'Longest sentence: 25 words.' It reports no prohibited dashes.",
+      "score": 1
+    }
+  }
+}

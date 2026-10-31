@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats a Complex human-system problem as a Clear process failure, prescribing a serial format overhaul instead of parallel, capped probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain. Only Action 4 explains its classification: \"cause and effect between format and behavior show up only over cycles.\" Actions 1 to 3 state \"Domain: Clear\" without classification reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Actions 1 to 3 are classified as \"Clear,\" while only the later measurement series is \"Complex.\" The primary intervention concerns uncertain human behavior and interacting causes, so its domain is Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 4 includes a measure, \"Budget: 3 cycles,\" and \"stop if the rating does not move.\" However, \"restructure the retrospective around one owned change per cycle\" prescribes the main intervention before treating it as a safe-to-fail probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Step 4 MUST NOT start until Steps 1 to 3 have run for one cycle.\" This creates a serial rollout followed by measurement, rather than two or three independent, capped probes run in parallel.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The response supplies Gherkin checks, such as \"Then exactly one change is named,\" and a stochastic threshold with \"Sample size: 3 cycles.\" However, tests follow the work descriptions. The team's choice of a change is labeled deterministic without an evaluative rubric.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states \"R6 applies: no.\"",
+      "score": null
+    },
+    "R7": {
+      "evidence": "There are three questions, each with a stated \"Use.\" However, \"What cadence do the retrospectives run on\" does not change Step 3's instruction to check \"at the start of each retrospective.\" The need for a costly-to-reverse clarification is not established.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "\"The cause is likely A2 or safety\" uses a permitted likelihood term. However, \"Your report ... fits the first three causes\" supports the initial prescription without calibrated confidence or evidence distinguishing those causes.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but four overlong sentences, including one with 32 words; the Self-test claims 22. It also falsely claims tests precede work and explicitly reports reference-confidence failure. The reference \"N. Derby, D. Larsen, and K. Schwaber, Essential Scrum\" is misattributed, while bare \"[S]\" markers do not trace the supporting claims.",
+      "score": 0
+    }
+  }
+}

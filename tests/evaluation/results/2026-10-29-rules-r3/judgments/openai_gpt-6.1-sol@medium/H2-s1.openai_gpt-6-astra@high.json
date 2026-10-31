@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the stabilizer, the response treats the crisis as Confused and Complicated rather than Complex. It omits capped safe-to-fail probes and supplies a public holding statement despite the prompt's prohibition.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain and its purpose: 'Chaotic, stabilize first'; 'Confused, gather facts before classifying the underlying issue'; and 'Complicated, use factual comparison and legal analysis.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 1 correctly identifies 'Chaotic.' Steps 2 and 3 use 'Confused' and 'Complicated,' whereas the expected subsequent domain is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Establish control now' provides a stabilizer. However, subsequent actions lack safe-to-fail measures, stop conditions, and budgets. 'Possible holding statement' supplies the public draft the prompt prohibits.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action comes first, and 'Step 2 follows Step 1\u2019s owner assignment.' However, the remaining work follows a sequential classification-and-approval path rather than explicitly parallel, capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The first two actions provide 'Given ... when ... then' tests. The evaluative action supplies evidence criteria weighted 50%, 30%, and 20%, a 0-to-5 scoring scale, and an '80/100' pass threshold with factual and legal constraints.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions each state their use: 'This determines the fact comparison and correction scope' and 'This determines who should own the response and escalation.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Accuracy remains unverified' appropriately preserves uncertainty. However, 'High confidence in coordination and evidence preservation as first steps' gives no explicit basis for that confidence.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The required sections, opening recommendation phrase, three actions, and final Self-test are present. The check report finds zero banned words, zero dashes, and no long sentences. However, the Self-test claims 'primary or secondary behind each driving claim: yes,' while key recommendations and thresholds have only '[judgment]' labels.",
+      "score": 1
+    }
+  }
+}

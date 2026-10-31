@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats an unlocated discrepancy as Clear work rather than Confused work. Its first action collects one suspect table instead of recomputing and comparing the three headline figures to locate the discrepancy and support classification.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state 'Clear domain', but only Step 1 adds a rationale: 'meaning the method is known'. Steps 2 and 3 lack individual domain reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The first action says 'Deterministic; Clear domain', despite acknowledging 'There is not enough evidence to identify a specific error'. The primary domain should be Confused.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'Collect that table and its source extract' appropriately gathers evidence, and the later checks are bounded operations. However, the first action does not locate the discrepancy and use that evidence to classify the work.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Steps 2 and 3 both say 'after Step 1', so evidence collection correctly precedes dependent work. However, source comparison comes third, without an initial Confused diagnostic and classification gate.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each deterministic action has a Given/When/Then test before its work statement, including 'Given matching periods, units, and filters ... then every difference is recorded'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question requests the missing report and source figures. Its use is explicit: 'These will support the comparison above.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'There is not enough evidence to identify a specific error' and 'The checks below are proposed, not completed' accurately limit the claims. No uncertain causal theory drives the recommendation or requires a probability.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required End opening, and a final Self-test are present. The check report finds zero banned words, dashes, or overlong sentences. However, the Self-test claims 'primary or secondary behind each driving claim: yes' despite listing zero references and relying on judgments.",
+      "score": 1
+    }
+  }
+}

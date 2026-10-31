@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response frames the problem as a Complicated diagnosis first. It gates a single Complex probe behind that analysis instead of running two or three capped probes in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain and a one-line reason. Step 1: \"Complicated, meaning analysis can reveal cause and effect.\" Step 2: \"Complex, meaning the effect becomes visible after the test.\" Step 3: \"Clear, meaning the agreed review procedure has known steps.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The core change, Step 2, is correctly called Complex. However, the lead action treats a human-system problem as Complicated (\"analysis can reveal cause and effect\"). The Headline also frames the work as locating where decisions \"stopped\", which is a knowable-cause framing. The expected signal is Complex throughout.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action's form fits its stated domain. Step 1 (Complicated) names the analysis: \"Use the record-to-work comparison as that analysis.\" Step 2 (Complex) is a probe with a measure, a stop condition, and a budget: \"Cap extra effort at 60 minutes... Stop if the change creates a safety risk or exceeds that budget.\" Step 3 (Clear) is one procedure.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "\"Step 2 MUST NOT start until Step 1 passes.\" This serializes the Complex probe behind the Complicated analysis instead of running it in parallel. There is only one probe, so no parallel probes exist. Defensible in part because Step 1 reduces the probe's uncertainty, so this is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 have Gherkin tests (\"Given the last two retrospective records, when the review ends, then...\"). Step 2 (stochastic) states the metric, baseline, threshold, and sample (\"Two future occasions\"). Each form matches its kind, though the sample is small.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks zero questions and does not ask the user to diagnose the cause. It logs the unknown as A1 with a validation and an if-wrong clause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is no probability or IPCC term anywhere. The recommendation depends on uncertain facts, such as where the failure lies and whether A1 holds. The response only says \"its leverage remains uncertain\". The script finds no banned hedges, so the result is mixed rather than uncalibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF headings, End begins \"I recommend that we\", and Self-test is last. Zero dashes and zero banned words. Defects: the check report flags a 29-word sentence (\"Another discussion format does not directly address the gap...\"), which exceeds 25. The Self-test claims \"Longest sentence: 24 words\", which is inconsistent. The script also reports citation [1] with no parsed reference entry: References sits under Follow-up with no entry separation detected.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The first action checks change history before stabilizing service. Later actions misclassify diagnosis and evidence capture as Clear or Complex rather than Complicated.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain label, including \u201cCynefin: Chaotic,\u201d \u201cCynefin: Clear,\u201d and \u201cCynefin: Complex.\u201d Most lack a one-line explanation of why that domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\u201cStep 1, Cynefin: Chaotic\u201d identifies the primary domain correctly. However, \u201ctest downstream dependencies\u201d is labeled Clear, and \u201cexport a bounded snapshot\u201d is labeled Complex. The expected subsequent work is Complicated.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "\u201cCheck deploy, config, and Flag history\u201d precedes \u201croll it back now,\u201d contrary to stabilizer-first behavior. The Complex action merely exports logs; a time budget does not make evidence capture a safe-to-fail probe.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The Chaotic-labeled action comes first, and Step 4 runs \u201cIn parallel with Step 1\u201d with a budget. However, \u201cIf Step 1 fails, test downstream dependencies\u201d starts diagnosis while service remains unstable, without a successful-stabilization dependency.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests include \u201cGiven a test cart, When the checkout request runs, Then the response is 200\u201d and a weighted rubric. However, tests follow the work instructions. The fixed checklist for the executive update is labeled evaluative, and its rubric lacks a required decision-analysis layout.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\u201cQuestions asked: 0 of 3.\u201d The response proceeds using logged assumptions rather than delaying incident response with questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cThe fixed start time at 09:12 makes cause 1 the first suspect\u201d drives the rollback recommendation. Neither this claim nor assumption A1 receives a probability, likelihood term, or confidence level with a basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The required headings and End opening are present. However, Background has two sentences instead of the requested maximum of one. The check report finds one banned phrase, one prohibited dash, and sentences of 30 and 26 words. These contradict the final Self-test claims \u201cBanned words found: 0,\u201d \u201cDashes (em or en): 0,\u201d and \u201cLongest sentence: 19 words.\u201d",
+      "score": 1
+    }
+  }
+}

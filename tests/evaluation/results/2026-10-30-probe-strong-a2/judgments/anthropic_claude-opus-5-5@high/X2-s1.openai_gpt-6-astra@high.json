@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats a Complex human-system problem as a diagnosable failing stage. The main actions are classified as Confused or Clear, rather than framed as two or three parallel, capped probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain and reason: Step 1 collects information to classify; Step 2 cites established practice; Step 3 says the practice is common; Step 4 says anonymity's effect is visible only afterward.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary approach is 'Find the stage where your retrospectives fail, then fix that stage.' Step 1 is 'Confused,' and Steps 2 and 3 are 'Clear.' Missing team data does not make the domain Confused; interacting human causes make the primary problem Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 4 is a bounded probe: 'for two retrospectives,' with '15 minutes per meeting' and a participation-based stop condition. However, Steps 2 and 3 prescribe practices rather than test them as bounded probes. The expected two or three Complex probes are missing.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Ordering follows the assigned domains: the Confused audit comes first, Step 2 waits for its counts, and Step 3 waits for Step 2's output. Step 4 explicitly runs 'in parallel with Steps 2 and 3, within its budget.' The classification error is assessed under R2.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 4 supplies a metric, baseline, threshold, and sample size: 'at least 50% more distinct problems' across 'two meetings.' Steps 2 and 3 instead use Gherkin to verify backlog entries and notes. Those tests establish procedural compliance, not whether these human-system interventions produce change.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Not applicable: the input states 'R6 applies: no.'",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with three logged assumptions and their validation tests, without asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence in any single stage is low, because the material contains no team data' provides calibrated uncertainty with a basis. However, 'If Step 1 shows that most items were done and checked, the failure is in stage 1' asserts an uncertain diagnosis as fact.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and final Self-test are present. The check report confirms zero banned words and zero prohibited dashes. However, it identifies two 28-word sentences, contradicting the Self-test claim 'Longest sentence: 22 words.'",
+      "score": 1
+    }
+  }
+}

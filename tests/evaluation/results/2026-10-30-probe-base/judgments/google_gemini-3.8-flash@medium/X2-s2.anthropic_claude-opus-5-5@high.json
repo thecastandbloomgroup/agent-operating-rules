@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as Clear. It commits to one fix, 'Focus each retrospective on one verifiable improvement', and adds a single probe late and sequentially. It should run two or three small probes in parallel, each with its own measure.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step names a domain. Steps 1 and 2 give only 'Cynefin domain: Clear.' with no reason. Step 3 gives 'Complex. Leverage is a guess because team engagement varies.' So only one action has a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. The response labels Steps 1 and 2 'Clear' and frames the headline as a known fix ('Tracking one action item per cycle restores progress'). Only the review step is Complex. The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The forms match the stated domains. The Clear steps are one-step. Step 3 has a measure, a two-sprint budget, and a stop rule: 'Stop after two sprints if completion remains zero.' However, Steps 1 and 2 commit the full increment where the real domain calls for safe-to-fail probes.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Complex probe is gated sequentially: 'Step 3 MUST NOT start until Step 2 passes.' It does not run in parallel with the other actions. There are no multiple parallel, unranked probes. The dependency has some basis, so this is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 2 uses correct Gherkin. Step 3 has metric, baseline, threshold, and sample size, but the sample is 'Two sprints' with a '0%' baseline that is only [judgment]. Step 1 is labeled Evaluative, but checking 'Exactly one actionable ticket exists' is deterministic. Its rubric has a single criterion at 100% weight.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. The response proceeds with logged assumptions A1 (sprint cadence) and A2 (team authority), and does not ask the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probabilities or IPCC terms appear anywhere. 'Retrospective failure usually stems from three causes' and 'completion rates rise [2]' are uncalibrated, and the recommendation depends on them. 'Tracking one action item per cycle restores progress' is asserted without a likelihood.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, an End section that begins 'I recommend that we', and a final Self-test are all present. Zero banned words and zero dashes. The check report flags a multi-citation line (5.4.1) that the Self-test does not report. The real books are cited for specific claims they do not plainly support, for example [1] for 'three causes'. The response states causes as fact, and the Self-test claim 'Complex as capped probes: yes' is weak.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The pool-sizing conclusion is overconfident: it compares 31 service-wide connections with an assumed 8-per-pod pool and claims a four-to-one shortage without resolving that scope mismatch.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state a domain. Steps 1 and 2 explain it with 'because the capacity analysis picks the value' and 'one config step'. Steps 3 and 4 only state 'Cynefin domain: Clear', without a domain rationale.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action is correctly classified as 'Complicated, because the capacity analysis picks the value'. The bounded configuration changes and query-count test are reasonably classified as Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The response analyzes the attachments before recommending changes: 'Pool acquire p95 went from 3 ms to 690 ms'. Step 1 also says 'read the limit, then set per-pod max_size'. The remaining actions apply configuration changes or add a fixed test, rather than proposing unnecessary probes.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The pool-capacity action comes first, addressing the dominant observed wait. 'Step 3 MUST NOT start before the Step 1 test passes' makes the dependency explicit, while 'Step 4 has no dependency and can run in parallel'. No Chaotic, Confused, or Complex action requires different placement.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Tests are present, including valid Gherkin for the query-count test. However, Step 1 mixes an evaluative sizing choice with variable load testing without a weighted decision rubric. Its performance test uses 'Given... When... Then' rather than a complete stochastic acceptance specification. Tests also follow the work descriptions, and task-kind classifications are missing.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response names the real domain: 'Complicated, because the capacity analysis picks the value'. It uses trace comparisons before recommending a targeted pool change, rather than making an unanalyzed release rollback the first action.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "It asks no questions. Missing information is logged in A1 and A2, and Step 1 begins by reading the OPS-412 limit before selecting the configuration. This permits an immediate information-gathering action without unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'The pool change is the cause', 'Demand now exceeds supply by close to 4 to 1', and 'The database is not the limit' express certainty beyond the evidence. A1 and A2 acknowledge missing limits and scope, but no probability, likelihood term, or confidence level with a basis calibrates these material uncertainties.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. The script reports zero banned words and dashes, but a 26-word sentence, out-of-order citations, and multiple citations on some lines. The Self-test incorrectly reports 'Longest sentence: 24 words' and claims every action has a task-kind classification and test written first.",
+      "score": 1
+    }
+  }
+}

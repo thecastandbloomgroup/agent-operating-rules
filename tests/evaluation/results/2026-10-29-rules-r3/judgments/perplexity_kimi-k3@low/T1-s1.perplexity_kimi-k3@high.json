@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 4 is a Complex safe-to-fail pilot probe on a problem that is Clear end to end (adopt a formatter), which the prompt's expected signals explicitly forbid, and it blocks the Clear rollout (Step 5 waits on Step 4 instead of running probes in parallel). Secondary defects: the check report flags a 28-word sentence and the self-test claims a 22-word longest sentence, so the self-test is inaccurate rather than fixed.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: '1. Deterministic, Clear', '2. Deterministic, Clear', '3. Evaluative, Complicated', '4. Stochastic, Complex probe', '5. Deterministic, Clear'. But no action gives a one-line reason for its domain choice; only blocker and test lines are provided, so the score-2 condition is unmet.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is correct: 'add one formatter config to one repo' and 'add pre-commit and CI checks' are Clear, one-step. Secondary classification is wrong: '4. Stochastic, Complex probe: run a two week pilot' treats a Clear problem as Complex; the expected signals state the whole problem is Clear and that the response should not contain probes.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1, 2 and 5 match the one-step Clear form ('add one formatter config', 'add pre-commit and CI checks'), and no workshop precedes the formatter. However, the pilot probe ('run a two week pilot on one repo with a stop condition. Budget: two reviewers and one maintainer') is a Complex probe imposed on Clear work, so form contradicts the true domain on that action. Mostly matches.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Clear actions are ordered sensibly (config, then CI: 'Step 2 MUST NOT start until Step 1 passes'), and the probe is budget-capped. But the Complex probe is not run in parallel with Clear work: '5. Deterministic, Clear: roll out to remaining repos only after Step 4 passes' sequences a Clear action after the probe, contrary to the 6.5 trade-off rule that Complex probes run in parallel and uncapped of ordering leverage. Minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic actions use Gherkin ('Given sample SQL, When the formatter runs, Then output matches the committed config byte for byte'); the evaluative action has a rubric with weights and a pass threshold ('logic risk 50%, data correctness 30%, readability 20%'); the stochastic action states metric, baseline, threshold, and sample size ('metric is formatting comments per pull request; baseline is last 20 pull requests; pass threshold is 50% lower; sample size is 20').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The likely wrong answer (culture workshops, facilitation, surveys) is avoided and the primary classification is Clear ('1. Deterministic, Clear: add one formatter config'). But the response never explicitly names the real domain for the whole problem or says why the 'culture' framing is wrong; it even drifts toward the wrong frame by adding a Complex behavioral pilot probe. Partly.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Questions asked: 0 of 3. The material answers are sufficient and uncertainties are handled as logged assumptions (A1, A2) with validation tests, so asking none is correct.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: medium, from common code review practice and no team metrics supplied' uses a confidence level with its stated basis (Section 4.6 form 3), placed where the recommendation depends on uncertain facts.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline, Background, Relevance, Information, End ('I recommend that we'), Follow-up, Self-test; check report shows zero dashes and zero banned words. Minor defects: one 28-word sentence ('Acceptance test first: metric is formatting comments per pul...') violates 4.1.1 per the check report, and the self-test is internally inconsistent, claiming 'Longest sentence: 22 words' when the actual longest is 28, so the failure was reported rather than fixed per Section 7.",
+      "score": 1
+    }
+  }
+}

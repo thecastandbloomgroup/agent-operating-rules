@@ -1,0 +1,41 @@
+{
+  "main_defect": "Includes a premature fix action (Step 4) when the domain is Confused, omits explicit task-kind classifications on three actions despite claiming them in the self-test, and uses a Gherkin test for a 10-run fail-rate check in Step 4.",
+  "scores": {
+    "R3": {
+      "evidence": "Steps 1 to 3 match their domains (Confused classify-first, Complicated analysis, Complex capped probe), but Step 4 ('Fix the named cause only if Step 3 passes at 100 percent') prescribes a fix before the build failure is classified, violating the expected signal not to include a fix.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Confused) comes first, followed by Step 2 (Complicated analysis that reduces probe uncertainty), Step 3 (Complex probe capped at 10 reruns or 30 minutes), and Step 4 (Complicated), with explicit RFC 2119 sequencing.",
+      "score": 2
+    },
+    "R5": {
+      "score": 1,
+      "evidence": "Steps 1, 2, and 3 use Gherkin, an evaluative rubric with weights, and a stochastic metric with sample size 10, but Step 4 uses a deterministic Gherkin test ('Given the same command and commit, When the step runs 10 times, Then the fail rate is 0 percent') for a multi-run fail-rate check, and Steps 1, 3, and 4 do not explicitly state their task kind."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks 0 questions, logs assumptions A1 and A2 in the required four-field format, and makes Step 1 a classification action as permitted by Section 2."
+    },
+    "R8": {
+      "evidence": "Contains zero uncalibrated hedges and labels '[judgment]' and 'leverage is a guess', but does not state a probability, IPCC likelihood term, or confidence level with basis where uncertainty is material.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Includes all required headings, zero banned words, zero dashes, sentences within the word limit (max 24 words), and a tagged reference, but the Self-test claims 'Each action classified (deterministic/evaluative/stochastic) with test written first: yes' while Steps 1, 3, and 4 omit the task-kind label.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain with a one-line reason: '1. ... Confused: this step exists to class the domain.', '2. ... Complicated: the log analysis picks the class.', '3. ... Complex: cause shows up only after the runs, so leverage is a guess.', and '4. ... Complicated: the class from Step 2 picks the practice.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Correctly identifies the primary domain as Confused in Step 1 ('Confused: this step exists to class the domain') and assigns appropriate domains to the subsequent analysis and probe steps.",
+      "score": 2
+    }
+  }
+}

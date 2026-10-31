@@ -1,0 +1,41 @@
+{
+  "main_defect": "The actions lack explicit domain rationales, and the separate-check probe lacks its own explicit stop condition and statement that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state domains: 'Cynefin domain: Clear', 'Cynefin domain: Complex', and 'Cynefin domain: Complex'. However, each action does not include a one-line explanation of why that domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Build a test set' is classified as Clear fixed-output preparation. 'Probe the prompt' and 'Probe a separate check call' are correctly classified as Complex because their effects require trials.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 2 includes a measure, 'Stop condition: stop after the first 30 answers if the false-claim rate is not lower', and 'Budget: one session, 180 model calls'. Step 3 is also a bounded probe, but lacks its own explicit stop condition and leverage-is-a-guess statement.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Step 2 MUST NOT start until the test in Step 1 passes' establishes necessary test-set preparation. Step 3 uses 'the Step 2 result' as its baseline and starts conditionally after that result. These dependencies justify sequencing rather than parallel execution; neither probe is ranked by claimed leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The deterministic action has a Given/When/Then test. Step 2 specifies 'false claims per 100 answers', an old-prompt baseline, 'at least 50% fewer false claims', and '90 answers per prompt'. Step 3 specifies the same metric, its own baseline, a 30% reduction threshold, and 90 answers.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "'No prompt stops all hallucinations' rejects the promised-fix framing while still supplying a starting prompt. The response names Complex and explains that 'The leverage of this step is a guess until it runs'.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response proceeds with logged, testable assumptions about factual tasks, source availability, and acceptance of abstentions rather than asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Medium confidence that the prompt reduces false claims on your tasks. The basis is three separate lines of research, but none of them used your data.' This supplies a confidence level and its basis where effectiveness is uncertain.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required 'I recommend that we' opening, three actions, and a final Self-test are present. The check report confirms zero banned words and dashes, but reports a 28-word sentence and citations appearing out of order. The Self-test incorrectly states 'Longest sentence: 22 words'.",
+      "score": 1
+    }
+  }
+}

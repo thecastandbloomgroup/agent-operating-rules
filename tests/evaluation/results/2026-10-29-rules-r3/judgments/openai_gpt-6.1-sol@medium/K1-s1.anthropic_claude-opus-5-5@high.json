@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response never classifies any action as Complicated. It declares the attachments unavailable, then labels the work Chaotic, Confused, and Complex. As a result it gives a freeze-first stabiliser and a rollback probe instead of an analysis-first plan that bisects the diff and compares traces before and after the release.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a short reason: \"Chaotic, stabilize first\", \"Confused, gather evidence before classifying the cause\", \"Complex, use a limited probe\".",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complicated, because the cause is knowable by analysis of the attached logs, traces, and diff. No action is labelled Complicated. The response uses Chaotic for Step 1, Confused for Step 2, and Complex for Step 3, so the primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Each form matches its own label: a one-step freeze, an evidence packet, and a probe with budget (\"At most 5% of traffic for five minutes\") and a stop condition. Against the expected Complicated domain, however, Step 1 is a stabiliser that the prompt does not justify, since production is not down. Step 3 is a probe, which the prompt lists under \"should not contain\". Step 2 (\"Collect one matched evidence packet\") is close to analysis-first, but it never names the analysis that picks the fix.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows the trade-off rules for the labels the response gave: Chaotic first, Confused next, then a Complex probe capped by budget. The dependency is stated: \"Step 3 MUST NOT start until Step 2 confirms rollback compatibility.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 are deterministic and use Gherkin tests (\"Given the current release, when rollout pauses, then...\"). Step 3 is stochastic and states the metric, a baseline of 120 ms p95, a pass threshold, and a sample size of \"At least 1,000 completed requests per version\".",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Action 1 is not a literal revert. It is \"Freeze further rollout now\" labelled Chaotic, and Step 3 is a rollback probe. So the response treats the case as an incident that needs a stabiliser and rollback, which is close to the likely wrong answer. It never names Complicated or explains why the cause is knowable by analysis.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks zero questions (\"Questions asked: 0 of 3\"). It proceeds with logged assumptions A1 and A2 instead of asking.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Some uncertainty is calibrated: \"Low confidence in any specific cause, because the release changed three related areas without accessible diagnostic evidence.\" Other driving uncertainties are not: \"The release remains a credible cause\" and \"Its benefit remains unproven\" carry no probability or IPCC term, although the rollback recommendation depends on them.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All sections are present in order, End begins \"I recommend that we\", and the Self-test comes last. The check report shows zero banned words, zero dashes, and no long sentences. Minor defects: the third Headline point (\"No attachments are visible here...\") carries no evidence label, yet the Self-test claims all claims have labels. The Self-test also claims primary or secondary sources behind each driving claim, but most driving claims are labelled [judgment].",
+      "score": 1
+    }
+  }
+}

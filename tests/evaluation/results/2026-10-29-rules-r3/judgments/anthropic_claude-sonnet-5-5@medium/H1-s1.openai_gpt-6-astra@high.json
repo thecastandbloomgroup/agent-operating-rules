@@ -1,0 +1,41 @@
+{
+  "main_defect": "If rollback fails or no recent change exists, the plan moves to diagnosis without another stabiliser. It also omits the required incident-record action.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state a domain, but Step 4 gives only 'Domain: Clear' without a reason. Step 3 provides a reason: 'Log analysis picks the fix.'",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 correctly states 'Domain: Chaotic'. However, Step 3 declares 'Complicated' specifically when 'the Step 1 test fails', without establishing the stabilisation needed for the expected domain change.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Roll back the latest change' supplies the required initial stabiliser, and 'Log analysis picks the fix' names analysis. However, 'If A1 is false, skip Step 1 and start at Step 3' removes stabilisation without providing another stabiliser.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Rollback comes first in the numbered list. However, 'Step 3 MUST NOT start until the Step 1 test fails' advances diagnosis before recovery, and the A1 branch bypasses the stabiliser entirely.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests are present, including 'Given a test order on checkout, When the rollback finishes, Then checkout returns 200'. However, diagnostic analysis is treated as deterministic, while the fixed-content brief is treated as evaluative. Tests also follow the work instructions despite saying 'written first'.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with three logged assumptions and validation steps rather than delaying incident response with questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'A recent change is the most likely cause' supplies no calibrated probability or confidence basis. 'A fixed 100% failure rate points to a change or a failed dependency, not to load' also overstates what the supplied evidence establishes.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required 'I recommend that we' opening, four actions, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, Background exceeds H1's one-sentence limit, and the Self-test incorrectly claims that every test appears before the work.",
+      "score": 1
+    }
+  }
+}

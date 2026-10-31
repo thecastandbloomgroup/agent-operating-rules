@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response supplies a prompt but does not treat it as a measured Complex probe. It omits a labelled evaluation set, hallucination rate, baseline, threshold, sample size, budget, stop condition, and statement that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "No Cynefin domain or domain rationale is stated for the proposed prompt.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The required primary classification, Complex, is missing. \u201cNo prompt guarantees zero hallucinations\u201d acknowledges a limitation but does not classify the work.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\u201cUse this to reduce unsupported answers\u201d presents direct use rather than a safe-to-fail probe with a measure, stop condition, and budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No domain-based action sequence or capped Complex-probe schedule is provided. The response ends after supplying the prompt.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The stochastic acceptance test is missing: no labelled set, hallucination-rate metric, baseline, pass threshold, or sample size.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "\u201cNo prompt guarantees zero hallucinations\u201d avoids promising a complete fix. However, the response does not name Complex or explain why effectiveness requires an empirical probe.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No questions are asked. The material supports providing a starting prompt without clarification or a costly, irreversible assumption.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cUse this to reduce unsupported answers\u201d asserts the benefit without a probability, likelihood term, or confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline and BRIEF sections, the required End opening, three to five actions, and Self-test are missing. The check report finds zero banned words, zero prohibited dashes, and no long sentences.",
+      "score": 0
+    }
+  }
+}

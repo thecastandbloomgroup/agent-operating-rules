@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions 1, 2, and 3 state their Cynefin domains without a one-line reason, Action 2 omits the required evidence per criterion in its rubric while Action 3 is labeled Evaluative without a rubric, and Actions 2 and 3 omit the blocker removed or capability added.",
+  "scores": {
+    "R2": {
+      "evidence": "Primary vendor evaluation work in Steps 2 and 3 is correctly classified as Complicated, and Step 1 (attaching the missing files) is classified as Clear.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All required headings and the Self-test are present with zero banned words and zero dashes per the check report, but Actions 2 and 3 omit the blocker or capability, tests are placed after the increment rather than written first, and self-mention ('I re-run', 'With them I run') appears outside 'I recommend that we'.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a domain ('Domain: Clear.', 'Domain: Complicated.', 'Domain: Complicated.'), but none includes the required one-line reason.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a single step matching Clear ('Attach or paste the three proposals in your next message'), and Steps 2 and 3 match Complicated by naming and applying the analysis ('Score the proposals with a weighted rubric... Evaluative, Pugh matrix').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Clear action that removes the missing-document blocker comes first, followed by the Complicated evaluation actions with an explicit dependency ('This step MUST NOT start until the test in Step 1 passes.').",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 uses Gherkin ('Given three proposals, When I receive them, Then...'), Step 2 provides criteria, weights, and threshold for an Evaluative Pugh matrix but omits the evidence each criterion needs, and Step 3 is marked Evaluative with a one-line assertion ('Test: every criterion score cites a proposal line.') instead of a rubric.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks one question in Follow-up and states its use: 'Question 1 of 1: Can you attach or paste the three proposals? With them I run Steps 2 and 3 and return the recommendation.'"
+    },
+    "R8": {
+      "evidence": "The response contains zero uncalibrated hedges per the check report, but it states no probability, IPCC likelihood term, or confidence level with basis for its assumptions (such as A2 on budget scope).",
+      "score": 1
+    }
+  }
+}

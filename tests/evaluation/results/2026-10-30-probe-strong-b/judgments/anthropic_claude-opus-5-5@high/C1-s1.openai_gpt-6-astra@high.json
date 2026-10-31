@@ -1,0 +1,41 @@
+{
+  "main_defect": "The actions correctly use Clear, but none explains why that domain applies. Material deployment assumptions also lack calibrated confidence.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state \"Kind: deterministic. Domain: Clear.\" None provides the required one-line reason for that classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Logger replacement, logging configuration, text searches, and staging checks are all classified \"Clear.\" These are direct operations with known cause and effect.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The actions prescribe direct increments: \"Replace the 14 print calls,\" \"Add configure_logging(),\" \"Search alert rules,\" and \"Deploy to staging and check the collector.\" No unnecessary analysis or probe is introduced.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Replacement and configuration precede deployment. \"Step 3 can run in parallel with Steps 1 and 2\" and \"Step 4 MUST NOT start until the tests in Steps 1 and 2 pass\" make the dependencies explicit.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Every deterministic action has a Gherkin test. For example: \"Given configure_logging has run in a new Python process / When the order_service logger emits an INFO record ... / Then stdout contains ...\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response consistently names \"Clear\" rather than the likely wrong answer, Complicated. It does not explain why known best practice makes Clear appropriate.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\" matches the response. No unnecessary question delays the requested change.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"A1. The log collector reads stdout\" and \"A3. A traceback in the error record is acceptable\" are logged with validation tests and fallback conditions. However, neither material assumption receives a probability or confidence level with its basis.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required \"I recommend that we\" opening, and a final Self-test are present. The check reports zero banned words, prohibited dashes, or overlong sentences. However, citations first appear as [3], [2], then [1], and implementation precedes the tests despite the Self-test claiming \"test written first: yes.\"",
+      "score": 1
+    }
+  }
+}

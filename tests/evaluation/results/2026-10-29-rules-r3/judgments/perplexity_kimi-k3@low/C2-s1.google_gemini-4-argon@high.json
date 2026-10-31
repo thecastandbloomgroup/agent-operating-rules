@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions lack one-line Cynefin reasons and Gherkin tests written before the work, and the Self-test falsely reports an alternative considered, task-kind classification, and zero self-mentions outside End.",
+  "scores": {
+    "R2": {
+      "evidence": "All three actions are classified as 'Cynefin domain: Clear.', matching the expected Clear domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All three actions are Clear and ordered logically by blocker removal (pasting the input first, formatting second, tagging third).",
+      "score": 2
+    },
+    "R7": {
+      "score": 1,
+      "evidence": "Asks 1 question/request in Follow-up ('1. Paste the plain text of your reference list. I will then format each entry in IEEE style and number them.'), which states a use but violates Expected signals (no questions) and Section 2.1/2.4 because the answer does not change the next action and duplicates Step 1 of End."
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Structure is present with 0 banned words and 0 dashes per check report, but contains unpermitted self-mentions ('I will format them' in Headline, 'I reorder' and 'I tag' in End, 'I will then format' in Follow-up) and a Self-test that falsely claims 'Alternative considered: yes', 'Each action classified (deterministic/evaluative/stochastic) with test written first: yes', and 'Self-mention outside End: 0'."
+    },
+    "R1": {
+      "evidence": "States 'Cynefin domain: Clear.' for all three actions, but omits the required one-line reason for every action.",
+      "score": 1
+    },
+    "R3": {
+      "score": 2,
+      "evidence": "Every action is a single-step instruction matching the Clear domain ('1. Paste the entries.', '2. I reorder each entry...', '3. I tag each entry...')."
+    },
+    "R5": {
+      "score": 1,
+      "evidence": "Tests are present ('Test: the text appears in the chat.', 'Test: each entry matches the IEEE pattern.', 'Test: every line ends with a [P]/[S]/[T]/[U] tag.'), but they are not written in Gherkin form (Given, When, Then), are not written before the work, and do not classify the task kind."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R8": {
+      "score": 2,
+      "evidence": "Check report shows 0 uncalibrated hedges, and no material uncertainty exists in this Clear formatting task."
+    }
+  }
+}

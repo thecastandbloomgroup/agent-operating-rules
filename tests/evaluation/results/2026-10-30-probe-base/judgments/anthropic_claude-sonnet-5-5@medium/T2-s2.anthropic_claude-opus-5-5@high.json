@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Complex probes run in a fixed sequence rather than in parallel. Step 4 has no budget or stop condition. The response never says that leverage is a guess. Its one probability statement inverts its own Background claim, and the Self-test reports 22 words as the longest sentence, while the script found 33.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step states a domain: 'Domain: Clear' (Step 1) and 'Domain: Complex' (Steps 2, 3, 4). No step gives a one-line reason for its domain. 'so run it as a capped probe' states a consequence, not a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action is correct: Step 3 (the prompt) is 'Domain: Complex'. Step 1 test-set build as Clear is plausible. Step 2, a baseline measurement with no intervention, is labelled 'Complex, so run it as a capped probe', which misapplies the probe domain to a standard measurement.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is one step, which fits Clear. Step 2 has a budget: '90 runs, stop at one working session'. Step 3 has 'same cap' plus a threshold. Step 4 says only 'Domain: Complex' with 'same metric, same 90 runs' and no budget or stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Clear test set comes first, which reduces the probe's uncertainty and is allowed. The Complex probes are then chained serially: 'Step 4 MUST NOT start until Step 3 passes or fails.' The rules ask for parallel, capped probes. The response never states that leverage is a guess.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 is deterministic with a Gherkin test: 'Given a question list, When we check each row, Then...'. Step 3 is stochastic with a metric ('share of claims without source support'), a baseline (Step 2), a threshold ('at most half of the baseline', '9 of the 10 unanswerable'), and a sample size (90 runs). Step 4 uses the same metric and sample, with the threshold 'below the Step 3 result'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the likely wrong answer of a prompt as the final fix. It says 'No single prompt stops hallucination' and 'A prompt changes the guess rate. It does not remove it.' It gives the prompt and puts it inside a Complex probe with a measure. The Headline still overclaims: 'cuts it most'.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' Unknowns are logged as A1 and A2, each with a validation test and an 'If wrong' impact.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'medium confidence, three papers, none run on your model or task' is calibrated. However, 'A prompt alone cannot remove all errors: very unlikely (0 to 10%)' inverts the response's own claim. The Headline 'cuts it most' is an uncalibrated superlative. The response never says that leverage is a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, and Self-test last. The script found 0 banned words and 0 dashes. The script found one 33-word sentence ('Test: accept only if the unsupported-claim rate...'), but the Self-test claims 'Longest sentence: 22 words' and 'Complex as capped probes: yes', while Step 4 has no cap. The Self-test is therefore inconsistent with the response.",
+      "score": 1
+    }
+  }
+}

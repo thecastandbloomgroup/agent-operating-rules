@@ -1,0 +1,41 @@
+{
+  "main_defect": "Misclassifies the primary retrospective intervention as Clear and Complicated based on a single assumed root cause (decision friction) instead of running parallel Complex probes on the retrospective format itself.",
+  "scores": {
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R2": {
+      "evidence": "Classifies the primary retrospective changes (Steps 1, 2, and 3, including capping active items at two) as 'Cynefin: Clear' and 'Cynefin: Complicated' rather than Complex probes, reserving 'Cynefin: Complex' only for the downstream experiment selected in Step 4.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Places Clear (Steps 1 and 2) before Complicated (Step 3) and states 'Step 4 runs in parallel with Steps 1 to 3', but contradicts this parallel ordering by stating in Step 4: 'Increment: choose the top scoring item from Step 3'.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 (deterministic) use Gherkin ('Given... when... then...'); Step 3 (evaluative) uses a weighted rubric with criteria, threshold ('70 of 100'), and evidence; Step 4 (stochastic) states the metric, baseline ('prior two cycles'), pass threshold ('20% improvement'), and sample size ('two cycles').",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Asks zero questions ('Questions asked: 0 of 3') and logs three assumptions (A1 to A3) to proceed without asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uses the IPCC likelihood term 'likely' on the main uncertain diagnosis ('The failure mode is likely decision friction') and has zero uncalibrated hedges in the check report.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Check report shows four sentences exceeding the 25-word limit (28, 29, 28, and 29 words), contradicting the Self-test claim 'Longest sentence: 24 words'.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin: Clear', 'Cynefin: Complicated', 'Cynefin: Complex'), but Steps 1, 2, and 3 omit the one-line reason for the classification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 and 2 are one-step Clear actions, Step 3 is an analysis-first Complicated action (though weights 40%, 20%, 20%, and 10% sum to 90%), and Step 4 has a probe budget and stop condition, but the response fails to structure the retrospective changes themselves as parallel probes and Step 4's dependency on Step 3 contradicts running in parallel.",
+      "score": 1
+    }
+  }
+}

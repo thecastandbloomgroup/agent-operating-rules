@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 1 rolls back the release with a Chaotic label, although the prompt does not say production is down. This is the stated likely wrong answer, and it commits a fix before the Complicated analysis of the diff and traces.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step has a 'Cynefin domain:' line. Step 3 says 'Cynefin domain: Deterministic.' and Step 4 says 'Cynefin domain: Stochastic.', which are task kinds, not Cynefin domains. No step gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complicated. The Headline and Step 1 frame the work as Chaotic: 'Roll back the release immediately' and 'Cynefin domain: Chaotic.' Only Step 2 is labelled 'Complicated', and Steps 3 and 4 have invalid labels.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 commits a fix (rollback) before any analysis, which the prompt says to deduct under R3. Step 2 is analysis-first ('Compare database spans and cache spans'), and Step 3 depends on it ('MUST NOT start until Step 2 identifies the primary suspect component'). So the form mostly matches after Step 1.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order is consistent with the response's own Chaotic label, but it puts the rollback ahead of the analysis that the Complicated domain needs first. Steps 2 to 4 follow with correct dependency clauses.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 2 has a Kepner-Tregoe rubric with weights, a threshold, and the evidence it needs. Step 4 states the metric, baseline, threshold, and sample size ('10,000 HTTP requests'). Steps 1 and 3 are labelled deterministic, but their tests measure latency, which varies from run to run ('p95 latency drops below 150 ms', 'increases above 500 ms under synthetic load'). They use Gherkin with no sample size, so the kind is wrong.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer: 'Step 1: Roll back the deployment to the prior release artifact.' It is labelled Chaotic, and A2 only assumes that production traffic is affected. It never names Complicated as the real domain for the situation.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Two questions are asked, each with a stated use ('I will use this answer to...'). Question 2 (schema migrations) changes Step 1, but the response still recommends the rollback. This conflicts with Section 2.4, and the response does not log it as an assumption instead. The questions also ask for data that the attached logs and traces are meant to hold.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The check report finds no uncalibrated hedges. However, no probability or IPCC term appears where the recommendation depends on uncertain facts, such as which component caused the regression or whether production users are affected (A2). The user-supplied numbers are labelled '[judgment]' instead of being cited to the prompt.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The Headline comes first, End begins 'I recommend that we', and the Self-test is last. The check report finds zero banned words and zero dashes. Defects: the self-test claims 'Each action given a Cynefin domain... yes', but Steps 3 and 4 have non-Cynefin labels. 'References' is a separate heading outside Follow-up. Follow-up uses 'I will use this answer' outside End. Reference [2] (a magazine article) is tagged [P].",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Expected classification is Complex with two or three parallel probes, each measured; the response frames the core problem as Clear/Complicated process fixes with a single Complex probe, so the primary domain and probe-parallelism are only partly met. Secondary defects: four sentences exceed the length limit and the Self-test reports a longest sentence of 24 words while the check report shows 29.",
+  "scores": {
+    "R1": {
+      "evidence": "A domain is stated for all four actions (\"Cynefin: Clear\", \"Cynefin: Complicated\", \"Cynefin: Complex\"), but only Step 4 gives a reason: \"leverage is a guess, so keep the probe capped.\" Steps 1 to 3 state the domain with no one-line reason, which the score of 2 requires for every action.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The prompt expects Complex as the primary domain (human system, many interacting causes, probes in parallel). The response correctly tags the exploratory part as Complex (\"Cynefin: Complex ... unknown cause and effect\") but anchors the plan in Clear closing rules and a Complicated rubric, treating process mechanics as best practice rather than running multiple probes. Right that Complex applies, wrong to make the primary domain Clear.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action's form matches its stated domain: Steps 1 and 2 are one-step Clear actions, Step 3 is analysis-first for Complicated (rubric applied before selection), and Step 4 is a safe-to-fail probe with \"budget is one 30 minute check per week\" and a stop condition. However, versus the prompt's expected form, there is only one probe, not two or three in parallel.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "\"Step 4 runs in parallel with Steps 1 to 3\" and the Complex probe is capped by its budget, matching the trade-off rules: Clear actions first by leverage, Complicated next, Complex probe parallel and not ranked. Minor hidden dependency: the probe needs Step 3's chosen item, but the stated sequencing complies.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Tests match task kind: Steps 1 and 2 use Gherkin (\"Given ... when ... then\") written first; Step 3 uses a rubric with criteria, weights, pass threshold (\"at or above 70 of 100\") and required evidence; Step 4 states metric, baseline (\"prior two cycles\"), threshold (\"20% improvement\"), and sample size (\"two cycles\"). Minor: the rubric weights sum to 90, not 100, and a two-cycle sample is weak, but the required test forms are present and written first.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply: the input states \"R6 applies: no\" and there is no Likely wrong answer line.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions (\"Questions asked: 0 of 3\"). The model proceeded on three logged assumptions instead of asking the user to diagnose the cause, which Section 2 permits and the prompt's expected signals prefer.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertainty uses calibrated forms: \"likely decision friction\" uses an IPCC likelihood term, complex-work leverage is marked as a guess (\"leverage is a guess, so keep the probe capped\"), and unsupported claims carry [judgment] labels. The check report finds no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline first, BRIEF sections in order, End begins \"I recommend that we\", Self-test last. Check report: zero banned words, zero dashes. Defects: four sentences of 28 to 29 words exceed the instruction and description limits, and the Self-test is internally inconsistent, reporting \"Longest sentence: 24 words\" while the report shows 29. The Cucumber reference entry also lacks author and year.",
+      "score": 1
+    }
+  }
+}

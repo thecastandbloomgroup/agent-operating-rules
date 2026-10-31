@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats the missing error record as a Confused classification problem rather than starting with a capped Complex probe that creates the measure.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Step 1 explains, 'we cannot classify the problem without error types,' and Step 3 names an analysis. Steps 2 and 4 lack a one-line explanation of why their domains apply.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The initial measure-building action is classified 'Confused,' followed by a 'Complicated' baseline action. The primary problem is Complex: effects must be learned through measured probes, not classified from missing metrics alone.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 4 supplies a measure, 'Budget: one working day,' and 'Stop condition: no drop after two prompt versions.' However, the initial measure-building action is committed work rather than the required capped, safe-to-fail probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Run Step 4 in parallel with Step 2' conflicts with Step 4 needing the Step 3 baseline. Step 3 explicitly cannot start until Step 2 passes and Step 1 finishes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 2 supplies Gherkin, and Step 4 specifies a 30% relative improvement at 100 tickets. However, Step 1's weighted error categories lack an evaluative scoring method, and Step 3 passes merely when the baseline is recorded.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'Label a sample of errors' creates the missing record rather than pretending failures are already documented. However, it calls this work 'Confused' and reserves 'Complex' for the later prompt probe without explaining the real primary domain.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds through reversible checks and logs assumptions about access, error meaning, and review capacity.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'At moderate confidence, because no sample has been read yet' provides calibration, and 'Leverage is a guess' acknowledges uncertainty. However, 'the most likely fix' and 'the most likely cause of wrong details' lack corresponding calibration or supporting observations.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, four actions, and a final Self-test are present. The check report finds zero banned terms, zero prohibited dashes, and no long sentences. However, the Self-test claims primary or secondary support behind every driving claim while Information explicitly says the prompt-change claim has only tertiary-level support and '[no source]'.",
+      "score": 1
+    }
+  }
+}

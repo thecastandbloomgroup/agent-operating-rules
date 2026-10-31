@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response substitutes preparation for the requested work. It classifies authentication as Complicated but never defines a Complex conversion probe with a budget, stop condition, acceptance threshold, and sample size.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions name domains. Steps 1 and 2 give reasons, including \u201ccompare current behavior with required client and security behavior.\u201d Step 3 states only \u201cDomain: Clear,\u201d without a domain reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The authentication actions correctly state \u201cDomain: Complicated.\u201d However, the conversion track stops at \u201cEstablish the sign-up baseline\u201d classified as Clear; it never identifies conversion improvement itself as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The authentication actions name analysis: \u201ccompare current behavior\u201d and \u201cuse the contract to select regression and token-validation cases.\u201d The conversion work lacks the required safe-to-fail probe, budget, and stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The stated actions have appropriate dependencies: \u201cCreate the migration safety tests after Step 1 passes,\u201d establish the baseline \u201cin parallel with Steps 1 and 2,\u201d and choose a conversion change \u201conly after this measurement passes.\u201d",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The migration actions provide Given/When/Then tests. Conversion supplies \u201ccompleted accounts divided by sign-up starts,\u201d but no stochastic acceptance test with a baseline value, pass threshold, and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "\u201cTreat sign-up conversion as a separate, measured change\u201d avoids merging the two requests, and authentication is correctly Complicated. However, the response never names or explains the Complex domain for conversion improvement.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Two questions each state their use: \u201cThe answer determines the code patch and rollout controls\u201d and \u201cThe answer determines token transport and revocation design.\u201d",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response exposes assumptions through \u201cWhy not measured,\u201d \u201cValidate by,\u201d and \u201cIf wrong,\u201d and gives conditional changes in Follow-up. However, it supplies no probability, IPCC likelihood term, or confidence level with a basis for material uncertainty.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required \u201cI recommend that we\u201d opening, three actions, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no long sentences, but reports a Flesch-Kincaid grade of 10.6, above the limit. Both cited RFCs are actually listed with source tags despite the script's reference-parsing failure.",
+      "score": 1
+    }
+  }
+}

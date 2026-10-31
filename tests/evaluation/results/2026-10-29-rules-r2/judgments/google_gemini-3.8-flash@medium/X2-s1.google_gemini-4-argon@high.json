@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats a Complex human-systems problem primarily as a sequential Clear/Complicated plan based on an assumed root cause rather than running multiple parallel safe-to-fail probes.",
+  "scores": {
+    "R3": {
+      "evidence": "Actions 1 to 3 match their stated Clear and Complicated domains, and Action 4 is a Complex probe with a metric and two-sprint budget, but Action 4 omits a stop condition and fails to state that leverage is a guess per 6.5.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Follows ordering rules for the stated domains: Clear and Complicated steps (1 to 3) are ordered sequentially, and the Complex probe (Step 4) runs in parallel with Step 3 and is capped at two sprint cycles.",
+      "score": 2
+    },
+    "R5": {
+      "score": 2,
+      "evidence": "All four actions include the required test form for their stated kind: an evaluative Kepner-Tregoe rubric with weights and threshold (Action 1), deterministic Gherkin tests (Actions 2 and 3), and a stochastic metric with baseline, threshold, and sample size of two sprint trials (Action 4)."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R8": {
+      "evidence": "Includes a quantitative estimate ('fail to complete them 80% of the time [judgment]') but uses uncalibrated terms like 'usually stems from' and 'complete it more reliably' without an IPCC likelihood term, probability, or confidence level with basis.",
+      "score": 1
+    },
+    "R1": {
+      "score": 2,
+      "evidence": "All four actions state a Cynefin domain with a one-line reason (Action 1: Clear; Action 2: Complicated; Action 3: Clear; Action 4: Complex)."
+    },
+    "R2": {
+      "evidence": "Misclassifies the primary problem as a sequential Clear and Complicated workflow (Actions 1, 2, and 3) driven by a diagnosed root cause ('accountability as the central driver'), with only Action 4 classified as Complex, and rejects facilitator rotation in Alternative Considered instead of running parallel probes.",
+      "score": 0
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks 0 questions, logs 2 assumptions (A1 and A2) with validation tests, and does not ask the user to diagnose the problem."
+    },
+    "R9": {
+      "evidence": "Includes all required sections, zero banned words, and zero dashes, but has minor rule defects: Flesch-Kincaid grade is 10.1 (over the 10.0 maximum), line 22 carries more than one citation ('[2]' appears twice in the same paragraph), and tests are written after the increment despite the self-test claiming 'test written first: yes'.",
+      "score": 1
+    }
+  }
+}

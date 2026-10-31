@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents one exact grounding prompt as the answer and labels it Clear. The task is Complex, so the response gives the likely wrong answer and runs the only probe last instead of in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action states a domain: 'Cynefin domain: Clear.', 'Cynefin domain: Complicated.', 'Cynefin domain: Complex.' No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action, 'Replace the current system message with this exact template', is labelled 'Clear'. The expected primary domain is Complex because prompt effects on hallucination show only after trials. The response is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 1 commits the full increment ('Deploy a strict ground-and-abstain prompt template') and uses a one-step form with a Gherkin test on varying LLM output, which contradicts a Complex domain. Action 2 is labelled Complicated but names no analysis that picks the practice. Only Action 3 has a measure and a budget ('Budget: 50 API calls maximum'), and it has no stop condition.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The order is Clear, then Complicated, then the Complex probe last ('3. Run an automated verification probe'). The response does not say to run the probe in parallel. It also never states that leverage is a guess. The probe is capped, so this is a misorder, not a total disregard of the domain.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Action 3 has a full stochastic test: 'Metric: Hallucination rate', 'Baseline: 30%', 'Pass threshold: 0%', 'fifty trials'. Action 1 uses Gherkin ('Then the response equals...') for LLM output, which is stochastic, so the test kind is wrong. Action 2 uses a rubric on only five runs of variable output.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The Headline partly refuses the premise: 'No prompt stops hallucinations completely'. However, Step 1 still gives 'this exact template' as the deployable answer and labels it Clear. The response never names Complex as the real domain of the task.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "There are two questions, and each states a use ('I will tailor formatting constraints', 'I will adjust between local grounding and retrieval steps'). Question 2 duplicates A1, and the recommendation depends on its answer, which conflicts with 2.4. Neither question shows that a wrong guess is costly to reverse.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response states 'drops false statements significantly [inference]' and 'error rates between 15% and 30% [inference]', and uses a 30% baseline with no source. It gives no probability, no IPCC term, and no confidence level with a basis where the recommendation depends on the effect of the prompt.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "All headings and the End opening 'I recommend that we' are present, and there are zero dashes. The check report finds one banned word ('significantly') and one 26-word sentence, but the Self-test claims 'Banned words found: 0' and 'Longest sentence: 24 words', so the Self-test is inconsistent. Follow-up has self-mention outside End ('I will tailor', 'I will adjust').",
+      "score": 1
+    }
+  }
+}

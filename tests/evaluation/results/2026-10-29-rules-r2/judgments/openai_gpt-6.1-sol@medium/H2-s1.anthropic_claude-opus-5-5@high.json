@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response classifies the remaining work as Complicated and Clear instead of Complex. So it gives no safe-to-fail probes with stop conditions or budgets, and it includes a drafted public holding statement in Step 3.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names its domain with a short reason. Step 1: \"Domain: Chaotic, stabilize first.\" Step 2: \"Domain: Complicated, use source comparison to identify factual conflicts.\" Step 3: \"Domain: Clear, apply the agreed approval path.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary action is right: Step 1 is Chaotic, as expected. The secondary actions are wrong. Step 2 is marked Complicated and Step 3 is marked Clear, but the expected classification after action 1 is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a proper stabiliser: one lead, one channel, routing, preservation. Step 2 names its analysis (source comparison). However, no action is a probe with a measure, stop condition, and budget. Step 3 commits a drafted public statement (\"We are reviewing the statement and the underlying records. We will provide an update by [time and time zone].\"), which the expected signals exclude.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic Step 1 comes first. Steps 2 and 3 follow in dependency order (\"Step 3 MUST NOT publish substantive conclusions until Step 2 supports them\"). The order is consistent with the response's own classifications. No Complex probes exist to run in parallel.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All three tests are in Gherkin form. However, Step 3 asks the team to \"choose the response supported by the records: correct an error, clarify an incomplete statement, or substantiate an accurate statement.\" That is an evaluative choice between options, and it needs a rubric with weights and a threshold. The response labels it \"Deterministic communication task\" instead.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks zero questions (\"Questions asked: 0 of 3\"). It proceeds on logged assumption A1, which is acceptable under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, the recommendation depends on whether the statement was false, and the response only says \"The material here does not establish whether the statement was false.\" It gives no probability, IPCC term, or confidence level with a basis.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF, End starting \"I recommend that we\", and Self-test last. The check report shows zero banned words and zero dashes. One sentence has 31 words (\"You report that a journalist calls yesterday's CEO statement false...\"), which exceeds the 25-word limit. The Self-test claims \"Longest sentence: 25 words\", so it is inconsistent with the response. The check report also flags citation [1] as having no reference list entry.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions after initial stabilisation are classified as Complicated rather than Complex (missing safe-to-fail probes with budgets and stop conditions), domains lack one-line reasons, and material uncertainty is stated as 'high uncertainty' instead of a calibrated 4.6 form.",
+  "scores": {
+    "R2": {
+      "evidence": "Steps 1 and 2 are correctly classified as Chaotic (communications hold and triage for single decision authority), but Steps 3 and 4 are classified as Complicated rather than Complex.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 are classified as Deterministic with Gherkin (Given/When/Then) tests written before the action, and Step 3 is classified as Evaluative with a Kepner-Tregoe rubric stating criteria, weights, pass threshold, and required evidence.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero banned hedges appear in the check report, but the response writes 'We evaluate the situation under high uncertainty because the article's factual accuracy is not yet confirmed [judgment]' without using a probability, IPCC term, or confidence level with basis per Section 4.6.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings and BRIEF sections are present, End starts with 'I recommend that we', the check report confirms 0 banned words, 0 dashes, max sentence length of 22 words, FK grade 9.2, and properly tagged citations.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a domain label ('Step 1 (Chaotic domain)', 'Step 2 (Chaotic domain)', 'Step 3 (Complicated domain)', 'Step 4 (Complicated domain)'), but none includes a one-line reason for the classification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 and 2 act as stabilisers (communications hold and triage meeting) matching Chaotic, and Step 3 is an analysis matching Complicated, but the response lacks safe-to-fail Complex probes with budgets and stop conditions and instead commits in Step 4 to 'Release the approved statement through the designated spokesperson.'",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic actions (Steps 1 and 2) are placed first, followed by Complicated actions (Steps 3 and 4) in dependency order with explicit 'MUST NOT start until' clauses.",
+      "score": 2
+    },
+    "R6": {
+      "score": null,
+      "evidence": "R6 does not apply to Prompt H2."
+    },
+    "R7": {
+      "evidence": "Two open questions are asked in Follow-up, each stating its use ('PR will use the answer to select the appropriate response channel' and 'Legal will use the answer to choose between a retraction request and a corrective statement').",
+      "score": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The prompt-change action lacks an explicit stop condition, so it is not a complete safe-to-fail probe. The initial rubric also tests labelling coverage rather than the quality of the judgments.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 to 3 give domain explanations, including \"the dominant error type is a probe outcome\". Step 4 states only \"Domain: Clear\", without a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The measurement probe and prompt trial are classified as Complex. The repeatable counting script and report-button implementation are classified as Clear, consistent with their specified fixed behavior.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 supplies \"Budget: 2 agent-hours\" and a retrieval-based stop condition. Step 3 limits trials to \"one run per day\" but supplies no explicit stop condition for the Complex probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Step 2 MUST NOT start before 30 tickets from Step 1 carry two complete labels\" and \"Step 3 MUST NOT start before the Step 2 script passes\" establish necessary dependencies. Step 4 \"runs in parallel with Step 3\", whose trial rate is capped.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 2 and 4 use Gherkin, and Step 3 specifies a baseline, a halved-error threshold, and \"n = 30\". However, Step 1's rubric passes when \"labelling covers 50 pairs\", without defining judgment scores or using a required evaluative layout.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The first action creates the missing record: \"Label 50 recent summaries\". It explains \"Domain: Complex; the dominant error type is a probe outcome, so leverage is a guess\", rather than assuming recorded failures already exist.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Open questions: none; the assumption log covers the unknowns.\" Assumptions A1 to A3 provide validation steps, allowing reversible measurement work to proceed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence: medium; no measurement exists yet, and the taxonomy is untested\" gives a confidence level with its basis. \"Leverage is a guess\" also acknowledges uncertain probe value.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, and Self-test are present. However, References follows Self-test. The check report finds a 35-word sentence, contradicting \"Longest sentence: 24 words\", and citations appear out of order. It reports zero banned words and zero prohibited dashes.",
+      "score": 1
+    }
+  }
+}

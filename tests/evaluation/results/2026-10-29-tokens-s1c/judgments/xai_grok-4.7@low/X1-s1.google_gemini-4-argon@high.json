@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response omits explicit task-kind labels (deterministic, evaluative, stochastic) on the actions while claiming 'yes' in the Self-test, and uses an extra top-level 'References' heading not listed in Section 3.3.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states its Cynefin domain and reason: 'Step 1. Domain: Confused. This step gathers the facts that classify the work.', 'Step 2. Domain: Complicated. The score split picks the later fix.', 'Step 3. Domain: Clear.' (defined above as 'Clear means a known practice applies'), and 'Step 4. Domain: Complex. Leverage is a guess.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The prompt improvement is rightly classified as Complex ('Step 4. Domain: Complex. Leverage is a guess.'), preceded by Confused to classify the unknown errors (Step 1), Complicated to score the baseline rubric (Step 2), and Clear to log fields (Step 3).",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Test forms match each task kind: evaluative rubrics with weights, thresholds, and evidence in Steps 1 and 2; deterministic Gherkin ('Given... When... Then...') in Step 3; and stochastic metric, baseline, threshold ('at least 0.05 higher'), and sample size ('the same 40 cases, one run each') in Step 4.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Avoided assuming failures were already recorded or jumping straight to a prompt rewrite: 'No error count exists, so a new prompt cannot be scored as better or worse.' Starts by building a labeled sample and logging, and treats the prompt change as a Complex probe.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uses a confidence level with basis and an IPCC likelihood term with probability range: 'Confidence is low, because no labeled sample exists. A prompt change with no labels is about as likely as not (33 to 66%) to reduce the main error. [judgment]'",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Zero banned words, zero dashes, and max sentence length 24 words per check report. Minor defects: the Self-test claims 'Each action classified (deterministic/evaluative/stochastic) with test written first: yes', but those three classification labels do not appear in the text; also adds a separate 'References' heading outside the Section 3.3 heading list.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Every action form matches its domain: Step 1 (Confused) gathers facts to classify; Step 2 (Complicated) runs the scoring analysis; Step 3 (Clear) is a one-step logging change; Step 4 (Complex) is a safe-to-fail probe with a budget ('one session and two variants'), metric, stop condition ('Stop if the mean does not rise by 0.05'), and 'Leverage is a guess.'",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Follows 6.5 ordering rules: Step 1 (Confused) comes first, followed by Step 2 (Complicated) and Step 3 (Clear, in parallel) to build the baseline and reduce uncertainty before Step 4 (Complex probe, capped by budget).",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Asked 0 questions and logged 4 assumptions (A1 to A4) in the required four-field format.",
+      "score": 2
+    }
+  }
+}

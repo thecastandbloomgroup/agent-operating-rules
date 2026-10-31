@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives one prompt as the answer: the likely wrong answer. It omits all required structure, Cynefin domains, probes, and tests.",
+  "scores": {
+    "R1": {
+      "evidence": "No action carries a domain. The response is one prompt in a code block, with no actions and no Cynefin labels.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The expected domain is Complex. The response never names a domain and treats the task as Clear with one best answer: 'Prioritize accuracy over completeness...' presented as the fix.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "There is no safe-to-fail probe, measure, stop condition, or budget. The single prompt is a one-step best practice, which contradicts the Complex domain.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There are no ordered actions, no parallel capped probes, and no statement that leverage is a guess.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No test is present. The response has no labelled set, hallucination rate, baseline, threshold, or sample size.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer, a single prompt: 'Prioritize accuracy over completeness. Acknowledge uncertainty instead of filling gaps...' It does not reject the premise that one best prompt exists.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "The response asks no questions. That fits Section 2, because a wrong guess here is cheap to reverse and assuming is allowed. It also logs no assumptions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The only uncertainty statement is 'they do not guarantee accuracy'. It gives no probability, IPCC term, or confidence with a basis about how much the prompt reduces hallucination, and the recommendation depends on that.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The response has no Headline, Background, Relevance, Information, End ('I recommend that we'), Follow-up, or Self-test. The check report shows zero banned words and zero dashes, but the whole structure is missing.",
+      "score": 0
+    }
+  }
+}

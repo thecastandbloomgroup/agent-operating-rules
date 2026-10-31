@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies a Complicated diagnosis as Chaotic and orders a production-wide rollback before analysis, despite no stated outage.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains: Chaotic, Complicated, Complicated, and Complex. Reasons appear in the surrounding text: 'stabilization comes before analysis,' a 'scored choice,' removing 'confounds,' and causal claims remaining 'unproven.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "'Step 1, stabilize ... domain: Chaotic' misclassifies the primary task. The cause is knowable through trace comparison and diff analysis, making it Complicated. 'Step 4 ... domain: Complex' also incorrectly treats fix verification as emergent causality.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'Increment: revert the release ... on all instances' commits a fix before diagnosis. The required first action is analysis, not stabilization without an established outage. Step 4 additionally introduces an unnecessary 'safe-to-fail probe.'",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'Steps 2 to 4 MUST NOT start until Step 1 passes its test' blocks diagnosis behind the unjustified rollback. The action labeled Complex also runs serially after Step 3 rather than as a parallel capped probe.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Tests are present, but Step 1 labels itself stochastic while using 'Given ... When ... Then' without a defined sample size. Step 3 labels variable load-test latency deterministic. Step 2 supplies weights and a threshold but no Kepner-Tregoe or Pugh scoring against evidence. Tests follow the increments rather than preceding them.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'Roll back the release first to restore latency' gives the explicitly identified likely wrong answer. The response calls the latency increase a 'service-level failure' without evidence establishing an outage or a need for Chaotic stabilization.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' No clarification is needed before recommending analysis of the supplied material. A1 to A3 record information gaps and validation steps instead of asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'I rate this likely, 66 to 100%' calibrates the proposed cause location. However, the rollback depends on uncalibrated claims that the increase constitutes a 'service-level failure' and that reverting will restore latency. The response does not establish rollback safety or confidence in that outcome.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, 'I recommend that we,' and a final Self-test are present. The check report records zero banned words and zero prohibited dashes, but five overlength sentences, including one of 41 words. This contradicts 'Longest sentence: 24 words.' The Self-test also incorrectly claims that every test is written first.",
+      "score": 1
+    }
+  }
+}

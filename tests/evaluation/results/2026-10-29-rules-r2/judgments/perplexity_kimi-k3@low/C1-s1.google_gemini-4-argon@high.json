@@ -1,0 +1,41 @@
+{
+  "main_defect": "Classified Step 1 as Confused instead of keeping all actions Clear, omitted one-line domain reasons for the Clear actions, and included a 29-word sentence and self-mentions ('I') outside the permitted phrase.",
+  "scores": {
+    "R6": {
+      "evidence": "Avoided the likely wrong answer (Complicated) and named Clear for Steps 2 to 4, but did not give a reason on the Clear actions and misclassified Step 1 as Confused.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked 1 question/request in Follow-up ('1. Paste the file so I can return the converted version. I will apply Steps 2 to 4 to whatever you send.') with stated use, even though A1 notes 'If wrong: the recommendation is unchanged' and the prompt expects no questions.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full BRIEF and Self-test structure present with 0 banned words and 0 dashes, but sentence 5 has 29 words (Self-test claims 'Longest sentence: 24 words'), Headline has only two sentences instead of a decision plus two to four sentence-length supporting points, and first-person 'I' appears in Headline, End tests, and Follow-up.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a domain, but only Step 1 includes a reason ('Domain: Confused, because the edit cannot be classified line by line until the code is visible.'); Steps 2, 3, and 4 state only 'Cynefin domain: Clear.' without a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Correctly classified the primary conversion steps (Steps 2, 3, and 4) as Clear, but misclassified Step 1 as Confused ('Domain: Confused, because the edit cannot be classified line by line until the code is visible.') despite stating in the Headline that 'the conversion pattern is fixed'.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 matches its stated Confused domain by gathering input first, and Steps 2 to 4 match the Clear domain as one-step deterministic actions.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Placed the Confused action first ('Step 2 MUST NOT start until Step 1 is done.') followed by the Clear actions ordered by leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions are tagged 'Kind: deterministic' and each provides a Gherkin test ('Given ..., When ..., Then ...').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges in the check report; no uncertain facts drive the recommendation.",
+      "score": 2
+    }
+  }
+}

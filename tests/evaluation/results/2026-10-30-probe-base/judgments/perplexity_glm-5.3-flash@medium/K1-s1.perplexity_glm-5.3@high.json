@@ -1,0 +1,41 @@
+{
+  "main_defect": "Citation mechanics (out-of-order numbering, multiple citations on a line), one 26-word sentence, and a self-test line that claims 24 words; no calibrated probability for the OPS-412 assumption that the recommendation depends on",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain and a reason: Step 1 'Cynefin domain: Complicated, because the capacity analysis picks the value'; Step 2 'Cynefin domain: Clear, one config step'; Step 3 'Cynefin domain: Clear'; Step 4 'Cynefin domain: Clear'.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Primary domain is Complicated and correct: the response performs the analysis itself on the attached data (pool acquire p95 3 ms to 690 ms, pool warnings none to 1,800 to 2,400 per hour, DB CPU flat), so the fix of the named cause comes first, which the expected signals permit. Secondary Clear actions (config restore, test addition) are correctly Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Information section names the cause with numbers before the fix, satisfying the Complicated form. Clear actions are one-step config or test changes. No probe is proposed, matching the prompt's instruction that probing is waste. The likely wrong answer (revert the release as action 1 without analysis) is avoided.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions. The Complicated fix (highest leverage, the cause) is first, then Clear actions by leverage, with explicit dependencies: 'Step 3 MUST NOT start before the Step 1 test passes' and 'Steps 1 and 2 ship together. Step 4 has no dependency and can run in parallel.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 use Gherkin (Given, When, Then) with named metrics; Step 3 is a stochastic acceptance test with metric, baseline, threshold, and sample size: 'metric is cache miss rate, baseline 12%, pass threshold at or below 15%, sample size 30 minutes at about 400 rps.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Names the real domain (Complicated) with reasons grounded in the attached numbers, and explicitly rejects the wrong answer: 'Revert the selectinload change as a suspected N+1 query. It loses: the order_lines query p95 fell from 30 ms to 26 ms, and pool acquire, not queries, carries 77% of the added latency.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions asked, and the response states the reason: 'No open questions; the material contained the needed evidence.' The material does answer the request, so zero is the correct count under the rubric.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on the OPS-412 limit (A1), an uncertain fact, but the response states no probability, IPCC term, or confidence level with basis. It handles the uncertainty only through the assumption log and the Section 6.8 condition ('if A1 is false, replace Steps 1 and 2 with a measured small pool plus PgBouncer'), which is a hedge but not calibrated under 4.6.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, End begins 'I recommend that we', Self-test last, four actions each with increment, blocker, test, and domain, zero banned words and zero dashes per the check report. However the check report flags one 26-word sentence against the 25-word description limit, citations out of order ([3] appears before [1]), and four lines carrying more than one citation, and the Self-test claims 'Longest sentence: 24 words' which contradicts the check report's 26. These are minor defects.",
+      "score": 1
+    }
+  }
+}

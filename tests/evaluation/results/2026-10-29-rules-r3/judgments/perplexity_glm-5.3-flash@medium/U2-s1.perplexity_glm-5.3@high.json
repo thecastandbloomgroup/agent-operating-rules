@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response classifies the prompt as Confused, asks for the material, and builds a proper audit plan, but it contains three sentences over the 25-word limit (up to 60 words) and its self-test falsely reports the longest sentence as 24 words, which is internally inconsistent.",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are stated for all four actions, but the one-line reason is missing on one. Step 1: 'Cynefin: Confused, because this step gathers what is needed to classify the error' (reason present). Step 2: 'Cynefin: Clear, apply arithmetic' (reason present). Step 3: 'Cynefin: Clear' (no reason). Step 4: 'Cynefin: Complicated, analysis picks the fix' (reason present). Three of four carry reasons, so not every action has one.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected classification is Confused, and the first action is Confused: 'Cynefin: Confused, because this step gathers what is needed to classify the error'. The follow-on domains are also correct: recompute totals as Clear, definition comparison as Clear, and cause classification as Complicated with analysis ('rubric first: criteria are data entry, formula, definition, and system sync').",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action's form matches its stated domain. The Confused action gathers what is needed to classify ('this step gathers what is needed to classify the error'). The Clear actions are one-step arithmetic and definition checks ('Recompute every total from its line items'; 'Compare period growth and margin definitions'). The Complicated action names the analysis that picks the fix (weighted rubric over four cause categories). The expected first action, recomputing headline figures from source and diff, appears as Step 2, gated on Step 1, which is defensible since no report exists in the session.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Ordering follows 6.5: the Confused action is first, the Clear and Complicated actions follow in leverage order (recompute totals before definition comparison before source trace), and explicit dependency clauses are present: 'Step 2 MUST NOT start until Step 1 completes' and 'Step 4 MUST NOT start until Steps 2 or 3 confirm at least one discrepancy'.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Tests match the task kinds. Steps 1 to 3 are deterministic with Gherkin: 'Given the line items in Q3, When I sum them per stated total, Then each recomputed total equals the reported total'. Step 4 is evaluative with a rubric: 'criteria are data entry, formula, definition, and system sync, weighted equally, pass threshold is one cause with two supporting evidence points'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions, each with its use: Question 1 ('I will use it to locate the discrepancy instead of diagnosing blind'), Question 2 ('I will scope Steps 2 to 4 to that block first'), Question 3 ('I will use it as the baseline in Step 3'). This is at most three, each with a stated use, and it complies with Section 2 rule 4 by logging A3 as the assumed most likely answer rather than withholding the recommendation.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation rests on assumptions (A1 to A3) but no probability, IPCC term, or confidence level with basis is stated anywhere. The assumptions are logged with validation paths, which is mixed practice, but Section 4.6 calibrated forms are absent even though A2 ('The discrepancy sits in derived figures ... more than in raw entries') shapes the audit design.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, all BRIEF sections present, End begins 'I recommend that we', Self-test last, zero dashes and zero banned words per the check report. However, the check report flags three long sentences of 33, 35, and 60 words against the 25-word limit, and the Self-test claims 'Longest sentence: 24 words', which contradicts the actual text. These are minor-to-moderate defects rather than a missing structure.",
+      "score": 1
+    }
+  }
+}

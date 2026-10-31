@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions 2, 3, and 4 state their Cynefin domain without a one-line reason, Step 1 classifies an evaluative design choice as Confused rather than Complicated, and the evaluative rubric omits the required layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010).",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('1. ... Domain: Confused', '2. ... Domain: Clear', '3. ... Domain: Complex', '4. ... Domain: Clear', '5. ... Domain: Complicated'), but Actions 2, 3, and 4 omit a one-line reason for why that domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The response rightly classifies the JWT migration implementation as Complicated ('5. Add short-lived service JWTs ... Domain: Complicated') and the conversion experiment as Complex ('3. Ship one sign-up probe. Domain: Complex'), with baseline/cookie steps as Clear, but misclassifies Step 1 (scoring the architecture choice with a rubric) as Confused rather than Complicated.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Every action matches its stated domain: Step 1 (Confused) gathers facts to classify first ('Blocker removed: unknown domain for the auth choice'); Steps 2 and 4 (Clear) are single steps; Step 3 (Complex) is a safe-to-fail probe with a stop condition, budget ('Budget: one flow change and no auth rewrite'), and 'Leverage is a guess'; Step 5 (Complicated) names the analysis ('The analysis that picks the practice is the Step 1 score plus the exp, aud, and iss claims in RFC 7519').",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 (evaluative) defines a weighted rubric with pass threshold and evidence first; Steps 2, 4, and 5 (deterministic) use Gherkin ('Given ... when ... then ...'); Step 3 (stochastic) specifies metric, baseline, pass threshold ('at least 2 percentage points above that baseline'), and sample size ('1,000 starts or 14 days').",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions are asked ('Questions asked: 0 of 3'); instead, the response logs three assumptions (A1 to A3) and states how the plan changes in Follow-up if each is false, per Section 2.3 and 2.4.",
+      "score": 2
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "Step 1 (Confused) is placed first ('This step is first because the score decides the rest'), Step 2 (Clear baseline) runs without waiting on Step 1 to reduce uncertainty before the probe ('Step 3 MUST NOT start until Step 2 stores the baseline'), and Step 3 (Complex probe) runs in parallel with the auth track ('After that gate, Step 3 can run beside Step 4')."
+    },
+    "R6": {
+      "evidence": "The response explicitly splits the prompt into two separate tracks ('The request asks for two changes. One change moves auth from sessions to JWT. The other change seeks better sign-up conversion') and uses Complicated/deterministic Gherkin actions for the auth track and a Complex/stochastic probe with metric and sample size for conversion.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges appear in the check report, and material uncertainty is calibrated using form 3 of Section 4.6: 'Client type is uncertain. Confidence: low, the request states no client.'",
+      "score": 2
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Zero banned words, zero dashes, max sentence length of 24 words, FK grade 4.4, and a consistent Self-test block, but minor rule defects exist: 'References' is placed as a separate top-level heading outside 'Follow-up' (violating Section 3.2.5 and 3.3), and the evaluative rubric in Step 1 does not use a required Kepner-Tregoe, Pugh matrix, or ISO/IEC 25010 layout (Section 6.4)."
+    }
+  }
+}

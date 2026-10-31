@@ -1,0 +1,41 @@
+{
+  "main_defect": "The self-test and the response disagree with the check report: the self-test says the longest sentence is 24 words and 6 references, but the report shows sentences of 26, 28, and 26 words and 5 reference entries. In-text citations also break the citation rules, with [S] used as an in-text marker and the reference list out of order. The headline promises a 100-summary baseline while the End section and assumption log use 60.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions carry a domain tag, e.g. \"Domain: Clear. Kind: deterministic\" (Step 1). However, only Steps 3 and 4 give a reason (\"Domain: Complex, because categories will emerge\"; \"Domain: Complex, capped probes\"). Steps 1, 2, and 5 name the domain with no one-line reason. Missing: reasons for the Clear and Complicated classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary situation is Complex and Steps 3 and 4 are tagged Complex; the response avoids the expected wrong answer by building the record first. Step 1 as Clear (one-step instrumentation patch) and Step 2 as Complicated (rubric-based rating) are defensible secondary classifications. No action is misclassified in a way that contradicts the expected classification.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 4 matches the Complex form: \"Acceptance test written first: the fact-error rate among 60 new sampled summaries falls from the Step 2 baseline by at least 10 percentage points. Stop condition... Budget: one change per defect type per sprint.\" Step 3 carries budget and stop condition. Clear actions are one step: \"Increment: one small patch this week.\" All forms match their domains.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist. Steps 1, 2, and 3 \"can start now\" in parallel, and Step 3 (Complex) runs alongside the Clear and Complicated actions. Step 4 waits on Steps 2 and 3, which the rules permit because those steps reduce the probe's uncertainty. Minor quibble only: Step 5 (Clear) is sequenced after Step 4 rather than run in parallel, so a small deviation remains.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 5 use Gherkin (\"Given a summariser run, When the run completes, Then the log row stores...\"). Step 4 states metric, baseline, threshold, and sample size. Step 2 has a rubric with weights, threshold, and evidence per criterion. However, Step 3 is tagged \"Kind: evaluative\" with no rubric: criteria, weights, and pass threshold are missing; only a stop condition and budget are given.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The likely wrong answer is treating this as Complicated and analysing failures as if recorded. The response avoids it explicitly: \"Instrument each summariser run so failures become countable events, not anecdotes\" and Step 1's \"Blocker removed: no data exists.\" It names Complex for the probe actions and gives reasons (\"Domain: Complex, capped probes\").",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Three questions are asked, at most three per Section 2, and Q1 and Q3 state a use (\"I will fix the sampling trigger in Step 2 from your answer\"; \"I will use a selected-authority sampling design instead if not\"). But the header says \"Questions (answer changes only details, not the plan)\", and Q2 admits no change: \"Step 1 logs both cases anyway.\" That violates the Section 2 rule that a question must change the next action, so the use of at least one question is null.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "A numeric interval is given (\"a binomial rate estimate has a 95% interval of about plus or minus 10 percentage points [inference]\"), but the driving uncertain claim (which defect type dominates) is handled with an uncalibrated instruction: \"weight it lower until the baseline in Step 2 confirms or refutes it.\" No probability or IPCC likelihood term appears there. The expected signal \"leverage is a guess\" is also absent.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure is present: Headline first, all BRIEF sections, End begins \"I recommend that we\", five actions each with increment, blocker, test, and domain, and the Self-test is last. Zero banned words and zero dashes per the check report. But the self-test is internally inconsistent: it claims \"Longest sentence: 24 words\" while the report shows 26, 28, and 26; it claims 6 references while 5 are listed; and the report flags citation-order failures, multiple citations on a line, and citations with no reference entry (in-text \"[S]\" markers). The headline's \"100-summary baseline\" contradicts the \"60\" in the End and assumption log. Leftover text (\"Wait, see the source line below.\") is also a defect. These exceed \"minor\" but structure is not missing.",
+      "score": 1
+    }
+  }
+}

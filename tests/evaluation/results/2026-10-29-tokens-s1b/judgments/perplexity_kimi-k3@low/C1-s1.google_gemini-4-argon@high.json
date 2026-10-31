@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response uses an em dash in the reference, uses self-mention ('I') outside the End section, omits the blocker on Action 4, misclassifies Action 4 as stochastic without a baseline, and asks a question while giving a recommendation that depends on it.",
+  "scores": {
+    "R2": {
+      "score": 2,
+      "evidence": "All four actions are classified as 'Cynefin: Clear', matching the expected Clear domain."
+    },
+    "R6": {
+      "score": 2,
+      "evidence": "Avoided Complicated and classified as 'Cynefin: Clear', stating in Information: 'The migration itself is a solved problem. The standard pattern has four parts'."
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges found in the check report; no uncertainty hedging needed for a Clear domain task.",
+      "score": 2
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Check report found an em dash in reference [1] ('logging \u2014 Logging facility'); self-mention ('I') appears in Headline, End steps, and Follow-up; Action 4 omits 'Blocker removed'; Self-test inaccurately reports 0 dashes, 0 self-mentions, and all blockers present."
+    },
+    "R1": {
+      "evidence": "Every action in End states 'Cynefin: Clear', and Information gives one overall reason ('The migration itself is a solved problem'), but individual actions lack a one-line domain reason.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "All four actions are direct one-step actions matching the Clear domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are in the Clear domain and ordered logically by dependency and leverage (obtain file, configure logger, replace print calls, run service).",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Actions 1 to 3 use Gherkin tests for deterministic tasks, but Action 4 is classified as 'Stochastic: one run, pass when at least one INFO line appears and no traceback occurs' instead of deterministic, and omits a baseline.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks one question with a stated use ('Question 1 of 3: Can you paste the file content in a reply, or re-attach it? I will return the fully converted file...'), but violates Rule 2.4 by also giving a recommendation that depends on the answer instead of logging an assumption, and expected signals call for no question.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response never recommends a vendor. It only promises to search for the proposals, so domain, rubric, actions, and required structure are all missing.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a domain. The only sentence is 'I'll look for the three vendor proposals in the workspace and compare them against the 400k three-year budget.'",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "Expected primary domain is Complicated. The response never names a domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Expected form is an evaluative action with a rubric fixed before scoring. The response only says it will look and compare, with no analysis-first step and no rubric.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No numbered actions and no leverage or domain order.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No Gherkin, rubric, or metric test. Comparison is mentioned but the test is missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions. The prompt says the proposals are attached, so none is allowed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No banned hedges, but also no probability or IPCC term. The response depends on finding files it has not seen and does not calibrate that.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Check report: 0 banned words, 0 dashes, no long sentences. Structure is absent: no Headline, BRIEF parts, End starting 'I recommend that we', or Self-test.",
+      "score": 0
+    }
+  }
+}

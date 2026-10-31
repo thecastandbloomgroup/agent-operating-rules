@@ -1,0 +1,41 @@
+{
+  "main_defect": "Steps 2 and 3 are labeled Clear rather than Complicated. Step 1 also puts record collection and change inspection before the recovery action, weakening the required stabiliser-first sequence.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain: 'Domain: Chaotic', 'Domain: Clear', and 'Domain: Clear'. However, the generic domain definitions and increment descriptions do not provide action-specific reasons for each classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 correctly uses 'Domain: Chaotic'. Steps 2 and 3 use 'Domain: Clear', whereas the expected post-stabilisation work is Complicated.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 includes an approved rollback or recovery procedure, but first instructs 'Check releases, configuration changes, and feature flags near 09:12.' Step 2 also bundles several checks despite its Clear classification and the one-step requirement.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action is numbered first, with an explicit dependency for Step 2. However, 'Record the current release' and 'Check releases' precede 'Choose one recovery path', placing record collection and diagnosis before the stabiliser.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each action presents a deterministic Given/When/Then test before its work. For example: 'Given the existing safe checkout test, when it runs, then its documented order and payment assertions pass.' The executive update also has fixed evidence-label acceptance criteria.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked, consistent with 'Questions asked: 0 of 3'. The response proceeds without delaying incident action for clarification.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Low confidence in any cause because no logs, metrics, or change history are available here' supplies a confidence level with its basis. The response also avoids promising an unsupported recovery time.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required 'I recommend that we' opening, three actions, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, Background contains two sentences despite this prompt's explicit one-sentence limit.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives no one-line reasons for its Cynefin domain classifications, omits the Complex domain requirement to state a stop condition and note that leverage is a guess, couples the final JWT cutover step to the completion of the sign-up conversion experiment, omits calibrated uncertainty terms, and includes an unverified reference ([1]) and self-mention ('I will') in Follow-up.",
+  "scores": {
+    "R8": {
+      "evidence": "The response contains zero uncalibrated hedges per the check report, but it states no probability, IPCC likelihood term, or confidence level with basis where the recommendation depends on uncertain facts (such as conversion lift or architecture assumptions).",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required sections and the Self-test block are present with zero dashes and zero script-flagged banned words, but Flesch-Kincaid grade is 10.1 (over the 10.0 limit), Follow-up contains two self-mentions ('I will configure...', 'I will set...') contradicting 'Self-mention outside End: 0', and reference [1] ('M. Blatchford... Unbounce Research Report, 2021') appears fabricated.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The auth migration actions are classified as Complicated (Steps 1 and 4) and Clear (Step 2, after Step 1's design), and the sign-up conversion experiment is classified as Complex (Step 3).",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 (Complicated) names an RFC 8725 design rubric and Step 2 (Clear) is a single implementation step, but Step 3 (Complex) omits an explicit stop condition and fails to state that leverage is a guess per Rule 6.5.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 3 (Complex) is set to run in parallel with Step 2 under a two-week budget, but End introduces the list as 'four sequential actions' and Step 4 (JWT client cutover) states 'Step 4 MUST NOT start until Step 2 passes and Step 3 finishes,' unnecessarily blocking the auth migration on the conversion experiment.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 (Evaluative) uses a weighted rubric with a pass threshold, Steps 2 and 4 (Deterministic) use Gherkin Given/When/Then tests, and Step 3 (Stochastic) specifies a metric, baseline, pass threshold (>10% relative lift), and sample size (2,000 visitors per variant).",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Follow-up asks two questions, each stating how the answer will be used: '(I will configure the cookie domain scope with this answer.)' and '(I will set the exact sample size for the Step 3 experiment with this answer.)'.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Complicated', 'Clear', 'Complex', 'Complicated'), but none includes a one-line reason explaining why the domain applies.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The Headline and Relevance sections explicitly decouple the auth migration from the conversion work and assign Complicated/Clear and Complex domains respectively, but the response does not explain why those Cynefin domains apply and re-couples the tracks by making Step 4 wait on Step 3.",
+      "score": 1
+    }
+  }
+}

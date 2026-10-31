@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response is strong on the expected Complex classification, probe form, and measurement-first ordering, but has rubric defects: one action lacks a domain reason, no question was asked where a costly unknown existed (transcript storage), one sentence exceeds the length limit, citations appear out of order, and the Self-test reports a longest sentence of 24 words when the check script found a 35-word sentence.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 to 3 give a domain with a reason: 'Domain: Complex; the dominant error type is a probe outcome, so leverage is a guess.' and 'Domain: Clear; a best practice exists, so apply it.' Step 4 only says 'Domain: Clear.' with no one-line reason, so not every action carries a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain Complex is correct: 'Domain: Complex; the dominant error type is a probe outcome' (Step 1) and 'Domain: Complex; one change per test cycle, capped at one run per day' (Step 3). Secondary Clear classifications (test set script, report button) fit the rules: one-step best-practice work. No wrong domains found.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 is a probe with budget ('Budget: 2 agent-hours'), stop condition ('halt if fewer than 20 pairs are retrievable'), and measure (labels). Step 3 is a capped probe ('capped at one run per day') with threshold and sample size. Clear actions are one-step: 'Domain: Clear; a best practice exists, so apply it.' Every action matches its domain form.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions. Complex probes are not ranked by claimed leverage; Step 1 comes first because it produces the measure, and Step 3 is explicitly gated: 'Step 3 MUST NOT start before the Step 2 script passes.' Step 4 'runs in parallel with Step 3.' Clear action (Step 2) ordered to precede the dependent probe. Ordering follows 6.5 trade-off rules.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 (evaluative) has a rubric: 'criteria are the three error types, weights equal, pass when labelling covers 50 pairs, evidence is the two-agent labels per ticket.' Step 2 and Step 4 (deterministic) use Gherkin. Step 3 (stochastic) states 'metric is the share of error-free summaries, baseline is the Step 1 error rate, threshold is error share cut by half, sample size is n = 30.' Each test matches its kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the likely wrong answer of analysing failures as if recorded: 'Error rate, error type, and baseline: no data exists [no source]' and A2 'Ticket transcripts and summaries are stored and retrievable... Validate by: pull 50 pairs from the log.' Step 1 creates the record ('Label 50 recent summaries') before any analysis, and the domain is named as Complex with the reason that cause shows only after effect.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none; the assumption log covers the unknowns.' The material does not answer whether transcripts are stored (A2), and a wrong guess is costly and changes the next action, so a question with its use would qualify. The assumptions are logged with validation paths, which is the Section 2.3 proceed path, but the rubric's top score for 'none' requires the material to answer. Partial.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "'Confidence: medium; no measurement exists yet, and the taxonomy is untested.' states a confidence level with its basis where the recommendation depends on it. Leverage is also flagged: 'so leverage is a guess.' No uncalibrated hedges appear in the check report.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline, BRIEF parts, End beginning 'I recommend that we', Self-test last, zero banned words, zero dashes. Defects: the check report flags one 35-word sentence ('Acceptance test first: metric is the share of error-free sum...') against the 25-word description limit, and citations appear out of order ([3], [18], [14]). The Self-test claims 'Longest sentence: 24 words', which contradicts the check report's 35 words, so the self-test is not internally consistent.",
+      "score": 1
+    }
+  }
+}

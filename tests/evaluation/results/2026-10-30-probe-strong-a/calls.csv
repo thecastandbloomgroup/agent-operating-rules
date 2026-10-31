@@ -1,0 +1,12 @@
+provider,role,status,model,effort,prompt_id,sample,input_tokens,cache_write_tokens,cache_read_tokens,output_tokens,reasoning_tokens,cost_usd,seconds
+anthropic,executor,failed,anthropic/claude-opus-5-5,high,C1,1,,,,,,,0
+anthropic,executor,failed,anthropic/claude-opus-5-5,high,H2,1,,,,,,,0
+anthropic,executor,failed,anthropic/claude-opus-5-5,high,K1,1,,,,,,,0
+anthropic,executor,failed,anthropic/claude-opus-5-5,high,X2,1,,,,,,,0
+openai,executor,failed,openai/gpt-6-astra,high,C1,1,,,,,,,0
+openai,executor,failed,openai/gpt-6-astra,high,H2,1,,,,,,,0
+openai,executor,failed,openai/gpt-6-astra,high,K1,1,,,,,,,0
+openai,executor,ok,openai/gpt-6-astra,high,T2,1,4896,4893,0,2640,2431,0.19319,55.0
+openai,judge,ok,openai/gpt-6-astra,xhigh,T2,1,6755,6752,0,2071,1552,0.18798,37.9
+openai,judge,ok,anthropic/claude-opus-5-5,high,T2,1,11069,11065,0,1463,761,0.08461,21.3
+openai,executor,failed,openai/gpt-6-astra,high,X2,1,,,,,,,0

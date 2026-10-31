@@ -1,0 +1,41 @@
+{
+  "main_defect": "Primary domain is wrong: the first action is Confused and scoring is Complicated, but this problem is Complex and the first step should be a capped probe that builds the measure.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1, 2, and 4 state a domain plus a reason ('gathers the facts that classify the work'; 'The score split picks the later fix'; 'Leverage is a guess'). Step 3 states only 'Domain: Clear' and gives no one-line reason for that action.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected domain is Complex because no metric exists and cause and effect show up only afterward. The response leads with 'Step 1. Domain: Confused' and defines Confused as 'the right fix is not yet known.' Scoring is 'Domain: Complicated.' Complex appears only on Step 4.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Confused Step 1 gathers facts to classify. Complicated Step 2 is the analysis that picks the fix. Clear Step 3 is one logging step. Complex Step 4 has a measure, 'Stop if the mean does not rise by 0.05', 'Budget: one session and two variants', and 'Leverage is a guess.'",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused is first and the Complex probe is capped, but Step 4 waits on Step 2 ('MUST NOT start until Step 2 records the baseline') instead of running in parallel with the Clear and Complicated actions. No leverage comparison orders Clear against Complicated.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use rubrics with weights, pass thresholds, and evidence. Step 3 uses Given/When/Then. Step 4 states metric, baseline, 'at least 0.05 higher', and 'Sample size: the same 40 cases, one run each.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "It does not treat recorded failures as Complicated: 'No error count exists'. It names Complex on Step 4 and says 'Leverage is a guess', but it also calls the first action Confused and does not say the problem is Complex because cause and effect appear only afterward.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Questions asked: 0 of 3. A1 to A4 are logged with why not measured, a validation test, and impact, so it assumes and proceeds instead of asking.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Where the recommendation depends on uncertainty it uses an IPCC term: 'about as likely as not (33 to 66%)', plus 'Confidence is low, because no labeled sample exists.' Check report shows no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, End starting 'I recommend that we', four actions, and Self-test are present. Check report: banned words 0, dashes 0, no long sentences. Self-test claims each action is classified deterministic/evaluative/stochastic, but those labels are absent. Check report failure: citation with no reference (cites 1 and 2, ref_entries 0).",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response omits one-line domain reasons for its actions, adds an unnecessary Complex probe that it contradictorily schedules in parallel with obtaining the missing proposals, cites [2] before [1], and omits calibrated uncertainty terms.",
+  "scores": {
+    "R5": {
+      "evidence": "Every action has a test written before the work that matches its stated task kind: Gherkin (Given, When, Then) for deterministic Steps 1 and 2, a Kepner-Tregoe rubric with MUST gate, weighted WANTs, evidence, and threshold for evaluative Step 3, and a metric, baseline, threshold, and sample size ('Use 30 runs') for stochastic Step 4.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The check report finds zero banned uncalibrated hedges, but the response never uses a probability, IPCC likelihood term, or confidence level with its basis (for example, in the alternative considered: 'a price without scope can hide migration and support costs').",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure is present with zero banned words and zero em/en dashes, but there are minor defects: citations appear out of order ([2] in Headline before [1] in Background, violating 5.4.1), and the Self-test states 'Assumptions logged: 2 (yes)' where the prompt template specifies '(yes/no if any were made but not logged)'.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Domain: Clear', 'Domain: Clear', 'Domain: Complicated', 'Domain: Complex, so it runs as a safe-to-fail probe...'), but Actions 1, 2, and 3 lack a one-line reason explaining why the domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary evaluative action (Step 3, 'Score the survivors with the rubric') is rightly classified as Complicated, but the response adds a secondary action (Step 4, 'Verify the front-runner before signature') classified as a Complex probe, contrary to the expected signals ('Should not contain: a pick without the rubric; a probe').",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks one question because the proposals were not attached, and states how the answer will be used: 'Question (1 of 3): Please re-send the three proposals, or paste their price pages and feature lists. The reply feeds Step 1 and unblocks the ranked pick.'"
+    },
+    "R3": {
+      "evidence": "Each action's form matches its stated domain: Steps 1 and 2 are single-step Clear actions, Step 3 names the Kepner-Tregoe rubric analysis for a Complicated action, and Step 4 is formatted as a safe-to-fail probe with a metric, five person-day budget, two-day stop condition, and 'Leverage for this probe is a guess.'",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "States 'Sequencing: Steps 1 to 3 are Clear or Complicated and are ordered by blocker size. Step 4 runs in parallel with them, capped by its budget.' Running Step 4 ('Verify the front-runner before signature') in parallel with Step 1 ('Get the proposals back into this chat') and Step 3 ('Score the survivors') violates Section 6.5 ('Do the Clear one first if it reduces the uncertainty of the probe').",
+      "score": 1
+    }
+  }
+}

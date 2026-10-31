@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response accepts the premise that one best prompt exists. It presents a single grounded prompt as the answer ('one grounded prompt reduces it most') and classifies the core prompt trial as Complicated. It should treat that trial as a Complex probe with a budget and a stop condition, and say that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain: Step 1 'Cynefin domain: Clear.', Step 2 'Complicated. Analysis picks the scoring rule...', Step 3 'Complex. The gain is a guess.' Step 1 has no one-line reason for Clear.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action, whether a prompt reduces hallucination, is labelled 'Cynefin domain: Complicated' in Step 2. The expected domain is Complex. Only the secondary check-pass probe (Step 3) is labelled Complex, so the response is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Each form matches its stated label. Step 1 is a one-step test-set build (Clear). Step 2 names the analysis that picks the practice: 'Analysis picks the scoring rule: count a claim as unsupported when no quote backs it.' Step 3 is a probe with 'Budget: one session. Stop if the model wrongly declines more than 20%...'.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is Clear, then Complicated, then Complex. The Complex probe is gated serially ('Step 3 MUST NOT start until Step 2 passes') and does not run in parallel. This is defensible only because Step 2 sets the probe's baseline, so it is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 uses Gherkin: 'Given a file of 50 questions..., When we load it, Then it holds 50 rows...'. Step 2 states the metric 'unsupported-claim rate', the baseline 'current prompt', the threshold 'falls by at least half', and 'n=50'. Step 3 states the metric, the Step 2 baseline, the threshold 'further 25%', and 'n=50'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline only partly refuses the premise: 'No prompt stops hallucination fully, but one grounded prompt reduces it most.' It then presents 'The prompt:' as the answer. It does not name Complex as the real domain of the request or say why.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The unknowns are logged as assumptions A1 and A2, each with a validation step and an impact. This is consistent with Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Confidence levels have a basis ('High confidence, one survey.', 'Medium confidence, one paper.'). However, the claim the recommendation depends on ('Quote-first prompts reduce errors [judgment]') has no probability. The Headline 'reduces it most' is uncalibrated, and the script flags the hedge 'fairly'.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present, End begins 'I recommend that we', and the Self-test comes last. The script found 1 banned word ('fairly'), but the Self-test says 'Banned words found: 0', so the Self-test is inconsistent. The Background also contains 'I have no data on your tasks'. The check script reports 0 reference entries and flags citations [1] to [3] as unlisted, although References appear inside Follow-up. The cited works (Ji 2023, Lewis 2020, Kadavath 2022) appear to be real, not fabricated.",
+      "score": 1
+    }
+  }
+}

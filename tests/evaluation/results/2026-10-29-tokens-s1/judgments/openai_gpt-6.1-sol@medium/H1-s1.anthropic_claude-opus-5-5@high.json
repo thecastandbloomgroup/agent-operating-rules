@@ -1,0 +1,41 @@
+{
+  "main_defect": "The stabiliser comes first and is labelled Chaotic. However, the later actions are labelled Clear rather than Complicated. The response has no Complicated analysis step and no explicit statement of the domain change between actions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain: 'Domain: Chaotic.' (Step 1), 'Domain: Clear.' (Steps 2 and 3). The only domain reason is one generic line, 'Chaotic means stabilize first; Clear means follow a known procedure.' No action has its own one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 'Contain the incident and attempt safe recovery' is 'Domain: Chaotic.' The expected signal is Complicated for the rest. The response tags Steps 2 and 3 as 'Clear' instead.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises: 'Follow its approved rollback or flag-disable procedure.' It also mixes in diagnosis ('Check releases, configuration changes, and feature flags near 09:12'). The Clear actions are not one step: Step 2 has four sub-steps (run test, check metrics, inspect logs, check reconciliation). No Complicated action names an analysis.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic stabiliser comes first, before verification and the executive update. The order follows the dependency: 'Step 2 MUST NOT start until Step 1's recovery attempt finishes.' No Complex probes exist to misplace.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each deterministic action has a Gherkin test written first. Step 1: 'Given a documented recovery procedure, when you apply it, then its completion checks pass...' Step 2: 'Given the existing safe checkout test, when it runs, then its documented order and payment assertions pass.' Step 3: 'Given the incident record, when you read the update, then every claim has evidence...'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response asks no question and instead logs A1 as an assumption. This matches the 'Should not contain: a question' signal.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Low confidence in any cause because no logs, metrics, or change history are available here.' This is a confidence level with a basis. The response handles uncertainty about the cause by branching recovery paths, not with hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline is first, End begins 'I recommend that we', and Self-test is last. The check report shows zero banned words, zero dashes, and no long sentences, and the Self-test matches it. A References list with [1] [P] is present, so the script's 'citation with no reference' is a parse miss. Defects: Background has two sentences against the 'no more than one sentence of Background' signal. Relevance gives instructions instead of why the matter is urgent. The expected explicit domain-change statement is missing.",
+      "score": 1
+    }
+  }
+}

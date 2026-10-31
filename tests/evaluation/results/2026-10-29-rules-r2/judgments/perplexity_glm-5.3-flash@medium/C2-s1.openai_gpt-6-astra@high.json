@@ -1,0 +1,41 @@
+{
+  "main_defect": "The added source-tagging action lacks a valid evaluative test: its rubric omits weights and evidence-based scoring. The self-test also claims compliance despite sentence-length and citation-order defects.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain, but only Step 3 gives a reason: \"Complicated, because the tag needs analysis of the source kind.\" Steps 1 and 2 merely say \"Domain: Clear.\"",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Input collection and template application are correctly classified as \"Clear.\" The added source assessment is classified as \"Complicated\" because it requires analysis of source kind. That classification fits the added work, although the work exceeds the formatting request.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Clear actions are single operations: \"Paste the entries\" and \"Map each entry to the IEEE pattern.\" The Complicated action names a classification analysis using \"the four tag definitions as criteria\" and the entry fields as evidence.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The missing input comes first, formatting follows, and supplemental tagging comes last: \"Step 2 must not start before Step 1 succeeds. Step 3 runs after Step 2.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 provide deterministic Given/When/Then tests. Step 3 proposes a \"rubric with the four tag definitions as criteria\" but supplies no weights, supported decision-analysis layout, or criterion scores against evidence.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response states a use: \"I will use the answer to complete Step 2 for that entry.\" Requesting the absent list is justified, but asking whether missing fields should receive \"[no source]\" or a placeholder adds a readily reversible preference question.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "No material uncertain forecast drives the recommendation. \"No plain-text list appears in the conversation\" identifies the observable blocker, while \"If an entry is a standard or a web page\" states a concrete condition for changing the format.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required End opening, and a final Self-test are present. The report finds zero banned words and dashes, but sentences of 28, 34, and 29 words contradict \"Longest sentence: 24 words.\" Citations also begin at [13] rather than being numbered in order.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The core conversion action is classified as Complicated, which is the prompt's explicitly identified wrong answer. This is Clear work with an established practice.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain, including 'Domain: Clear' and 'Domain: Complicated'. However, the Clear actions lack one-line explanations of why their cause-and-effect relationships are known.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action, 'Convert the calls in batches of 20', states 'Domain: Complicated'. The expected primary domain is Clear.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Relative to the stated domains, the Clear actions are bounded tasks. The Complicated action names its analysis: 'list every print call ... and sort each into simple or manual'.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The test, setup, and conversion sequence is explicit. However, Step 4 requires a run 'before and once after' conversion while also stating 'Step 4 MUST NOT start until Step 3 passes', placing baseline collection too late.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic tests use Given/When/Then, including 'Given the file service.py ... then the count is 0' and the root-level check. Step 3 reuses the Step 1 tests.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "'Kind: deterministic. Domain: Complicated' appears on the central conversion action, giving the expressly identified likely wrong answer.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' No clarifying questions interrupt the recommendation.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No likelihood hedge is needed for this deterministic migration. The response gives direct conversion rules, and the check report finds no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The report confirms zero banned words, dashes, or overlong sentences. However, 'tested migration pattern' lacks test-result evidence, and the Self-test claims tests precede work although the setup code appears before its acceptance test.",
+      "score": 1
+    }
+  }
+}

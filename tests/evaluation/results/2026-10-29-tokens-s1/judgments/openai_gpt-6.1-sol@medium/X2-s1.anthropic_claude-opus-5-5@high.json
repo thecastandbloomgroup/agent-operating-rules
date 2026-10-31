@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives one Complex probe, gated behind a Clear diagnostic step. The expected answer is two or three parallel probes. The Information section also leads with one framing: \"Treat this as a follow-through problem first\".",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1: \"Domain: Clear, meaning the task has a known procedure.\" Step 2: \"Domain: Complex, meaning the result becomes known through a small trial.\" Step 3: \"Domain: Clear.\" Step 3 has no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action is correctly Complex (Step 2, \"bounded experiment\"). Step 1 diagnoses where actions fail in a human system and is labelled \"Clear\" with \"a known procedure\". That step needs analysis and judgment, so it is at best Complicated.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 is a capped probe with a budget (\"at most 45 minutes\", \"at most two work hours\"), a measure, and a stop condition (\"Stop the trial if it creates harm or exceeds its time budget\"). However, there is only one probe, not the two or three expected. Step 1 frames the diagnostic as a one-step Clear task.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Clear) supplies the baseline for the probe (\"Baseline: Establish the count from Step 1\"). This fits the 6.5 exception: do the Clear action first when it reduces the probe's uncertainty. Step 3 explicitly waits: \"Step 3 must wait until the trial ends or reaches its stop condition.\" No Chaotic or Confused actions are present.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 use Gherkin (\"Given records or participant recall, when the review ends, then...\"). Step 2 lists a metric, baseline, sample, and threshold. However, the sample is \"One change\" and the threshold (\"Complete the change and review its chosen effect measure\") is not a measurable pass level. Step 1 is a review, which is closer to evaluative work, yet it gets a deterministic test.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Self-test reports \"Questions asked: 0 of 3\". Gaps are logged as A1 instead of being asked. The response does not ask the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Medium confidence in this starting approach, based on your report alone; the cause remains unverified.\" This is a confidence level with its basis, an allowed 4.6 form. The benefit is labelled a judgment until the trial gives evidence.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF headings, End begins \"I recommend that we\", Self-test last, zero banned words, zero dashes. However, the check report flags a 28-word sentence (\"This loses as the first move because you report attendance...\"), while the Self-test claims \"Longest sentence: 25 words\". This makes the Self-test inconsistent. The script also flags \"citation with no reference\" and found 0 reference entries.",
+      "score": 1
+    }
+  }
+}

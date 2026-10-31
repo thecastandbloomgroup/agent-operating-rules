@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test is inconsistent with the response. It reports a longest sentence of 24 words, but the check report finds a 26-word instruction sentence in Step 1, over the 20-word limit. The Headline also opens with \"I recommend that we\", which is self-mention outside the End section.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action gives a domain with a reason. Step 1: \"Confused, because the cause is unknown\". Step 2: \"Complicated, because analysis can find the cause\". Step 3: \"Clear, because this is a known practice\". Step 4: \"Complex, because the effect of a fix shows only after reruns\".",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is Confused, as expected, and Step 1 \"gathers what we need to classify the rest\". The secondary domains fit the work: cause analysis is Complicated, quarantine is Clear, and a fix probe is Complex.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1, the Confused step, gathers data first: \"rerun the last 20 main-branch builds\". Step 2, the Complicated step, names the analysis: \"read the logs of the top 10 flaky tests\". Step 3, the Clear step, is a single quarantine step. Step 4, the Complex step, is a probe with a measure, \"Stop condition: stop after 2 hours or 2 failed fix attempts\", and \"Leverage is a guess.\"",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is Confused first, then Complicated, then Clear. The Clear step depends on Step 2 (\"Step 3 MUST NOT start until Step 2 passes its threshold\"). The Complex probe is capped and \"MAY run in parallel with Step 3.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The deterministic Steps 1 and 3 use Given/When/Then. The evaluative Step 2 has a rubric with criteria, \"weight 1/3\", a threshold of \"at least 8 of 10\", and evidence (\"backed by a log line\"), although the criteria are cause categories rather than evaluation criteria. The stochastic Step 4 states the metric, the baseline (\"Step 1 rate\"), the threshold of \"0 failures in 100 reruns\", and \"sample size is 100 runs\".",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked: \"Open questions: none. The assumptions above cover the gaps.\" The gaps go to assumption log entries A1 to A3, which Section 2.3 allows.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The evidence theme has a calibrated statement: \"Confidence is medium, two independent sources.\" However, the recommendation depends on A1 (the failures are test failures), and A1 has no probability or IPCC term. The phrase \"the rates for your build may differ\" is an uncalibrated qualifier.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete. The check report finds zero dashes and zero banned words, and the citations [1] and [2] match real sources with correct figures. Defects: the check report flags a 26-word instruction sentence, but the Self-test claims \"Longest sentence: 24 words\". The Headline begins \"I recommend that we\" outside End. A3 gives \"the user has not answered\" as its reason, but no question was asked.",
+      "score": 1
+    }
+  }
+}

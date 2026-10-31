@@ -1,0 +1,41 @@
+{
+  "main_defect": "Makes a review-authority session a prerequisite to adopting a formatter, then adds a Complex culture trial. This should be Clear work: pin a formatter, enforce it in CI, and format the repository.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain and gives a reason: 'Clear, because this step creates an explicit review rule'; 'Complicated, because dialect support and file tests determine whether the tool fits'; 'Complex, because people\u2019s responses become visible through the trial.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The first action is labelled 'Clear', but formatter adoption is labelled 'Complicated' and an unnecessary culture trial is labelled 'Complex'. The requested solution is Clear formatting automation.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The trial has a measure, budget, and stop condition: '60 total staff-minutes' and 'Stop automatic format use if it causes a behavior defect.' However, the Clear action bundles 'Adopt the norm', 'Name one SQL style owner', and 'Record decisions' rather than applying a one-step fix.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Agree on review authority in one 20-minute session' precedes the formatter, whose dependency says 'Start after Step 1 passes.' This makes a social session block the direct, high-leverage formatting fix.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The rule and formatter actions include Given/When/Then tests. The stochastic trial specifies 'the previous 10 SQL reviews as the baseline', 'the next 10 SQL reviews', and 'at least a 50% reduction, with zero known formatter-caused behavior defects.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "'Agree on review authority in one 20-minute session' comes before 'Create one enforceable format configuration'. The response also proposes 'a limited trial'. It follows the culture framing instead of explaining why formatting is Clear work.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response proceeds without unnecessary questions and logs the assumption that disputes concern style rather than correctness.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence in the root cause is low because only one account supports it' provides a confidence level with its basis. Trial thresholds are explicitly described as 'proposed acceptance targets, not observed results.'",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and Self-test last are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, the self-test claims 'primary or secondary behind each driving claim: yes', although several driving recommendations have only '[judgment]' labels.",
+      "score": 1
+    }
+  }
+}

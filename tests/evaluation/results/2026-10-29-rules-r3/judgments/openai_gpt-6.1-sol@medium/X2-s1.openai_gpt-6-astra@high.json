@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats the central problem as a serial follow-through diagnosis rather than a Complex human-system problem requiring multiple capped probes in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain and reason: 'Complicated, because the review compares commitments with execution evidence'; 'Clear, because the record has fixed acceptance criteria'; 'Complex, because the result becomes visible through the trial.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary approach seeks 'a specific failure point' through a Complicated inspection and Clear commitment process. It reserves Complex for the final trial rather than classifying the central human-system problem as Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The actions match their stated domains: inspect commitments through four stages, complete one fixed-format record, and run a measured trial with 'a budget of two person-hours' and an explicit stop condition.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "'Step 2 MUST NOT start until Step 1 identifies the first failure point' and 'Step 3 MUST NOT start until the Step 2 record passes its test' impose a serial sequence. Multiple parallel Complex probes are missing.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The record checks use 'Given ... When ... Then'. The stochastic trial specifies successful cases as its metric, five comparable baseline cases, 'at least one additional success' as its threshold, and five new cases as its sample.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No clarification questions are directed to the user. The four stage questions are checks for reviewing records, not requests for the user to diagnose the problem. The response logs A1 and proceeds.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Moderate confidence in this approach, based on your reported symptom rather than direct evidence of team behavior' provides a confidence level with its basis. Trial limits are explicitly described as proposed safeguards, not validated thresholds.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline and BRIEF sections are present; End begins 'I recommend that we'; three actions contain the required fields; Self-test appears last. References are visibly listed and tagged. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences.",
+      "score": 2
+    }
+  }
+}

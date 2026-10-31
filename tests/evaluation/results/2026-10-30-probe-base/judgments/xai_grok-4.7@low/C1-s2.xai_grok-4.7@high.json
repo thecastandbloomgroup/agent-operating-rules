@@ -1,0 +1,41 @@
+{
+  "main_defect": "Clear is named but not justified, and three actions give no one-line domain reason; A3 can change the recommendation but has no probability or IPCC term.",
+  "scores": {
+    "R1": {
+      "evidence": "Action 1 says 'The domain is Clear, so apply the standard call.' Actions 2, 3, and 4 only say 'The domain is Clear.' The one-line reason is missing on those three.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions say 'The domain is Clear.' That matches a known print-to-logging swap. The response never classifies the work as Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one step: add basicConfig, replace each print, delete the sys import, and run py_compile. No analysis-first step, probe, budget, or classify-first action.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused work and no Complex probe. Four Clear steps are numbered threshold, then print replacement, then unused import, then compile, with 'MUST NOT start until' dependencies.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each step says 'Write this test first' and uses Given, When, Then, and states 'The test kind is deterministic.' No rubric and no sample-size metric.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "It names the real domain in 'The domain is Clear, so apply the standard call' and does not give Complicated. It does not say why cause and effect are already known or why analysis is unnecessary.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Follow-up has a condition and references and no question. Self-test says 'Questions asked: 0 of 3'. The attached file already shows the print calls.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "A3 and Follow-up say 'If A3 is false, change the warning and error calls to info.' No probability, IPCC term, or confidence-with-basis appears. Banned hedge words are also absent.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline through Self-test are present; End begins 'I recommend that we'; four actions. Check report: banned 0, dashes 0, no long sentences. Self-test counts match. Citations are the logging docs [1] and attached service.py [2], both tagged [P].",
+      "score": 2
+    }
+  }
+}

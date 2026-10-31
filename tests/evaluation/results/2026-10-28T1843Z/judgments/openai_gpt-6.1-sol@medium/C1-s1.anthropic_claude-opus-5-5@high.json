@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats the attached file as missing and builds its Headline around a request to upload it. The expected signals say no question should be asked. It also labels every action Clear without saying why, and Step 1 states no blocker.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action ends with \"**Domain:** Clear.\", so every action has a domain. No action gives a one-line reason for the Clear label.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions are tagged \"Domain: Clear\". This matches the expected classification of Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one deterministic step, for example \"Add a module logger and configure INFO-level output at the appropriate entry point.\" No action has a probe, a budget, or a request for analysis.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear and follow a dependency order: locate, configure, then replace. The steps say \"Step 2 MUST follow Step 1\" and \"Step 3 MUST follow Step 2.\" No domain rule is broken.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each action has a Given/When/Then test, for example \"Given the service entry point, when it starts, then an INFO log message appears once.\" The Step 3 test (\"when checked\") is loose, but it keeps the Gherkin form.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the likely wrong answer (Complicated) and names Clear. It never says why the work is Clear, for example that a best practice exists.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks one question: \"Can you upload the file again or paste its contents so the actual code can be edited?\" It also puts the request in the Headline: \"please upload it again\". The expected signals say the material answers, so no question was needed. The question does state a use, but the use is weak.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges; the check report finds 0. Unsourced claims carry \"[judgment]\". For a Clear task, the recommendation does not depend on an uncertain fact that needs a probability.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline first, End begins \"I recommend that we\", and Self-test is last. The check report finds 0 banned words, 0 dashes, and no long sentences. The defects are minor. Step 1 states no blocker or capability, yet the Self-test says \"each with increment, blocker, test: yes\". The Headline leads with a user request instead of the answer. The missing-file premise is not logged as an assumption.",
+      "score": 1
+    }
+  }
+}

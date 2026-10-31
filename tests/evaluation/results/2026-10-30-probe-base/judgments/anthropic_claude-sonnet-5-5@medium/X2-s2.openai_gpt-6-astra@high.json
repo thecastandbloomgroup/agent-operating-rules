@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response prioritizes a follow-through fix and offers only one Complex probe, rather than two or three capped probes run in parallel. It also treats missing causal information as grounds for a Confused classification.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state domains with reasons: 'Confused, so this gathers what we need to classify'; 'Complex, so this is a safe-to-fail probe'; 'Clear, since the practice is known'; and 'Complicated' because selecting an authority needs analysis.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The response correctly identifies 'team behavior as Complex' and labels Step 2 Complex. However, Step 1 labels the situation Confused because causes are unknown. Unknown causes do not make this already identifiable Complex human system Confused.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 provides a completion measure, a 'budget of three retros,' and a stop condition. However, it is the only safe-to-fail probe. The response does not supply the expected two or three probes for the Complex problem.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The response says 'Leverage is a guess' and runs Step 3 'in parallel with Step 2.' However, it otherwise prescribes 'these steps in order,' does not explicitly parallelize escalation with the probe, and lacks multiple parallel Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic actions have Given/When/Then tests, and Step 2 states a metric, baseline, threshold, and sample size. Step 4 supplies rubric weights and a threshold but no criterion scores against evidence or required decision-analysis layout. Tests also follow the work descriptions rather than precede them.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Not applicable: the input states 'R6 applies: no.'",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks no questions and logs assumptions with validation steps, such as 'count actions from the last three retros and their status.' It does not ask the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence that follow-through is the main cause: low confidence, no team data and one secondary source' supplies a confidence level and basis. 'Leverage is a guess' also acknowledges uncertainty in the Complex probe.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports a 26-word sentence while the Self-test claims 25, and the claim that tests are written first is false.",
+      "score": 1
+    }
+  }
+}

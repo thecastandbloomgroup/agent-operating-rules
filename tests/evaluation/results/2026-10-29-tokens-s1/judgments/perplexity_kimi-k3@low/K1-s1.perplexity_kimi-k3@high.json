@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response commits a fix before the analysis: 'Roll back the release' is action 1, which the prompt flags as the likely wrong answer (production is degraded to 900 ms, not down, so the stabiliser exception does not apply). The expected form was a Complicated, analysis-first action (bisect the diff, compare traces) with any build action dependent on it. This fails the R6 gate and drives the deductions under R2/R3/R4.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 and 2 give reasons: 'Domain: Clear, because the prior build is a known 120 ms state' and 'Domain: Complicated; the table is the analysis that picks the practice.' Steps 3 and 4 state only 'Domain: Complicated.' and 'Domain: Clear.' with no one-line reason, so not every action carries the required reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary diagnostic action is correctly classified: 'Domain: Complicated; the table is the analysis that picks the practice.' But the lead action is labeled 'Domain: Clear' even though the response itself logs A2 ('the release has no irreversible schema migration... the material does not state the migration content'), so the revert's outcome is not the known one-step cause-and-effect that Clear requires. Right primary, wrong on a secondary action.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The prompt says the response should not contain 'a fix committed before the analysis' and to deduct revert-first under R3. Step 1 ('Roll back the release. Increment: one redeploy of the previous build') commits a production fix before any analysis. The remaining actions match their domains: Step 2 names the analysis ('Isolate the culprit with the decision table above'), and 'Step 3 MUST NOT start until Step 2 passes.' Mostly matches, but the lead action contradicts the Complicated analysis-first form.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Clear rollback is placed before the Complicated analysis on claimed leverage ('the 900 ms user-facing latency'), whereas the expected order is analysis first with build actions dependent on it ('Step 2 MUST NOT start until Step 1 names the cause'). Dependency handling is otherwise explicit ('Step 3 MUST NOT start until Step 2 passes', 'Step 2 MAY run in parallel with Step 1'), so a minor misorder rather than a wholesale violation.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 and Step 4 use Gherkin ('Given the previous build is live / When 15 minutes of production traffic pass / Then p95 is at or under 150 ms'). Step 2 is evaluative with a rubric: 'Criteria: the three signatures, weighted equally... Pass threshold: exactly one suspect present. Evidence: the trace sample plus the metric deltas.' Step 3 is stochastic: 'Metric: p95. Baseline: 120 ms. Pass threshold: at or under 150 ms. Sample size: three 10-minute runs.' Every test is written before the work and matches its kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response gave the likely wrong answer verbatim: Headline 'Roll back the release now' and Step 1 'Roll back the release.' The prompt states revert-first may be right as a stabiliser only if production is down; the response itself describes production serving at 900 ms ('users stay at 900 ms during the hunt'), so the exception does not apply. It names Complicated only for the secondary diagnostic step, not as the lead.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Two questions, each with stated use: 'Does the release include a schema migration that a rollback cannot reverse? The answer selects the full rollback or the config-only revert in Step 1.' and 'Can you paste the diff and one slow trace? The answer lets the diagnosis skip most of Step 2.' The recommendation proceeds on the most likely answer via assumption A2 ('If A2 is false, do the config-only revert'), per Section 2.4.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibrated forms used where the recommendation depends on uncertainty: 'Confidence: high that a revert restores the prior latency, because the previous build measured 120 ms [1]' (confidence with basis) and 'No single suspect is more than about as likely as not on current evidence' (IPCC term). The check report finds zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last); the script reports zero banned words, zero dashes, and no over-long sentences. Minor defects: the signature table and definitions ('N+1 is... the usual ORM signature', cache hit ratio, pool wait) are claims Step 2 depends on but carry no [judgment]/[inference] label, while the Self-test asserts 'Claims with evidence or [judgment] label: yes'; two passive constructions where the agent is relevant ('can be redeployed', 'is known').",
+      "score": 1
+    }
+  }
+}

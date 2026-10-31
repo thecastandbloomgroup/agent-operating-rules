@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions omit the one-line reason for their Cynefin domain, tests are placed after the increment rather than before the work, the evaluative rubric lacks required fields/layouts, and the Flesch-Kincaid grade (10.6) exceeds 10.",
+  "scores": {
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked (\"Questions asked: 0 of 3\"); two assumptions (A1, A2) are logged with validation tests and fallback actions.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Check report shows zero banned words, zero dashes, and max sentence length of 24 words, but Flesch-Kincaid grade is 10.6 (exceeding the limit of 10). Also, the Self-test claims tests are written first, but every action places the test after the Increment.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain (\"Cynefin domain: Chaotic.\", \"Cynefin domain: Complicated.\", \"Cynefin domain: Clear.\"), but none includes a one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1 (rollback to stabilise) is classified as Chaotic, Action 2 (infrastructure and dependency verification) as Complicated, and Action 3 (four-bullet briefing template) as Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser (\"Roll back the latest production release to restore checkout functionality\"), Action 2 is analysis (\"Inspect error logs and third-party status monitors\"), and Action 3 is a one-step standard template.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Actions 1 and 3 use Gherkin (Given, When, Then) for deterministic tasks. However, Action 2's evaluative rubric omits the evidence needed for each criterion, omits scoring against evidence, does not use Kepner-Tregoe, Pugh, or ISO/IEC 25010, and all three tests are placed after the increment instead of before the work.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "States \"Recent code releases or configuration pushes cause approximately 75% of sudden production failures [2]\" and \"most sudden 500 spikes [inference]\", but does not state uncertainty in one of the three strict Section 4.6 forms (probability with \"likely\", IPCC likelihood term, or confidence level with basis).",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic action comes first (Step 1), followed by Complicated (Step 2) and Clear (Step 3) with explicit sequencing clauses (\"Step 2 MUST NOT start until Step 1 execution begins\", \"Step 3 MUST NOT start until Step 1 and Step 2 checks finish\").",
+      "score": 2
+    }
+  }
+}

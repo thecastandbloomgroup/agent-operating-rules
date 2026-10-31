@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 2 (add the city) is labelled Complicated, but the task is Clear, and the named 'analysis' is only a lookup rule. The Headline also states 'your list has no city field' as fact, while A3 logs it as an assumption.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain ('Cynefin domain: Clear', 'Cynefin domain: Complicated', 'Cynefin domain: Clear'). Only Step 2 gives a reason ('use the imprint page when a publisher has several offices'). Steps 1 and 3 give no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain Clear is correct for Steps 1 and 3. Step 2 is marked 'Complicated', but the expected classification is Clear. The stated 'analysis' is a fixed rule (use the imprint page), which points to Clear.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 and 3 are near one-step actions, although Step 3 joins 'Apply the IEEE book pattern and number the entries'. For Step 2 the Complicated form needs a named analysis, and the response gives a practice rule instead. The form mostly matches.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "No Chaotic, Confused, or Complex actions. Step 1 removes the largest blocker ('the missing input'). Steps follow with explicit dependency clauses ('Step 2 MUST NOT start until the test in Step 1 passes').",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Every action is marked deterministic with a Given/When/Then test. Step 3 checks each entry against the IEEE pattern: 'Then every entry has initials, italic title, city, publisher, and year in that order.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question with a stated use: 'can you paste the list as text in your next message? I will format each entry in one pass with the answer.' Section 2 justifies it because the attachment is absent. It repeats Step 1, and the expected signals said no questions, but it meets the rubric band.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses no uncalibrated hedges. However, assumptions A1 to A3 (all books, citation order, no city) drive the pattern choice and Step 2, and none carries a probability or IPCC term.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF headings, End begins 'I recommend that we', Self-test last, and 3 actions each with increment, blocker, test, and domain. The check report shows zero banned words and zero dashes. Minor defects: the script flags 'citation with no reference' because [1] is listed inside Follow-up. The Headline states 'your list has no city field' as fact, which conflicts with assumption A3. Background restates the request ('You asked me to format...').",
+      "score": 1
+    }
+  }
+}

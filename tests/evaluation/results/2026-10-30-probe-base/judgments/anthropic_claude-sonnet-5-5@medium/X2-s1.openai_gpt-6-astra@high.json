@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex team-behavior problem as a diagnosable follow-through failure. It prescribes standing rules instead of testing two or three parallel, bounded probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain. However, Steps 2 and 3 state only \"Domain: Clear\" without the required one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Domain: Complicated, because the count needs analysis to pick the fix\" frames the primary problem as analytically diagnosable. The main interventions are labeled \"Clear\"; only the format change is labeled Complex. The interacting human causes require Complex treatment.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Audit past actions\" supplies analysis, and the format probe includes a measure, \"Budget: two retrospectives,\" and a stop condition. However, \"Set a one-action rule\" and \"Review first\" are prescribed fixes, not bounded probes of the Complex behavior problem.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The format probe correctly says \"Run in parallel with Steps 2 and 3.\" However, the response prioritizes a presumed follow-through fix through serial dependencies rather than treating the main behavior interventions as parallel, capped probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present, and the format probe specifies a metric, baseline, threshold, and sample size of two. However, the main interventions test backlog and agenda compliance rather than behavioral outcomes, and tests appear after the proposed work.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response proceeds with three logged assumptions rather than asking the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Your team's cause is likely lack of follow-through (66 to 100%). Basis: medium confidence, one book, no data from your team. [judgment]\" explicitly calibrates the uncertain premise. The probe also says to \"treat a pass as weak evidence.\"",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. The check report confirms zero banned words and dashes. However, it reports a 27-word sentence, contradicting \"Longest sentence: 25 words.\" The Self-test also claims tests are written first, although they follow increments, and Step 4 lacks an explicit blocker.",
+      "score": 1
+    }
+  }
+}

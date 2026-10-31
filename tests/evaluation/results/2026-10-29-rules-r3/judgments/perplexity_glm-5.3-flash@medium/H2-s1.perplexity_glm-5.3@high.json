@@ -1,0 +1,41 @@
+{
+  "main_defect": "Citation [15] with no reference entry, self-test reports longest sentence of 24 words but check report shows 38 and 33, garbled text in Evidence, missing End heading",
+  "scores": {
+    "R1": {
+      "evidence": "Domains appear in parentheses per action, e.g. \"**(Chaotic, deterministic)**\", \"**(Confused, deterministic)**\", \"**(Complicated, evaluative)**\", \"**(Complex, stochastic)**\", but no one-line reason for the domain choice is given; only the Complex action carries a domain rationale (\"Leverage here is a guess, not a measured value\")",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary action correctly Chaotic (\"Impose a hold: one memo instructs every employee...\"). But Action 2 is classified Confused (\"**(Confused, deterministic)** Build the fact file that classifies the event\") when the expected classification per the prompt signals is Complex after the stabiliser; the situation is knowable through analysis, not unclassifiable",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 stabiliser first (one memo, one named spokesperson); Action 2 classified Confused and it gathers what is needed to classify; Action 3 names the analysis that picks the practice (\"Rubric first, Kepner-Tregoe layout\"); Action 4 is a capped probe with \"Budget: one channel, one message version\" and \"Stop condition: if a contradicting quote appears, revert to hold and escalate to legal\". Forms match the stated domains, including no drafted public statement beyond a single holding-line probe",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic first (Action 1), Confused next (Action 2) with \"Steps 3 and 4 wait on it\", Clear/Complicated by leverage with dependency (\"Step 3 MUST NOT start until the test in Step 2 passes\"), Complex probe capped by budget and run as a small probe",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Action 1 Gherkin (\"Given a media request reaches any employee, when the employee responds, then the response routes to the named spokesperson\"); Action 2 Gherkin; Action 3 rubric with weights, threshold, and evidence (\"accuracy weight 0.40, legal exposure 0.30, stakeholder trust 0.20, speed 0.10, pass threshold 7 of 10 weighted\"); Action 4 metric, baseline, threshold, sample size (\"Metric: count of new sources contradicting the line... Sample size: the next 24 hours of coverage\")",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable per the prompt instructions",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0 of 3. Three assumptions are logged instead with \"Validate by\" fields, which follows Section 2.3 (assume, log, proceed) rather than asking; the assumption log handles the unanswerable items with cheap validation tests",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on uncertain facts (A1 channel of statement, A2 article contains evidence, A3 legal review status) but no probability or IPCC term is stated anywhere; the response uses \"Condition that changes the recommendation\" clauses and [judgment]/[inference] labels, which handle the conditions but do not calibrate the uncertainty as 4.6 requires",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is present (Headline first, Background, Relevance, Information, Follow-up, Self-test last, End text begins \"I recommend that we take these steps\"), zero banned words, zero dashes. But defects exceed minor: citation [15] (Kepner-Tregoe) has no reference entry per the check report; the self-test claims \"Longest sentence: 24 words\" while the check report shows sentences of 38 and 33 words, making the self-test internally inconsistent; garbled text \"In\u770b\u89c1\u4e86? No. 1.\" appears in the Evidence section; the required End heading is missing",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats diagnosis and repair as Complicated analysis and uses a Complex probe only for the last step. So the overall Complex domain is never named, and the response never says that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a reason. Step 1: \"Domain: Confused, because the failure cause is not yet classified.\" Step 2: \"Complicated. Use source comparison and pipeline inspection.\" Step 3: \"Complicated. Use Step 2's cause analysis.\" Step 4: \"Complex. Run a capped, safe-to-fail experiment.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. The response labels Step 1 Confused, labels Steps 2 and 3 Complicated (\"choose one failure cause\", \"implement only the matching repair\"), and labels only Step 4 Complex. It reaches Complex for the improvement experiment, but it treats cause analysis as knowable before any measure exists.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each form matches its stated domain. Confused Step 1 gathers records to classify. Complicated Steps 2 and 3 name the analysis (\"source comparison and pipeline inspection\", \"Use Step 2's cause analysis\"). Complex Step 4 is a probe with a measure, \"Budget: One review session and at most 80 model calls\", and \"Stop: Stop for privacy exposure, a severe candidate error, or budget exhaustion.\"",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Confused action comes first, which is correct. The Complex probe is sequential (\"Step 4 MUST NOT start until Step 3 passes\") instead of parallel. The response never marks leverage as a guess; it only says \"its benefit remains unmeasured\".",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic Steps 1 and 3 use Gherkin: \"Given approved tickets, when the pack is created, then...\". The evaluative Step 2 has a rubric with weights (40/40/20), a pass threshold (\"Pass at 90%, with no severe error\"), and required evidence. The stochastic Step 4 states a baseline, a sample (\"80 summaries\"), and a threshold (\"content-error rate at least 30% below baseline\").",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids analysing unrecorded failures, because Step 1 creates the record (\"assemble 20 tickets\"). However, it still classifies the diagnosis and fix as Complicated. It never names Complex as the real domain of the problem or says why; Complex appears only on Step 4.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". The response logs unknowns as assumptions A1 and A2 with validation tests, which is consistent with Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence in the measurement-first approach because the report lacks a baseline. Low confidence in any specific fix before error review.\" These are confidence levels with a basis. No banned hedges appear.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present and in order: Headline, Background, Relevance, Information, End, Follow-up, Self-test. The script finds zero banned words and zero dashes. It finds two sentences over 25 words (27 and 29), but the Self-test says \"Longest sentence: 25 words\", so the Self-test is inconsistent. The script flags \"citation with no reference\", although a [1] entry appears under Follow-up.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "After correctly prioritizing stabilization, the response treats the remaining crisis response as Complicated or Clear work. It commits to a public holding statement instead of using Complex probes with budgets and stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions have domain labels, including \"Stabilise ownership (Chaotic, deterministic)\" and \"Choose the response (Complicated, evaluative).\" However, individual classification reasons are missing; only the overall Chaotic classification receives an explicit explanation.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Stabilise ownership (Chaotic, deterministic)\" correctly identifies the primary domain. Later response actions are labeled Complicated or Clear, rather than recognizing the Complex dynamics of stakeholder reactions and trust.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "\"Name one decision owner and one channel. Freeze all external comment\" provides the required stabilizer. Fact collection also names analysis. However, \"Issue a holding statement\" commits to public action without a safe-to-fail probe, budget, or stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Take these five actions in this order\" correctly puts the Chaotic stabilizer first. However, the remaining work follows a serial plan, with no capped Complex probes running alongside fact analysis and coordination.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic actions include Given/When/Then tests, and evaluative actions include weights and thresholds such as \"accuracy 40%, no legal admission 30%, plain language 30%.\" However, the rubrics omit required evidence and criterion scores. \"Mark it true, false, or unclear\" requires judgment, while its deterministic test checks only verdict and source coverage.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" Assumptions A1 to A3 allow immediate stabilization and include validation steps and consequences, such as transferring Step 1 to someone with authority if A1 is false.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"About as likely as not (33 to 66%) that the article is fully accurate, based on no evidence yet\" uses an allowed likelihood form but assigns an unsupported range. The response acknowledges uncertainty without properly calibrating that estimate.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, five actions, and a final Self-test are present. The check report confirms zero banned words and prohibited dashes. However, it reports a 26-word sentence, contradicting \"Longest sentence: 25 words.\" The claim that tests are written first also conflicts with their placement after work instructions.",
+      "score": 1
+    }
+  }
+}

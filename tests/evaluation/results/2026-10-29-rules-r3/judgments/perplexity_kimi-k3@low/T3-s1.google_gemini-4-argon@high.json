@@ -1,0 +1,41 @@
+{
+  "main_defect": "Four sentences exceed the 25-word limit (up to 61 words in the End section) while the self-test falsely reports a longest sentence of 24 words; three actions omit the reason for their Cynefin domain; and no calibrated uncertainty expression (4.6) is used.",
+  "scores": {
+    "R4": {
+      "evidence": "Complicated and Clear migration steps are sequenced by blocker dependency ('Step 2 MUST NOT start until Step 1 threat model passes'), while the Complex conversion probe is run in parallel and capped ('Step 4 probes SHOULD run in parallel after Step 3 shadow verification passes, each capped at 5% traffic and 14 days').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Explicitly splits the prompt into two tracks with separate failure modes, domains, and tests: 'Split auth migration from conversion work because one changes security state and the other changes funnel behavior' and 'The request combines an auth architecture change with a growth target. These have different failure modes, owners, and tests.'",
+      "score": 2
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks three questions in Follow-up, each with a stated use ('Use: final token issuer, audience list, and compatibility window', 'Use: Step 4 baseline and sample size', 'Use: refresh storage choice and rotation design'), though Questions 2 and 3 overlap with logged assumptions A3 and A2."
+    },
+    "R9": {
+      "evidence": "Full Headline, BRIEF, and Self-test structure with zero banned words and zero dashes, but has multiple rule defects: four sentences exceed 25 words (27, 55, 61, and 42 words per the check report), the Self-test inaccurately claims 'Longest sentence: 24 words', and two lines place multiple citations on the same line (violating 5.4.1).",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 and Action 3 (Complicated) specify the analysis ('analysis is STRIDE plus RFC 7519 and RFC 8725 checks', 'analysis compares rotation counter and device binding'); Actions 2 and 5 (Clear) are single-step implementations; Action 4 (Complex) is a safe-to-fail probe with a metric, budget, and stop condition ('stop at 14 days or 5% traffic'), missing only the explicit statement that leverage is a guess.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each action has the test form matching its kind: Action 1 (evaluative) uses a weighted rubric with pass threshold and evidence requirement; Actions 2, 3, and 5 (deterministic) use Given/When/Then Gherkin tests; Action 4 (stochastic) specifies metric ('completed sign-up rate'), baseline ('from A3'), pass threshold ('relative plus 8% with 95% interval'), and sample size ('minimum sample 1,000 starts per arm').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Contains zero banned uncalibrated hedges per the check report, but fails to use any probability, IPCC likelihood term, or confidence level with basis (Section 4.6) where the recommendation depends on uncertain facts (using uncalibrated 'can break' and 'can report' in Relevance).",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain, and Actions 1 and 3 include a reason/analysis, but Actions 2, 4, and 5 state only 'Cynefin Clear.' or 'Cynefin Complex.' without a one-line reason in the action.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Correctly classifies the auth migration design and rotation work as Complicated (Actions 1 and 3), standard flagged/batched rollout steps as Clear (Actions 2 and 5), and the sign-up conversion experiment as Complex (Action 4).",
+      "score": 2
+    }
+  }
+}

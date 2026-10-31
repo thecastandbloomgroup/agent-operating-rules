@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the correct Chaotic stabiliser, Steps 2 to 4 are labelled Complicated and Clear. Step 4 then commits to a public statement release instead of running a Complex probe. The Self-test also misreports the longest sentence and the reference count.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain tag, for example \"Stabilise (Chaotic, deterministic)\", \"Build the fact table (Complicated, evaluative)\" and \"Release one approved statement (Clear, deterministic)\". No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 is \"Chaotic\", as expected. Steps 3 and 4 depend on emergent stakeholder and press reaction, yet they are labelled \"Complicated\" and \"Clear\". The expected domain after the stabiliser is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises (\"hold all external comment. Name one decision owner\"). Step 5 is a probe with \"Budget: one analyst, two hours a day\" and a \"Stop condition\". However, Step 4 \"Release one approved statement... Send it to the press, staff, and the board\" is a committed action where a probe is expected.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic Step 1 comes first. The Complex probe \"Start in parallel with Step 1\" is capped by a budget. Complicated and Clear steps follow with explicit dependencies: \"Step 3 MUST NOT start until this rubric passes\" and \"Step 4 MUST NOT start until Step 3 ends.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Gherkin is used for the deterministic steps (\"Given the call has ended / When any group is asked who decides / Then all three name the same person\"). A rubric with weights, a threshold and evidence is used for Step 2. Step 5 has a metric with baseline, threshold and sample (\"all outlets in the existing media log\"). There are minor gaps: Step 3 has no explicit pass threshold, and the sample size is not a number.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none. I assumed answers in A1 to A3.\" The three assumptions each have a validation test and an impact, so zero questions is acceptable.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "One calibrated form appears: \"Confidence in the sequence: medium, because it rests on judgment and no tool check.\" However, the key uncertainty (whether the article is right, A1) has no probability or IPCC term. The text also uses the uncalibrated \"usually set how the story is framed\".",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The headings are complete, the End begins \"I recommend that we\", Self-test is last, and there are zero dashes and zero banned words per the report. Defects: the check report finds a 29-word sentence, but the Self-test says \"Longest sentence: 24 words\". The Follow-up says \"References: none\" and then lists [16], while the Self-test says \"References: 1\". There is no proper References list, and [16] is out of order. Self-mention \"I assumed\" appears in Follow-up.",
+      "score": 1
+    }
+  }
+}

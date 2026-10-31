@@ -1,0 +1,41 @@
+{
+  "main_defect": "The prompt 'The build is flaky' carries no build identity, frequency, or history, so the expected primary domain is Confused. The response never says the domain is unknown, never makes the first action 'gather what is needed to classify', and commits to a fix (Step 4) before any classification data exists. This makes the primary domain wrong and fails the R2 gate, despite an otherwise well-formed plan.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label: Step 1 'Complex probe', Step 2 'Clear', Step 3 'Complicated, evaluative', Step 4 'Complicated, deterministic'. However, a one-line reason for the domain is given only for Step 1 ('Leverage is a guess, because cause and effect here become visible only after the logs exist [18]'). Steps 2, 3, and 4 state the domain with no reason, so the rubric's 'with a one-line reason' condition is only partly met.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected signals state: 'Expected classification: Confused' and 'Should contain: ... The word Confused, or an equivalent statement that the domain is not yet known. Should not contain: a fix.' The response contains no Confused domain and no statement that the domain is unknown; instead it assigns Complex, Clear, and Complicated domains and includes 'Fix the top cause in its top test and verify' as Step 4, a fix without prior classification data. The primary domain of the situation is misclassified, so the gate fails. The data-gathering in Step 1 partially mitigates this, but the expected 'Confused' framing and classification-first action are absent.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The action forms match their stated domains. The Complex action (Step 1) is a safe-to-fail probe with a measure ('first-attempt failures per test over 20 builds'), a stop condition ('fewer than one entry per 10 builds after 10 builds ends the probe'), and a budget ('two attempts per test, and remove the step after 20 builds'), and leverage is called a guess. The Clear action (Step 2) is one step ('add each test ... to a quarantine list in one session'). The Complicated actions name the analysis that picks the practice ('with the analysis from Step 3 picking the change').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused action appears, though the prompt expects Confused to come next after any Chaotic action. The Complex probe is serialised strictly before the Clear and Complicated actions (Step 2 'MUST NOT start until Step 1 has logged at least two entries') rather than run in parallel, though the dependencies cited are genuine data dependencies. Clear and Complicated actions are otherwise in plausible leverage order (restore green builds, then classify, then fix). The misorder is minor, dominated by the missing Confused-classification step already counted under R2.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 and Step 2 use Gherkin tests ('Given a test fails on its first attempt, When the retry step runs, Then the log gains one entry...'; 'Given a test holds two or more first-attempt failures, When the pipeline reaches it, Then it skips that test'). Step 3 is evaluative and provides a rubric with criterion, weight, pass threshold, and evidence. Step 4 provides a Gherkin test with a 20-of-20 run count, which doubles as a sample size. Each action has a test written first, matching its declared kind. Minor ambiguity: Step 4's repeated-run verification is stochastic in character while the action is labelled deterministic, but the test form itself is acceptable.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt per the expected signals.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions are asked, each with a stated use: 'Which CI system runs the build? The answer selects between a built-in retry and a script for Step 1' and 'Which stage fails first, and on which runner host? The answer tests A2 cheaply at the start of Step 1.' This is three or fewer, each with its use. The recommendation does not depend on the answers in violation of Section 2.4, because the most likely answers are logged as assumptions (A1, A2) and the plan proceeds on them.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability or IPCC likelihood term appears anywhere, though the recommendation depends on uncertain facts (A2: 'Test flakiness, not a shared host problem, causes most of the failures'; A3: '20 builds give enough samples'). These are handled through the assumption log with validation tests, which is useful, but the calibration form required by 4.6 ('probability or IPCC term where the recommendation depends on it') is not used. No uncalibrated hedges are present either, so the treatment is mixed rather than failing.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, Background, Relevance, Information (with assumption log and alternative considered), End beginning 'I recommend that we', Follow-up, Self-test last. Four actions each with increment, blocker, test, and domain. Check report shows zero dashes and zero banned words. However, the check report lists three failures: five long sentences (26, 31, 27, 28, and 32 words, exceeding the 25-word description limit), citations out of order ([18] appears before [14] in first-appearance order), and one line with more than one citation. The Self-test also reports 'Longest sentence: 24 words', which contradicts the measured 26-to-32 word sentences, so the Self-test is not fully internally consistent. These are more than trivial, so full marks are not earned.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test does not match the response. It reports 0 banned words and a longest sentence of 25 words, but the check report finds the hedge \"possibly\" and a 26-word sentence. It also reports 0 self-mentions, yet the Background says \"I assume the details in the log below and proceed\".",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain. Step 1: \"Confused (we cannot yet tell how the conversion work behaves)\". Step 2: \"Complicated. An engineer or security reviewer must pick the algorithm and key storage first.\" Step 4: \"Complex, so this is a capped probe. The effect of any change is visible only afterward\". Step 3 says only \"Cynefin domain: Complicated.\" and gives no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary split is correct. The migration (Steps 2 and 3) is Complicated and conversion (Step 4) is Complex. Step 1 is a deterministic query with a Gherkin test, but it is labelled Confused \"we cannot yet tell how the conversion work behaves\". The response then classifies the conversion work as Complex in Step 4 without waiting for Step 1, so the secondary label is inconsistent.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 gathers data first. Step 2 names the analysis that picks the practice: \"An engineer or security reviewer must pick the algorithm and key storage first.\" Step 3 follows Step 2 with a dependency clause. Step 4 is a probe with a measure, \"Budget: two weeks and one developer day\", and \"Stop condition: stop early if completion drops more than 10%\".",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is Confused Step 1 first, then Complicated Steps 2 and 3 with \"Step 3 MUST NOT start until the test in Step 2 passes\". The Complex Step 4 is capped and runs in parallel: \"Run Step 4 in parallel with Steps 2 and 3.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 to 3 have Given/When/Then tests. Step 4 has \"Metric: sign-up completion rate. Baseline: the Step 1 value. Pass threshold: a gain that is significant at 5%, with the sample size set by a power calculation at 80% power\". The sample size is defined by a method, not a number, which is acceptable before the baseline exists.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids one undifferentiated list. Headline: \"improve sign-up conversion as two separate changes, not one release\" because \"JWT changes how the service proves identity, not how users sign up\" and \"A combined release hides the cause of any conversion change.\" It gives the migration a Complicated domain and Gherkin tests, and conversion a Complex domain with a probe and metric.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response logs four assumptions (A1 to A4), each with a reason, a validation, and an impact. This fits Section 2, because a wrong guess on these is cheap to reverse.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is one IPCC term: \"unlikely (0 to 33%) to raise conversion\". However, A1 uses the uncalibrated \"possibly a mobile app\". A4 says \"lower the confidence\" without a level, and the traffic sufficiency that Step 4 depends on has no probability.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present, End begins \"I recommend that we\", and the Self-test is last. Per the check report there is 1 banned hedge (\"possibly\") and one 26-word sentence. The Background has the self-mention \"I assume the details in the log below and proceed\". The references sit inside Follow-up, so the script flagged the cites as unlisted. The Self-test claims \"Banned words found: 0\", \"Self-mention outside End: 0\", and \"Longest sentence: 25 words\", which is inconsistent.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response narrows the problem to follow-through and proposes one sequential trial instead of parallel probes into a Complex human system. It also treats diagnosis and outcome judgments as Clear, deterministic work.",
+  "scores": {
+    "R1": {
+      "evidence": "All actions state a domain: \"Clear,\" \"Complex,\" and \"Clear.\" Step 3 lacks a one-line reason for its domain classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The central experiment correctly states \"Domain: Complex.\" However, Step 3 labels work \"Clear\" while requiring diagnosis and judgment: \"identify the blocker\" and \"Keep, adjust, or stop it based on that result.\"",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Complex trial has a measure, a two-hour work budget, and a stop condition: \"Stop the trial if it creates harm or exceeds its time budget.\" However, the Clear-labelled final action combines recording, diagnosis, comparison, and corrective decisions rather than one procedural step.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The response specifies \"After Step 1\" and \"Step 3 must wait until the trial ends.\" Establishing a baseline first is justified, and the trial is capped, but the requested parallel probes are absent.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests precede the work, and the trial lists a metric, baseline, sample, and threshold. However, Step 3 uses a deterministic record-completion test for evaluative work: \"Keep, adjust, or stop it based on that result.\" No weighted decision rubric or evidence-based scoring is supplied.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3.\" The response proceeds with a logged authority assumption rather than asking the user to diagnose the cause. The table questions are review checks, not requests for user answers.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Medium confidence in this starting approach, based on your report alone; the cause remains unverified.\" This supplies a confidence level and its basis where the recommendation depends on uncertainty.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required \"I recommend that we\" opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports a 28-word sentence, contradicting \"Longest sentence: 25 words.\" The Self-test also overstates correct task classification.",
+      "score": 1
+    }
+  }
+}

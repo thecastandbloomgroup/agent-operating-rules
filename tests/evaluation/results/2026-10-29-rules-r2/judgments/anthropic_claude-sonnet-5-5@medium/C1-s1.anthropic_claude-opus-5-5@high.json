@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 4 is tagged \"Kind: evaluative. Domain: Complicated\" and carries a weighted rubric. The expected signals forbid this: every action should be \"deterministic, Clear\", with no rubric and no analysis step. This is the 'look careful' misclassification on a secondary action. It also leaves Steps 1 to 3 without any reason for their Clear tag.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: \"Domain: Clear\" for Steps 1 to 3 and \"Domain: Complicated\" for Step 4. Only Step 4 gives a one-line reason (\"because the check needs knowledge of your consumers\"). Steps 1 to 3 give no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary work is correctly Clear (Steps 1 to 3). Step 4, \"Review prints that are results, not logs,\" is tagged \"Domain: Complicated\". The expected signals want every action Clear and no request for analysis, so a secondary action is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 to 3 are one-step deterministic increments with Gherkin tests, which fits Clear. Step 4's form (an analysis-first review against a rubric) is consistent with its own stated Complicated domain. The mislabel is scored under R2.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Leverage order is mostly sound: setup first, because \"without it, INFO records are dropped\". However, \"Step 4 follows Step 2\": the response converts every print and only then reviews which prints must stay as program output. Doing that review before Step 2 would avoid converting and then reverting lines. This is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each deterministic step has a Given/When/Then test written first. For example, Step 2: \"When you parse it with Python's ast module and count print calls / Then the count is 0.\" The evaluative Step 4 has a rubric with criteria, weights (60%/40%), a threshold, and evidence per criterion. Each test matches its declared kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids calling the main migration Complicated: Steps 1 to 3 are \"Domain: Clear\". It never says why the work is Clear, for example that a best practice exists. It also still adds a Complicated evaluative action. This avoids the wrong answer only in part.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". The missing file is handled through assumptions A1 to A3, each with a Validate by test, and through conditions in Follow-up. No question is asked.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges were found (banned_total 0). However, Step 3 and the closing condition depend on A2 (\"A collector reads stdout today\"), and A2 has no probability, IPCC term, or confidence level. \"This can change where your log collector sees the output\" is also not calibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, Background, Relevance, Information, End (\"I recommend that we take these steps in order\"), Follow-up, and Self-test appear in order. The check report finds 0 banned words, 0 dashes, and no long sentences, which matches the self-test (\"Longest sentence: 22 words\"). A References list with [P] tags is present, so the script's 'citation with no reference' is a parse miss. Small gaps: Relevance claims carry no evidence label, and the Step 2 record-count test conflicts with keeping some prints in Step 4.",
+      "score": 2
+    }
+  }
+}

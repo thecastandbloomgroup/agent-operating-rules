@@ -1,0 +1,41 @@
+{
+  "main_defect": "After a correct Chaotic stabiliser, the response treats the rest as Complicated analysis and a step labelled with a non-Cynefin domain ('Deterministic'), not as Complex probes. It ends with a committed action to draft and publish a media statement within two hours, which the prompt says should not appear.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 to 3 give a domain ('Chaotic', 'Complicated', 'Complicated'). Step 4 gives 'Cynefin domain: Deterministic', which is not a Cynefin domain. No action has a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 'Enforce an immediate communication freeze' is labelled Chaotic. The later actions are labelled Complicated and 'Deterministic' where Complex is expected, so the secondary actions are wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser, which fits Chaotic. Steps 2 and 3 name an analysis, which fits their own Complicated labels. However, no action is a probe with a stop condition and a budget. Step 4 'Draft and release the unified response... publish the media statement within two hours' is a committed action and contradicts the expected form.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic freeze comes first, which is correct. The remaining steps run in a strict serial chain ('MUST NOT start until...'). There are no Complex probes run in parallel with budget caps, so this is a minor misorder against the 6.5 rules.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each test kind matches its task kind. The deterministic steps use Gherkin: Step 1 'Given uncoordinated messages... When leadership sends the mandatory freeze notice... Then...' and Step 4 also. The evaluative steps use rubrics with weights (50/30/20, 40/40/20) and thresholds. There are minor gaps: Step 3 states no evidence per criterion, and its threshold is a sign-off rather than a score.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The unknowns (an existing crisis protocol, a regulator inquiry) are logged as A1 and A2 with validation tests, as Section 2 allows.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is one calibrated form: 'high confidence, based on standard corporate governance standards [1]'. Its basis is vague. The recommendation depends on whether the CEO's statement was false and whether regulators are involved, yet A1, A2, and the journalist's claim carry no probability or IPCC term.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present, the End opens with 'I recommend that we', and the Self-test is last. The check report shows 0 dashes and 0 banned words, but it fails Flesch-Kincaid at 10.4 and flags citation [1] as unlisted, even though the Coombs entry appears under Follow-up. The Self-test claims 'Chaotic and Confused first, Complex as capped probes: yes' when there are no Complex probes, and Step 4 carries an invalid domain, so the Self-test is inconsistent with the response.",
+      "score": 1
+    }
+  }
+}

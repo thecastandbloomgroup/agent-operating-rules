@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response makes a team discussion and agreement prerequisites to adopting a formatter. This fails the prompt's gate: the formatting dispute is Clear work, not a culture problem requiring a workshop or probe.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a rationale: 'Clear, with known cause and effect,' 'Complicated, because SQL dialect and tool compatibility require analysis,' and 'Complex' alongside 'because review behavior varies.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The core action, 'Automate only mechanical format rules,' is classified as 'Complicated.' The response also introduces a 'Complex' review trial. The expected primary domain is Clear: adopt and enforce a formatter.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The Complicated action names analysis: 'compare available tools against the team\u2019s SQL dialect.' The Complex action includes a measure, stop condition, and budget. However, the Clear action requires 'Hold one 30-minute discussion, collect concerns, and publish,' rather than one-step application of a known practice.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Publish a one-page review agreement' precedes formatter adoption, and 'Step 2 MUST NOT start until Step 1 defines the decision owner and exception process.' This makes discussion block the direct, high-leverage formatting fix.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The document and formatter actions use Given/When/Then tests, including 'when the formatter runs twice, then the second run produces no changes.' The stochastic test specifies the dispute metric, a baseline of 10 reviews, a trial sample of 10 reviews, and a 50% reduction threshold.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "'First, change the decision process' and 'Hold one 30-minute discussion' put a workshop before the formatter. 'Run a capped review trial' further follows the misleading culture framing instead of explaining why this is Clear standardization work.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "The response asks the user no clarification questions and proceeds with a logged assumption: 'A1. The team can authorize a reversible trial.' The material supports proceeding without clarification.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Moderate confidence, based on one reported pattern and no direct observations of reviews' supplies a confidence level and its basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required End opening, and Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports a 28-word sentence, contradicting 'Longest sentence: 23 words' and exceeding the sentence limits.",
+      "score": 1
+    }
+  }
+}

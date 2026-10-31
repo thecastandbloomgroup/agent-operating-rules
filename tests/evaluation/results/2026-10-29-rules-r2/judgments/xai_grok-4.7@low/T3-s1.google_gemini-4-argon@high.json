@@ -1,0 +1,41 @@
+{
+  "main_defect": "Two sentences exceed the 25-word limit (26 and 28 words), making the self-test claim of 24 words inaccurate, and References is placed under its own heading instead of inside Follow-up.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain with a reason: Step 1 'The blocker is an unknown domain, so this step classifies the work... Cynefin: Confused'; Step 2 'Cynefin: Complicated. The inventory picks cookie or header transport'; Step 3 'Cynefin: Complex. This is a probe, not a full cutover'; Step 4 'Cynefin: Clear, once Step 3 passes'; Step 5 'The blocker is unknown friction... Cynefin: Complex. Run it in parallel with Steps 2 and 3.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Correctly classifies the core token migration as Complicated (Step 2) and the sign-up conversion change as Complex (Step 5), with appropriate secondary domains for inventory (Confused), canary traffic probe (Complex), and final cutover (Clear).",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Every action has a test written first matching its kind: Step 1 (evaluative) uses a weighted rubric with an 80% pass threshold; Steps 2 and 4 (deterministic) use Gherkin Given/When/Then tests; Steps 3 and 5 (stochastic) specify metric, baseline, pass threshold, and sample size ('at least 1,000 logins' and 'at least 500 starts').",
+      "score": 2
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks 0 questions and instead logs 3 assumptions (A1 to A3) with specific reasons and validation steps per Section 2.3."
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges found by the check script, and material uncertainty is stated as a confidence level with basis in Information: 'Confidence is high for the revocation limit, because it follows from the spec, and low for conversion impact, because no baseline number is in the material.'",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Every action matches its domain form: Step 1 (Confused) gathers an inventory to classify; Step 2 (Complicated) follows the inventory analysis; Steps 3 and 5 (Complex) are safe-to-fail probes with metrics, stop conditions, and budgets; Step 4 (Clear) is a single cutover step after the probe passes.",
+      "score": 2
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "Places the Confused action first (Step 1), sequences the Complicated implementation and auth cutover steps with explicit RFC 2119 dependency clauses, and runs the Complex sign-up probe (Step 5) in parallel with a capped budget ('10% of new starts for 7 days')."
+    },
+    "R6": {
+      "evidence": "Explicitly splits the migration and conversion work into separate tracks ('Sign-up field cuts stay out of that release, or you cannot tell which change moved conversion' and 'Probe sign-up apart from every auth release... Do not ship it in the same release as Step 4') with Complicated/deterministic and Complex/stochastic treatments.",
+      "score": 2
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Full BRIEF structure, zero banned words, and zero dashes, but has minor defects: the check report found two sentences over the 25-word limit (26 words in sentence 32 and 28 words in sentence 57) contradicting the self-test ('Longest sentence: 24 words'), and 'References' is given a separate heading outside 'Follow-up'."
+    }
+  }
+}

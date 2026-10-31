@@ -1,0 +1,41 @@
+{
+  "main_defect": "The two Complex probes never state that their leverage is a guess, which the expected signals require. The Self-test also reports a 22-word longest sentence while the check report finds 26- and 30-word sentences.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain: \"Cynefin: Clear.\", \"Cynefin: Complex (the effect on your task is visible only after the run)\", \"Cynefin: Complicated (compare two or three retrieval tools first)\", \"Cynefin: Complex.\" Step 1 and Step 4 give no reason for the domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The prompt run is \"Cynefin: Complex\", which is the expected primary domain. Building the test set as Clear, choosing a retrieval tool as Complicated, and the verifier call as Complex are all defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 is one step (Clear). Steps 2 and 4 are probes with \"Budget: two hours\" and stop conditions. Step 3 names the analysis (\"compare two or three retrieval tools first\", Pugh matrix). Neither Complex probe says that leverage is a guess, which 6.5 and the expected signals require.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Clear test set comes first because the probe needs it (\"Step 2 MUST NOT start until this test passes\"). The Complex verifier probe is capped and runs \"in parallel with Step 3\". No Chaotic or Confused actions exist.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 has a Gherkin test (\"Given a question and its source, When..., Then the set holds 100 rows\"). Step 2 states a metric, \"Baseline is the rate with a plain prompt\", \"5% or less\", and \"100 questions, run three times\". Step 3 has a weighted rubric (50/25/25, threshold 70 of 100, Pugh matrix). Step 4 states a metric, baseline, threshold, and sample size.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "\"No single prompt stops hallucination\". The response gives the prompt but frames it as \"Run the prompt above on the test set as a probe\", classifies it Complex because \"the effect on your task is visible only after the run\", and measures it against a baseline.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The unknowns are logged as A1 and A2 with validation tests.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "One calibrated statement: \"Confidence: medium, three secondary sources agree and none disagrees.\" The Headline claim that the prompt \"lowers it most\" is not calibrated, and \"Models score reasonably well\" is vague. The leverage uncertainty of the probes is not stated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins \"I recommend that we\", and the Self-test is last. The check report shows 0 banned words and 0 dashes. It also shows two long sentences (26 and 30 words), but the Self-test says \"Longest sentence: 22 words\". Step 3 states no increment, but the Self-test says each action has one.",
+      "score": 1
+    }
+  }
+}

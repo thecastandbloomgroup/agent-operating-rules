@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response commits to public statements instead of holding outbound communication, then treats the public-response decision as Complicated rather than using capped Complex probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions name a domain, but Steps 2 and 4 provide only 'Cynefin domain: Chaotic' and 'Cynefin domain: Complicated,' without classification reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 correctly states 'Chaotic' because it 'sets order.' However, Step 4 labels 'Choose and release the public response' as Complicated, although stakeholder reactions require Complex probes.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 commits to 'Release a holding statement,' and Step 4 commits to 'Choose and release the public response.' Neither is a bounded, reversible probe with a stop condition. Step 1 also lacks an explicit hold on outbound statements.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The incident lead comes first, and Step 5 runs 'in parallel with Steps 3 and 4' under a budget. However, Step 2 releases a statement before Step 3 checks the facts.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 supply Given/When/Then tests. Step 3 supplies weighted criteria and a '1.6 of 2' threshold; Step 4 supplies Must/Want criteria and a '7 of 10' threshold. Step 5 specifies a metric, a 24-hour baseline, a 50% threshold, and 'at least 30 new items.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds with logged assumptions and validation steps rather than asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence in Steps 1 and 2 is high. Basis: both steps hold whether the statement was true or false.' It also states low confidence in the Step 4 choice because it depends on Step 3 results.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required headings, End opening, five actions, and final Self-test are present. The script reports zero banned words, dashes, or overlength sentences. However, Step 5 spans 'three days,' rather than one working session, and the Self-test overstates compliance by treating observation of a committed response as a capped probe.",
+      "score": 1
+    }
+  }
+}

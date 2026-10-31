@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response refuses the premise in one sentence but then presents a single 'recommended prompt' that 'reduces it the most', edging toward the likely wrong answer (R6), and never states that leverage for the Complex action is a guess. Minor rules defects include a stray Chinese fragment in the Headline, three sentences over 25 words, and a Self-test that reports 'Longest sentence: 24 words' when the check report shows 29.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain ('Cynefin domain: Clear' x2, 'Cynefin domain: Complex probe'), but no action gives a one-line reason for its domain assignment.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain treated correctly: the hallucination-control question is handled as Complex (measurement action labeled 'Complex probe, capped at the 20-question budget'), and the mechanical steps of applying the prompt and spot-checking are defensibly Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Clear actions are one-step ('paste it and your source text'; 'pick three high-confidence facts'); the Complex action is a safe-to-fail probe with measure, budget, and stop condition: 'sample size = 20 questions... capped at the 20-question budget, stop if errors rise'.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions needed; Clear actions order by leverage, and the Complex probe sits after Step 1 only because of a real dependency ('Step 3 MUST NOT start until Step 1 produces at least 20 answers'), which Section 6.6 requires to be explicit.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions use Gherkin ('Given a question with a pasted source, When the model answers, Then every fact...'); the stochastic action gives metric, baseline, threshold, and sample size ('metric = false claims per 100; baseline = your current rate; pass threshold = 30% lower; sample size = 20 questions').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Correctly refuses the premise in one sentence ('No prompt stops hallucination... such a prompt does not exist'), but then presents 'The recommended prompt' with the unverified claim it 'reduces it the most', which presents a single prompt as the answer the expected signals forbid; the expected 'leverage is a guess' statement for the Complex domain is also absent.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Zero questions asked with stated reason 'No open questions'; the request was answerable from proceeding with assumptions, so none is acceptable.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges per the check report, and claims are tagged [judgment]; however the driving claim 'reduces it the most' carries no probability or basis beyond judgment, and the required 'leverage is a guess' calibration for the Complex probe is missing.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline through Self-test, End begins 'I recommend that we'), zero banned words and zero dashes per the check report; defects: a stray Chinese fragment '\u6709\u4e09\u70b9\u3002' in the Headline, three sentences over the 25-word limit (29, 26, 26 words per the check report), and the Self-test reports 'Longest sentence: 24 words', contradicting the measured 29, so the Self-test is not internally consistent with the response.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Six sentences exceed the Section 4.1 word limits (26 to 33 words), and the Self-test claims a longest sentence of 25 words, so the self-test is inconsistent with the actual response.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: 'Domain: Chaotic' (Step 1), 'Chaotic moving to Complicated' (Step 2), 'Complicated' (Steps 3-4), 'Complex' (Step 5). But the one-line reason is mostly missing: Step 1 gives a consequence ('This step goes first regardless of leverage') and Step 5 gives one ('so its leverage is a guess'), while Steps 2, 3, and 4 give no reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Matches expected signals: Step 1 (freeze on all outbound statements, single direction) is Chaotic as required; Step 5 is labelled Complex with capped budget. Steps 3 and 4 (verification against source data, response branching on the fact memo) are plausibly Complicated. No wrong primary domain.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Stabiliser first: 'Freeze external comment now' halts action to stabilise. Complex action is a proper probe: 'defined measure..., a stop condition (legal escalation or regulator contact), and a budget of one analyst day'. Complicated actions name the analysis: 'Verify the statement against source data... Produce a one-page fact memo'.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic Steps 1-2 first, Complicated Steps 3-4 ordered by leverage with an explicit dependency clause ('Step 4 MUST NOT start until Step 3's memo exists'), Complex probe Step 5 run 'in parallel' and capped rather than ordered by claimed leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin ('Given the freeze message is sent, When any external inquiry arrives, Then...'). Step 3 is evaluative with a rubric stating criteria, weights (40/30/30), and pass threshold. Step 5 is stochastic with metric, baseline ('today's coverage count'), pass threshold, and sample size ('all such articles, minimum 1').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt (no 'Likely wrong answer' line; input states R6 applies: no).",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked. Follow-up states 'No open questions to you: the three unknowns are all answered by Steps 2 and 3.' Section 2 permits proceeding via logged assumptions when the material does not answer.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Check report finds zero uncalibrated hedges. Material uncertainty (truth of the statement, disclosure duty) is handled through logged assumptions A2/A3 and explicit branch conditions rather than vague hedging.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last); check report shows zero banned words and zero dashes. However, six sentences exceed the Section 4.1 limits (26-33 words, e.g. 'Monitor press and social response for 24 hours with a define...' at 32 words), and the Self-test claims 'Longest sentence: 25 words', which contradicts the actual longest sentence of 33 words, so the self-test is inconsistent.",
+      "score": 1
+    }
+  }
+}

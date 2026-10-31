@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response stabilises first, but then commits to choosing and releasing a public response instead of using bounded Complex probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions name domains, including \"Stabilise (Chaotic, deterministic)\" and \"Choose the response (Complicated, evaluative)\". They lack one-line explanations of why those domains apply.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Stabilise (Chaotic, deterministic)\" correctly classifies the first action. However, \"Choose the response (Complicated, evaluative)\" treats uncertain stakeholder effects as analytically knowable rather than Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "\"Hold all external comment\" and \"Name one decision owner\" provide the required stabiliser. However, \"Release one approved statement\" commits to a response without preceding safe-to-fail probes. \"Track media pickup and staff questions\" supplies observation rather than a bounded response trial.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action appears first, and \"Step 4 MUST NOT start until Step 3 ends\" establishes a dependency. However, the Complex action says \"Start in parallel with Step 1\", rather than waiting for initial stabilisation.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The response includes Gherkin and weighted criteria. However, Step 3 only says \"The decision owner picks the highest score\", without a pass threshold. Step 5 specifies \"all outlets in the existing media log\" without a numerical sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states \"R6 applies: no\".",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" A1 to A3 record assumptions and validation steps, allowing immediate stabilisation without unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence in the sequence: medium, because it rests on judgment and no tool check\" provides a confidence level with its basis, as permitted by Section 4.6.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but a 29-word sentence contradicts \"Longest sentence: 24 words\". \"References: none\" also conflicts with the supplied Pugh reference and the Self-test's reference count.",
+      "score": 1
+    }
+  }
+}

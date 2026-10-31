@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 is labelled a Complex probe even though the analysis had already named the cause. Step 2 also assumes the database allows 64 connections, which conflicts with the OPS-412 commit message about a per-service limit. The response gives no calibrated uncertainty for that assumption, and the Self-test misreports the longest sentence.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain line: 'Cynefin domain: Clear.', 'Cynefin domain: Complicated.', 'Cynefin domain: Complex probe (budget: 30 minutes...)'. No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 2 is correctly 'Complicated', and the primary analysis is Complicated work. Step 1 as 'Clear' is defensible after the analysis. Step 3 is a post-fix verification of a knowable cause, but the response labels it 'Complex probe', so a secondary action is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Information section does the analysis with numbers from the files ('db.pool.acquire span grew by 687 ms... 88% of the total latency increase'), so a fix MAY come first. Step 2 is gated on 'verifying ticket OPS-412 limits per A1'. However, Step 3 is a probe, which the expected signals call waste, and it has no stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Clear comes before Complicated. However, pool wait drives 88% of the latency rise, so the pool fix (Step 2) has the higher leverage, yet the TTL revert comes first. The 'Complex probe' is also sequenced after the fixes ('MUST NOT start until Step 1 and Step 2 finish'), not run in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 have Gherkin tests for the deterministic config changes ('Given the configuration file \"config/cache.yaml\"... Then the returned value equals 300'). Step 3 has a stochastic metric with baseline, threshold, and sample size ('sample size of 5,000 requests', 'Baseline: 900 ms', 'p95 latency under 150 ms').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids 'revert the release' as action 1 and rejects it as the alternative: 'reverting code takes longer than applying targeted configuration changes [judgment]'. It never names the overall domain as Complicated or says why, and it mislabels Step 3 as Complex.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "There is one question with a stated use: 'What total connection ceiling did ticket OPS-412 establish... I will use this value to set the safe upper limit'. The material partly answers it: the commit says the limit is 'per service', and peak connections were 31 in A and 8 in B. Step 2 still depends on the answer, against Section 2.4.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, the recommendation depends on A1 ('can support at least 64 total connections'), and the response gives no probability, IPCC term, or confidence level with a basis for A1 or for the causal attribution.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins 'I recommend that we', there are 3 actions, 0 dashes, 0 banned words, and the Self-test comes last. The check report finds sentences of 30 and 31 words over the 25-word limit, while the Self-test says 'Longest sentence: 24 words'. References [1] to [3] are never cited by number.",
+      "score": 1
+    }
+  }
+}

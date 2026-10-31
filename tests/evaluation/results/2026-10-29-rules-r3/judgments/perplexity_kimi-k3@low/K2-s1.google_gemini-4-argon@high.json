@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response states the Cynefin domain for each action without a one-line reason, omits the required evidence per criterion and formal layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010) from the evaluative rubric, and omits blockers/capabilities on Steps 2 and 3 as well as the alternative considered section.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain ('Step 1: ... this is Clear', 'Step 2 ... this is an evaluative, Complicated action', 'Step 3 ... this is Clear'), but none includes a one-line reason explaining why the domain applies.",
+      "score": 1
+    },
+    "R3": {
+      "score": 2,
+      "evidence": "Step 1 and Step 3 (Clear) are single-step actions, and Step 2 (Complicated) names the analysis ('score each proposal with the rubric above')."
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 use Gherkin tests (though placed after the action text rather than before), and Step 2 uses a rubric with criteria, weights, and a pass threshold, but the rubric omits the evidence needed for each criterion and does not use a Kepner-Tregoe, Pugh, or ISO/IEC 25010 layout.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R2": {
+      "evidence": "The primary evaluative action (Step 2) is correctly classified as Complicated, and the secondary procedural/arithmetic actions (Steps 1 and 3) are correctly classified as Clear.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear or Complicated and ordered logically by dependency and leverage ('Step 2, after Step 1 passes', 'Step 3, after Step 2 passes').",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Asks one question in Follow-up and states how the answer will be used: 'Question 1: Can you resend the three proposals? The answer supplies the only material needed to complete Steps 2 and 3.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges per the check report; because the proposals are missing, the procedural recommendation does not rest on uncertain factual claims.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Zero banned words and zero dashes, and all main headings are present. However, Steps 2 and 3 omit the blocker removed or capability added (contradicting the Self-test claim 'each with increment, blocker, test: yes'), the deterministic tests in Steps 1 and 3 are written after the work rather than before, and the 'Alternative considered' artifact required by Section 3.2 is omitted.",
+      "score": 1
+    }
+  }
+}

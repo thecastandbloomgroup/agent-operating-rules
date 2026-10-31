@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response follows the expected Chaotic-then-Complex shape with a stabiliser first, but the stochastic probe test lacks a sample size, several actions lack a one-line domain reason, and the single citation is numbered out of order.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a Cynefin domain (Step 1 'Cynefin: Chaotic', Step 2 'Cynefin: Complicated', Step 5 'Cynefin: Complex, a capped probe'), but only Step 1 and Step 5 carry an implied reason ('Cause and effect are not visible yet... so the rule is: act to stabilise'; 'Leverage here is a guess'). Steps 2, 3, and 4 state the domain with no reason for that classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Matches the expected classification: Step 1 is the Chaotic stabiliser ('Freeze and route... Cynefin: Chaotic') and Step 5 is the Complex capped probe. The Complicated/Clear middle steps are plausible: 'Compare yesterday's statement, claim by claim, with the records' is analysis-first, and the board fact sheet is a one-step Clear action.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 is a one-step stabiliser with a single owner and a hold on outbound statements. Step 5 is a probe with budget ('Budget: two hours total'), a measure, and a stop condition. Step 2 is analysis-first (claim-by-claim comparison). No committed public statement is drafted; the holding paragraph waits on Step 2 labels, matching the expected 'should not contain' check.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic first ('Freeze and route (today, first two hours)'). No Confused action. Steps 2 to 4 ordered by dependency and leverage. Complex probe runs in parallel and is capped: 'Run it in parallel with Steps 2 to 4' with a two-hour budget.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 use Gherkin; Step 3 uses a weighted rubric with a pass threshold (8 of 10) and evidence per criterion. But the stochastic Step 5 test states 'Metric: the count of new articles and of inaccuracies; baseline: yesterday's coverage. Stop condition...' with no sample size and no explicit pass threshold, which the stochastic kind requires.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Not applicable; the input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked ('Questions asked: 0 of 3'). This is acceptable because no assumption meets all three ask-conditions: A1, A2, and A3 are each cheap to reverse ('If wrong: the response scope widens', 'If wrong: shorten the plan by one step', 'If wrong: the holding line becomes'), and each is logged with a validate-by test, per Section 2.3.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertainty is stated where the recommendation depends on it: 'Confidence in the containment-first order: high confidence, the source analysis fits any unverified public conflict [18]' and 'Leverage here is a guess' for the Complex probe.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, End begins 'I recommend that we', Self-test last, five actions each with increment, blocker, and test; zero dashes and zero banned words per the check report; self-test is internally consistent. One rules defect: the check report flags 'citations out of order (5.4.1)' because the response's only in-text citation is numbered [18] when IEEE in-order numbering in the response should start at [1].",
+      "score": 1
+    }
+  }
+}

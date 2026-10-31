@@ -1,0 +1,41 @@
+{
+  "main_defect": "Three rules defects cap R9 at 1: two sentences exceed the 25-word limit (28 and 39 words, both in the test-first lines), citations appear out of first-appearance order ([18] before [15]), and the self-test reports the longest sentence as 24 words, which contradicts the check report.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain: 'Stabilize the message (Chaotic, deterministic)', 'Establish the true record (Confused...)', 'Weigh correction options (Complicated, evaluative)', 'Publish and monitor (Complex, stochastic)'. Reasons are given only for some actions: action 4 says 'the news cycle uncertainty, which only observation can settle' and action 2 says 'gathers what Step 3 needs'. Action 3 (Complicated) and action 1 (Chaotic) carry no one-line reason for that domain choice; the general Chaotic justification sits in Background, not with the action.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain matches the expected classification: action 1 is Chaotic ('Stabilize the message (Chaotic...)') with a stabiliser. The follow-on domains are defensible: Confused for gathering the record that decides the rest, Complicated for an analysis that picks the practice (Kepner-Tregoe scoring), Complex for the capped publish-and-monitor probe. No secondary action is clearly misdomained.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Action 1 is a one-step stabiliser (name one spokesperson, freeze channels). Action 2 is the Confused classify-first form (assemble transcript, label claims). Action 3 is Complicated with the named analysis that picks the practice. Action 4 is a Complex safe-to-fail probe with measure, stop condition ('a legal finding in A2... then pause'), and budget ('no new statements during the window'). No drafted public statement is committed, matching the expected shape.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic action 1 first, Confused action 2 next ('gathers what Step 3 needs'), the single Complicated action follows, and the Complex probe is capped and run in parallel: 'Start Step 4 in parallel with Step 3, capped by its budget.' Dependency clauses are explicit: 'Step 3 MUST NOT start before the record in Step 2 is verified.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Action 1: Gherkin ('Given a press request, when any employee other than the named spokesperson receives it, then...'). Action 2: Gherkin ('Given the article, when each factual claim...'). Action 3: evaluative rubric with weights (40/30/20/10), pass threshold (70 of 100), and evidence per criterion. Action 4: stochastic test with metric, baseline, threshold, and sample size (20 stories over 48 hours).",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the prompt header.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions, each with its use: 'This decides Step 2 effort and A1', 'This can reorder the steps', 'This sets the pass threshold for credibility.' Three or fewer, each with a stated use.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibrated uncertainty appears where the recommendation depends on it: 'The probability that the statement was materially inaccurate, and not only disputed, is about as likely as not (33 to 66%)' with an IPCC term, and the Follow-up gives the condition that changes the recommendation if A1 is false.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is present and correct: Headline first, End begins 'I recommend that we', Self-test block present, zero banned words, zero dashes, no self-mention outside End. However, three defects remain: two sentences exceed 25 words per the check report (28 and 39 words, both in 'Test first' lines), citations appear out of order ([18] first appears before [15] in the Information section), and the self-test reports 'Longest sentence: 24 words' which contradicts the check report's 39-word sentence, making the self-test internally inconsistent. These are minor defects, not missing structure.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions in the End section omit the blocker removed or capability added, omit the one-line Cynefin domain reason, and omit the task-kind label on Actions 2 to 4, while the Headline and Action 2 contain unpermitted self-mentions ('I will supply', 'When I search').",
+  "scores": {
+    "R6": {
+      "evidence": "Named 'Domain: Clear' on every action and avoided classifying as Complicated, but did not state the reason why the domain is Clear on the actions (only noting 'The change is mechanical and deterministic' in the Headline).",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Zero questions asked ('Questions asked: 0 of 3'); logged two assumptions for the missing file attachment and proceeded.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states 'Domain: Clear.' at the end, but none of the four actions include a one-line reason for the domain classification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "All four actions are direct one-step actions matching the Clear domain, with no probes or analysis-first steps.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All four Clear actions are ordered logically by dependency and leverage (configure logging, bulk replace, refine levels, run tests) with an explicit sequencing rule ('Step 3 MUST NOT start until Step 2 passes.').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges in the check report; quantitative estimate is labeled ('about 90% of the replacements [judgment]').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full Headline, BRIEF, and Self-test structure is present with zero banned words and zero dashes, but all four actions omit the blocker removed or capability added, Actions 2 to 4 omit the 'deterministic' task-kind classification, tests are written after increments despite the Self-test claiming 'yes' for both, and prohibited self-mentions appear in the Headline ('I will supply') and in Action 2 ('When I search').",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions are correctly classified as 'Domain: Clear.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions use Gherkin (Given, When, Then) tests matching the deterministic task kind, e.g., 'Test (deterministic): Given the module imports, When the service starts, Then one INFO line with a timestamp appears on standard error.'",
+      "score": 2
+    }
+  }
+}

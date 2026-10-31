@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R4": {
+      "evidence": "Step 1 (Chaotic) is placed first, followed by Steps 2, 3, and 4 in dependency and leverage order.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 4 are classified as Deterministic and use Given/When/Then Gherkin tests; Steps 2 and 3 are classified as Evaluative and use rubrics with weighted criteria and pass thresholds.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions are asked, and two assumptions (A1, A2) are logged with validation tests and impact in the Assumption log.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges are used, and Information states a calibrated confidence level with basis: \"Confidence level: high confidence, based on standard corporate governance standards [1].\"",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Flesch-Kincaid grade is 10.4 (exceeding the limit of 10), and the Self-test claims every action was given a Cynefin domain even though Step 4 lists \"Cynefin domain: Deterministic.\"",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Steps 1, 2, and 3 state Cynefin domains (Chaotic, Complicated, Complicated) without one-line reasons, while Step 4 states \"Cynefin domain: Deterministic\", which is a task kind rather than a Cynefin domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 is rightly classified as Chaotic, but secondary actions are classified as Complicated and Deterministic instead of Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser matching Chaotic and Steps 2 and 3 are analysis actions matching Complicated, but the response lacks safe-to-fail Complex probes with budgets and stop conditions and mislabels Step 4 as Deterministic.",
+      "score": 1
+    }
+  },
+  "main_defect": "Secondary actions miss the Complex domain and required safe-to-fail probes, Step 4 confuses task kind (Deterministic) with Cynefin domain, no reasons are given for domain classifications, and Flesch-Kincaid grade exceeds 10 (10.4)."
+}

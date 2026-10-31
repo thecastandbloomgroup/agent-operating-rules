@@ -1,0 +1,41 @@
+{
+  "main_defect": "After a suitable Chaotic stabilizer, the response treats the unresolved crisis as Complicated and Clear execution. It drafts a public statement instead of proposing capped Complex probes with stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action states a domain with a brief rationale: 'Chaotic, stabilize first'; 'Complicated, use source comparison to identify factual conflicts'; and 'Clear, apply the agreed approval path.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Action 1 correctly names 'Chaotic.' However, the subsequent crisis response is classified as 'Complicated' and 'Clear,' rather than recognizing the Complex work that remains after stabilization.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The first action establishes ownership, and the second names source comparison. However, 'Deliver an approved response' commits to public communication and supplies a statement. No safe-to-fail probe, stop condition, or probe budget appears.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action correctly comes first. However, 'After Step 1 establishes ownership' and 'Step 3 MUST NOT publish substantive conclusions until Step 2 supports them' establish a linear execution plan without parallel, capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "All three actions include 'Given...when...then' tests. However, 'choose the response supported by the records' requires judgment, while Action 3 is labeled deterministic and has no weighted rubric, evidence requirements, or pass threshold for that choice.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No user-directed questions are asked. The response proceeds with the logged assumption 'You can convene the relevant people' and validates it through the accountable executive.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'The material here does not establish whether the statement was false' acknowledges uncertainty, and publication depends on supporting records. However, no probability, IPCC likelihood term, or confidence level with its basis accompanies the recommendation.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, three actions, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports a 31-word sentence while the Self-test claims 25, and the Self-test claims capped Complex probes despite their absence.",
+      "score": 1
+    }
+  }
+}

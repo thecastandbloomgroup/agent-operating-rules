@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Step 1 Gherkin test only says 'Then record' with no pass condition. The response also defers the cause instead of naming it from the attachments, so every action is still diagnostic or conditional.",
+  "scores": {
+    "R1": {
+      "evidence": "Each of the four actions has a Domain line with a short reason. Examples: 'Domain: Complicated, meaning analysis can establish cause and effect. Use a pool-ownership analysis.' and 'Complicated. Use a transaction and connection-lifetime analysis.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "All four actions are classed as Complicated, which matches the expected classification for K1.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 is a pool-ownership analysis and Step 2 is a connection-lifetime analysis. The fixes in Steps 3 and 4 depend on them ('Step 3 MUST NOT start until the pool layout is understood'). There is no probe and no fix committed before the analysis.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is analysis first, then a gated cache test, then gated deployment. No Chaotic or Confused domain is claimed. The dependency clauses ('Step 4 MUST NOT start until Step 3 passes') make the order explicit.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 are Deterministic with Given/When/Then. Steps 3 and 4 are Stochastic with a baseline (900 ms p95, 31% misses), a sample ('At least 10,000 requests'), a pass rule ('improves by at least 20%') and guardrails. Step 1's 'Then record...' has a weak pass condition, but the test kind is right.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids 'revert the release' as action 1. 'A full release rollback restores the previous configuration... It loses because the connection budget remains unverified, and a longer timeout does not remove contention.' It also names the domain: 'Complicated, meaning analysis can establish cause and effect.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "It asks one question: 'What exact connection limit does OPS-412 impose...'. The use is stated: 'The answer determines whether a later pool increase is permissible; this plan does not prescribe one.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'High confidence: connection acquisition drives the observed regression, based on trace timing and matching timeout logs.' 'Moderate confidence: the precise cause remains unresolved because pool ownership and connection hold times are absent.' Both give a confidence level with a basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All required headings are present in order. End begins 'I recommend that we'. The Self-test is last. The check report shows zero banned words, zero dashes and no long sentences. The Self-test counts (1 question, 2 assumptions, 3 references, 4 actions) match the body.",
+      "score": 2
+    }
+  }
+}

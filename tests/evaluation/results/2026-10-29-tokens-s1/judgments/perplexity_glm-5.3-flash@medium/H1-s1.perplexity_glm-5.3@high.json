@@ -1,0 +1,41 @@
+{
+  "main_defect": "Contains two open questions in an emergency where Section 2 conditions for asking are not met and the recommendation already assumes the answers (rule 2.4 conflict); no calibrated probability on the pivotal assumption that the 09:12 deploy caused the outage; no per-action one-line reason for the Cynefin domains; citations numbered out of order of first appearance ([18] before [16]).",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain tag such as '[Chaotic, deterministic] Roll back the last deploy' and '[Complicated, evaluative]'. However, only the Chaotic choice has a reason ('The incident domain is Chaotic: no cause and effect relation is visible yet, so the first action is stabilise, not diagnose'). No one-line reasons are given for the Clear labels on Steps 2 and 4 or the Complicated label on Step 3.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary action correctly Chaotic (stabiliser first, per prompt: 'Chaotic domain action comes first: stabilise, then analyse'). Step 3 correctly Complicated with named analysis (Pugh matrix). Steps 2 and 4 labelled Clear, which is defensible: dashboard verification and a three-line status update are one-step known practices, not the analysis the prompt reserves for Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Action 1 (Chaotic) stabilises first with rollback, matching the domain form. Action 3 (Complicated) names the analysis that picks the practice ('run the rollback decision matrix... Use a Pugh matrix'). Actions 2 and 4 (Clear) are single steps. All forms match their domains.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic stabiliser comes first whatever its leverage. No Confused actions. Clear and Complicated steps carry explicit dependency and domain-change gates: 'Do not start this before Step 2 fails' and 'Step 4 MUST NOT start until Step 1 is running or failed, so the report is true'. No Complex probes present, so no parallel capping needed.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions (1, 2, 4) use Gherkin (Given/When/Then), e.g. 'Given checkout succeeds for one test card / When I POST /checkout / Then the response code is 200'. Evaluative action (3) states criteria, weights, pass threshold, and evidence, per the rubric layout (Pugh matrix). No stochastic actions, so no sample size needed.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions, each with a stated use ('I will use it to pick the rollback target', 'I will use it to decide if rollback is safe'). However, Section 2.1 conditions are not met: a wrong rollback target is cheap to reverse, and rule 2.4 forbids asking a question whose answer the recommendation already depends on; the response itself logged A1 and A2 as assumptions covering both questions. The prompt's expected signals also say a question should not appear.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Key uncertainty (whether the 09:12 deploy caused the outage, A1) drives the recommendation, but it carries no probability or IPCC term, only '[judgment]' and '[inference]' labels. No uncalibrated hedges appear, so scoring is mixed rather than zero.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline first, End begins 'I recommend that we', Self-test last, headings match required names. Zero banned words and zero dashes per the check report; longest sentence 24 words within the 25-word description limit; self-test counts match the body (2 questions, 2 assumptions, 2 references). Minor defect: citations numbered out of order of first appearance ([18] cited in the Headline before [16] in Step 3), violating rule 5.4.1.",
+      "score": 1
+    }
+  }
+}

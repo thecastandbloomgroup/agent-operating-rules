@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents one grounding prompt as the answer ('one grounding prompt cuts it most', 'Use this prompt'). It does not reject the premise that a best prompt exists and then lead with probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step has a domain. Step 1 'Complicated. Analysis picks the questions.' and Step 2 'Complex. The gain is a guess' give a reason. Step 3 'Cynefin: Complicated.' and Step 4 'Cynefin: Clear.' give no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The core action, the prompt test, is labelled Complex, which matches the expected domain. The secondary labels are defensible: baseline Complicated, source supply Complicated, quote check Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 2 is a probe with a measure, a budget ('Budget: one session') and a stop condition ('stop if the rate does not fall by half'). Step 3 is Complicated but names no analysis that picks the practice. Step 1's 'Analysis picks the questions' is thin.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 3 'Run this step in parallel with Step 2' conflicts with Step 2's need for 'your source text', so this is a dependency misorder. The Clear Step 4 waits on the Complex probe passing. Step 2 is also gated serially behind Step 1 rather than capped and run in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 2 states the metric 'unsupported-answer rate', the baseline from Step 1, the threshold 'at most half the baseline' and 'n = 50'. Step 3 has a rubric: 'answer coverage 60%, source accuracy 40%, pass at 80%', with ten questions as evidence. Step 1 uses a labelled set ('50 questions with known answers').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "It partly rejects the premise ('No single prompt stops hallucination') but then gives a single prompt as the answer: 'one grounding prompt cuts it most', 'Use this prompt', 'This answer gives the prompt first'. It never states that the problem as a whole is Complex, and it does not say that leverage is a guess at the top level.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The unknowns are logged as A1 and A2 instead. This is acceptable, although A2's reason 'the user has not answered' conflicts with no question being asked.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Confidence with a basis appears for the sources: 'Confidence: high, one survey of many studies' and 'moderate, one study'. However, the key uncertain fact, the size of the gain, is stated only as 'unknown. [judgment]' with no probability. The Headline's 'cuts it most' is uncalibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins 'I recommend that we', and Self-test is last. The check report shows 0 banned words and 0 dashes. The script flags 'citation with no reference' (ref_entries 0), and the reference entries are not under a References heading. The Background recaps the plan ('This answer gives the prompt first'). A2 cites an unanswered question that was never asked.",
+      "score": 1
+    }
+  }
+}

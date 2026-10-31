@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents one prompt as the solution and labels its use Clear and deterministic. The primary task is Complex: prompt effectiveness requires capped, measured probes, and leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains: \"Clear,\" \"Complicated,\" and twice \"Complex.\" However, they lack one-line explanations of why their cause-and-effect relationships fit those domains.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 labels prompt use \"Kind: deterministic. Domain: Clear.\" Whether that prompt reduces hallucination is uncertain and varies across outputs, making the primary task Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 is a one-step action, and Step 3 includes a measure, a two-hour budget, and \"Stop if the first 20 replies show no drop.\" However, the Complicated action names no selection analysis, Step 4 lacks an explicit stop condition, and neither Complex action states that leverage is a guess.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Take these steps in order\" places both Complex probes after the prompt and source actions. Step 4 says \"run in parallel with Step 3,\" and both probes have budgets, but parallel scheduling with the other domains is not established.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use deterministic Gherkin tests for variable model behavior. Step 3 correctly supplies an unsupported-claim metric, a baseline without the prompt, a 30% reduction threshold, and 50 questions.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Despite saying \"No prompt stops hallucination fully,\" the response immediately claims \"but one prompt reduces it\" and directs \"Use this text as the system prompt.\" It therefore presents a single prompt as the answer rather than identifying the primary task as Complex.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response logs assumptions about the model and source availability, with validation steps and consequences, rather than asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence: moderate, one primary study\" provides some calibration. However, material claims such as \"one prompt reduces it,\" \"forces grounding,\" and \"expect a weaker effect\" lack calibrated uncertainty.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, four actions, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, the Self-test claims \"test written first: yes,\" while the action instructions precede their tests.",
+      "score": 1
+    }
+  }
+}

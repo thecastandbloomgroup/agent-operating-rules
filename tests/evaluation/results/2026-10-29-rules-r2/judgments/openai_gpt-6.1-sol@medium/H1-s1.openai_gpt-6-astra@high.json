@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 1 coordinates responders and captures evidence rather than restoring service. Rollback or failover is deferred to Step 2, violating the stabiliser-first gate.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain label. However, 'Chaotic, stabilize first' and 'Complex, use a capped recovery check' prescribe action forms without explaining why those domains apply.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary 'Chaotic' classification and Step 2's 'Complicated' classification fit. Step 3 incorrectly labels recovery verification 'Complex'; variable observations do not establish emergent cause and effect.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 says 'Declare the highest applicable incident severity,' 'Page your backup,' and 'Capture the checkout error signature.' These coordinate and investigate rather than restore checkout. The actual stabiliser, 'Revert it through the established rollback procedure,' appears only in Step 2.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'First two minutes: stabilize the response' precedes 'Minutes two through seven: attempt one evidence-backed recovery.' This puts coordination and evidence capture before service stabilisation. The purported Complex action also runs sequentially at minutes seven through ten rather than in parallel.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 provide Given/When/Then tests before the work. Step 3 supplies a stochastic acceptance test with 'Checkout success rate,' a '0% success' baseline, 'Next 20 real checkout attempts,' and 'At least 19 successes' as its threshold.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked. The response proceeds and logs the production-access assumption, with 'Validate by: Open the incident console' and an immediate fallback.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Incident judgments, not measured service limits,' 'recovery observed, not resolved,' and 'verification as incomplete' acknowledge uncertainty. However, no probability, likelihood term, or confidence level with a basis calibrates uncertain recovery claims.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required 'I recommend that we' opening, and a final Self-test are present. The report confirms zero banned words and dashes. However, Background has two sentences despite the prompt-specific limit, and 'Longest sentence: 24 words' conflicts with the report's 26-word sentence.",
+      "score": 1
+    }
+  }
+}

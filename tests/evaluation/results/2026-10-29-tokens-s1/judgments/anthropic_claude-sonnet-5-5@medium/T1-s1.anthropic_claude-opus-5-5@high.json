@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response never says that the 'culture' framing is wrong or that the work is Clear. It puts a 30-minute style meeting (Complicated) before formatter adoption and adds a Complex four-week probe on reviewer behaviour, and the expected signals exclude both of those elements.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Only Steps 1 and 4 give a reason: 'Complicated, because analysis picks among known good options' and 'Complex, so this is a safe-to-fail probe'. Steps 2 and 3 say only 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The core formatter actions (Step 2 reformat, Step 3 CI check) are correctly Clear. Step 1 'Choose one style in a 30-minute meeting' is labelled Complicated, and Step 4 is labelled Complex. The expected classification is Clear throughout, so the primary domain is right and the secondary actions are wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 2 and 3 are one-step deterministic actions. However, Step 1 is a meeting with a rubric, and Step 4 is 'a four-week probe on the review rule' with a budget. The expected form is one-step actions with no probes, so the form only mostly matches.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "There are no Chaotic or Confused actions. The Complicated choice comes first, then the Clear reformat and CI steps, with dependency clauses ('Step 3 MUST NOT start until the test in Step 2 passes'). The Complex probe is 'Run it in parallel with Steps 2 and 3' and is capped by 'Budget: 1 hour of setup and 4 weeks.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 has a rubric with weights (30/30/20/20), a threshold of 70 of 100, and evidence ('run each candidate formatter on five real queries'). Steps 2 and 3 have Gherkin Given/When/Then tests. Step 4 has a metric, a baseline (last 20 reviews), a threshold (80% lower), and a sample size (next 20 reviews).",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline treats the problem as a tooling problem: 'let one agreed formatter settle it'. It never names the real domain as Clear or says why 'culture' is the wrong frame. It still puts a meeting before the formatter, adds a Complex behavioural probe, and offers a 'short team survey' fallback. This partly avoids the wrong answer.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The missing facts are handled as assumptions A1 to A3, each with a validation step.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: medium, no team data seen' is a confidence level with its basis, which 4.6 item 3 allows. The probe says 'its leverage is a guess'. No uncalibrated hedges appear (check report shows zero).",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present, with 0 dashes and 0 banned words per the check report, and the End begins 'I recommend that we'. Defects: the Headline opens with 'I recommend that we stop debating', which is self-mention outside End, so the Self-test line 'Self-mention outside End: 0' is inconsistent. The Information section has a dangling line 'The Cynefin framework sorts work by how cause and effect relate:' followed by a lone '[1]'. The References list is plain text, not a parsed entry list, and the script flags 'citation with no reference'.",
+      "score": 1
+    }
+  }
+}

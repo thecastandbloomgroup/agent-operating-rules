@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R9": {
+      "evidence": "Check report flags a 33-word sentence in Headline ('Do not merge these two tasks: run the JWT migration as a deterministic change first, then run sign-up conversion as a separate experiment, because the two have different risk types and success measures.'), violating 4.1.1 and contradicting the Self-test claim ('Longest sentence: 22 words'). Actions 2 to 5 also omit the blocker removed or capability added required by 6.3, contradicting the Self-test.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Clear domain', 'Complicated domain', 'Clear', 'Clear', 'Complex probe'), and Headline plus Action 2 explain the Complicated and Complex classifications, but Actions 1, 3, and 4 do not include a one-line reason for their Clear domain.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Clear actions (Steps 1, 3, 4) are direct steps, the Complicated action (Step 2) names the analysis ('Analysis: threat model picks expiry and key rotation practice'), and the Complex action (Step 5) is a safe-to-fail probe with a metric, budget ('budget two weeks'), stop condition ('no lift at threshold'), and 'Leverage is a guess.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Explicitly splits the request in Headline ('Do not merge these two tasks: run the JWT migration as a deterministic change first, then run sign-up conversion as a separate experiment, because the two have different risk types and success measures.') and classifies the JWT implementation as Complicated and the conversion experiment as Complex.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges per the check report, but the response does not state any probability, IPCC likelihood term, or confidence level with basis (Section 4.6) where the recommendation depends on uncertain facts.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Correctly classifies the core JWT design/implementation as Complicated (Step 2), the conversion experiment as Complex (Step 5), and supporting inventory, cutover, and instrumentation steps as Clear (Steps 1, 3, 4).",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Orders the Clear and Complicated actions by dependency and leverage (Steps 1 to 4), and sequences the capped Complex probe (Step 5) after Step 3 ('Step 5 MUST NOT start until Step 3 passes, so auth changes never confound the experiment'), matching the 6.5 rule to run Clear actions first when they reduce probe uncertainty.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Gherkin (Given/When/Then) and Step 5 specifies metric, baseline, threshold, and sample size ('by power calculation'). However, Step 3 is classified as Deterministic but uses a metric test instead of Gherkin ('Test: targeted users authenticate for 24 hours with zero 401 spikes above baseline'), and Step 4 omits 'When' ('Given 100 sign-up visits, Then completion events fire...').",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks 0 questions and logs 3 assumptions (A1 to A3) with validation steps and impact in the Assumption log, adhering to Section 2.",
+      "score": 2
+    }
+  },
+  "main_defect": "Sentence 5 in Headline is 33 words (exceeding the 25-word limit and contradicting the Self-test), Actions 2-5 omit the blocker/capability field, and Deterministic Action 3 lacks a Gherkin test."
+}

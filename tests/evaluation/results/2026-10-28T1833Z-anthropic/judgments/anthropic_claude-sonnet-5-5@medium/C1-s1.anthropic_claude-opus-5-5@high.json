@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response uses self-mention outside the End section ('so I give', 'I cannot edit it', 'I will then return'). Its own Self-test reports 'Self-mention outside End: 1' instead of fixing it. It also never says why each action is Clear.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries 'Kind: deterministic. Cynefin: Clear.' No action gives a one-line reason for the domain. 'All prints depend on it.' justifies the order, not the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions are tagged 'Cynefin: Clear', which matches the expected Clear classification. None is marked Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is a single step: 'five lines', 'one grep command', 'all N calls in one session', 'one pytest function using caplog'. There is no probe, budget, or analysis step.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is setup block ('All prints depend on it'), then grep inventory, then replacement, then caplog test. A dependency clause is explicit: 'Step 3 MUST NOT start until this test passes.' This is a sound leverage order for Clear actions.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Every action has a Gherkin test written first, for example 'Given the edited file / When you run the grep from Step 2 / Then it returns 0 lines.' This fits the deterministic kind. No rubric or metric is used.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the likely wrong answer (Complicated) and names Clear for every action. It never says why the work is Clear, for example that a known best practice exists.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "One question with a stated use: 'can you paste the file in your next message? I will then return the edited file and the exact list of changed lines.' The file does not appear in the conversation, so the material does not answer this. The recommendation is still given for the most likely case.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The script found no uncalibrated hedges. Uncertain facts go into assumptions A1 to A3, each with a validation step. A condition that changes the plan is stated: 'If A3 is false and a tool parses the old output format...'. The Clear domain leaves little material uncertainty.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF, End beginning 'I recommend that we', and Self-test last. There are 0 dashes, 0 banned words, and the longest sentence is 20 words. However, self-mention appears outside End ('so I give', 'I cannot edit it', 'I will then return'). The Self-test reports 'Self-mention outside End: 1', which is both inaccurate (three instances) and a failing line that was not fixed. The script also flags 'citation with no reference' (ref_entries 0), although a References list with [1] and [2] is present.",
+      "score": 1
+    }
+  }
+}

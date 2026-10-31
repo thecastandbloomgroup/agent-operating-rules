@@ -1,0 +1,41 @@
+{
+  "main_defect": "The prompt's expected domain is Confused, but the response classifies every action as Clear or Complicated and never says it cannot yet tell the domain; its first action also depends on the user naming suspect lines instead of locating the discrepancy by recomputing headline figures from source and diffing.",
+  "scores": {
+    "R1": {
+      "evidence": "\"Deterministic, Clear domain\", \"Evaluative, Complicated domain\", \"Deterministic, Complicated domain\": a domain is stated for all four actions, but no action gives a one-line reason for its domain choice.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected classification is Confused; the response never names Confused and labels the primary actions \"Clear domain\" and \"Complicated domain\", so the primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "For a Confused task the first action must gather what is needed to classify and say so; Step 1 is \"list the suspect Q3 lines in one table. Test... When the user names suspect lines\", which waits on the user rather than recomputing the headline figures from source and diffing as the expected U1 form requires.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Confused work should come first; the response does put a scoping/locating step first (\"Step 1... list the suspect Q3 lines\") with explicit dependencies (\"Step 2 MUST NOT start until Step 1 passes\"), so ordering is functionally right but not labeled or framed as Confused-first.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin (\"Given the Q3 report, When the user names suspect lines, Then the table shows report value, source value, and delta\"); evaluative Step 3 uses a rubric with criteria, weights, and threshold (\"period mapping 40%, formula error 30%, currency 20%, manual edit 10%; pass needs one class above 70 with evidence\").",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt (\"R6 applies: no\").",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions in Follow-up, each with stated use: \"Send the Q3 report or suspect rows; I will fill the Step 1 table\", \"Name the source of truth... I will set the baseline column\", \"State the tolerance you use; I will replace the 0.01 default\"; the recommendation proceeds under logged assumption A1, satisfying 2.4.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability, IPCC term, or confidence-with-basis appears; uncertain material claims are handled only with \"[judgment]\" labels and assumption A1 (\"The Q3 report exists and can be shared... The material does not state it\"), so calibration is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline first with a decision sentence plus supporting points, Background/Relevance/Information/End/Follow-up in order, End begins \"I recommend that we\", Self-test last and internally consistent; check report confirms zero banned words, zero dashes, no overlong sentences; four actions each carry increment, blocker, test, and domain.",
+      "score": 2
+    }
+  }
+}

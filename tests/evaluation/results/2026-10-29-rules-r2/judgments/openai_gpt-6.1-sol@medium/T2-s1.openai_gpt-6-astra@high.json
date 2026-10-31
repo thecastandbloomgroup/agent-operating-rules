@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents a single prompt as the solution instead of rejecting the premise and proposing measured, budget-capped Complex probes.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a Cynefin domain or gives a reason for its classification.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "\u201cAnswer the question accurately, not just plausibly\u201d introduces a fixed prompt solution. The response does not identify hallucination reduction as Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\u201cBefore responding, check each factual claim\u201d is a prescribed instruction, not a safe-to-fail probe. No probe includes a measure, stop condition, or budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The response supplies only a prompt template. It provides no explicit action sequence, parallel capped probes, or statement that leverage is a guess.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No acceptance test specifies a labelled evaluation set, hallucination rate, baseline, threshold, or sample size.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The entire response is a single prompt ending with \u201cQuestion: [insert your question]\u201d. It neither rejects the one-best-prompt premise nor explains the real Complex domain.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "No clarification questions are asked. \u201cQuestion: [insert your question]\u201d is a template placeholder, not a question to the user. No clarification is needed to propose initial probes.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cRemove unsupported claims or label their uncertainty\u201d instructs a future model but does not calibrate this recommendation. No probability, likelihood term, or confidence level with a basis addresses prompt effectiveness.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Missing Headline, BRIEF sections, the required End opening, three to five tested actions, and a final Self-test. The check report finds zero banned words, prohibited dashes, or long-sentence violations.",
+      "score": 0
+    }
+  }
+}

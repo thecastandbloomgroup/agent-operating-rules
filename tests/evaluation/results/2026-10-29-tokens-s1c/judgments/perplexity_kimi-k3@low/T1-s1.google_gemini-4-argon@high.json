@@ -1,0 +1,41 @@
+{
+  "main_defect": "Classified secondary actions as Complicated and Complex (including a probe, which the prompt signals forbid), omitted domain reasons per action, placed multiple citations on one line, and exceeded the sentence length cap.",
+  "scores": {
+    "R4": {
+      "evidence": "Steps 1 to 3 (Complicated and Clear) are ordered sequentially by blocker removal, while Step 4 (Complex probe) is capped with a two-week budget and set to 'Run in parallel with Steps 2 and 3.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 (Evaluative) has a weighted rubric with pass threshold and evidence; Steps 2 and 3 (Deterministic) have Gherkin Given/When/Then tests; Step 4 (Stochastic) has metric, baseline, threshold, and sample size ('over the next ten reviews, zero comments').",
+      "score": 2
+    },
+    "R6": {
+      "score": 2,
+      "evidence": "Rejected the culture/workshop framing in the Headline ('You cannot fix a culture problem directly; you fix it by removing the decision from people and giving it to a tool') and in Alternative considered ('Hold a workshop to write a shared SQL style guide by consensus. It loses because style guides die without enforcement'), naming Clear for the formatting steps."
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges found by the check script, and states a calibrated confidence level with basis in Information: 'Confidence: high. The tooling exists and the pattern is proven in other languages [judgment].'",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a domain ('Evaluative, Complicated', 'Deterministic, Clear', 'Deterministic, Clear', 'Stochastic, Complex, probe'), but none includes a one-line reason for its domain classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Correctly identifies Clear for the core formatter configuration and CI enforcement actions (Steps 2 and 3), but misclassifies Step 1 as Complicated and adds a Complex probe in Step 4 ('Move one review conversation to logic only (Stochastic, Complex, probe)').",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 to 3 match their stated domains, but Step 4 adds a Complex probe (contradicting the expected one-step Clear form) and omits the required Section 6.5 statement that leverage in a Complex domain is a guess.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked zero questions ('Questions asked: 0 of 3') and properly logged three assumptions (A1 to A3) to proceed.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure and zero banned words or dashes, but check report shows two sentences over 25 words (32 and 33 words, while Self-test claims 'Longest sentence: 24 words') and multiple citations on one line ('[1][2][3]').",
+      "score": 1
+    }
+  }
+}

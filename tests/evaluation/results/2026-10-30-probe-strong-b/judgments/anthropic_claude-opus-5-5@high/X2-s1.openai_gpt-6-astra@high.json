@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as a diagnosable workflow failure. It prescribes fixes after an audit instead of offering two or three parallel, capped probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain and gives a reason: 'Confused. The cause is not yet known'; 'Clear. Putting the action into the backlog is a known practice'; 'Complicated. The Decide score from Step 1 is the analysis'; and 'Complex. This step is a safe-to-fail probe.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary approach is 'Find the stage where your retrospectives break', starting with 'Domain: Confused' and proceeding to prescribed workflow fixes. The expected primary domain is Complex because interacting human causes require probes, not merely diagnosis of a failure stage.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 4 supplies a measure, a 'Budget: 30 minutes in total', and a stop condition. However, Step 1's acceptance test only 'names the lowest stage', rather than classifying the domain. Step 3 cites 'The Decide score' without analysis establishing why that practice fits.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Given its declared domains, sequencing follows the rules: the Confused audit comes first, Step 2 claims the highest Clear/Complicated leverage, and Step 4 says 'Run it in parallel with Steps 2 and 3' with a capped budget. The audit supplies its baseline before it starts.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The evaluative audit has criteria, equal weights, evidence requirements, score thresholds, and a completion threshold. The backlog and escalation artifacts have Given/When/Then tests. The stochastic probe specifies 'new topics per meeting', a six-meeting baseline, an increase of one topic, and 'Sample size: three meetings.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds with four logged assumptions and validation steps rather than asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The causal estimates use 'likely (66 to 100%)' and 'about as likely as not (33 to 66%)'. Their basis is explicitly limited: 'low confidence: one sentence of description and no data.'",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned terms, zero prohibited dashes, and no sentence-length violations. Minor defects remain: Edmondson's original empirical study is tagged '[S]', and the Self-test claims primary or secondary support behind every driving claim despite judgment-only causal estimates.",
+      "score": 1
+    }
+  }
+}

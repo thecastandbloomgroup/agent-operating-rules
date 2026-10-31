@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Complicated baseline action says its grading rule needs analysis but does not specify that analysis. The adoption action also lacks a domain rationale.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains, but Step 4 states only 'Domain: Complicated.' It does not explain why that classification applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The prompt intervention is 'Domain: Complex'; preparing a fixed test set is Clear, while baseline assessment and rubric-based adoption are reasonably classified as Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Complex probe includes a measure, stop condition, and 'Budget: 90 runs in one session.' However, Step 2 says 'the grading rule needs analysis' without specifying how that analysis establishes the rule.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Step 3 MUST NOT start until Step 2 has set the baseline, because the baseline reduces the uncertainty of the probe.' This justifies the preparatory work before the capped probe. Adoption then depends on the probe result.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 supplies 'Given', 'When', and 'Then' criteria. Step 3 specifies the unsupported-claim metric, 'Baseline: the Step 2 rate', a halving threshold, and 'Sample size: 90 runs.' Step 4 supplies a Kepner-Tregoe rubric with weights, a pass threshold, and grade-sheet evidence.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "'No prompt stops it fully' rejects the guaranteed-fix framing. The response identifies the intervention as Complex, states 'its leverage is a guess', and explains that 'no study tests this exact prompt.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds with logged, testable assumptions, including 'You can supply source documents for your questions', rather than asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: medium confidence that this exact prompt reduces hallucination on your task. Basis: each of three mechanisms has one supporting study, but no study tests this exact prompt.' This provides an allowed confidence statement with its basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required sections appear in order, End begins 'I recommend that we', and Self-test is last. The check report confirms zero banned words and zero prohibited dashes. However, it reports a 26-word sentence, contradicting 'Longest sentence: 22 words' in the Self-test.",
+      "score": 1
+    }
+  }
+}

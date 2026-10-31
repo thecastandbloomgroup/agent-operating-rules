@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 has no Cynefin domain, giving only the task kind \"Deterministic\". It also commits to publishing a statement inside a crisis that is still unstable. The Self-test still claims that every action has a domain.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1, 2 and 4 carry domains: \"Step 1 (Chaotic)\", \"Step 2 (Complicated)\", \"Step 4 (Complex probe)\". Step 3 has only \"Step 3 (Deterministic)\", which is a task kind, not a Cynefin domain. No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 is Chaotic with a communication freeze. Step 2 is labelled Complicated, but the expected domain after the stabiliser is Complex. Step 3 has no domain at all.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser: \"Order an immediate external communication freeze\". Step 4 is a probe with a budget and a stop condition: \"capped at a 2-hour monitoring window. If hostile coverage exceeds 80%, stop the probe\". Step 3, however, commits to \"Draft and publish a neutral holding statement\" and \"Distribute ... to the journalist and primary media wire\". That is a committed public action, not a probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action comes first. The Complex probe (Step 4) runs after Step 3 because it uses the published holding statement. It is not run in parallel, and no dependency clause states this.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 use Gherkin (Given/When/Then). Step 2 uses a rubric with criteria, weights (40/35/25), evidence and a threshold. Step 4 uses a stochastic test with metric, baseline, threshold and \"Sample size: First 10 media inquiries\". Each test kind fits its action.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable for this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". The response logs the unknowns as assumptions A1 to A3, each with validation and impact. This is acceptable per Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response has no uncalibrated hedges, but it gives no probability, IPCC term or confidence level anywhere. The plan depends on whether the CEO statement is false, and this is left uncalibrated. \"The risk of uncoordinated communication in corporate crises is high [1]\" is not calibrated either.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete and the check report shows zero banned words and zero dashes. Defects: the text says \"we proceed under four assumptions\" but logs only three. The Self-test claims every action has a Cynefin domain, but Step 3 has none. The check report flags \"citation with no reference\" because the reference list is not parsed as a list. FK grade is 10.0, at the limit.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response does not provide an actual evaluation rubric with concrete criteria, weights, pass threshold, and required evidence; instead, Step 2 merely repeats the rule definition of a rubric as a meta-statement, and Steps 1 and 3 lack reasons for their Cynefin domain classifications.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state a Cynefin domain, but only Step 2 ('Domain: Complicated, because that list is the analysis that picks later practice.') and Step 4 ('Domain: Clear, because the decision rule is already fixed.') include a one-line reason; Steps 1 and 3 state 'Domain: Confused.' and 'Domain: Complicated.' with no reason.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 2, 3, and 4 match their Complicated (analysis-first) and Clear (one-step) domains, but Step 1 is labeled 'Domain: Confused' without stating that it gathers information to classify the domain as required by Section 6.5 ('The first action MUST gather what is needed to classify. Say so.').",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Confused) is placed first, followed by Steps 2 and 3 (Complicated) and Step 4 (Clear) ordered by explicit dependencies ('This step MUST NOT start until Step 1 and Step 2 pass.').",
+      "score": 2
+    },
+    "R5": {
+      "score": 1,
+      "evidence": "Step 1 uses Gherkin for a deterministic task, but the evaluative actions (Steps 2, 3, and 4) do not define a complete rubric with specific criteria, weights, pass threshold, and required evidence before scoring; Step 2 only states a meta-description ('Test: A rubric lists criteria, weights, a pass mark, and the evidence each criterion needs.')."
+    },
+    "R8": {
+      "evidence": "The check report confirms zero uncalibrated hedges, and because the proposals are missing from the prompt, the response defers vendor selection and provides an explicit condition for assumption A1 ('If A1 is false, replace Step 1 with a call for new bids.').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The response follows the Headline, BRIEF, and Self-test structure with zero banned words or dashes, but introduces an unauthorized 'References' heading outside the allowed list in Section 3.3 and writes 'Assumptions logged: 1 (yes)' for whether unlogged assumptions were made.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary vendor evaluation actions (Steps 2 and 3) are rightly classified as Complicated, but Step 1 (uploading three existing proposal files) is misclassified as Confused when cause and effect for uploading files and the domain of the task are already known.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Follow-up asks three questions about the missing proposals and requirements, and each question states how the answer will be used ('The files will supply price, scope, and term for the matrix.', 'That list will set the pass or fail gates.', 'Any bid that breaks a hard stop will be rejected.').",
+      "score": 2
+    }
+  }
+}

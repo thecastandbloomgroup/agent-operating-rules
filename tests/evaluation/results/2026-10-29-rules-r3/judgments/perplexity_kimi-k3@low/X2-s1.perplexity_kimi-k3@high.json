@@ -1,0 +1,41 @@
+{
+  "main_defect": "The primary problem is classified and treated as Complicated/Clear with prescriptive fixes, while the expected domain is Complex with probes in parallel; the Confused safety check is ranked last instead of preceding the Clear/Complicated actions, and the probes are numbered/ranked rather than run in parallel. Secondary defects: two sentences exceed 25 words (self-test claims 22), and multiple citations appear on single lines.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names its domain: 'Complicated domain' (1), 'Clear domain' (2), 'Complex domain' (3), 'Confused domain action' (4). But only action 4 gives a reason ('because its result decides the next step'); actions 1 and 2 state domains with no one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected classification is Complex (human system, interacting causes). The response leads with Complicated and Clear actions that presuppose known cause and effect ('Retrospectives fail when they never reach a decision, an owner, and a deadline; fix those three gates'), treating failure modes as established. It does include a Complex probe (facilitation rotation) while mislabeling what is partly a Complex issue as knowable.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 2 (Clear) is one step. Action 1 (Complicated) rests on the failure-mode analysis in Information that selects the practice. Action 3 (Complex) is a safe-to-fail probe with measure, stop condition ('stop if participation drops'), and budget (three sessions). Action 4 (Confused) gathers classification data. All forms match their domains.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Section 6.5 requires Confused actions to come before Clear and Complicated ones; Step 4 (Confused) is numbered last. The expected signal 'probes in parallel, not ranked' is only partially met: probes are ranked as Steps 3 and 4, though 'Step 4 SHOULD run in parallel with Steps 1 to 3' softens this. Clear/Complicated lead on claimed leverage while the Complex probe is capped.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Action 1 evaluative with rubric: criteria (owner, date, verb), equal weights, 100% pass threshold. Action 2 deterministic with Gherkin Given/When/Then. Action 3 stochastic with metric (distinct speakers), baseline (last three retros), threshold (70%), sample size (three sessions). Action 4 stochastic with metric, baseline (none), threshold (3.5), sample (100% of attendees). Minor omission: rubric does not state evidence per criterion.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked ('Questions asked: 0 of 3'); none were needed and no question asks the user to diagnose the problem for the model.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Material uncertainty is calibrated: 'Confidence is moderate because the sources are secondary and no source measured your team directly' is a confidence level with its stated basis, placed where claims support the recommendation. No uncalibrated hedges per the check report.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure present: Headline first, BRIEF sections in order, End begins 'I recommend that we', Self-test last, four actions with required fields, zero banned words and zero dashes per the check report. Defects: two sentences of 28 words exceed the 25-word description limit while the Self-test claims 'Longest sentence: 22 words', making the block inconsistent with the response; several lines carry two citations ('[1], [2]') against the one-citation-per-line rule.",
+      "score": 1
+    }
+  }
+}

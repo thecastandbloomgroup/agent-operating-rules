@@ -1,0 +1,41 @@
+{
+  "main_defect": "The domains are stated, but most lack a one-line reason, and no assumption or ordering claim carries a probability or IPCC term.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain label: '(Confused domain, evaluative)', '(Clear, deterministic)', '(Complicated, deterministic)', '(Complicated, evaluative)'. Only Step 4 gives anything like a reason ('The analysis picks the fix'). Steps 1 to 3 give no one-line reason why that domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is Confused, which matches the expected classification. Re-adding totals as Clear, source tracing as Complicated, and explaining gaps as Complicated are all defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 gathers before anything else and locates the discrepancy: 'List each figure that looks wrong, with a reason... It removes the blocker that no one knows which figures are in doubt.' Step 2 is one step: 'Add every column and row total again.' Step 4 names the analysis that picks the fix: 'Test each gap against three causes... The analysis picks the fix.' The response states no single cause as fact.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is Confused (Step 1), then Clear (Step 2), then Complicated (Steps 3 and 4). Dependencies are explicit: 'Step 2 MUST NOT start until Step 1 passes' and 'Step 3 MUST NOT start until Step 2 finishes, because arithmetic errors hide source errors.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 2 and 3 are deterministic and have Gherkin tests (Given/When/Then). Steps 1 and 4 are evaluative and have rubrics with criteria, weights, threshold, and evidence. Step 1's scoring is muddled: '25% each' and '3 of 4 on every criterion' do not fit together. The test kind is still correct.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks no questions and states the reason: 'Open questions: none. Steps 1 to 4 do not depend on an answer.' Step 1 collects the missing information. This follows Section 2, which says to assume and proceed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses no probability or IPCC term anywhere. 'Most report errors fall into three groups [judgment]' quantifies loosely. A3 (no known restatement) drives the If-wrong branch but has no likelihood. The ordering rests on uncalibrated judgment. The check report finds no banned hedges, so the result is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings are present and in order. End begins 'I recommend that we'. The Self-test comes last. The check report shows zero banned words, zero dashes, and no long sentences. Self-test values are consistent: 0 questions, 3 assumptions, 4 actions, 1 reference. A separate 'References' heading sits outside Follow-up, which is a minor defect at most.",
+      "score": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response labels the evidence review Complicated and the public reply Clear, where the expected domain is Complex. So it commits to a sequenced 60-minute plan with a drafted interim public statement instead of capped safe-to-fail probes with stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action has a Domain line: \"Chaotic, meaning stabilize first.\", \"Complicated, meaning analysis must guide the decision.\", \"Clear, meaning apply the agreed response rules.\" These glosses define the domain. They do not say why each action belongs in it.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1 is correctly Chaotic (one response lead, one final approver, external replies routed through PR). Action 3, the public response to a contested media allegation, is labelled \"Clear\", but the expected domain is Complex. Action 2 is labelled Complicated. The primary domain is right and a secondary one is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser and matches Chaotic. Action 2 names an analysis (a weighted rubric), which matches its Complicated label. Action 3 is a committed multi-branch response with a drafted statement: \"We are reviewing the report and the records behind yesterday's statement. We will provide an update by [time, time zone].\" No action is a probe with a measure, stop condition, and budget, and the prompt expects probes after the stabiliser.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action comes first (\"First 10 minutes: establish control\"), then Complicated, then Clear, with an explicit dependency: \"A definitive response MUST wait for Step 2's test.\" The order follows 6.5 for the domains as labelled.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Action 1 has a Gherkin test: \"Given competing requests, when the team convenes, then one lead, one approval route, and one next-update time exist.\" Action 2 has a rubric with criteria, weights (20/50/30), required evidence, and \"Pass threshold: 100/100\". Action 3 has a Gherkin content check: \"then every factual assertion has support.\" Each test form matches the stated kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked. The missing statement and authority are handled as an assumption instead: \"A1. You can convene the response team. Why not measured: The material does not state it...\". This follows Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence: high for these process principles, based on those sources; the allegation itself remains unassessed.\" The check report finds zero uncalibrated hedges. The uncertain truth of the allegation is handled by explicit branches (False or misleading / Accurate in context / Unresolved).",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins \"I recommend that we\", Self-test is last, and the check report shows zero banned words and zero dashes. However, the check report flags a 26-word sentence (\"Your message reports a journalist's allegation...\"), while the Self-test claims \"Longest sentence: 25 words\", which is inconsistent. The acronym PR appears in Background before it is defined in End.",
+      "score": 1
+    }
+  }
+}

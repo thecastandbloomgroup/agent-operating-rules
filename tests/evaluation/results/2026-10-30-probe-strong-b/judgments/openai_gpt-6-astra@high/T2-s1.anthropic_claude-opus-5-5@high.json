@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response hands over a prompt as the finished answer, with none of the required structure. There is no Headline, BRIEF, End, or Self-test, no Cynefin domain, and no measure, baseline, threshold, or sample size that would make the prompt a Complex probe.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a Cynefin domain. The response holds one framing sentence and a quoted prompt, with no actions and no domain labels.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "No domain is stated, so the primary domain (Complex) is not identified. The prompt is offered as a direct remedy, which implies Clear.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Use this to reduce unsupported answers\" presents the prompt as a one-step fix. A Complex action must be a safe-to-fail probe with a measure, a stop condition, and a budget, and none is given.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There are no numbered actions, no ordering, and no statement that leverage is a guess or that probes run in parallel and capped.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No test is present. The task is stochastic, so it needs a metric (hallucination rate on a labelled set), a baseline, a pass threshold, and a sample size. All are missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "\"No prompt guarantees zero hallucinations\" and \"reduce unsupported answers\" partly avoid claiming a fix. However, the response still gives the prompt as the final answer with no measure, and it does not name the domain as Complex or say why.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks zero questions, which is within the limit. However, it proceeds without logging any assumption (for example, about the model or the task).",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedge words (check report: 0). However, the claim that the prompt reduces hallucination carries no probability, IPCC term, or confidence with basis, although the recommendation depends on that claim.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Check report shows 0 banned words, 0 dashes, and FK grade 7.8. However, the required sections (Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, Self-test) are all missing, and there are no three to five actions.",
+      "score": 0
+    }
+  }
+}

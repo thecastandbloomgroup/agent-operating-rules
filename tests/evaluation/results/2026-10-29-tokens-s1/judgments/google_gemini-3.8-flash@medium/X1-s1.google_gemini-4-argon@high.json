@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response states a Cynefin domain for each action without giving a one-line reason for the classification, and it classifies the initial rubric/dataset creation and the canary deployment as Complicated (without naming an analysis) rather than framing the effort around safe-to-fail Complex probes with an explanation of why cause and effect are only visible afterward.",
+  "scores": {
+    "R4": {
+      "evidence": "Step 1 (Complicated) and Step 2 (Clear, 'Step 2 MAY run in parallel with Step 1') build the measurement baseline to reduce uncertainty before Step 3 ('Complex probe... Budget: 100 test runs... Step 3 MUST NOT start until Step 1 passes').",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Asks zero questions ('Questions asked: 0 of 3') because the material does not require blocking questions, and properly logs two assumptions (A1 and A2) with all four required fields.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a domain ('Cynefin domain: Complicated', 'Cynefin domain: Clear', 'Cynefin domain: Complex probe', 'Cynefin domain: Complicated'), but none includes a one-line reason explaining why the action belongs to that domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 3 is rightly classified as 'Complex probe' ('Test (Stochastic)'), and Action 2 as 'Clear', but Action 1 is classified as 'Complicated' instead of a Complex probe to build the measure, and Action 4 classifies a 10% feature-flag rollout and error monitoring as 'Complicated' and 'Deterministic'.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 2 (Clear, one step) and Action 3 (Complex probe with metric, stop condition 'cancel the probe if latency exceeds 3.0 seconds', budget '100 test runs', and 'Leverage is a guess') match their domain forms, but Actions 1 and 4 are marked Complicated without naming the analysis that picks the practice.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Every action has a matching test form: Action 1 (Evaluative) has a weighted rubric with criteria, weights, and a 90% threshold; Actions 2 and 4 (Deterministic) use Given/When/Then Gherkin statements; Action 3 (Stochastic) specifies metric, baseline (0.70), pass threshold (0.85), and sample size (50 tickets).",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Avoids the likely wrong answer by creating the failure record and baseline first (Actions 1 and 2) rather than assuming failures are already recorded, and tags the prompt change (Action 3) as a Complex probe, but tags Action 1 as Complicated and does not explain why the problem is in the Complex domain.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Uses a calibrated IPCC likelihood term with probability range ('It is likely (66 to 100%) that agent dissatisfaction stems from hallucinated details rather than poor grammar') and zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Includes Headline, all five BRIEF sections, End starting with 'I recommend that we', and a consistent Self-test block; check report confirms 0 banned words, 0 dashes, 0 long sentences, and FK grade 9.7.",
+      "score": 2
+    }
+  }
+}

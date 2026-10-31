@@ -1,0 +1,41 @@
+{
+  "main_defect": "Presented a single copyable prompt as a Clear best practice instead of refusing the premise and treating prompt mitigation of hallucinations as a Complex problem requiring safe-to-fail probes, while misclassifying LLM outputs as deterministic.",
+  "scores": {
+    "R6": {
+      "evidence": "Presented a single 'Copyable prompt' as 'The strongest prompt' and recommended adopting it as 'Cynefin: Clear' in Step 1, violating the requirement not to present a single prompt as the answer.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Asked 0 questions and logged assumption A1 ('The task allows sources to be pasted or retrieved. Why not measured: the material does not state it. Validate by: run one answer with pasted sources. If wrong: add retrieval before the prompt.').",
+      "score": 2
+    },
+    "R8": {
+      "score": 1,
+      "evidence": "Check report found 0 banned uncalibrated hedges, but the response states 'the model can still invent plausible quotes' and gives no probability, IPCC likelihood term, or confidence level with basis where the recommendation depends on uncertain model behavior."
+    },
+    "R9": {
+      "evidence": "Check report flags 'citations out of order (5.4.1)' and 'citation with no reference' because the text cites '[14]' without a References list; the Self-test falsely claims 'References: 1' and 'Source types tagged (P/S/T/U): yes', and tests are placed after the increment rather than written first.",
+      "score": 1
+    },
+    "R1": {
+      "score": 1,
+      "evidence": "Every action states a domain ('Cynefin: Clear.', 'Cynefin: Complicated.', 'Cynefin: Complex probe, capped at 20 trials.'), but none includes a one-line reason for the classification."
+    },
+    "R2": {
+      "evidence": "Classified the primary action ('1. Adopt the source-bound prompt above.') as 'Cynefin: Clear' and Action 2 as 'Cynefin: Complicated', whereas reducing model hallucinations via prompting is Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 1 commits directly to adopting a single prompt ('Cynefin: Clear'), Action 2 ('Cynefin: Complicated') fails to name an analysis that picks the practice, and Action 3 ('Cynefin: Complex probe, capped at 20 trials.') omits the required statement that leverage is a guess.",
+      "score": 1
+    },
+    "R4": {
+      "score": 1,
+      "evidence": "Orders actions as Clear (Step 1), Complicated (Step 2), and Complex probe (Step 3) without specifying that the Complex probe runs in parallel or adding RFC 2119 dependency clauses between steps."
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 misclassify stochastic LLM outputs as deterministic Gherkin tests ('Test, deterministic: Given a question absent from sources, When the prompt runs, Then the answer says \"Insufficient evidence\"'), though Action 3 properly uses a stochastic test with metric, baseline, threshold, and sample size ('n=20').",
+      "score": 1
+    }
+  }
+}

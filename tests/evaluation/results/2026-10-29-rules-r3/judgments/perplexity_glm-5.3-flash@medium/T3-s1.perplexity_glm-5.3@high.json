@@ -1,0 +1,41 @@
+{
+  "main_defect": "Two sentences exceed the 25-word limit (55 and 44 words), and the self-test reports 24 words as the longest, so the self-test block is inconsistent with the response. Lines 41 and 48 carry more than one citation. Several steps lack a one-line reason for their Cynefin domain.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names its domain: Step 1 'Cynefin domain: Clear', Step 2 'Cynefin domain: Complicated', Step 3 'Cynefin domain: Complex', Step 4 'Cynefin domain: Complicated', Step 5 'Cynefin domain: Clear'. However, only Steps 2 and 3 give a reason ('The analysis that picks the practice is a threat review against the controls in RFC 8725', 'Claimed leverage is a guess, so the budget caps the probe'). Steps 1, 4, and 5 state the domain without any reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary classification is correct on both tracks. Migration steps are Complicated with a named design analysis (token lifetime, revocation via rotate-and-deny-list, RFC 8725 threat review) and Gherkin tests. Conversion is Complex, handled as a capped A/B probe with a measure and stop condition. The Clear steps (dashboard build, session retirement) are known best-practice work and are reasonable.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Clear steps are one-step with best practice (Step 1 dashboard build, Step 5 remove session path). Step 2 (Complicated) names the analysis that picks the practice ('a threat review against the controls in RFC 8725'), and Step 4 follows Step 2. Step 3 (Complex) is a safe-to-fail probe: small, with a measure ('sign-up completion rate'), a stop condition ('stop early if either arm sees a regression'), and a budget ('two weeks or the sample cap').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist, correctly. The Complex probe is not ordered by claimed leverage: 'Step 3 is a Complex probe, so it runs in parallel with Steps 1, 2, 4, and 5, capped by its budget.' Clear and Complicated steps are ordered sensibly, with the baseline (Step 1) first because the probe depends on it: 'This step MUST pass before Step 3 starts' and 'Step 4 MUST NOT start until the test in Step 2 passes.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Test kinds match the task kinds. Deterministic steps use Gherkin ('Given a valid refresh token, When the client requests an access token, Then...'). The stochastic step states the metric ('sign-up completion rate'), the baseline ('comes from Step 1'), the pass threshold ('a 10% relative lift'), and the sample size ('a power calculation before the test starts, with a minimum of 1,000 visitors per arm').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The likely wrong answer is one undifferentiated plan that mixes the migration and conversion work. The response avoids it: 'Treat sign-up conversion as a measurement problem', 'Sign-up conversion gain from any single form change is unknowable before the test', and the two tracks get different test forms and different domains (Complicated/Gherkin versus Complex/metric and sample size). It names the real domains and says why.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Exactly three questions in Follow-up, each with its stated use: 'I will pick the JWT library and token transport from the answer', 'I will set the access-token TTL and the deny-list design from the answer', 'I will define the Step 1 baseline from the answer.' This meets the 'three or fewer, each with its use' condition.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibrated uncertainty appears where it matters: 'high confidence, three independent measurements' style statement at point 5 ('[judgment] Based on point 3 above, high confidence'), and point 6 handles the unknowable conversion lift by measurement rather than a hedge. The recommendation's main uncertainty (A2) is handled with an explicit condition rather than an uncalibrated hedge, per rule 6.8.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is present and complete: Headline first with MECE supporting points, all BRIEF parts with correct headings, End begins 'I recommend that we', Self-test last, 5 actions each with increment, blocker, test, and domain. Check report shows zero banned words and zero dashes. However, the check report lists failures: two long sentences (55 and 44 words), more than one citation on lines 41 and 48, and citations with no listed reference. The self-test also reports 'Longest sentence: 24 words', which contradicts the actual 55-word sentence, so the self-test is not internally consistent with the response.",
+      "score": 1
+    }
+  }
+}

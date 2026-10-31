@@ -1,0 +1,41 @@
+{
+  "main_defect": "R1: domains lack reasons on Steps 2 to 4; R8: no calibrated uncertainty on the assumptions the recommendation depends on; R9: two sentences exceed the 25-word limit and the self-test reports 24 words as the longest, which is internally inconsistent.",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1 has 'Domain: Confused; this step gathers what the rest needs, so it goes first', but Steps 2 to 4 carry only 'Domain: Clear.', 'Domain: Complicated.', and 'Domain: Clear.' with no one-line reason for the domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 is Confused, matching the expected classification ('I cannot check the numbers yet, because the report is not in this conversation', gathering step first). Step 2 recompute totals is Clear, Step 3 trace with the analysis naming the source of record is Complicated, Step 4 recompute deltas is Clear. All correct.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 gathers what is needed to classify (Confused form). Steps 2 and 4 are one-step Clear applications (recompute totals, recompute deltas). Step 3 is Complicated and names the analysis: 'The analysis step names the source of record for each figure type first.' All forms match their domains. The first action does not itself recompute the headline figures as the expected signal describes, but no material is attached, so the Confused gather-first form is the correct response to the missing input.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused action first ('so it goes first'), no Chaotic action, Clear and Complicated actions ordered by claimed cluster size with explicit dependencies: 'Step 2 MUST NOT start until Step 1 is done' and 'Step 4 depends on the outputs of Steps 2 and 3.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions are deterministic checks and all tests are in Gherkin form: 'Given the report is attached, When I open it, Then each named figure is locatable', 'Given the line items in each table, When I sum them, Then each total matches within the rounding threshold named in the report', 'Given a figure and its claimed source, When I match the values, Then they agree exactly', 'Given two periods' figures, When I compute the delta, Then it matches the stated comparison.' Sample size is not required for deterministic tests.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The prompt states 'R6 applies: no'.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions, each with its use: 'I will target the trace to those sections first', 'I will recompute from the actual lines, not from a summary', 'I will use it as the comparison baseline.' At most three per Section 2, and each states what the answer will be used for.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on assumptions A1 and A2 (the report can be shared, 'off' means numeric inconsistency), yet no probability or IPCC likelihood term is attached to either. No uncalibrated hedges appear (check report confirms zero banned words), so this is mixed rather than uncalibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline with answer plus three MECE points, Background, Relevance, Information with assumption log and alternative, End beginning 'I recommend that we', Follow-up, Self-test last. Four actions, each with increment, blocker, test, and domain. Zero banned words and zero dashes per the check report. However, the check report flags two sentences over the limit (26 and 27 words against a 25-word description cap), and the self-test claims 'Longest sentence: 24 words', which is internally inconsistent with the measured lengths. Zero citations with [inference] and [judgment] labels is acceptable for this prompt.",
+      "score": 1
+    }
+  }
+}

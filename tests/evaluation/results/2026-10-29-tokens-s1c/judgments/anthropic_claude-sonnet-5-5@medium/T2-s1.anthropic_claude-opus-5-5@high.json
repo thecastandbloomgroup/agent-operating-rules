@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response accepts the premise and presents one system prompt as the answer, labelled Clear. The real primary domain is Complex, so the prompt belongs inside the measured probe rather than as a Clear step.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain line ('Domain: Clear', 'Domain: Complicated', 'Domain: Complex, so treat it as a capped probe', 'Domain: Complex, run in parallel with Step 3'). None gives a one-line reason why the work has that cause-and-effect relation.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action, 'Use this text as the system prompt', is labelled 'Domain: Clear', and Step 2 is labelled 'Complicated'. The expected primary domain is Complex, because prompt effects on hallucination show only after trials. Only Steps 3 and 4 are Complex, and they are secondary checks on the Clear answer.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Steps 3 and 4 are probes with a measure and budget ('Budget: 2 hours. Stop if the first 20 replies show no drop.'), but Step 4 has no stop condition. Step 2's 'analysis' is only 'Choose the most relevant document first'. Step 1 commits the full prompt as a one-step best practice, which contradicts the true domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order is Clear, then Complicated, then Complex. Step 4 says 'run in parallel with Step 3', but Step 3 is sequenced after Steps 1 and 2 ('take these steps in order'), not in parallel with the Clear and Complicated work. Nothing states that leverage is a guess.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 3 and 4 have metric, baseline, threshold, and sample size ('The sample size is 50'; 'drop of at least 30% from baseline'). Steps 1 and 2 test LLM output, which is stochastic, with a single-run Gherkin test ('Kind: deterministic ... Then the reply says \"I do not know.\"'). That is the wrong kind.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "It partly refuses the premise ('No prompt stops hallucination fully'). It then gives the likely wrong answer: 'one prompt reduces it' and 'Use this text as the system prompt', with a code block of the prompt. It never names Complex as the real domain of the request or says why.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The unknowns (model type, ability to paste sources) are logged as A1 and A2 with validation tests, which Section 2 permits.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Mixed. There is one calibrated statement: 'Confidence: moderate, one primary study'. Its basis conflicts with the [S] tag on reference [2], and 'moderate' is not a listed form. The Headline claim 'one prompt reduces it' has no probability, and nothing states that leverage is a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF headings, End begins 'I recommend that we', and the Self-test is last. The check report shows zero banned words and zero dashes, and the longest sentence matches its 20-word limit. It also flags 'citation with no reference' (cites_unlisted 1, 2; ref_entries 0), although a References list appears in Follow-up. Defects: Background has 'I assume', which is self-mention outside End. The Self-test claims 'Complex as capped probes: yes' although Step 4 lacks a stop condition. The text calls [2] 'primary' but tags it [S].",
+      "score": 1
+    }
+  }
+}

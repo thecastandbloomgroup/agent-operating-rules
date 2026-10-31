@@ -1,0 +1,35 @@
+date,model,provider,rules_version,prompt_id,domain,grader,R1,R2,R3,R4,R5,R6,R7,R8,R9,total,available,gates_passed,pass,main_defect,response_file,reason
+2026-10-29,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,H2,Chaotic,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/H2-s1.md,a judge failed a gate
+2026-10-29,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/K1-s1.md,judges differ by more than 3 points
+2026-10-29,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,T1,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/T1-s1.md,a judge failed a gate
+2026-10-29,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/T2-s1.md,a judge failed a gate
+2026-10-29,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,X1,Complex,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/X1-s1.md,judges differ by more than 3 points
+2026-10-29,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,X2,Complex,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/X2-s1.md,a judge failed a gate
+2026-10-29,google/gemini-3.8-flash@medium,google,3.2.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/K1-s1.md,a judge failed a gate
+2026-10-29,google/gemini-3.8-flash@medium,google,3.2.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/T2-s1.md,a judge failed a gate
+2026-10-29,google/gemini-3.8-flash@medium,google,3.2.0,U1,Confused,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/U1-s1.md,a judge failed a gate
+2026-10-29,google/gemini-3.8-flash@medium,google,3.2.0,X1,Complex,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/X1-s1.md,a judge failed a gate
+2026-10-29,google/gemini-3.8-flash@medium,google,3.2.0,X2,Complex,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/X2-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,C1,Clear,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/C1-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,H1,Chaotic,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/H1-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/K1-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,T1,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/T1-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/T2-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,T3,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/T3-s1.md,random sample
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,U1,Confused,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/U1-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,U2,Confused,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/U2-s1.md,a judge failed a gate
+2026-10-29,openai/gpt-6.1-sol@medium,openai,3.2.0,X1,Complex,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/X1-s1.md,a judge failed a gate
+2026-10-29,perplexity/glm-5.3-flash@medium,zai,3.2.0,H1,Chaotic,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/H1-s1.md,judges differ by more than 3 points
+2026-10-29,perplexity/glm-5.3-flash@medium,zai,3.2.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/K1-s1.md,judges differ by more than 3 points
+2026-10-29,perplexity/glm-5.3-flash@medium,zai,3.2.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/T2-s1.md,a judge failed a gate
+2026-10-29,perplexity/glm-5.3-flash@medium,zai,3.2.0,U2,Confused,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/U2-s1.md,a judge failed a gate
+2026-10-29,perplexity/glm-5.3-flash@medium,zai,3.2.0,X1,Complex,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/X1-s1.md,judges differ by more than 3 points
+2026-10-29,perplexity/glm-5.3-flash@medium,zai,3.2.0,X2,Complex,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/X2-s1.md,judges differ by more than 3 points
+2026-10-29,perplexity/kimi-k3@low,moonshot,3.2.0,H1,Chaotic,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/H1-s1.md,a judge failed a gate
+2026-10-29,perplexity/kimi-k3@low,moonshot,3.2.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/K1-s1.md,a judge failed a gate
+2026-10-29,perplexity/kimi-k3@low,moonshot,3.2.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/T2-s1.md,judges differ by more than 3 points
+2026-10-29,perplexity/kimi-k3@low,moonshot,3.2.0,U1,Confused,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/U1-s1.md,judges differ by more than 3 points
+2026-10-29,perplexity/kimi-k3@low,moonshot,3.2.0,U2,Confused,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/U2-s1.md,a judge failed a gate
+2026-10-29,perplexity/kimi-k3@low,moonshot,3.2.0,X1,Complex,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/X1-s1.md,judges differ by more than 3 points
+2026-10-29,xai/grok-4.7@low,xai,3.2.0,K2,Complicated,human,,,,,,,,,,,,,,,responses/xai_grok-4.7@low/K2-s1.md,a judge failed a gate
+2026-10-29,xai/grok-4.7@low,xai,3.2.0,T3,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/xai_grok-4.7@low/T3-s1.md,random sample

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents one preferred prompt despite recognizing the task as Complex. Its experiment measures sourcing rather than hallucination and passes when the sourcing rate gets worse.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain and gives a reason: 'Clear; the change is one step', 'Complex; the effect of wording shows only after the run', and 'Complicated; the scoring itself is the analysis'.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The assignments distinguish a Clear prompt edit, a Complex behavioral experiment, and a Complicated rubric assessment. The primary uncertainty is correctly identified: 'the effect of wording shows only after the run'.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The edit is one step, and the assessment names its rubric. The Complex experiment has 'Budget: 40 questions in total', but lacks an explicit safety stop condition and never states that leverage is a guess.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Dependencies are explicit: 'This step waits on the Step 1 test' and 'This step starts after the first Step 2 run'. However, the plan is entirely sequential and does not establish the required parallel treatment of capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin, a weighted rubric, and a stochastic test are present. However, the stochastic metric is 'the share of model claims that carry a nameable origin', while passing requires 'the new rate is less than half'. This rewards worse sourcing and does not measure hallucination rate.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "It rejects a guaranteed cure with 'No prompt makes the model stop hallucinating' and explains the Complex domain. However, 'cut the errors most' and 'Paste this block as the system prompt' still present one preferred prompt as the answer.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "It asks no questions and proceeds with logged assumptions about tool access and known-answer questions. These assumptions support a reversible experiment rather than requiring costly guesses.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: low, basis: judgment, because no controlled test ran' provides calibration. However, 'cut the errors most' and 'the fix sits outside the prompt' make categorical claims where uncertainty affects the recommendation.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no long sentences. However, the Self-test overstates compliance: steps 2 and 3 lack explicit blockers, and claims such as 'A fluent unsupported answer costs more than a slow \"Unknown\"' lack evidence or judgment labels.",
+      "score": 1
+    }
+  }
+}

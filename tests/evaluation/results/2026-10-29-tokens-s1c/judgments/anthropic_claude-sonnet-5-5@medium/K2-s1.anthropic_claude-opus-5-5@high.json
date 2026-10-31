@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 4 adds a Complex safe-to-fail probe (proof of concept), which the prompt's expected signals exclude. Step 1 is labelled Confused even though the response already classifies Steps 2 and 3 as Complicated. So the secondary domains and action forms depart from the expected Complicated, rubric-then-score shape. Total 10 of 16 (62.5%), below the 80% pass line, with every gate at 1 or more.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Step 1 gives a reason: \"Confused, so this step gathers what we need to classify the rest\". Step 2 gives a reason: \"Complicated, because expertise picks the criteria\". Step 3 gives none: \"Cynefin: Complicated.\" Step 4 gives a consequence, not a reason: \"Complex, so this is a safe-to-fail probe\".",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Steps 2 and 3 are Complicated, as expected. The secondary domains are wrong. Step 1 is labelled Confused although the domain of the rest is already known. Step 4 is labelled Complex for a proof of concept that benchmark analysis can settle, and the expected signals say \"Should not contain: a probe\".",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 2 and 3 match the Complicated form: the analysis is named and the rubric is fixed before scoring. Step 4 is a probe with a budget (\"Budget: 3 working days and 5k. Stop condition...\"), which contradicts the expected Complicated form for this prompt. Most actions match, but not all.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Confused step comes first, then the Complicated steps in leverage order. The Complex probe is capped, but it runs in sequence rather than in parallel: \"Step 4 starts after Step 3 names the top two.\" This is a minor departure from the 6.5 trade-off rules.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 (deterministic) has a Gherkin test: \"Given three proposal files / When I open each file / Then I find the price...\". Step 2 (evaluative) has a rubric with criteria, weights summing to 100, evidence per criterion, and a threshold: \"3.5 of 5 or more, total cost at or below 400k, and no criterion below 2\". Step 3 scores against that rubric. Step 4 (stochastic) states the metric, the baseline, the threshold, and \"Sample size: 30 runs per query\".",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks one question and states its use: \"Open question (1 of 3): please send the three proposals. I will score them with the rubric in Step 2.\" The material cannot answer it, because the attachments are missing.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response gives no probability or IPCC term anywhere. The budget scope in A2 is uncertain and drives the cost criterion, but it carries no likelihood. A3 says \"the ranking may change\" without a probability. The only uncertainty marker is \"Leverage here is a guess. [judgment]\".",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, and Self-test last. Per the check report, there are zero banned words, zero dashes, and no long sentences. There are minor defects. The check report flags a multi-citation line (\"Kepner-Tregoe [1] and uses ISO/IEC 25010 quality terms [2]\"), which breaks 5.4.1, and the Self-test does not reflect this defect. The \"If wrong\" field of A1 gives an instruction (\"tell me where\") instead of an impact on the recommendation.",
+      "score": 1
+    }
+  }
+}

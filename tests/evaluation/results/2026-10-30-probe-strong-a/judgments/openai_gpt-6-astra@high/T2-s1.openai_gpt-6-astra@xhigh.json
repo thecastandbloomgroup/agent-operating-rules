@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response supplies an untested prompt rather than a bounded Complex probe. It lacks a labelled evaluation set, hallucination rate, baseline, threshold, sample size, budget, and stop condition.",
+  "scores": {
+    "R1": {
+      "evidence": "No action has a stated Cynefin domain or a reason for its classification.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The response never identifies Complex as the primary domain. 'No prompt guarantees zero hallucinations' acknowledges a limitation but does not classify the work.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'For factual answers, use this' introduces a prompt without a safe-to-fail trial, measure, stop condition, or budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No domain-aware action sequence or capped probe arrangement is provided. The numbered items are instructions inside the prompt, not an ordered evaluation plan.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No stochastic acceptance test is provided: the labelled set, hallucination-rate metric, baseline, pass threshold, and sample size are all missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "'No prompt guarantees zero hallucinations' partly avoids presenting prompting as a guaranteed fix, but the response neither names Complex nor frames the prompt as a measured probe.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No clarifying questions are asked. The request contains enough information to supply a starting prompt without clarification.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'No prompt guarantees zero hallucinations' gives a caution, but no probability, IPCC likelihood term, or confidence level with a basis supports the prompt's expected effectiveness. Leverage is not identified as a guess.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The required Headline and BRIEF headings, End opening 'I recommend that we', three-to-five-action recommendation, and final Self-test are missing. The check report finds zero banned words, zero prohibited dashes, and no sentence-length violations.",
+      "score": 0
+    }
+  }
+}

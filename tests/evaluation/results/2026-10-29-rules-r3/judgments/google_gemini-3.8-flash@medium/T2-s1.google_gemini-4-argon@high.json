@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R3": {
+      "evidence": "Action 1 matches the Clear form (one step), but Action 2 (labeled Complicated) omits the required analysis that selects the practice, and Action 3 (labeled Complex) omits the required statement that leverage is a guess and tests already-deployed prompts rather than probing candidate prompts.",
+      "score": 1
+    },
+    "R5": {
+      "score": 1,
+      "evidence": "Action 1 classifies stochastic LLM output as a 'Deterministic test' using a single Gherkin scenario instead of a stochastic test with metric, baseline, threshold, and sample size (6.4). Action 2 uses an ad-hoc rubric without naming Kepner-Tregoe, Pugh, or ISO/IEC 25010."
+    },
+    "R6": {
+      "evidence": "The Headline partly refuses the premise ('No prompt stops hallucinations completely'), and Action 3 adds a Complex verification probe, but Action 1 still presents a single exact prompt template as the answer and classifies it as 'Clear' instead of naming the problem domain as Complex and explaining why.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks two questions in Follow-up, each stating what will be done with the answer ('1. What model family and version do you currently run? (I will tailor formatting constraints to that model.) 2. Do your user queries include reference documents or open-domain questions? (I will adjust between local grounding and retrieval steps.)').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full BRIEF structure and Self-test are present, but the check report found 1 banned booster ('significantly' without a number) and 1 sentence of 26 words ('Evaluative rubric: Grade five test runs on a 1 to 5 scale...'), while the Self-test falsely reports 0 banned words and a 24-word maximum. Follow-up also contains self-mention ('I will') outside the End section.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Clear.', 'Cynefin domain: Complicated.', 'Cynefin domain: Complex.'), but none of them includes a one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action (Action 1: deploying a prompt template to stop hallucinations) is misclassified as 'Clear' and Action 2 as 'Complicated', whereas prompt engineering to reduce hallucinations is Complex and only the evaluation step (Action 3) is labeled 'Complex'.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Actions are ordered sequentially as Clear (Step 1), Complicated (Step 2), and Complex (Step 3), rather than running Complex safe-to-fail probes in parallel or first to discover which prompt works before deploying.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Information gives a numerical range for the baseline ('error rates between 15% and 30% without source context [inference]'), but uses an unquantified booster for the core claim ('drops false statements significantly [inference]') and omits a calibrated probability, IPCC term, or confidence level with basis for the recommendation.",
+      "score": 1
+    }
+  },
+  "main_defect": "Treats prompt selection to prevent hallucinations as a Clear deterministic step with a single prescribed prompt template, rather than a Complex problem requiring safe-to-fail probes and stochastic testing."
+}

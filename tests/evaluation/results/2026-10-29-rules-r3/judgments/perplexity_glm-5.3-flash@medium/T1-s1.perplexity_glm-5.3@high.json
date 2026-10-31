@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response adds a fourth action as a Complex behavioral probe on review norms. The prompt expects Clear throughout: one-step formatter actions only, no probes. The primary fix is correct and well-formed, but the probe misclassifies a secondary action and breaks the expected response shape.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain: \"Select the formatter (Complicated, evaluative)\", \"Format the codebase once (Clear, deterministic)\", \"Enforce the format (Clear, deterministic)\", \"Probe the review norms (Complex, stochastic)\". But only Steps 1 and 4 give a reason: \"score two candidates... against a written rubric\" and \"Leverage is a guess, because behavior has no cause and effect you can read in advance [judgment]\". Steps 2 and 3 state no reason for the domain. Missing: one-line reasons on the two Clear actions.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is right: Steps 2 and 3 are Clear, matching the expected classification. But the prompt says the response \"Should not contain: probes\" and expects Clear throughout. Step 4, \"Probe the review norms (Complex, stochastic)\", is a wrong classification on a secondary action: the residual human-habit issue is not a Complex probe needing safe-to-fail experiments once automation enforces the format. Right primary, wrong on a secondary action.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 to 3 match the expected form: rubric-scored selection, one-step format pass, one-step CI enforcement. Step 4 contradicts the expected Clear form: \"run a measured probe on the review norms\" with budget and stop condition, a Complex probe the prompt says should not appear. Three of four actions match; the fourth contradicts.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Complicated analysis (Step 1) comes before the Clear actions, which follows the rules. However Step 4, a Complex probe, is serialized behind Step 3 (\"Step 4 MUST NOT start before Step 3 runs in CI\") instead of running in parallel with the Clear and Complicated actions as capped. Minor misorder of a probe that should not exist at all.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 is evaluative and uses a rubric with weights (40/30/30), threshold (\"7 of 10\"), and evidence per criterion. Steps 2 and 3 are deterministic with Gherkin: \"Given the pinned config, When the formatter runs on any file twice, Then the output is identical\". Step 4 is stochastic with metric, baseline, threshold (\"at least an 80% drop\"), and sample size (\"next 10 reviews\"). All test kinds match their actions.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline names the real domain: \"Stop solving a culture problem, because the problem is actually missing automation\" and explains why: \"The team disputes rules that a machine can decide, so a tool that decides them removes the dispute at the source\". It avoided the culture trap and led with the formatter, so the gate (workshop before formatter) does not fire.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions asked, and the self-test states the reason: \"Questions asked: 0 of 3 (none met the three-condition test)\". Uncertainty was handled through the assumption log (A1 to A3) instead of questions, which fits \"none when the material answers\".",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertainty is stated as a confidence level with basis: \"Confidence is high, because the enforcement is deterministic by design, not a social intervention [1]\". Step 4's leverage guess is also labeled: \"Leverage is a guess, because behavior has no cause and effect you can read in advance [judgment]\".",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is full: Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, Self-test last. Dashes and banned words are zero per the check report. But the check report flags four long sentences (22, 39, 33, 33, 27 words), including two Gherkin test lines, while the Self-test claims \"Longest sentence: 20 words\". The Self-test line is therefore internally inconsistent with the response, a defect the rules say must be fixed before sending. The check report also flags citation placement, though the References list is present in Follow-up.",
+      "score": 1
+    }
+  }
+}

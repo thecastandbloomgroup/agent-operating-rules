@@ -1,0 +1,41 @@
+{
+  "main_defect": "The acceptance tests are incomplete: the conversion probe defers its sample size, and the design rubric lacks criterion-specific evidence requirements and scores.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains, including 'Domain: Clear', 'Domain: Complicated', and 'Domain: Complex'. However, Steps 1 and 3 lack a one-line explanation of why their domains apply.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "JWT design and implementation are both 'Complicated'; the conversion probe is 'Complex'. Separating deterministic funnel instrumentation as 'Clear' is also appropriate.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Instrumentation applies a known practice. Step 2 says, 'The analysis in this step picks the practice', and Step 3 waits for that analysis. Step 4 specifies a small probe, completion-rate measure, stop condition, and 'Budget: 14 days and 10% of traffic'.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "'Step 3 MUST NOT start until this rubric passes' preserves analysis before implementation. The probe waits for baseline data and 'MAY run in parallel with Steps 2 and 3', with an explicit budget rather than a claimed leverage ranking.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions have Given/When/Then tests. The evaluative rubric supplies weights and thresholds but not criterion-specific evidence requirements or scores. 'Sample size: compute per group from the Step 1 rate' defers the stochastic sample size rather than stating it.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'Run two separate tracks' explicitly rejects a single-domain treatment. Migration requires analysis that 'picks the practice'; conversion is a 'safe-to-fail probe' whose 'leverage ... is a guess'.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. Missing details are logged as assumptions with inexpensive validation, such as 'read the auth config' and 'read the Step 1 visitor count', rather than prompting unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Material uncertainty receives no probability, IPCC likelihood term, or confidence level with a basis. 'Traffic is high enough ... in 14 days' remains an uncalibrated assumption, and 'lower the confidence' supplies no level. Statistical power and significance settings do not calibrate these claims.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report confirms zero banned words and dashes. However, it reports a 28-word sentence, contradicting 'Longest sentence: 24 words'. The supplied references are identifiable and listed in the response.",
+      "score": 1
+    }
+  }
+}

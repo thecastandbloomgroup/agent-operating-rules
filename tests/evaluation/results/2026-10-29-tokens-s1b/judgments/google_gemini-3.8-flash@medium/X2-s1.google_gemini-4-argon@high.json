@@ -1,0 +1,41 @@
+{
+  "main_defect": "Misclassifies a Complex human-system problem as a linear Clear/Complicated workflow based on a single assumed root cause, rather than running parallel safe-to-fail probes.",
+  "scores": {
+    "R3": {
+      "evidence": "Steps 1 to 3 match their declared Clear and Complicated forms, but Step 4 (declared Complex) is a two-sprint tracking task that lacks a budget, a stop condition, and the required statement that leverage is a guess.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Asks zero questions and logs two assumptions (A1, A2) with validation tests and impacts.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Contains zero uncalibrated hedges per the check report, but states uncertain causal claims about why retrospectives fail using only '[judgment]' labels without any probability, IPCC likelihood term, or confidence level (Section 4.6).",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "States a Cynefin domain for all four steps ('Cynefin domain: Clear', 'Complicated', 'Clear', 'Complex'), but omits the one-line reason for each classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Treats the primary problem as Clear/Complicated by diagnosing a single root cause ('Action items fail because teams create too many commitments') and prescribing a sequential pipeline (Steps 1 to 3), using Complex only for post-hoc tracking in Step 4 instead of parallel Complex probes.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Places the Complex action (Step 4) at the end of a strict sequential dependency chain ('Step 4 MUST NOT start until Step 3 passes') rather than running capped Complex probes in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Matches all four test forms to their declared task kinds: Gherkin (Given/When/Then) for Deterministic Steps 1 and 3, a weighted rubric with pass threshold and evidence for Evaluative Step 2, and metric, baseline, threshold, and sample size for Stochastic Step 4.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Includes all required headings, zero banned words, zero dashes, and sentences within length limits, but Step 4's increment spans two sprints instead of one working session (6.3), and the Self-test inaccurately reports 'Complex as capped probes: yes'.",
+      "score": 1
+    }
+  }
+}

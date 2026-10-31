@@ -1,0 +1,41 @@
+{
+  "main_defect": "Cynefin domains are stated without one-line reasons, Step 2 runs Complicated analysis in parallel with Chaotic stabilisation and uses an Evaluative rubric without a required framework (Kepner-Tregoe, Pugh, or ISO/IEC 25010) for deterministic health metrics, and uncertainty uses 'most likely' instead of an exact IPCC term or probability.",
+  "scores": {
+    "R2": {
+      "evidence": "Step 1 is classified as Chaotic, Step 2 as Complicated, and Step 3 (drafting a three-bullet status template) as Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises via rollback and Step 3 is a one-step Clear task, but Step 2 (Complicated) only inspects dashboards without naming the analysis that picks a practice.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Chaotic) is placed first, but Step 2 (Complicated) states 'Step 2 MUST run in parallel with Step 1' rather than waiting for Chaotic stabilisation first.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings and artifacts are present in order, the check report shows 0 banned words, 0 dashes, and 0 failures, and the Self-test block is internally consistent.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a domain ('Cynefin domain: Chaotic.', 'Cynefin domain: Complicated.', 'Cynefin domain: Clear.'), but none includes a one-line reason.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 use Gherkin for Deterministic tasks, but Step 2 classifies fixed telemetry thresholds (<100 ms latency, <80% pool usage, HTTP 200) as Evaluative and omits the required Kepner-Tregoe, Pugh, or ISO/IEC 25010 layout; tests are also listed after the increment.",
+      "score": 1
+    },
+    "R6": {
+      "score": null,
+      "evidence": "R6 does not apply to this prompt."
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Zero questions are asked ('Questions asked: 0 of 3'), and two assumptions (A1, A2) are logged instead."
+    },
+    "R8": {
+      "evidence": "The check report finds zero banned uncalibrated hedges, but Information writes 'a recent release or infrastructure outage is the most likely cause [judgment]' instead of an exact IPCC term, probability, or confidence level with basis.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Vendor choice is deferred as Confused rather than scored as Complicated; two actions lack a domain reason, and the evaluative scoring step is tested in Gherkin instead of against the rubric.",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are named on all four steps, but only Step 1 ('gathers what we need to classify the rest') and Step 3 ('weighted sum after the must-pass cost gate') give a reason. Steps 2 and 4 say only 'Domain: Clear.'",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 3 correctly labels the comparison Complicated. Step 1 is Confused ('gathers what we need to classify the rest') even though the later steps already fix the domain as an evaluative weighted comparison, so missing files are a data gap, not disorder.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 gathers in order to classify (Confused). Steps 2 and 4 are single increments (Clear). Step 3 names the analysis: 'The analysis is a weighted sum after the must-pass cost gate' (Complicated). No probe.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic action. Confused Step 1 is first. Clear rubric, then Complicated scoring, then Clear award follow dependency and blocker size. No Complex probe to run in parallel.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 4 are deterministic and use Given/When/Then. Step 2 states weights, evidence, and pass mark 70 with a cost gate. Step 3 is labeled evaluative but its test is Gherkin ('When each file is scored... weighted total is computed'), not a scored rubric, and no vendor scores appear.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Prompt says R6 applies: no.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One request, with use stated: 'Please attach the three proposal files. I will score each 36-month total and scope list with the rubric in Step 2, then name one vendor.' Other gaps are assumptions A1 to A3, not extra questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "File absence is 'Confidence is high... based on one inspection,' not a probability or IPCC term. A1 to A3 change the cost gate and scope row, but have no likelihood; only 'If A1 is false' / 'If A3 is false' conditions.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, End opening 'I recommend that we', four actions, and Self-test are present. Check report: banned 0, dashes 0, no long sentences. Defects: separate 'References' heading, checker failure 'citation with no reference', and Follow-up 'I will score' against Self-test 'Self-mention outside End: 0'.",
+      "score": 1
+    }
+  }
+}

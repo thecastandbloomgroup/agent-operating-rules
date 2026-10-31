@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response keeps a Complex culture framing. It adds a four-week stochastic probe, which the expected signals rule out, and it treats the tool choice as a Complicated analysis instead of a one-step Clear adoption.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step carries a domain label: '(Complicated, evaluative)', '(Clear, deterministic)', '(Clear, deterministic)', '(Complex, stochastic probe)'. No step gives its own one-line reason. The only reasons are in Information: 'The tool choice is Complicated. The automation is Clear. The culture is Complex.'",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary work (automation and the review rule) is labelled Clear, which is correct. Two secondary labels are wrong per the expected signals. Step 1 is 'Complicated' for a formatter choice that is a Clear one-step adoption. Step 4 'Run a four-week trial (Complex, stochastic probe)' adds a probe that the signals exclude.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each form matches its stated label. Complicated Step 1 names the analysis ('score three candidates on 10 real files' with a rubric). Clear Steps 2 and 3 are one-step. Complex Step 4 is a probe with 'Budget: 30 minutes per week' and a stop condition ('Stop and revisit the rule if the count does not fall after 20 PRs').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The analysis step comes before the Clear step that depends on it: 'Step 2 MUST NOT start until Step 1 ends.' The Complex probe runs in parallel and is capped: 'Run this step in parallel with Steps 2 and 3' with a 30-minute weekly budget. No Chaotic or Confused actions exist.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 is evaluative and has a rubric with weights summing to 100, a pass threshold of 75, and evidence per criterion. Steps 2 and 3 use Gherkin, written first ('Given a SQL file with mixed style / When the formatter runs twice / Then the second run changes nothing'). Step 4 states a metric, a baseline of 20 merged PRs, 'fall by at least 80%', and a sample of 'at least 20 PRs'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the workshop answer. It rejects the workshop as the alternative ('It loses because people keep arguing and humans enforce the result') and leads with the formatter: 'a tool should decide it'. However, it still states 'The culture is Complex' and adds a culture probe ('no proof the culture shifted'). It also offers a fallback retrospective, so it only partly names Clear as the real domain.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The unknowns are logged as assumptions A1 to A4 with validation tests. No questions are asked.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses no uncalibrated hedges. However, it uses no probability, IPCC term, or confidence level anywhere, for example on whether the trial will reach 80% or whether A3 holds. It says only 'Leverage is a guess.'",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline first with four points, all BRIEF headings, End begins 'I recommend that we', and Self-test is last. The check report shows 0 banned words, 0 dashes, and no long sentences. The script's 'citation with no reference' failure is a false positive: a References list with [1] and [2], each tagged [P], sits in Follow-up. The Self-test counts (4 actions, 4 assumptions, 2 references) match the response. There is one small defect: 'CI' is never defined on first use.",
+      "score": 2
+    }
+  }
+}

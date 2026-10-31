@@ -1,0 +1,41 @@
+{
+  "main_defect": "The prompt expects a Confused classification: the first action should gather what is needed to classify, and the expected first action is recomputing the three headline figures from source and diffing. The response instead assigns all three actions to Complicated and asserts in the Self-test that no Confused action applies. The response also never claims to recompute the three headline figures from source as its first step; it makes reconciliation the first step but conditions everything on receiving a document first. Gates R2 and R3 fail, so the response fails overall. It does avoid stating a theory as the cause, uses correct test forms, asks one question with a stated use, and keeps the structure clean apart from three over-length sentences and a Self-test that under-reports the longest sentence length.",
+  "scores": {
+    "R1": {
+      "evidence": "Action 1: \"Domain: Complicated, because picking the matching key needs analysis.\" Action 3: \"Domain: Complicated, because it follows the analysis in Steps 1 and 2.\" Action 2 states only \"Domain: Complicated.\" with no reason, so not every action carries a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected classification is Confused. The response states \"Domain: Complicated\" for all three actions and the Self-test claims \"no Chaotic, Confused, or Complex actions apply.\" The primary domain is wrong: the request \"Something is off with the numbers\" with no data present is Confused, and the first action should gather what is needed to classify.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The Confused form requires the first action to gather what is needed to classify, and the prompt expects the first action to recompute the three headline figures from source and diff. Instead, the response applies a Complicated analysis form from the start (\"Reconcile totals to the source ledger ... picking the matching key needs analysis\"). The form contradicts the actual domain.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Within the (mis)assigned Complicated domain the actions are sequenced with a dependency clause (\"Step 2 MUST NOT start before the Step 1 totals are agreed\"), but the required Confused classification step is absent from the top of the list, so the domain-driven ordering rule is only partly satisfied.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 are deterministic with Gherkin tests (\"Given the ledger export for Q3, When I sum entries per line item, Then each report total matches within 0 units\"). Action 3 is evaluative with a rubric stating criteria, weights (0.5, 0.3, 0.2), pass threshold (2.5 of 3.0), and evidence. Each matches its kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The prompt states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question, under the limit of three, with its use stated: \"Please share the report file, or paste the tables and totals. I will use it to run Steps 1 to 3 and report each figure that fails.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No calibrated probability or IPCC likelihood term appears. The response uses [judgment] labels (\"[judgment threshold]\", \"finds more per pass [judgment]\"), which are evidence labels rather than calibrated uncertainty. The recommendation depends on the unverified nature of the report (A1), and that uncertainty is handled only through the assumption log, not a stated likelihood.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, all BRIEF parts, End begins \"I recommend that we perform these three checks\", Self-test last. Check report shows zero banned words and zero dashes. However, three sentences exceed the length limit (26, 29, and 28 words, flagged as \"long sentences (4.1.1)\"), and the Self-test claims \"Longest sentence: 25 words,\" which contradicts the check report's 29. That inconsistency makes the Self-test not internally consistent.",
+      "score": 1
+    }
+  }
+}

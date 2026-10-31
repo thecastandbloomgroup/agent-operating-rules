@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 3 (exec status message) carries no Cynefin domain, labeled '(Deterministic.)' instead; four sentences exceed the 25-word description limit; self-test reports a 22-word longest sentence when the check found 38 words, so the self-test is internally inconsistent.",
+  "scores": {
+    "R1": {
+      "evidence": "Action 1 'Roll back the last checkout change. (Chaotic: stabilize first.)', Action 4 '(Complicated: the analysis picks the next practice.)', and Action 5 '(Complex: safe-to-fail probe.)' have domains with reasons. Action 2 says '(Clear.)' with no reason. Action 3 says '(Deterministic.)', which is a task kind, not a Cynefin domain, so one action states no domain at all.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is right: Action 1 is Chaotic and stabilises first ('Roll back the last checkout change', 'Chaotic: stabilize first'). Action 4 Complicated and Action 5 Complex probe are defensible. But Action 3 has no domain stated ('(Deterministic.)'), which is a wrong label on a secondary action.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 matches Chaotic (rollback stabiliser first). Action 5 matches Complex ('safe-to-fail probe... cap of 20 minutes and a stop condition'). Action 4 names its analysis for Complicated. Actions 2, 3, and 4 are one-step Clear-form actions. No action's form contradicts its stated domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic stabiliser is Step 1, first in the list whatever its leverage. No Confused actions. Steps 2 to 4 are Clear/Complicated ordered by leverage (verify, then communicate, then preserve evidence). Step 5 Complex probe is capped with a budget and gated by an explicit dependency clause ('Step 5 MUST NOT start until the test in Step 2 fails'), though that clause is slightly odd since Step 5 is meant for rollback failure.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Actions 1 to 4 are deterministic and use Gherkin: 'Given a checkout smoke request with a test account, When the rollback finishes, Then the smoke request returns 200 within 5 minutes.' Action 5 is stochastic with the required parts: 'metric is pass or fail per dependency, baseline is last known healthy status, threshold is 4 of 4 pass, sample size is 3 runs per dependency.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked, which fits the prompt's expectation ('Should not contain: a question') and the ten-minute deadline. The open items are handled as a logged assumption log (A1 to A3), each with validation and impact, and conditions that change the recommendation in the End section.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertain causal claims carry [judgment] labels ('rollback is the fastest capped, reversible stop condition [judgment]', 'Leverage is a guess here [judgment]'). The recommendation's dependence on A1 is handled with an explicit condition ('if A1 is false, replace Steps 1 and 2 with Step 5 and raise the incident level') rather than uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is present: Headline first, End begins 'I recommend that we', Self-test last, five actions each with increment, blocker, and test. Check confirms zero banned words and zero dashes. But the check reports four sentences over 25 words (27, 28, 38, 32 words), citations numbered out of order ([18] appears before [14]), and the Self-test claims 'Longest sentence: 22 words' when the check found 38 words, so the self-test is not internally consistent with the response. Action 3 also lacks a domain despite the Self-test answering yes to classification.",
+      "score": 1
+    }
+  }
+}

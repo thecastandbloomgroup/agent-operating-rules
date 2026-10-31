@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R3": {
+      "score": 0,
+      "evidence": "Expected safe-to-fail Complex probes with a measure, a stop condition, and a budget. Instead, the response gave two Clear one-step actions and one Complicated analysis action without probe budgets or stop conditions."
+    },
+    "R7": {
+      "evidence": "Asked zero questions, logged two assumptions (A1 and A2) with validation tests, and did not ask the user to diagnose the problem.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Stated a Cynefin domain for all three actions ('Cynefin domain: Clear', 'Cynefin domain: Clear', 'Cynefin domain: Complicated'), but omitted the required one-line reason for each classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Classified the actions as Clear and Complicated instead of the expected Complex domain for human systems with interacting causes, and diagnosed a single primary cause.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Ordered the actions sequentially with hard dependencies ('Step 2 MUST NOT start until Step 1 finishes', 'Step 3 MUST run only if the item inspected in Step 2 was not done') instead of running capped Complex probes in parallel.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Included Gherkin tests for Steps 1 and 2 and a weighted rubric for Step 3, but treated human behavioral change as deterministic process checks rather than stochastic experiments with a metric, baseline, threshold, and sample size, and did not use a required evaluative layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010).",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R8": {
+      "evidence": "Used the IPCC likelihood term 'very likely' in the Information section ('very likely to be the primary cause [judgment]') with zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full Headline, BRIEF, and Self-test structure is present with zero dashes, zero script-flagged banned words, and max sentence length of 24 words, but contains a first-person self-mention outside End ('I rate this pattern as very likely...') which also makes the Self-test line 'Self-mention outside End: 0' inaccurate.",
+      "score": 1
+    }
+  },
+  "main_defect": "Misclassified a Complex human-systems problem as Clear and Complicated, prescribing sequential deterministic steps based on a single assumed root cause instead of parallel safe-to-fail probes with measures, budgets, and stop conditions."
+}

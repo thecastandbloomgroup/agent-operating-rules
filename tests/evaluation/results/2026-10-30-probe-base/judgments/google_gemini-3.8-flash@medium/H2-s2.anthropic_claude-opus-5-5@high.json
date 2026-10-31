@@ -1,0 +1,41 @@
+{
+  "main_defect": "After a correct Chaotic stabiliser, Steps 3 and 4 are labelled Complicated instead of Complex. No action is a safe-to-fail probe with a measure, stop condition, and budget, and Step 4 commits to releasing a public statement. The Self-test still claims 'Complex as capped probes: yes'.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label: 'Step 1 (Chaotic domain)', 'Step 2 (Chaotic domain)', 'Step 3 (Complicated domain)', 'Step 4 (Complicated domain)'. No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 'hold all external communication' is Chaotic. Steps 3 and 4 are labelled Complicated, but the expected domain is Complex. The public and journalist reaction to a response cannot be known in advance.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser ('Send a directive... to hold all external communication'). Step 3 names an analysis ('Audit the CEO's original statement against primary company records'). Step 4 is a committed action, not a probe: 'Draft and approve a single response statement... Release the approved statement through the designated spokesperson'. No action has a stop condition or a budget.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order is Chaotic, Chaotic, then Complicated, with explicit dependencies such as 'Step 2 MUST NOT start until the test in Step 1 passes'. This order is consistent with the trade-off rules for the domains the response assigned.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Every action has a test. Steps 1, 2, and 4 use Gherkin and Step 3 uses a rubric. Step 2 tests stakeholder agreement as deterministic ('Then the participants agree on one spokesperson'), which is human behaviour. The Step 3 rubric gives weights (50/30/20) but its pass threshold is '100% agreement on facts', which does not use those weights.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "There are two questions, each with a stated use ('PR will use the answer to select the appropriate response channel'). Q2, 'Does the company hold primary documents that refute the journalist's claim?', duplicates the Step 3 audit. Neither question changes the next action (the hold), so the Section 2.1 conditions are not met.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The recommendation depends on whether the CEO statement was false, yet no probability or IPCC term appears. The response says only 'We evaluate the situation under high uncertainty'. It also asserts 'Conflicting public messages will increase legal exposure' without calibration.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF, End beginning 'I recommend that we', and Self-test last. The check report shows 0 banned words, 0 dashes, and no long sentences. The Self-test is inconsistent: it claims 'Complex as capped probes: yes' with no Complex action, and 'primary or secondary behind each driving claim: yes' while the driving claims carry [judgment] labels. A2 refers to 'the immediate draft', which does not exist at that step.",
+      "score": 1
+    }
+  }
+}

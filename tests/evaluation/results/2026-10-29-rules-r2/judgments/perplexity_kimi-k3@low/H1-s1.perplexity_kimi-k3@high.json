@@ -1,0 +1,41 @@
+{
+  "main_defect": "The stabiliser is not first. Step 1 is 'declare and snapshot' (evidence capture) and the rollback is Step 2, tagged Clear instead of Chaotic. The gate for this prompt requires action 1 to be a stabiliser (roll back or fail over) tagged Chaotic, so the response fails the gate despite otherwise clean mechanics.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries Cynefin tags: Step 1 'Cynefin: Chaotic (stabilise first)', Step 2 'Cynefin: Clear once the suspect change is found', Step 3 'Cynefin: Clear', Step 4 'Cynefin: Complicated', Step 5 'Cynefin: Clear'. But only Steps 1 and 2 give anything like a reason; Steps 3, 4, and 5 state the domain with no one-line justification, so full marks for 'every action, with a one-line reason' are not earned.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected: Chaotic stabiliser first, then Complicated for the rest. The response tags Step 1 Chaotic but that step is a snapshot, not the stabiliser; the actual stabiliser (rollback, Step 2) is tagged 'Clear once the suspect change is found', and Steps 3 and 5 are tagged Clear where the prompt expects Complicated analysis. Primary tag of Chaotic appears first, but the stabiliser and later actions are misclassified.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Gate failure. Action 1 is 'Declare and snapshot (2 minutes)' - post a message, screenshot graphs, copy logs. That is a record step, not a stabiliser. The rollback ('Check the deploy log and roll back the last change') is Step 2, and the expected signals state 'action 1 stabilises (roll back the last deploy, or fail over)' and 'if action 1 is not a stabiliser, the response fails'. The prompt's expected action 2 (establish the record) was moved ahead of the stabiliser.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "A Chaotic-tagged action is first and 'Step 3 MUST NOT start until the test in Step 2 passes' gives explicit sequencing, but the real stabiliser sits behind the snapshot step, so the remove-the-largest-blocker-first order is violated. Minor misorder beyond the R3 gate failure.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic steps carry Gherkin ('Given the rollback completes, When I call checkout, Then it returns 200'). Step 4 is evaluative but its rubric is only 'error source identified, yes/no' with no criteria, weights, or threshold. Step 5 is labeled 'Stochastic element' with 'acceptance: message delivered' but no metric, baseline, threshold, or sample size as Section 6.4 requires for stochastic tasks.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt (no 'Likely wrong answer' line; R6 flagged no).",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions in Follow-up, each with stated use ('The answer decides whether Step 2 or Step 4 leads'), and deferred past the exec call. However, both answers are available in about a minute from the deploy log and dashboards (the response's own A1 says 'Validate by: check the deploy log, one minute'), so the material-or-tool condition of Section 2.1 fails; the prompt also signals no question should be asked. Use is weak even though stated.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedge words (check report: banned total 0), and '[judgment]' labels mark unsupported claims. But the recommendation hinges on A1 (a change near 09:12) with no probability or IPCC term; 'the probable cause' and 'most sudden full-service outages follow a recent change' carry unquantified confidence. Calibrated forms appear nowhere, though the assumption log partly compensates.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline first, BRIEF sections in order, End begins 'I recommend that we', Self-test last; 0 banned words, 0 em/en dashes; no citations, with [judgment]/[no source] labels, which is acceptable. Defects: the check report flags a 27-word sentence ('Stabilise first, communicate second, diagnose last: roll bac...', exceeding the 25-word description limit) while the Self-test claims 'Longest sentence: 22 words', so the Self-test is internally inconsistent with the response. Background is 3 short sentences, slightly over the prompt's one-sentence preference. Minor defects overall.",
+      "score": 1
+    }
+  }
+}

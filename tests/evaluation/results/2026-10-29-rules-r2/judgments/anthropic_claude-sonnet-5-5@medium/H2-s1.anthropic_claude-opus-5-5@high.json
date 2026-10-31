@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response labels the stabilising first action (single owner, freeze on outbound statements) as Clear instead of Chaotic. It also treats the follow-on work as Complicated analysis, not Complex probes. The primary domain is therefore wrong, and the R2 gate fails.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Reasons appear for Step 1 \"Clear (a known practice exists)\", Step 2 \"Complicated (analysis finds the answer)\", and Step 5 \"Complex (the effect appears only afterward)\". Step 3 \"Domain: Complicated.\" and Step 4 \"Domain: Clear.\" have no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected domain for action 1 is Chaotic. The response says \"Kind: deterministic. Domain: Clear (a known practice exists).\" for the freeze and owner call. The word Chaotic never appears. Steps 2 to 4 are labeled Complicated or Clear, where the expected domain is Complex. The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser in substance: \"names one decision owner, freezes all outbound statements\". Step 5 is a capped probe with \"Budget: one analyst, 24 hours\" and a \"Stop condition\". However, the work after stabilisation (verification and response choice) has the form of committed Complicated analysis, not probes with stop conditions. The forms mostly match.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The stabiliser runs first. The Complex probe runs in parallel and is capped: \"start with Step 1, 24 hours\". Dependencies are explicit: \"Step 3 MUST NOT start until Step 2 passes.\" The order fits the trade-off rules in practice, although the response never justifies it by the Chaotic domain.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 has a Gherkin test (\"Given the call has ended... Then it shows one named owner\"). Steps 2 to 4 have rubrics with weights and thresholds, and Step 3 uses a Pugh matrix with a baseline. Step 5 has \"Metric: hourly mentions\", \"Baseline: the mean of the prior 7 days\", a threshold, and \"Sample size: 24 hourly readings\". Every test matches its task kind. The rubrics do not state the evidence that each criterion needs.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". The response logs the unknowns as assumptions instead (A1 to A3, for example the role assumption A2). This is acceptable under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses \"likely (66 to 100%)\" with [judgment] labels. Step 5 says \"Leverage: unknown. Treat any estimate as a guess.\" There are no uncalibrated hedges, and the check report shows 0.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF headings, End begins \"I recommend that we\", and Self-test comes last. The check report shows 0 banned words and 0 dashes. There are minor defects. The A1 logic is muddled: \"The article's claim is unverified... If wrong: if the statement is true, replace Step 3\". The Self-test says \"Chaotic and Confused first... yes\", but no action carries a Chaotic label.",
+      "score": 1
+    }
+  }
+}

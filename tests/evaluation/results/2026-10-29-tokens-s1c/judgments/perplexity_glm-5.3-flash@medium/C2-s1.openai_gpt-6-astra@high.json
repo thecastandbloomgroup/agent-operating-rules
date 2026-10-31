@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies exact-reference verification as evaluative and places tests after the work instructions. It also asks an unnecessary formatting question and overstates compliance in its Self-test.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states 'Domain: Clear,' but none supplies the required one-line reason for that classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions use 'Domain: Clear.' Input collection, fixed-pattern formatting, rule-based annotation, and exact-match verification have known procedures.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The actions are direct operations with bounded outputs: 'one message with all entries,' 'one transformed list in a single pass,' 'one annotated list,' and 'three confirmations.' These fit the Clear action form.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The missing input comes first, followed by formatting, annotation, and verification. 'Steps 2 and 3 MUST NOT start until Step 1 is complete' makes the main dependency explicit.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 through 3 contain Given/When/Then tests. However, 'You spot check three entries against the originals' uses an evaluative rubric for a deterministic matching task. Tests also follow the work instructions.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Both requests state their use, and requesting the absent list is justified. However, 'tell me whether to mark them [no source] or to leave the field out' asks about a reversible choice already prescribed in Step 3.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "'The list itself is not in the message' identifies an observable blocker. The recommendation depends on obtaining that input, not on the uncertain assumption about why it is missing; no material probability estimate is needed.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required headings, End opening, four actions, and final Self-test are present. The report finds zero banned words and dashes, but sentences of 28, 26, and 27 words contradict 'Longest sentence: 22 words.' The claim 'with test written first: yes' also contradicts the action layout.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the correct Chaotic stabiliser, actions 2 to 4 are labelled Complicated instead of Complex. So there are no safe-to-fail probes with budgets or stop conditions, and Step 4 commits to publishing a final statement.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain with a one-line reason. For example: \"Cynefin domain: Chaotic. This action stabilizes the immediate crisis.\" and \"Cynefin domain: Complicated. Cause and effect require document analysis.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Action 1 is correctly Chaotic (the standstill). Actions 2, 3, and 4 are labelled Complicated, but the expected domain is Complex. Stakeholder alignment and the public reaction show cause and effect only afterward.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser: \"Send a directive mandating that all external communication ... must cease\". The later actions are not probes, and none states a budget, a measure, or a stop condition. Action 4 commits the full increment: \"Draft, approve, and send the final response to the journalist and board.\"",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic comes first, which is correct. The remaining actions are a strict sequence (\"Step 4 MUST NOT start until the audit in Step 3 scores 100%\"). They are not Complex probes run in parallel and capped by budgets.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 use Gherkin. Actions 3 and 4 use rubrics with weights, but neither states the evidence each criterion needs. Their thresholds (\"100% of claims tagged\", \"100% approval from all three cell leads\") make the weights meaningless. Stakeholder and press outcomes are stochastic in part, and no metric with a sample size is given.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. The response logs the unknowns instead as A1 (authority to convene) and A2 (no regulatory inquiry yet). Each has a validation test and an if-wrong impact, which is acceptable under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses no uncalibrated hedges. However, it gives no probability or IPCC term for the key uncertain fact: whether the CEO statement is false. The recommendation depends on that fact. The response uses unquantified \"severe legal liability\" and labels every evidence claim only [judgment].",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline first, End begins \"I recommend that we\", Self-test last. The check report shows 0 banned words and 0 dashes. Defects: the check report flags Flesch-Kincaid grade 10.2 (over 10). The Self-test claims \"Source types tagged ... yes\" with 0 references. It also answers \"Complex as capped probes: yes\" when no probes exist. So the Self-test is not consistent with the response.",
+      "score": 1
+    }
+  }
+}

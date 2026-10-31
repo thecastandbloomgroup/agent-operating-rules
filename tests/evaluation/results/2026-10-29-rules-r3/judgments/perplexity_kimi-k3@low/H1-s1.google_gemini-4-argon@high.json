@@ -1,0 +1,41 @@
+{
+  "main_defect": "Primary domain misclassified: Action 1 (production outage stabilisation) is classified as Clear instead of Chaotic (failing Gate R2), and Actions 3 and 4 lack task-kind classifications and valid test forms.",
+  "scores": {
+    "R4": {
+      "evidence": "Action 1 (rollback stabiliser) is placed first and Action 4 (Complicated log review) is placed after service recovers, with an explicit dependency ('Step 3 MUST NOT start until Step 1 or 2 has produced a status fact to report'), but Action 1 is not recognized as Chaotic overriding leverage.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges are used (per check report), and conditional fallbacks are stated ('If A1 is false, replace Step 1 with Step 2'), but no probability, IPCC likelihood term, or confidence level with basis is given for the uncertain assumption A1 that a deploy caused the outage.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, and Self-test are present with 0 banned words, 0 dashes, and max sentence length of 24 words. Defects: reference [18] is not numbered from [1] and is never cited in the body; Actions 2 to 4 omit the blocker/capability; Actions 3 and 4 omit task kinds; Action 1 uses prohibited self-mention ('When I send... Then I get'); and the Self-test block alters the template and falsely reports all required fields present.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('1. ... (Clear domain, deterministic)', '2. ... (Clear domain, deterministic)', '3. ... (Clear domain)', '4. ... (Complicated domain)'), but none provide the required one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Wrong on the primary domain: Action 1 (stabilising a total production checkout outage) is classified as 'Clear domain' instead of 'Chaotic', and Action 2 (checking dependencies to identify which is failing) is also classified as 'Clear domain' instead of 'Complicated'.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 1 ('Roll back the most recent checkout deploy') is a stabiliser placed first, and Action 4 ('run a five-minute log review on the rollback window to find the cause') names the analysis for a Complicated action, but Action 2 mixes dependency diagnosis into a supposed one-step Clear action.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 are classified as deterministic and use Gherkin ('Given the rollback completes, When I send one synthetic checkout request, Then I get HTTP 200'), but Actions 3 and 4 omit the task kind (deterministic/evaluative/stochastic) and lack Gherkin, rubric, or metric-with-sample-size tests ('Test: message sent before the call starts'; 'Test: cause hypothesis written with one log line as evidence').",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Asks zero questions ('Questions asked: 0 of 3'), logs two assumptions (A1 and A2) with validation tests and impacts, and proceeds directly to the recommendation.",
+      "score": 2
+    }
+  }
+}

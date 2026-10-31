@@ -1,0 +1,41 @@
+{
+  "main_defect": "The reference line contains an en dash, yet the Self-test reports 'Dashes (em or en): 0'. The reference also sits inside Follow-up with no References list. Each action is tagged Clear, but no action says why it is Clear.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries 'Cynefin domain: Clear.' No action has a one-line reason for the domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions are tagged 'Cynefin domain: Clear', which matches the expected Clear classification.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one step: 'Add the logging configuration block at module import level.', 'Replace all print calls with logger calls.', 'Validate the service output with pytest caplog.' There are no probes, budgets or analysis-first steps.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is configure, then replace, then verify, with explicit dependency clauses: 'Step 2 MUST NOT start until Step 1 is complete.' and 'Step 3 MUST NOT start until Step 2 passes.' This is a sound leverage and dependency order for Clear actions.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each action is labelled 'Test (deterministic):' and has a Gherkin Given/When/Then block, for example 'Then the file contains zero print calls'. The Step 3 scenario 'When an event occurs' is vague but still in the correct form.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids the likely wrong answer (Complicated) and names Clear for every action. It never says why the work is Clear, for example that a known best practice exists.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Self-test says 'Questions asked: 0 of 3' and no formal question appears. Follow-up offers 'If you supply the 400 lines of source code, I will execute the replacements directly', which is conditional and not a question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, the response treats the file as missing (A1), and the replacement plan depends on unseen print forms such as multiple args or file=. No probability, IPCC term or confidence level is given for that uncertain fact.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, 'I recommend that we' and Self-test last are all present. Defects: the check report finds an en dash in '[1] Python Software Foundation, \"logging \u2014 Logging facility', while the Self-test claims 'Dashes (em or en): 0'. The report also shows ref_entries 0 and cites_unlisted [1], because no References list or heading exists and the entry sits in Follow-up. The response labels facts the user stated as '[judgment]'. The check report finds zero banned words.",
+      "score": 1
+    }
+  }
+}

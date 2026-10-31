@@ -1,0 +1,41 @@
+{
+  "main_defect": "Every action names the Clear domain, but none gives the required one-line reason for that classification.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state 'Domain: Clear.' None explains why cause and effect are known or why a best practice applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Supply the list,' 'Format the entries,' and 'Check the list' are correctly classified as Clear tasks with known procedures.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action applies a direct procedure: 'Paste the plain-text list,' 'Convert the supplied entries,' and 'Check completeness and flag missing information.' No analysis phase or probe is introduced.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The missing-input blocker comes first. 'Format the entries after Step 1' and 'Check the list after Step 2' make the dependencies explicit.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each deterministic action has a Given/When/Then test before its Action text. The formatting test requires that 'each reference follows the relevant IEEE format'; the completeness test excludes invented details.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input explicitly states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The only substantive input request is 'Please paste the reference list.' Its use is explicit: 'The source entries are needed to format the list without inventing publication details.' No additional clarification is requested.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No material uncertain fact drives the recommendation. The response identifies the absent entries and makes formatting conditional on receiving them, rather than speculating about their contents.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline appears first, End begins 'I recommend that we', and Self-test appears last. Three actions contain the required fields. Both references are visibly listed and traceable. The check report finds zero banned words, zero prohibited dashes, and no overlength sentences.",
+      "score": 2
+    }
+  }
+}

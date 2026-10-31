@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents one prompt as best and classifies its trial as Complicated. The primary task is Complex and requires capped probes, not an unsupported claim of prompt superiority.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain, but Step 1 gives only \"Cynefin domain: Clear\" without explaining why cause and effect are known.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary prompt trial is labelled \"Cynefin domain: Complicated.\" Its effect on hallucination requires empirical probes, making it Complex. Classifying only the second check pass as Complex does not correct this.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 3 includes \"Budget: one session\" and a stop condition. However, Step 2 runs a preselected prompt without the budget and stop condition required for its actual Complex domain. \"Analysis picks the scoring rule\" does not select the practice.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Building the test set first is appropriate. However, \"Step 3 MUST NOT start until Step 2 passes\" unnecessarily gates the second probe on success, rather than allowing capped probes after the necessary baseline exists.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 uses \"Given\", \"When\", and \"Then\". Step 2 specifies \"unsupported-claim rate\", the current-prompt baseline, a reduction \"by at least half at n=50\", and a decline threshold. Step 3 also specifies a baseline, threshold, and sample size.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "\"No prompt stops hallucination fully, but one grounded prompt reduces it most\" still asserts a best prompt. The response then supplies \"The prompt\" as the answer instead of identifying the primary task as Complex.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response proceeds with reversible assumptions and validation steps, including \"check your tool settings\" and \"list your last five questions\".",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence, one survey\" and \"Medium confidence, one paper\" provide confidence levels with bases. However, the central claim that one prompt \"reduces it most\" has no calibrated support, and the check report flags \"fairly\" as an uncalibrated hedge.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, three actions, and a final Self-test are present. The check report finds one banned word, contradicting \"Banned words found: 0\". Tests follow the work descriptions despite the Self-test claiming \"test written first: yes\". The report finds no prohibited dashes or long sentences.",
+      "score": 1
+    }
+  }
+}

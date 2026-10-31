@@ -1,0 +1,41 @@
+{
+  "main_defect": "After correctly identifying the initial chaos, the response commits to public messaging instead of using bounded Complex probes. It provides no probe budgets or stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain label: 'Chaotic', 'Confused', 'Clear', and 'Complicated'. However, Step 3 explains its benefit, 'removes the blocker of three teams acting on private views', rather than why its domain is Clear.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Stabilize the channels (Chaotic)' correctly identifies the primary domain. The subsequent 'Confused', 'Clear', and 'Complicated' sequence misses the expected Complex response work.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Issue a 3-sentence holding statement' substitutes an outbound commitment for a messaging hold. Step 4 then says 'release either the corrective statement or the documented correction demand'. These are commitments, not safe-to-fail Complex probes with measures, budgets, and stop conditions.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The response puts 'Stabilize the channels (Chaotic)' first and makes Step 4 wait for Steps 2 and 3. However, 'do the following, in this order' imposes a serial publication sequence without parallel, capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 include Given/When/Then tests. The evaluative tests are incomplete: 'weighted by materiality' supplies no explicit weights, and Step 4 lists criteria without weights or criterion scores. No stochastic acceptance tests support the needed probes.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No direct questions are asked. Missing facts are assigned to a 'privileged side-by-side review' and 'ask outside counsel at the start of Step 1', allowing initial stabilisation without waiting for user answers.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'A holding line ... is safe to issue' and 'No regulatory disclosure duty is triggered by this event' materially affect the recommendation. Neither receives a probability, an IPCC likelihood term, or a confidence level with its basis. Assumption labels and contingencies do not supply that calibration.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report confirms zero banned words and zero prohibited dashes. However, it identifies sentences of 35, 44, 33, and 27 words, contradicting 'Longest sentence: 25 words'. The claim that every test is 'written first' also conflicts with tests appearing after the work instructions.",
+      "score": 1
+    }
+  }
+}

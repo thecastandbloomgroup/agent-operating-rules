@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions are classified as Complicated rather than Complex safe-to-fail probes with stop conditions and budgets, uncertainty is not calibrated using Section 4.6 forms, and the Flesch-Kincaid grade (10.2) slightly exceeds the Section 4.1.7 limit of 10.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain and a one-line reason: Action 1 'Cynefin domain: Chaotic. This action stabilizes the immediate crisis.'; Action 2 'Cynefin domain: Complicated. Cause and effect require stakeholder analysis.'; Action 3 'Cynefin domain: Complicated. Cause and effect require document analysis.'; Action 4 'Cynefin domain: Complicated. Requires expert legal and PR drafting.'",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Action 1 matches Chaotic with a stabiliser ('Send a directive mandating that all external communication regarding the article must cease until triage completes'), and Action 3 matches Complicated with an analysis ('Conduct a side-by-side factual audit'), but Action 4 commits to publishing a final response instead of using Complex safe-to-fail probes with stop conditions and budgets.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions are asked ('Questions asked: 0 of 3'); instead, the response logs two assumptions (A1 and A2) and states how Follow-up changes if they are false.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The check report confirms zero uncalibrated hedges, but the response never uses a probability, IPCC likelihood term, or confidence level with its basis (Section 4.6) despite material uncertainty about the factual record and stakeholder alignment.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1 is correctly classified as Chaotic (a communication standstill), and Action 2 establishes a single spokesperson and approver, but Actions 2, 3, and 4 are all classified as Complicated instead of transitioning into Complex for stakeholder and media navigation.",
+      "score": 1
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "The Chaotic action is placed first (Step 1), followed by the Complicated actions ordered by dependency and leverage with explicit sequencing clauses ('Step 2 MUST NOT start until the test in Step 1 passes')."
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 are classified as Deterministic and use Gherkin (Given, When, Then) tests written first; Actions 3 and 4 are classified as Evaluative and use weighted rubrics with explicit pass thresholds.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All required sections, headings, and zero banned words or dashes are present, but the check report flags 'Flesch-Kincaid grade over 10 (4.1.7)' at 10.2, assumptions are broken across multiple lines rather than one line each (Section 5.2), and the Self-test claims 'primary or secondary behind each driving claim: yes' despite having 0 references and relying solely on '[judgment]' labels.",
+      "score": 1
+    }
+  }
+}

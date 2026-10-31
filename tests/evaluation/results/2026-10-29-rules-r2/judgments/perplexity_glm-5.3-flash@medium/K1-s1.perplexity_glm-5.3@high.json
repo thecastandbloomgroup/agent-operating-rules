@@ -1,0 +1,41 @@
+{
+  "main_defect": "Rollback-first treatment of a Complicated problem, plus multiple rules-file defects (long sentences, citation with no reference, stray text artifacts, self-test inconsistency)",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain (\"domain: Chaotic\", \"domain: Complicated\" x2, \"domain: Complex\"), but no one-line reason for the domain is given for Steps 1 to 3; only Step 4 carries a rationale (\"safe-to-fail probe\"). Some actions have a stated domain, none of the first three carries a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Steps 2 and 3 are correctly Complicated (\"rank the three changes ... domain: Complicated\", \"bisect with a load test ... domain: Complicated\"), which matches the expected classification. But Step 1 is labeled Chaotic (\"Step 1, stabilize ... domain: Chaotic\") when production is degraded, not down, so cause and effect remain knowable by analysis. Wrong domain on the first, primary action.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "This is the likely wrong answer flagged in the prompt: \"Step 1, stabilize ... Increment: revert the release\" committed before any analysis, justified by a Chaotic label the prompt does not support. The later actions do match Complicated form (Step 2 names the analysis: \"score the three hunks against one before-and-after trace\"; Step 3 bisects and gates Step 4: \"Step 4 MUST NOT start until this test passes\"), so the form mostly matches after Step 1, but the leading action contradicts the domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The ordering is internally consistent with the response's own (incorrect) Chaotic classification of Step 1 and correctly sequences dependencies (\"Steps 2 to 4 MUST NOT start until Step 1 passes its test\"). But because Step 1's Chaotic label is wrong, the actual ordering puts a revert ahead of the analysis the prompt expects first, so the trade-off rule is misapplied at the head of the list.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 stochastic test has metric, baseline, threshold, and window (\"p95 stays at or under 150 ms, measured on the trace dashboard\"). Step 2 is a rubric with weights, pass threshold, and evidence needed (\"fit to the trace segment (weight 3) ... winner explains at least 70%\"). Step 3 is Gherkin (\"Given a replayed load ... Then staging p95 stays within 10% of 120 ms\"). Step 4 has metric, baseline, threshold, sample size, and stop rule. All kinds match.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response does name Complicated for the analysis actions and gives reasons the diff needs bisection (\"only a controlled bisection can name the cause with confidence\"), but it also gives the likely wrong answer: rollback as action 1, framed as a Chaotic stabiliser (\"Step 1, stabilize ... revert the release\") when the prompt does not say production is down. Partly avoided, partly committed.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Zero questions asked (\"Questions asked: 0 of 3\"). The attachments did not reach the conversation, so the material does not answer key questions (trace timings, request rates), yet the response chose to assume and log (A1 to A3) rather than ask for the files. The rules allow assuming, but the \"none when the material answers\" condition for a 2 does not hold, and the assumptions substitute for data the user could re-supply in seconds.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Calibrated where the recommendation depends on it: \"I rate this likely, 66 to 100%\" and the 780 ms delta is stated against the 120 ms baseline with a reference. Follow-up conditions state what changes the recommendation if A2 or A3 is false.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete (Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, Self-test last), banned words 0, no dashes, 4 actions each with increment, blocker, test, domain. But the check report flags 5 long sentences (up to 41 words vs the 20/25 word limits), a citation with no reference entry and a multi-citation line, and stray \"abb\" artifacts after three sentences (\"[1].abb\", \"search.abb\", \"front).abb\"). The self-test claims \"Longest sentence: 24 words\" while the report shows 41, so the self-test is internally inconsistent. Minor to moderate defects, not a missing structure.",
+      "score": 1
+    }
+  }
+}

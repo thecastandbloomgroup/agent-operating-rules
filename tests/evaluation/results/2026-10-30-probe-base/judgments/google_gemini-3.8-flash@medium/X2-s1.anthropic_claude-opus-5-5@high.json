@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-systems problem as Clear. It labels three of four actions Clear and orders them by leverage, with one late probe. It presents one fix (a single action item) as the answer, when the expected form is parallel, budgeted probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a 'Cynefin domain:' line (Clear, Clear, Clear, Complex). No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Actions 1 to 3 are labelled 'Cynefin domain: Clear'. The expected primary domain is Complex: human systems with many interacting causes. The Headline asserts one fix as the answer, so the response is wrong on the primary domain. Gate fails.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 4 is a valid probe: 'two-sprint probe', 'Stop condition: revert to single ownership if neither pair begins work within three days', 'capped at two hours of pair work'. Actions 1 to 3 are one-step best-practice rules ('Establish this rule as the exit gate'). That form fits the stated Clear label but contradicts the real Complex domain, so the forms only partly match.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'I recommend that we execute four actions ordered by leverage'. The Complex probe is ranked as Step 4 inside that leverage order. It is not stated to run in parallel or apart from leverage ranking, and the leverage estimate is not called a guess. The expected form calls for unranked parallel probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 use Gherkin, but they test team behaviour and are labelled Deterministic. The rules file lists user behaviour under the stochastic kind. Action 3 has a rubric with weights and a threshold but does not state the evidence each criterion needs. Action 4 has a metric, a baseline of 0% with no source, a threshold, and 'Sample size: 2 consecutive sprints'. Tests are present, but some are the wrong kind or incomplete.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response assumes and logs A1 and A2 instead of asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no probabilities, IPCC terms, or confidence levels. Uncertain causal claims rest on the result, for example 'increases completion rates compared to unconstrained task lists [judgment]'. The [judgment] labels mark these as assessments but do not calibrate them. The probe's leverage is not called a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF headings, End begins 'I recommend that we', Self-test last. The check report shows 0 banned words and 0 dashes. The check report also fails 'Flesch-Kincaid grade over 10 (4.1.7)' (10.1), and the Self-test does not report this. Reference [1] is a real 2012 JSS editorial, but its title is garbled ('Towards toward explaining agile development'). It is cited for a claim about 'retrospective fatigue' that it does not support. The Self-test says 'primary or secondary behind each driving claim: yes', although the driving claims carry [judgment] labels.",
+      "score": 1
+    }
+  }
+}

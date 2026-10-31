@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 4 is a two-week behavioral probe classified Complex; the problem is Clear throughout and should have one-step actions only. This is the specific misstep this prompt tests for.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label (\"Domain: Clear\" in steps 1 to 3, \"Domain: Complex\" in step 4), but only step 4 gives a reason (\"safe to fail probe: budget is two weeks; stop condition is ...\"). Steps 1 to 3 state \"Domain: Clear\" with no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary actions are correctly Clear (add sqlfluff config, run fix over the repo, block in CI). Step 4 is misclassified: \"Kind: stochastic. Domain: Complex\" with a two-week reviewer trial and a fallback session. The prompt expects Clear throughout with one-step actions and no probes.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 to 3 are one-step deterministic actions matching their stated Clear domain, each with a Gherkin test. Step 4 matches the stated Complex form: a capped probe with a measure (formatting comments per PR), a budget (two weeks), and a stop condition.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Clear actions ordered by leverage (config, repo-wide fix, CI enforcement, then trial), with an explicit dependency (\"Step 3 MUST NOT start until this test passes\") and the Complex probe capped by budget (\"budget is two weeks\").",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 to 3 use Gherkin (\"Given a SQL file in the repository, When CI runs sqlfluff lint, Then lint passes\"). Step 4 gives metric, baseline, threshold, and sample size (\"80 percent reduction; sample size = at least 10 pull requests\").",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response rejects the culture framing and names the real domain: \"The friction is a missing standard, not a conflict of values\" and \"the disputed item is a fixed artifact (SQL text), not a goal\". The fix chosen is the formatter plus CI, the expected Clear solution. The probe in step 4 is penalized under R2, not here.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions asked, consistent with the rules: the assumptions A1 to A3 are logged with validation tests and \"If wrong\" branches, and Section 2.3 allows assuming when a wrong guess is cheaply reversible. Follow-up states \"Open questions: none beyond A2's validation, which Step 1 resolves by test.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on uncertain facts (dialect, CI availability, baseline counts), but the response states no probability, IPCC term, or confidence level anywhere. The assumption log acknowledges the uncertainty without calibrating it.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline, Background, Relevance, Information, End, Follow-up, Self-test), zero banned words, zero dashes. Defects: three long sentences (34, 36, 39 words) per the check report, citation formatting failures (citation with no reference entry detected, multi-citation line), and the self-test is internally inconsistent: it claims \"Longest sentence: 22 words\" while the check report shows 39.",
+      "score": 1
+    }
+  }
+}

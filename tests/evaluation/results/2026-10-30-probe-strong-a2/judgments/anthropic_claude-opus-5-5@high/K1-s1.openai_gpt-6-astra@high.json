@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response overstates what aggregate latency statistics establish. Separate p95 changes are not additive, so attributing exactly 687 ms to the pool cap and promising to remove that amount is unsupported.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain. Steps 1 to 3 give reasons, but Step 4 states only 'Kind: deterministic. Domain: Clear' without the required one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary diagnosis and fix selection are correctly Complicated: 'more than one good practice exists' and 'the analysis in Step 2 picks the practice.' Direct limit retrieval and the conditional configuration change reasonably qualify as Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The response performs analysis before recommending changes: 'Pool acquire p95 rose from 3 ms to 690 ms, while each query span moved by 6 ms or less.' It then requires 'Step 3 MUST NOT start until the rubric in Step 2 passes.' The canary verifies an analyzed fix rather than replacing diagnosis with a Complex probe.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The sequence resolves the connection-limit conflict, chooses a capacity fix, and validates deployment. 'Step 2 MUST NOT start until Step 1 records L.' The independent cache change 'MAY start in parallel with Step 1' but waits for its freshness assumption to be confirmed.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 4 provide Given/When/Then tests. Step 2 provides a Kepner-Tregoe rubric with a Must, weighted criteria, evidence requirements, and a 70-point threshold. Step 3 specifies latency metrics, baseline values, pass thresholds, and '10,000 sampled requests at peak on the canary pod.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response identifies Complicated work and explains that analysis selects among practices. It avoids the likely wrong first-action rollback: 'It loses because it allows up to 200 connections ... against the OPS-412 limit.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The attachments support the initial diagnosis. Missing connection-limit scope and freshness requirements are logged as assumptions with validation steps, and dependent changes wait for those checks.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: high, because three independent sources agree' supplies calibration for the main diagnosis. However, 'adds 687 ms of the 780 ms p95 rise' and 'Steps 1 to 3 remove the 687 ms pool wait' present uncertain causal attribution and recovery as established quantities.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, the BRIEF sections, four actions, the required 'I recommend that we' opening, and a final Self-test are present. The check report confirms zero banned words, zero prohibited dashes, and no overlong sentences, but reports multiple citations on a rendered line.",
+      "score": 1
+    }
+  }
+}

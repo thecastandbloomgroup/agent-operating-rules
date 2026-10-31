@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Headline states follow-through as the cause of the problem ('Fix the follow-through loop first, because retrospectives that end without owned, checked actions stop producing change'), which is a single root cause stated as fact. The expected two or three parallel probes become one Complex probe plus committed Clear, Confused, and Complicated actions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain with a one-line reason. Step 1: 'Cynefin: Confused, so this gathers what we need to classify the rest.' Step 2: 'Cynefin: Complex, so this is a safe-to-fail probe with a budget of three retros.' Step 3: 'Cynefin: Clear, since the practice is known [1].' Step 4: 'Cynefin: Complicated, because the choice of who to ask needs analysis of who holds the authority.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: 'classifies team behavior as Complex when cause is unclear'. Secondary actions are misclassified. Step 3 adds a review to the agenda of a human system and labels it 'Clear, since the practice is known', but it is a Complex intervention. Step 1 is labelled Confused even though the response has already classified the problem as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action fits the form of the domain it states. Step 2 is a probe with a budget ('budget of three retros') and a 'Stop condition'. Step 1 classifies first. Step 4 names its analysis. The expected form for this Complex problem is two or three parallel probes, but only one is given. Step 3 commits a permanent agenda change with no stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Confused audit comes first and the Complex probe is capped. However, the End opens 'take these steps in order', and the Complex probe is numbered Step 2, ahead of the Clear Step 3. That ranks the probe in sequence, although Step 3 says 'Run this in parallel with Step 2'. This is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 use Gherkin ('Given the last three retro notes, When we count actions, Then...'). Step 2 is stochastic and states the metric, 'Baseline is the rate from Step 1', 'Pass threshold is 80%', and 'Sample size is three retros'. Step 4 is evaluative and gives a rubric with weights (50/30/20), 'Pass threshold is a weighted score of 3 out of 5', and the evidence each criterion needs.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. The unknowns are logged as assumptions A1 to A3, and there is no question that asks the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibration is mixed. There is one calibrated statement: 'low confidence, no team data and one secondary source'. Other statements are not calibrated: 'more likely to get done' [judgment], 'repeat themes often sit outside the team's control', and 'the cause may be low trust'. The Headline states the cause as fact ('because retrospectives that end without owned, checked actions stop producing change') with no likelihood.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present, the End begins 'I recommend that we', and the check report finds zero banned words and zero dashes. However, the check report flags a 26-word sentence (sentence 45, the Step 1 test), while the Self-test claims 'Longest sentence: 25 words'. The Self-test is therefore inconsistent. Background also runs to four sentences, above the limit of two to three.",
+      "score": 1
+    }
+  }
+}

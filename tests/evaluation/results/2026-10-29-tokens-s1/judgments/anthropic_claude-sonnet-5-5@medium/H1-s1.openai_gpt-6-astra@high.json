@@ -1,0 +1,41 @@
+{
+  "main_defect": "The fallback bypasses stabilisation: if no recent change exists, the response sends the engineer directly to diagnosis while checkout remains down. It also omits the expected logs-and-timeline record.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions include a domain label, but most lack a one-line classification reason. For example, Step 2 states only 'Domain: Clear. Kind: deterministic.'",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 correctly states 'Chaotic', and Step 3 states 'Complicated'. However, the expected Complicated record-establishment and subsequent analysis sequence is replaced by two actions labelled 'Clear'.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Roll back the newest change' is a stabiliser, and log diagnosis names an analysis. However, the Clear action 'Page a second responder and open one incident channel' combines multiple operations rather than one step.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The main sequence puts rollback first. However, 'If A1 is false, skip Step 1 and run Step 3 first' bypasses stabilisation. Diagnosis also starts when rollback fails, without a further stabilisation action.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The response supplies Gherkin tests and a weighted diagnostic rubric. However, 'When 2 minutes pass, Then one person confirms' tests variable human behaviour as deterministic, without the required stochastic baseline and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with three logged assumptions and their validation methods.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'A deploy or config change happened near 09:12' is a recommendation-driving assumption. Neither it nor the rollback recommendation receives a probability, likelihood term, or confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, four actions, and a final Self-test are present; End begins 'I recommend that we'. The check report confirms zero banned words and dashes, but identifies a 30-word sentence, contradicting 'Longest sentence: 24 words'. Background also exceeds the prompt's one-sentence limit.",
+      "score": 1
+    }
+  }
+}

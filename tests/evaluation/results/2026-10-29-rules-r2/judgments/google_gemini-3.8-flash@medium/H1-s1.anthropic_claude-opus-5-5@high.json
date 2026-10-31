@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 3 (the executive briefing) is tagged Clear instead of Complicated, and no action captures logs or a timeline. Step 2 waits only until rollback 'execution begins', not until service is restored. The '75% of sudden production failures' figure is attributed to Oppenheimer et al. 2003, which does not report that number, so the citation is unreliable.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action names its domain: 'Cynefin domain: Chaotic.', 'Cynefin domain: Complicated.', 'Cynefin domain: Clear.' No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1, the primary action, is correctly Chaotic. Action 2 (verify infrastructure and payment gateway) is correctly Complicated. Action 3 (the briefing script) is tagged 'Clear', but the expected classification is Complicated for every action after the first.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser: 'Roll back the latest production release'. Action 2 names the analysis: 'Inspect error logs and third-party status monitors for non-release causes'. Action 3 is one step: 'Write a four-bullet update'. Each form matches its stated domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic rollback is first, then Complicated, then Clear. However, 'Step 2 MUST NOT start until Step 1 execution begins' lets analysis start before service is restored. There is no explicit domain change clause such as 'MUST NOT start until Step 1 restores service'.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Action 1 has a Gherkin test ('Given checkout returned 500... Then HTTP synthetic checkout requests return status code 200'). Action 2 has a rubric with weights and a pass threshold, though 'latency is normal' has no baseline. Action 3 has a Gherkin test for a document with fixed criteria. Each test form matches its task kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The material gives enough to proceed, and the response logs assumptions A1 and A2 instead of asking.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response gives 'approximately 75% of sudden production failures [2]', but this rests on a doubtful attribution. The Headline uses 'recent releases cause most sudden 500 spikes [inference]' with no probability. It never states how likely the rollback is to fix the fault, although the recommendation depends on that.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required sections are present, End begins 'I recommend that we', and the Self-test is last. The check report shows zero banned words and zero dashes. Defects: the check report flags 'Flesch-Kincaid grade over 10 (4.1.7)' (10.6). Background has three sentences against the expected one. The Self-test claims references are 'identified with confidence' while [2] carries an unsupported statistic.",
+      "score": 1
+    }
+  }
+}

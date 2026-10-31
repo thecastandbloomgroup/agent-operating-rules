@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats a Clear best-practice logging swap as Confused, and classifies the print mapping as Complicated, so the primary domain is wrong.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 and 3 give a reason ('This step gathers the file so the rest can be classified'; 'The analysis is a read of each call, including sep, end, and file'). Steps 2 and 4 only say 'Domain: Clear' plus a dependency clause, not a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected domain is Clear for every action. Lead action says 'Domain: Confused' and the print-mapping action says 'Domain: Complicated'. Missing a Clear label on that replacement because a known best practice exists.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Confused step gathers the file so the rest can be classified. Clear steps are one increment each (basicConfig and logger; one local run). Complicated step names the analysis of sep, end, and file. Forms match the domains stated.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused is step 1. Steps 2 to 4 then follow stated dependencies: 'Step 3 MUST NOT start until Step 2 is in the file' and 'Step 4 MUST NOT start until the test in Step 3 is checked'. No Complex probe is ordered by claimed leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions are labeled deterministic and open with Gherkin: 'Given this request, When the message parts are listed, Then...'; 'Given the module imports...'; 'Given a former print site...'; 'Given a run of the old print paths...'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Gave the likely wrong answer on the replacement: 'Domain: Complicated. The analysis is a read of each call, including sep, end, and file.' Does not name Clear as the real domain or say why a best practice is already known.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "No question is asked. Self-test says 'Questions asked: 0 of 3'. Follow-up only states conditions ('If A1 is false...').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "File absence is calibrated: 'Confidence is high: one check of this message found no file.' A1 and A2 change the steps in Follow-up but have no probability or IPCC term. Check report shows no banned hedges.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF parts, End opening 'I recommend that we', four actions with increment, blocker, test, and domain, and a final Self-test are present. Check report: banned_total 0, dashes empty, long_sentences empty. Defects: self-test says primary or secondary behind each driving claim, but file absence is only '[judgment]'; check report lists citation [1] as unlisted.",
+      "score": 1
+    }
+  }
+}

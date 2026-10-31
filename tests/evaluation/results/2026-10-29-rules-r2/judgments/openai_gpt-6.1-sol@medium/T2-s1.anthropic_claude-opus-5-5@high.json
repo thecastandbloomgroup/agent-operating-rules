@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives a single anti-hallucination prompt as the answer. It has no Headline, BRIEF, Cynefin domain, probe, measure, or Self-test. This is the likely wrong answer the prompt warned against.",
+  "scores": {
+    "R1": {
+      "evidence": "No Cynefin domain appears anywhere. The response is only a prompt template in a code block, with no actions labelled Clear, Complicated, Complex, Chaotic, or Confused.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "No domain is stated, so the expected primary domain (Complex) is not identified.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "A Complex task needs a safe-to-fail probe with a budget and a stop condition. Instead the response commits to one fixed prompt ('Answer the question accurately, not just plausibly...'). The form contradicts the domain.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There is no list of three to five actions and no ordering. The response does not state that leverage is a guess, and it has no parallel, capped probes.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No test of any kind appears. There is no labelled set, no hallucination rate metric, no baseline, no threshold, and no sample size.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The response presents a single prompt as the answer ('Question: [insert your question] Context or sources: [insert relevant material]'). This is the likely wrong answer. It never refuses the premise that one best prompt exists and never names Complex as the domain.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "No questions are asked. That is allowed, but the material leaves open the model, the task, and the current hallucination rate, and none of these is logged as an assumption. The decision to proceed has no stated basis.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response states no probability, IPCC term, or confidence level about whether the prompt reduces hallucination. The recommendation depends on exactly that uncertain fact.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The Headline, Background, Relevance, Information, End ('I recommend that we'), Follow-up, and Self-test are all missing. The check report shows zero banned words and zero dashes, but the required structure is absent.",
+      "score": 0
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a human-system problem as Confused, then Complicated and Clear. It commits deterministic fixes based on an assumed follow-through cause. The expected form was two or three parallel Complex probes, but only one side probe appears.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step names a domain. Step 1: 'Cynefin: Confused, so this step gathers what we need to classify the work.' Step 2: 'Complicated; the audit in Step 1 picks the practice.' Step 4: 'Complex, so this is a safe-to-fail probe.' Step 3 says only 'Cynefin: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected primary domain is Complex. The response files the core work (Steps 2 and 3, owner/date rules and status check) as Complicated and Clear deterministic fixes. Complex appears only for the side 'format probe'. The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Forms match the domains the response states. The Confused step classifies first ('label: not chosen, not done, or done, no effect'). The Complicated step follows the analysis ('the audit in Step 1 picks the practice'). The Clear step is one agenda change. The Complex step has a budget ('15 minutes per retrospective'), a measure, and a stop condition ('stop if the share falls below baseline twice').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The End orders the Confused audit first, then Complicated and Clear steps, with the Complex probe 'in parallel with Steps 2 and 3' and capped. One minor conflict: the Headline says 'Last, test a format change'.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 4 states metric, baseline, a 20-point threshold, and sample size, but the sample is vague ('all members, in three retrospectives'). Steps 1 to 3 use Gherkin for team behavior, which is stochastic. The Step 1 labels ('done, no effect') are judgments that need a rubric.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. Unknowns go to A1 to A3, each with a 'Validate by' test. There is no diagnostic question to the user.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The driving claim carries a probability: 'The cause is likely follow-through... (70% likely, [judgment])'. The probe is labeled 'The leverage is a guess.' The basis 'in my experience of team practice' is weak but labeled [judgment].",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is present: Headline, BRIEF, End beginning 'I recommend that we', and Self-test last. The script reports 0 dashes, 0 banned words, and no long sentences. Defects: the References list has no heading, so the script flags 'citation with no reference'. The Headline 'Last' conflicts with the parallel Step 4. The Headline states the cause as fact ('retrospectives stop changing things when actions have no owner').",
+      "score": 1
+    }
+  }
+}

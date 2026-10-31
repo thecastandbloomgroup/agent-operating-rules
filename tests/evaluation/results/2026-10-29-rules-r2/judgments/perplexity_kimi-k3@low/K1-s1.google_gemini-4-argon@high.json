@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain in parentheses, such as \"(Chaotic; deterministic)\" and \"(Complicated; deterministic; depends on Step 1 passing)\", but none includes a one-line reason for the domain classification.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response gives the exact likely wrong answer by recommending \"Roll back the release first\" in the Headline and \"1. Roll back the release now (Chaotic; deterministic)\" in End without evidence that production is down.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The check report finds two 28-word sentences (exceeding the 25-word limit), the Self-test inaccurately reports \"Longest sentence: 24 words\", Step 4 omits the required blocker/capability field despite the Self-test claiming all four have it, and self-mentions (\"to me\", \"I skip\") appear outside End.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The model misclassifies the primary action as \"Chaotic\" (Step 1: \"Roll back the release now (Chaotic; deterministic)\") and misclassifies the diagnostic isolation analysis as \"Clear\" (Step 3: \"Isolate the three changes in staging (Clear; deterministic; depends on Step 2)\"), when root-cause diagnosis of a latency regression is Complicated.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 1 reverts the release as a Chaotic stabiliser when production is not down, Step 2 (\"Complicated\") adds metrics without naming an analysis that chooses between practices, Step 3 labels a multi-trial isolation experiment as \"Clear\", and Step 4 omits the blocker/capability.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The actions follow the domain order that the model assigned (Chaotic first, then Complicated and Clear), but sequencing uses parenthetical notes like \"(depends on Step 2)\" instead of explicit RFC 2119 dependency clauses such as \"MUST NOT start until\".",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "All four actions are labeled \"deterministic\" with Gherkin tests written after the increment instead of before the work, even though measuring p95 latency across 100 load-test requests in Step 3 is stochastic.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks 0 questions and instead logs three assumptions (A1, A2, A3) because the referenced attachments were not provided in the prompt.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses a calibrated confidence statement with its basis under Section 4.6 (\"Confidence: medium, basis is three common patterns and no log data\") and has zero uncalibrated hedges.",
+      "score": 2
+    }
+  },
+  "main_defect": "The model fell into the exact trap noted in the prompt by classifying the latency regression as Chaotic and reverting the release in Step 1 instead of treating diagnosis as Complicated analysis first."
+}

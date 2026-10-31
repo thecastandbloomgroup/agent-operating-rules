@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response does not locate the discrepancy first by recomputing the headline figures from source. Instead it adds causal theories (spreadsheet formula overrides, regional adjustments) and invented or misattributed statistics. It also mislabels a deterministic reconciliation as a Complex stochastic probe.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain line: 'Domain: Confused.', 'Domain: Complicated.', 'Domain: Clear.', 'Domain: Complex.' None gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: Step 1 is 'Domain: Confused.' Step 4, 'Test reconciliation variance across business units', is labeled 'Domain: Complex.' This is a deterministic sum comparison, so the domain is Complicated at most. The secondary action is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 gathers data to classify ('Classify the error scope across ledger systems'). It audits 'five random balance sheet line items' rather than recomputing the headline figures. Steps 2 and 3 fit Complicated and Clear. Step 4 has a budget ('within a two-hour budget') but no stop condition. It also probes five cost centers while its threshold needs 'a sample of 20 random cost centers', so the action is mostly a fit.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Confused comes first, then Complicated, then Clear. The Complex step runs 'in parallel with Step 3' with a two-hour cap. The order matches the 6.5 trade-off rules. One flaw: 'Step 3 MUST NOT start until the test in Step 2 passes' blocks Step 3 exactly when Step 2 finds an error.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 2 and 3 use correct Gherkin. The Step 1 rubric has weights and a threshold but does not state the evidence each criterion needs. Step 4 uses a 'Stochastic test' with an invented 'Baseline: Q2 historical reporting variance of 0.5%' for deterministic reconciliation work, so the kind is wrong.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response logs A1 ('The Q3 report is an internal financial statement...') with a validation step and an impact. Assuming instead of asking is permitted under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response has no probability, IPCC term, or confidence level anywhere. A1 and the cause of the error drive the recommendation, but neither carries a likelihood. 'Systemic extract discrepancies account for up to 40% of financial data mismatches [judgment]' presents an invented number as a judgment. The response has no banned hedges, so the result is mixed rather than hedge-laden.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present, End begins 'I recommend that we', and Self-test comes last. The check report shows 0 dashes, 0 banned words, and no sentence over 25 words. It also reports FK grade 10.2, over the limit of 10, and a citation-parsing failure. The [1] Panko claim, '88% of formula errors', misstates the source. The Self-test omits the FK failure, and the instruction 'fix the response before sending it' was not followed.",
+      "score": 1
+    }
+  }
+}

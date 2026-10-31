@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies a knowable, analysis-led Complicated problem as Chaotic containment, Confused investigation, and a Complex cache probe. Its useful diagnosis does not justify those domain changes.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains. However, 'Chaotic, stabilize first' states the required action form rather than a reason for that classification. The Complicated and Complex actions provide clearer rationales.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action says 'Domain: Chaotic,' although the response itself establishes 'High confidence: connection acquisition is the immediate bottleneck.' The attached evidence supports Complicated analysis, not Chaotic or Confused classification. Uncertain cache benefit also does not establish a Complex domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The numerical diagnosis precedes the actions, and Step 3 uses 'Step 2\u2019s capacity analysis to select the configuration.' However, 'Probe cache lifetime separately' introduces a safe-to-fail probe where the expected action form is analysis followed by a tested fix.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The sequence follows the declared domains: containment first, classification second, then the connection fix. 'Step 3 MUST NOT start until this test passes.' The cache probe is capped at 30 minutes and runs 'independently of Step 3.' Classification errors are addressed under R2.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 put Given/When/Then tests first. Step 3 specifies a 900 ms and 0.40% baseline, at least 10,000 requests, and acceptance thresholds. Step 4 specifies a concurrent control, 10,000 requests per arm, and latency, error, and freshness thresholds.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "It avoids the literal wrong answer: 'A full rollback risks violating the new database connection limit.' However, it only identifies Complicated work in Step 3 and still frames the initial response as Chaotic and Confused, so it only partly avoids the classification trap.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds from the attachments and assigns inspection of missing operational facts to Step 2 rather than asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'High confidence: connection acquisition is the immediate bottleneck' is supported by agreement between traces and logs. 'Moderate confidence' in the combined capacity/cache explanation is qualified by the absence of isolated attribution.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. References identify the attachments. The check report confirms zero banned words and dashes, but flags four overlong sentences and a multi-citation line. The Self-test claims 'Longest sentence: 25 words,' whereas the report records 32.",
+      "score": 1
+    }
+  }
+}

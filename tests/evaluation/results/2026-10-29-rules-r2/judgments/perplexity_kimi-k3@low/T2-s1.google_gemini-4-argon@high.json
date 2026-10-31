@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats prompt selection for stopping hallucinations as Clear by presenting a single recommended prompt and classifying LLM output checks as deterministic instead of running Complex stochastic probes across candidate prompts.",
+  "scores": {
+    "R4": {
+      "evidence": "Step 3 (the Complex probe on 20 past questions) is sequenced after Step 1 ('Step 3 MUST NOT start until Step 1 produces at least 20 answers') rather than running in parallel with Clear actions per Section 6.5.",
+      "score": 1
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Asks zero questions ('No open questions.') and proceeds directly."
+    },
+    "R8": {
+      "evidence": "Contains zero banned uncalibrated hedges in the check report, but omits required Section 4.6 calibrated uncertainty (probability, IPCC term, or confidence level with basis) on uncertain claims such as 'reduces it the most' and 'the model can still misread sources'.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Check report flags three sentences over the word limit (29, 26, and 26 words) while Self-test claims 'Longest sentence: 24 words'; Headline contains untranslated Chinese characters ('\u6709\u4e09\u70b9\u3002'); tests are written after increments despite Self-test claiming tests were written first.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Clear' for Actions 1 and 2; 'Cynefin domain: Complex probe' for Action 3), but none includes a one-line reason for the classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Classifies the primary action ('Use the prompt above for factual questions') and spot-checking LLM output as 'Cynefin domain: Clear' rather than Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Commits to a single recommended prompt in Action 1 as a Clear one-step action, and omits 'Leverage is a guess' on the Complex probe in Action 3.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 classify LLM output verification as 'Test (deterministic)' using Gherkin, violating Section 6.4 which defines LLM output as stochastic requiring a metric, baseline, pass threshold, and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Refuses the premise that any prompt stops hallucination ('such a prompt does not exist') and includes a Complex probe in Action 3, but still presents a single 'recommended prompt' as the answer and classifies using it as Clear.",
+      "score": 1
+    }
+  }
+}

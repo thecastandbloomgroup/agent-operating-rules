@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response performs the analysis correctly with attached-data numbers, but it misclassifies the cache TTL revert as a Complex safe-to-fail probe when the cause is knowable from the diff (the prompt warns that probing is waste here). It also has minor conformance defects: six over-length sentences, citation ordering and format failures per the check report, an inconsistent self-test claim about longest sentence length, missing domain reasons on most steps, and missing test-kind forms on Steps 3 and 4.",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are labeled for every action, but only Step 3 carries a reason: 'Domain: Complicated, the analysis is the database limit check.' Step 1 ('Domain: Clear, deterministic'), Step 2 ('Domain: Complex, safe-to-fail probe'), and Step 4 ('Domain: Clear, deterministic') state no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary cause is handled correctly: the response names the pool change with numbers ('db.pool.acquire p95 rose from 3 ms to 690 ms and 96% of errors are pool timeouts'), so the Clear fix-first is allowed by the prompt. But Step 2 misclassifies the cache TTL revert as a Complex probe when the diff shows the cause ('default_ttl_s fell from 300 to 60', miss rate 12% to 31%), making it a Clear one-step fix. The prompt explicitly says a probe should not appear because the answer is knowable.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Form matches the assigned domain on every action. Step 1 Clear one-step config deploy; Step 2 has measure, stop condition, budget, and 'Leverage is a guess'; Step 3 names the analysis ('the database limit check') with a dependency clause ('Step 3 MUST NOT start before the Step 1 test passes'); Step 4 is one step. The wrongly assigned Complex domain on Step 2 is scored under R2; the form itself matches.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist. Clear and Complicated steps are ordered by leverage: Step 1 removes the largest blocker (the 690 ms pool queue time and 96% error share), Step 3 resolves the ticket conflict, Step 4 is observability. The Step 2 probe is capped by budget and is not ordered by claimed leverage over the Clear and Complicated steps. Minor issue: the probe is sequenced 'runs after Step 1' rather than strictly in parallel, but this is a minor misorder at most.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 (deterministic) has a Gherkin test: 'Given pool settings restored... When traffic is at peak... Then PoolTimeout errors equal 0.' Step 2 has a stochastic test with metric (cache miss rate), baseline (12%), threshold (at most 15%), and sample size (10,000). But Step 3's test ('the config value has a written rationale that quotes the limit') is not a rubric or Gherkin form and its kind is never stated, and Step 4 is labeled 'Clear, deterministic' without a Gherkin test ('the hold time span appears in the trace summary... every sampled request carries it'). Two of four tests have the wrong or missing kind.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response does not give the likely wrong answer. It does not put a blind revert first; it names the cause with numbers from the files ('db.pool.acquire p95 rose from 3 ms to 690 ms', 'max_size 50 to 8', '32 workers in total, so 8 workers share one pool of 8'), which the prompt says counts as the analysis and permits a fix first. It rules out the alternative causes with data: database CPU '38% to 41%', ORM spans '52 to 58 ms and 30 to 26 ms'.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions asked, and the material answers what is needed. The self-test states 'Questions asked: 0 of 3'. The one open item (the OPS-412 limit) is correctly logged as assumption A2 with a validation step instead of a question, because the recommendation proceeds for the most likely answer.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on the uncertain OPS-412 limit (A2), but the response states no probability or IPCC term for it. It does handle the uncertainty structurally through the assumption log and a condition ('if A2 shows a limit below 32, set the per-pod size to the limit divided by 4'), and 'Leverage is a guess' on Step 2, but no calibrated form appears where the recommendation depends on it.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure is present: Headline, Background, Relevance, Information with evidence, assumption log, and alternative, End beginning 'I recommend that we', Follow-up, and Self-test last. Banned words and dashes are zero per the check report. But the check report flags six sentences over the 25-word limit (up to 31 words), citations out of order, more than one citation on several lines, and references not blank-line separated. The self-test claims 'Longest sentence: 24 words', which contradicts the check report's 31-word maximum, so the self-test is not internally consistent.",
+      "score": 1
+    }
+  }
+}

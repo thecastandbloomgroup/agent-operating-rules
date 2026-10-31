@@ -1,0 +1,41 @@
+{
+  "main_defect": "Sentence-length limit broken and self-test longest-sentence line inconsistent with actual text",
+  "scores": {
+    "R1": {
+      "evidence": "Each action ends with 'Domain: Clear' but no one-line reason is given for any of the four actions, so 'every action, with a one-line reason' is not met; domains are stated for all actions.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions are classified Clear, matching the expected classification (formatting to a known IEEE pattern is Clear); 'Kind: deterministic' labels also match the transform nature.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Every action is a single-step apply-the-practice action fitting Clear, e.g. 'Increment: one transformed list in a single pass'; no probes, matching the expected 'one step per action' form.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear, ordered by dependency with 'Steps 2 and 3 MUST NOT start until Step 1 is complete'; no Chaotic, Confused, or Complex ordering issues exist.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, 3 use Gherkin (Given/When/Then) for deterministic kind; Step 4 uses an evaluative rubric with criterion, weight 1.0, pass threshold 3 of 3, and evidence, matching 6.4.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the prompt header ('R6 applies: no').",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two follow-up items, each with its stated use: 'I will use it to run Steps 2 and 3 immediately' and 'the answer decides the output format'; three or fewer with use, and the material genuinely lacks the list so asking is permitted under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges found (banned list empty); the one uncertain fact (attachment failure) is handled as a logged assumption A1 with a validation path rather than as a hedge, and the recommendation is conditional on the paste rather than resting on an unstated probability.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete (Headline, Background, Relevance, Information, End, Follow-up, Self-test), banned words 0, dashes 0, but the check report flags three long sentences (28, 26, 27 words) against the 25-word limit, and the self-test line 'Longest sentence: 22 words' contradicts the actual longest sentence of 28 words, so the self-test is not internally consistent; these are minor defects rather than missing structure.",
+      "score": 1
+    }
+  }
+}

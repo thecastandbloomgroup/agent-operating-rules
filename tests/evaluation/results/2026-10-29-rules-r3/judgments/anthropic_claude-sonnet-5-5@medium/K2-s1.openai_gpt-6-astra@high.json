@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response correctly calls vendor selection Complicated, but mistakes missing files for domain confusion and adds an unjustified Complex speed probe.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain, but Step 2 only says 'Cynefin: Clear.' Step 4 says 'Complex, so the leverage is a guess' without explaining why cause and effect are visible only afterward.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary comparison correctly states 'Cynefin: Complicated'. However, 'the work cannot be classified without the files' confuses missing evidence with an unknown domain. The speed benchmark also lacks grounds for classification as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Forms match the stated domains: gather files first, 'Convert each price to one three-year total', use 'the rubric' as the analysis, and measure a capped probe with '30 runs per vendor' and a two-day stop.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The response puts its Confused action first and caps the parallel probe. However, 'Run it in parallel with Step 3' conflicts with probing 'the top two vendors', which Step 3 must first identify.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The evaluative rubric supplies criteria, weights, evidence requirements, and a 'weighted score of at least 3.5' threshold. Deterministic actions use Given/When/Then. The stochastic test specifies p95 query time, the current-system baseline, a threshold, and '30 runs per vendor'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states 'R6 applies: no'.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question states its use: 'Can you attach the three proposals again? I will score them with the rubric in Step 3.' Requesting the unavailable proposals avoids inventing a vendor comparison.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response logs uncertain cost scope and priorities, including 'The weights below match your priorities', but supplies no probability, IPCC likelihood term, or confidence level with a basis. 'The leverage is a guess' is not calibrated.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, four actions, and Self-test are present. The check report finds zero banned words and zero prohibited dashes, but a 30-word sentence contradicts 'Longest sentence: 25 words'. Several actions also place their tests after the work description despite claiming 'test written first: yes'.",
+      "score": 1
+    }
+  }
+}

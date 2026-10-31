@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions are misclassified as Clear and Complicated rather than Complex safe-to-fail probes, three sentences exceed the length limit ( contradicting the self-test), and tests are not written before the work.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain in bold (Chaotic, Clear, Complicated, Clear), and Step 1 states a reason ('Step 1 comes first because this is a Chaotic situation, so stabilisation outranks leverage'), but Actions 2, 3, and 4 lack a one-line reason for their domain.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present for deterministic actions (Steps 1, 2, 4) and a weighted rubric is present for the evaluative action (Step 3), but tests are written after the action descriptions instead of first, and the Step 3 rubric lacks required evidence per criterion and a named layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010).",
+      "score": 1
+    },
+    "R8": {
+      "score": 2,
+      "evidence": "Zero uncalibrated hedges in the check report, and uncertainty is calibrated using Section 4.6 form 3 in Information: 'Confidence: medium, because no primary evidence (the article, the statement) is available.'"
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Full BRIEF structure, zero dashes, and zero banned words, but three sentences exceed the 25-word limit (27, 40, and 31 words per the check report), contradicting the self-test claim of 'Longest sentence: 24 words'."
+    },
+    "R2": {
+      "evidence": "Action 1 is rightly classified as Chaotic, but Actions 2, 3, and 4 are classified as Clear, Complicated, and Clear instead of Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser ('Issue a freeze and litigation hold'), though its test includes a holding line, and Actions 2 to 4 are framed as linear Clear and Complicated steps rather than Complex safe-to-fail probes with stop conditions and budgets.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Places the Chaotic action first with explicit rationale ('Step 1 comes first because this is a Chaotic situation, so stabilisation outranks leverage') and orders the remaining actions with an explicit dependency clause ('Step 3 MUST NOT start until this passes').",
+      "score": 2
+    },
+    "R6": {
+      "score": null,
+      "evidence": "R6 does not apply to this prompt."
+    },
+    "R7": {
+      "evidence": "Asks zero questions, logs three assumptions (A1, A2, A3) with validation steps built into the actions, and proceeds per Section 2.3.",
+      "score": 2
+    }
+  }
+}

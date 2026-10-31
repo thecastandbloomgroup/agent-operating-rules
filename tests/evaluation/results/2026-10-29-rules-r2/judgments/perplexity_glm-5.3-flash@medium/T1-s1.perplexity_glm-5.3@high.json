@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response correctly rejects the culture framing and leads with Clear one-step formatter actions, but Step 4 adds an unnecessary Complex measurement probe that the prompt's expected shape excludes, three of the four actions state their Cynefin domain without a one-line reason, and the self-test reports a 24-word longest sentence when the check found sentences of 33 and 41 words.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain (Steps 1-3 'Domain: Clear', Step 4 'Domain: Complex'), but only Step 4 carries a reason ('Leverage here is a guess, so this runs as a capped probe'). Steps 1 to 3 state only the label 'Domain: Clear' with no reason line, so the rubric's two-level requirement of a one-line reason per action is unmet.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is right: the core actions (pin formatter config, CI gate, doc rule) are Clear one-step best-practice applications, and the headline correctly reframes the task away from culture. However, the secondary action Step 4 is classified Complex ('Domain: Complex', 'capped probe'), while the prompt's expected signals state the domain is Clear throughout and the response 'should not contain: probes'. A wrong domain on a secondary action caps the score.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1, 2, and 3 match the Clear form: single one-step actions (add config, add hook and CI job, add one doc line). Step 4 does not match: it is a four-week measurement probe with budget, stop condition, and parallel run, where the expected form for this prompt is a Clear one-step action. The probe form does not belong in this response shape.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist. The three Clear actions are ordered by leverage (config first, gate second, doc rule third). The Complex probe is not ranked by claimed leverage, is capped ('Budget: 1 hour of setup and 1 hour of counting'), and its wait on Step 2 is justified because the after-measurement requires the gate in place; the baseline is drawn from history so nothing blocks parallel start. Ordering conforms to the 6.5 trade-off rules.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 to 3 are deterministic and each test is written first in Gherkin (Given/When/Then, e.g. Step 1's 'sqlfluff fix runs twice / output is identical both times'). Step 4 is stochastic with the required elements: metric ('style comments per merged change'), baseline ('git review history, sampled over 10 changes'), pass threshold ('baseline cut by half or more'), and sample size ('four weeks before and four weeks after'). All tests precede the work.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response explicitly rejects the likely wrong answer: 'Do not fix the culture; remove the decision from people and give it to a tool.' It names the real domain (Clear, via one-step tool actions) and explains why the culture framing loses ('A tool decision made once removes that cost from every future review', 'enforcement by humans is inconsistent, so the argument returns'). No workshop, survey, or facilitated session is proposed. The real domain and the reason the wrong one loses are both stated.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions are asked, and the Follow-up states the reason: 'No open questions meet the three-part test, so none are asked.' The material answers what it can and the rest is logged as assumptions A1 to A3 with validation paths, which is the rubric's permitted case of none when the material answers.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertainty is stated in an allowed form where the recommendation depends on it: 'High confidence on the mechanism: reproducible checks remove person-to-person disagreement when Step 4's assumption A3 holds [judgment].' The condition (A3) is tied to a hedge clause in the End section and to the probe's stop condition.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is present (Headline first, BRIEF parts, End begins 'I recommend that we', Self-test last, three to five actions with increment, blocker, test, domain; zero dashes and zero banned words per the check report). But the check report flags two failures: two long sentences of 33 and 41 words (sentence 71 and 73), and a line carrying more than one citation marker (line 19 area). The Self-test is internally inconsistent: it claims 'Longest sentence: 24 words' when the measured longest is 41 words. These are minor defects rather than missing structure.",
+      "score": 1
+    }
+  }
+}

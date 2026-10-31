@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response turns a Clear, deterministic INFO-level replacement into a blocked plan with unnecessary Complicated level classification and a Complex verification step.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions state a domain, including 'Domain: Clear', 'Domain: Complicated', and 'Domain: Complex'. However, they do not each give a one-line reason for that classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The replacement action correctly states 'Kind: deterministic. Domain: Clear.' However, routine call-site replacement and verification acquire incorrect secondary classifications: 'Domain: Complicated' and 'Domain: Complex'.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The stated domains receive matching forms: direct Clear actions, a Complicated 'one pass through the file' to classify sites, and a small Complex check with a metric, 'budget ... one session', and reversion if it 'produces wrong lines'. Classification correctness is a separate defect.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The logger precedes replacement, which is sensible. However, 'Run the service and check the log stream' appears as sequential Step 5 despite its Complex label; no parallel probe schedule is specified.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Several actions provide Given/When/Then tests. However, this deterministic task also receives 'Kind: evaluative. Rubric' and 'Kind: stochastic ... sample size = 3 runs', rather than deterministic Gherkin tests throughout.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response calls the primary work 'mechanical replacement plus configuration' and labels replacement Clear. It nevertheless partly adopts the likely wrong answer by making call-site classification Complicated.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The single question states its use: 'needed so step 2 is correct: which destination and format'. However, A2 says a wrong assumption requires changing 'only the basicConfig line', so the question does not meet the costly-to-reverse requirement.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response calls its plan 'tested and ready to apply' while also saying 'the file content is unknown'. It supplies no confidence with a basis or other calibration for that unsupported assurance.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, five actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and dashes, but three overlong sentences. The Self-test's 'Longest sentence: 24 words' contradicts the reported maximum of 30.",
+      "score": 1
+    }
+  }
+}

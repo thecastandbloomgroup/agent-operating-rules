@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response frames a Complex human-system problem as a Complicated diagnosis. It uses a sequential root-cause pipeline (inspect, then record, then trial) with a single Complex probe gated behind it. The expected shape was two or three parallel probes, and the response explicitly rejects format and facilitator probes in its alternative.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action gives a domain with a reason. Step 1: \"Complicated, because the review compares commitments with execution evidence.\" Step 2: \"Clear, because the record has fixed acceptance criteria.\" Step 3: \"Complex, because the result becomes visible through the trial.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 3 is correctly called Complex. However, the primary framing treats the problem as knowable by analysis: \"Use the first failed stage as the starting point\" and Step 1 is labelled Complicated. Expected primary domain: Complex. Secondary actions carry the Complicated and Clear labels.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each form matches its stated domain. Step 1 is the analysis itself. Step 2 is a one-step Clear record. Step 3 is a probe with metric, \"budget of two person-hours\" and \"Stop condition: Stop if the trial threatens safety, quality, or the time budget.\" It does not state that leverage is a guess.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Complex probe is serialized, not run in parallel: \"Step 3 MUST NOT start until the Step 2 record passes its test.\" The 6.5 exception (Clear first if it reduces probe uncertainty) partly justifies this. Even so, there is one probe rather than parallel capped probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Gherkin (\"Given three retrospective records, when the review ends, then...\"). Step 3 gives Metric, Baseline (five comparable cases), Pass threshold, and \"Sample: Five new cases.\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions; the response assumes instead (A1 logged with all four fields). No question asks the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Gives \"Moderate confidence in this approach, based on your reported symptom rather than direct evidence of team behavior.\" That is a confidence level with a basis. It gives no probability for which stage fails, although the recommendation depends on that. The pass threshold of \"one additional success\" in five carries no calibration.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure is present: Headline, BRIEF, End beginning \"I recommend that we\", and Self-test last. The check report shows 0 banned words, 0 dashes, and no long sentences. The script's \"citation with no reference\" flag is a parse artifact: a References list with three tagged, blank-line-separated entries appears under Follow-up. A minor Self-test overstatement (\"Complex as capped probes: yes\" with only one probe) does not break consistency.",
+      "score": 2
+    }
+  }
+}

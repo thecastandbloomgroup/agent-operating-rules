@@ -1,0 +1,41 @@
+{
+  "main_defect": "The evaluative rubric gives criteria, weights, and a threshold but does not specify the evidence each criterion needs, and Steps 2 and 3 state their Cynefin domains without a one-line reason. The response otherwise handles the missing attachments correctly: one question with stated use, rubric fixed before scoring, Gherkin tests for deterministic steps, and full structural conformance.",
+  "scores": {
+    "R1": {
+      "evidence": "Domain is stated for every action: Step 1 \"this is Clear, deterministic\", Step 2 \"an evaluative, Complicated action\", Step 3 \"this is Clear and deterministic\". Only Step 1 gives a reason (\"removes the blocker of missing material\"); Steps 2 and 3 give no one-line reason for the domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected classification is Complicated for the vendor comparison, and Step 2 (\"score each proposal with the rubric\") is correctly marked Complicated and evaluative. The supporting steps (obtain documents, sum costs) are correctly Clear. All domains correct.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Complicated action names the analysis that picks the practice: \"The planned rubric, ready to apply once the documents arrive\" with weights and threshold, written before the scoring work (\"The rubric is written above, before the work\"). Clear steps are one-step actions. No inapt probe appears.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused steps; Step 1 removes the blocker that everything else needs (\"Step 2, after Step 1 passes\", \"Step 3, after Step 2 passes\"), and there are no Complex probes to parallelize or cap. Ordering matches dependency and leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin (\"Given three documents are attached, When they open... Then each contains a vendor name and a price\"; \"Given the winning proposal's price schedule, When costs... are summed, Then the total is at most 400,000\"). The evaluative rubric has criteria, weights (40/30/20/10), and a threshold, but does not state the evidence each criterion needs, which 6.4 requires of evaluative tests.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the prompt (\"R6 applies: no\").",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question: \"Can you resend the three proposals? The answer supplies the only material needed to complete Steps 2 and 3.\" It meets all three ask conditions (changes next action, wrong guess costly, answer absent from the material) and states its use.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges; check report shows zero banned hedge terms. The one uncertainty (\"A vendor choice without the proposal texts would be a guess\") describes the situation rather than hedging the recommendation, and nothing in the recommendation depends on an unstated probability.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline first with answer sentence plus two supports; all BRIEF headings present in order; End begins \"I recommend that we\"; Self-test last and filled in. Check report: zero banned words, zero em/en dashes, no long sentences, FK grade 8.1. Self-test is internally consistent with the response (1 question, 3 actions, 0 references). Assumption log is validly omitted since no assumptions were made.",
+      "score": 2
+    }
+  }
+}

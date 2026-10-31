@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response supplies a prompt but does not frame it as a capped Complex probe or test its effect on hallucination rates.",
+  "scores": {
+    "R1": {
+      "evidence": "No action has a stated Cynefin domain or a one-line reason for that domain.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The primary domain, Complex, is not identified. The response does not explain that prompt effectiveness requires empirical probes.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"For factual questions, use this\" introduces a prompt without a measure, stop condition, or budget. It is not framed as a safe-to-fail probe.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No domain-aware action sequence or capped probe plan is provided. The response also omits the required statement that leverage is a guess.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No labelled evaluation set, hallucination-rate metric, baseline, pass threshold, or sample size is provided.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "\"No prompt guarantees zero hallucinations\" rejects a guaranteed fix, but the response neither names Complex nor explains why a measured probe is required.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No clarification questions are asked. The material is sufficient to provide a starting prompt and evaluation plan.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"No prompt guarantees zero hallucinations\" is a caveat, but the recommendation includes no probability, IPCC likelihood term, or confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, three to five structured actions, and Self-test are missing. The check report records zero banned words, zero prohibited dashes, and no long-sentence flags.",
+      "score": 0
+    }
+  }
+}

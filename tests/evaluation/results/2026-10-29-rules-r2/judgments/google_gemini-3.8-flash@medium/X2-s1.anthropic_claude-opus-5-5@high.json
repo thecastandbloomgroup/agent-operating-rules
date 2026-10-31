@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats the retrospective problem as mostly Clear or Complicated, with Steps 1 to 3 labelled Clear, Complicated, Clear. It states a root cause as fact ('teams abandon retrospective actions when they create too many unowned goals'). It then commits a sequential fix, where the expected answer is two or three parallel Complex probes, each with a measure and a stop condition.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain with a one-line reason. For example: 'Cynefin domain: Clear. Cause and effect are known, and best practice requires inspecting past records.' and 'Cynefin domain: Complex. Team cultural habit shifts produce non-linear behavioral responses...'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. Only Step 4 is labelled Complex. The core interventions are labelled Clear and Complicated: Step 2, cap output at one experiment, is 'Complicated' and Step 3, put it in the backlog, is 'Clear'. The expected signals list 'cap action items at one' as a Complex probe. So the response is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 4 has a probe form with a budget ('capped at a budget of two sprint cycles') and a metric, but it gives no stop condition. Steps 2 and 3 commit the full change as fixed practice ('committed story') instead of safe-to-fail probes. The Headline also presents the fix as settled. The forms match the response's own labels but only partly match the correct domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The response chains Steps 1 to 3 with dependencies ('Step 2 MUST NOT start until Step 1 completes', 'Step 3 MUST NOT start until Step 2 passes'). Step 4 runs 'in parallel with Step 3, capped at a budget'. The work should be parallel, unranked probes, but it is ranked in sequence. This is a minor misorder under the response's own labels.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 uses a Kepner-Tregoe rubric with criteria, weights, and threshold 1.0, but the evidence for each criterion is vague ('documented evidence'). Step 2 uses Gherkin for a team behavior outcome, which is stochastic, not deterministic. Step 4 gives a metric, a baseline ('0% ... [judgment]'), and a threshold ('at least 50%'), but no clear sample size beyond 'two sprint trials'. The tests are present, but some are the wrong kind or incomplete.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response logs assumptions A1 and A2, each with a validation and an impact. It does not ask the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Retrospective failure usually stems from three causes' is an uncalibrated generalisation. 'fail to complete them 80% of the time [judgment]' gives false precision to an invented figure. 'complete it more reliably [1]' has no number. The response never says that leverage for the Complex probe is a guess. It gives no IPCC term or confidence basis for the root-cause claim that the recommendation depends on.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present and in order, End begins 'I recommend that we', and Self-test comes last. The check report shows zero banned words and zero dashes, but lists two failures: 'Flesch-Kincaid grade over 10' (10.1) and 'more than one citation on a line'. Reference [2] has a wrong title and author ('Towards succeeding with agile', 'V. Balasubramaniam'; the actual paper is 'Towards explaining agile software development', Balijepally). It also carries an unsupported attribution. Yet the Self-test claims 'all ... identified with confidence: yes'. The Self-test is therefore not fully consistent with the response.",
+      "score": 1
+    }
+  }
+}

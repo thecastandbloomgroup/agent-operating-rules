@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response prescribes a single prompt for adoption before validation, treating Complex work as Clear actions rather than capped, safe-to-fail probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain: 'Domain: Clear', 'Domain: Clear', and 'Domain: Complicated'. None gives a one-line reason for that classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Adopt the template above' is classified Clear, while measurement is Complicated. Hallucination reduction through prompting is Complex because effects require empirical probes.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'Adopt the template above' and 'Add grounding' commit to changes before validation. Neither is framed as a safe-to-fail probe with a measure, stop condition, and budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'Measure the effect on your own set' comes last and 'MUST NOT start until Step 2 is done'. This sequences adoption before validation rather than organizing capped Complex probes.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The first two tests evaluate variable model answers but classify them as 'deterministic'. Step 3 appropriately specifies 20 questions, a baseline, and acceptance 'below half of the baseline rate'. Tests follow work descriptions rather than appearing first.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'No prompt stops hallucination' rejects an absolute guarantee, and the response includes measurement. However, 'The prompt' and 'Adopt the template above' still present one prescribed answer, and the real Complex domain is never named.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response proceeds with logged assumptions about deployment access and task type, each with a validation step.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'I judge 70% likely that the prompt below cuts your false-answer rate to half or better' explicitly quantifies the uncertain benefit and labels it '[inference]'. It adds, 'The count must come from your own test, not from this estimate.'",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, three actions, and a final Self-test are present. The check report finds zero banned words and dashes, but three overlong sentences and multiple citations on lines. The Self-test claims 'Longest sentence: 22 words', while the report records 28 words, and incorrectly claims tests were written first.",
+      "score": 1
+    }
+  }
+}

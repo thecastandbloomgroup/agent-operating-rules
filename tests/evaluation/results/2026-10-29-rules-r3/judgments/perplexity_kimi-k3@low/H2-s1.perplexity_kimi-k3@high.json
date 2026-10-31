@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions are classified Clear/Complicated as committed increments (including same-day publication through a spokesperson) instead of the expected Complex probes with stop conditions; also the check report flags three sentences over the length limit, and the self-test claims a 24-word longest sentence against a measured 40, making the self-test inconsistent.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label: \"(Chaotic, deterministic)\", \"(Clear, deterministic)\", \"(Complicated, evaluative)\", \"(Clear, deterministic)\", but only Action 1 gets a reason (\"Step 1 comes first because this is a Chaotic situation, so stabilisation outranks leverage\"); no one-line reason for the other domains.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is right: Action 1 is Chaotic (freeze and litigation hold), matching the expected signal. But the expected classification is \"then Complex\": verification, alignment, and publication are labeled Clear/Complicated, and no Complex probe appears anywhere. Wrong on the secondary actions.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Stabiliser first is correct (freeze and hold). But the follow-on actions are committed increments with no stop condition or budget where the expected form is probes with stop conditions; Step 4 commits to publishing a statement the same day in a still-fluid situation rather than a capped safe-to-fail probe. Mostly matches per its own labels, not per the domain the material requires.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic action goes first (\"this is a Chaotic situation, so stabilisation outranks leverage\"), then Clear and Complicated ordered with an explicit dependency (\"Step 3 MUST NOT start until this passes\"). Ordering is coherent given the classifications; the absence of parallel capped probes is a classification defect, not an ordering defect.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions carry Gherkin tests (\"*Given* the freeze message is sent, *When* any party is asked to comment, *Then*...\"); the evaluative action carries a rubric with criteria, weights (40/30/30), and a pass threshold (\"all three score above tolerable\"). Tests are stated before the work.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt (no \"Likely wrong answer\" line).",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked; the response states \"No questions now; A1, A2, and A3 above are the three checks built into the steps\", proceeding via a logged assumption log per Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertainty is stated as a confidence level with basis: \"Confidence: medium, because no primary evidence (the article, the statement) is available. The plan holds under either truth value of the claim.\" Judgment claims carry [judgment] labels; no uncalibrated hedges per the check report.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete (Headline, Background, Relevance, Information, End, Follow-up, Self-test), End begins \"I recommend that we\", 4 actions each with increment, blocker, test, and domain, banned words 0, dashes 0 per the check report. Defects: the check report flags three long sentences (27, 40, 31 words, \"long sentences (4.1.1)\"), and the self-test states \"Longest sentence: 24 words\", contradicting the measured 40-word sentence, plus \"Complex as capped probes: yes\" with no Complex action present. Zero citations with [judgment]/[no source] labels is acceptable.",
+      "score": 1
+    }
+  }
+}

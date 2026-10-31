@@ -1,0 +1,41 @@
+{
+  "main_defect": "Misclassifies a Complex human-system problem as Confused followed by sequential Clear steps built around a single assumed root cause (unfinished action items), rather than running parallel safe-to-fail probes.",
+  "scores": {
+    "R8": {
+      "evidence": "No probability, IPCC likelihood term, or confidence level with basis is stated anywhere in the response, despite the recommendation depending on an uncertain root cause (A1). In Information, the text reads: 'The cause for this team is [judgment].'",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Check report shows zero banned words, zero dashes, and max sentence length of 20 words. Minor defects: a broken sentence in Information ('The cause for this team is [judgment].') and unheaded reference entries flagged by the check script ('ref_entries: 0').",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Prompt requires Complex as the primary domain with parallel probes. The response classifies Step 1 as Confused and Steps 2 and 3 as Clear based on a single assumed root cause ('The first gap is unfinished actions, not a weak meeting design'), relegating Complex to a conditional Step 4.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 (Confused) classifies first; Steps 2 and 3 (Clear) are single steps; Step 4 (Complex) states a metric, budget, stop condition, and 'Leverage is a guess.' However, Step 4 is just diagnostic interviews ('three talks of 15 minutes' to name blockers) rather than an experimental probe on the retrospective.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Follows Confused (Step 1) then Clear (Steps 2 and 3), but gates the only Complex probe (Step 4) behind two failed review cycles ('Step 4 MUST NOT start until Step 3 marks the action not done twice') instead of running Complex probes in parallel.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a domain, but only Step 1 includes a one-line reason ('Domain: Confused, because this step gathers the facts that set the domain.'). Steps 2, 3, and 4 state 'Domain: Clear.' and 'Domain: Complex.' without reasons.",
+      "score": 1
+    },
+    "R5": {
+      "score": 2,
+      "evidence": "Step 1 (evaluative) defines a 3-criterion rubric with equal weights, 2-of-3 pass threshold, and evidence; Steps 2 and 3 (deterministic) use Given/When/Then Gherkin tests; Step 4 (stochastic) states metric, baseline, pass threshold, and sample size."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Asks 0 of 3 questions and logs assumption A1 with validation test and impact if wrong.",
+      "score": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response puts 'Roll back the release immediately' as action 1 and adds a Complex probe. The prompt names both as wrong for a Complicated, analysis-first problem with no outage stated. Calibrated uncertainty is also absent.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a 'Cynefin domain' line (Clear, Complicated, Complex, Complicated). Only action 3 gives a reason: '(safe-to-fail probe with a 30-minute stop budget)'. Actions 1, 2, and 4 have no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The analysis and fix actions (2 and 4) are labelled Complicated, which is the right primary domain. Action 3 is labelled 'Complex (safe-to-fail probe...)' although the cause is knowable with analysis. Action 1's rollback is labelled 'Clear' but works as a stabiliser.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 commits a fix before analysis: 'Roll back the deployment to the prior stable build'. The prompt says this is the likely wrong answer, because production is not stated to be down. Action 3 is a probe: 'Probe ORM N+1 query generation... 30-minute timebox'. The expected signals call probing waste here. Step 2 waits on the rollback ('MUST NOT start until Step 1 completes') instead of the analysis coming first.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The order is internally consistent with the response's own labels: Clear first, Complicated next, Complex 'runs in parallel with Step 2' and capped, and Step 4 waits on Step 2. However, the analysis should lead and does not.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Action 2 has a rubric with weights, a threshold, and evidence. Action 4 has a stochastic test with metric, baseline 120 ms, threshold 130 ms, and sample size 1,000. Action 1's Gherkin includes a stochastic claim ('p95 latency returns to 120 ms') with no sample size, so it mixes kinds without a split.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer. The Headline says 'Roll back the release immediately' and action 1 is the rollback. It does not name Complicated as the real domain or argue for analysis first.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Zero questions. The response claims 'the session did not receive the files' and does not ask for them, although missing material meets the conditions in Section 2. It logs no assumption about the files. Step 2 then says 'Verify trace spans against the attached diff', which contradicts that claim.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "No probability, IPCC term, or confidence level appears anywhere. The recommendation depends on uncertain facts: rollback safety (A1), current degradation (A2), and which component is at fault. Instead the response uses 'often cause large latency spikes [1]'.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "All headings are present, End begins 'I recommend that we', and Self-test is last. The check report shows 0 banned words, 0 dashes, and no long sentences. Defects: the check report flags 'citation with no reference' (ref_entries 0), because the References list is not detected in the expected form. 'we must triage using standard diagnostic paths' has no label, yet the Self-test claims all claims carry evidence. The user's own figures are tagged [judgment]. Step 2 cites 'attached diff' after saying the files were missing.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R1": {
+      "evidence": "No actions or Cynefin domains are stated in the one-sentence response.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "No domain classification is present in the response.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No tests or evaluative rubrics are present in the response.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The attached proposals are missing from the prompt, and the response neither asks questions with stated uses nor logs assumptions to proceed per Section 2.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The response contains no actions, evaluative rubric, or analysis.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The response contains no ordered actions.",
+      "score": 0
+    },
+    "R8": {
+      "score": 0,
+      "evidence": "No calibrated uncertainty is stated anywhere in the response."
+    },
+    "R9": {
+      "evidence": "The entire required structure (Headline, BRIEF sections, End starting with 'I recommend that we', and Self-test) is missing, and 'I'll' is used outside the End section.",
+      "score": 0
+    }
+  },
+  "main_defect": "The response is an incomplete one-sentence preamble that omits the entire required BRIEF structure, rubric, actions, domains, and self-test."
+}

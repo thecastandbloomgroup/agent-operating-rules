@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response diagnoses the cause with high confidence from the attachments, yet it labels the work Chaotic and Confused and leads with a stabiliser while production is not down. It also adds a Complex probe for a cause that analysis can settle, so only the fix action carries the expected Complicated domain.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a short reason: \"Chaotic, stabilize first\", \"Confused, gather facts before choosing the remedy\", \"Complicated; use Step 2's capacity analysis to select the configuration\", \"Complex, a safe-to-fail probe; benefit remains uncertain.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Action 3 is labeled Complicated, which matches the expected domain. Action 1 is labeled Chaotic, but the prompt does not say production is down, and the response itself states \"High confidence: connection acquisition is the immediate bottleneck.\" Action 2 is labeled Confused although the material supports a diagnosis. Action 4 is labeled Complex for a knowable cache effect. The primary fix is right, but more than one secondary action is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each form matches its declared label: a stabiliser for Chaotic, fact gathering for Confused, an analysis-gated fix for Complicated (\"Step 3 MUST NOT start until this test passes\"), and a capped probe for Complex. The expected signals reject a probe (\"Probe cache lifetime separately... Cap the probe at 30 minutes\") and a stabiliser first when production is not down. The response does not revert the release, so the form mostly matches.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows the 6.5 rules for the domains it assigned. Chaotic comes first, Confused next, then Complicated. The Complex probe runs \"independently of Step 3\" with a 30-minute cap and a 10,000-request sample.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 are deterministic and use Gherkin (\"Given exhausted pools, when the admission limit is reached, then...\"). Actions 3 and 4 are stochastic and state the metric, baseline (900 ms p95, 0.40% errors), pass threshold (p95 at most 120 ms) and sample size (\"At least 10,000 representative requests per candidate\"). Action 2 is an inspection task that reads closer to evaluative, but its Gherkin form is acceptable.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response rejects \"Full release rollback\" as the alternative, with a reason: \"it restores a 50-connection maximum despite the documented new limit.\" It still puts a Chaotic containment step first without evidence of an outage. It never names Complicated as the overall domain or says why. This is a partial avoidance.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks zero questions. The facts that are missing, such as whether the regression is still active and the cache freshness rules, go into assumptions A1 and A2 and into Action 2's inspection step. This conforms to Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses \"High confidence\" with a basis (\"The trace and log evidence agree\") and \"Moderate confidence\" with a basis (\"no isolated experiment proves attribution\"). However, it also uses the uncalibrated \"plausibly increases database demand\" and \"benefit remains uncertain\". It gives no probability for the cache contribution that drives Action 4. The calibration is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present, End begins \"I recommend that we\", the banned-word count is zero, there are no dashes, and the Self-test comes last. The check report flags four sentences over 25 words (32, 29, 28, 26) and one line with more than one citation. The Self-test states \"Longest sentence: 25 words\", which is inconsistent with that report. These are minor defects.",
+      "score": 1
+    }
+  }
+}

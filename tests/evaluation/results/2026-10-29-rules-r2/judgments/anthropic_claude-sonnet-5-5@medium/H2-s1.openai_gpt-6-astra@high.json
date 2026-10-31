@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies crisis stabilisation as Clear and treats response choice as Complicated. It does not supply the required post-stabilisation Complex probes; counting mentions is monitoring, not a probe.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain, but Actions 3 and 4 only state 'Domain: Complicated' and 'Domain: Clear', without a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1 says 'Domain: Clear (a known practice exists)', although conflicting crisis authority requires Chaotic classification. 'Choose the response' is classified Complicated rather than addressing uncertain reactions through Complex probes.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 1 stabilises through 'one decision owner' and an outbound freeze. Actions 2 and 3 name analysis. However, 'one analyst counts hourly mentions' observes events rather than testing a safe-to-fail intervention.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The actual stabiliser comes first. 'Step 3 MUST NOT start until Step 2 passes' makes fact verification precede response choice. Action 5 says 'start with Step 1' and has a budget of 'one analyst, 24 hours', making monitoring parallel and capped.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Tests are present, including Gherkin and weighted rubrics. However, Action 4 calls a document with fixed acceptance criteria 'evaluative' and tests whether 'each of the three items is present'. Evaluative rubrics also omit required evidence for each criterion.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3' matches the response. Unresolved facts are logged as assumptions, with uses and validation steps, such as asking the board chair to establish authority.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'A second inaccurate statement is likely (66 to 100%) to extend it [judgment]' calibrates a risk supporting the recommendation. For the Complex action, 'Treat any estimate as a guess' acknowledges unreliable leverage.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, five actions, and a final Self-test are present. The check report finds no banned words, forbidden dashes, or overlong sentences. However, the Self-test incorrectly claims 'primary or secondary behind each driving claim: yes (judgment labels used)' despite having no sources.",
+      "score": 1
+    }
+  }
+}

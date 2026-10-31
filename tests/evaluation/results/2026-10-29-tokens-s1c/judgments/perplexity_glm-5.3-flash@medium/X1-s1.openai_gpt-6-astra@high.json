@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response does not frame creation and validation of the missing failure measure as the first Complex probe. It labels baseline assessment Complicated, assumes 20 agent complaints already exist, and never states that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "All five actions state a domain. However, only Step 3 explicitly explains its classification: \"Domain: Complex, because categories will emerge.\" The other actions lack a reason explaining their cause-and-effect relationship.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The improvement experiments correctly use \"Domain: Complex, capped probes.\" However, \"Rate a baseline of 60 summaries\" is labelled \"Complicated\" rather than treating establishment of the missing measure as a Complex probe.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The forms largely follow their stated domains throughout: Clear actions deliver \"one small patch\" and \"one page\"; Step 2 sets its rubric before rating; Step 3 measures new codes, stops after two reviews without novelty, and caps work at one session. Step 4 tests 60 summaries, specifies reversion, and budgets \"one change per defect type per sprint.\"",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Measurement precedes changes, but Complex experiments \"run only one change at a time\" rather than explicitly running alongside independent Clear work. The dashboard comes last. \"Step 2 depends on Step 1\" also conflicts with \"Steps 1, 2, 3 can start now.\"",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 5 provide Given/When/Then tests. Step 2 provides weighted criteria and a 3.5 threshold. Step 4 specifies the baseline, 60 samples, and a 10-percentage-point improvement. However, evaluative Step 3 supplies no acceptance rubric with criteria, weights, threshold, and required evidence.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "\"Instrument every summariser run\" addresses the missing record before changing the model, and later experiments are labelled Complex. However, Step 2 is labelled Complicated, and Step 3 assumes \"at least 20 free-text agent complaints\" without an action that collects them. Avoidance of the likely wrong answer is therefore partial.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Three questions are asked, with uses stated for the trigger and transcript-access answers. However, the response says answers change \"only details, not the plan,\" and the editing question explicitly admits \"Step 1 logs both cases anyway.\" These questions do not consistently meet the ask-only-when-needed rule.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "\"A 95% interval of about plus or minus 10 percentage points\" provides some quantitative calibration, and the response lowers the weight of a two-source theme. However, it gives no calibrated confidence for the assumptions driving the plan and never states that leverage is a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, the required End opening, and a final Self-test are present. The script reports zero banned words and zero prohibited dashes, but three overlength sentences, contradicting \"Longest sentence: 24 words.\" The Self-test claims six references although five are listed. Reference [19] gives incorrect authors and publication details for SummEval, and several claims use bare \"[S]\" placeholders. These are substantive citation and self-certification failures.",
+      "score": 0
+    }
+  }
+}

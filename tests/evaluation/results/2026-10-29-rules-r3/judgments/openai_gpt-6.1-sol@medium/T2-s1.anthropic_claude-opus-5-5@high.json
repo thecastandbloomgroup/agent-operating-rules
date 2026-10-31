@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives one prompt as the answer to 'the best prompt'. That is the likely wrong answer. It has no Headline, no BRIEF, no End, no actions, no Cynefin domains, no measured probes and no Self-test.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a Cynefin domain. The response is only a quoted prompt block that starts 'Prioritize accuracy over completeness.' It has no actions and no domain labels.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "No domain is named. Offering one fixed prompt treats the task as Clear (a known best practice), but the expected domain is Complex. The response is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The one-step answer ('Never invent facts, quotations, citations, links, or tool results.' and so on) contradicts the Complex form. It has no safe-to-fail probe, no measure, no stop condition and no budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There are no ordered actions. Nothing places Complex probes in parallel or caps them by budget.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "There is no test. The response gives no labelled set, no hallucination rate, no baseline, no threshold and no sample size for this stochastic task.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer: one prompt presented as the solution, with no statement that one best prompt does not exist. It does not name Complex as the domain or say why.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "The response asks no questions. That is consistent with Section 2, because the task could proceed on logged assumptions. The rubric allows none when no question meets the conditions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response states no probability, IPCC term, or confidence with a basis, although the recommendation depends on an uncertain fact (that the prompt reduces hallucination). It implies certainty, and it has no statement that leverage is a guess.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The check report shows zero banned words and zero dashes. However, the Headline, Background, Relevance, Information, End ('I recommend that we'), Follow-up and Self-test headings are all missing. The structure is missing.",
+      "score": 0
+    }
+  }
+}

@@ -1,0 +1,2 @@
+date,model,provider,rules_version,prompt_id,domain,grader,R1,R2,R3,R4,R5,R6,R7,R8,R9,total,available,gates_passed,pass,main_defect,response_file,reason
+2026-10-30,openai/gpt-6-astra@high,openai,3.2.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/openai_gpt-6-astra@high/T2-s1.md,a judge failed a gate

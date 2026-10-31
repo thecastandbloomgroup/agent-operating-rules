@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives a serial audit, one probe, and a later review instead of the expected parallel probes for a Complex team problem.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names and explains its domain: \u201cComplicated, meaning analysis can reveal cause and effect\u201d; \u201cComplex, meaning the effect becomes visible after the test\u201d; and \u201cClear, meaning the agreed review procedure has known steps.\u201d",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The core behavior-change experiment is correctly classified as Complex. The supporting record-to-work analysis is Complicated, and the fixed review procedure is Clear. The response calls its diagnostic checks \u201cnot conclusions about your team.\u201d",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 names \u201cthe record-to-work comparison\u201d as its analysis. Step 2 provides a reversible probe, an adoption measure, a 60-minute budget, and safety and budget stop conditions. Step 3 applies an agreed agenda-review procedure.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "\u201cStep 2 MUST NOT start until Step 1 passes\u201d and \u201cStep 3 MUST NOT start until the probe ends\u201d establish a wholly serial plan. There is only one probe, rather than the expected two or three capped probes run in parallel.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Gherkin tests appear for Steps 1 and 3, and Step 2 specifies a metric, baseline check, threshold, and sample of two occasions. However, Step 3 also asks whether to \u201cretain, revise, or stop the change.\u201d That evaluative choice has no weighted rubric, pass threshold, or evidence-based scoring.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions require a user response. The meeting prompts explicitly \u201cdo not require answers now.\u201d A1 logs the assumption about team control and gives a validation check and fallback.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cIts leverage remains uncertain\u201d acknowledges uncertainty but supplies no probability, IPCC likelihood term, or confidence level with its basis. No permitted calibration supports the choice to prioritize follow-through over other probes.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required \u201cI recommend that we\u201d opening, three actions, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports a 29-word sentence, contradicting \u201cLongest sentence: 24 words\u201d and exceeding the description limit.",
+      "score": 1
+    }
+  }
+}

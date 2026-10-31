@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response commits to an immediate rollback before diagnosis, despite no stated outage. It treats rollback as Clear and blocks the Complicated analysis until rollback succeeds.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain: Step 1 says \"Domain: Clear\" and Steps 2 to 4 say \"Domain: Complicated.\" None gives the required one-line reason for its classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary recommendation is \"Roll back to the previous release\" with \"Domain: Clear.\" The primary task is Complicated: analyze traces and changes to identify the regression. Later Complicated labels do not correct the primary classification.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Roll back to the previous release\" precedes \"Find the slow span in the traces.\" This commits a remedy before analysis, the explicitly identified wrong action form for this prompt.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Step 1 requires that \"Step 2 MUST NOT start until this test passes.\" Diagnosis therefore waits for rollback to restore latency, despite no Chaotic condition justifying stabilization before analysis.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 specify stochastic metrics, baselines, thresholds, and sample sizes. However, Step 4 labels a load-test latency result \"Kind: deterministic.\" Step 2 supplies weighted criteria but neither the required decision-analysis layout nor scores against evidence.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "\"I recommend that we roll back the release now\" gives the prompt's explicitly identified likely wrong answer. No production outage is established.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "\"Open questions: none. I made assumptions instead.\" Yet A2 assumes no irreversible migration because \"the material does not state it.\" That missing answer changes whether the immediate rollback is safe, but no question obtains it or states its use.",
+      "score": 0
+    },
+    "R8": {
+      "evidence": "\"First, the likely causes\" uses a likelihood term. However, the recommendation depends on uncalibrated rollback safety and recovery assumptions, and the alternative loses because \"a fix could take days\" without a probability or confidence basis.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and dashes, but sentences of 28 and 27 words contradict \"Longest sentence: 25 words.\"",
+      "score": 1
+    }
+  }
+}

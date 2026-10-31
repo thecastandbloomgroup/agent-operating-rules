@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response supplies a standalone prompt rather than a measured Complex probe. It omits a labelled evaluation set, hallucination rate, baseline, threshold, sample size, probe budget, and the statement that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "No action has a stated Cynefin domain or a reason for its classification.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The response never identifies the primary domain as Complex, where a prompt's effect requires empirical trials.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\u201cPrioritize accuracy over completeness\u201d begins a standalone prompt. No safe-to-fail probe, measure, stop condition, or budget accompanies it.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No domain-aware action sequence is provided. The supplied prompt is not framed as the first capped Complex probe.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "\u201cBefore answering, check for unsupported claims\u201d is not a stochastic acceptance test. A hallucination-rate metric, baseline, pass threshold, and sample size are missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The response gives only a prompt, without naming Complex or explaining that no prompt is known to stop hallucination. This matches the warned-against standalone-prompt answer.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "No questions are asked of the user. The request contains enough information to supply a starting prompt without clarification.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cState when you lack enough evidence\u201d instructs the future model but does not calibrate this recommendation. No probability, likelihood term, or confidence level with a basis addresses the prompt's effectiveness.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, an End beginning \u201cI recommend that we\u201d, the required action structure, and Self-test are absent. The check report records zero banned words, zero prohibited dashes, and no long sentences.",
+      "score": 0
+    }
+  }
+}

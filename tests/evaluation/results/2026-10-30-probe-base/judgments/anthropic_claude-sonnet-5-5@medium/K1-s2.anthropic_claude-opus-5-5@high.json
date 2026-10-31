@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test does not match the response. It claims a longest sentence of 24 words, but the check report finds 33 and 26 words. It claims every action has an increment and a blocker, but Steps 3 and 4 lack an increment and Step 4 lacks a blocker. A2 (31 connections per pod) is also doubtful: there are 32 workers in total, and no likelihood is given.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step states a domain ('Domain: Clear', 'Domain: Complicated'). Only Step 2 ('Analysis: the Step 1 limit and the A2 check pick the size') and Step 3 ('Clear (a revert)') give a reason. Steps 1, 4, and 5 give none.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary fix (Step 2) is Complicated, as expected. The lookup in Step 1, the TTL revert in Step 3, and the alert rule in Step 5 are reasonably Clear. Step 4, the rollout after analysis, is Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Complicated Step 2 names its analysis and depends on Step 1: 'Step 2 MUST NOT start until Step 1 is done.' The Clear steps are single steps. There is no probe and no revert-first. The response also did the analysis itself with numbers: 'This is 687 of the 780 ms total rise, or 88%.'",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist. However, the full rollout of the highest-leverage pool fix (Step 4) waits on the lower-leverage cache revert: 'Step 4 MUST NOT start until the Step 2 and Step 3 tests pass.' Step 3 also rolls to all pods while the pool fix is still canary only. This is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic Steps 1 and 5 use Gherkin. The stochastic Steps 2 to 4 state metric, baseline, threshold, and sample: 'p95 is 5 ms or less (baseline 3 ms, now 690 ms)... Sample: 10,000 requests.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response rejects a rollback with a reason: 'roll back the whole release. It loses because the pool cap follows a database rule (OPS-412), and the evidence points to one setting.' It names the cause from the data before it gives the fix.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The unknowns (the OPS-412 limit, the metric scope) are logged as A1 and A2 with validation tests, so no question is needed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The main cause is calibrated: 'very likely (90 to 100%), basis: three independent measurements agree.' The Step 2 target size depends on A1 and A2 (the per-pod interpretation), but neither has a likelihood. The cache claim is only labelled '[inference]'. The calibration is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All sections are present in order, the End begins 'I recommend that we', and the check report finds zero banned words and zero dashes. The check report flags sentences of 33 and 26 words, but the Self-test says 'Longest sentence: 24 words'. The Self-test also says 'each with increment, blocker, test: yes', but Steps 3 and 4 lack an increment and Step 4 lacks a blocker.",
+      "score": 1
+    }
+  }
+}

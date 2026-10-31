@@ -1,0 +1,41 @@
+{
+  "main_defect": "Stated the Cynefin domain for each action without a one-line reason (R1), and asked a question in Follow-up while also logging it as an assumption and giving a recommendation that depends on the answer (violating Rule 2.4 and the prompt signal against questions).",
+  "scores": {
+    "R5": {
+      "evidence": "All four actions are classified as deterministic and include Gherkin (Given/When/Then) tests before the work, e.g., 'Test first: Given a numbered entry with the four fields, When the line is written, Then the order is author, title, city, publisher, year. Kind: deterministic.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Self-test reports 'Questions asked: 1 of 3' ('Paste the plain-text list in the next message. The answer will be used to apply Steps 2 to 4 and to flag missing fields.'). While it states a use, the prompt signals specify 'Should not contain: questions', and asking a question while also logging A1 and giving a recommendation that depends on the answer violates Section 2.4.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states 'Domain: Clear.' at the end of the step, but none of the four actions includes a one-line reason for the domain classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions are classified as 'Domain: Clear', matching the expected classification.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each Clear action is stated as a single step with a single-pass increment ('one paste', 'one numbering pass', 'one format pass', 'one gap check').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to Prompt C2.",
+      "score": null
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges in the check report; tasks are deterministic in the Clear domain.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Zero banned words, zero dashes, and all sentences under the word limit (max 24 words). Minor defects: Self-test states 'Assumptions logged: 1 (yes)' where 'yes' indicates unlogged assumptions were made; adds a separate 'References' heading not in the Section 3.3 allowed heading list; and violates Section 2.4 by both asking a question and giving a dependent recommendation.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "All actions are in the Clear domain and ordered logically by blocker removal and explicit step dependencies (Step 1 supplies the missing list, Step 2 numbers entries, Step 3 formats in IEEE order, Step 4 flags missing fields).",
+      "score": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response treats the communication decision as Complicated and includes a drafted public holding statement. It gives no Complex probes with stop conditions and budgets, which the prompt expects.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a short reason: \"Domain: Chaotic, stabilize first.\" \"Domain: Confused, gather facts before classifying the underlying issue.\" \"Domain: Complicated, use factual comparison and legal analysis.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: Step 1 is \"Chaotic, stabilize first\" (single owner, hold on speculative comments and denials). The secondary domain is wrong: Step 3, the public communication decision, is labelled \"Complicated\" where the expected domain is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises and Step 2 gathers facts to classify, so both forms match. Step 3 names an analysis, which fits its Complicated label. However, it contains a drafted public statement: \"We are reviewing the report and the records relevant to yesterday's statement. We will correct any inaccuracies we identify.\" It also has no probe with a stop condition or budget.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows the 6.5 trade-off rules: Chaotic (Step 1), then Confused (Step 2), then Complicated (Step 3). The dependency is stated: \"Step 3 MUST NOT approve a substantive response until Step 2 supplies the relevant evidence.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Gherkin: \"Given competing instructions, when the response channel opens, then everyone can identify one decision owner...\" Step 3 is evaluative and has a rubric with criteria and weights (50/30/20), a 0 to 5 scale, an 80/100 threshold, and the evidence each criterion needs (\"against source records\").",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions, each with its use: \"This determines the fact comparison and correction scope.\" \"This determines who should own the response and escalation.\" The recommendation does not depend on the answers.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response states \"High confidence in coordination and evidence preservation as first steps\" with only a [judgment] label as its basis. The key uncertain fact (whether the statement was false) carries no probability or IPCC term. The response branches on it instead.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full heading structure is present, End begins \"I recommend that we\", and Self-test is last. The check report shows 0 banned words, 0 dashes, and no long sentences. Minor defects: Steps 2 and 3 do not state the blocker they remove. The confidence statement lacks a basis. The Self-test claims \"Complex as capped probes: yes\" although there are none, and claims full assumption logging although Step 1 assumes an authorized executive without logging it.",
+      "score": 1
+    }
+  }
+}

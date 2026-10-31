@@ -1,0 +1,41 @@
+{
+  "main_defect": "Presents a single prompt as the solution instead of identifying the Complex domain, rejecting a universal best prompt, and proposing bounded, measured probes.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a Cynefin domain or gives a reason for its classification.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The required Complex classification is absent. The response instead supplies fixed instructions beginning 'Prioritize accuracy over completeness.'",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Instructions such as 'Never invent facts, quotations, citations, links, or tool results' replace safe-to-fail probes. No probe budget, measure, or stop condition appears.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No domain-aware sequencing or parallel, capped probes appear. The response does not state that leverage is a guess.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "'Before answering, check for unsupported claims' is not a stochastic acceptance test. A labelled set, hallucination rate, baseline, threshold, and sample size are missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The entire response is a single proposed prompt, beginning 'Prioritize accuracy over completeness.' It neither rejects the premise nor explains why the task is Complex.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "No clarification questions are asked. None are necessary to reject a universal best prompt and propose measured probes.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Remove them or label their uncertainty' directs future behavior but does not calibrate uncertainty about this prompt's effectiveness. No probability, likelihood term, or confidence level with a basis appears.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required 'I recommend that we' opening, and Self-test are absent. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences.",
+      "score": 0
+    }
+  }
+}

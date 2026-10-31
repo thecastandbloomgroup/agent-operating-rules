@@ -1,0 +1,41 @@
+{
+  "main_defect": "The vendor-selection task never receives an evaluative rubric with criteria, weights, a pass threshold, and evidence requirements. Missing proposals justify deferring the vendor pick, but the response substitutes deterministic document checks for a planned scored comparison.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Steps 2 and 3 explain their Complicated classification through named analyses, but Step 1 states only 'Domain: Clear' without explaining why.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Domain: Clear' fits the document-access check. 'Domain: Complicated, using line-item cost analysis' and 'using proposal-by-proposal analysis' correctly place the substantive assessment in Complicated.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 is 'One document check.' Steps 2 and 3 name 'line-item cost analysis' and 'proposal-by-proposal analysis.' These match the stated domains' action forms.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "'Collect the three proposals' removes the immediate blocker. 'Step 2 MUST NOT start until Step 1 passes' and the corresponding Step 3 dependency establish the appropriate sequence.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Tests are present in Given/When/Then form, but the substantive comparison is labeled 'Deterministic.' No evaluative rubric, weighted criteria, pass threshold, evidence requirements, or scored vendor comparison appears.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states 'R6 applies: no.'",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Please upload the three proposals so their costs and terms can support a vendor recommendation within your budget.' This single request states how the information will be used.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'No assumptions about the vendors or their costs support this response.' The recommendation requests evidence rather than relying on uncertain vendor claims, so no material probability estimate is needed.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The response includes Headline, the BRIEF sections, and Self-test last. End begins 'I recommend that we' and contains three actions with increments, blockers, tests, and domains. The check report records zero banned words, zero prohibited dashes, and no excessive sentence lengths. The reference cites the supplied request.",
+      "score": 2
+    }
+  }
+}

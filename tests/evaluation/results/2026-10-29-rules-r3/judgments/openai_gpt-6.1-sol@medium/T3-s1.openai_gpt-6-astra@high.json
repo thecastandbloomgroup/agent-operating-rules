@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response stops at preparation and never treats sign-up improvement as Complex work. It lacks a capped conversion probe with a stochastic acceptance test, sample size, and stop condition.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain. Step 1 explains that \"expertise can establish cause and effect\"; Step 2 cites the approved contract; Step 3 names analysis to \"reconcile event definitions, duplicate users, and completion events.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The authentication work is correctly labeled \"Complicated.\" However, the conversion track stops at a deterministic, Complicated baseline task and never identifies conversion improvement as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The preparation actions name suitable analyses, including \"trace credentials\" and \"reconcile event definitions.\" However, no conversion action provides the required safe-to-fail probe, budget, measure, and stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Step 2 MUST NOT start until Step 1 passes\" establishes the authentication dependency. \"Run Step 3 alongside Steps 1 and 2\" explicitly separates the conversion preparation track. No ordering conflict appears among the proposed actions.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Authentication tests use \"Given,\" \"when,\" and \"then.\" Conversion receives only a reproducible-counts test. Although A1 defines a conversion metric, no stochastic test specifies a baseline, pass threshold, and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response partially identifies the real domains: authentication is \"Complicated, meaning expertise can establish cause and effect.\" It does not name Complex or explain why conversion outcomes require probes.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Two questions each state their use: repository access determines \"where to inspect and implement the migration,\" and required guarantees determine \"token lifecycle constraints before implementation.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response acknowledges missing information and logs A1 and A2 with validation steps. However, it supplies no probability, IPCC likelihood term, or confidence level with a basis for the assumptions underlying its recommendation.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required \"I recommend that we\" opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences, but reports a Flesch-Kincaid grade of 11.0 against the maximum of 10.",
+      "score": 1
+    }
+  }
+}

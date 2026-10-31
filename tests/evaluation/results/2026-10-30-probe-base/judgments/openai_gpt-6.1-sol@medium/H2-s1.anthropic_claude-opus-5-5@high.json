@@ -1,0 +1,41 @@
+{
+  "main_defect": "After a correct Chaotic stabiliser, the response classifies the later actions as Confused, Complicated, and Clear instead of Complex. It gives committed steps with no safe-to-fail probes, stop conditions, or budgets, and it drafts a public holding statement in Step 4.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a one-line reason: \"Domain: Chaotic, stabilize first.\" \"Domain: Confused, gather enough evidence to classify the problem.\" \"Domain: Complicated, use claim-by-claim evidence analysis.\" \"Domain: Clear, execute the approved decision.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 is \"Chaotic, stabilize first\" with one lead and a pause on \"new substantive external claims.\" The secondary actions are wrong: the expected domain after Step 1 is Complex, but the response labels Steps 2 to 4 as Confused, Complicated, and Clear.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser, and Step 2 gathers evidence to classify, which fits. The response has no Complex probes with a measure, stop condition, and budget. Step 4 commits to publication and drafts a public statement: \"We are reviewing the claims concerning yesterday's statement. We will share verified information by [time]...\" The expected signals say a Chaotic situation should not contain a drafted public statement.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows the 6.5 trade-off rules for the domains as stated: Chaotic (Step 1), then Confused (Step 2), then Complicated and Clear with explicit dependencies: \"Step 3 MUST NOT start until Step 2 identifies...\" and \"Step 4 MUST NOT start until Step 3 passes its rubric.\" No Complex probes exist, so the response has nothing to run in parallel.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each test matches its declared kind. Steps 1, 2, and 4 use Gherkin, for example \"Given conflicting requests, when leaders confirm the response plan, then everyone uses one lead...\" Step 3 gives a rubric with weights (50/30/20), a threshold (\"at least 80/100\"), and the evidence each criterion needs.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks zero questions. It logs the gaps as assumptions A1 and A2, each with \"Validate by\" and \"If wrong\", which follows Section 2.3.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response has no uncalibrated hedges (banned_total 0). However, the recommendation depends on whether the statement is false. A2 (\"The truth remains unresolved\") and the branch logic in Step 3 carry no probability or IPCC term. All claims are labelled [judgment] only.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, Background, Relevance, Information, End beginning \"I recommend that we take these four steps\", Follow-up, and Self-test last. The check report shows 0 dashes, 0 banned words, and no long sentences. Defects: the Self-test reports a failing line (\"primary or secondary behind each driving claim: no, judgments labeled\") when Section 7 requires a fix. The Self-test also claims \"Complex as capped probes: yes\" when the response has no Complex actions, and the response includes a drafted public statement.",
+      "score": 1
+    }
+  }
+}

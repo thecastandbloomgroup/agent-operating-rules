@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex situation as mostly Clear, committing to one format fix rather than parallel probes, and its self-test misreports the longest sentence and citation conformance.",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are labeled for all four actions: 'Audit (Clear, deterministic)', 'One-action rule (Clear, deterministic)', 'Completion probe (Complex, stochastic)', 'Escalation (Complicated, evaluative)'. However, no one-line reason for the domain choice is given for steps 1, 2, or 4. Only step 3 gives partial reasoning: 'The leverage of this step is a guess [judgment]'.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex (human system, many interacting causes, causes visible only afterward). The response labels its headline fix, the one-action rule, as Clear and commits to it as a best practice, and the headline states a single root cause as fact: 'Retros stop producing change when they end with several vague actions and no owner'. It does correctly recognize complexity in step 3 (Completion probe, Complex) and gives a correct Complicated label for escalation, so it is partly right rather than wrong on the primary domain throughout.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Forms match the labeled domains: step 3 is a safe-to-fail probe with 'Metric: completion rate. Baseline... Pass threshold: 80%... Stop condition: below 50% after two retros, stop... Budget: four retros'. Steps 1 and 2 are single-session Clear steps; step 4 names an analysis (weighted rubric) that picks the practice. The Complex probe is capped and measured as 6.5 requires.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions. Clear actions come first (audit, then one-action rule), justified because the audit supplies the probe baseline. The Complex probe follows and is capped by budget; the Complicated escalation comes last and is conditioned on probe results. Minor issue: the probe is numbered sequentially rather than run in parallel with the Clear actions, but the Clear action legitimately reduces probe uncertainty.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1: Gherkin (Given the notes... When we count... Then we hold four numbers). Step 2: Gherkin. Step 3 stochastic: metric, baseline, pass threshold, sample size ('all actions, four retros'). Step 4 evaluative: rubric with criteria, weights, pass threshold (5 of 7), and evidence source (retro notes). All test kinds match.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable per the prompt (R6 applies: no).",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked, which is correct here: the unknowns (A1, A2) are cheap to resolve by reading notes or asking the team during the work, and they are logged as assumptions with validation tests rather than asked. Self-test reports 'Questions asked: 0 of 3'.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability, IPCC likelihood term, or confidence level with basis appears anywhere, even though the recommendation depends on uncertain facts (A1: whether past actions were recorded; A2: whether the team controls its process; whether psychological safety is the blocker). Uncertainty is handled through the assumption log, [judgment] labels, and a condition that changes the recommendation, which is partial calibration but not the form 4.6 requires.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete and correct (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last), zero banned words, zero dashes. But the check report flags two sentences over the 25-word description limit (26 and 29 words), citations out of first-appearance order ([1], [3], [2]), and more than one citation on lines 28 and 30. The self-test is internally inconsistent: it reports 'Longest sentence: 24 words' when the actual maximum is 29, and there is a typo ('rulos' for 'rules'). These are minor-to-moderate defects, not missing structure.",
+      "score": 1
+    }
+  }
+}

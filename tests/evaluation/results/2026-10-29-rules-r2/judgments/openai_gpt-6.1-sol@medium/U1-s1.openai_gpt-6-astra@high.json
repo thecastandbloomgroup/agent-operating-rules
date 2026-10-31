@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response labels an unclassified build problem Clear rather than Confused and never makes domain classification an explicit outcome.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state \"Domain: Clear,\" but only Step 1 adds \"meaning a known procedure applies.\" Steps 2 and 3 lack a one-line classification reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Domain: Clear\" is the wrong primary classification. The prompt lacks enough build details to establish the domain, so the initial classification should be Confused.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Capture one failure record\" and \"Capture one comparison record\" appropriately gather evidence. However, neither these steps nor \"Create a difference report\" explicitly determines the domain before selecting further work.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"After Step 1\" and \"after Step 2\" establish a sensible evidence-first sequence, but the required Confused classification step is absent.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each deterministic action has a test before its work, including \"Given both records, when their inputs are compared, then the report lists each difference and marks missing values as unknown.\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked. \"A1. \u2018Flaky\u2019 means the same revision sometimes passes and sometimes fails\" logs the assumption, its validation, and the consequence if wrong. These reversible evidence checks do not require clarification first.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"The cause remains unconfirmed\" acknowledges uncertainty, but the response supplies no probability, IPCC likelihood term, or confidence level with its basis for the assumption driving the comparison.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required \"I recommend that we\" opening, and Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no long sentences. However, Self-test asserts \"Chaotic and Confused first ... yes\" despite omitting the required Confused classification action.",
+      "score": 1
+    }
+  }
+}

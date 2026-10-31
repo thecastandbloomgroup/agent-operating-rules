@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test is not consistent with the response. It reports a longest sentence of 22 words, but the script found 27. It also says every action has a blocker, but Step 3 has none. Smaller gaps: Steps 3 and 4 give a domain with no reason, and Step 4 bundles three sub-actions under Clear.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step names a domain. Step 1 gives a reason: \"Confused, so this step comes first.\" Step 2 gives one: \"Complicated. The analysis is the recompute itself.\" Step 3 says only \"Cynefin: Complicated.\" and Step 4 says only \"Cynefin: Clear.\" Neither gives a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is Confused, as expected: \"Cynefin: Confused, so this step comes first.\" Tie-out and cause analysis as Complicated, and correction after a named cause as Clear, are reasonable secondary labels.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 gathers the facts needed to classify: \"list each flagged figure with its expected value and its source\". The recompute and diff the prompt expects only comes in Step 2. Step 3 names a Pugh analysis, so it fits Complicated. Step 4 is labeled Clear but bundles three sub-actions: \"fix the figures, mark the old report 'under review', and send the readers a short note\". That is not a one-step action.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Confused action comes first. Two Complicated steps follow, with explicit dependencies (\"Step 2 MUST NOT start until the test in Step 1 passes\"). The Clear correction comes last because it depends on the named cause. There are no Chaotic or Complex actions.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The deterministic steps use Gherkin, for example \"Given the source rows, When we recompute a total, Then it equals the reported total after rounding, or the gap is logged\". Step 3 is evaluative and uses a Pugh matrix with criteria, weights (3 and 1), a threshold (\"leads by at least 2 points\"), and the evidence each criterion needs.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks no formal questions. Follow-up makes one request with its use: \"Send the report and the flagged figures to start Step 1.\" The \"Alternative considered\" section explains why it did not block on a question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response has no probability, IPCC term, or confidence-with-basis statement, although the plan depends on uncertain facts (A1 to A3). It uses [judgment] labels instead. It also uses vague quantifiers: \"finds most of these errors quickly [judgment]\" and \"Readers may already act on the figures\".",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: the Headline comes first, End begins \"I recommend that we\", and the Self-test is last. The script found 0 dashes and 0 banned words. It did find one sentence of 27 words (sentence 43, over the 20-word instruction limit), while the Self-test says \"Longest sentence: 22 words\". Step 3 has no \"Blocker removed\" field, yet the Self-test says \"each with increment, blocker, test: yes\". The Self-test is therefore inconsistent.",
+      "score": 1
+    }
+  }
+}

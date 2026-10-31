@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies the primary diagnosis as Confused rather than Complicated. It then labels technical fixes Clear and offers probes where further analysis should identify the cause and appropriate fix.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step names a domain, including '(Confused, deterministic)' and '(Complicated, stochastic)'. However, the response does not explain each classification, particularly why Steps 2 to 4 are Clear.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Step 1. Classify the dominant layer. (Confused, deterministic)' misclassifies the primary work. The cause is knowable through technical analysis, making it Complicated.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'run the share report on the trace store' puts analysis before conditional fixes. However, 'change the hottest call to eager loading or batching' leaves the practice unselected, and the fallback 'parallel 1 hour probes' substitutes experimentation for further knowable analysis.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Step 2 to Step 4 run only for the layer that Step 1 names' establishes the diagnostic dependency. 'Step 5 lands after any of Step 2 to Step 4 passes its test.' The fallback probes run in parallel with one-hour caps.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present, and Step 5 specifies 'metric p95, baseline 120 ms', a 150 ms threshold, and 'sample size 200 requests'. However, Steps 2 and 4 treat variable pool-wait and cache-hit outcomes as deterministic without sampling requirements. No weighted decision rubric supports the choice between fixes.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'Measure trace time shares first' avoids the likely wrong answer of immediately reverting the release. However, the response never identifies the primary diagnosis as Complicated or explains that classification.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The single question states its use: 'Paste the span table for one slow request; the shares feed Step 1.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The causal recommendations use explicit probabilities: 'pool exhaustion is the lead cause, about 60% likely [judgment]' and the query and cache explanations are 'each about 20% likely [judgment]'.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, five actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but four overlong sentences, including one of 35 words. This contradicts 'Longest sentence: 24 words'. Citation '[14]' also lacks a corresponding entry in the response's reference list.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic freeze, the response treats the rest of the crisis as Clear and Complicated work. It commits to publishing a holding statement and a final response instead of Complex probes with stop conditions and budgets. It also never names the single owner that its Headline promises.",
+  "scores": {
+    "R1": {
+      "evidence": "Each action carries a domain line ('Domain: Chaotic.', 'Domain: Clear.', 'Domain: Complicated.', 'Domain: Complicated.'), but none gives a one-line reason for the domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Action 1 'Enforce an immediate communications freeze' is correctly Chaotic. The later actions should be Complex but are labeled Clear (holding statement) and Complicated (audit, final response). A live media and board dispute has cause and effect that are visible only afterward.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser ('Send a mandatory non-disclosure directive... within 15 minutes'), and Action 3 names its analysis (Kepner-Tregoe). However, Actions 2 and 4 are committed public releases ('Issue an approved two-sentence holding statement', 'collect written sign-offs... then publish'). No action is a probe with a measure, stop condition, and budget, as the real domain requires.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic freeze is first. Steps 2 and 3 run in parallel after Step 1, and Step 4 waits on the Step 3 test ('Step 4 MUST NOT start until the test in Step 3 passes'). The ordering is consistent with the domains as the response assigned them. No Complex probes are present to run in parallel.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Gherkin is used for Actions 1 and 2. The Action 1 test depends on recipient behavior ('all recipients acknowledge receipt'), which is stochastic and has no sample size. The Action 3 rubric has weights but no evidence per criterion, and its thresholds are vague ('Acceptable under company risk policy'). The Action 4 Pugh criteria have no weights.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The unknowns are logged as assumptions A1 and A2, with validation steps and impacts, which follows Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on whether the CEO statement is false and whether a rebuttal went out. The response states no probability or IPCC term for either. Claims carry only '[judgment]' labels, but no uncalibrated hedges appear.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present, End begins 'I recommend that we', and the Self-test is last. The check report shows zero banned words and zero dashes. However, it reports a 27-word sentence and FK grade 11.4, while the Self-test claims 'Longest sentence: 24 words'. The Self-test also claims 'Complex as capped probes: yes' with no Complex action. The Headline promises a 'crisis response team' that no action creates.",
+      "score": 1
+    }
+  }
+}

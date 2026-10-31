@@ -1,0 +1,41 @@
+{
+  "main_defect": "Steps 2 to 4 do not state the blocker each one removes, yet the Self-test claims they do. The response also labels two secondary actions Clear where Complicated was expected, and its Headline says 'Diagnose in parallel' while Step 3 waits for Step 1 to fail.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a Domain line. Steps 1 to 3 give a reason: 'Chaotic. Stabilise first.', 'Clear. Best practice applies.', 'Complicated. Log analysis picks the fix.' Step 4 has only 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 is 'Domain: Chaotic'. The expected signal is Complicated for the rest, but Step 2 (status message) and Step 4 (exec brief) are tagged Clear. Only Step 3 is Complicated.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises: 'Roll back the latest change.' Step 2 is one step: 'Post one status message.' Step 3 names the analysis that picks the practice: 'Log analysis picks the fix.' Each form matches its tagged domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Chaotic stabiliser is first. Step 2 'MUST NOT wait for the result of Step 1.' Step 3 'MUST NOT start until the Step 1 test fails.' No analysis step comes before the stabiliser.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin, for example 'Given a test order on checkout, When the rollback finishes, Then checkout returns 200...'. Evaluative Step 4 has a rubric: 'four criteria..., equal weight, pass at 4 of 4, evidence is the text of the brief.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' and 'Questions asked: 0 of 3'. The unknowns go to assumptions A1 to A3, each with a validation test and an impact.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on a recent change being the cause. The response states this as 'the most likely cause' and 'Step changes usually follow a deploy' with no probability or IPCC term. The assumption log and the 'If A1 is false' conditions partly offset this.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: End begins 'I recommend that we', the Self-test is last, and the check report shows zero banned words and zero dashes. Defects: (1) Steps 2 to 4 state no blocker, yet the Self-test says 'each with increment, blocker, test: yes'. (2) The Headline says 'Diagnose in parallel' while Step 3 is conditional on Step 1 failing. (3) Background has three sentences against the one-sentence expected signal. (4) The script flags 'citation with no reference', although a References list appears under Follow-up.",
+      "score": 1
+    }
+  }
+}

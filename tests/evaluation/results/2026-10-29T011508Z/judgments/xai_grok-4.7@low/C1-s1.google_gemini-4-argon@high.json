@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats the missing attachment literally instead of planning the code transformation steps, omits the one-line domain reasoning per action, and has a 30-word sentence that exceeds the 25-word limit.",
+  "scores": {
+    "R2": {
+      "evidence": "All three actions are classified in the expected primary domain: \"Domain: Clear.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All three actions are classified as \"Kind: deterministic\" and begin with a Gherkin test (\"Test: Given ... When ... Then ...\").",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Self-test reports \"Questions asked: 1 of 3\" and Follow-up says \"Paste the full service file in the next message. The text will be used to apply the three rules and return the edited file.\" However, the prompt expects no questions, and the model simultaneously logs the missing file as assumption A1.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges in the check report; deterministic Clear task requires no probabilistic hedge, and assumption changes are handled via explicit conditions in Follow-up (\"If A2 is false...\").",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states \"Domain: Clear.\" in the End section, but none of the actions include a one-line reason explaining why the domain is Clear.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Every action is written as a one-step deterministic increment matching the Clear domain, with no probes or prior analysis tasks.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear and ordered logically by blocker removal with an explicit dependency clause in Step 3 (\"Step 3 does not start until Step 2 is recorded\").",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Avoided the likely wrong answer (Complicated) and named \"Domain: Clear\", noting in the Headline that \"The INFO switch is a small, known change\", though it did not state the reason alongside the domain labels in End.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full BRIEF structure and zero banned words or dashes, but the check report flags a 30-word sentence in Step 3 (\"Test: Given the pasted file and the rules in Step 2, When the edit is applied, Then a search finds no `print(` and each old message is an INFO call.\"), which also makes the Self-test claim of \"Longest sentence: 24 words\" inaccurate.",
+      "score": 1
+    }
+  }
+}

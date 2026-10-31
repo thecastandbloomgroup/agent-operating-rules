@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response splits the two tracks. However, it never classifies sign-up conversion as Complex. It treats conversion only as a Clear, deterministic baseline definition, with no safe-to-fail probe and no metric, threshold, or sample size.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: Step 1 \"Domain: Clear.\", Step 2 \"Domain: Complicated; the threat analysis selects the design.\", Step 3 \"Domain: Clear.\" Only Step 2 gives a reason. Steps 1 and 3 have no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration is correctly Complicated (Step 2, threat analysis picks the design). The conversion track is labelled \"Domain: Clear\" and is never identified as Complex, which the expected signals require.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Clear actions are one step, and the Complicated Step 2 names \"a threat analysis\" that selects the design. The conversion work is not a safe-to-fail probe with a measure, stop condition, and budget. The form therefore misses the Complex nature of that track.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The sequencing is explicit: \"Define the migration contract after Step 1 passes\" and \"Define the conversion baseline, in parallel with Step 1.\" There are no Complex probes run in parallel and capped by a budget, so the conversion track's ordering does not follow 6.5.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Migration tests use Gherkin (\"Given each existing security guarantee, when the contract is checked, then...\"). The conversion track also uses Gherkin on event counting. No metric with a baseline, pass threshold, or sample size appears anywhere for conversion.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoids one undifferentiated list: \"Treat the JWT migration and sign-up conversion as separate workstreams\" and \"Do not assume the token change itself improves conversion.\" It names the migration as Complicated but never names conversion as Complex or explains why. This is a partial success.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Two questions, each with a stated use: \"The answer determines the integration points and client compatibility tests.\" and \"The answer determines token lifetime and revocation design.\" The recommended preparation steps do not depend on the answers.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence in separating acceptance tests, because the requested outcomes differ; low confidence in implementation choices without service details.\" Confidence levels come with a basis. The conditional \"If no JWT-specific requirement exists, compare retaining sessions\" covers the uncertain fact. No uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline first, End begins \"I recommend that we\", Self-test last. The check report shows zero banned words and zero dashes. However, the check report shows a Flesch-Kincaid grade of 10.7, over the limit of 10, and the Self-test does not report it. The Self-test also answers \"Complex as capped probes: yes\" although the response contains no probes. References sit under a bold label, not a list the script parsed (cites_unlisted 1 to 3).",
+      "score": 1
+    }
+  }
+}

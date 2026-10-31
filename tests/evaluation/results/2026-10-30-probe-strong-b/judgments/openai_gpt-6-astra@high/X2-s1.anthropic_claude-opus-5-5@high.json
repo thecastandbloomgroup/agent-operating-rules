@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response classifies every action as Clear and deterministic, but the problem is Complex. It gives a sequential audit-and-fix plan where parallel safe-to-fail probes were expected, and it rejects format or facilitator probes as the losing alternative.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action ends with \"Kind/domain: Deterministic; Clear.\" One shared reason line covers all three: \"Each uses a known process: the Clear domain.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Primary domain is wrong. The response says \"Each uses a known process: the **Clear** domain\" for a human-systems problem whose expected domain is Complex.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "No action is a safe-to-fail probe with a measure, stop condition, and budget. Steps are one-step Clear tasks (\"Spend 15 minutes tracing those three stages\"). The probe forms are rejected: \"Change the facilitator or meeting format. It loses for now.\" This contradicts the Complex form.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Steps are strictly sequential (\"After Step 1 passes\", \"After Step 2 passes\"). There are no parallel, capped probes. The order follows a Clear dependency chain and ignores the Complex trade-off rule.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present for each document step, for example \"Given three recent retrospective records, when each is checked, then...\". However, the real outcome is team behaviour, which is stochastic. No metric, baseline, threshold, or sample size is given for whether changes happen.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". The response logs gaps as A1 and A2 and does not ask the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is one confidence statement with a basis: \"Confidence: moderate, because the recommendation follows that guidance, but your team's action records are unavailable.\" The driving uncertainty is left uncalibrated: whether the gap is in the decision-to-action path, and whether one change will shift outcomes. Leverage is not marked as a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings and the Self-test are present. There are zero banned words and zero dashes. However, the check report shows a 32-word sentence (\"The *Scrum Guide*, a team work framework, calls for teams to...\") while the Self-test claims \"Longest sentence: 25 words\". The Self-test also claims \"Complex as capped probes: yes\" with no probes. Relevance holds an instruction rather than relevance.",
+      "score": 1
+    }
+  }
+}

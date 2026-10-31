@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response never identifies the work as Complex or proposes parallel, capped probes with measures and stop conditions. Instead, it prescribes full commitment and falsely reports compliance in its Self-test.",
+  "scores": {
+    "R1": {
+      "evidence": "No action has a named Cynefin domain or a one-line reason. The Self-test assertion that each action has a domain does not supply those classifications.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The response does not identify Complex as the primary domain. Instead, it asserts a fixed solution: \"commitment in full; that mechanic works.\"",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"The important part: commitment in full\" contradicts the required safe-to-fail probe form. No probe has both a budget and a stop condition.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "\"ORDER: B, then L, then Cu, with K as the surface it all sits on\" supplies an unexplained sequence. It does not arrange Complex probes in parallel with individual caps.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "\"Measure how many topics got shipped per week\" names a measure, not an acceptance test. No action supplies a Gherkin test, evaluative rubric, or stochastic acceptance test with baseline, threshold, and sample size.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"What type of improvement you want?\" has no stated use explaining which next action its answer changes. The Self-test nevertheless reports \"Questions asked: 0 of 3.\"",
+      "score": 0
+    },
+    "R8": {
+      "evidence": "\"I'm a little cautious, though, about two assumptions\" supplies no calibrated uncertainty. \"That mechanic works\" asserts effectiveness without a probability or confidence level and basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The required Headline and BRIEF structure is missing, including an End beginning \"I recommend that we\". The Self-test claims classifications and tests absent from the response. The check report finds zero banned words and zero prohibited dashes, but lists sentences up to 58 words, contradicting \"Longest sentence: 24 words.\"",
+      "score": 0
+    }
+  }
+}

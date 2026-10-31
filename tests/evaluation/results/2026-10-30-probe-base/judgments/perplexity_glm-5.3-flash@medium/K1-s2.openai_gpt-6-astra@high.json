@@ -1,0 +1,41 @@
+{
+  "main_defect": "The plan restores max_size to 50 before checking the newly reduced service-wide connection limit. It defers that prerequisite until after rollout succeeds and treats knowable cache configuration work as a Complex probe.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions have domain labels, but only Step 3 explains its classification: 'Complicated, the analysis is the database limit check.' The Clear and Complex labels lack cause-and-effect reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action says 'Domain: Clear, deterministic,' although selecting safe pool settings requires Complicated analysis of the unresolved OPS-412 limit. Step 2 also incorrectly labels the knowable cache configuration work 'Complex.'",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The comparison of pool-acquire p95 from '3 ms to 690 ms' provides upfront analysis, so this is not a blind rollback. However, 'Deploy ... max_size: 50' precedes the analysis needed to establish a permissible setting, and 'revert the cache TTL (probe)' adds an unnecessary probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Step 3 MUST NOT start before the Step 1 test passes' postpones checking the connection limit until after deploying the enlarged pool. The response also prescribes 'four steps, in this order,' rather than running the capped Complex probe alongside eligible work.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Step 2 supplies a metric, baseline, threshold, and '10,000 requests.' However, Step 1 treats variable production performance as deterministic without a sample size. Step 3's 'written rationale' and Step 4's '0 of 0 missing requests' are not valid task-specific acceptance tests.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoids an unsupported whole-release rollback by identifying pool acquisition latency and timeout evidence. However, it labels the primary remedy Clear rather than naming and explaining the primary Complicated domain.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No direct user questions are asked, and the attachments support the initial diagnosis. The proposed request, 'Ask the database owner for the OPS-412 limit,' states its use: 'set the per-pod size so that 4 pods stay under the limit.' Its late placement is an ordering defect.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'The database has spare capacity' and 'the rollback still removes the timeouts' express certainty without calibration. The recommendation depends on the unverified assumption that the OPS-412 limit 'is at least 32,' but supplies no probability or confidence level with a basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The script reports zero banned words and dashes, but six overlong sentences and citation-format defects. 'Longest sentence: 24 words' contradicts the reported 31-word maximum, and the claim that every action has its kind classified and test written first is inaccurate.",
+      "score": 1
+    }
+  }
+}

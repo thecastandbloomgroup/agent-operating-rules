@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as diagnosable. It runs a Confused audit first, then applies a Clear best practice ('limit to one owned action', tested by Gherkin) and a Complicated escalation, with only one Complex probe. It also rejects the expected probes (change format, rotate facilitator) as the losing alternative.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step has a domain and a one-line reason. Step 1: 'Domain: Confused. The cause is not yet known, so this step gathers what is needed to classify the rest.' Step 2: 'Domain: Clear. Putting the action into the backlog is a known practice [1].' Step 3: 'Domain: Complicated. The Decide score from Step 1 is the analysis that picks this practice.' Step 4: 'Domain: Complex. This step is a safe-to-fail probe.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. The response frames the problem as one that an audit can diagnose ('Find the stage where your retrospectives break'). It labels it Confused, then classifies the main fix, 'Limit the next retrospective to one owned action', as Clear with 'the highest leverage'. The expected signals list 'cap action items at one' as a Complex probe. Only Step 4 is Complex. The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Each form matches the label the response gave it. Step 2 is one step, Step 3 names the Step 1 analysis, and Step 4 has 'Budget: 30 minutes in total. Stop condition: stop after three meetings'. Against the correct Complex domain, however, Steps 2 and 3 commit changes with pass/fail Gherkin checks instead of capped probes. Also, Step 1 is labeled Confused 'to classify the rest', yet Steps 2 to 4 are already classified before it runs.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows 6.5 for the stated domains. Confused Step 1 comes first, then Clear Step 2 ('highest leverage of the Clear and Complicated steps'), then Complicated Step 3. Complex Step 4 is 'Run it in parallel with Steps 2 and 3' and has a budget cap.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 is evaluative and has a rubric with criteria, weights ('equal'), evidence per criterion, and a pass threshold. Steps 2 and 3 are deterministic and use Gherkin Given/When/Then. Step 4 is stochastic: 'Metric: new topics per meeting... Baseline: mean new topics per meeting in the last six meetings. Pass threshold: the mean rises by at least one topic. Sample size: three meetings.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks zero questions ('Questions asked: 0 of 3'). It logs four assumptions (A1 to A4), each with a validation test and an impact. It does not ask the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'A Do stage failure is likely (66 to 100%) the main cause [judgment]. A Raise stage failure is about as likely as not (33 to 66%) a second cause [judgment]. The basis is low confidence: one sentence of description and no data.' For the probe it says 'Its leverage is a guess.' It uses IPCC terms with a stated basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, and Self-test last. The check report shows 0 banned words, 0 dashes, and no long sentences. The script flagged 'citation with no reference', but a tagged References list [1] to [6] does appear under Follow-up, so this looks like a parse miss. The Self-test matches the body (4 actions, 0 questions, 4 assumptions, 6 references).",
+      "score": 2
+    }
+  }
+}

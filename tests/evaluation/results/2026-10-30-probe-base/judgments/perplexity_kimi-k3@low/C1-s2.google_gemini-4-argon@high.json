@@ -1,0 +1,41 @@
+{
+  "main_defect": "Citations violate Section 5.4.1 ([2] is cited in the Headline before [1] in Background, and multiple citations appear on the same rendered line in Information), and the actions state the Cynefin domain without a one-line reason.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action in End states 'Cynefin domain: Clear.', but none includes a one-line reason explaining why the domain is Clear.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "All four Clear actions are ordered by leverage from test creation and logger setup to call replacement and verification, with an explicit dependency ('Step 3 MUST NOT start until Scenario 1 passes, because the calls need a configured logger.').",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions are tagged 'Kind: deterministic.' and use a Gherkin test ('Feature: Standard logging replaces print' with four Given/When/Then scenarios) written before the edits.",
+      "score": 2
+    },
+    "R8": {
+      "score": 2,
+      "evidence": "The check report shows zero uncalibrated hedges, and no probability hedge is needed because the task and recommendation are deterministic."
+    },
+    "R2": {
+      "evidence": "All four actions are classified as 'Cynefin domain: Clear.', matching the expected classification for replacing print statements with the standard logging module.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Every action is a single-step deterministic increment with no probes, budgets, or preliminary analysis steps.",
+      "score": 2
+    },
+    "R6": {
+      "score": 2,
+      "evidence": "The response avoided the likely wrong classification (Complicated) and classified all steps as Clear because the request directly specifies the standard logging module at INFO level."
+    },
+    "R7": {
+      "evidence": "Follow-up states 'Open questions: none.' and Self-test states 'Questions asked: 0 of 3', which is appropriate because the attached file and prompt supply the needed information.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The response has all required headings, zero banned words, zero dashes, and a maximum sentence length of 19 words, but violates Section 5.4.1 because citation [2] appears in the Headline before [1] in Background and lines 21 and 29 in Information carry more than one citation on a single rendered line.",
+      "score": 1
+    }
+  }
+}

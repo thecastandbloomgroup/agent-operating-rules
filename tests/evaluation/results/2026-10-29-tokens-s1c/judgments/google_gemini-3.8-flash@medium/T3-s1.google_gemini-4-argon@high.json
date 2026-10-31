@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response omits the one-line reason for each Cynefin domain, fails to name the analysis for the Complicated actions or state that leverage is a guess for the Complex probe, and improperly makes Step 4 (session store cleanup) wait on Step 3 (the two-week conversion A/B test) instead of running the Complex probe in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain ('Cynefin domain: Complicated', 'Cynefin domain: Complex probe', 'Cynefin domain: Clear'), but none includes a one-line reason.",
+      "score": 1
+    },
+    "R6": {
+      "score": 2,
+      "evidence": "The Headline and End sections explicitly split the two tracks ('Separate the token migration from the conversion project... Second, sign-up flow improvements require user behavior testing rather than backend refactoring') and assign Complicated/Clear to the migration and Complex probe to conversion."
+    },
+    "R7": {
+      "evidence": "Follow-up asks two questions, each stating its use ('Does your compliance profile permit tokens that cannot be instantly revoked? The answer determines whether we add a token denylist.' and 'Which analytics tool currently records registration funnel steps? The answer determines where we configure the conversion experiment.').",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Steps 1 and 2 of the JWT migration are classified as Complicated, Step 3 (conversion optimization) is classified as a Complex probe, and Step 4 (decommissioning legacy tables) is classified as Clear.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 3 is a capped probe ('in a safe-to-fail A/B test capped at two weeks of traffic') and Step 4 is a single-step Clear action, but Steps 1 and 2 (Complicated) do not name the analysis that selects the practice, and Step 3 omits a stop condition and does not state that leverage is a guess.",
+      "score": 1
+    },
+    "R4": {
+      "score": 1,
+      "evidence": "Instead of running the Complex probe (Step 3) in parallel with the migration track, the response sequences it before Step 4 and blocks Step 4 on it ('Step 4 MUST NOT start until the tests in Step 2 and Step 3 pass.')."
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 provide Deterministic Gherkin tests ('Given... When... Then...'), and Step 3 provides a Stochastic test with metric, baseline, threshold, and sample size ('Metric is sign-up form completion rate. Baseline is 22.0%. Pass threshold is 25.0% or higher at a sample size of 5,000 unique visitors per variant.'), all written before the increment.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The check report confirms zero uncalibrated hedges and claims carry '[judgment]' labels, but the response never states a probability, IPCC likelihood term, or confidence level with its basis where the recommendation depends on uncertain facts.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings (Headline, BRIEF, Self-test) are present, End starts with 'I recommend that we', the check report shows zero banned words, zero dashes, zero long sentences, FK grade 9.1, and the Self-test block is consistent with the response.",
+      "score": 2
+    }
+  }
+}

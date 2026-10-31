@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies a Clear formatting problem as a Complicated selection exercise plus a Complex culture probe. It should adopt a version-locked formatter, enforce it, and reformat the repository without a four-week probe.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain, but not every action explains why. Step 3 only states 'Cynefin domain: Clear'; Step 4's 'Complex, so leverage is a guess' gives a consequence, not a classification reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action says 'Cynefin domain: Complicated, because analysis picks among good practices.' The expected primary domain is Clear. Step 4 also unnecessarily introduces a Complex culture probe.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The scored selection matches the declared Complicated domain, and the probe includes a measure, stop condition, and budget. However, the Clear actions bundle configuration with reformatting and 'one pipeline job and one pre-commit hook', rather than using one-step actions.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Within the stated classifications, dependencies are explicit: 'Step 2 MUST NOT start until Step 1 names a winner' and Step 3 waits for Step 2. The probe runs 'in parallel with Steps 1 to 3' with a '30 minutes per week' budget.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The evaluative action supplies rubric weights of 40, 30, and 30, a '70 of 100' threshold, and a 20-file evidence exercise. Deterministic actions use Given/When/Then tests. The stochastic test specifies format comments per review, a 20-review baseline, an 80% reduction threshold, and 20 new reviews.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response partly identifies the mechanical solution: 'A formatter enforces the choice' and two implementation actions are Clear. However, it does not identify the overall problem as Clear and adds 'a four-week probe on the review rule'.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with assumptions A1 to A4 and gives validation methods rather than blocking on questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The formatter recommendation carries an explicit probability: 'about 80% likely to work here [judgment]'.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and Self-test are present. The check reports zero banned words, zero prohibited dashes, and no overlong sentences. However, Self-test claims 'primary or secondary behind each driving claim: yes', while the decision-authority diagnosis is supported only by '[inference]'.",
+      "score": 1
+    }
+  }
+}

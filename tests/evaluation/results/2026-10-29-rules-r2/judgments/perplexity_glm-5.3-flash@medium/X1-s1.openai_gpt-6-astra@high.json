@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats unmeasured summariser quality as Complicated rather than Complex, leading to uncapped tuning instead of safe-to-fail probes that first create a labelled baseline.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains: 'Clear', 'Complicated', 'Clear', and 'Complicated'. However, they lack one-line explanations of why those domains apply.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Retrain on better prompts or a targeted model (stochastic, Complicated)' misclassifies the primary improvement task. With no recorded failures or metrics, improvement requires Complex probes.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'Adjust the summariser on slices that failed in step 2' proposes tuning without a probe budget or stop condition. No action supplies the safe-to-fail form required for this Complex task.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The sequence runs from 'Instrument the flow first' through labelling and guardrails to retraining. It never schedules Complex probes in parallel with suitable implementation work, caps their budgets, or states that leverage is a guess.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Deterministic tests use 'given', 'when', and 'then'. However, the labelling rubric lacks weights and uses 'near 1'; the stochastic acceptance test requires only 'somewhat higher values' without a fixed threshold and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response explicitly labels the improvement action 'stochastic, Complicated' and never identifies Complex or explains why cause and effect must be learned through probes.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Follow-up asks three questions, including 'Roughly how much labeling time per week can the team spend?' None explicitly states how its answer will change the next action.",
+      "score": 0
+    },
+    "R8": {
+      "evidence": "'Reasonable confidence' supplies no calibrated confidence level or basis, and 'somewhat higher values' is an uncalibrated hedge flagged by the check report. Reviewer agreement is not a calibration of uncertainty in the recommendation.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and Self-test are present. However, Self-test falsely reports 'Questions asked: 0', 'Assumptions logged: 3', and 'Recommendation: 5 actions' instead of three, four, and four. The report finds one banned term, six overlong sentences, and unlisted citations. 'Longest sentence: 24 words' conflicts with the reported 41-word sentence.",
+      "score": 1
+    }
+  }
+}

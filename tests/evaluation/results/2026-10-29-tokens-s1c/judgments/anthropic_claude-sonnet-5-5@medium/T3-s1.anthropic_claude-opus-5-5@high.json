@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test says the longest sentence is 22 words, but the check report finds sentences of 26, 27 and 30 words. The response also puts 'I recommend that we' in the Headline and 'I assumed' in Follow-up, yet reports zero self-mention outside End.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Step 1: 'Complicated, because the funnel is knowable with analysis'. Step 2: 'Complicated, because experts can analyze the options'. Step 4: 'Complex, so leverage is a guess'. Step 3 says only 'Cynefin: Complicated.' and gives no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration track is Complicated (Steps 2 and 3) and the conversion probe is Complex (Step 4). Both match the expected classification. Calling the baseline instrumentation Complicated is defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 3 follows the Step 2 analysis: 'Step 3 MUST NOT start until Step 2 passes'. Step 4 is a capped probe with a measure, 'Budget: two weeks' and 'Stop at once if conversion in the test arm falls more than 10% relative'. Step 1 is labeled Complicated but is a one-step instrumentation task that names no analysis, so the form only mostly matches.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The baseline and design steps come first by leverage. The Complex probe 'runs in parallel with Step 3' and is capped by a budget. Dependencies are explicit. No Chaotic or Confused actions are present.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 use Gherkin ('Given a valid user and the flag on, When the user logs in, Then...'). Step 2 uses a Pugh matrix with weights, a threshold and evidence. Step 4 gives the metric, the baseline, a '5% relative' threshold, and a sample size 'from the Step 1 baseline, at 80% power and 5% significance'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids one undifferentiated list. The Headline says 'split this into two separate changes'. It explains that 'JWT work is analyzable, but the conversion work is a probe, because its cause and effect are not known' and that 'the two goals have different test types'.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none. I assumed the answers (A1 to A4).' The unknowns are logged as assumptions, each with a validate step and an impact if wrong, which Section 2 allows.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is one calibrated statement: 'high confidence, because the argument rests on design logic, not on data about your system'. Its basis is weak and reads against itself. The likely effect of the probe and A1, which drives Step 2, carry no probability or IPCC term.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure, zero dashes and zero banned words are present. However, the check report lists three long sentences (26, 27 and 30 words) while the Self-test claims 'Longest sentence: 22 words'. 'I recommend that we' appears in the Headline and 'I assumed' appears in Follow-up, yet the Self-test reports 'Self-mention outside End: 0'. The Self-test is therefore inconsistent.",
+      "score": 1
+    }
+  }
+}

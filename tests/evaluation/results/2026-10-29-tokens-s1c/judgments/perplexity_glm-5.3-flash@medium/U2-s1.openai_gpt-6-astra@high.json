@@ -1,0 +1,41 @@
+{
+  "main_defect": "After requesting the missing report, the response prescribes a broad audit instead of a bounded source recompute and diff of three headline figures to locate and classify the discrepancy.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain. Step 1 explains Confused: \"this step gathers what the rest needs.\" Steps 2 and 4 state \"Domain: Clear\" without explaining why cause and effect are known.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The initial action correctly states \"Domain: Confused.\" Clear fits routine arithmetic and comparison checks; Complicated fits tracing figures when source selection requires analysis. No possible cause is asserted as the actual cause.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 gathers missing material, and Step 3 says the analysis \"names the source of record for each figure type first.\" However, the plan never provides the bounded three-headline-figure diagnostic. \"Recompute every total, subtotal, and percentage\" expands the scope before locating the discrepancy, and Step 4 combines several checks.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Confused comes first, with \"Step 2 MUST NOT start until Step 1 is done.\" However, recomputing every table total precedes tracing headline figures to source, rather than prioritizing the narrow source reconciliation that determines subsequent work.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The proposed checks use appropriate deterministic Gherkin forms, including \"Given two periods' figures, When I compute the delta, Then it matches the stated comparison.\" Test placement and missing task-kind labels are conformance defects, but the test form matches the checks.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions each state a use: \"target the trace to those sections first,\" \"recompute from the actual lines,\" and \"use it as the comparison baseline.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response acknowledges missing evidence and logs \"A2. 'Off' means a numeric inconsistency, not a formatting preference,\" with a condition for changing the plan. However, it supplies no probability, IPCC likelihood term, or confidence level with a basis for that assumption.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The required sections appear, End begins \"I recommend that we,\" and Self-test is last. The check report finds zero banned words and zero prohibited dashes, but sentences of 26 and 27 words contradict \"Longest sentence: 24 words.\" The self-test also claims task-kind classification and tests written first, although task-kind labels are absent and tests follow work instructions.",
+      "score": 1
+    }
+  }
+}

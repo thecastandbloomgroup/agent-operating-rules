@@ -1,0 +1,41 @@
+{
+  "main_defect": "The conversion track gets no Complex classification and no stochastic test. Action 3 is labelled Clear and uses a Gherkin instrumentation test, so no action has a conversion metric, baseline, pass threshold, sample size, or probe budget.",
+  "scores": {
+    "R1": {
+      "evidence": "Actions 1 and 2 give a domain with a reason: 'Domain: Complicated; compare current behavior with required client and security behavior.' Action 3 states only 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration is correctly Complicated. The conversion ask, expected as Complex, appears only as an instrumentation step labelled 'Domain: Clear'. No action classifies the conversion change itself as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Complicated actions name their analysis ('use the contract to select regression and token-validation cases'). Action 3 is a near one-step Clear action. Each form matches its stated domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Step 2 depends on Step 1 ('after Step 1 passes'), and Step 3 runs 'in parallel with Steps 1 and 2'. There are no Chaotic or Confused actions. The order follows leverage and is consistent with the trade-off rules.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The migration uses Gherkin: 'Given the contract, when the suite runs, then existing behavior passes...'. The conversion track has only a Gherkin event check. No action gives a metric with baseline, pass threshold, and sample size for conversion.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoids one undifferentiated list: 'treat sign-up conversion as a separate, measured change'. It never names conversion as Complex and offers no probe, so the real domain is only partly identified.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "There are two questions, each with a stated use: 'The answer determines the code patch and rollout controls.' and 'The answer determines token transport and revocation design.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, no probability, IPCC term, or confidence level appears, although the plan depends on uncertain facts in A1 and A2 (a live service, an available baseline). Conditions are stated: 'If the service is not live, reduce compatibility work.'",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure, the 'I recommend that we' opening, zero banned words, and zero dashes are present. The check report gives FK grade 10.6, which exceeds the limit of 10. The Self-test claims 'Complex as capped probes: yes' although the response has no Complex action, so the Self-test is not fully consistent.",
+      "score": 1
+    }
+  }
+}

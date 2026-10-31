@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response follows the 'culture' framing. It puts a 30-minute discussion and preference collection (Step 1) before the formatter and adds a Complex review-trial probe. This is the facilitated-session-before-formatter answer that the R6 gate fails.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain with a reason. Step 1: 'Domain: Clear, with known cause and effect for this document task.' Step 2: 'Complicated, because SQL dialect and tool compatibility require analysis.' Step 3: 'Complex, requiring a small, reversible probe.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 1 is labelled Clear, which matches the expected primary domain. The secondary actions are misclassified: the formatter is called 'Complicated' and the review trial 'Complex', where the expected classification is Clear throughout.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 names its analysis ('compare available tools against the team's SQL dialect'). Step 3 is a probe with a budget and a stop condition ('Cap it at two weeks and one hour'). However, the Clear Step 1 is not one step: 'Hold one 30-minute discussion, collect concerns, and publish the completed agreement.'",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Clear comes before Complicated, but the Complex probe is sequenced after Step 2 ('Start the trial after Step 2 passes') instead of running in parallel. The highest-leverage action (the formatter) is also placed after a discussion step.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Given/When/Then tests (for example, 'when the formatter runs twice, then the second run produces no changes'). Step 3 states the metric, baseline (last 10 reviews), sample (next 10), and threshold (at least 50% fewer).",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer. It argues 'A formatter alone does not settle who chooses the rules' and asks 'each person for compatibility concerns and one preference.' Step 1 is 'Hold one 30-minute discussion' before the formatter, and Step 3 is a probe. The prompt says it should contain no probes or facilitated sessions.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "The response asks zero questions and logs the one open point as A1 ('The team can authorize a reversible trial'). This is acceptable because the material is enough to proceed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Moderate confidence, based on one reported pattern' is a confidence level with a basis. However, 'Its benefit remains uncertain until the trial ends' is uncalibrated, and 'ideally an existing team lead' is a soft qualifier.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present, End begins 'I recommend that we', the Self-test is last, and there are zero dashes and zero banned words. However, the check report shows a 28-word sentence, above the 25-word limit, while the Self-test claims 'Longest sentence: 23 words', so the Self-test is inconsistent. A References entry exists under Follow-up, but the script did not detect it.",
+      "score": 1
+    }
+  }
+}

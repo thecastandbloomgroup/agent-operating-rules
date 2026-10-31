@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response puts a 20-minute team session on review authority before the formatter. It also labels the formatter Complicated and adds a Complex trial. The real answer is Clear: adopt a formatter with a lock file, add it to CI, and run it once over the repo. This hits the prompt's gate, so R6 scores 0.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain with a one-line reason: \"Domain: Clear, because this step creates an explicit review rule.\" / \"Domain: Complicated, because dialect support and file tests determine whether the tool fits.\" / \"Domain: Complex, because people's responses become visible through the trial.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 1 is labelled Clear, which fits the expected primary domain. Two secondary labels are wrong. The formatter step is \"Complicated\" when the expected form is a Clear one-step action. The trial is labelled \"Complex\", but the prompt says it should contain no probes.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 3 matches its Complex label as a probe with a budget and a stop condition (\"Cap the trial at 14 days and 60 total staff-minutes\", \"Stop automatic format use if it causes a behavior defect\"). Step 2 names the analysis (dialect support, idempotence test). Step 1 is labelled Clear but is not one step: it bundles adopting a norm, naming an owner, creating a proposal channel, and recording decisions.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order Clear, Complicated, Complex follows the domain rules. However, the low-leverage meeting comes before the formatter, which removes the largest blocker. The Complex trial is also chained after Step 2 (\"Start after Step 2 produces a passing configuration\") instead of running in parallel.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin: \"Given a representative SQL file, when the formatter runs twice, then the second run produces no changes.\" The stochastic step states a metric, baseline, threshold, and sample size: \"previous 10 SQL reviews as the baseline ... next 10 SQL reviews, require at least a 50% reduction.\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Step 1 is \"Agree on review authority in one 20-minute session\" and comes before the formatter step, which is the gated failure (a session before a formatter). The response adds a Complex trial of people's responses, which keeps the culture framing. It never states that the problem as a whole is Clear, and it does not say why the word \"culture\" points the wrong way.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "The response asks zero questions. It logs the missing fact as A1 with a validation step and impact, and it handles dialect uncertainty with a fallback (\"If no suitable formatter passes, publish a short checklist\").",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence in the root cause is low because only one account supports it.\" gives a confidence level with its basis. The trial targets are labelled as guesses: \"These numbers are proposed acceptance targets, not observed results.\" / \"Its expected benefit remains a guess.\" The check report finds no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All headings are present in order. The End section begins \"I recommend that we\", and the Self-test comes last. The check report finds zero banned words, zero dashes, and no long sentences. The References entry [1] appears under Follow-up with a [P] tag, so the script's \"citation with no reference\" flag looks like a parsing issue. The Self-test lines agree with the response.",
+      "score": 2
+    }
+  }
+}

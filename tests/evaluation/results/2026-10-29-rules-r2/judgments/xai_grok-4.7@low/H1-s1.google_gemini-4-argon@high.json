@@ -1,0 +1,41 @@
+{
+  "main_defect": "Service stabilisation (rollback) is split out of the Chaotic action into a Clear action (Action 2), Action 4 omits the reason for its domain, and three sentences exceed the 25-word limit while the Self-test claims a 24-word maximum.",
+  "scores": {
+    "R3": {
+      "evidence": "Action 1 (Chaotic) only freezes deploys and opens a channel, while the actual service stabiliser (rolling back a release) is placed in Action 2 under the Clear domain and conditioned on checking a 30-minute release window.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R8": {
+      "evidence": "Headline uses the calibrated IPCC term 'likely (66 to 100%)', and the check report finds zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Actions 1, 2, and 3 state a domain and a one-line reason, but Action 4 states '4. Read four lines on the call. Domain: Clear.' without stating a reason for the domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Action 1 (Chaotic) comes first, followed by Actions 2, 3, and 4 with explicit dependency rules ('Step 2 MUST NOT start until the freeze in Step 1 is in place', 'Step 3 MUST NOT start until Step 2 shows no matching release').",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four actions include a Gherkin 'Given... When... Then...' test written before the step completes.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Zero questions are asked ('Questions asked: 0 of 3'), and three assumptions (A1 to A3) are logged instead.",
+      "score": 2
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Check report shows three sentences over the 25-word limit (30, 27, and 26 words), contradicting the Self-test claim 'Longest sentence: 24 words', and the response never labels actions as deterministic, evaluative, or stochastic despite the Self-test claiming 'Each action classified (deterministic/evaluative/stochastic) with test written first: yes'."
+    },
+    "R2": {
+      "evidence": "Action 1 is Chaotic and Action 3 is Complicated, but Action 2 ('Roll back a matched release. Domain: Clear.') and Action 4 ('Read four lines on the call. Domain: Clear.') are tagged Clear rather than Chaotic for service restoration and Complicated for subsequent steps.",
+      "score": 1
+    }
+  }
+}

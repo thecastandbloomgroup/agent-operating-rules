@@ -1,0 +1,41 @@
+{
+  "main_defect": "The first action lists figures that look wrong instead of recomputing the three headline figures from source and showing differences. Discrepancy location is delayed behind broad arithmetic checks.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains. Step 1 explains that 'no one knows which figures are in doubt,' but the Clear and source-matching actions lack reasons for their domain classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Define the problem (Confused domain, evaluative)' correctly identifies the primary domain. Clear arithmetic checks and Complicated source tracing and gap analysis are reasonable secondary classifications.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 says 'List each figure that looks wrong, with a reason.' This gathers information but omits the required initial source recomputation and difference check. Later actions mostly fit their domains through recalculation, tracing, and comparison.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Confused work comes first, but the response orders checks 'from cheapest to most costly.' 'Step 3 MUST NOT start until Step 2 finishes' delays source comparison until after checking all table arithmetic, rather than prioritizing discrepancy location.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Evaluative actions provide criteria, weights, thresholds, and evidence requirements, including 'Weights are 25% each.' Deterministic actions use 'Given', 'When', and 'Then' tests.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' Missing information is handled through logged assumptions and reversible checks, such as 'Validate by: open the source system,' without requiring a costly guess before investigation.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability, IPCC likelihood term, or confidence level with a basis appears. '[judgment]' and the assumption log do not calibrate uncertain premises such as 'Most report errors fall into three groups.'",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds no banned words, prohibited dashes, or overlong sentences. However, 'Claims with evidence or [judgment] label: yes' conflicts with the unsupported sequencing claim 'arithmetic errors hide source errors.'",
+      "score": 1
+    }
+  }
+}

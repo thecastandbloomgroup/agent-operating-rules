@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 states 'Evaluative' (a test kind, not a Cynefin domain) as its Cynefin domain instead of transitioning to Complicated analysis, no one-line reasons are given for the domains, and references [1] and [2] are listed in Follow-up but never cited in the text.",
+  "scores": {
+    "R2": {
+      "evidence": "Step 1 is correctly classified as 'Cynefin domain: Chaotic', and Step 2 is 'Cynefin domain: Clear', but Step 3 is wrongly classified as 'Cynefin domain: Evaluative' and Complicated root-cause analysis is omitted.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "In End, Step 1 (Chaotic) comes first with explicit dependency clauses ('Step 2 MUST NOT start until Step 1 completes'), but the Headline places identification ('First, identify the exact deployment or flag change') before reverting, and Step 3 lacks a valid Cynefin domain.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to Prompt H1.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked ('Questions asked: 0 of 3'), as appropriate during an active outage.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response contains zero uncalibrated hedges, but it states no probability, IPCC likelihood term, or confidence level with basis for the uncertain cause in A1 on which the rollback recommendation depends.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required sections are present with zero banned words and zero dashes, but references [1] and [2] are never cited in the body text, making the Self-test claim 'primary or secondary behind each driving claim: yes' inconsistent with the text (which only uses '[judgment]' labels), and Step 3 lists 'Evaluative' as a Cynefin domain.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Step 1 states 'Cynefin domain: Chaotic' and Step 2 states 'Cynefin domain: Clear', but Step 3 states 'Cynefin domain: Evaluative' (which is a test kind from Section 6.4, not a Cynefin domain), and no action includes a one-line reason for its domain.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 matches Chaotic ('Execute the rollback command for the checkout service') and Step 2 matches Clear ('Run one synthetic test purchase on the live website'), but Step 3 has an invalid domain ('Evaluative') and the response omits the Complicated post-stabilisation analysis steps.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 are Deterministic and use Gherkin ('Given... When... Then...'), and Step 3 is Evaluative and uses a rubric with criteria, weights, and a pass threshold ('Pass threshold: 100% of criteria met').",
+      "score": 2
+    }
+  }
+}

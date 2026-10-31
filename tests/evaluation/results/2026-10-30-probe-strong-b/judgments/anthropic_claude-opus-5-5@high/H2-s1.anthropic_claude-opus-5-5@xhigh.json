@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 2 releases an outbound holding statement instead of holding all outbound statements. Steps 3 and 4 are classified Complicated, and Step 4 commits a full public release where the expected signals call for Complex probes with stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain. Step 1 gives a reason: 'Chaotic. It comes first because it sets order.' Step 3 gives one: 'Complicated. This check is the analysis that picks the practice in Step 4.' Step 5 gives one: 'Complex. This step is a capped probe.' Steps 2 and 4 give only 'Cynefin domain: Chaotic.' and 'Cynefin domain: Complicated.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 'Name one incident lead and one spokesperson' is Chaotic. The secondary actions differ from the expected Complex domain. Step 3 (claim check) and Step 4 ('Choose and release the public response') are labelled Complicated. Only Step 5 (coverage log) is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser, Step 3 names the analysis, and Step 5 is a probe with 'Budget: two hours of one analyst per day, for three days' and 'Stop condition: the share is below 25% at 48 hours'. However, Step 2 'the spokesperson releases a short holding statement' is an outbound statement, not a hold on outbound statements. Step 4 commits a full public release, not a probe. The form only mostly matches the expected 'stabiliser first; then probes with stop conditions'.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic Steps 1 and 2 come first. Complicated Steps 3 and 4 are ordered by dependency: 'Step 4 MUST NOT start until Step 3 scores every claim.' The Complex Step 5 says 'start now, in parallel with Steps 3 and 4' and has a budget cap. This follows the 6.5 trade-off rules.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 have deterministic Gherkin tests. Step 3 has an evaluative rubric with criteria, weights (50/30/20%), a threshold ('at least 1.6 of 2'), and evidence needed. Step 4 has a Kepner-Tregoe rubric with Musts, weighted Wants, and a threshold of '7 of 10'. Step 5 is stochastic with metric, baseline, threshold of 50%, and 'Sample size: at least 30 new items'. One minor point: the Step 1 Gherkin tests human behaviour ('within 15 minutes').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Input states R6 applies: no.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Self-test: 'Questions asked: 0 of 3'. The gaps (user role, prior fact check, listed status, group messages) are logged as assumptions A1 to A4. Each has a validation step and an impact, consistent with Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence in Steps 1 and 2 is high. Basis: both steps hold whether the statement was true or false.' and 'Confidence in the Step 4 choice is low now. Basis: the choice depends on Step 3 results.' These are confidence levels with a basis. The check report shows no uncalibrated hedges, and the plan is built to be robust to the central unknown.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline is first. End begins 'I recommend that we take these five actions in this order.' Self-test is last. There are five actions, each with increment, blocker, test, and domain. The check report shows banned_total 0, no dashes, and no long sentences. References are real and tagged. Self-test values (4 references, 4 assumptions, 0 questions) are consistent. A minor point outside the Section 2 shape: Relevance has three sentences against a limit of one to two.",
+      "score": 2
+    }
+  }
+}

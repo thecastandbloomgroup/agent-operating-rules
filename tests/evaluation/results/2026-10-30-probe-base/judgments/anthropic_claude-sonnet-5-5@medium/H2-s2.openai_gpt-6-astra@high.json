@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response stabilises first, but then treats the crisis as fact verification and expert choice rather than Complex work requiring capped, safe-to-fail probes. It commits to publishing a holding statement without such probes or stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains: 'Chaotic', 'Confused', and twice 'Complicated'. However, not every action gives a one-line reason for its domain, especially 'Publish a holding statement'.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "'Name one decision owner and freeze all outside messages. (Chaotic, deterministic.)' correctly classifies the primary action. The subsequent 'Confused' and 'Complicated' classifications miss the expected Complex response work.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 appropriately stabilises through 'one named owner' and 'no outside message without the owner's approval'. Later actions commit to 'Publish a holding statement' and 'Choose the response by a scored rubric', without safe-to-fail probes or stop conditions.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action comes first. However, 'take these steps in this order' creates a serial plan, including 'Step 3 MUST NOT start until this step reports', rather than parallel, budget-capped Complex probes after stabilisation.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 3 provide Given/When/Then tests for fixed outputs. Steps 2 and 4 provide evaluative rubrics with criteria, weights, evidence requirements, and thresholds: '80 of 100 per claim' and 'at least 70 of 100'. These test forms fit the tasks actually proposed.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with three logged assumptions and validation steps; no preliminary question is needed before the stabilising action.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'The cost of a wrong defense is higher than the cost of a delay of a few hours. [judgment]' supports delaying a response without calibrated uncertainty. No probability, IPCC likelihood term, or confidence level with a basis accompanies material uncertain claims.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, four actions, and Self-test are present. The check report finds no banned words, prohibited dashes, or overlong sentences. However, Self-test claims 'primary or secondary behind each driving claim: yes', while driving claims such as 'No one has yet checked whether the statement is false' have only a judgment label and no source.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats the core action, a grounding prompt template, as a Clear best practice and calls it the most effective answer. It never names the problem as Complex and never says that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain line: Step 1 \"Cynefin domain: Clear.\", Step 2 \"Complicated.\", Step 3 \"Complicated.\", Step 4 \"Complex.\" No step gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. The main action, \"Deploy a constrained grounding prompt template\", is labelled \"Clear\". Only the minor verification probe in Step 4 is labelled Complex. The primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 is one step, which fits its Clear label. Step 2 is labelled Complicated but names no analysis that picks the practice. Step 4 has a probe with a budget (\"20 sample outputs with a budget of two engineering hours\") but no stop condition.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Clear) comes first, which fits the stated domains. However, the Complex probe in Step 4 runs in sequence at the end, not in parallel and capped. The measurement in Step 3 also comes only after deployment.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 3 has a proper stochastic test: \"Baseline is 65%... Pass threshold is 90% accuracy. Sample size is 100 trials.\" Step 1 uses a Gherkin exact-match test (\"Then the output equals...\") on LLM output, which is stochastic, so the test kind is wrong. The rubric in Step 4 lacks the evidence that each criterion needs.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response partly rejects the premise: \"No single prompt stops all hallucinations\". It then presents one prompt as the answer: \"a grounding prompt with an explicit refusal instruction reduces them most effectively\", labelled Clear. It never names Complex as the real domain.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks zero questions. The missing context goes into the log as A1 and A2, each with a validation test and an impact if wrong.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on how well grounding works, yet the response asserts it without calibration: \"reduce factual errors substantially\", \"reduces them most effectively\". It gives no probability, IPCC term, or confidence basis. It does not state that leverage is a guess.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "All required sections are present in order, End begins \"I recommend that we\", and the Self-test comes last. The check report shows zero banned words and zero dashes. Defects: the Self-test claims all claims carry evidence, but \"reduce factual errors substantially\" has no label. It also claims \"Complex as capped probes: yes\" while the probe runs in sequence. The line \"Assumptions logged: 2 (yes)\" is malformed.",
+      "score": 1
+    }
+  }
+}

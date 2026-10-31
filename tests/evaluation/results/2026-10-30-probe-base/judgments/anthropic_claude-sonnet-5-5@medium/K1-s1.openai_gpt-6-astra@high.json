@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies the analyzable ORM question as Complex and adds an unnecessary probe. Its pool-resizing recommendation also depends on unverified connection-budget and scope assumptions.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains, but Steps 2 and 4 only say \"Domain: Clear\" without explaining why. Step 1 provides a reason: \"Complicated, because the limit read from OPS-412 picks the value.\"",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action correctly names \"Complicated.\" However, \"Run a capped probe on the ORM change\" incorrectly names \"Complex\": the ORM question is knowable through trace, query, and connection-hold analysis.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The response compares attached traces before recommending fixes, which satisfies analysis-first for the primary action. However, \"Run a capped probe on the ORM change\" substitutes a Complex probe for a knowable analytical task. The fallback \"add a connection pooler ... in Step 1\" also lacks the analysis needed to select that practice.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\"Take these actions in this order\" places the ORM probe before the Clear alert action. Although the probe has a budget and dependencies, the response never directs it to run in parallel with eligible Clear or Complicated work.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The ORM test supplies a metric, baseline, threshold, and \"10,000 sampled requests per pod,\" and the alert has an appropriate Gherkin test. However, Steps 1 and 2 call variable traffic outcomes \"deterministic,\" using latency and cache-miss thresholds without consistently applying the required stochastic test structure.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoids an immediate release rollback, names the primary domain as \"Complicated,\" and analyzes the pool-wait increase from \"3 ms to 690 ms.\" It explicitly rejects rollback: \"a config fix is smaller and keeps the other changes.\"",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3.\" The attachments support the next analytical action, and the missing connection limit is assigned a concrete lookup: \"Validate by: read ticket OPS-412.\" No unnecessary user questions are asked.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence: high, three independent attachments\" supplies a confidence level and basis. Calibration is mixed: \"causes 88% of the added latency\" treats differences between marginal percentiles as causal attribution, while A3 discounts the attachment's explicit service-wide connection scope without calibrated confidence.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlength sentences, but reports citation numbering out of order: first appearances are [3], [2], [1].",
+      "score": 1
+    }
+  }
+}

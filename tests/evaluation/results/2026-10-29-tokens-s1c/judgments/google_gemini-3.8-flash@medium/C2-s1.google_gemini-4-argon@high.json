@@ -1,0 +1,41 @@
+{
+  "main_defect": "Each action states the Cynefin domain (Clear) but omits the one-line reason required by R1.",
+  "scores": {
+    "R3": {
+      "evidence": "All three actions are single-step deterministic rules with an increment that finishes in one working session: \"1. Standardize author names into initial and surname format.\", \"2. Style book titles with title capitalization and italic formatting.\", \"3. Assemble publication data and assign bracketed citation indices.\"",
+      "score": 2
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "All actions are in the Clear domain and ordered sequentially by dependency: \"Step 2 MUST NOT start until the test in Step 1 passes.\" and \"Step 3 MUST NOT start until the test in Step 2 passes.\""
+    },
+    "R5": {
+      "evidence": "Every action is classified as \"Kind: Deterministic.\" and places a Gherkin Given/When/Then test before the increment.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to Prompt C2.",
+      "score": null
+    },
+    "R9": {
+      "evidence": "All required headings (Headline, Background, Relevance, Information, End, Follow-up, Self-test) are present, End begins \"I recommend that we\", banned_total is 0, dashes is 0, longest sentence is 19 words, and the Self-test block is internally consistent.",
+      "score": 2
+    },
+    "R1": {
+      "score": 1,
+      "evidence": "Every action states \"- Cynefin domain: Clear.\", but none of the three actions includes a one-line reason for the domain classification."
+    },
+    "R2": {
+      "evidence": "All three actions are classified as \"Cynefin domain: Clear.\", matching the expected domain.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "No questions are asked (\"Questions asked: 0 of 3\"); missing input is handled through logged assumptions A1 and A2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges in the check report; states \"with high confidence [1]\" and handles assumption uncertainty with an explicit condition (\"If A1 is false, replace Step 2 with IEEE journal article format rules [1].\").",
+      "score": 2
+    }
+  }
+}

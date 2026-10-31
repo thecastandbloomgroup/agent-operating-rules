@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response hands over a prompt as the final answer with only a one-line caveat. It has no Headline, no BRIEF, no End section, no actions, no Cynefin domain, no measure, and no Self-test, so it does not frame the prompt as a Complex probe.",
+  "scores": {
+    "R1": {
+      "evidence": "Missing. No action carries a Cynefin domain. The response is one caveat sentence plus a prompt block.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "Missing. The response states no domain, so it never reaches the expected Complex classification.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Missing. The prompt is not framed as a safe-to-fail probe with a measure, stop condition, or budget. \"For factual answers, use this:\" presents it as a fix.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Missing. There is no list of actions to order, no parallel probes, and no statement that leverage is a guess.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Missing. The response has no stochastic acceptance test: no labelled set, hallucination rate, baseline, threshold, or sample size.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "Partly. \"No prompt guarantees zero hallucinations\" concedes that a prompt is not a fix. However, the response still presents the prompt as the answer with no measure and never names the domain as Complex.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks zero questions. Proceeding without questions fits Section 2, because a wrong guess here is cheap to reverse.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Missing. The response gives no probability, IPCC term, or confidence level for how much the prompt reduces hallucination, although the recommendation depends on that uncertain fact. The check report finds no hedges, but the required calibration is absent.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Structure missing. The response has no Headline, Background, Relevance, Information, End starting with \"I recommend that we\", Follow-up, or Self-test. The check report shows zero banned words and zero dashes, but the structure failure governs.",
+      "score": 0
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 has \"Evaluative\" as its Cynefin domain, which is a test kind, not a domain. No action gives a reason for its domain, and the response has no Complicated step. The Self-test still claims every action has a Cynefin domain.",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1 says \"Cynefin domain: Chaotic.\" and Step 2 says \"Cynefin domain: Clear.\" Step 3 says \"Cynefin domain: Evaluative.\", which is not a Cynefin domain. No action has a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: Step 1 is the rollback and is tagged Chaotic. The later work should be Complicated analysis. Step 3 is instead tagged \"Evaluative\", and no action is tagged Complicated.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a one-step stabiliser: \"Execute the rollback command for the checkout service.\" Step 2 is a one-step Clear check. Step 3 has no valid domain, so its form cannot match one. The expected record-capture step (logs and timeline) is missing.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "In End, the Chaotic rollback comes first, then the Clear verification, then the brief. However, the Headline puts analysis first: \"First, identify the exact deployment or flag change that occurred near 09:12.\" There is no explicit statement of a domain change. The dependency clauses (\"MUST NOT start until Step 1 completes\") show only the order of the steps.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 have Gherkin tests (Given, When, Then) for deterministic actions. Step 3 has a rubric with criteria, weights of 25% each, and \"Pass threshold: 100% of criteria met.\" The evidence for each criterion is implied in parentheses.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks no questions (\"Questions asked: 0 of 3\"). The material is enough to act on, and the prompt expects no question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The check report finds no uncalibrated hedges. However, the plan depends on A1 (\"A recent software release or configuration change caused the failure\"), and A1 carries no probability or IPCC term. The made-up baseline \"under 0.1%\" carries only a [judgment] label.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline is first, End begins \"I recommend that we\", and Self-test is last. The check report finds zero dashes and zero banned words. Defects: Background has three sentences against the expected one. References [1] and [2] are listed but no claim in the text cites them, and the script reports a citation failure. The Self-test says each action has a Cynefin domain, which Step 3 contradicts. A fact the user supplied carries a [judgment] label.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Each action is labelled 'Cynefin domain: Clear' but none carries the one-line reason R1 requires. The References list is not formatted as a heading, so the checker reports a citation with no reference.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action ends with 'Cynefin domain: Clear.' None gives a one-line reason. The only rationale sits in the Headline: 'The IEEE book pattern is known, so formatting takes one step'. It is not attached to each action.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All four actions are classified Clear, which matches the expected classification for IEEE formatting. No action is misclassified.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one step: 'The increment is one paste', 'one pass over the list', 'one review pass', 'one list of gaps'. No probes or analysis steps appear for this Clear task.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear and follow leverage and dependency order. Step 1 removes the largest blocker ('no entries exist'). It is followed by format, then count check, then gap flags, with explicit clauses such as 'Step 2 MUST NOT start until Step 1 passes.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each action is deterministic with a Gherkin test. Example: 'Given an entry \"Smith, John; Title; Publisher; 2020\", When I format it, Then the output is `[1] J. Smith, *Title*. Publisher, 2020.`' Another: 'Given N input entries... Then it holds N numbered entries in sequence.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the input.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question: 'please paste the list. I will use it to produce the formatted references.' It has a stated use. A question is justified because the attachment is absent ('the attachment did not arrive'), so the material cannot answer it.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, A1 ('All entries are books') drives Step 2, and the response gives no probability or IPCC term for it. A3 also lacks calibration.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, 'I recommend that we', four actions and a Self-test placed last are all present. The check report shows 0 banned words, 0 dashes and no long sentences. Defects: the checker reports 'citation with no reference' because 'References' is plain text rather than a parsed list (ref_entries 0). The Self-test claims 'all from session' while the checker fails it. The 'Assumptions logged' line also omits the yes/no field.",
+      "score": 1
+    }
+  }
+}

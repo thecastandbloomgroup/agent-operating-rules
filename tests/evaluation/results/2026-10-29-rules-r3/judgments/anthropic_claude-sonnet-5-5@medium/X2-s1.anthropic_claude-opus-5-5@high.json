@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-systems problem mainly as a Clear fix. It states follow-through as the likely root cause and commits to capping actions at one as a best practice, which the prompt lists as a probe. It also runs only one Complex probe, not two or three probes in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain: \"Cynefin domain: Confused. This step gathers the facts that classify the rest.\" and \"Complex, so this is a safe-to-fail probe.\" Steps 2 and 3 say only \"Cynefin domain: Clear.\" with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The response puts team behavior in Complex: \"Team behavior links cause and effect only afterward... belong to the Complex domain\". It applies this only to Step 4. Step 2, \"Limit each retrospective to one action\", and Step 3 are classed Clear, but these are human-behavior changes that the expected signals treat as probes (\"cap action items at one\"). The primary Complex domain is partly recognised, and secondary actions are misclassified.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 4 has the right probe form: \"Budget: two meetings. Stop condition: the team rates a meeting as a waste of time.\" Steps 2 and 3 are full one-step commitments, not probes. Step 1 is labelled Confused (\"gathers the facts that classify the rest\"), yet Steps 2 and 3 are already classified and \"can run now\", so the classify-first form is undercut.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Confused is listed first, but \"Steps 2 and 3 can run now\" means the Clear actions do not wait for the Confused step whose output should decide the rest. Only one Complex probe runs in parallel. This is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 is evaluative and has a rubric with criteria, weights (40/40/20), evidence per criterion, and a pass threshold. Steps 2 and 3 use Gherkin Given/When/Then. Step 4 is stochastic and states a metric (\"share of actions done by their due date\"), a baseline from Step 1, a threshold of \"baseline plus 25 points\", and a sample of \"two retrospectives\".",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" Unknowns go to the assumption log A1 to A3, each with a validation step. No question asks the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response gives calibrated terms: \"It is likely (66 to 100%) that missing follow-through... is the main cause\" and \"Confidence in the cause is low until Step 1 gives data.\" However, the Headline states \"Most stalled retrospectives lack follow-through\" as fact, and Step 4 uses the uncalibrated \"the old format may not surface useful actions.\" The result is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF headings, End starting \"I recommend that we\", and Self-test last. The check report shows 0 banned words and 0 dashes. However, the script flags \"citation with no reference\" because in-text citations use the non-IEEE form \"[Derby and Larsen, ref 1]\" / \"[ref 3]\". The Self-test also claims \"Chaotic and Confused first\" while Steps 2 and 3 run before the Confused step ends.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "classifies the task as Clear/Complicated instead of Complex: no safe-to-fail probes, no budgets or stop conditions, leverage stated with confidence, and the self-test and citation rules are violated",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are stated on all four actions ('deterministic, Clear', 'evaluative, Complicated', 'deterministic, Clear', 'stochastic, Complicated'), but no action gives a one-line reason for its domain. Action 1 has 'biggest blocker: no data', which is a blocker, not a domain justification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected primary domain is Complex, but no action is tagged Complex and no leverage is marked as a guess ('biggest blocker: no data' is stated with confidence). The measurement-building actions (Clear, Complicated) are defensible, and the first step does create the record, but the improvement action is mislabeled 'stochastic, Complicated' when it should be a Complex probe.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 4 is a committed change ('Retrain on better prompts or a targeted model... Adjust the summariser') rather than a safe-to-fail probe with a measure, stop condition, and budget as the Complex domain requires. Actions 1 and 3 are one-step as Clear claims, so the forms mostly match the claimed domains, but not the true domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist (none needed), and Clear/Complicated actions are leverage-ordered (instrumentation first as 'biggest blocker: no data'). But there are no Complex probes to run in parallel and capped, and the ordering rests on a leverage claim the response states with confidence rather than as a guess.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic actions use Gherkin ('given a ticket summary the agent edits, when the agent saves the edit... then a record is added'). The evaluative rubric lacks weights ('each dimension scored 0 to 2 by two reviewers... overall mean label of 1 or higher'). The stochastic acceptance test is vague: 'both reach somewhat higher values with statistical significance on the sample size' names no metric threshold or sample size, and 'somewhat' is a banned uncalibrated hedge per the check report.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoids the full likely wrong answer: it does not analyse failures as if recorded, but builds the record first ('Instrument the flow first... Add logging and a table update'). However, it never names the real domain Complex and never says why; the tuning action is tagged 'stochastic, Complicated'.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Three questions are asked, within the limit, but none states its use: 'What are some ways wrong shows up in your team's workflow...' and 'Roughly how much labeling time per week can the team spend?' give no statement of what will be done with the answer. Also inconsistent with the self-test line 'Questions asked: 0 of 3'.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The recommendation depends on uncertain facts (what 'wrong' means, A1) but no probability or IPCC term appears anywhere. The evidence note about sample size uses an uncalibrated hedge flagged by the check report ('somewhat higher values'), and the malformed tag '[judgeestimate based on standard evaluation practice][infer]' states no confidence level.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is present (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last). But the check report finds six long sentences, the banned word 'somewhat', citations [3], [4], [5] with no reference entries, out-of-order citations, and a multi-citation line. The self-test is internally inconsistent: it claims 'Questions asked: 0 of 3' while three questions are asked, 'References: 6' while the check finds zero reference entries, 'Assumptions logged: 3' while A1 to A4 are logged, 'Banned words found: 0' while one is present, and 'Longest sentence: 24 words' while the check found 41.",
+      "score": 1
+    }
+  }
+}

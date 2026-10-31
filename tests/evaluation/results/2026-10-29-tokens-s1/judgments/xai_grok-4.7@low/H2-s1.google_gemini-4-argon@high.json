@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions are classified as Complicated and Clear rather than Complex safe-to-fail probes, Steps 2 and 3 omit the required increment, uncertainty is not calibrated with probabilities or IPCC terms, and one sentence exceeds the 25-word limit.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Chaotic', 'Cynefin domain: Complicated', 'Cynefin domain: Complicated', 'Cynefin domain: Clear'), and Steps 1 and 2 give a one-line reason ('This step is first because cause and effect are not visible yet', 'This score is the analysis that picks the later response'), but Steps 3 and 4 omit the one-line reason for their domain.",
+      "score": 1
+    },
+    "R2": {
+      "score": 1,
+      "evidence": "Step 1 is correctly classified as Chaotic ('1. Freeze outside comment. Cynefin domain: Chaotic.'), but subsequent actions are classified as Complicated (Steps 2 and 3) and Clear (Step 4) rather than Complex."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R3": {
+      "evidence": "Step 1 matches the Chaotic domain as a stabiliser ('Freeze outside comment... Increment: a one-page hold to counsel, public relations, the board, and the chief executive's office'), and Steps 2 to 4 match their stated Complicated and Clear domains, but the response lacks the Complex safe-to-fail probes with budgets and stop conditions expected for the follow-on actions.",
+      "score": 1
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "Chaotic action is placed first ('1. Freeze outside comment. Cynefin domain: Chaotic... This step is first because cause and effect are not visible yet'), followed by Complicated and Clear actions sequenced explicitly by dependency and leverage."
+    },
+    "R5": {
+      "evidence": "Each action states its task kind and gives the matching test form first: Gherkin 'Given... When... Then...' for deterministic Steps 1 and 4, and weighted rubrics with pass thresholds for evaluative Steps 2 and 3.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Asked zero questions ('Questions asked: 0 of 3') and logged three assumptions (A1, A2, A3) with all required fields to proceed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The check report found zero banned uncalibrated hedges, but the response uses 'a public-company rule may apply' in A2 and includes no probabilities, IPCC likelihood terms, or confidence levels with a basis where the recommendation depends on uncertain facts.",
+      "score": 1
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Full Headline, BRIEF, and Self-test structure is present with 0 banned words and 0 dashes, but sentence 29 has 26 words ('Test first: Given a request to speak on the article, When written approval from the incident lead and counsel is absent, Then no comment is sent.') while Self-test claims 24, Steps 2 and 3 omit the 'Increment' field, and citations [1] and [2] appear in the same rendered paragraph."
+    }
+  }
+}

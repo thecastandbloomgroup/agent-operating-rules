@@ -1,0 +1,41 @@
+{
+  "main_defect": "Picks a fictional Proposal A before defining or scoring the rubric, omits one-line domain reasons, adds an unnecessary Complex probe, and fails to state calibrated uncertainty.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Complicated.', 'Cynefin domain: Clear.', 'Cynefin domain: Complex.'), but none includes a one-line reason.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Picks Proposal A in the Headline and Information without scoring it against the rubric first, omits specific required evidence per criterion in Step 1 ('Evaluate three criteria against vendor evidence [1]'), and omits 'Leverage is a guess' in the Step 3 Complex probe.",
+      "score": 1
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "Step 1 (Complicated) and Step 2 (Clear) are ordered by leverage, and Step 3 (Complex probe) explicitly waits for Step 2 per Section 6.5 ('Dependency: Step 2 reduces environment uncertainty, so Step 3 MUST NOT start until Step 2 passes.')."
+    },
+    "R5": {
+      "evidence": "Step 1 (Evaluative) uses a weighted rubric with threshold, Step 2 (Deterministic) uses Gherkin ('Given... When... Then...'), and Step 3 (Stochastic) states metric, baseline, threshold, and sample size ('Sample size: 100 queries.').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R2": {
+      "score": 1,
+      "evidence": "Step 1 is rightly classified as Complicated, but Step 3 introduces a Complex benchmark probe ('3. Execute an analytical query benchmark probe on a sample dataset... Cynefin domain: Complex.') where a probe should not be used."
+    },
+    "R7": {
+      "evidence": "Asks zero questions ('Questions asked: 0 of 3') and logs assumptions A1 and A2 with their conditional impacts in Follow-up.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Contains zero uncalibrated hedges per the check report, but includes no probability, IPCC likelihood term, or confidence level with basis where the recommendation depends on uncertain assumptions A1 and A2.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full BRIEF structure, zero banned words, and zero dashes per check report, but Self-test claims 'with test written first: yes' while all three actions place 'Increment' and 'Capability' before the test.",
+      "score": 1
+    }
+  }
+}

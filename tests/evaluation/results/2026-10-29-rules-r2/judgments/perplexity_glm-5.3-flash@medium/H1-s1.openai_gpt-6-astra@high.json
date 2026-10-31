@@ -1,0 +1,41 @@
+{
+  "main_defect": "The rollback-first opening is correct, but subsequent work lacks the required Complicated analysis: diagnosis is mislabeled Complex, and Step 3 has no Cynefin domain.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1, 2, 4, and 5 state Cynefin domains. Step 3 states only '(Deterministic)', which is a task kind, and Step 2 gives no domain rationale.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action correctly says '(Chaotic: stabilize first.)' However, 'root cause work is Complex, with output only visible after analysis' confuses Complicated analysis with Complex emergence. Step 5 repeats that misclassification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilizes through rollback. Step 4 claims 'the analysis picks the next practice' but only exports logs, without naming an analysis. Step 5 has a budget, but its stated stop condition is another action, not a measurable stopping trigger.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic rollback comes first. However, 'Copy the logs before they rotate' appears fourth rather than establishing the record second. The sequence lacks an explicit transition from stabilization to Complicated analysis.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Deterministic actions include Given/When/Then tests. Step 5's stochastic test is inconsistent: it says 'runs once per dependency' but specifies 'sample size is 3 runs per dependency' and 'threshold is 4 of 4 pass'.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked. The response proceeds with three logged assumptions, consistent with the urgent request.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The rollback recommendation depends on 'A1. A change ... near 09:12 caused the outage.' Calling this 'experience-based judgment' identifies uncertainty but supplies no probability, IPCC term, or confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The required sections, five actions, End opening, and final Self-test are present. The check report finds zero banned words and dashes, but sentences reach 38 words while the Self-test claims 22. Its claim that every action has a Cynefin domain is also false. Background exceeds the prompt's one-sentence limit.",
+      "score": 1
+    }
+  }
+}

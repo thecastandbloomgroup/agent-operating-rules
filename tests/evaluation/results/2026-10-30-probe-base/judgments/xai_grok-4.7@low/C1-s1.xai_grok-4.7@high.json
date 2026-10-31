@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 is tagged Complicated, the likely wrong domain for a Clear logging replacement, and three actions name a domain without a one-line reason.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1, 2, and 4 only say \"Domain: Clear.\" Only step 3 adds a reason: \"Domain: Complicated. The choice uses the WARNING and ERROR words in the file.\"",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary work is Clear (\"Domain: Clear\" on steps 1, 2, and 4). Step 3 is wrong: \"Domain: Complicated\" for mapping two already-marked prints, which is still a known best practice.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action is one step: \"Add the logging import, the logger, and that setup call in main,\" \"Replace the 12 routine prints,\" \"Map those two prints,\" \"Delete the sys import.\" No probe, budget, or stabilise-first form.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Order is setup, then the 12 routine prints, then severity, then the dead import, with \"Step 2 MUST NOT start until the test in Step 1 passes.\" No Chaotic, Confused, or uncapped Complex action.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All four are \"Kind: deterministic\" and open with Gherkin: \"Given main starts, When basicConfig runs, Then the root level is INFO\"; the other steps also use Given, When, Then.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Clear is named on the main steps, but the likely wrong label appears on step 3 (\"Domain: Complicated\") and the response never says why the task is Clear rather than Complicated.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" Self-test: \"Questions asked: 0 of 3.\" The file and the INFO request are in the material, so no question is required.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Step 3 depends on A1, and Follow-up says \"If A1 is false, use logger.info.\" No probability or IPCC term is stated. Check report shows no banned hedge words.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, Background, Relevance, Information, End (\"I recommend that we\"), Follow-up, and Self-test are present. Check report: banned_total 0, dashes [], long_sentences []. Self-test matches 4 actions, 0 questions, 1 assumption, 2 tagged references.",
+      "score": 2
+    }
+  }
+}

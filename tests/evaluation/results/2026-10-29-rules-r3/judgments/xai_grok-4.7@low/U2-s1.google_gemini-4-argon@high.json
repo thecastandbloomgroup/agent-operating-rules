@@ -1,0 +1,41 @@
+{
+  "main_defect": "Steps 2 and 4 omit the one-line reason for their Cynefin domain, Step 1 misclassifies a deterministic file-presence check as evaluative without an approved rubric layout, and the Follow-up section contains self-mention ('I will') and a non-standard 'References' heading.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 and 3 state a domain and reason ('Domain: Confused, because the error type is not known yet'; 'Domain: Complicated, because the flag rule needs the threshold in A3'), but Steps 2 and 4 state only 'Domain: Clear.' without a one-line reason.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 (Confused) gathers what is needed to classify and states 'Step 1 classifies the error type for the later steps'; Steps 2 and 4 (Clear) are single-step checks; Step 3 (Complicated) applies an analysis rule based on the threshold in A3.",
+      "score": 2
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "The Confused action comes first (Step 1), followed by the Clear and Complicated verification steps ordered by leverage with explicit 'MUST NOT start until' dependency clauses."
+    },
+    "R5": {
+      "evidence": "Steps 2, 3, and 4 are deterministic and use Gherkin tests, but Step 1 classifies a deterministic check (whether three items are present) as 'Kind: evaluative' and uses a single pass/fail threshold rather than a Kepner-Tregoe, Pugh, or ISO/IEC 25010 rubric.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Asks two questions in Follow-up, each stating what will be done with the answer ('Which file is the Q3 report? I will use that file as the record for Steps 2 to 4.' and 'Which line looks wrong, and what value do you expect? I will test that pair before the full table.').",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Correctly identifies the primary domain in Step 1 as Confused, and classifies the subsequent verification steps as Clear (Steps 2 and 4) and Complicated (Step 3).",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Contains zero uncalibrated hedges per the check report, but states no probability, IPCC likelihood term, or confidence level with basis for the uncertain assumptions (A1 to A3) that the recommendation depends on.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Includes all required sections, zero banned words, zero dashes, and max sentence length of 20 words, but uses self-mention outside End ('I will use...', 'I will test...' in Follow-up) and adds a separate 'References' heading not in the Section 3.3 heading list (causing the check script to report ref_entries: 0).",
+      "score": 1
+    }
+  }
+}

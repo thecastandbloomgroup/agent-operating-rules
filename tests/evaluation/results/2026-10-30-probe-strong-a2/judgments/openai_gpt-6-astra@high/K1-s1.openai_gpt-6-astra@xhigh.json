@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 4 conflates variable production measurements with a Complex domain. The diagnosis is Complicated and knowable through analysis, so the additional serial safe-to-fail probes misclassify the work.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain and rationale: Step 1 requires \"connection-budget and trace analysis\"; Steps 2 and 3 use Step 1's analyses; Step 4 specifies \"Complex, using a small experiment with a stop condition and budget.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Steps 1 through 3 correctly state \"Complicated.\" Step 4 incorrectly states \"Complex\": variable production results justify stochastic acceptance tests, not a Complex classification for this analytically knowable regression.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The forms match the stated domains. Step 1 names the analysis, and subsequent fixes explicitly depend on it. Step 4 supplies measurements, a \"5% of traffic and 20 minutes\" budget, and explicit stop conditions. Its classification error is captured under R2.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Analysis precedes fixes through explicit dependencies. However, \"execute these four actions in order\" and \"Test the cache candidate first\" serialize the declared Complex work rather than arranging capped probes alongside eligible Complicated work.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The response provides Given/When/Then tests and stochastic thresholds with \"At least 10,000 endpoint requests per candidate and control.\" However, choosing cache-first mitigation over rollback and pool changes lacks the required Kepner-Tregoe or Pugh rubric, weights, pass threshold, and evidence-based scores.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "It names the real primary domain: \"Complicated, because this requires connection-budget and trace analysis.\" It avoids unconditional rollback, explaining that \"restoring 50 connections per pool risks violating OPS-412.\"",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "No user questions are asked. Missing operational facts become checks in Step 1, with the safeguard: \"If the quota remains unresolved, do not approve a pool-capacity increase.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence in the connection-wait diagnosis\" is supported by trace changes and timeout logs. \"Moderate confidence in the underlying cause\" explicitly identifies unresolved pool ownership and connection-hold duration.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, attachment references, and a final Self-test are present. The check report finds one banned word, \"importantly,\" contradicting \"Banned words found: 0,\" and reports FK grade 10.3. It reports no prohibited dashes or overlong sentences.",
+      "score": 1
+    }
+  }
+}

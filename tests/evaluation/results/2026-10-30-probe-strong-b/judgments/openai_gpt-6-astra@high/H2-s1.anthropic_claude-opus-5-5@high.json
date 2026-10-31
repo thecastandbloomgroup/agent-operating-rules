@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response gives Confused, Complicated and Clear steps instead of Complex probes with stop conditions and budgets. It also includes a drafted public holding statement, which the prompt says should not appear.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step has a Domain line, for example \"Domain: Chaotic, meaning stabilize first.\" and \"Domain: Clear, meaning apply a known procedure.\" These glosses define the domain but do not say why this action belongs in it.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 is Chaotic, with a coordinator and \"Pause unverified public claims.\" The rest are wrong: Step 3 is Complicated (\"expert analysis can establish the appropriate response\") and Step 4 is Clear, where the expected answer is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises first. Step 2 gathers facts to classify. Step 3 names the analysis that picks the response. However, no probe has a stop condition or budget. Step 4 treats public communication as a one-step Clear action and includes drafted wording: \"We are reviewing the specific concerns raised about [statement]...\"",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows the 6.5 trade-off rules for the domains the response assigned: Chaotic (Step 1), Confused (Step 2), Complicated (Step 3), Clear (Step 4). Dependencies are explicit, for example \"Step 4 MUST NOT start until Step 3\u2019s test passes.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The deterministic steps use Gherkin, for example \"Given conflicting messages, when a coordinator takes charge, then one shared log names owners...\". The evaluative Step 3 has a rubric with weights (60/25/15), a scoring method, a pass threshold (\"At least 80/100\") and the evidence each criterion needs.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks zero questions. It logs assumption A1 instead (\"Validate by: Ask legal for existing findings\") and proceeds, as Section 2 allows.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "It states \"High confidence in coordination first, based on the reported lack of alignment.\" The central uncertain fact (\"does not establish whether the statement was false\") gets no probability or IPCC term. The plan branches on that fact instead.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete, with zero banned words and zero dashes. The check report flags a 33-word sentence, but the Self-test claims \"Longest sentence: 24 words\". The Self-test also claims \"Complex as capped probes: yes\" when no Complex action exists. The response includes a drafted public statement that the prompt says should not appear.",
+      "score": 1
+    }
+  }
+}

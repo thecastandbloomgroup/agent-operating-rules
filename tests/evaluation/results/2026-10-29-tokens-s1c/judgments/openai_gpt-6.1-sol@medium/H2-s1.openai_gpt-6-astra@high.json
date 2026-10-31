@@ -1,0 +1,41 @@
+{
+  "main_defect": "After stabilization, the response substitutes Confused and Complicated work for Complex probes, with no probe budgets or stop conditions. It also drafts a public acknowledgment during the Chaotic stage, contrary to the prompt.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names and briefly explains its domain: \u201cChaotic, meaning stabilize before further analysis\u201d; \u201cConfused, meaning gather enough facts to classify the problem\u201d; and \u201cComplicated, meaning evidence and specialist analysis determine the response.\u201d",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 1 correctly identifies \u201cChaotic.\u201d Steps 2 and 3 identify \u201cConfused\u201d and \u201cComplicated,\u201d whereas the expected post-stabilization domain is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "\u201cConfirm an authorized response lead\u201d provides stabilization first. However, the response then supplies \u201cWe are reviewing the report and the records underlying yesterday\u2019s statement.\u201d Subsequent actions lack safe-to-fail probes, budgets, and stop conditions.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\u201cStabilize coordination within 15 minutes\u201d correctly comes first. However, \u201cStart after Step 1 names the lead\u201d and \u201cUse Step 2\u2019s verified facts\u201d create a serial plan without the expected parallel, capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each action includes a Given/When/Then test. However, Step 3 labels response selection \u201cDeterministic\u201d despite requiring judgments such as \u201cHave Legal assess obligations and exposure\u201d and \u201cHave PR assess audience, wording, and channels.\u201d No evaluative rubric supplies weights, thresholds, and evidence requirements.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\u201cQuestions asked: 0 of 3.\u201d The response proceeds without unnecessary questions and logs the authority assumption: \u201cYou can convene the response team,\u201d with a validation step and fallback.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cYour account establishes a coordination problem, but not whether the statement was false\u201d appropriately acknowledges uncertainty. \u201cSupported, contradicted, or unresolved\u201d also distinguishes evidence states, but no probability, IPCC term, or confidence level with its basis calibrates material uncertainty.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, \u201cI recommend that we,\u201d and a final Self-test are present. The check report confirms zero banned words and zero prohibited dashes. However, it reports a 27-word sentence, contradicting \u201cLongest sentence: 25 words.\u201d The visible reference identifies the supplied incident description.",
+      "score": 1
+    }
+  }
+}

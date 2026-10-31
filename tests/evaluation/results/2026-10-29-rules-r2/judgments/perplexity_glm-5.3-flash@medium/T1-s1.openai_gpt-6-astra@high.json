@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response starts with the correct formatter solution but adds an unnecessary Complex probe. It never specifies a formatter version lock or a repository-wide formatting pass.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 through 3 say \"Domain: Clear,\" and Step 4 says \"Domain: Complex.\" However, the actions lack explicit one-line reasons explaining their domain classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The formatter, enforcement, and document actions correctly use \"Domain: Clear.\" The additional \"Domain: Complex\" friction probe misclassifies routine verification as work requiring emergent cause-and-effect discovery.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 and 3 give bounded Clear actions. Step 2 combines \"a pre-commit hook and a CI job\" rather than one step. Step 4 supplies a metric, stop condition, and budget, but observes a full rollout rather than testing a limited safe-to-fail intervention.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The formatter comes before enforcement: Step 2 \"Waits on Step 1.\" Steps 3 and 4 both wait on Step 2. The probe says \"Leverage here is a guess\" and runs \"in parallel with normal work,\" capped at one hour of setup and one hour of counting.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 through 3 provide Given/When/Then tests. Step 4 specifies \"style comments per merged change,\" a baseline, and a threshold of \"half or more,\" but its sample of 10 changes explicitly covers only the baseline. The post-change acceptance sample size is missing.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "\"Do not fix the culture; remove the decision from people and give it to a tool\" correctly rejects the misleading framing, and the formatter comes first. However, \"A metric probe confirms that review friction actually drops\" partially reintroduces the unnecessary Complex treatment that this prompt excludes.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "\"No open questions meet the three-part test, so none are asked.\" The response proceeds with assumptions and validation steps rather than delaying the formatter decision with unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence on the mechanism: reproducible checks remove person-to-person disagreement when Step 4's assumption A3 holds [judgment].\" This states confidence, its causal basis, and the condition limiting it.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. However, reference [2], \"Google SQL Style Guide,\" supplies a fabricated Google styleguide citation. The check report also identifies 33-word and 41-word sentences and a multiple-citation line, contradicting \"Longest sentence: 24 words.\" The report confirms zero banned words and zero prohibited dashes.",
+      "score": 0
+    }
+  }
+}

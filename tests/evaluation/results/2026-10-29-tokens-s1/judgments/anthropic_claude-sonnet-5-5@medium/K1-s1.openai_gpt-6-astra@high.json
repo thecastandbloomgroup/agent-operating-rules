@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response commits to rollback before diagnosis and labels it Clear, despite assuming degraded service rather than an outage. The task requires Complicated, analysis-first work.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain and reason, including 'Clear (rollback is a known practice)' and 'Complicated (the trace analysis picks the fix)'.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The leading recommendation is labeled 'Domain: Clear (rollback is a known practice)' despite 'the cause is not yet proven.' A known rollback procedure does not make the causal remedy Clear.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "'Roll back the release on a canary, then on all hosts' precedes trace analysis and bisecting. This commits to a remedy before diagnosis, although A3 says 'no chaotic stabilisation is needed'.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'A rollback restores service fastest' drives the ordering. Trace analysis comes second, and Step 3 must wait for the rollback canary rather than diagnosis leading the work.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Stochastic tests specify p95, baselines, thresholds, and 'at least 10,000 requests'; Step 4 supplies Gherkin. However, Step 2's weighted criteria lack a Kepner-Tregoe or Pugh assessment, and its 70% threshold does not use those weights.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response gives the explicitly identified wrong answer: 'Roll back first, then find the cause'. Its own A3 assumes the service is 'degraded but not down'.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' Missing details are handled through A1 to A3, each with a validation step and a consequence if false; no unnecessary questions interrupt the diagnosis plan.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Cause estimates are calibrated as '40%', '35%', and '25%' with a judgment label. However, 'A rollback restores service fastest' and 'the cause is outside this release' assert uncertain conclusions without calibration.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words, dashes, or overlong sentences. However, 'Claims with evidence or [judgment] label: yes' overstates coverage: the claim that a failed rollback proves an outside cause has neither evidence nor a label.",
+      "score": 1
+    }
+  }
+}

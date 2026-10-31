@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions miss the Complex domain (treating stakeholder alignment and external crisis response as Clear and Complicated rather than safe-to-fail probes), tests are written after increments with incomplete rubrics, calibrated uncertainty is omitted, and the response exceeds the sentence-length and Flesch-Kincaid grade limits.",
+  "scores": {
+    "R4": {
+      "evidence": "Action 1 (Chaotic) is placed first, followed by Action 2 (Clear) and Action 3 (Complicated) in parallel, and Action 4 (Complicated) after Step 3.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R8": {
+      "evidence": "Zero uncalibrated hedges are used (banned_total: 0), but no probability, IPCC likelihood term, or confidence level with basis is stated where the recommendation depends on uncertain facts.",
+      "score": 1
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Check report shows fk_grade of 11.4 (over 10) and a 27-word sentence ('Conditions changing recommendation: If A1 is false and public relations already sent an unapproved denial, cancel Step 2 and convene legal counsel immediately to evaluate retraction risks.'), while Self-test claims 'Longest sentence: 24 words' and 'test written first: yes'."
+    },
+    "R1": {
+      "evidence": "Every action states a domain ('Domain: Chaotic.', 'Domain: Clear.', 'Domain: Complicated.'), but none includes a one-line reason explaining why the action belongs to that domain.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a stabiliser ('Enforce an immediate communications freeze') matching Chaotic, and Action 3 is an analysis ('Audit the chief executive officer's statement against primary records'), but there are no Complex safe-to-fail probes with stop conditions and budgets.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests are placed after the increment in all four actions rather than written first; the evaluative rubrics in Actions 3 and 4 omit the evidence required for each criterion, and Action 3's rubric only passes if primary documentation 100% supports the CEO's statement (blocking Step 4 if the CEO's statement was actually false).",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked 0 questions (`Questions asked: 0 of 3`), logged assumptions A1 and A2 in the Assumption log, and proceeded per Section 2.3 and 2.4.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Primary action is rightly classified as Chaotic ('1. Enforce an immediate communications freeze. - Domain: Chaotic.'), but secondary actions are classified as Clear and Complicated instead of Complex.",
+      "score": 1
+    }
+  }
+}

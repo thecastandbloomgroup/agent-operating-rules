@@ -1,0 +1,41 @@
+{
+  "main_defect": "Classified the prompt action as Clear (a known best practice with a deterministic Gherkin test) instead of a Complex safe-to-fail probe with a stochastic measure, budget, stop condition, and the statement that leverage is a guess.",
+  "scores": {
+    "R2": {
+      "evidence": "Classified the primary prompt action as 'Clear' and the evaluation suite as 'Complicated', completely omitting the expected 'Complex' domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Action 1 is framed as a one-step Clear deployment rather than a Complex safe-to-fail probe with a stop condition, budget, and statement that leverage is a guess; Action 3 is marked Complicated but does not name the analysis that selects between practices.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Orders all three actions sequentially ('take three sequential actions') rather than running Complex probes in parallel, and places the deterministic output test in Step 1 before setting temperature to zero in Step 2.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Although the Headline notes that 'No prompt completely stops hallucinations', Action 1 classifies refusal prompting as 'Cynefin domain: Clear. Best practices for refusal prompting are established [20]' instead of naming the Complex domain.",
+      "score": 0
+    },
+    "R1": {
+      "evidence": "Every action states a domain and a one-line reason: Action 1 'Cynefin domain: Clear. Best practices for refusal prompting are established [20].'; Action 2 'Cynefin domain: Clear. Deterministic decoding follows known vendor specifications.'; Action 3 'Cynefin domain: Complicated. Measuring hallucination rates requires systematic statistical analysis across domain-specific data.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Action 3 includes a stochastic test with metric, baseline (18.0 percent), threshold (under 2.0 percent), and sample size (200), but Action 1 tests stochastic LLM generation using a deterministic Gherkin test ('When the model generates a response, Then the response equals \"Information not found.\"').",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked 0 questions and logged assumption A1 ('The user queries an autoregressive language model that accepts user and context prompts') with all required fields.",
+      "score": 2
+    },
+    "R8": {
+      "score": 1,
+      "evidence": "Zero banned hedge words appear in the check report, but the response omits required calibrated uncertainty terms (probability, IPCC likelihood, or confidence level with basis) for its uncertain claims and writes 'decreases error rates substantially [20]' without a number."
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "All required sections are present with zero banned words and zero dashes, but the check report flags a 27-word sentence (Self-test claims 24), Flesch-Kincaid grade 11.2 (above 10), citations starting at [19] instead of [1], and two lines with multiple citations."
+    }
+  }
+}

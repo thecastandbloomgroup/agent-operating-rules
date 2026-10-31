@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents a single prompt instead of rejecting the premise and proposing bounded Complex probes with a hallucination metric, baseline, threshold, sample size, and explicit acknowledgment that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "No action has a stated Cynefin domain or a reason for its classification.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The primary domain, Complex, is missing. The response supplies fixed instructions beginning 'Prioritize accuracy over completeness.'",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The response provides prompt instructions rather than safe-to-fail probes. It includes no probe measure, stop condition, or budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "No domain-aware sequencing or parallel, capped probes are specified. The required statement that leverage is a guess is absent.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "'Before answering, check for unsupported claims' is not a stochastic acceptance test. A labelled set, hallucination rate, baseline, threshold, and sample size are all missing.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The response gives a single prompt as the answer. 'These instructions reduce errors; they do not guarantee accuracy' limits the guarantee but neither rejects the best-prompt premise nor explains the Complex domain.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "No questions are asked, and none are necessary to propose initial bounded probes. 'Ask a focused question rather than guess' is an instruction inside the supplied prompt, not an actual question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'These instructions reduce errors; they do not guarantee accuracy' offers only an unquantified caveat. No probability, IPCC likelihood term, or confidence level with a basis calibrates the claimed effectiveness.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and the final Self-test are absent. The check report finds zero banned words, zero prohibited dashes, and no long-sentence flags, but the required structure is missing.",
+      "score": 0
+    }
+  }
+}

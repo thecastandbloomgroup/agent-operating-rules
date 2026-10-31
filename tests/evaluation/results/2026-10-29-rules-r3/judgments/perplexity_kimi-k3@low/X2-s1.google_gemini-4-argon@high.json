@@ -1,0 +1,41 @@
+{
+  "main_defect": "Misclassifies a Complex human-system problem primarily as Complicated and Clear, states a single set of root causes as fact in the Headline, and places a Confused-domain action fourth instead of first.",
+  "scores": {
+    "R7": {
+      "evidence": "Asks zero questions (\"Questions asked: 0 of 3\") and logs assumption A1 instead of asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain (\"Complicated domain\", \"Clear domain\", \"Complex domain\", \"Confused domain action, because its result decides the next step\"), but Actions 1, 2, and 3 omit the one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected primary classification is Complex, but the response classifies Action 1 as \"Complicated domain\", Action 2 as \"Clear domain\", and Action 4 as \"Confused domain action\", with only Action 3 in the \"Complex domain\".",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Places the Confused action fourth (\"4. Run an anonymous check on safety before retro four... Confused domain action\") instead of before Clear and Complicated actions, and does not run the Complex probe (Step 3) in parallel.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Actions 2, 3, and 4 have matching Gherkin and Stochastic tests, but Action 1 classifies a fixed-criteria check (\"has an owner, a date, and a verb\") as Evaluative and omits a required Kepner-Tregoe, Pugh, or ISO/IEC 25010 layout.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to Prompt X2.",
+      "score": null
+    },
+    "R8": {
+      "score": 1,
+      "evidence": "Uses a calibrated confidence statement in Information (\"Confidence is moderate because the sources are secondary and no source measured your team directly\"), but states a single set of causes as certain in the Headline and omits stating that leverage in the Complex probe is a guess."
+    },
+    "R9": {
+      "evidence": "Check report shows two sentences of 28 words (violating 4.1.1 and contradicting \"Longest sentence: 22 words\" in the Self-test) and four lines with multiple citations (violating 5.4.1); the Self-test also claims Confused is placed first when it is fourth, and [2] (Snowden & Boone) is cited for retrospective claims it does not contain.",
+      "score": 1
+    },
+    "R3": {
+      "score": 1,
+      "evidence": "Action 2 (one step for Clear) and Action 3 (probe with measure, stop condition, and three-session budget for Complex, though missing \"leverage is a guess\") match their stated domains, but Action 1 (Complicated) names no analysis and Action 4 (Confused) is delayed until \"before retro four\" instead of classifying first."
+    }
+  }
+}

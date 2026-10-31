@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the initial Chaotic stabiliser, the response misclassifies uncertain crisis handling as Confused/Complicated and treats public publication as a reversible probe.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions have domain labels: \u201cChaotic,\u201d \u201cConfused,\u201d \u201cComplicated,\u201d and \u201cComplex.\u201d However, the response does not give a one-line reason explaining each classification; blocker descriptions do not consistently explain cause and effect.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\u201c(Chaotic, deterministic) Impose a hold\u201d correctly identifies the primary domain. The subsequent \u201cConfused\u201d fact-file action and \u201cComplicated\u201d response-path choice depart from the expected Complex handling. Missing facts do not themselves establish Confused, and a weighted rubric cannot make stakeholder reactions predictable.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The initial hold stabilises first, and Step 4 includes a metric, budget, and stop condition. However, \u201cpublish the approved line on one channel only\u201d does not establish bounded failure consequences. \u201cRevert to hold\u201d cannot undo public publication, so this is not adequately specified as a safe-to-fail probe.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The main sequence puts Chaotic first and Confused next. However, the condition \u201cthe legal review becomes the first action\u201d overrides stabilisation when regulated disclosure is involved, contrary to the Chaotic-first rule.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 provide Given/When/Then tests. Step 3 supplies weights and a pass threshold but does not score the criteria against evidence. Step 4 calls \u201cthe next 24 hours of coverage\u201d its sample size without specifying an observation count, and its baseline has no measured value. Tests are also generally written after the proposed work.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\u201cQuestions asked: 0 of 3.\u201d The material supports immediate stabilisation without clarification. Remaining gaps are logged as A1 through A3 with validation steps, such as \u201cread the article in Step 2 before any reply.\u201d",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cThat failure has already happened once in this event\u201d treats the journalist's allegation as established fact. \u201cLeverage here is a guess\u201d acknowledges uncertainty but supplies no probability, likelihood term, or confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline and Self-test are present, and the recommendation begins \u201cI recommend that we,\u201d but the required End heading is missing. The check report confirms zero banned words and dashes, but identifies 38-word and 33-word sentences, contradicting \u201cLongest sentence: 24 words.\u201d The unlisted citation \u201c[15]\u201d also conflicts with \u201cReferences: 0.\u201d",
+      "score": 1
+    }
+  }
+}

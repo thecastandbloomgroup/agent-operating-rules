@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 4 is a Complex probe, contradicting the prompt's expected signal that the domain is Clear with one-step actions and no probes; also the Self-test claims a longest sentence of 24 words while the check report shows 33, making the self-test internally inconsistent, and the references/citation formatting fails (multi-citation line, unlisted citations per the check).",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label: '(Evaluative, Complicated)', '(Deterministic, Clear)', '(Deterministic, Clear)', '(Stochastic, Complex, probe)', each with a 'Blocker removed' line explaining it, e.g. 'Blocker removed: endless taste debate.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Primary framing is correct: the dispute is treated as a tooling/settled-style problem ('Automated formatting turns a recurring taste dispute into a one-time configuration decision'), not a culture problem. But Step 4, 'Move one review conversation to logic only (Stochastic, Complex, probe)', misclassifies what is a settled Clear problem as Complex, a wrong secondary action per the expected signals.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1 to 3 match one-step Clear/Complicated forms (vote by rubric, adopt defaults, reformat once and enforce). Step 4, however, is a probe with budget and stop condition, which the prompt's expected signals explicitly exclude ('Should not contain: probes').",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Complicated analysis first, Clear actions next by leverage with explicit sequencing ('Step 3 MUST NOT start until Step 2 passes'), and the capped probe set to run in parallel: 'Run in parallel with Steps 2 and 3.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Gherkin for deterministic steps ('Given the team list of style preferences, When the config file is written, Then it contains at most five overrides...'), a weighted rubric with pass threshold for the evaluative choice ('dialect support 40%, CI and editor integration 30%, configurability 20%, active maintenance 10%'), and a stochastic test with metric, baseline, threshold, and sample size ('over the next ten reviews, zero comments are about formatting. Baseline: unknown').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Names the real domain and says why: 'You cannot fix a culture problem directly; you fix it by removing the decision from people and giving it to a tool.' Rejects the workshop alternative explicitly: 'Hold a workshop to write a shared SQL style guide by consensus. It loses because style guides die without enforcement.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Self-test reports 'Questions asked: 0 of 3'; uncertainties are handled as logged assumptions (A1, A2, A3) instead, which Section 2 permits when answers do not change the next action.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibrated forms only: 'Confidence: high. The tooling exists and the pattern is proven in other languages [judgment]', and the hedge carries an explicit condition ('if formatting comments stop but review conflict moves to other topics... the next step is a facilitated retrospective').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure is present (Headline first, BRIEF sections, End begins 'I recommend that we', Self-test last), zero banned words and zero dashes per the check report, and at most one self-mention in End. Defects: two sentences exceed limits (32 and 33 words), one line carries two citations ('...pgFormatter [1][2][3]'), the check reports citations with no parseable reference entries, and the Self-test claims 'Longest sentence: 24 words' against an actual 33, so the self-test is not internally consistent.",
+      "score": 1
+    }
+  }
+}

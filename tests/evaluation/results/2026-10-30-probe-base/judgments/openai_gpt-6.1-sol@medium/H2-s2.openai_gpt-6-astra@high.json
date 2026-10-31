@@ -1,0 +1,41 @@
+{
+  "main_defect": "After correctly stabilizing coordination, the response treats the remaining crisis as deterministic, Complicated work. It commits to an authorized response rather than using Complex probes with measures, stop conditions, and budgets.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions name domains and describe their rationale or method: \u201cChaotic, stabilize first,\u201d \u201cComplicated, use claim-by-claim source comparison,\u201d and \u201cComplicated, use the source comparison and Legal\u2019s obligation review.\u201d",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Action 1 correctly identifies \u201cChaotic\u201d and pauses discretionary commentary under one lead. The later actions remain \u201cComplicated,\u201d missing the expected Complex classification for the evolving crisis response.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "\u201cName one authorized incident lead\u201d and \u201cPause new discretionary commentary\u201d provide a stabilizer. However, \u201cAn authorized response and release plan\u201d commits an output without a safe-to-fail probe, stop condition, or budget.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "\u201cStabilize coordination now\u201d correctly comes first. Subsequent work follows a sequential fact-review-and-release plan; there are no capped Complex probes running alongside suitable analytical work.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each action provides a \u201cGiven ... when ... then\u201d test. However, \u201cApprove the response\u201d involves judgment, while its deterministic test checks factual support rather than providing a weighted evaluative rubric. No stochastic probe test specifies a metric, baseline, threshold, and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No clarification questions delay the immediate stabilizer. The response logs assumptions about authority and prior verification in A1 and A2, with validation steps and consequences.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cHigh confidence in the coordination approach, based on the reported lack of alignment; low confidence about the allegation without source documents\u201d states confidence levels with their bases.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The response has Headline, the BRIEF sections, three actions, the required End opening, and a final Self-test. The check report confirms zero banned words and zero prohibited dashes, but reports a 37-word sentence, contradicting \u201cLongest sentence: 25 words.\u201d",
+      "score": 1
+    }
+  }
+}

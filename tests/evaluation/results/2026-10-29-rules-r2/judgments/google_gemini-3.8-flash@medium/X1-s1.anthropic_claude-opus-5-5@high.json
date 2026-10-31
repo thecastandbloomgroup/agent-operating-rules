@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response never uses the Complex domain. It labels the actions Confused, Complicated, Complicated and Clear, commits a prompt rewrite with no probe budget or stop condition, and assumes tagged error tickets already exist.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain and a one-line reason. Step 1: \"Confused. This step classifies the problem domain so engineering work targets verified causes.\" Step 2: \"Complicated. Cause and effect require systematic measurement.\" Step 3: \"Complicated. Good engineering practice applies directly here.\" Step 4: \"Clear. Standard telemetry pattern applies.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex. No action is tagged Complex. The tags are Confused, Complicated, Complicated and Clear, so the primary domain is wrong. Gate fails.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 is a classify-first action and matches its Confused tag. No action is a safe-to-fail probe with a measure, a stop condition and a budget. Step 3 commits a prompt rewrite (\"Modify the system prompt to require explicit source quoting\"). Step 2 does not name an analysis that picks a practice. The form fits the stated labels only in part and contradicts the real Complex domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The steps run strictly in sequence: Confused, Complicated, Complicated, Clear. There are no parallel, capped probes. The feedback capture that creates the failure record comes last, behind the committed prompt change. This is a misorder, but the order is not wholly against the stated domains.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a rubric with weights, but its threshold is inter-rater kappa, and it does not state the evidence each criterion needs. Step 2 gives \"Baseline is 0% measured\" and \"Pass threshold is completing 100 evaluations\", which is not a quality threshold. Step 3 tests LLM output, which is stochastic, with deterministic Gherkin. The tests are present, but some are the wrong kind.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response partly avoids the likely wrong answer. It builds a baseline in Step 2 and a feedback widget in Step 4. However, it analyses failures as if they were recorded: \"across a 30-ticket error sample\" and A1 \"Reviewing 30 tagged error tickets\". It never names Complex or says why the domain is Complex.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No questions are asked. The missing facts go into the assumption log as A1 and A2, each with a validation and an \"If wrong\" impact. This is acceptable under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"High confidence, supported by industry benchmark studies [19]\" rests on a news-summarisation paper that has doubtful identity and does not cover customer support. Leverage is not marked as a guess. The response gives no probability on key uncertain facts such as A1 and A2. Calibration is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF and Self-test are present, End begins \"I recommend that we\", and the check report finds zero banned words and zero dashes. The check report also lists failures: FK grade 11.1 is over 10, citations are out of order, and references [1] and [2] are never cited. Entry [2] has corrupted text (\"Uppercase\u4e92-Lowercase\"). Entry [19] has a title that appears fabricated. The Self-test says \"all from session or identified with confidence: yes\", which is inconsistent with these defects.",
+      "score": 1
+    }
+  }
+}

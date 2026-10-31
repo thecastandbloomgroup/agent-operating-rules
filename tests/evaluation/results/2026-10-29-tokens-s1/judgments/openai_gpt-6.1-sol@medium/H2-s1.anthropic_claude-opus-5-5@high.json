@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response classifies the later work as Confused and then Complicated. It never uses Complex probes with a measure, stop condition, and budget. It also puts a drafted public holding statement inside the Chaotic step and treats a judgment-based response decision as deterministic.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain line with a one-line gloss: 'Domain: Chaotic, meaning stabilize before further analysis.', 'Domain: Confused, meaning gather enough facts to classify the problem.', 'Domain: Complicated, meaning evidence and specialist analysis determine the response.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 1 'Domain: Chaotic' covers a single lead and a hold on separate media replies. The secondary actions miss the expected Complex domain. Step 3 is labelled 'Complicated' even though the effect of any public response is visible only afterward.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 stabilises first ('Confirm an authorized response lead', 'Route media requests through one spokesperson'), and Step 2 gathers facts in order to classify. However, Step 1 also includes a drafted public line: '\u201cWe are reviewing the report and the records underlying yesterday\u2019s statement.\u201d' The expected signals say a drafted statement should not appear in a Chaotic step. No action is a probe with a stop condition or budget. Step 3 commits to 'Prepare the applicable response'.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order follows the trade-off rules for the domains as labelled: Chaotic (Step 1), then Confused (Step 2), then Complicated (Step 3). Dependencies are explicit: 'Start after Step 1 names the lead.' No Complex probes exist to run in parallel.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "All three steps use Gherkin, e.g. 'Given the fact sheet, when the team drafts its response, then every factual assertion has support...'. Step 3 is a judgment between response options ('Have Legal assess obligations and exposure. Have PR assess audience...'), so it is evaluative and needs a weighted rubric with a threshold. It is labelled 'Deterministic, using fixed acceptance checks' instead.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the input.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions are asked, and the response proceeds on a logged assumption: 'A1. You can convene the response team. Why not measured: The material does not state it. Validate by: Confirm authority with the accountable executive. If wrong: Ask that executive to appoint the lead.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear (check report banned_total 0). However, the recommendation depends on whether the CEO statement was false, and the response gives no probability, IPCC term, or confidence level for this. It branches by case instead ('Confirmed error / Supported original statement / Unresolved allegation') and leans on [judgment] labels.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings are present in order. The End section begins 'I recommend that we take these three steps:', there are 3 actions, and the check report shows 0 banned words and 0 dashes. Defects: the check report flags a 27-word sentence, but the Self-test says 'Longest sentence: 25 words'. The Self-test also claims 'Complex as capped probes: yes' although no Complex action exists. Both are Self-test inconsistencies.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Five sentences exceed the 25-word limit (up to 47 words) and the Self-test claims a 24-word maximum, so the self-test is not internally consistent. Citation numbering starts at [18] instead of [1], which the check script flags as out of order.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label (steps 1 to 5: Chaotic, Clear, Complicated, Clear, Complex), but only some carry a reason. Action 1 is reasoned via the Headline ('This is a Chaotic situation [18], so the first job is to stop unaligned output') and action 5 via 'Because the audience reaction is not predictable'. Actions 2, 3, and 4 state 'Domain: Clear/Complicated' and a blocker removed, but no line explains why that domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary expectation met: action 1 is Chaotic ('Domain: Chaotic. Kind: deterministic.'; 'Freeze external statements') and the response correctly avoids a committed public statement in that step. Action 5 is Complex and framed as a capped probe ('treat this as a capped probe... stop engaging if hostile coverage does not add new factual claims'), matching the expected Complex phase. Intermediate Clear and Complicated labels for record collection and legal review are defensible for internal coordination work.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Chaotic action is a stabiliser first ('Freeze external statements... notify CEO, PR, legal, and board that no one speaks publicly'). Clear actions are single-session one-step increments ('within two hours, collect...'). Complicated action names the analysis that picks the practice (weighted rubric review of the record against the article). Complex action 5 is a probe with a stop condition ('stop engaging if hostile coverage does not add new factual claims') and a 24-hour check window as its cap. No drafted public statement is released as a committed Chaotic action.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Chaotic action 1 is first. No Confused actions exist. Clear and Complicated actions (2, 3, 4) are ordered by dependency and leverage with an explicit gate ('Step 4 MUST NOT start until this step passes'). The Complex probe (step 5) is capped and explicitly withheld until the Step 3 verdict, which is a minor deviation from the parallel-run guidance but consistent with the dependency rule.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions 1, 2, and 4 use Gherkin ('Given the freeze notice is sent, when any journalist contacts..., then...'). Evaluative action 3 has a rubric written first with criteria, weights (50/30/20), pass threshold ('a one-page verdict all three reviewers sign'), and evidence expectations ('with cited evidence'). Stochastic action 5 states a metric ('no factual assertion in the draft contradicts the Step 3 verdict'), a check window, and a stop condition.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable; the input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three follow-up questions, each with a stated use: 'I will use it to refine the Step 3 rubric'; 'This changes who must approve Step 5'; 'If yes, Step 1 must add a correction before anything else'. This meets the three-or-fewer standard with each use named. The self-test reports 0 asked and 3 listed, which is coherent since Section 2 permits assumptions to be logged instead.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear (check report banned_total 0), and [judgment] labels mark unsupported claims. However, no probability or IPCC term is stated where the recommendation depends on uncertain facts: 'Leverage on coverage tone is a guess [judgment]' acknowledges uncertainty without a calibrated form, and assumptions A1 to A3 drive the whole sequence without likelihoods. Section 4.6 requires a probability or likelihood term in such places.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, End begins 'I recommend that we take these actions', Self-test last, all seven headings present, zero banned words and zero dashes per the check report. But the check report fails long sentences (five sentences from 28 to 47 words against the 25-word limit) and flags the [18] citation as out of order. Critically, the self-test claims 'Longest sentence: 24 words' while the script measured 47, so the self-test block is not internally consistent with the response, which the rules require before sending.",
+      "score": 1
+    }
+  }
+}

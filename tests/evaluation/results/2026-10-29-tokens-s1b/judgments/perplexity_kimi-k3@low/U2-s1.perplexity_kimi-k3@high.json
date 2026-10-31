@@ -1,0 +1,41 @@
+{
+  "main_defect": "Primary domain is wrong. The expected classification is Confused with the first action locating the discrepancy by recomputing headline figures from source data and diffing them. The response never uses the Confused domain; it labels the lead action 'Clear' (freeze distribution) and treats discrepancy-finding as a 'Complicated' step that runs second. Gate R2 fails. Secondary defect: the Self-test claims a longest sentence of 18 words, but the check report shows sentences of 33 and 43 words, so the self-test is inconsistent with the response.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: 'domain: Clear' (freeze), 'domain: Complicated' (reconcile, trace), 'domain: Complex' (probe). However no action gives a one-line reason for its domain choice; only blockers are stated ('blocker: uncontrolled copies', 'blocker: unknown pattern'). Stated for all but without reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Expected classification is Confused (first action must gather what is needed to classify: locate the discrepancy). The response classifies nothing as Confused; it leads with a 'Clear' freeze and treats reconciliation as 'Complicated'. Primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Forms match the domains the response stated: freeze is one step ('increment: mark version v3 draft only'), reconcile and trace are analysis-first, and the Complex action is a probe with measure, stop condition, and budget ('stop after 2 hours', 'sample all Q3 entries'). The missing classify-first form is scored under R2.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Freeze (Clear, acting as stabiliser) first, then two Complicated analyses, then the Complex probe last and parallel ('Run a parallel anomaly probe'). Internally plausibly ordered, but per the expected signals the discrepancy-locating action should lead as a Confused step; reconciliation sits at step 2 instead of step 1. Minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests are written first for every action and match the kind: Gherkin for the three deterministic actions ('Given v3 is shared, When status is read, Then it shows draft only'; 'every delta is zero or explained'; 'the difference is named by document ID') and a stochastic test with metric, baseline, threshold, and sample size ('baseline Q3 final, threshold all flags dispositioned, sample all Q3 entries').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the input ('R6 applies: no').",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions only, each with a stated use: 'I will use this to rank the reconciliation', 'I will use this to trace deltas to documents', 'I will use this to set scope and the freeze length'. All three meet the Section 2 conditions since the material lacks the line items, files, and deadline.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear (check report banned_total 0) and risk claims carry [judgment] labels. However, no probability or IPCC term is stated where the recommendation depends on an uncertain fact; the unknown scale of the error is logged only as a blocker, not as calibrated uncertainty.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline, Background, Relevance, Information (assumption log A1-A2 and alternative considered), End beginning 'I recommend that we', Follow-up, Self-test last. Check report confirms zero banned words and zero dashes. Defects: two sentences exceed the length limit (33 and 43 words per the check report), and the Self-test is internally inconsistent, claiming 'Longest sentence: 18 words' while the actual longest sentence is 43 words.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response is largely incoherent and does not follow the required response shape or the expected Complex-domain treatment.",
+  "scores": {
+    "R1": {
+      "evidence": "No Cynefin domain is stated for any action. The only domain-ish reference is 'This is in the rightest class,' which names no domain and gives no reason. The self-test claims domains were given, but the body does not show them.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The expected primary domain is Complex (human system, interacting causes). The response never names Complex or any recognisable Cynefin domain. 'This is in the rightest class' is not a domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "For a Complex problem the actions must be parallel safe-to-fail probes with a measure, a stop condition, and a budget. The response lists sequential steps ('First one', 'Second', 'Third') with garbled text, no stop condition, no budget, and no parallel-run statement. 'measure how many topics got shipped per week' is the only measure-like element and it lacks a stop condition.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The ordering is stated as \"**ORDER:** B, then L, then Cu, with K as the surface it all sits on\", which is meaningless to the reader. The probes are presented sequentially, not run in parallel and capped as Complex probes require.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "A metric is named ('measure how many topics got shipped per week where the retro ran') and a measure appears for the third step ('use the \"count reduction times\" per cycle as the P07 number'), which is loosely the stochastic kind. However there is no baseline, no pass threshold, and no sample size, so the test form is incomplete for the kind.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks 'the user says what type of improvement you want?' mid-text, but states no use for the answer, and the self-test reports 'Questions asked: 0 of 3', which contradicts the text. Neither the question nor the zero-question choice follows Section 2.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "The response hedges without calibration: \"I'm a little cautious, though, about two assumptions\" and \"If the metric matches above board, I've failed to define 'same state'\". No probability, IPCC term, or confidence level with basis appears anywhere the recommendation depends on an uncertain fact.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The required structure is missing. There is no Headline, Background, Relevance, Information, End, or Follow-up section, and no sentence beginning 'I recommend that we'. The check report flags 12 long sentences (up to 58 words), a hard failure of 4.1.1. The self-test claims 'Longest sentence: 24 words', which contradicts the check report and the text itself, so the self-test is not internally consistent. Banned words and dashes are 0 per the check report.",
+      "score": 0
+    }
+  }
+}

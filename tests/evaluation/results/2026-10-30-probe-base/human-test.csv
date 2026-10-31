@@ -1,0 +1,18 @@
+date,model,provider,rules_version,prompt_id,domain,grader,R1,R2,R3,R4,R5,R6,R7,R8,R9,total,available,gates_passed,pass,main_defect,response_file,reason
+2026-10-30,anthropic/claude-sonnet-5-5@medium,anthropic,0.3.0,C1,Clear,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/C1-s2.md,random sample
+2026-10-30,anthropic/claude-sonnet-5-5@medium,anthropic,0.3.0,X2,Complex,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/X2-s1.md,a judge failed a gate
+2026-10-30,google/gemini-3.8-flash@medium,google,0.3.0,H2,Chaotic,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/H2-s2.md,judges differ by more than 3 points
+2026-10-30,google/gemini-3.8-flash@medium,google,0.3.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/K1-s2.md,judges differ by more than 3 points
+2026-10-30,google/gemini-3.8-flash@medium,google,0.3.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/T2-s1.md,a judge failed a gate
+2026-10-30,google/gemini-3.8-flash@medium,google,0.3.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/T2-s2.md,a judge failed a gate
+2026-10-30,google/gemini-3.8-flash@medium,google,0.3.0,X2,Complex,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/X2-s1.md,a judge failed a gate
+2026-10-30,google/gemini-3.8-flash@medium,google,0.3.0,X2,Complex,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/X2-s2.md,a judge failed a gate
+2026-10-30,openai/gpt-6.1-sol@medium,openai,0.3.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/K1-s1.md,a judge failed a gate
+2026-10-30,openai/gpt-6.1-sol@medium,openai,0.3.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/K1-s2.md,a judge failed a gate
+2026-10-30,openai/gpt-6.1-sol@medium,openai,0.3.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/T2-s1.md,a judge failed a gate
+2026-10-30,openai/gpt-6.1-sol@medium,openai,0.3.0,T2,Prompts that invite a wrong classification,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/T2-s2.md,a judge failed a gate
+2026-10-30,openai/gpt-6.1-sol@medium,openai,0.3.0,X2,Complex,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/X2-s2.md,a judge failed a gate
+2026-10-30,perplexity/glm-5.3-flash@medium,zai,0.3.0,K1,Complicated,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/K1-s2.md,judges differ by more than 3 points
+2026-10-30,perplexity/glm-5.3-flash@medium,zai,0.3.0,X2,Complex,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/X2-s1.md,judges differ by more than 3 points
+2026-10-30,perplexity/glm-5.3-flash@medium,zai,0.3.0,X2,Complex,human,,,,,,,,,,,,,,,responses/perplexity_glm-5.3-flash@medium/X2-s2.md,judges differ by more than 3 points
+2026-10-30,xai/grok-4.7@low,xai,0.3.0,C1,Clear,human,,,,,,,,,,,,,,,responses/xai_grok-4.7@low/C1-s1.md,random sample

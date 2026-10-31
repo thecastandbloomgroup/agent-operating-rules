@@ -1,0 +1,41 @@
+{
+  "main_defect": "The JWT migration is labelled Complicated, but no action names the analysis that picks token lifetime and revocation; Step 2 simply asserts HMAC SHA-256. The two tracks are also interleaved in one numbered list, and the Complex probe is not run in parallel or tied to the baseline from Step 1.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a 'Cynefin domain:' line (Clear, Complicated, Complex, Complicated). Only Step 3 gives a reason: '(safe-to-fail probe capped at 20% of traffic with automatic rollback on error spikes)'. Steps 1, 2 and 4 state the domain with no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration steps 2 and 4 are 'Complicated' and the sign-up variant in Step 3 is 'Complex'. Both match the expected classification. Funnel instrumentation as 'Clear' is defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 3 has a probe form: a 20% traffic cap, a rollback stop condition and a sample size. However, it does not say that leverage is a guess. Steps 2 and 4 are Complicated but name no analysis that picks the practice. Step 2 asserts 'issues an HMAC SHA-256 signed access token', and token lifetime and revocation are never analysed.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Clear Step 1 comes first and reduces probe uncertainty, and Step 4 depends on Step 2. However, the Complex probe (Step 3) sits in the sequence between the migration steps instead of being stated as parallel and capped. Step 3 has no dependency on Step 1, although its baseline comes from Step 1.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic steps use Gherkin ('Given valid user credentials... When... Then the service issues...'). The stochastic step states a metric, baseline, threshold and sample size: 'conversion increases by 10% over the 15% baseline at 5,000 visitors per arm'. The test forms match each kind, although the 15% baseline is unsourced.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline separates the tracks: 'separate the authentication migration from the sign-up flow optimization', and each action gets its own domain. The stated reason is deployment risk, not the cause-and-effect difference between the tracks. The End is still one interleaved list, not two separately sequenced tracks.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Open questions: None.' The unknowns are logged as A1 to A3, each with 'Validate by' and 'If wrong', which fits the assume-and-proceed rule.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. However, the recommendation depends on A3 (drop-off 'stems from form complexity') and on a 15% baseline. Neither carries a probability, an IPCC term or a confidence level.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present in order, End begins 'I recommend that we', and Self-test is last. The check report shows 0 banned words and 0 dashes, but fk_grade is 11.2 (over 10) and it flags 'citation with no reference'. The Self-test does not reflect the readability failure.",
+      "score": 1
+    }
+  }
+}

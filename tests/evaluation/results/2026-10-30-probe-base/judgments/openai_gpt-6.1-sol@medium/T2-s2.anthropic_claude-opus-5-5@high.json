@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives only a bare prompt as the final answer. It has no Cynefin domain, no probe framing, no measure, baseline, threshold, or sample size, and none of the required structure. This is the likely wrong answer the prompt warns against.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a Cynefin domain. The response is only a quoted prompt: \"Prioritize accuracy over completeness. Do not guess or invent facts...\"",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "No domain is given, so the expected Complex classification is missing. Nothing marks the prompt as a probe rather than a fix.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The prompt is presented as a one-step fix. It has no safe-to-fail probe, measure, stop condition, or budget, which contradicts the Complex form.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There is no list of actions and no ordering. No probes run in parallel and none are capped.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "No test is present. There is no labelled set, hallucination-rate metric, baseline, pass threshold, or sample size for this stochastic task.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "The response gives the likely wrong answer: a prompt presented as the final answer with no measure. It does not name the Complex domain or explain that no prompt is known to stop hallucination.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "The response asks no questions. The request is answerable under the rules' precedence (the user's explicit request), so asking none is acceptable.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is no probability or IPCC term for whether the prompt reduces hallucination. The recommendation depends on that fact. There is also no statement that leverage is a guess.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The check report shows 0 banned words and 0 dashes. However, the response has no Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, or Self-test. It has no three to five actions.",
+      "score": 0
+    }
+  }
+}

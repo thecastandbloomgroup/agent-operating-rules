@@ -1,0 +1,41 @@
+{
+  "main_defect": "Response fronts an analysis step (check deploy history) inside the Chaotic stabiliser, misclassifies later actions as Clear/Complex instead of Complicated, and has rules-file defects: a banned apology, a dash, two long sentences, a duplicated and initially broken self-test block, and self-mention ('in my judgment') outside End.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a Cynefin label: 'Step 1, Cynefin: Chaotic', '1b ... Cynefin: Chaotic', 'Step 2, Cynefin: Clear', 'Step 3, Cynefin: Clear', 'Step 4, Cynefin: Complex'. However, no action states a one-line reason for its domain classification. The labels exist without justification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is correct: Step 1 is Chaotic with a rollback stabiliser. But the expected classification is Complicated for the later actions. Step 2 (dependency health-check comparison against baseline) is analysis work, labelled Clear. Step 4 (bounded log export, deterministic test) is labelled Complex, but the expected signal calls record capture a Complicated/Clear action, not a safe-to-fail probe. Wrong on secondary actions.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Chaotic Step 1 does contain the stabiliser and fallback ('If a change landed, roll it back now', '1b. Fallback ... Send checkout traffic to the last known good release'), but it fronts an analysis step before the stabiliser: 'Check deploy, config, and Flag history for 08:40 to 09:12. If a change landed, roll it back now.' The prompt's expected signals say the response should not contain an analysis step before the stabiliser, and a Chaotic action must stabilise first. Mostly matches, with this defect.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Ordering follows the trade-off rules: the Chaotic stabiliser and its fallback come first ('Step 1, Cynefin: Chaotic ... removes the largest blocker'), Step 3 runs in parallel at its fixed time ('Step 3 does not wait for Steps 1 and 2 to finish'), and the Complex probe is explicitly parallel and capped ('In parallel with Step 1 ... capped at 10 minutes of work. Budget: 10 minutes. Stop condition').",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions use Gherkin: 'Given a test cart, When the checkout request runs, Then the response is 200'; 'Given the snapshot file, When its time range opens, Then it covers 09:00 to 09:15 and is under 1 GB'. The evaluative Step 3 has a rubric with criteria, weights, and a pass threshold: 'Rubric: facts stated (50%), time bound named (50%). Pass: both present.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked, which is correct for an incident-response prompt with a ten-minute deadline; the self-test confirms 'Questions asked: 0 of 3'. The response proceeds on logged assumptions A1 to A3 instead, which is the right use of the decision process here.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on the uncertain fact A1 ('A deploy, config change, or flag change happened just before 09:12'), but no probability or IPCC likelihood term is attached to it. The response uses [judgment] labels and a conditional hedge ('Condition that changes this: if deploy history shows no change ...'), which is partial calibration without the required form.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is present (Headline first, BRIEF parts, End begins 'I recommend that we', self-test last) but has material defects. Check report flags: one banned word ('I apologize for the layout error above'), one dash in the 'Theme \"recent change\"' sentence, and two long sentences (30 and 26 words). The self-test block is duplicated: the first one is truncated and malformed ('Self-test outside End: 0&lt;/arg_value&gt;'), followed by an apology line outside the structure. Additionally, 'in my judgment' in the Information section is self-mention outside End.",
+      "score": 1
+    }
+  }
+}

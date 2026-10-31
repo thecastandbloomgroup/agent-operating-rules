@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 omits its task-kind classification (stochastic) and does not state that Complex leverage is a guess; the response also contains a 30-word sentence and self-mentions ('I') outside the permitted phrase while reporting zero in the self-test.",
+  "scores": {
+    "R3": {
+      "evidence": "Step 1 gathers data to classify (Confused), Step 2 uses an analysis rubric to pick the practice (Complicated), and Step 4 is a single step (Clear). However, Step 3 (Complex) mixes quarantine with probing and fails to state that leverage is a guess per Section 6.5.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 (Confused) is placed first and Step 2 (Complicated) second, but Step 3 (Complex probe) is sequenced before Step 4 (Clear monitoring) rather than run in parallel with Clear and Complicated actions per Section 6.5.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 4 use Gherkin for deterministic tasks, and Step 2 defines a weighted rubric for an evaluative task (though without required evidence per criterion or a standard layout). Step 3 omits the task-kind classification (stochastic) and states no baseline, and tests are written after the work description instead of first.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to Prompt U1.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Follow-up asks two questions, each stating what will be done with the answer ('use them to fill the cause buckets in Step 1 directly' and 'use the timing to narrow the cause before quarantine').",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "All required sections are present and the check report finds zero dashes and zero banned words, but sentence 35 is 30 words long (exceeding the 25-word limit and contradicting the self-test claim of 24 words), 'I' appears in Follow-up and inside Step 1's Gherkin test (violating 4.4.5), and Step 3 lacks a task-kind label despite the self-test claiming 'yes'.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "All four actions state a Cynefin domain ('1. Collect data (Confused...)', '2. Classify the top cause (Complicated...)', '3. Quarantine and probe the top cause (Complex...)', '4. Add monitoring (Clear...)'), and Steps 1 and 2 include a reason ('we cannot yet classify the problem', 'This picks the practice to use next'), but Steps 3 and 4 omit the reason for their domain classification.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Information includes a calibrated statement ('Confidence that data collection is the right first step: high confidence, it is the cheapest action that changes every later step'), but the Headline uses uncalibrated expressions ('most likely', 'usually') that are not valid IPCC terms.",
+      "score": 1
+    },
+    "R2": {
+      "score": 2,
+      "evidence": "Primary classification is Confused ('1. Collect data (Confused, deterministic)... we cannot yet classify the problem'), and the subsequent actions are appropriately classified as Complicated (cause analysis), Complex (probing the cause), and Clear (dashboard monitoring)."
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "After stabilization, the response misclassifies the Complex crisis response and proceeds toward a drafted public statement instead of capped, safe-to-fail probes with stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a brief explanation: 'Chaotic, meaning stabilize first'; 'Confused, meaning gather enough facts to classify the problem'; 'Complicated, meaning expert analysis can establish the appropriate response'; and 'Clear, meaning apply a known procedure.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 1 correctly identifies 'Chaotic' and establishes control. However, subsequent actions use 'Confused', 'Complicated', and 'Clear' rather than recognizing the Complex post-stabilization response.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Confirm one coordinator' and 'Pause unverified public claims' provide an appropriate stabilizer. However, 'Send the response through the named spokesperson' and the drafted acknowledgment commit to communication without safe-to-fail probes, probe budgets, or stop conditions.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The stabilizer comes first. However, 'Step 3 MUST NOT start until Step 2' and 'Step 4 MUST NOT start until Step 3\u2019s test passes' create a wholly sequential rollout, with no parallel, capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 provide 'Given ... when ... then' tests for their stated fixed outputs. Step 3 supplies an evidence-based rubric with weights of 60%, 25%, and 15%, a zero-to-five scoring scale, and an '80/100' pass threshold.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states 'R6 applies: no'.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No user questions are asked. Immediate coordination can proceed from the incident account, while 'A1. No completed fact review is available' logs an assumption and provides a validation step.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'High confidence in coordination first, based on the reported lack of alignment' supplies a confidence level and its basis. 'The available information does not establish whether the statement was false' appropriately limits the factual conclusion.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but reports a 33-word sentence, contradicting 'Longest sentence: 24 words'.",
+      "score": 1
+    }
+  }
+}

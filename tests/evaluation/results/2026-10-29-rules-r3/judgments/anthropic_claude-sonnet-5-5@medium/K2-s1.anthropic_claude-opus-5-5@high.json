@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response adds a Complex speed probe (Step 4), which the prompt says it should not contain. It also says the probe runs in parallel with Step 3, but the probe needs Step 3's ranking to pick the top two. The Self-test also misreports the longest sentence (25 instead of 30) and self-mention outside End.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain, but not every one has a reason. Step 1 has one: \"Confused, because the work cannot be classified without the files\". Step 2 has none: \"Cynefin: Clear.\" Step 4 gives a consequence, not a reason: \"Complex, so the leverage is a guess\".",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is right: Step 3 is \"Cynefin: Complicated, and the rubric is the analysis that picks the practice.\" A secondary action is wrong. Step 4 calls a speed benchmark \"Complex\" and makes it a probe, but the expected classification is Complicated with no probe.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each form fits the domain the response gave it. Step 1 (Confused) gathers the files. Step 2 (Clear) is one step. Step 3 (Complicated) names the rubric as the analysis. Step 4 (Complex) is a probe with a measure, a budget of \"two working days each\", and a stop rule: \"Stop the probe at two days or when a vendor fails the threshold\".",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The order is Confused, then Clear, then Complicated, with the Complex probe capped. This follows 6.5. However, \"Run it in parallel with Step 3 once Step 2 passes\" conflicts with \"top two vendors\", because the top two come from the Step 3 scores. This is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Gherkin: \"Given three files are attached, When each is opened, Then...\". Step 3 uses a rubric written before scoring, with criteria, weights, evidence needed, and the threshold \"weighted score of at least 3.5, no criterion below 2\". Step 4 states the metric (p95 query time), the baseline, the threshold, and the sample size (\"30 runs per vendor\").",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks one question with a stated use: \"Can you attach the three proposals again? I will score them with the rubric in Step 3.\" The material is missing, so the question is justified.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There is no probability or IPCC term anywhere. A1 (currency) and A2 (400k covers full cost) are uncertain facts the recommendation depends on, but they are logged only as assumptions. \"Vendor cost may exceed the quoted license price\" is an uncalibrated hedge, even though the script did not flag it.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF, \"I recommend that we\", Self-test last, zero dashes, and zero banned words per the check report. There are defects. Sentence 65 has 30 words, but the Self-test reports \"Longest sentence: 25 words\". \"I will score them\" in Follow-up is self-mention outside End, but the Self-test says 0. The script also reports cites_unlisted and ref_entries 0, although the References list is present under Follow-up.",
+      "score": 1
+    }
+  }
+}

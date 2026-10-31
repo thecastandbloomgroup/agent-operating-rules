@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response adds an unneeded Complex probe (Step 4) for a task whose expected classification is Complicated (expected signals: 'Should not contain: a probe'), and its citations appear out of order ([2] cited in the Headline before [1] in the Background). Otherwise the structure, rubric-before-scoring, assumption log, and alternative-considered artifacts are in place, and the refusal to pick without the actual files is handled per Section 2.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain: Step 1 'Domain: Clear', Step 2 'Domain: Clear', Step 3 'Domain: Complicated', Step 4 'Domain: Complex'. Reasons are brief and partly implicit ('so it runs as a safe-to-fail probe' for Step 4; Steps 1-3 rely on context such as the Kepner-Tregoe analysis named in Step 3).",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Primary recommendation (vendor selection, Step 3) is correctly Complicated. But Step 4's benchmark verification is classified Complex and shaped as a probe, while the prompt's expected signals say the whole task is Complicated and 'should not contain: a probe' - a wrong secondary classification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 1-2 are one-step Clear actions; Step 3 names the analysis (Kepner-Tregoe) that picks the practice, matching Complicated. Step 4 is a capped safe-to-fail probe with budget and stop condition, a form that matches Complex but not the expected Complicated task ('Should not contain: a probe'), so forms only mostly match.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Sequencing: Steps 1 to 3 are Clear or Complicated and are ordered by blocker size. Step 4 runs in parallel with them, capped by its budget.' No Chaotic or Confused actions; Clear/Complicated ordered by leverage; the single Complex probe is parallel and capped, per 6.5.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic steps use Gherkin ('Given this chat, When your reply arrives, Then three readable proposal documents are present'; 'Given the three proposals, When year 1 to 3 costs are summed per vendor, Then each row shows one 3-year TCO'). The evaluative step has a rubric with criteria, weights summing to 100, a 7.0 pass threshold, and required evidence per criterion, fixed before scoring. The stochastic probe states metric, baseline, and sample size (30 runs).",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt ('R6 applies: no').",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question only: 'Please re-send the three proposals, or paste their price pages and feature lists. The reply feeds Step 1 and unblocks the ranked pick.' Use is stated, within the three-question cap, and no recommendation depends on its answer beyond the plan itself.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Check report shows zero uncalibrated hedges and zero boosters. Where leverage is uncertain, the response follows 6.5: 'Leverage for this probe is a guess.' No other material uncertainty required calibration.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline first, all BRIEF headings present, End begins 'I recommend that we', Follow-up and Self-test last; check report: 0 banned words, 0 em/en dashes, no long sentences, fk_grade 5.6; self-test is filled and internally consistent. Defects: check report flags 'citations out of order (5.4.1)' ([2] appears in the Headline before [1] in the Background) and 'citation with no reference'; also five passive constructions (e.g., 'cannot be picked', 'are logged'). Minor defects overall.",
+      "score": 1
+    }
+  }
+}

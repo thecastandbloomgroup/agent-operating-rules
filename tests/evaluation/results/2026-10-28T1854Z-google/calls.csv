@@ -1,0 +1,4 @@
+role,model,effort,prompt_id,sample,input_tokens,output_tokens,reasoning_tokens,cost_usd,seconds
+executor,google/gemini-3.8-flash,medium,C1,1,5178,13609,12593,0.05491,82.7
+judge,google/gemini-4-argon,high,C1,1,8571,2471,1856,0.04185,32.4
+judge,anthropic/claude-opus-5-5,high,C1,1,12286,2431,1542,0.11005,32.8

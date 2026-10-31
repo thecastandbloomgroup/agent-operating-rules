@@ -1,0 +1,41 @@
+{
+  "main_defect": "The plan omits the early logs-and-timeline record. It also replaces stabilization with diagnosis if no recent change exists, leaving no stabilizing fallback.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain and brief rationale: \"Chaotic. Stabilise first\", \"Clear. Follow the escalation rule\", \"Complicated. The log analysis picks the fix\", and \"Clear. A status template exists.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The first action correctly states \"Domain: Chaotic.\" However, Steps 2 and 4 are tagged Clear rather than providing the expected Complicated record-establishment and subsequent analysis actions.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The action forms match their stated domains: \"one rollback or flag-off\" stabilizes, \"one page\" applies an escalation rule, \"The log analysis picks the fix\" names analysis, and the status action applies a template.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Rollback comes first, but \"if A1 is false, replace Step 1 with Step 3\" substitutes diagnosis for stabilization. Sequencing also conflicts: \"Steps 2 and 3 MAY run while it completes\" versus \"This step MUST NOT start until the Step 1 test fails.\"",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests are present, including \"Given checkout returns 500 ... When the latest change is reverted, Then ... returns 200\" and a weighted diagnostic rubric. However, the fixed-content status document is classified as evaluative rather than deterministic, and the diagnostic rubric lacks a defined scoring scale and criterion scores.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states \"R6 applies: no\".",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked. The response proceeds with three logged assumptions, consistent with \"Questions asked: 0 of 3\" and the urgent task.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The uncertain cause driving rollback is calibrated: \"about 70% likely to come from a change ... [judgment]\", with the simultaneous failure across users given as its basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, and a final Self-test are present; End begins \"I recommend that we\". The check report finds zero banned words and dashes, but three overlong sentences and a maximum of 31 words contradict \"Longest sentence: 22 words\". Background also exceeds the prompt's one-sentence limit.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "scores": {
+    "R8": {
+      "score": 1,
+      "evidence": "Zero uncalibrated hedges are used and Action 2 states quantitative rates ('25% unsupported claims', 'Less than 3% unsupported claims'), but no probability, IPCC likelihood term, or confidence level with its basis is stated where the recommendation depends on uncertain facts."
+    },
+    "R9": {
+      "evidence": "Full BRIEF structure, Headline, and Self-test are present with zero banned words and zero dashes, but Flesch-Kincaid grade is 10.3 (exceeding the limit of 10), tests are placed after the increment rather than written first (6.4), and explicit dependency clauses between steps are omitted (6.6).",
+      "score": 1
+    },
+    "R1": {
+      "score": 2,
+      "evidence": "Every action states a Cynefin domain with a one-line reason: Action 1 'Cynefin domain: Clear. Best practice exists for refusal phrasing.'; Action 2 'Cynefin domain: Complicated. Requires tuning chunk size and retrieval ranking.'; Action 3 'Cynefin domain: Complicated. Requires configuring a natural language inference model.'"
+    },
+    "R2": {
+      "evidence": "Wrong on the primary domain: expected Complex, but the response classifies Action 1 as 'Clear' and Actions 2 and 3 as 'Complicated'.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "None of the actions are structured as Complex safe-to-fail probes with a stop condition, budget, and statement that leverage is a guess; even against the stated Complicated domain for Actions 2 and 3, the actions commit directly to implementation ('Pipe retrieved document snippets', 'Insert an exact-match or natural language inference filter') without naming the analysis that picks the practice.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Action 2 correctly uses a Stochastic test (metric, baseline, threshold, sample size of 100), but Action 1 classifies LLM prompt output as 'Test (Deterministic)' with a single-run Gherkin test, violating Section 6.4 which classifies LLM output as Stochastic.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Actions are ordered Clear then Complicated, but Complex capped parallel probes are absent and no RFC 2119 dependency clauses link the steps.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Although the Headline notes 'No single prompt stops all hallucinations', the response still presents a single system prompt template as the answer ('Use this system prompt template for grounded tasks') and classifies it as 'Clear. Best practice exists for refusal phrasing' instead of naming the Complex domain and proposing probes.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "Asked 0 of 3 questions and logged assumption A1 with all four required fields to proceed.",
+      "score": 2
+    }
+  },
+  "main_defect": "Failed to classify hallucination mitigation via prompting as Complex: presented a single prompt template as a Clear best practice with a Deterministic Gherkin test instead of proposing safe-to-fail stochastic probes with a budget and noting that leverage is a guess."
+}

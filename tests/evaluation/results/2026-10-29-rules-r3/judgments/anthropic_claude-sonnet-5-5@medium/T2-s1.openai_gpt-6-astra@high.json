@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents one grounding prompt as the best answer without evidence, instead of rejecting that premise and treating prompt efficacy as a Complex question requiring probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain, but only some explain it: \u201cAnalysis picks the questions\u201d and \u201cThe gain is a guess.\u201d Steps 3 and 4 provide domain labels without reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 2 correctly identifies prompt efficacy as \u201cComplex.\u201d However, Step 4 labels verification \u201cClear\u201d while requiring judgments that quotes \u201csupport the claim,\u201d which need analysis beyond mechanical quote matching.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Complex probe has a measure, a one-session budget, and a stop condition. However, the Complicated source action offers \u201cPaste the documents ... or connect a retrieval tool\u201d without naming the analysis that selects the practice.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The baseline correctly precedes the probe, but \u201cSupply the sources\u201d runs \u201cin parallel with Step 2,\u201d even though Step 2 requires \u201cyour source text.\u201d Source preparation should precede the source-dependent probe.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 2 specifies an unsupported-answer rate, measured baseline, halving threshold, and \u201cn = 50.\u201d Tests elsewhere are incomplete: Step 1 lacks a threshold, Step 4 lacks rubric weights, and neither evaluative action scores criteria against evidence.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response gives the prohibited single-best-prompt answer: \u201cone grounding prompt cuts it most,\u201d followed by \u201cUse this prompt.\u201d The later Complex probe does not retract that unsupported superiority claim.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "\u201cOpen questions: none.\u201d The response proceeds with logged assumptions about pasted text and factual question answering, each with a validation test, rather than asking unnecessary questions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Some calibration has a stated basis: \u201cConfidence: high, one survey of many studies\u201d and \u201cConfidence: moderate, one study.\u201d However, \u201cone grounding prompt cuts it most\u201d and \u201cThe prompt works best\u201d assert task-relevant superiority without calibrated support.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, the Self-test claims all driving claims have evidence or labels despite the unsupported \u201ccuts it most\u201d claim, and claims tests precede work although action instructions appear before their tests.",
+      "score": 1
+    }
+  }
+}

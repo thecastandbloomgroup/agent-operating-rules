@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 1's evaluative rubric omits weights, required evidence, and a valid layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010); Step 4 misclassifies compliance audit sampling as Complex; and the Self-test leaves template text unfilled.",
+  "scores": {
+    "R5": {
+      "score": 1,
+      "evidence": "Steps 2 and 3 use Gherkin and Step 4 states metric, baseline, threshold, and sample size, but Step 1's Evaluative rubric ('The criteria are error visibility, source data access, and ledger balance. The threshold is full classification.') omits weights, evidence per criterion, and a required layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010)."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "score": 2,
+      "evidence": "Zero questions asked ('Questions asked: 0 of 3'); the model logs assumption A1 and proceeds with an initial classification step."
+    },
+    "R9": {
+      "evidence": "Check report shows 0 banned words, 0 dashes, and max sentence length of 24 words. However, the Self-test leaves template text unreplaced ('Assumptions logged: 1 (yes/no if any were made but not logged)'), unlogged assumptions are made about a spreadsheet and SQL database in Steps 2 and 3, and the 90 to 100% reconciliation statistic attributed to an engineering economy textbook [1] is unsupported.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain and a one-line reason: Step 1 'Confused. This step gathers data to classify the system.', Step 2 'Clear. Best practices for spreadsheet auditing apply directly.', Step 3 'Complicated. This step requires data analysis expertise.', Step 4 'Complex. Cause and effect appear only in retrospect.'",
+      "score": 2
+    },
+    "R4": {
+      "score": 2,
+      "evidence": "Step 1 (Confused) goes first, followed by Step 2 (Clear) and Step 3 (Complicated) in sequence, with Step 4 (Complex probe) run in parallel with Step 3 and capped at fifty records and two hours."
+    },
+    "R8": {
+      "evidence": "Check report shows 0 uncalibrated hedges, and Information uses both a probability range and an IPCC likelihood term: 'resolves reporting errors in 90 to 100% of cases (very likely) [1].'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Primary domain (Confused in Step 1) is right, but Step 4 ('Audit a sample of fifty manual adjustments' against 'authorized adjustment memos') is standard audit verification and is wrongly classified as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 (Confused) gathers information to classify, Step 2 (Clear) is a one-step formula audit, and Step 4 (Complex) is framed as a capped probe with budget and stop condition, but Step 3 (Complicated) executes SQL validation queries directly without naming the analysis that selects the practice.",
+      "score": 1
+    }
+  }
+}

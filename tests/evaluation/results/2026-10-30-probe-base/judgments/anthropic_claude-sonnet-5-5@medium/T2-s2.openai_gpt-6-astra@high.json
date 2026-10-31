@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response provides a measurable prompt trial, but claims it 'cuts it most' without comparative evidence and never states that leverage is a guess. Its acceptance tests also follow the work rather than precede it.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain: 'Domain: Clear' or 'Domain: Complex.' However, the actions lack one-line reasons explaining their domain classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The fixed test-set preparation is classified as 'Clear,' while the baseline, prompt trial, and verification trial are classified as 'Complex.' These classifications fit the proposed work.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 2 specifies a 'capped probe: 90 runs, stop at one working session,' and Step 3 uses the 'same cap.' Step 4 specifies 90 runs but leaves its stop condition less explicit. The required statement that leverage is a guess is absent.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Test-set preparation appropriately precedes trials. However, 'take these steps in order' and 'Step 3 MUST NOT start until Step 2 is logged' unnecessarily serialize the baseline and prompt trials. The requested prompt is not the first Complex probe.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 supplies 'Given ... When ... Then.' Step 3 specifies an unsupported-claim metric, a half-baseline threshold, and 90 runs. However, Step 2 has no acceptance threshold, and every test appears after its work instruction rather than first.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'No single prompt stops hallucination' rejects the guaranteed-fix framing. The prompt trial is explicitly 'Domain: Complex,' with confidence limited because the cited papers were 'none run on your model or task.'",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: none.' The response proceeds with logged assumptions about source availability and factual Q&A, each with validation and consequences.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Medium confidence, three papers, none run on your model or task' supplies a confidence basis. However, 'cuts it most' asserts unsupported superiority, and 'A prompt alone cannot remove all errors: very unlikely (0 to 10%)' attaches the probability ambiguously to a negative claim.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, 'I recommend that we,' four actions, and a final Self-test are present. The check report confirms zero banned words and zero prohibited dashes, but identifies a 33-word sentence despite 'Longest sentence: 22 words.' The Self-test also incorrectly claims tests were written first.",
+      "score": 1
+    }
+  }
+}

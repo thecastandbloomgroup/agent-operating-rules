@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 1 captures logs and declares the incident instead of stabilising the outage, while the rollback is delayed to Action 2 and misclassified as Clear.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a Cynefin domain, but only Steps 1 and 2 include a reason while Steps 3, 4, and 5 state bare domains ('Cynefin: Clear.', 'Cynefin: Complicated.', 'Cynefin: Clear.').",
+      "score": 1
+    },
+    "R3": {
+      "score": 0,
+      "evidence": "Fails the prompt gate: Action 1 ('Declare and snapshot') captures evidence instead of stabilising service, while the rollback is placed in Action 2 ('Check the deploy log and roll back the last change') and labeled Clear."
+    },
+    "R6": {
+      "score": null,
+      "evidence": "R6 does not apply to Prompt H1."
+    },
+    "R7": {
+      "evidence": "Asks 2 questions in Follow-up with stated uses ('1. Does a deploy or config change exist near 09:12?... 2. Is the failure in your code or in a downstream dependency?'), violating Section 2.4 because the recommendation already assumes and depends on their answers.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Uses uncalibrated terms ('most sudden full-service outages', 'often restores service', 'the probable cause') and includes zero probabilities, IPCC likelihood terms, or confidence levels with a basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Check report flags a 27-word sentence ('Stabilise first, communicate second, diagnose last...'), which also makes the Self-test claim ('Longest sentence: 22 words') inconsistent; A3 uses 'environment unknown' as the unmeasured reason; Information contains self-mention ('unknown to me').",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Identifies Chaotic as the primary domain in Information and Step 1, but misclassifies Step 2 (rollback), Step 3, and Step 5 as Clear instead of Chaotic (for the stabiliser) and Complicated (for post-stabilisation work).",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Places record-keeping (Step 1) before the rollback stabiliser (Step 2), puts a Complicated action (Step 4) between Clear actions (Steps 3 and 5), and makes Step 3 wait on Step 2 rather than gating Complicated analysis on service restoration.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Tests are written after the work instead of first; Step 4's evaluative rubric ('rubric: error source identified, yes/no') lacks weights, threshold, and required layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010); Step 5's stochastic test lacks metric, baseline, threshold, and sample size.",
+      "score": 1
+    }
+  }
+}

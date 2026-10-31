@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response prescribes a serial commitment-management process with one trial, rather than two or three parallel, capped probes into a Complex human system.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions name a domain, but Step 2 states only 'Domain: Clear' without an action-specific reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The main trial correctly states 'Domain: Complex'. However, the audit is labeled 'Clear' even though identifying the failure stage requires diagnostic analysis, not merely recording facts.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The trial includes a measure and 'Stop if the change causes harm or exceeds its agreed capacity.' However, only one probe is offered, and its explicit budget caps administration while 'excluding the agreed change itself'.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The audit usefully establishes the trial baseline. However, 'After Step 1 passes' and 'After Step 2 passes' create a wholly serial plan, without the expected parallel Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The first two actions use 'Given', 'when', and 'then' acceptance tests. The stochastic trial specifies a metric, an audit-derived baseline, a pass threshold, and a sample of 'Two consecutive retrospective cycles'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked. The response proceeds with A1, 'The team can test one local change,' and supplies a validation step and consequence if false.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Moderate confidence in this approach because it tests observable commitments; low confidence about your specific cause without past action records' provides confidence levels with their bases.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required headings, recommendation opening, three actions, references, and final Self-test are present. The check report finds zero banned words or prohibited dashes, but reports a 27-word sentence, contradicting 'Longest sentence: 24 words'.",
+      "score": 1
+    }
+  }
+}

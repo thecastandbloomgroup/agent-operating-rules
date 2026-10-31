@@ -1,0 +1,41 @@
+{
+  "main_defect": "The claim that this prompt \"lowers it most\" lacks comparative evidence. The response correctly proposes measured Complex probes, but never states that their leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain. Step 2 explains \"the effect on your task is visible only after the run,\" but Steps 1 and 4 give no domain rationale.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The prompt trial and verification trial are classified as Complex. Preparing a fixed test set is Clear, and comparing retrieval tools is Complicated. These classifications fit the stated work.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 gives one test-set increment. Step 3 requires \"compare two or three retrieval tools first.\" Both Complex probes have measures, \"Budget: two hours,\" and explicit stop conditions.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "\"Take these actions in order\" unnecessarily places the retrieval comparison after the prompt probe. Only Step 4 explicitly runs \"in parallel with Step 3.\" Preparing the test set first is justified, but the response never states that probe leverage is a guess.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 uses Given/When/Then. Steps 2 and 4 specify metrics, baselines, thresholds, and sample sizes. Step 3 supplies rubric weights and a threshold, but lacks evidence requirements for cost and setup time and mixes tool selection with retrieval implementation. Tests appear after the work descriptions.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "\"No single prompt stops hallucination\" rejects the likely wrong answer. The response supplies a starting prompt and calls its trial \"Complex (the effect on your task is visible only after the run).\"",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response proceeds with two logged assumptions rather than asking unnecessary questions before supplying a reversible prompt trial.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Confidence: medium, three secondary sources agree and none disagrees. None measures your task\" provides calibration and a limitation. However, the headline's \"lowers it most\" is an unqualified comparative claim unsupported by that evidence.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, \"I recommend that we,\" and a final Self-test are present. The check report confirms zero banned words and zero prohibited dashes, but flags 26-word and 30-word sentences. This contradicts \"Longest sentence: 22 words.\" The Self-test also claims tests were written first despite their placement after work descriptions.",
+      "score": 1
+    }
+  }
+}

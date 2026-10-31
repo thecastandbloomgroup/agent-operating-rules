@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response replaces the Complex conversion work with deterministic preparation. It never proposes a capped conversion probe with a metric, baseline, threshold, sample size, and stop condition.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain, but only Step 2 explains it: 'Complicated; the threat analysis selects the design.' Steps 1 and 3 state 'Clear' without a domain rationale.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The migration contract correctly receives 'Complicated.' However, the conversion track ends at 'Define the conversion baseline' with 'Domain: Clear'; the requested conversion improvement is never identified as Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 names the required analysis: 'Use a threat analysis to specify token validation, storage, expiry, renewal, revocation, and rollback behavior.' The conversion track lacks a safe-to-fail probe, measure, stop condition, and budget.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The proposed preparation actions have appropriate dependencies and parallel sequencing: 'Define the migration contract after Step 1 passes' and 'Define the conversion baseline, in parallel with Step 1.' No proposed action is demonstrably misordered.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Migration preparation uses Given/When/Then tests. Conversion also receives only a deterministic event-counting test: 'then each eligible attempt counts once at each defined stage.' No stochastic acceptance test specifies a conversion metric, baseline, threshold, and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'Treat the JWT migration and sign-up conversion as separate workstreams' avoids complete conflation, and the migration design is classified as Complicated. The response never names or explains the Complex domain for conversion improvement.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Two question blocks each state their use: 'The answer determines the integration points and client compatibility tests' and 'The answer determines token lifetime and revocation design.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'High confidence in separating acceptance tests, because the requested outcomes differ; low confidence in implementation choices without service details' supplies confidence levels with their bases.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required headings, 'I recommend that we', three actions, and final Self-test are present. References are visibly listed and source-tagged. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences, but its Flesch-Kincaid grade of 10.7 exceeds the limit of 10.",
+      "score": 1
+    }
+  }
+}

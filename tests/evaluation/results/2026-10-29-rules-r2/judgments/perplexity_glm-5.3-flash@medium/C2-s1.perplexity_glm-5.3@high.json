@@ -1,0 +1,41 @@
+{
+  "main_defect": "Structure present but with grading-relevant defects: citation numbering starts at [13] instead of [1] (script flags citation order and reference-list failures), three sentences exceed the word limits, and the self-test reports a longest sentence of 24 words when the script found 28 to 34, making the self-test internally inconsistent.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions carry a Cynefin domain ('Domain: Clear', 'Domain: Clear', 'Domain: Complicated, because the tag needs analysis of the source kind'). Only Action 3 gives a one-line reason. Actions 1 and 2 state the domain without any reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action (IEEE formatting, Action 2) is correctly Clear. The secondary Action 3 (tagging source types) is tagged Complicated, but the prompt's expected classification is Clear with one-step deterministic actions throughout; source-type tagging per the attached entries is a one-step rule application, not a domain needing expert analysis.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 is a single step that removes the input blocker. Action 2 is a one-session one-step application of a known pattern, matching Clear. Action 3, tagged Complicated, names the analysis that picks the practice ('the tag needs analysis of the source kind'), matching the Complicated form requirement.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions exist. Actions run in leverage order: the missing input first ('Step 2 must not start before Step 1 succeeds'), then the main Clear formatting blocker, then the Complicated tagging ('Step 3 runs after Step 2') with explicit sequencing and dependency clauses.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 are deterministic and use Gherkin ('Given a parsed entry, When I apply the IEEE template for its type, Then the entry matches...'). Action 3 is evaluative and uses a rubric with criteria, evidence, and a pass threshold. The rubric omits weights, a minor gap, but the test kind matches each action's kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Not applicable; the input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question block, within the limit of three: 'Paste the list in your next reply... I will use the answer to complete Step 2 for that entry.' The question states its use, and it meets Section 2 conditions (the material lacks the list, a wrong guess would mean fabricating references).",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear (check report: banned_total 0). No material uncertainty exists once the input arrives, so no probability statement is required, and none is misused.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last) with zero banned words and zero dashes. However, the check report flags three long sentences (28, 34, 29 words against the 25-word description limit), citation numbering out of order ([13] as the first and only citation), and a multi-citation line. The self-test is internally inconsistent: it claims 'Longest sentence: 24 words' when the script found up to 34 words, so a reported check line is false.",
+      "score": 1
+    }
+  }
+}

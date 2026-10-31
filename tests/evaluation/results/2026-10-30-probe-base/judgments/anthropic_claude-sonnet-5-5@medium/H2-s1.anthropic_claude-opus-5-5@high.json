@@ -1,0 +1,41 @@
+{
+  "main_defect": "After the Chaotic stabiliser, the response treats the rest of the crisis as Complicated or Clear work. It sends a committed outbound holding statement and has no safe-to-fail probes, although the expected classification is Complex. There are also Self-test inconsistencies, including a 26-word sentence reported as 25.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label, for example \"Stabilise ownership (Chaotic, deterministic)\" and \"Send the board one brief (Clear, deterministic)\". Only the Chaotic label has a reason: \"no known cause and effect yet, so it fits the Chaotic domain until stable [1]\". Actions 2 to 5 have no one-line reason for their domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: Step 1 is Chaotic, with a single owner and a freeze on external comment. The later actions are wrong, because the expected domain is Complex. The response labels the holding statement and \"Choose the response\" as Complicated and the board brief as Clear, and no action is Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a correct stabiliser. Step 5 names the Pugh matrix analysis. However, Step 3, \"Issue a holding statement (Complicated, evaluative)\", is a committed outbound action with a drafted outline of its content. It names no analysis and is not a probe with a stop condition and a budget. No action has the probe form that the Complex domain requires.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action comes first, and the rest follow leverage under the response's own labels. There are minor problems. Step 1 says \"Freeze all external comment until Step 3 is done\", but Step 3 is itself an external statement. No Complex probes run in parallel with a cap.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 use Gherkin, for example \"Given the call ended, When anyone asks who decides, Then one named owner appears...\". Steps 3 and 5 use rubrics with weights and thresholds, for example \"accuracy 40%, no legal admission 30%, plain language 30%. Pass is 80 points\". Neither rubric states the evidence each criterion needs. Public reaction is stochastic, but it has no metric, baseline, or sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none. I made assumptions A1 to A3 instead.\" The response logs the unknowns (role, review status, disclosure duties) as assumptions with validation steps. It asks zero questions, which fits Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"It is about as likely as not (33 to 66%) that the article is fully accurate, based on no evidence yet [judgment].\" This IPCC term is applied to the fact that drives the choice in Step 5. The check report finds no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present: Headline, BRIEF, End beginning \"I recommend that we\", and Self-test last. The check report finds zero dashes and zero banned words. There are four defects. First, the check report flags a 26-word sentence (\"Condition that changes the recommendation...\"), while the Self-test says \"Longest sentence: 25 words\". Second, \"I made assumptions A1 to A3 instead\" is self-mention in Follow-up, yet the Self-test reports 0. Third, the Self-test claims \"Complex as capped probes: yes\" when the response has no probes. Fourth, the A3 text uses \"may\".",
+      "score": 1
+    }
+  }
+}

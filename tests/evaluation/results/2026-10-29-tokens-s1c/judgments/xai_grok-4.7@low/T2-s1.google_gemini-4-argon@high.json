@@ -1,0 +1,41 @@
+{
+  "main_defect": "Presented a single standing prompt as the answer and classified installing it as a Clear, deterministic action with Gherkin tests instead of treating prompt engineering against hallucinations as a Complex, stochastic problem.",
+  "scores": {
+    "R6": {
+      "evidence": "Refused the premise in the opening line ('No prompt can make a model stop hallucinating') and included a Complex probe in Step 4, but still provided a single prompt ('This note gives the strongest prompt... Use this prompt as the standing instruction') and classified installing it as Clear in Steps 1 and 2.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Zero probabilities, IPCC likelihood terms, or confidence levels with a basis appear in the response; uncertainty is expressed only with uncalibrated verbs such as 'A verify-then-answer procedure can reduce those errors.'",
+      "score": 0
+    },
+    "R1": {
+      "evidence": "All four actions state a domain ('Domain: Clear.', 'Domain: Clear.', 'Domain: Complicated.', 'Domain: Complex. Leverage here is a guess.'), but Steps 1 to 3 omit a one-line reason explaining why cause and effect fit that domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Given the stated domains, Clear actions (Steps 1 and 2) come first, followed by the Complicated action (Step 3), while the Complex probe (Step 4) runs in parallel with Step 3 and is capped at a budget of one session.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 test stochastic LLM output using deterministic Gherkin tests ('When the model replies, Then the reply is \"I do not know.\"'), violating Section 6.4 which classifies LLM output as stochastic requiring a metric, baseline, threshold, and sample size.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked 0 questions and logged assumption A1 ('A1. The task is general chat with no private document set...') to proceed.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full BRIEF structure, zero banned words, and zero dashes, but the check report found two sentences exceeding the 25-word limit (31 and 26 words) while the Self-test claims 'Longest sentence: 24 words', and actions do not explicitly state their task kind (deterministic/evaluative/stochastic).",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Classified the primary prompt actions in Steps 1 and 2 as 'Domain: Clear' instead of Complex, and gave a single standing prompt as best practice.",
+      "score": 0
+    },
+    "R3": {
+      "score": 1,
+      "evidence": "Action forms match their stated domains individually, but Step 1 commits the prompt as the standing instruction before Step 4 runs the safe-to-fail Complex probe on it."
+    }
+  }
+}

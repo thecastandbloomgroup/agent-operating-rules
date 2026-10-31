@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as a follow-through failure. It prescribes routine changes and confines experimentation to one side probe, rather than testing several possible interventions in parallel.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains. However, Step 3 states only 'Cynefin: Clear' without explaining why its cause and effect are known.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary intervention is 'Fix follow-through first', supported by actions classified as 'Confused', 'Complicated', and 'Clear'. Only the format probe is classified as Complex. The team's response to retrospective changes is the primary Complex problem.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 4 includes a measure, 'Budget: 15 minutes per retrospective', and a stop condition. However, 'Set one action per retrospective' and 'Open each retrospective with a status check' are prescribed practices, not bounded probes of their effects on the team.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Run a format probe in parallel with Steps 2 and 3' respects parallel execution for that probe. However, 'take these four steps in order' makes follow-through changes the main sequence instead of running the Complex interventions as parallel, capped probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 to 3 provide Given/When/Then tests. Step 4 specifies a metric, baseline, threshold, and sample of 'all members, in three retrospectives'. However, the audit judges which causal category applies while declaring 'Kind: deterministic'; it lacks an evaluative rubric with weights, threshold, and required evidence.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response proceeds with logged assumptions and validation steps rather than asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'The cause is likely follow-through, not a stale meeting format (70% likely, [judgment])' explicitly calibrates the uncertain premise driving the recommendation. The Complex probe also states, 'The leverage is a guess.'",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline and BRIEF sections are present, End begins 'I recommend that we', and Self-test is last. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, Self-test claims 'primary or secondary behind each driving claim: yes', while the central causal claim rests on 'Cause 2 is the most common case in my experience of team practice [judgment]', not cited evidence.",
+      "score": 1
+    }
+  }
+}

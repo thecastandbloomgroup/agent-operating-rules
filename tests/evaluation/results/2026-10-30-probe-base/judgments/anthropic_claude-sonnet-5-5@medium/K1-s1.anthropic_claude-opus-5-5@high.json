@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 3 labels the ORM change Complex and runs a safe-to-fail probe, though the attached traces already show no cost. The prompt marks probing as waste. The response also uses \"I recommend that we\" in the Headline and cites references out of order.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Only Step 1 gives a reason: \"Domain: Complicated, because the limit read from OPS-412 picks the value.\" Steps 2 and 4 state only \"Domain: Clear.\" Step 3 says \"Domain: Complex, so this is a safe-to-fail probe\", which states the consequence, not why the domain is Complex.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: the pool fix is Complicated. Step 3 is wrong: \"Domain: Complex\" for the ORM check, while the response's own Evidence item 6 says \"order_lines span ... did not slow down (p95 30 to 26 ms). So the ORM change adds no visible cost.\" That cause is knowable from the data, so the secondary action is misclassified.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 does the analysis on the attached data and ties the value to OPS-412, which is an acceptable Complicated form. There is no revert-first fix. However, Step 3 is a probe (\"Budget: one pod, one hour. Stop if the error rate on the pod exceeds 1%\"), and the expected signals list \"a probe\" under should not contain. Most actions match their form, but one is wasted probing.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Complicated Step 1 has the highest leverage (\"88% of the added latency\") and comes first. Clear Step 2 \"MAY run with Step 1.\" The probe waits on Steps 1 and 2 (\"Step 3 MUST NOT start until the tests in Steps 1 and 2 pass\"), which the rule allows when the Clear steps reduce probe uncertainty. Step 4 depends on Step 1. The order is consistent with 6.5.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic Steps 1, 2, and 4 have Given/When/Then tests written first. Step 3 (stochastic) states the metric, \"Baseline: the pod with selectinload\", a pass threshold of \"at most 10 ms\", and \"Sample size: 10,000 sampled requests per pod.\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response does not put a revert first. It rejects it: \"Alternative considered: roll back the whole release. It loses because the evidence points to two config values, so a config fix is smaller.\" It names Complicated for the main action and gives the reason, backed by trace numbers (pool acquire 3 to 690 ms).",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3.\" The missing OPS-412 limit is handled as assumption A1 with a validation step instead of a question. This is suitable, because the material answers the rest.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The cause carries a calibrated statement: \"Confidence: high, three independent attachments.\" But Step 1 depends on A1 (\"limit is at least 32 connections\"), and A1 has no probability or IPCC term. A3 (per-pod scope) also has none.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required sections are present in order, with zero dashes, zero banned words, and no long sentences per the check report. Defects: the check report flags \"citations out of order (5.4.1)\" (first appearance 3, 2, 1). The Headline begins \"I recommend that we\", which is self-mention outside End, yet the Self-test reports 0.",
+      "score": 1
+    }
+  }
+}

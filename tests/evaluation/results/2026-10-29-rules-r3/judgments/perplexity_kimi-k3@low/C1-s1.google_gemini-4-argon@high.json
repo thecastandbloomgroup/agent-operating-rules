@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions 2 and 3 omit required blocker and Gherkin test elements (with Action 3 using an evaluative rubric after the file rewrite in Step 1), no reason is given for the Clear domain classification, and two sentences exceed the 25-word limit while the self-test reports a maximum of 22 words.",
+  "scores": {
+    "R2": {
+      "score": 2,
+      "evidence": "All three actions and the Headline are classified in the Clear domain (\"This is a Clear-domain task\", \"Deterministic, Clear domain\", \"Evaluative, Clear domain\")."
+    },
+    "R3": {
+      "evidence": "Step 1 is a one-step Clear action, but Step 2 is only a verification check rather than a work increment, and Step 3 turns a Clear task into an evaluative rubric exercise (\"Classify each former `print` as info, warning, or error. Evaluative, Clear domain. Rubric: weights 50% severity, 50% audience\").",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 3 (\"Classify each former `print` as info, warning, or error\") is ordered after Step 1 (\"Rewrite the file with the pattern above\") and Step 2 (\"Add a smoke check after the rewrite\"), even though rewriting the calls depends on knowing their log levels.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 includes a Gherkin test, but Step 2 is marked \"Deterministic, Clear domain\" without a Gherkin test, and Step 3 is marked \"Evaluative\" with an incomplete rubric instead of being a deterministic increment with a Gherkin test.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response avoided Complicated and named the Clear domain (\"This is a Clear-domain task with a deterministic test\"), but did not state why the task belongs in the Clear domain.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Follow-up asks one question with its use (\"One question: can you re-send the file? With it, Step 1 returns the rewritten 400-line file directly\"), whereas the prompt signals expect no questions and A2 references a question about stdout vs file output that is missing from Follow-up.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Check report shows 0 uncalibrated hedges, and no probability estimates are required for this deterministic Clear task.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states \"Clear domain\" (Steps 1, 2, and 3), but none includes a one-line reason explaining why the domain is Clear.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Check report flags two 31-word sentences exceeding the 25-word limit (sentences 13 and 51) while Self-test claims \"Longest sentence: 22 words\"; additionally, Steps 2 and 3 omit the blocker they remove while Self-test claims all actions include increment, blocker, and test.",
+      "score": 1
+    }
+  }
+}

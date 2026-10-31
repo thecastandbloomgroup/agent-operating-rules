@@ -1,0 +1,41 @@
+{
+  "main_defect": "Confuses task kind with Cynefin domain in Step 3 ('Cynefin domain: Stochastic'), treats benchmark creation as Complicated without stating why, omits the required statement that leverage is a guess for Complex work, and lacks calibrated uncertainty terms.",
+  "scores": {
+    "R1": {
+      "score": 1,
+      "evidence": "Steps 1, 2, and 4 state a Cynefin domain ('Complicated', 'Clear', 'Complex'), but Step 3 states a task kind instead ('Cynefin domain: Stochastic'), and no action includes a one-line reason for its domain."
+    },
+    "R3": {
+      "evidence": "Step 2 matches Clear (one-step UI addition) and Step 4 is a capped probe ('10% of agent sessions for two days with an immediate stop condition'), but Step 1 (Complicated) omits the analysis that picks the practice, Step 3 commits to a prompt rewrite without a probe budget or stop condition, and neither states that leverage is a guess.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 2 is rightly Clear and Step 4 is rightly Complex, but Step 3 (prompt refactoring) is misclassified as 'Stochastic' rather than Complex and Step 1 is tagged Complicated.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Step 1 and Step 2 appropriately precede the prompt changes to establish measurement, with Step 2 allowed in parallel ('Step 2 MAY run in parallel with Step 1'), but Step 3 is ordered sequentially as a committed step rather than a parallel capped Complex probe and leverage is not marked as a guess.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "All four actions include tests written before the increment that match their task kind: Step 1 uses a Kepner-Tregoe rubric with weights and thresholds, Step 2 uses Gherkin ('Given... When... Then...'), and Steps 3 and 4 state metric, baseline, pass threshold, and sample size.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Avoided the trap of assuming failures were already recorded ('The system lacks performance metrics and error logs to diagnose the issue') and built the benchmark and feedback mechanism first, but failed to classify the primary work as Complex and explain why.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked zero questions and logged two assumptions (A1 and A2) with 'Why not measured', 'Validate by', and 'If wrong' fields.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No probability, IPCC likelihood term, or confidence level with basis is used anywhere in the response, and Evidence uses the uncalibrated modal 'can exceed 10%'.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Includes all required sections and zero dashes or long sentences, but the check report flags one banned idiom ('gold standard' in Headline item 1) and multiple citations on a single rendered line in Evidence ('[1]' and '[2]' on line 22).",
+      "score": 1
+    }
+  }
+}

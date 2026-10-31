@@ -1,0 +1,41 @@
+{
+  "main_defect": "Action 1 only declares the incident and pauses changes. The real stabiliser (rollback or fail-over) waits in Step 3, behind a Complicated analysis step, and is labelled Complicated rather than Chaotic. This breaks the prompt's gate that action 1 must be a stabiliser.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1 to 3 state a domain with a short reason: \"Chaotic, stabilize first\", \"Complicated, use timeline and failed-request analysis\", \"Complicated, use Step 2's analysis\". Step 4 gives only \"Domain: Clear.\" with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary Chaotic domain is named for Step 1. However, the actual stabilising action (\"Restore the last healthy release or flag state\") in Step 3 is tagged \"Complicated, use Step 2's analysis\". The expected signals make that the Chaotic stabiliser, so a secondary action carries the wrong domain.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 (\"Declare your highest applicable customer-impact incident level... Pause deployments\") does not restore service. Step 2 is an analysis step (\"Check the deployment and configuration timeline... inspect one representative failed checkout trace\") placed before the rollback in Step 3. The prompt explicitly forbids an analysis step before the stabiliser and gates on action 1 being a stabiliser.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "The labels follow Chaotic, Complicated, Complicated, Clear. The substantive stabiliser comes third, after analysis, so the real order departs from \"Chaotic first\". No explicit domain-change dependency of the expected kind appears, such as later steps that MUST NOT start until service is restored.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Every step has a Gherkin test (\"Given..., when..., then...\"). Step 2 is a choice between recovery options (\"record one supported recovery target\"), which is evaluative work, but it is labelled \"Deterministic evidence collection\" and has no rubric.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". The access uncertainty is logged as assumption A1 instead of asked as a question, which fits the urgent context.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response contains no uncalibrated hedges. However, it gives no probability, IPCC term, or confidence level about the likely cause (for example, whether the last deploy caused the outage), although the branch choice in Step 3 depends on it. It only says \"report what remains uncertain\" and \"recovery unverified\".",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is present: Headline, BRIEF headings, End begins \"I recommend that we\", and Self-test comes last. The check script reports 0 banned words and 0 dashes. Defects: Background has two sentences where the prompt allows one. The script flags \"citation with no reference\" because the References list uses a bold label it did not parse. The Self-test claims \"Chaotic and Confused first: yes\", although the real stabiliser is in Step 3.",
+      "score": 1
+    }
+  }
+}

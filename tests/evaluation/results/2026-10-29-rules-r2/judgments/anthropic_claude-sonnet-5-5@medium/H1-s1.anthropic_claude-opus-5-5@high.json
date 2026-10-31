@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test reports a longest sentence of 22 words, but the check report finds sentences of 31, 27, and 31 words. The Step 1 dependency clause also lets Step 3 run during the rollback, which contradicts Step 3's own rule that it waits for the Step 1 test to fail.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain with a one-line reason: \"Domain: Chaotic. Stabilise first.\", \"Domain: Clear. Follow the escalation rule.\", \"Domain: Complicated. The log analysis picks the fix.\", \"Domain: Clear. A status template exists.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: Step 1 rollback is Chaotic. Paging (Clear, escalation rule), dependency analysis (Complicated), and the status brief (Clear, template) fit Section 6.5 definitions. No action is misclassified, although the expected record-capture step is absent.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The Chaotic action stabilises (\"Roll back the latest change\"). The Clear actions are one step (\"one page\", \"write three lines\"). The Complicated action names the analysis (\"The log analysis picks the fix\" with a weighted rubric).",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The stabiliser comes first and the Complicated analysis is gated (\"This step MUST NOT start until the Step 1 test fails\"). However, Step 1 says \"Steps 2 and 3 MAY run while it completes\", which contradicts that gate. There is no explicit domain-change statement, and no record/timeline capture step appears.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a Gherkin test (\"Given checkout returns 500... Then the same test order returns 200 within five minutes\"). Step 3 has a rubric with criteria, weights (50/30/20), a threshold of 70%, and evidence types. Step 4 has a rubric with three items at one point each and a 3 of 3 threshold. Step 2 has a Gherkin acknowledgment test. All forms fit their stated kinds.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Questions asked: 0 of 3\". Gaps are handled as logged assumptions A1 to A3, each with a validation step and impact, as Section 2 requires.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The key uncertain fact carries a probability: \"about 70% likely to come from a change, such as a deploy, a config edit, or a flag [judgment]\". The check report shows no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is present: Headline first, End begins \"I recommend that we\", and Self-test is last. The check report shows zero dashes and zero banned words. Defects: three sentences exceed 25 words (31, 27, 31), while the Self-test claims \"Longest sentence: 22 words\". The heading \"References\" sits outside the permitted heading names and outside Follow-up, and Follow-up is a bold label inside End rather than a heading.",
+      "score": 1
+    }
+  }
+}

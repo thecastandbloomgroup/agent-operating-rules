@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 is classified as evaluative but uses a deterministic Gherkin test, secondary action domains (Steps 1 and 2) are misclassified, and Steps 2 and 4 omit the one-line domain reason.",
+  "scores": {
+    "R4": {
+      "evidence": "Step 1 (Confused) comes first, followed by Steps 2, 3, and 4 (Clear and Complicated) ordered by dependency and leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1, 2, and 4 match their stated task kinds, but Step 3 is labeled 'Kind: evaluative' while using a deterministic Gherkin test ('Given the rubric from Step 2, When each file is scored, Then...').",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R9": {
+      "score": 1,
+      "evidence": "Zero banned words, zero dashes, and all sentences under 25 words per the check report, with full BRIEF and Self-test structure. Minor defects: lowercase 'must not' in Steps 3 and 4 instead of BCP 14 'MUST NOT', no Kepner-Tregoe/Pugh/ISO 25010 layout named for the evaluative rubric, self-mention ('I will score') in Follow-up, and avoidable passive voice ('When each file is scored', 'Then the weighted total is computed')."
+    },
+    "R1": {
+      "evidence": "All four actions state a Cynefin domain, but only Steps 1 and 3 include a one-line reason; Steps 2 and 4 state 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks one request/question in Follow-up ('Please attach the three proposal files.') and states how the answer will be used ('I will score each 36-month total and scope list with the rubric in Step 2, then name one vendor.').",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uses a calibrated confidence level with basis in Information: 'Confidence is high that the files are absent, based on one inspection of this message.' Zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Correctly identifies the core vendor comparison in Step 3 as Complicated, but misclassifies Step 1 (requesting missing attachments) as Confused when the problem domain is already known, and misclassifies Step 2 (designing rubric weights and criteria) as Clear.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action's form matches its stated domain: Step 1 (Confused) gathers information to classify, Steps 2 and 4 (Clear) are single-step actions, and Step 3 (Complicated) specifies the weighted-sum analysis.",
+      "score": 2
+    }
+  }
+}

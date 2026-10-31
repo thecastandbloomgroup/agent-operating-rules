@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives the likely wrong answer. It puts 'Roll back the release' as action 1, although its own A3 says the service is 'degraded but not down, so no chaotic stabilisation is needed.' The analysis of the cause should come first.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a one-line reason: 'Domain: Clear (rollback is a known practice)', 'Domain: Complicated (the trace analysis picks the fix)', 'Domain: Complicated (bisecting is a known good practice)', 'Domain: Clear (a known fix once Steps 2 and 3 agree)'.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The diagnostic work (Steps 2 and 3) is labelled Complicated, which matches the expected primary domain. Rollback as Clear and a post-analysis fix as Clear are defensible labels for those actions.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 commits a rollback before any analysis: 'Roll back the release on a canary, then on all hosts.' The prompt says to deduct for this. Steps 2 to 4 match the Complicated form: Step 2 is the trace analysis, and Step 4 'MUST NOT start until Steps 2 and 3 name the same layer'. However, Step 3 waits on Step 1, not on Step 2's analysis.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Rollback is first by claimed leverage, while the Complicated analysis comes second and 'MAY run in parallel with Step 1'. The expected order puts the analysis first, with build actions depending on it. There are no Chaotic or Complex actions to misplace, so this is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 test: 'metric is p95 on the canary. The baseline is 120 ms. The pass threshold is 150 ms or less. The sample size is at least 10,000 requests.' Step 2 has a rubric with criteria, weights 50/30/20, evidence, and a pass threshold. Step 3 has a stochastic test with a sample size. Step 4 has a Gherkin test ('Given the list endpoint with 50 seeded rows... Then the ORM runs at most 3 queries'). Each test fits its task kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response gave the likely wrong answer: 'Roll back first, then find the cause' and Step 1 'Roll back the release'. It admits in A3 that 'no chaotic stabilisation is needed', yet it still puts the rollback first. It does not name Complicated as the real domain of the task or say why analysis should come first.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The missing attachments are handled through logged assumptions A1 to A3, each with a validation step, which Section 2 permits.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The cause likelihoods are given as probabilities with a label: 'Connection pool too small... 40%', 'ORM change... 35%', 'Cache config... 25%' [judgment]. No uncalibrated hedges appear (the check report shows 0).",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The structure is present: Headline first, End begins 'I recommend that we', Self-test last, and the check report shows 0 dashes and 0 banned words. However, there is first-person self-mention outside End: 'I cannot see the attachments' in the Headline and 'no attachment reached me' in Background. The Self-test still reports 'Self-mention outside End: 0', so it is inconsistent. Step 3's increment says 'four load runs... plus a run with all three reverted', which conflicts with three single reverts. The Headline answer spans two sentences.",
+      "score": 1
+    }
+  }
+}

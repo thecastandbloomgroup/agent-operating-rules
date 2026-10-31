@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response states a single root cause as fact and applies Clear/Confused best practices, where the prompt expects a Complex classification with small parallel probes. The response contains no safe-to-fail probes, no stop conditions, and no budgets, so the primary domain is wrong (R2 = 0, a gate failure).",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1, 2, and 4 state a domain with a reason ('Domain: Confused, so this step only gathers data and cannot claim leverage', 'Domain: Clear, because a best practice applies directly', 'Domain: Complicated, because analysis of the recorded rate picks the next practice'). Step 3 states only 'Domain: Clear.' with no reason, so not every action carries a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected classification is Complex (human systems, many interacting causes, probes run in parallel). The response instead asserts a single root cause as fact: 'Retros stopped producing change because the actions from them have no owner, no date, and no review' and 'Fix the follow-through loop before you change the retro format'. The primary domain is treated as Confused/Clear, which is wrong for this prompt.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The forms are internally consistent with the domains the response assigned (Step 1 gathers data to classify, Steps 2 and 3 are one-step Clear actions, Step 4 is an analysis-picked Complicated action). However, the true domain is Complex, and the required form (two or three small parallel probes, each with a measure, a stop condition, and a budget) is absent. The response commits full increments ('apply the rule in the next retro', 'one standing agenda item') rather than capped probes.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Ordering follows the stated domains: the Confused step comes first, Clear and Complicated actions follow with leverage and dependency clauses ('Step 3 MUST NOT start until the test in Step 2 passes', 'Steps 2 and 3 run in parallel with Step 4'). No Chaotic or Complex actions are claimed, so the trade-off rules are respected given the response's own classification.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 to 3 use Gherkin tests ('Given the notes from a past retro, When I fill the table, Then each action carries exactly one status'). Step 4 is a stochastic test with metric, baseline, threshold, and sample size: 'metric is the completion percentage, baseline from Step 1, pass threshold 50 percent, sample size four cycles'. Each test form matches its declared kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The prompt states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Zero questions asked, and the response logged three assumptions (A1 to A3) instead of asking, which is the correct behavior under Section 2 when a wrong guess is cheap to reverse. 'Questions asked: 0 of 3'.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on an uncertain causal diagnosis, yet the headline states it as fact with no probability or IPCC term: 'Retros stopped producing change because the actions from them have no owner, no date, and no review'. The Information section labels one claim '[judgment]', which is evidence labeling, not calibrated uncertainty under 4.6. No probability or likelihood term appears where the recommendation depends on the diagnosis.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is complete (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last; four actions with increment, blocker, test). But the check report finds a banned item (idiom flagged: 'loop in' in 'fix the follow-through loop in this order', banned_total 1), a 33-word long sentence (over the 25-word description limit), and reference [2] never cited in the text. The Self-test is internally inconsistent with these findings: it claims 'Banned words found: 0' and 'Longest sentence: 21 words'.",
+      "score": 1
+    }
+  }
+}

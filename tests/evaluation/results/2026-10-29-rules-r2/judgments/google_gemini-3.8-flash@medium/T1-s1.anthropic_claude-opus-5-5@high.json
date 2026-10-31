@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 1 is a one-hour team meeting to vote on a formatter, labelled Complicated, so a group session comes before the formatter. The response never names the problem as Clear or says why the 'culture' framing is wrong. It also lists an uncited, likely fabricated reference.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a reason: 'Complicated. Cause and effect require technical evaluation of tooling options.', 'Clear. Best practice for automated linting is well established.', 'Clear. Direct policy definition resolves procedural conflict.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary work (formatter in CI, policy) is labelled Clear, which is correct. Step 1, the formatter choice, is labelled Complicated, but adopting a formatter is the Clear best practice, so a secondary action is wrong.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Steps 2 and 3 are one-step actions. Step 1 is 'a one-hour team meeting to vote between SQLFluff and standard sql-formatter default settings', an analysis or meeting step where the expected form is a one-step adoption.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "There are no Chaotic, Confused, or Complex actions. Selection, then CI enforcement, then review policy follows leverage and dependency, with explicit clauses: 'Step 2 MUST NOT start until...' and 'Step 3 MUST NOT start until Step 2 passes.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 is evaluative with a weighted rubric and a 70% threshold, though it states no evidence per criterion. Steps 2 and 3 are deterministic with Gherkin: 'Given an unformatted SQL file... Then the SQL lint job fails with a non-zero exit code.' Each test kind is correct.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline steers to automation ('Automate SQL formatting with a shared tool configuration'). However, Background adopts the culture framing ('resolve the underlying team dynamic'), and Step 1 is a team meeting before the formatter. The response never says the problem is Clear or why 'culture' points the wrong way.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. Unknowns are logged as assumptions A1 and A2 with validation steps, and this is appropriate because the material is enough to proceed.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses no banned hedges but gives no probability or IPCC term for A1 (CI exists) or A2 (dialect supported), although Follow-up makes the recommendation depend on them. It also states 'Industry data shows...' as fact under a [judgment] label.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings, the 'I recommend that we' opening, and the Self-test are present, and the check report shows zero dashes and zero banned words. The check report flags 'citation with no reference' (cites_unlisted: [1], ref_entries: 0). Reference [1] is never cited in the body text and is likely fabricated, yet the Self-test claims 'all from session or identified with confidence: yes', so the Self-test is inconsistent.",
+      "score": 1
+    }
+  }
+}

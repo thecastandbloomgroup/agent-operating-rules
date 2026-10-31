@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test reports 'Longest sentence: 24 words' but the check report found a 30-word sentence, so the Self-test is inconsistent with the response and one sentence breaches the 25-word description limit; otherwise the response is fully conformant.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names its domain and a reason: Step 1 '(Confused, deterministic)... removes the blocker that we cannot yet classify'; Step 2 '(Complicated, evaluative)... picks the practice to use next'; Step 3 '(Complex, capped probe)... adds the capability of evidence-based fixing'; Step 4 '(Clear, deterministic)... prevents regressions after the fix'.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The expected classification is Confused and Step 1 is labeled Confused with a gather-data-to-classify action ('Pull the last 20 to 50 failed runs and group them'). Follow-on domains (Complicated classification, Complex probe, Clear monitoring) are all plausible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Forms match: Confused action gathers classification data; Complicated action names the analysis (rubric scoring before work); Complex action is a capped probe with budget ('one day, ten re-runs'), measure, and stop condition; Clear action is one step.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused classify-first action comes first, followed by Complicated analysis with an explicit dependency ('This step MUST NOT start until Step 1 passes'), then the Complex probe, then the Clear monitoring step. No Chaotic work exists and no probe is ranked above Clear work by claimed leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions carry Gherkin ('Given the collected run logs, When I group failures... Then each failure maps to exactly one cause bucket'); the evaluative action has criteria with weights (40/30/30) and a threshold ('at least 30% of failures'); the probe states metric, sample size ('ten re-runs'), and threshold ('failure rate... drops by half').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply: the prompt states 'R6 applies: no' and there is no 'Likely wrong answer' line.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions in Follow-up, each with stated use: error messages 'to fill the cause buckets in Step 1 directly', and timing 'to narrow the cause before quarantine'. Well within the three-question cap.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Confidence is stated in a permitted form with basis: 'high confidence, it is the cheapest action that changes every later step'; uncertain cause claims carry [judgment] labels; the check report finds zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure is present (Headline, Background, Relevance, Information, End beginning 'I recommend that we', Follow-up, Self-test last), zero banned words, zero em/en dashes per the check report. However the check report flags a 30-word sentence (over the 25-word limit) and the Self-test wrongly claims 'Longest sentence: 24 words', so the Self-test is inconsistent with the response.",
+      "score": 1
+    }
+  }
+}

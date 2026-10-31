@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as a known follow-through failure. It prescribes a standing rule instead of parallel, bounded probes and infers causes from completion rates without sufficient evidence.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains: \u201cClear,\u201d \u201cClear,\u201d \u201cComplex,\u201d and \u201cComplicated.\u201d However, they lack one-line reasons explaining why those domains fit; blocker statements do not explain the classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The main intervention is \u201cOne-action rule (Clear, deterministic).\u201d Whether that rule changes team behavior is Complex, not a known cause-and-effect relationship. Labeling the later monitoring step Complex does not correct the primary classification.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The \u201cCompletion probe\u201d includes a measure, budget, and stop condition, and escalation includes a rubric. However, the main rule is an ongoing commitment rather than a bounded probe. \u201cStop\u201d after two retros also conflicts with \u201cDo not judge the plan before four retros complete.\u201d",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The audit appropriately precedes work that uses its baseline: \u201cThis step MUST complete before step 2 starts.\u201d However, \u201ctake four actions in this order\u201d supplies a serial plan rather than explicit parallel probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The response supplies Given/When/Then tests and a stochastic metric, baseline, threshold, and sample. However, the intervention\u2019s deterministic test checks only record completeness. The evaluative rubric supplies weights and a threshold but no criterion scores or criterion-specific evidence requirements.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\u201cQuestions asked: 0 of 3.\u201d No question asks the user to diagnose the problem. Reversible probes could proceed without further answers.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cA completion rate that stays above 80% while problems repeat means the causes sit outside the team\u201d asserts an uncertain diagnosis as fact. \u201cThe leverage of this step is a guess [judgment]\u201d supplies neither a probability nor a confidence level with its basis.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, four actions, and a final Self-test are present. The check report confirms zero banned words and dashes, but flags long sentences and citation-format defects. The Self-test claims a 24-word maximum, while the report identifies a 29-word sentence.",
+      "score": 1
+    }
+  }
+}

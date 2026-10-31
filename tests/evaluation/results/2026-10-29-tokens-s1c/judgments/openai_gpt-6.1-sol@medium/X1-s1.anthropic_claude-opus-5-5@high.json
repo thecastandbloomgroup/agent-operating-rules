@@ -1,0 +1,41 @@
+{
+  "main_defect": "The steps that build the measure (Steps 2 and 3) carry the tag Complicated, not Complex probes. The response never names the overall problem as Complex or says why. This partly repeats the likely wrong classification, even though it creates the error record before any fix.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain with a one-line reason. Step 1: \"Domain: Clear, meaning the required behavior has a direct test.\" Step 2: \"Complicated, meaning expert analysis can resolve the task.\" Step 3: \"Complicated; use case-mix analysis to select the sample.\" Step 4: \"Complex; use a small experiment because the effect needs observation.\"",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 4 is correctly tagged Complex, and Step 1 containment as Clear is defensible. However, the expected first probe builds the measure and should be tagged \"stochastic, Complex\". Instead, Step 3 (\"Kind: Stochastic. Domain: Complicated\") and Step 2 carry the tag Complicated. The overall problem is never named Complex. The primary domain is only partly right.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The form matches each stated domain. Step 1 is one step with a Gherkin interface test. Steps 2 and 3 name their analysis (\"Use disagreement analysis to revise the rubric\", \"use case-mix analysis to select the sample\"). Step 4 is a capped probe: \"Spend at most one working session testing one change. Stop if the budget expires or a severe regression appears.\"",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No action is Chaotic or Confused. Containment comes first, then the Complicated steps by dependency. The Complex probe waits on Step 3 with an explicit reason: \"Step 4 MUST NOT start until Step 3 identifies a recurring error class.\" This is acceptable because the earlier step reduces the probe's uncertainty.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 uses Gherkin: \"Given an unchecked summary, when an agent opens it, then...\". Step 2 uses a rubric with weights (60/25/15), evidence, and a 90% threshold. Steps 3 and 4 list metric, baseline, pass threshold, and sample size (\"50 paired cases\", \"At least 50% fewer affected summaries\"). The Step 3 metric is only a completion count, which is weak but present.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response avoids analysing failures as if they were recorded. It creates the record first (\"Current scores: unavailable. No case evidence supports scores yet\") and builds a labelled sample. However, it tags that record-building as Complicated and never states that the problem is Complex or why.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. The gaps are logged as assumptions A1 and A2, each with a validation test. This is acceptable under Section 2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Confidence is stated with a basis: \"High confidence in measurement before model selection, based on the missing baseline\" and \"Confidence in any specific technical fix remains low because no failed cases are available.\" Leverage is marked as a guess: \"Its expected benefit remains a guess until the test passes.\"",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The full structure is present in order, End begins \"I recommend that we\", and the Self-test comes last. The check report shows 0 banned words, 0 dashes, and no long sentences. One minor defect: reference [2], a peer-reviewed ACL paper, is tagged [P], but the rules list such papers as [S]. The Self-test still reports source types as correct.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response omits a one-line reason for each Clear domain. It also puts its open question in Information and omits Follow-up, which the rules allow only when Follow-up has nothing in it.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states \"**Domain:** Clear.\" No action gives a one-line reason for that domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions are labelled Clear. This matches the expected classification for a formatting task.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one step: \"Receive the list.\", \"Format the entries.\", \"Check the result.\" There are no probes and no analysis-first framing.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear and follow the dependency order: \"Step 2 waits for Step 1.\" and \"Step 3 waits for Step 2.\" No domain rule is broken.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each action is Deterministic with a Gherkin test. Step 2 reads: \"Given the entries, when formatted, then each reference follows IEEE conventions for its source type.\" Step 3 checks that every entry appears once and that nothing is invented.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks one question: \"Can you paste the reference list here so each entry can be formatted?\" The question states its use, and the material does not contain the entries, so Section 2 permits it.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No material uncertainty drives the recommendation, because the absence of the attachment is a fact. The unsourced claims carry [judgment] labels, and the response uses no uncalibrated hedges.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The check report finds zero banned words, zero dashes, and no long sentences. The Headline, BRIEF headings, \"I recommend that we\", and a final Self-test are present. Defects: the open question sits in Information, and Follow-up is omitted although an open question exists. The Self-test claims \"Source types tagged: yes\" with 0 references, which is vacuous. The response also uses agentless passives (\"are needed\", \"be formatted\") where the agent is known.",
+      "score": 1
+    }
+  }
+}

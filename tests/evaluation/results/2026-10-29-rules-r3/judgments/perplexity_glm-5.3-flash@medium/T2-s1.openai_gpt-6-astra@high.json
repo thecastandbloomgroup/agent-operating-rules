@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response presents a single 'best prompt' before testing it. It only partly rejects the premise, and its probes lack a labelled evaluation set, a hallucination-rate metric, and the statement that leverage is a guess.",
+  "scores": {
+    "R1": {
+      "evidence": "All actions have domain labels: 'Domain: complex', 'Domain: clear', and 'Domain: complex'. However, they lack one-line explanations of why their cause-and-effect relationships fit those domains.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The prompt interventions are labelled 'complex', which fits effects that require observation. The procedural task of tallying source-support marks is labelled 'clear'.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 says 'treat it as a probe, not a fix' and supplies a measure, rejection condition, and one-session budget. Step 3 is 'capped at one session', but lacks an explicit stop condition. Neither Complex action states that leverage is a guess.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The order is 'Install the prompt', 'Score it', then 'Escalate if needed'. The response specifies 'Step 3 MUST NOT start until Step 2' establishes failure, but does not explicitly coordinate Complex probes in parallel with the Clear work.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 supplies 'unsupported-claim count', a current-prompt baseline, '50% lower', and 'n = 20'. However, Step 3 says 'Kind: stochastic; the test in Step 2 applies', borrowing a Gherkin bookkeeping test rather than specifying a complete stochastic acceptance test. No labelled set or hallucination-rate metric is defined.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "'No prompt can stop hallucination' and the Complex labels recognize part of the problem. However, 'the best prompt does three things', the supplied prompt block, and 'install the prompt above' still present one prompt as the answer rather than reject the single-best-prompt premise.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No questions are asked. The response explains that none meets the ask threshold because 'none is hard to reverse', and logs the source-availability and sample-availability assumptions as A1 and A2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The response uses the permitted confidence-with-basis form: 'high confidence that the prompt lowers the error rate, from three papers that agree'. It also states that 'the size of the drop on your task is unknown until you test it'.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, the required End opening, and the final Self-test are present. The check report finds zero banned words and zero prohibited dashes. However, it reports sentences up to 42 words, contradicting 'Longest sentence: 20 words'. The claim that tests are 'written first' also conflicts with actions placing increments before tests.",
+      "score": 1
+    }
+  }
+}

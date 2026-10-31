@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions in End omit the one-line reason for each Cynefin domain, Complicated actions omit the required prior analysis, the Complex probe omits stating that leverage is a guess and is interleaved without a dependency on Step 1, calibrated uncertainty is missing, and the Flesch-Kincaid grade (11.2) exceeds 10.",
+  "scores": {
+    "R9": {
+      "evidence": "Headline, BRIEF sections, and Self-test are present with 0 banned words and 0 dashes, but Flesch-Kincaid grade is 11.2 (exceeding the limit of 10 in Rule 4.1.7).",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Clear.', 'Cynefin domain: Complicated.', 'Cynefin domain: Complex...'), but none includes a one-line reason explaining why that domain applies.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Action 1 (Clear) is one step and Action 3 (Complex) is a capped safe-to-fail probe ('capped at 20% of traffic with automatic rollback on error spikes'), but Action 3 omits stating that leverage is a guess, and Complicated Actions 2 and 4 do not name the analysis that selects the practice (such as choosing HMAC SHA-256 or token lifetimes).",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The two tracks are interleaved in a single numbered list (1. conversion telemetry, 2. JWT service, 3. conversion probe, 4. gateway migration); Step 3 is not marked to run in parallel and lacks an explicit dependency on Step 1 despite relying on its baseline.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Explicitly separates the request into two tracks ('We should separate the authentication migration from the sign-up flow optimization... Executing both tasks independently prevents authentication defects from corrupting conversion metrics') and classifies the migration as Complicated (Deterministic) and conversion experimentation as Complex (Stochastic).",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Contains zero uncalibrated hedges, but states uncertain conversion claims and assumptions without any probability, IPCC likelihood term, or confidence level per Rule 4.6.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Correctly classifies funnel instrumentation as Clear (Action 1), JWT service creation and authorization migration as Complicated (Actions 2 and 4), and the reduced-field registration experiment as Complex (Action 3).",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic Actions 1, 2, and 4 use Gherkin (Given/When/Then) before the increment, and Stochastic Action 3 specifies the metric, baseline, threshold, and sample size ('Accept the variant if conversion increases by 10% over the 15% baseline at 5,000 visitors per arm').",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "'Open questions: None.' The response asks zero questions and logs three complete assumptions (A1 to A3) per Rule 2.3 and 2.4.",
+      "score": 2
+    }
+  }
+}

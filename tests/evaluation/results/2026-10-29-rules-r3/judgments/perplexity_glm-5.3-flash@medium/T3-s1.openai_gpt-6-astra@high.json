@@ -1,0 +1,41 @@
+{
+  "main_defect": "The conversion probe measures sign-up completion against a sign-up-to-activation baseline and defers its final sample size. Its acceptance test is therefore not ready to support a conversion decision.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain, but several lack a reason for that classification. Steps 1 and 5 state only \u201cCynefin domain: Clear\u201d; Step 4 similarly states \u201cCynefin domain: Complicated\u201d without explaining why.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The token service and rollout are \u201cComplicated,\u201d while the sign-up experiment is \u201cComplex.\u201d The fixed dashboard and session-path removal are reasonably classified as \u201cClear.\u201d",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "The migration names \u201ca threat review\u201d as its analysis. The conversion probe includes a measure, \u201ctwo weeks or the sample cap\u201d as its budget, and an error-rate or drop-off stop condition. The rollout explicitly waits for Step 2.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "\u201cThis step MUST pass before Step 3 starts\u201d puts the baseline before the probe. The probe otherwise runs \u201cin parallel\u201d with migration work. Token construction precedes rollout, and session retirement comes last.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions use \u201cGiven,\u201d \u201cWhen,\u201d and \u201cThen.\u201d However, Step 1 measures \u201csign-up-to-activation rate,\u201d while Step 3 tests \u201csign-up completion rate\u201d against that baseline. The final sample size is deferred to a power calculation, with only a minimum specified. Tests also appear after the increments rather than first.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response explicitly identifies \u201ctwo programs.\u201d Migration requires a \u201cthreat review\u201d and is Complicated; conversion is Complex because gain is \u201cunknowable before the test\u201d and \u201cClaimed leverage is a guess.\u201d It avoids treating both requests as deterministic implementation work.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Three questions each state their use: \u201cpick the JWT library and token transport,\u201d \u201cset the access-token TTL and the deny-list design,\u201d and \u201cdefine the Step 1 baseline.\u201d",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cBased on point 3 above, high confidence\u201d supplies calibration for one security claim. However, the design-driving assumption that revocation is needed \u201cwithin minutes\u201d has no likelihood or confidence basis, despite determining the recommended token architecture.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, five actions, the required End opening, and a final Self-test are present. The check report confirms zero banned words and zero prohibited dashes, but reports 55-word and 44-word sentences. This contradicts \u201cLongest sentence: 24 words.\u201d The claim that every test is \u201cwritten first\u201d also conflicts with the action layout.",
+      "score": 1
+    }
+  }
+}

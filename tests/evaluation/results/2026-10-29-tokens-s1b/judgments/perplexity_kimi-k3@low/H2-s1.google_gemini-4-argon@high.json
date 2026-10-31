@@ -1,0 +1,41 @@
+{
+  "main_defect": "Secondary actions misclassify the public crisis response as Complicated/deterministic rather than Complex, Action 5 omits the required blocker field, and six sentences exceed the 25-word limit despite the Self-test claiming a 25-word maximum.",
+  "scores": {
+    "R3": {
+      "evidence": "Actions 1 and 2 stabilise first without drafting a premature public statement, Action 3 defines the analysis, and Action 5 is a Complex probe with a measure, stop condition, and budget ('one analyst day'), though Action 4 commits to a full response as Complicated and Action 5 omits its blocker.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks zero questions ('No open questions to you: the three unknowns are all answered by Steps 2 and 3') and logs three assumptions (A1-A3) instead.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Contains zero banned uncalibrated hedges and uses explicit conditional branches for unknowns, but never states a probability, IPCC likelihood term, or confidence level with its basis per Section 4.6.",
+      "score": 1
+    },
+    "R1": {
+      "score": 1,
+      "evidence": "Every action states a domain ('Domain: Chaotic', 'Domain: Chaotic moving to Complicated', 'Domain: Complicated', 'Domain: Complex'), but Steps 1-4 omit a one-line reason explaining why cause and effect fit that domain."
+    },
+    "R4": {
+      "evidence": "Places the Chaotic stabilisers first (Steps 1-2), orders the Complicated actions by dependency (Steps 3-4), and runs the Complex probe in parallel with a budget cap (Step 5).",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Provides Gherkin tests for Steps 1, 2, and 4, a weighted rubric for Step 3, and a baseline/threshold/sample size for Step 5, but misclassifies crisis statement drafting in Step 4 as deterministic, tests task completion rather than the coverage metric in Step 5, and places all tests after the work description.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R9": {
+      "evidence": "Includes all required sections with zero dashes and zero banned words, but has six sentences over 25 words (up to 33 words in the check report) while claiming 'Longest sentence: 25 words' in the Self-test, and omits the blocker in Step 5.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Correctly classifies the initial freeze on external comment as Chaotic (Step 1), but uses a hybrid 'Chaotic moving to Complicated' for Step 2 and treats publishing the external response (Step 4) as Complicated rather than Complex.",
+      "score": 1
+    }
+  }
+}

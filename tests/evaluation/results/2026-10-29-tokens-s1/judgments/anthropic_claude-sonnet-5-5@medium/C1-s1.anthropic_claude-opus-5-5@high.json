@@ -1,0 +1,41 @@
+{
+  "main_defect": "The core action, Step 3 (replace the print calls), is labelled Complicated. That is the likely wrong answer named for this Clear prompt. The Self-test also misreports the longest sentence and the self-mention count.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a Cynefin line. Only Step 1 ('Clear. Apply a plain search.') and Step 3 ('Complicated. First sort the calls by form...') give a reason. Steps 2 and 4 say only 'Cynefin: Clear.'",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Steps 1, 2 and 4 are Clear, which is correct. Step 3, the main replacement, is 'Cynefin: Complicated'. That is the deduction the prompt names. The overall frame stays Clear, so this is not a 0.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Each action's form fits the domain it was given. The Clear steps are single steps. The Complicated Step 3 names its analysis first ('sort the calls by form... then pick one rewrite rule per form'). There is no probe and no budget.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear or Complicated. They form a numbered sequence with explicit dependency clauses, for example 'Step 3 MUST NOT start until the test in Step 2 passes.' Scoping comes first because it removes the stdout blocker.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 2 to 4 have Gherkin tests written first ('Given the service starts, When code calls logger.info(\"ready\"), Then one line with level INFO appears on stderr'). Step 1 is typed 'evaluative' and uses a rubric with no weights and no evidence per criterion. The prompt expects every action to be deterministic with Gherkin.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Most actions are Clear. However, the core conversion is called 'Complicated', which is the likely wrong answer. The response never says why the main task is Clear.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "One question: 'Can you attach the file again? I will then produce the edited file and run the checks in Steps 2 to 4 against it.' It states its use, and the response says the attachment is missing.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear. However, A1 (no readers of stdout) drives the Step 2 gate and the change condition, and it carries no probability or IPCC term.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The full structure is present, with zero banned words and zero dashes. The check report finds sentences of 33, 28 and 27 words, but the Self-test says 'Longest sentence: 24 words'. Self-mention appears outside End ('I cannot edit your 400 lines' in Headline, 'I will then produce' in Follow-up), yet the Self-test reports 0.",
+      "score": 1
+    }
+  }
+}

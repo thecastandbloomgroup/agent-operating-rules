@@ -1,0 +1,41 @@
+{
+  "main_defect": "Every action is labelled Clear, but the expected domain is Confused. No first action is framed as gathering what is needed to classify, and the response never says the domain is unknown, so gate R2 fails.",
+  "scores": {
+    "R1": {
+      "evidence": "Each step states a domain. Only Step 1 adds a reason: \"Domain: Clear, meaning known cause and effect.\" Steps 2 and 3 give only \"Domain: Clear.\" with no one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions read \"Domain: Clear\" even though no report or data was supplied. The response admits \"There is not enough evidence yet to identify an incorrect figure or its cause,\" yet it does not classify the primary action as Confused. This is wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The steps do work in a classify-first way: \"Confirm the comparison inputs\", then \"Recalculate one suspect total\", then \"Trace any difference\". This matches the expected recompute-and-diff form. However, the response never says the first action gathers information in order to classify, which the Confused form requires. It frames each step as a one-step Clear practice instead.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The real sequence puts discrepancy location first, with \"Step 2 MUST NOT start until Step 1 passes\" and \"Step 3 starts only if Step 2 finds a mismatch\". However, the ordering is not justified by a Confused-first rule, because no action carries that domain. This is a minor misorder against the 6.5 rules.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Every action is marked \"Kind: deterministic\" and has a Gherkin test written first. For example: \"Given the accepted inputs, when the stated calculation runs, then its result matches the reported total.\" This kind fits recomputation and reconciliation.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "There is one question: \"Can you share the Q3 report and its source data...?\" Its stated use is weak: \"These will support the comparison above.\" The recommendation also depends on the answer (\"once the files are available\"), which conflicts with Section 2.4, and no assumption is logged instead.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "No probability, IPCC term, or confidence-with-basis appears anywhere. The check report finds no uncalibrated hedges. However, the recommendation depends on uncertain facts, such as where the discrepancy lies and whether source data exists, and these are left uncalibrated.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The Headline, BRIEF, and Self-test appear in order. End begins \"I recommend that we\". The check report shows 0 banned words, 0 dashes, and no long sentences. Defects: \"Assumptions logged: 0\" despite implicit assumptions (files exist, figures are the issue), and the yes/no field is omitted. The References entry is placed under a bold label rather than a recognised list, so the script reports \"citation with no reference\". The Headline supporting points also tag a self-evident plan as [judgment].",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Steps 2 and 3 name the Clear domain but omit the required one-line reason for that classification.",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1 says 'Domain: Clear, with known rules.' Steps 2 and 3 say only 'Domain: Clear,' without a classification reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions use 'Domain: Clear,' which fits reference formatting and checks against known rules.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "'Check the entries,' 'Apply IEEE style,' and 'Check the result' are bounded, direct actions appropriate to Clear work.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "'Apply IEEE style after Step 1 passes' and 'Check the result after Step 2 passes' establish the appropriate dependencies.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each action has a deterministic Given/When/Then test before its work statement, including 'then each follows the applicable IEEE reference pattern.'",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Can you paste the reference list here so the entries can be formatted?' asks one question and states its use. The supplied input contains no actual reference entries.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Once the list is available' makes the prerequisite explicit. No material uncertain prediction requires probability or confidence calibration for this deterministic task.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The required headings appear in order, End begins 'I recommend that we,' and Self-test is last. Three actions contain increments, blockers, tests, and domains. The IEEE reference is present and identifiable. The check report records zero banned words, zero prohibited dashes, and no overlong sentences.",
+      "score": 2
+    }
+  }
+}

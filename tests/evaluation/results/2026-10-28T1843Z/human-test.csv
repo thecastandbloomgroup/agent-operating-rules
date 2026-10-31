@@ -1,0 +1,6 @@
+date,model,provider,rules_version,prompt_id,domain,grader,R1,R2,R3,R4,R5,R6,R7,R8,R9,total,available,gates_passed,pass,main_defect,response_file,reason
+2026-10-28,anthropic/claude-sonnet-5-5@medium,anthropic,3.2.0,C1,Clear,human,,,,,,,,,,,,,,,responses/anthropic_claude-sonnet-5-5@medium/C1-s1.md,a judge failed a gate
+2026-10-28,google/gemini-3.8-flash@medium,google,3.2.0,C1,Clear,human,,,,,,,,,,,,,,,responses/google_gemini-3.8-flash@medium/C1-s1.md,a judge failed a gate
+2026-10-28,openai/gpt-6.1-sol@medium,openai,3.2.0,C1,Clear,human,,,,,,,,,,,,,,,responses/openai_gpt-6.1-sol@medium/C1-s1.md,random sample
+2026-10-28,perplexity/kimi-k3@low,moonshot,3.2.0,C1,Clear,human,,,,,,,,,,,,,,,responses/perplexity_kimi-k3@low/C1-s1.md,random sample
+2026-10-28,xai/grok-4.7@low,xai,3.2.0,C1,Clear,human,,,,,,,,,,,,,,,responses/xai_grok-4.7@low/C1-s1.md,a judge failed a gate

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Treats adding a prompt to stop hallucinations as a deterministic, Clear-domain action instead of a Complex probe, and omits the required statement that leverage in the Complex domain is a guess.",
+  "scores": {
+    "R2": {
+      "score": 1,
+      "evidence": "Identifies the Complex domain on Step 4 (\"Measure the effect (stochastic, Complex domain...)\"), but misclassifies Step 1 (adding a system prompt to stop hallucination) as Clear and Step 2 (providing documents to the model) as Complicated."
+    },
+    "R4": {
+      "evidence": "Orders Clear and Complicated steps 1 to 3 and specifies that the Complex probe runs in parallel and capped: \"(stochastic, Complex domain; run as a capped probe in parallel with Steps 1 to 3). Budget: one session, stop after 100 questions.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 4 properly uses a stochastic test with metric, baseline, threshold, and sample size, but Steps 1 and 2 classify LLM output as \"deterministic\" and use single-input Gherkin tests instead of stochastic tests.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asks zero questions (\"Questions asked: 0 of 3\") and logs two assumptions (A1 and A2) to proceed.",
+      "score": 2
+    },
+    "R1": {
+      "evidence": "Every action states a domain, but only Step 2 includes a one-line reason (\"The choice of which documents to retrieve needs a simple relevance analysis\"); Steps 1, 3, and 4 state the domain without a reason.",
+      "score": 1
+    },
+    "R3": {
+      "score": 1,
+      "evidence": "Step 4 is structured as a probe with a measure, stop condition, and budget (\"Budget: one session, stop after 100 questions\"), but omits the required statement that leverage is a guess, while Step 1 commits a single prompt as a Clear one-step action."
+    },
+    "R6": {
+      "evidence": "Refuses the premise in the Headline (\"No single prompt prevents hallucination, because prompt wording controls style, not factual accuracy\"), but still gives a single prompt as a Clear-domain deterministic step in Step 1 instead of framing prompt changes as Complex probes.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "Zero banned uncalibrated hedges in the check report, but fails to use any probability, IPCC likelihood term, or confidence level with basis where uncertainty is material (e.g., \"Quantitative evidence is thin\", \"the exact size is unknown\").",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full structure and zero banned words or dashes, but the check report flags four sentences exceeding the 25-word limit (up to 32 words, while Self-test claims \"Longest sentence: 24 words\") and more than one citation on a single line in Information.",
+      "score": 1
+    }
+  }
+}

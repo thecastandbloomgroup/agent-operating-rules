@@ -1,0 +1,41 @@
+{
+  "main_defect": "Ordering and domain gating are wrong. Step 2's Complicated dependency analysis 'MUST run in parallel with Step 1' when it should wait until the stabiliser restores service. The response also has no explicit Chaotic-to-Complicated domain change, and it states no domain reasons. Other defects: no calibrated likelihood, the expected 'capture logs and timeline' record step is missing, and Background has three sentences.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action has a domain: 'Cynefin domain: Chaotic.', 'Cynefin domain: Complicated.', 'Cynefin domain: Clear.' No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: Step 1 rollback is 'Chaotic', and Step 2 dependency checks are 'Complicated'. Step 3, the briefing, is tagged 'Clear', but the expected signal is 'Complicated for the rest'. So one secondary action deviates from the expected classification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabiliser ('trigger an immediate rollback'), but its increment begins with diagnosis: 'Inspect the continuous delivery pipeline'. Step 2 is analysis in Complicated form, which fits its domain, but it runs concurrently with the stabiliser. Step 3 is a one-step Clear action. Overall the forms mostly match.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic stabiliser is listed first, which is correct. However, 'Step 2 MUST run in parallel with Step 1' lets Complicated analysis start before stabilisation. The expected gate, that Complicated steps MUST NOT start until Step 1 restores service, is missing. This is a minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 has a Gherkin test: 'Given a release occurred... When... triggers the rollback... Then... HTTP 200'. Step 2 has a rubric with criteria, equal weights, a '3 of 3' threshold, and evidence 'live telemetry graphs'. Step 3 has a Gherkin test with fixed acceptance criteria. Each test form fits its task kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response asks no questions, logs gaps as assumptions A1 and A2, and proceeds. This fits a ten-minute outage.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on whether a deploy caused the outage, but the response says only 'a recent release or infrastructure outage is the most likely cause [judgment]'. It gives no probability or IPCC term. The assumption log does give 'If wrong' fallbacks, so the result is mixed calibration.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, End ('I recommend that we take these three actions'), and a final Self-test are all present. The check report shows 0 banned words, 0 dashes, and no long sentences. Defects: Background has three sentences, against the prompt's limit of one. The user-stated fact is labelled '[inference]'. The reference author initial reads 'L. Beyer' where the author is Betsy Beyer. The Self-test claims 'Chaotic and Confused first, Complex as capped probes: yes' while analysis runs in parallel with the stabiliser.",
+      "score": 1
+    }
+  }
+}

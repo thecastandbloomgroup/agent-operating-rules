@@ -1,0 +1,41 @@
+{
+  "main_defect": "Domains are named per action but never given a one-line reason (R1 capped at 1), and assumption A3 contains a garbled sentence (\"Hich is more likely than not in modern CI is not asserted\"), which breaks clean rules-file conformance (R9 at 1). Otherwise the response matches the expected Confused-first pattern: zero questions, logged assumptions, evidence-gathering first action, a capped Complex probe, and a self-test consistent with the body.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain label (\"1. Confused, deterministic\", \"2. Complicated, deterministic after Step 1\", \"3. Complex, stochastic probe\", \"4. Clear, deterministic\"), but no action gives a one-line reason why that domain applies; the sentences after each label state the blocker (\"It removes missing evidence\"), not the domain rationale.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 is Confused and gathers what is needed to classify (\"add one CI step that stores revision, test list, seed, agent image, duration, and full console\"), matching the expected classification. Step 2 Complicated (environment pinning after analysis), Step 3 Complex probe, Step 4 Clear best-practice quarantine are all consistent with Section 6.5 once classification is done.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Confused action gathers classification data first; Complicated action follows the analysis action (\"deterministic after Step 1\"); Complex action is a safe-to-fail probe with measure, stop condition, and budget (\"Budget: one working session. Stop condition: any test fails at least 2 of 20 runs\"); Clear action is a single quarantine step with owner, expiry, and log link.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused first (Step 1), Complicated and Clear ordered by blocker removal (Step 2 before Step 4), Complex probe run in parallel and capped (\"stochastic probe in parallel after Step 1\"), with explicit dependencies (\"Step 2 MUST NOT start until Step 1 stores at least five runs\").",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Deterministic actions use Gherkin (\"Given a failed run, when artifacts upload, then the record contains those six fields\"; \"Given two clean agents, when the same commit runs twice, then tool versions and file hashes match exactly\"). The stochastic probe states a metric (failures per test), sample size (20 runs of three tests), and threshold (2 of 20), though no explicit baseline beyond the fixed-seed reruns.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the prompt metadata (\"R6 applies: no\").",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0 of 3. The response instead assumes and logs assumptions A1 to A3 with the required four fields each, which the expected signals explicitly allow.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertainty uses a confidence level with basis (\"The root cause is low confidence, because no build output exists in the material\") and the check report shows zero uncalibrated hedges. No recommendation-driving uncertainty is left unlabelled.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present: Headline with three MECE supports, Background, Relevance, Information with evidence/assumptions/alternative, End beginning \"I recommend that we\", Follow-up, Self-test last. Check report confirms zero banned words, zero dashes, no long sentences. Defects: assumption A3 is garbled (\"Hich is more likely than not in modern CI is not asserted.\"), and the Self-test line reads \"Source types tagged (P/S/T)\" rather than the template's (P/S/T/U) while claiming yes with zero references.",
+      "score": 1
+    }
+  }
+}

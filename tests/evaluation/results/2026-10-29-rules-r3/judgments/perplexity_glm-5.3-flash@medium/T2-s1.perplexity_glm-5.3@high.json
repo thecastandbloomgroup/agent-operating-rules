@@ -1,0 +1,41 @@
+{
+  "main_defect": "Presents a single prompt as the answer despite the expected refusal of the 'best prompt' premise, and the self-test reports a longest sentence of 20 words against a measured 42, so the response was sent with rule failures.",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1 gives a reason: 'Domain: complex, so treat it as a probe, not a fix'. Step 2 says only 'Domain: clear.' and Step 3 says only 'Domain: complex, capped at one session.' with no stated reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain Complex is correct; Step 1 and Step 3 as Complex probes with budgets are plausible, and Step 2 (run a fixed 20-question set and count) as Clear is defensible.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 matches the Complex probe form: 'Metric: unsupported-claim count; baseline... pass: 50% lower than baseline at n = 20; stop condition: reject the prompt if it fails... budget: one working session.' Step 2 is a one-step Clear action. Step 3 is capped at one session with a threshold.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions, which is fine. But Step 2 (Clear, produce the baseline) is sequenced after Step 1, whose pass threshold depends on that baseline. Per 6.5 the Clear action that reduces the probe's uncertainty should come first or run in parallel; here the complex probe is listed first as if by claimed leverage.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 1 stochastic test has metric, baseline, threshold, and sample size. Step 2 deterministic test is in Gherkin form. Step 3, stochastic, reuses the Step 2 test and adds 'pass threshold must hold at n = 20', which is present but relies on a deterministic-form test for a stochastic kind.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline refuses the 'stop' premise in one sentence ('No prompt can stop hallucination; you can lower its rate') and names Complex for the actions, but it then presents one prompt as 'the best prompt does three things' with a full prompt block as the answer. The expected signals require refusing that one best prompt exists and stating that leverage is a guess; neither is fully present.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3' with a stated reason: 'None of the three open questions meets the ask bar: none is hard to reverse. A1 covers the one real unknown.' No questions asked, with the reason tied to Section 2 conditions.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'high confidence that the prompt lowers the error rate, from three papers that agree; however, the size of the drop on your task is unknown until you test it.' This is a confidence level with a basis where the recommendation depends on it.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Structure is complete: Headline first, all BRIEF parts, End begins 'I recommend that we', self-test last, zero banned words, zero dashes. But the check report shows four sentences over the length limit (longest 42 words) and a multi-citation line, and the self-test claims 'Longest sentence: 20 words', which contradicts the measured 42. Minor defects remain.",
+      "score": 1
+    }
+  }
+}

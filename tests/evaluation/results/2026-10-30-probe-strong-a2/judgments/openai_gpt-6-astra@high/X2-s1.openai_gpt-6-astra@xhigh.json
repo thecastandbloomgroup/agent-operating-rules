@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response mistakes an unknown cause for a Confused domain. It prescribes a serial diagnostic workflow instead of two or three parallel probes for a Complex human system.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain with a one-line explanation: \u201cConfused, meaning the cause is not yet known,\u201d \u201cClear, meaning the procedure has known steps,\u201d and \u201cComplex, meaning effects become clear through a trial.\u201d",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "\u201cDomain: Confused, meaning the cause is not yet known\u201d misclassifies the primary challenge. Unknown causes do not make the domain unknown; interacting human behavior makes this Complex. Labeling the eventual trial Complex does not correct the initial framing.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The forms match the stated domains: \u201cClassify its cause\u201d gathers classification evidence; \u201cSpend 15 minutes completing one card\u201d is a bounded procedural action; the Complex trial has a measure, a one-team-hour budget, and \u201cStop if it causes harm or exhausts that budget.\u201d",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "\u201cComplete these three actions in order\u201d and \u201cStep 3 MUST NOT start until Step 2 passes\u201d create a serial workflow. Classification comes first and the trial is capped, but the expected parallel probes are missing.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 provide Given/When/Then tests. Step 3 supplies a metric, baseline, threshold, and five-case sample. However, Step 1 also requires \u201cClassify its cause,\u201d an evaluative judgment without a weighted rubric, evidence requirements, or pass threshold.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "Not applicable: the input states \u201cR6 applies: no.\u201d",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\u201cQuestions asked: 0 of 3.\u201d The response proceeds without asking the user to diagnose the problem and logs its authority assumption as A1.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\u201cLow confidence about the cause: no examples, action records, or outcome measures appear in the request\u201d provides a confidence level and its basis. The response also identifies its trial settings as \u201cpractical starting rules, not research benchmarks.\u201d",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "The response includes Headline, all BRIEF sections, an End beginning \u201cI recommend that we,\u201d three numbered actions, and Self-test last. Its references are identifiable and tagged. The check report confirms zero banned terms, zero prohibited dashes, and no sentence-length violations.",
+      "score": 2
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "Primary Cynefin classification is wrong: the live outage stabilizer is labeled Clear instead of Chaotic, and later diagnosis is not framed as Complicated after stabilization; there is also a citation numbering failure and a partly inconsistent Self-test.",
+  "scores": {
+    "R1": {
+      "evidence": "Every step carries a parenthetical domain label: Step 1 \"(Clear domain, deterministic)\", Step 2 \"(Clear domain, deterministic)\", Step 3 \"(Clear domain)\", Step 4 \"(Complicated domain)\". No one-line reason for each domain is given.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The outage action should be Chaotic first, but Step 1 says \"Roll back... (Clear domain)\". Only Step 4 is Complicated, so the primary domain is wrong.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Step 1 is a stabilizer: \"Roll back the most recent checkout deploy\". But the forms are tied to wrong labels, and Step 4 analysis comes only \"After service recovers\" rather than tagging the post-stabilizer work as Complicated.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Operationally the stabilizer is first and diagnosis waits: Step 1 rollback, Step 2 dependency/status contingency, Step 4 \"After service recovers\". Step 3 is gated by \"Step 3 MUST NOT start until Step 1 or 2 has produced a status fact\".",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Gherkin: \"Given\", \"When\", \"Then\". Step 3 has only \"Test: message sent before the call starts\" and Step 4 has no evaluative rubric with criteria, weights, threshold, and evidence.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the input: \"R6 applies: no\".",
+      "score": null
+    },
+    "R7": {
+      "evidence": "No questions are asked; uncertainty is handled through logged assumptions A1 and A2 and the Follow-up condition \"If A1 is false\".",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Uncertain facts are put in A1 and A2 with validation and impact, and Step 2 covers \"If no deploy happened near 09:12\". No probability, IPCC term, or confidence-with-basis is stated where rollback depends on A1.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Required headings appear in order, End begins \"I recommend that we\", banned words are 0 and dashes are 0 per the check report. Defects remain: check report flags \"citations out of order\" and \"citation with no reference\" for [18], Background has two sentences where the prompt expects at most one, and Self-test claims full consistency despite citation and test-form defects.",
+      "score": 1
+    }
+  }
+}

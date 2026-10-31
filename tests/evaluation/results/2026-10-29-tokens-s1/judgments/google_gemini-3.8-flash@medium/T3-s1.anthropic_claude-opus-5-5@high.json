@@ -1,0 +1,41 @@
+{
+  "main_defect": "The End section puts both tracks in one numbered chain. Step 4 (session decommission) waits on the Step 3 conversion probe, which contradicts the split in the Headline. The Complicated migration steps also never name the analysis for token lifetime and revocation, and the response defers that choice to an open question.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action carries a domain line, for example \"Cynefin domain: Complicated.\", \"Cynefin domain: Complex probe.\" and \"Cynefin domain: Clear.\" No action gives a one-line reason for its domain.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Migration steps 1 and 2 are Complicated and the sign-up form change is a \"Complex probe\". Step 4 decommission is Clear, which is defensible once the dual-read cutover is tested. The primary and secondary domains match the expected classification.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 3 is a probe with a metric and the budget \"capped at two weeks of traffic\". It has no explicit stop condition and does not say that leverage is a guess. Steps 1 and 2 are Complicated but name no analysis to choose token lifetime or revocation. That choice appears only as an open question.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Complex probe sits as Step 3 in a serial chain instead of running in parallel. \"Step 4 MUST NOT start until the tests in Step 2 and Step 3 pass\" makes session decommission wait on the conversion experiment. The two tracks are therefore not sequenced separately.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin is given for migration steps 1, 2 and 4. Step 3 uses a stochastic test: \"Metric is sign-up form completion rate. Baseline is 22.0%. Pass threshold is 25.0% or higher at a sample size of 5,000 unique visitors per variant.\" The form matches the task kind, although the baseline has no source.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The Headline makes the split: \"Separate the token migration from the conversion project\" and \"sign-up flow improvements require user behavior testing rather than backend refactoring.\" The domains are correct. However, the End is one coupled list with a cross-track dependency, which the prompt names as the wrong shape. The response also never explains why each part has its domain.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Two questions, each with a stated use: \"The answer determines whether we add a token denylist.\" The recommendation still issues stateless JWTs and deletes the session store while the revocation question is open, which violates rule 2.4. The response does not log the most likely answer as an assumption.",
+      "score": 1
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges appear. There is also no probability, IPCC term, or confidence level where the recommendation depends on uncertain facts: the 22.0% baseline, the expected lift to 25%, and the revocation requirement. \"100% of active sessions\" is labeled [judgment] only.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All headings are present and in order. The End begins \"I recommend that we\". The check report shows zero dashes and zero banned words. The Self-test has some inconsistencies. \"primary or secondary behind each driving claim: yes\" does not hold, because the 22.0% baseline is unsourced and unlogged, and the 3% to 5% per-field figure attributed to the NN/g article is doubtful. \"Complex as capped probes: yes\" does not hold, because the probe is serial rather than parallel. There is also a malformed \"And Given\" in the Gherkin.",
+      "score": 1
+    }
+  }
+}

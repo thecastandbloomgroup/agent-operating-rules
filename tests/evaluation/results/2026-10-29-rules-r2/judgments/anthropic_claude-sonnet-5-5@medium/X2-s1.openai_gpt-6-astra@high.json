@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response mistakes an unknown cause for the Confused domain. It assumes follow-through is the main problem and prescribes fixes, rather than treating the human system as Complex and running two or three parallel probes.",
+  "scores": {
+    "R1": {
+      "evidence": "Steps 1, 2, and 4 explain their domains, including \"Complex, so leverage is a guess.\" Step 3 states only \"Cynefin: Clear,\" without a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"Here the cause is unknown, so the domain is Confused.\" The primary domain is Complex: interacting human causes require probes, not merely an audit to identify one fault.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The format trial has a measure, budget, and stop condition. However, \"The lowest-scoring criterion names the main fault\" overstates what the audit establishes, and Step 2 prescribes one action rather than selecting a practice through that analysis.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "For the declared domains, the Confused audit comes first, Step 2 waits for it, and the Complex trial says \"Run it in parallel with Steps 2 and 3\" with \"Budget: three retrospectives.\"",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The audit rubric specifies four weighted criteria, a \"pass at 3 of 4\" threshold, and notes as evidence. Steps 2 and 3 use Given/When/Then tests. Step 4 specifies a completion metric, baseline, 20-point threshold, and sample size of three retrospectives.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response proceeds with three logged assumptions and validation methods rather than asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"This is likely (66 to 100%) [judgment]\" provides calibration, but \"format is a less likely cause\" supplies no calibrated likelihood or supporting basis for deprioritizing that explanation.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The required sections, four actions, references, and final Self-test are present. The check report records zero banned words and zero prohibited dashes, but identifies a 27-word sentence. This violates the sentence limit and contradicts \"Longest sentence: 20 words.\"",
+      "score": 1
+    }
+  }
+}

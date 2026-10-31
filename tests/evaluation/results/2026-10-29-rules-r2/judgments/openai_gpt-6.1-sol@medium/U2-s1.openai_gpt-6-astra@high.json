@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats an unidentified discrepancy as Clear work rather than Confused. It never explicitly classifies the problem after gathering evidence, and it omits the expected first diagnostic action: recompute three headline figures from source records and record the differences.",
+  "scores": {
+    "R1": {
+      "evidence": "All three actions state a domain: \"Clear,\" \"Clear,\" and \"Complicated.\" However, the blocker descriptions do not explain why each domain applies.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The first action states \"Domain: Clear,\" although \"the specific mismatch remains unidentified.\" The primary domain should be Confused.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Collect one suspect table and its context\" partially addresses the information gap, and \"Use a line-by-line comparison\" names an analysis. However, no action gathers evidence explicitly to classify the domain before choosing the diagnostic approach.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Information collection comes first, and Step 2 waits until \"Step 1 passes.\" However, the sequence moves into internal calculations before source-based discrepancy location and never establishes a Confused-first classification stage.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Each action supplies a deterministic Gherkin test. For example: \"Given matching period, units, and scope, when figures are compared, then each agrees or has a documented difference.\"",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "The response asks one material request: \"Can you share the Q3 report or suspect table, plus any source figures or expected totals you have?\" Its use is explicit: \"Those materials will determine which calculations and source records to compare first.\"",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"The specific mismatch remains unidentified\" and \"no supplied evidence identifies which figure, if any, is wrong\" appropriately limit the claims. No causal theory or recommendation depends on an asserted uncertain fact requiring a probability.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, and the final Self-test are present. End begins \"I recommend that we.\" The check report finds zero banned words, zero prohibited dashes, and no long sentences, but flags multiple citations on one line. The Self-test also claims \"Chaotic and Confused first\" despite omitting the required Confused classification.",
+      "score": 1
+    }
+  }
+}

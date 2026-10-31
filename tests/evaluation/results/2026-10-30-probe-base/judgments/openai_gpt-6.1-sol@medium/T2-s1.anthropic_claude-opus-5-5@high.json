@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response gives a bare prompt as the final fix. It has no Headline, no BRIEF, no End, and no Self-test. It gives no Cynefin domain and no measure, baseline, threshold, or sample size.",
+  "scores": {
+    "R1": {
+      "evidence": "No action states a Cynefin domain. The response is only \"Use this:\" followed by a quoted prompt.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "The response never names the expected Complex domain, so it gets the primary domain wrong. \"Use this:\" frames the prompt as a known fix.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Complex needs a safe-to-fail probe with a measure, a stop condition, and a budget. The response presents the prompt as the answer (\"Use this:\"), with no probe framing, so the form contradicts the domain.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There is no numbered action list and no ordering. The response has a single unframed instruction, \"Use this:\".",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "There is no test. A stochastic task needs a metric (a labelled set and a hallucination rate), a baseline, a threshold, and a sample size. None appears.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "\"No prompt guarantees zero hallucinations\" partly avoids the wrong answer. It also gives the prompt the user asked for, so it does not refuse. However, it never names the Complex domain or says why, and it still presents the prompt as the final answer with no measure.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "The response asks no questions, which Section 2 permits when assuming and proceeding. However, it also logs no assumptions, which is a separate defect under R9.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The recommendation depends on how far the prompt cuts hallucination, but no probability, IPCC term, or confidence level appears. \"No prompt guarantees zero hallucinations\" is the only uncertainty statement, and it is uncalibrated.",
+      "score": 0
+    },
+    "R9": {
+      "evidence": "The check report shows zero banned words, zero dashes, and no long sentences. However, every required section is missing: Headline, Background, Relevance, Information, End (\"I recommend that we\"), Follow-up, and Self-test. It also has no actions and no assumption log.",
+      "score": 0
+    }
+  }
+}

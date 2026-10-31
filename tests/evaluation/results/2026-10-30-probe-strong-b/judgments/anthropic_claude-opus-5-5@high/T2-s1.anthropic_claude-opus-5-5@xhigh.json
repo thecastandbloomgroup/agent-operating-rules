@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Self-test reports 'Longest sentence: 22 words', but the check report finds a 26-word sentence (the Dhuliawala sentence). That sentence breaks the 25-word limit, and the Self-test does not agree with the response.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain. Step 1 says 'Domain: Clear (a known best practice exists)' and Step 2 says 'Domain: Complicated (the grading rule needs analysis)'. Step 3 says 'Domain: Complex, so this is a safe-to-fail probe', which states a consequence, not a reason. Step 4 says only 'Domain: Complicated.' with no reason. So not every action has a one-line reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correct: 'Probe the grounded prompt... Domain: Complex'. The secondary domains are plausible: test-set construction is Clear, baseline grading is Complicated, and the adoption decision is Complicated. No domain is wrong.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 (Clear) is one step. Step 3 (Complex) is a probe with a measure, 'Stop condition: after 30 runs, stop if the rate has not fallen', and 'Budget: 90 runs in one session'. Step 4 (Complicated) names Kepner-Tregoe as its analysis. Step 2 is labelled Complicated because 'the grading rule needs analysis', but it never names that analysis. It says only 'graded with one fixed rule'. So the forms mostly match.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "There are no Chaotic or Confused actions. Clear and Complicated steps are sequenced with explicit dependencies. The Complex probe is capped and placed after the baseline with a reason that applies the trade-off rule: 'Step 3 MUST NOT start until Step 2 has set the baseline, because the baseline reduces the uncertainty of the probe.'",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 is deterministic and has a Gherkin test ('Given your source documents, When you write the test set, Then...'). Steps 2 and 3 are stochastic and state metric, baseline, pass threshold, and 'Sample size: 90 runs'. Step 4 is evaluative and has a Kepner-Tregoe rubric with a must criterion, weights 5/3/2, a pass threshold of 70 of 100, and evidence from the grade sheets.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response gives the requested prompt and avoids presenting it as a final fix. It says 'It gives fewer hallucinations, not zero' and 'No prompt stops it fully'. It also says 'Test it on 30 of your own questions, because the size of the effect depends on your model and data'. Step 3 labels the prompt 'Complex, so this is a safe-to-fail probe, and its leverage is a guess', with a measure, baseline, threshold, and sample size.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "The response asks zero questions ('Questions asked: 0 of 3'). The unknowns are not costly to reverse, so they are logged as assumptions A1 to A3, which is correct per Section 2. One small oddity: A3 gives 'the user has not answered' as its reason, although no question was asked.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The Information section uses an allowed form: 'medium confidence that this exact prompt reduces hallucination on your task. Basis: each of three mechanisms has one supporting study...'. However, the Headline asserts 'It gives fewer hallucinations, not zero' and the Background asserts 'a grounded prompt reduces it' as flat facts. These claims drive the recommendation and are not calibrated, so the calibration is mixed.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All seven headings are present in order. The End section begins 'I recommend that we'. There are 4 actions, 0 dashes, 0 banned words, 4 real references with tags, and the Self-test is last. Defects: the check report flags a 26-word sentence, which is over the 25-word limit, while the Self-test claims 'Longest sentence: 22 words'. The text says 'Each theme has one source', but theme 1 cites [1] and [2]. The Headline answer is two sentences instead of one.",
+      "score": 1
+    }
+  }
+}

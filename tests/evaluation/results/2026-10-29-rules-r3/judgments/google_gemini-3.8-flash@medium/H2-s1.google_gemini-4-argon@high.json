@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 3 omits a Cynefin domain (labeling it 'Deterministic' instead) and publishes a holding statement on the primary media wire before Step 4 runs a safe-to-fail Complex probe with that statement.",
+  "scores": {
+    "R4": {
+      "evidence": "Step 1 (Chaotic) is rightly placed first, but the four actions are presented as 'four sequential actions' where Step 4 (Complex probe) happens after distributing the statement to the primary media wire in Step 3, rather than running the probe in parallel before full commitment.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Zero questions asked; the response proceeds under three logged assumptions (A1 to A3) with all required validation and impact fields.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Zero banned words, zero dashes, and all sentences under 25 words per the check report. However, Information states 'we proceed under four assumptions' while listing only three, Step 3 misses its Cynefin domain despite the Self-test claiming 'yes', and Self-test writes 'Assumptions logged: 3 (yes)'.",
+      "score": 1
+    },
+    "R1": {
+      "score": 1,
+      "evidence": "Steps 1, 2, and 4 state a Cynefin domain ('Step 1 (Chaotic)', 'Step 2 (Complicated)', 'Step 4 (Complex probe)') without one-line reasons, while Step 3 states a task kind instead of a Cynefin domain ('Step 3 (Deterministic)')."
+    },
+    "R5": {
+      "score": 2,
+      "evidence": "Every action has a matching test written before the action: Gherkin (Given/When/Then) for Deterministic Steps 1 and 3, a weighted Kepner-Tregoe rubric with pass threshold and evidence for Evaluative Step 2, and a Stochastic test with metric, baseline, pass threshold, and sample size for Step 4."
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R8": {
+      "evidence": "The response contains zero uncalibrated hedges per the check report, but it omits required Section 4.6 calibrated uncertainty forms (probability, IPCC term, or confidence level with basis) for material uncertainties in the Information section ('The risk of uncoordinated communication in corporate crises is high [1]').",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is correctly identified as Chaotic in Step 1 ('Step 1 (Chaotic): Order an immediate external communication freeze'), but secondary actions misclassify Step 3 as 'Deterministic' and treat full wire publication as sequential before the Complex probe.",
+      "score": 1
+    },
+    "R3": {
+      "score": 1,
+      "evidence": "Step 1 is a stabiliser, Step 2 is an analysis, and Step 4 is a capped probe with a 2-hour window and 80% hostile coverage stop condition, but Step 3 distributes the statement to the primary media wire before the Step 4 probe tests it on 10 media contacts, and Step 4 omits stating that leverage is a guess."
+    }
+  }
+}

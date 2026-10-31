@@ -1,0 +1,41 @@
+{
+  "main_defect": "Actions state the Cynefin domain without a one-line reason, and each action lists the increment before the test despite claiming the test is written first in the self-test.",
+  "scores": {
+    "R3": {
+      "score": 2,
+      "evidence": "The response performs the Complicated trace and diff analysis in Information, uses one-step actions for Clear steps (Steps 1 and 2), and uses analysis/validation actions for Complicated steps (Steps 3 and 4)."
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 use Gherkin (Given/When/Then) for deterministic config changes, Step 3 uses a Kepner-Tregoe rubric with criteria, weights, evidence, and threshold for an evaluative choice, and Step 4 uses a stochastic test with metric, baseline, threshold, and a 10,000-request sample size.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "Avoided a blind full rollback in Step 1, isolated the pool and cache causes in Information using trace data, and explicitly rejected full rollback in Alternative considered because the ORM change reduced child query latency by 4 ms.",
+      "score": 2
+    },
+    "R7": {
+      "evidence": "Asked zero questions ('Open questions: None.') and logged the missing OPS-412 connection limit as assumption A1.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibrated uncertainty using an IPCC term and probability range: 'We are virtually certain (99 to 100% probability) that connection queueing caused the latency rise [judgment].' Zero uncalibrated hedges.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Correctly treated the root-cause diagnosis as Complicated (completing the trace comparison in Information), classified the known parameter restores (Steps 1 and 2) as Clear, and classified the OPS-412 pool sizing and load validation (Steps 3 and 4) as Complicated.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Ordered Clear and Complicated actions logically by leverage and dependency after completing the root-cause analysis in Information, starting with restoring cache TTL to cut database load before resizing the pool and running load validation.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Check report shows 0 banned words, 0 dashes, and 0 long sentences, and all required sections are present. However, all four actions place the Increment before the Test while the Self-test claims 'with test written first: yes'.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Cynefin domain: Clear' for Steps 1-2, 'Cynefin domain: Complicated' for Steps 3-4), but none includes a one-line reason for the classification.",
+      "score": 1
+    }
+  }
+}

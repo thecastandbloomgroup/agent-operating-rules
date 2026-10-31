@@ -1,0 +1,41 @@
+{
+  "main_defect": "R1: three of four actions lack the one-line domain reason; R9: two 30-word sentences, two lines with two citations, and a self-test that reports the longest sentence as 24 words when the check report finds 30.",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are stated for all four actions, but only Step 1 carries a one-line reason: 'Domain: Confused; this step classifies the problem.' Steps 2, 3, and 4 state only 'Domain: Complicated', 'Domain: Clear', 'Domain: Clear' with no reason line.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Primary domain is Confused, matching the expected signal: Step 1 'Domain: Confused; this step classifies the problem.' Secondary domains are defensible: Step 2 Complicated with the taxonomy analysis named ('The tag classes are shared state, timing or race, resource limit, and network'), Step 3 Clear one-step fix with a Complex fallback for timing or race, Step 4 Clear measurement.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Confused action gathers classification data ('one CSV over the last 30 CI runs... no cause ranking yet'); Complicated action follows the analysis naming the practice; Clear actions are one-step with the Complex case run as a capped probe ('two day budget').",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "Confused first (Step 1), with explicit dependency: 'Step 2 MUST NOT start until Step 1 delivers the CSV.' Clear and Complicated follow in leverage order (tag, fix, verify), and the Complex probe is conditional and capped by budget rather than ordered by claimed leverage.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Step 1 and Step 3 use Gherkin (Given/When/Then); Step 2 uses a rubric with criteria, weights (0.5, 0.25, 0.25), pass threshold (0.75), and evidence per criterion; Step 4 is stochastic with metric, baseline (Step 1 rate), threshold (0 flaky failures), and sample size (30 runs).",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply per the prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Two questions, each with its use: 'I use the answer to write the Step 1 log script' and 'I use the answer to rank causes and to set the Step 4 baseline.' Within the three-question limit, and no question is asked without the recommendation proceeding on logged assumptions A1 and A2.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Calibrated statement where it matters: 'Confidence for the taxonomy: high, two independent analyses.' The probe budget carries a [judgment] label, and the A2 condition that changes the plan is stated explicitly.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure present (Headline first, all BRIEF headings, End begins 'I recommend that we', Self-test last), zero banned words, zero dashes, self-test mostly consistent. Minor defects: two 30-word sentences ('Test, written first (deterministic): Given access to the CI...' and 'Test, written first (deterministic; example for shared state...') exceed the 25-word description limit per the check report; two rendered lines carry two citations ('[1] [2]'); the self-test claims 'Longest sentence: 24 words' while the check report finds 30, so the self-test is not internally consistent.",
+      "score": 1
+    }
+  }
+}

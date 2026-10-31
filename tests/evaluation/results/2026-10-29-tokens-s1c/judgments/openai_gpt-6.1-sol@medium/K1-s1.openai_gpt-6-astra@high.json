@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a knowable release regression as Confused work followed by a Complex recovery probe. It should put trace and diff analysis first, then require an identified cause before implementing a fix.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions state domains. Reasons include 'the cause-and-effect pattern is not yet known,' 'analysis can establish cause and effect,' the interface compatibility analysis in Step 3, and 'this production probe establishes the effect.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "The primary recommendation culminates in 'Cynefin domain: Complex' and starts with 'Confused.' This regression is Complicated: comparing traces and release changes can establish its cause. An unknown cause does not itself establish Confused or Complex work.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "Steps 2 and 3 name appropriate analyses, but Step 4 prescribes a production probe. 'Step 4 MUST NOT start until Step 3 passes' gates recovery on compatibility, not on Step 2 identifying the cause.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "'Step 3 can run alongside Step 2' permits useful parallel analysis. However, Step 1 precedes the requested diagnostic analysis, and Step 4 can proceed after the safety check without waiting for diagnosis.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 through 3 use Given/When/Then tests. Step 4 specifies 'at least 1,000 requests per group,' a current-version baseline, and latency and error thresholds. However, choosing 'one recovery action' lacks the required evaluative rubric or decision matrix.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The response rejects 'Immediately revert the entire release' and correctly calls diagnostic analysis Complicated. Nevertheless, it partly adopts the wrong recovery-first approach: 'Recovery should come before detailed cause analysis if the slowdown continues.' The prompt does not establish an outage requiring stabilisation.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Two questions each state their use: reattached evidence 'will determine which candidate to investigate first,' and migration compatibility 'determines rollback eligibility.'",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Low confidence in any specific cause, because the incident evidence is unavailable' states confidence with its basis. The response also distinguishes proposed thresholds from measured results.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required End opening, and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but reports 27-word and 26-word sentences, contradicting 'Longest sentence: 24 words.'",
+      "score": 1
+    }
+  }
+}

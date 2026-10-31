@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response misclassifies a Complicated diagnostic task as Chaotic, Confused, and Complex. It prioritizes containment and a rollback probe instead of identifying the cause through trace comparison and diff analysis.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain: 'Chaotic, stabilize first', 'Confused, gather evidence before classifying the cause', and 'Complex, use a limited probe'. However, the Chaotic and Complex labels give action instructions rather than reasons for those classifications.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary action is classified as 'Chaotic', and no action is classified as Complicated. The prompt describes a regression whose cause is knowable through analysis, not an uncontrolled outage.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The plan starts with 'Freeze further rollout now' and ends with 'Probe the previous version'. It never requires diagnosis before choosing the remedy; Step 3 requires only rollback compatibility. This contradicts the required analysis-first form.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "Within its stated classifications, the response orders Chaotic first and Confused second. The probe has a budget of 'At most 5% of traffic for five minutes' and waits until Step 2 confirms compatibility. There are no Clear or Complicated actions requiring parallel execution.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Steps 1 and 2 provide 'Given ... when ... then' tests before their actions. Step 3 specifies p95 and error-rate metrics, a 120 ms baseline, acceptance thresholds, and 'At least 1,000 completed requests per version'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The response never identifies the real domain as Complicated. Instead, it recommends a stabilizer first and a rollback probe, despite the absence of evidence that production is down.",
+      "score": 0
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The response proceeds with an assumption log and requests the unavailable evidence packet without making a recommendation contingent on an unanswered question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Low confidence in any specific cause, because the release changed three related areas without accessible diagnostic evidence.' This states a confidence level with its basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required End opening, three actions, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, 'no unlogged assumptions' overlooks the assumed ongoing rollout, and the claim of source support behind every driving claim overstates what the latency report establishes.",
+      "score": 1
+    }
+  }
+}

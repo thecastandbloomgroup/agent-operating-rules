@@ -1,0 +1,41 @@
+{
+  "main_defect": "Misclassifies a Complex human-system problem primarily as Clear (Actions 1 to 3), diagnoses a single root cause as fact (backlog execution failure) rather than running parallel safe-to-fail probes, and orders all actions by leverage.",
+  "scores": {
+    "R3": {
+      "evidence": "Actions 1 to 3 match their stated Clear domain as single-step rules, and Action 4 includes a measure, stop condition, and two-hour budget for Complex, but Action 4 omits stating that leverage is a guess and the overall response uses sequential rules instead of parallel probes.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "States \"I recommend that we execute four actions ordered by leverage\" and places the Complex probe (Action 4) fourth in a leverage-ranked list without specifying that it runs in parallel with the Clear actions.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 (Deterministic) use Given/When/Then Gherkin tests; Action 3 (Evaluative) uses a weighted rubric with pass threshold; Action 4 (Stochastic) states metric, baseline (0%), pass threshold (100%), and sample size (2 consecutive sprints) before the increment.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Avoids banned uncalibrated hedges and labels assessments with \"[judgment]\", but states uncertain causal claims without any probability, IPCC likelihood term, or confidence level with basis.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "States \"Cynefin domain: Clear.\" for Actions 1 to 3 and \"Cynefin domain: Complex.\" for Action 4, but omits the one-line reason for each classification.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Classifies Actions 1, 2, and 3 as \"Cynefin domain: Clear\" and assumes a single root cause (\"Action items fail to reach completion during standard delivery work\"), missing that team retrospective failure is primarily a Complex domain problem.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Asks zero questions (\"Questions asked: 0 of 3\") and logs two assumptions (A1 and A2) with all four required fields.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Includes all required sections, zero banned words, and zero dashes, but Flesch-Kincaid grade is 10.1 (exceeding the limit of 10 in rule 4.1.7) and the Self-test claims Complex ordering rules were followed when actions were ordered by leverage.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as a Clear documentation workflow, replacing parallel, capped behavioral probes with sequential paperwork tasks.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states 'Kind/domain: Deterministic; Clear.' The shared rationale is 'Each uses a known process: the Clear domain.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "'Each uses a known process: the Clear domain' misclassifies the primary problem. Retrospective effectiveness involves interacting human causes and requires a Complex approach.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The outputs are 'A short status list,' 'One owned, scheduled work item,' and an agenda. None constitutes a safe-to-fail behavioral probe with a defined measure, stop condition, and budget.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'After Step 1 passes' and 'After Step 2 passes' make the entire recommendation sequential. The required parallel, capped Complex probes are absent.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "Gherkin tests are present, such as checking that a work item 'names an owner, work slot, measure, and review date.' These test document completeness rather than behavioral outcomes; no stochastic acceptance test specifies an outcome metric, baseline, threshold, and sample size.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The prompt states 'R6 applies: no.'",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds with logged assumptions about available records and work capacity, without asking the user to diagnose the problem.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Confidence: moderate, because the recommendation follows that guidance, but your team\u2019s action records are unavailable' supplies an explicit confidence level and its basis.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, three actions, 'I recommend that we,' and a final Self-test are present. The check report finds zero banned words and zero prohibited dashes, but reports a 32-word sentence, contradicting 'Longest sentence: 25 words.'",
+      "score": 1
+    }
+  }
+}

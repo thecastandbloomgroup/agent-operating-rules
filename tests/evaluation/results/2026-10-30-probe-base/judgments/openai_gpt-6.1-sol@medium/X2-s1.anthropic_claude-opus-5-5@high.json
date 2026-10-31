@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats a Complex human-system problem as having one diagnosable cause, the action gap. It labels two of its three actions Clear. It offers one Complex probe, gated after them, instead of two or three parallel capped probes with their own measures.",
+  "scores": {
+    "R1": {
+      "evidence": "Domains are stated for all three actions. Action 1 has 'Clear, meaning a known procedure applies' and Action 3 has 'Complex, meaning the trial reveals cause and effect.' Action 2 has only 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The expected domain is Complex. Action 3 is labelled 'Complex', which is correct. Actions 1 and 2 are labelled Clear, but the action card imposes one fixed practice on a human system with many interacting causes. The Headline also frames the problem as one cause: 'Treat this as a failure to turn discussion into action.'",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "The Complex probe has a cap and a stop condition: 'Cap administration at 30 minutes per cycle', 'Stop if the change causes harm', 'Leverage remains a guess'. However, there is only one probe, not two or three. The 'Clear' action card applies a single best practice to what is a Complex problem, so the forms only partly match the real domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The probe is gated in sequence: 'After Step 2 passes, run the trial.' The rules say Complex probes run in parallel with Clear and Complicated actions. The Step 1 audit does reduce probe uncertainty through its baseline, so the misorder is minor.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Actions 1 and 2 use Gherkin, e.g. 'Given the available records, when the audit ends, then each proposed change has a status...'. Action 3 is stochastic and states 'Metric', 'Baseline', 'Sample: Two consecutive retrospective cycles', and 'Pass threshold'.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3'. The unknown, authority and capacity, is logged as assumption A1 instead of asked, and the response does not ask the user to diagnose the cause.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'Moderate confidence in this approach because it tests observable commitments; low confidence about your specific cause without past action records.' This states confidence with a basis. However, the Headline still states the action-gap cause as the answer, with only a '[judgment]' label and no probability.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "All required headings are present, End begins 'I recommend that we', and there are zero banned words and zero dashes. The check report flags one 27-word description sentence (Edmondson), above the 25-word limit. The Self-test claims 'Longest sentence: 24 words', so the Self-test is inconsistent.",
+      "score": 1
+    }
+  }
+}

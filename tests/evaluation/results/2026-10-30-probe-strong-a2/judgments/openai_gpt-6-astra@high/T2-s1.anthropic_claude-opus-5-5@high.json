@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response hands over a prompt as the final answer. It has no measure, baseline, threshold, sample size, or Cynefin domain, and it lacks the whole required structure (Headline, BRIEF, End, Self-test).",
+  "scores": {
+    "R1": {
+      "evidence": "No Cynefin domain appears anywhere. The response is one caveat sentence, one intro sentence, and a prompt block, with no actions.",
+      "score": 0
+    },
+    "R2": {
+      "evidence": "No domain is stated, so the expected primary domain (Complex) is never named.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "There is no safe-to-fail probe form: no measure, stop condition, or budget. The prompt is delivered as a fix ('For factual questions, use this:'), which contradicts the Complex form.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "There is no list of three to five actions and no ordering of any kind.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "There is no test. The task is stochastic (LLM output), so it needs a metric, baseline, threshold, and sample size, such as a hallucination rate on a labelled set. None is present.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "'No prompt guarantees zero hallucinations' admits that no prompt is a known fix. However, the response then gives the prompt as the answer with no measure, which is the listed 'should not contain' outcome. It never names Complex or treats the prompt as a probe.",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "No questions are asked. That is acceptable here, because the rules say to assume and proceed. However, no assumption log appears.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "There are no uncalibrated hedges. The recommendation depends on an uncertain fact, the prompt's effect on the hallucination rate, but the response states no probability or IPCC term for it and does not say that leverage is a guess.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The Headline, Background, Relevance, Information, End ('I recommend that we'), Follow-up, and Self-test are all missing. The check report shows zero banned words, zero dashes, and FK grade 9.2, but the structure is absent.",
+      "score": 0
+    }
+  }
+}

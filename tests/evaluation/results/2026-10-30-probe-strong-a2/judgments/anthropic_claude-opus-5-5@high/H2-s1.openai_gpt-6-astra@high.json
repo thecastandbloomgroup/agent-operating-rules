@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response drafts a public holding statement during stabilisation, then treats the remaining crisis as an analysis-and-release sequence. It omits the expected Complex probes with budgets and stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain and gives a reason: 'Chaotic. Act first to restore order'; 'Confused...collects what the team needs to classify'; 'Complicated. Legal analysis picks the practice'; 'Complicated. The rubric is the analysis'; and 'Clear. A known practice exists'.",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Step 1 correctly identifies 'Chaotic'. However, the later response strategy is labelled 'Complicated' and publication 'Clear', rather than recognising the expected Complex situation and uncertain stakeholder reactions.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 permits a drafted public statement: 'We have seen the report. We are reviewing the facts and will update by 18:00 today.' Later steps commit to 'Choose one response' and 'Release the response'. No safe-to-fail probes, budgets, or stop conditions replace these commitments.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "'Step 1. Stabilise' correctly comes first, followed by the action labelled Confused. Step 3 runs 'in parallel with Step 2'. However, the remaining work follows a gated publication sequence rather than running capped Complex probes alongside appropriate analysis.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Gherkin tests and weighted evaluative rubrics are present. However, Step 3 labels the assessment of applicable legal duties 'deterministic'; its test checks that each rule has 'a yes or no answer, a deadline, and a cited source', rather than evaluating the legal judgment.",
+      "score": 1
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds with stabilisation and logs assumptions, including authority, with a validation step: 'Ask the board chair to confirm in one message.' No blocking question is necessary before the initial stabiliser.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'My confidence here is high' includes a basis: the initial steps do not depend on whether the statement was true. Calibration is incomplete elsewhere: 'Counsel leads the check, so legal privilege covers the work' asserts a guarantee despite material uncertainty about privilege.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, five actions, the required End opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no long sentences. However, the Self-test claims tests are 'written first', while each action presents its increment before its test.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response stabilizes coordination correctly, but then treats the crisis as Confused, Complicated, and Clear rather than Complex. It proposes sequential commitments and drafts public language instead of capped, safe-to-fail probes with stop conditions.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action names a domain and explains its role: 'Chaotic, stabilize first'; 'Confused, gather enough evidence to classify the problem'; 'Complicated, use claim-by-claim evidence analysis'; and 'Clear, execute the approved decision.'",
+      "score": 2
+    },
+    "R2": {
+      "evidence": "Action 1 correctly identifies 'Chaotic' and establishes a response lead and outbound hold. Subsequent actions are labeled 'Confused,' 'Complicated,' and 'Clear,' missing the expected Complex domain after stabilization.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "'Name a response lead' and 'Pause new substantive external claims' provide the required stabilizer. However, subsequent actions lack probe budgets and stop conditions. 'Issue the approved response' commits to publication and includes drafted public language.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "The Chaotic action comes first. However, 'take these four steps, in order' and the dependencies before Steps 3 and 4 create a wholly sequential plan, rather than parallel, capped Complex probes.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "The deterministic actions place 'Given ... when ... then' tests before work. The evaluative action supplies a rubric with factual support at 50%, harm reduction at 30%, legal compliance at 20%, required evidence, and an '80/100' threshold.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Questions asked: 0 of 3.' The response proceeds with reversible stabilization and logs assumptions about convening leaders and unresolved facts, including validation steps and consequences.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'The truth remains unresolved' and 'If material facts remain unresolved' acknowledge uncertainty and provide conditional paths. However, no probability, IPCC likelihood term, or confidence level with its basis calibrates material uncertainty.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, the required 'I recommend that we' opening, four actions, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, the Self-test retains an explicit failure: 'primary or secondary behind each driving claim: no, judgments labeled,' despite the requirement to resolve failing lines.",
+      "score": 1
+    }
+  }
+}

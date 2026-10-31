@@ -1,0 +1,41 @@
+{
+  "main_defect": "Failed to classify the primary LLM improvement task as Complex; instead tagged the core actions as Confused and Complicated, omitting safe-to-fail probes, budgets, stop conditions, and the note that leverage is a guess.",
+  "scores": {
+    "R4": {
+      "evidence": "Step 1 (Confused) is placed first, followed by Steps 2 and 3 (Complicated), with Step 4 (Clear) run in parallel rather than ordered by leverage with Complicated actions, and the Step 3 dependency clause is misplaced at the end of Step 4.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Step 3 (stochastic) and Step 4 (deterministic Gherkin) match their kinds, but Step 1 tags a deterministic log-pull as stochastic with deferred baseline and threshold, and Step 2's evaluative rubric omits a pass threshold and required decision layout (Kepner-Tregoe, Pugh, or ISO/IEC 25010).",
+      "score": 1
+    },
+    "R7": {
+      "evidence": "Asked zero questions, logged three assumptions (A1 to A3) with all four required fields, and proceeded with the recommendation.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "Zero banned uncalibrated hedges appear in the check report, but the response never uses a probability, IPCC likelihood term, or confidence level with basis (Section 4.6) for uncertain claims such as 'prompt edits frequently fix one error class while adding another'.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Classified the four actions as Confused, Complicated, Complicated, and Clear; completely missed the expected primary Complex classification for improving an unmeasured stochastic LLM summariser.",
+      "score": 0
+    },
+    "R6": {
+      "evidence": "Avoided assuming that failures were already recorded by starting with log collection and baseline scoring (Steps 1 and 2, plus A1), but still fell into the trap of classifying the diagnostic and prompt-fixing work as Complicated rather than Complex.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Full Headline, BRIEF, and Self-test structure is present with zero dashes and zero banned words, but the check report flags three sentences over the 25-word limit (27, 28, and 29 words) while the Self-test claims 'Longest sentence: 24 words'.",
+      "score": 1
+    },
+    "R1": {
+      "evidence": "Every action states a Cynefin domain ('Confused domain', 'Complicated domain', 'Complicated domain', 'Clear domain'), but none includes a one-line reason for the classification.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 2 (analysis) precedes Step 3 (Complicated action) and Step 4 is a one-step Clear action, but Step 1 (Confused) does not state that it gathers information to classify the domain, and there are no Complex safe-to-fail probes with budgets, stop conditions, or 'leverage is a guess'.",
+      "score": 1
+    }
+  }
+}

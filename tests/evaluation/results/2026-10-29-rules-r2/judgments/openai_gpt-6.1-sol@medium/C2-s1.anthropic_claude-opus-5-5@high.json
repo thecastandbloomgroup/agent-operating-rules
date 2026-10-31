@@ -1,0 +1,41 @@
+{
+  "main_defect": "Domain reasons are missing for Steps 2 and 3, which say only \"Domain: Clear.\" The prose also uses the passive voice where the agent is known, and the script flagged its citation as unlisted.",
+  "scores": {
+    "R1": {
+      "evidence": "Step 1: \"Domain: Clear, with known rules.\" Steps 2 and 3: only \"Domain: Clear.\" with no one-line reason. Every action has a domain, but only one has a reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "All three actions are labelled Clear. This matches the expected classification for IEEE formatting, where the rules are known and a best practice exists.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Each action is one step: \"Identify each entry and flag missing details\", \"Format the complete list using the IEEE guide\", \"Compare the formatted list against the original\". There are no probes or analysis-first framing, so the form matches Clear.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "All actions are Clear and follow dependency order: \"Apply IEEE style after Step 1 passes\", \"Check the result after Step 2 passes.\" No domain-based misorder.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "Each test is deterministic and in Gherkin form, for example \"Given the checked entries, when formatted, then each follows the applicable IEEE reference pattern.\" This matches the expected test.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 does not apply to this prompt.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "One question: \"Can you paste the reference list here so the entries can be formatted?\" The expected signals say no questions. However, no attachment is visible in the material, so asking is justified under Section 2. The stated use (\"so the entries can be formatted\") is present but thin.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No recommendation-dependent uncertain fact exists, since the missing attachment is a stated fact. The response contains no uncalibrated hedges (the check report shows 0 hedges).",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Full structure is present: Headline, Background, Relevance, Information, End beginning \"I recommend that we\", Follow-up, Self-test last. The check report shows 0 banned words and 0 dashes. Minor defects: 4 passive constructions where the agent is known (\"so it can be formatted\", \"are needed\", \"is checked\", \"can be formatted\"). The script also reports \"citation with no reference\" because the References list is under bold text, not a recognized heading. The Follow-up question coexists with a recommendation that depends on its answer, against 2.4.",
+      "score": 1
+    }
+  }
+}

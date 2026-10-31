@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response classifies the situation as Clear and prescribes three sequential best-practice steps plus one late probe, where the expected classification is Complex with two or three small parallel probes each with a measure and stop condition. The primary domain is wrong, so gate R2 fails.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain ('Domain: Clear' in Steps 1-3, 'Domain: Complex' in Step 4), but only Step 4 gives a one-line reason ('because cause and effect between format and behavior show up only over cycles'). Steps 1-3 state 'Domain: Clear' with no reason, so the reason requirement is only partly met.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The prompt expects Complex (human systems, many interacting causes). The response treats the core of the work as Clear: Steps 1-3 are 'Kind: deterministic. Domain: Clear.' and are applied as best practices rather than probes. Only Step 4 is Complex. The response also names single root causes as the working diagnosis ('Too many findings... No owner... No follow-through loop'), against the expected signal 'should not contain: a single root cause stated as fact'. Wrong on the primary domain.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "The forms are internally consistent with the domains as stated: Steps 1-3 are one-step Clear actions, and Step 4 is a capped probe ('Budget: 3 cycles; stop if the rating does not move'). However, the actual domain is Complex, so the expected form (two or three small probes run in parallel, each with a measure and stop condition) is not met: there is only one probe, and it is serialized after the Clear steps. Mostly matches, but not against the true domain.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "No Chaotic or Confused actions, so those rules are not violated. Clear actions are ordered by leverage. But the Complex probe is not run in parallel with the Clear actions: 'Step 4 MUST NOT start until Steps 1 to 3 have run for one cycle.' The trade-off rules say Complex probes run in parallel with Clear actions, capped by budget, unless the Clear action reduces probe uncertainty. The stated justification (baseline needs the new format) is arguable but the response never frames it as the exception rule requires. Minor misorder.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1-3, deterministic, use Gherkin: 'Test (Given a completed retrospective, When the notes are read, Then exactly one change is named).' Step 4, stochastic, states metric (0-3 rating), threshold ('rises by at least one point... or reaches 2'), and sample size ('3 cycles'). Test kind matches the action kind for all four actions.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Three questions, each with its use: 'What cadence... Use: to set the follow-through interval in Step 3'; 'Did any past retro decision need manager approval? Use: to confirm or refute A2'; 'Do people speak freely... Use: to decide whether to add a safety measure.' Three or fewer, each with a stated use.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "No uncalibrated hedges (check report banned list is empty), which is good. But where the recommendation depends on uncertain facts (A2 sign-off authority, unmeasured safety), the response gives no probability or IPCC likelihood term; it only says 'treat safety as unmeasured' and gives a condition without a likelihood. The calibrated statement where the recommendation depends on it is missing.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Structure is present (Headline, BRIEF parts, End beginning 'I recommend that we', 4 actions with increment/blocker/test/domain, Self-test last, no dashes, no banned words). Defects: the check report lists four long sentences (up to 32 words, against the 25-word description limit) and a citation failure; in-text '[S]' markers are used without matching numbered references; reference [1] is mangled ('Essential Scrum. Reading lists on retrospective anti-patterns. [U]') and the self-test itself admits 'all from session or identified with confidence: no'; and the self-test line 'Longest sentence: 22 words' contradicts the check report's 32-word maximum, so the self-test is internally inconsistent. Minor to moderate defects, structure intact.",
+      "score": 1
+    }
+  }
+}

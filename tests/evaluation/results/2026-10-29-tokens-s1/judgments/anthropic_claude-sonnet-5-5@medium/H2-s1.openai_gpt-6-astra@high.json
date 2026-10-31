@@ -1,0 +1,41 @@
+{
+  "main_defect": "The response treats an active coordination crisis as Confused rather than Chaotic. It prioritises fact verification instead of establishing one owner and holding outbound statements, then commits to publication rather than capped Complex probes.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name domains: \"Confused\", \"Clear\", \"Complicated\", and \"Complicated\". Only Confused receives an explicit classification rationale; the other actions lack one-line domain reasons.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "\"The situation is Confused ... because nobody has yet checked whether the claim is true\" misclassifies the primary problem. Conflicting crisis communications require Chaotic containment first, followed by Complex work.",
+      "score": 0
+    },
+    "R3": {
+      "evidence": "\"Build a fact file within two hours\" does not stabilise communications first. \"Publish an approved holding line\" commits to an external intervention without a safe-to-fail probe, budget, or stop condition.",
+      "score": 0
+    },
+    "R4": {
+      "evidence": "\"Verify the facts first, then name one decision owner\" reverses the required stabilisation priority. Although Step 2 later runs in parallel, no action holds outbound statements, and no capped Complex probes appear.",
+      "score": 0
+    },
+    "R5": {
+      "evidence": "The specified document and coordination tasks have Gherkin tests, including \"Given a named owner and one channel\" and \"Then the owner receives it\". Evaluative tasks provide weighted criteria, evidence requirements, and thresholds: \"Source evidence per claim ... 50%\", \"pass threshold is 80%\", and a Pugh comparison against the holding-line baseline.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input states that R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "\"Open questions: none.\" The response proceeds with logged assumptions and concrete validation steps, including confirming authority with the CEO's office and asking Legal about disclosure requirements.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "\"Legal, PR, and the board likely optimize for different goals\" uses an accepted likelihood term. However, the recommendation-driving assertion \"The public needs a short, true statement soon\" lacks calibrated confidence or a basis for that urgency.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF sections, four actions, the required \"I recommend that we\" opening, and a final Self-test are present. The check report finds zero banned words, zero prohibited dashes, and no overlong sentences. However, \"Claims with evidence or [judgment] label: yes\" is inconsistent with unsupported claims such as \"Each hour without a shared position gives the report more time to spread unanswered.\"",
+      "score": 1
+    }
+  }
+}

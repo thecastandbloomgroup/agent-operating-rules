@@ -1,0 +1,41 @@
+{
+  "main_defect": "Step 1 correctly freezes comment as Chaotic, but later actions are Complicated analysis and a Clear committed statement rather than Complex probes with a budget and a stop condition. The self-test also says the longest sentence is 24 words while one test sentence is 26.",
+  "scores": {
+    "R1": {
+      "evidence": "All four actions name a domain (Chaotic, Complicated, Complicated, Clear). Only Step 1 ('cause and effect are not visible yet') and Step 2 ('This score is the analysis that picks the later response') add a one-line reason. Steps 3 and 4 state the domain with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "Step 1 is Chaotic, matching the expected primary domain (hold on outbound statements). Steps 2 and 3 are Complicated and Step 4 is Clear, not Complex.",
+      "score": 1
+    },
+    "R3": {
+      "evidence": "Step 1 matches a stabiliser: 'Freeze outside comment' and a one-page hold. Later actions are weighted rubrics and 'Issue one approved text', not probes with a budget and a stop condition. No drafted public wording, but Step 4 is still a committed issuance.",
+      "score": 1
+    },
+    "R4": {
+      "evidence": "Chaotic is first, then Complicated and Clear run in series by blocker ('MUST NOT start until'). No parallel capped Complex probes, which this situation requires after the hold.",
+      "score": 1
+    },
+    "R5": {
+      "evidence": "Steps 1 and 4 write Given/When/Then first. Steps 2 and 3 write a weighted rubric first, with a pass rule ('both yes'; 'at least 70 of 100, and counsel does not veto'). Kinds match those test forms.",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "R6 applies: no.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "Questions asked: 0. A1 to A3 are logged with why not measured, a validation test, and impact, and the recommendation proceeds without a question.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "The hold does not depend on a guessed probability of falsity; the open record is measured in Step 2. A2 is branched ('If A2 is false, keep Steps 1, 2, and 4') rather than left as an uncalibrated hedge. Check report banned hedges: 0.",
+      "score": 2
+    },
+    "R9": {
+      "evidence": "Headline, BRIEF, End starting 'I recommend that we', four actions, and Self-test are present. Check report: banned 0, dashes 0, one sentence of 26 words. Self-test says 'Longest sentence: 24', which does not match.",
+      "score": 1
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "main_defect": "The Information section states a theory of the cause ('likely (66 to 100%) ... scope, period, or formula mismatch, not bad raw data') with no basis, and the prompt bans this. The Self-test also misreports the longest sentence (22 against a measured 26) and records a failure instead of fixing it.",
+  "scores": {
+    "R1": {
+      "evidence": "Every action states a domain. Step 1 gives 'Confused, so this step comes first and decides the rest'. Step 3 gives 'Complicated. The analysis is a period-over-period variance check'. Step 4 gives 'Complicated. The Pugh matrix [3] compares causes'. Step 2 gives only 'Domain: Clear.' with no reason.",
+      "score": 1
+    },
+    "R2": {
+      "evidence": "The primary domain is Confused for Step 1, as expected. Recompute as Clear, variance as Complicated, and cause assignment as Complicated are defensible secondary domains.",
+      "score": 2
+    },
+    "R3": {
+      "evidence": "Step 1 gathers what is needed to classify ('List and source every headline figure', 'decides the rest'). Step 2 is a one-step recompute. Steps 3 and 4 name their analysis (variance check, Pugh matrix). The diff against source starts in Step 2, not Step 1, but the form fits each domain.",
+      "score": 2
+    },
+    "R4": {
+      "evidence": "The Confused step comes first. The Clear and Complicated steps follow by dependency: 'Step 2 MUST NOT start until the Step 1 test passes', 'Step 3 ... MAY run in parallel with Step 2', 'Step 4 MUST NOT start until Steps 2 and 3 finish'. There are no Complex probes.",
+      "score": 2
+    },
+    "R5": {
+      "evidence": "The three deterministic steps have Gherkin tests (Given/When/Then). The evaluative Step 4 has a rubric with criteria, weights (3, 2, 2), a pass threshold ('5 of 7'), and evidence ('a cell reference').",
+      "score": 2
+    },
+    "R6": {
+      "evidence": "The input says R6 does not apply.",
+      "score": null
+    },
+    "R7": {
+      "evidence": "'Open questions: none. Steps 1 to 4 collect the answers.' The response asks zero questions, logs assumptions A1 to A3, and justifies proceeding in 'Alternative considered'. This is within the limit.",
+      "score": 2
+    },
+    "R8": {
+      "evidence": "'It is likely (66 to 100%) that the cause is a scope, period, or formula mismatch' uses an IPCC term, but it has no basis and states a cause theory. The recommendation depends on A2 (data access) and A3 (no fraud), and neither carries a probability.",
+      "score": 1
+    },
+    "R9": {
+      "evidence": "The structure is complete: Headline, BRIEF, End beginning 'I recommend that we', and Self-test last. The check report shows zero dashes and zero banned words. It flags a 26-word sentence ('Q3 reports are usually reviewed...'), a multi-citation line ('Write each test in Gherkin form before the work [1]. Classify each action by Cynefin domain [2].'), and citations with no reference: the script parsed zero reference entries although the response prints a References list. The Self-test claims 'Longest sentence: 22 words' and reports 'primary or secondary behind each driving claim: no' instead of fixing it.",
+      "score": 1
+    }
+  }
+}
