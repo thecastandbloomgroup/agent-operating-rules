@@ -11,6 +11,17 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-01
+
+### Added
+
+- `tests/evaluation/results/2026-11-01-gherkin-lines-results.md` and its script-only run. Answers free of long sentences rose from 31% to 50%.
+
+### Changed
+
+- **Breaking:** rules 0.6. A deterministic test puts Given, When, and Then each on its own line. Gherkin tests in one sentence were half of the long sentences in End.
+- **Breaking:** Section 4.1 item 1 asks the model to split each sentence over the limit before it sends.
+
 ## [0.5.0] - 2026-11-01
 
 ### Added
@@ -127,4 +138,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.3.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.0...v0.3.1
 [0.4.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.1...v0.4.0
 [0.5.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.4.0...v0.5.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.5.0...main
+[0.6.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.5.0...v0.6.0
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.6.0...main
