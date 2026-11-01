@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/results/2026-11-01-affective-baseline.md`: the first run of A1 to A3. Responding passes 18 of 18 answers, Valuing 17 of 18, and Organization 8 of 18.
 - `bin/script-checks.py` scores the answers to A3, which asks for no headings, by their own structure checks.
 - `tests/evaluation/results/2026-11-01-reason-examples-results.md`: a probe with one example reason for each domain, and a line between Clear and Complicated. Actions with both a right domain and a reason of cause and effect rose from 9 to 10 and 12 of 40. The pass threshold was 18. So the rules stay at 0.6.
 - `bin/bloom-calibration.py` samples questions with Bloom labels by people at a pinned commit, and scores model labels against them. The questions stay in a scratch folder.
