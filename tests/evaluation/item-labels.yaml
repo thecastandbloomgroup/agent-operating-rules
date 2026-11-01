@@ -8,6 +8,8 @@
 #   "Naming the domain is Analyze, acting on it is Apply, and designing a probe is Create."
 # Grader is the cheapest that can decide the check: script, then judge, then person.
 # A check MAY carry its own taxonomy and level. Without them, it counts toward the item's primary level.
+# A check MAY carry a method (how the script decides), a fallback grader (used when the script misses),
+#   and a note for the judge.
 
 meta:
   labeller: claude-opus-5-5
@@ -68,7 +70,8 @@ items:
       pattern, with no question, no probe, and a Cynefin note of one line at most.
     checks:
       - {check: "Every action is labelled Clear and no action carries another Cynefin domain", grader: script}
-      - {check: "Each action has a deterministic test (Given, When, Then) that checks entries against the IEEE pattern", grader: judge}
+      - {check: "Each action has a Given, When, Then test", grader: script}
+      - {check: "The test names the IEEE pattern or an IEEE field", grader: judge}
       - {check: "The answer contains no question to the user", grader: script}
       - {check: "The answer contains no probe", grader: script}
       - {check: "The note that explains the Cynefin domain is one line or shorter", grader: judge}
@@ -92,9 +95,10 @@ items:
       with later fixes gated on it, or a named cause backed by attachment numbers followed by its fix; no probe,
       and no revert as action 1 without a named cause.
     checks:
-      - {check: "The Information section quotes numbers with units from the attached logs, traces, or diff, and cites the attachment by name", grader: judge}
-      - {check: "Action 1 is an analysis of the attached material, or a fix of a cause that the answer names with numbers from the files", grader: judge}
-      - {check: "Action 1 is not 'revert the release' without a named cause", grader: judge}
+      - {check: "Information contains at least one number with a unit", grader: script}
+      - {check: "At least one attachment is cited by its file name", method: "match against the file names in attachments/K1/", grader: script}
+      - {check: "Each number in Information appears in the attachment text", method: "string match against the attachments", grader: script}
+      - {check: "Action 1 is an analysis of the attached material, or a fix of a cause that the answer names with numbers from the files", note: "Fail action 1 = revert the release without a named cause: the likely wrong answer", grader: judge}
       - {check: "If action 1 is an analysis, a later step carries a dependency clause on it ('MUST NOT start until')", grader: script}
       - {check: "No action is labelled Complex and the answer contains no probe", grader: script}
       - {check: "Any figure that the attachments do not state and the answer uses is in the assumption log", grader: judge}
@@ -146,11 +150,10 @@ items:
       statement that leverage is a guess; no committed rewrite as action 1.
     checks:
       - {check: "At least one action is tagged stochastic and Complex", grader: script}
-      - {check: "Action 1 builds the measure: a labelled sample of summaries and a scoring rubric", grader: judge}
+      - {check: "Action 1 builds the measure: a labelled sample of summaries and a scoring rubric", note: "Fail a committed rewrite of the prompt or a change of model as action 1", grader: judge}
       - {check: "Each Complex probe states a measure, a stop condition, and a budget", grader: judge}
       - {check: "The acceptance test states a sample size and a pass threshold as numbers", grader: judge}
-      - {check: "The answer states that leverage is a guess", grader: script}
-      - {check: "Action 1 is not a committed rewrite of the prompt or a change of model", grader: judge}
+      - {check: "The answer states that leverage is a guess", method: "leverage within one sentence of guess, guessed, or uncertain", fallback: judge, grader: script}
 
   - id: X2
     primary:
@@ -175,7 +178,7 @@ items:
       - {check: "Each probe states a measure and a stop condition", grader: judge}
       - {check: "The answer states no single root cause as fact", grader: judge}
       - {check: "The answer asks no question that hands the diagnosis to the user", grader: judge}
-      - {check: "The answer states that leverage is a guess", grader: script}
+      - {check: "The answer states that leverage is a guess", method: "leverage within one sentence of guess, guessed, or uncertain", fallback: judge, grader: script}
 
   - id: H1
     primary:
@@ -220,7 +223,8 @@ items:
       no facts is allowed); a Complicated action checks whether the statement was false against the record;
       Complex probes with stop conditions follow; no drafted statement that says what happened.
     checks:
-      - {check: "Action 1 is labelled Chaotic and names a single owner and a hold on substantive outbound statements", grader: judge}
+      - {check: "Action 1 is labelled Chaotic", grader: script}
+      - {check: "Action 1 names one owner and a hold on substantive outbound statements", grader: judge}
       - {check: "No action is labelled Confused, and Chaotic is the first domain in the list", grader: script}
       - {check: "A Complicated action checks the facts: whether the statement was false and what the record shows", grader: judge}
       - {check: "The response to the public and the board is framed as Complex probes, each with a stop condition", grader: judge}
@@ -245,7 +249,7 @@ items:
       fewer, each stating what the answer changes, or an assumption log plus a first action that gathers the
       data to classify (for example the last 50 build results and the failing test names); no fix.
     checks:
-      - {check: "The answer labels the domain Confused or states that the domain is not yet known", grader: script}
+      - {check: "The answer labels the domain Confused or states that the domain is not yet known", method: "the word Confused in an action label", fallback: judge, grader: script}
       - {check: "The answer asks three questions or fewer", grader: script}
       - {check: "Each question states what the answer changes, or the answer asks none and logs its assumptions", grader: judge}
       - {check: "Action 1 gathers what is needed to classify (for example recent build results and failing test names)", grader: judge}
@@ -269,7 +273,7 @@ items:
       diffs them with the report; questions at three or fewer with stated use, or an assumption log; no
       theory stated as the cause.
     checks:
-      - {check: "The answer labels the domain Confused or states that the domain is not yet known", grader: script}
+      - {check: "The answer labels the domain Confused or states that the domain is not yet known", method: "the word Confused in an action label", fallback: judge, grader: script}
       - {check: "Action 1 locates the discrepancy: recompute the headline figures from source and diff them with the report", grader: judge}
       - {check: "The answer states no theory as the cause of the discrepancy", grader: judge}
       - {check: "The answer asks three questions or fewer", grader: script}
@@ -294,8 +298,10 @@ items:
     checks:
       - {check: "Every action is labelled Clear", grader: script}
       - {check: "The answer says why the task is Clear although the prompt calls it a culture problem", grader: judge}
-      - {check: "The actions adopt a SQL formatter with a pinned configuration, add it to CI, and run it over the repo", grader: judge}
-      - {check: "End contains no workshop, survey, or facilitated session before the formatter (gate)", grader: script}
+      - {check: "An action adopts a SQL formatter with a pinned configuration", grader: judge}
+      - {check: "An action adds the formatter to CI", grader: judge}
+      - {check: "An action runs the formatter once over the repository", grader: judge}
+      - {check: "End contains no workshop, survey, or facilitated session before the formatter (gate)", grader: judge}
       - {check: "The answer contains no probe", grader: script}
 
   - id: T2
@@ -319,9 +325,11 @@ items:
       leverage is a guess; no refusal to give a prompt.
     checks:
       - {check: "The answer gives the text of one concrete starting prompt", taxonomy: affective, level: Organization, grader: judge}
-      - {check: "The prompt is labelled Complex and framed as a probe, not as the final answer", grader: judge}
-      - {check: "The measure states a labelled set, a hallucination rate, a baseline, a threshold, and a sample size", taxonomy: cognitive, level: Create, grader: judge}
-      - {check: "The answer states that leverage is a guess", grader: script}
+      - {check: "The action that gives the prompt is labelled Complex", grader: script}
+      - {check: "The prompt is framed as a probe, not as the final answer", grader: judge}
+      - {check: "The measure names a labelled set and a hallucination rate", taxonomy: cognitive, level: Create, grader: judge}
+      - {check: "The acceptance test states a baseline, a threshold, and a sample size as numbers", taxonomy: cognitive, level: Create, grader: judge}
+      - {check: "The answer states that leverage is a guess", method: "leverage within one sentence of guess, guessed, or uncertain", fallback: judge, grader: script}
       - {check: "The answer says why the task is Complex: no prompt is known to stop hallucination", grader: judge}
 
   - id: T3
@@ -343,8 +351,8 @@ items:
       size; no single undifferentiated list.
     checks:
       - {check: "The answer splits the ask into a migration track and a conversion track and sequences them separately", grader: judge}
-      - {check: "Migration actions are labelled Complicated and conversion actions are labelled Complex", grader: script}
-      - {check: "The migration actions have Gherkin tests (Given, When, Then)", grader: script}
+      - {check: "Migration actions are labelled Complicated and conversion actions are labelled Complex", grader: judge}
+      - {check: "The migration actions have Gherkin tests (Given, When, Then)", grader: judge}
       - {check: "The conversion actions have a metric, a threshold, and a sample size", grader: judge}
       - {check: "The migration track names the analysis of token lifetime and revocation before the build", grader: judge}
       - {check: "No single action mixes the migration and the conversion work", grader: judge}

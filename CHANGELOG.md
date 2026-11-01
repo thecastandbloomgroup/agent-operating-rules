@@ -21,6 +21,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - Review changes 1 and 2. A check MAY name its own taxonomy and level, and a level counts checks, not items. T2 is now cognitive Analyze, and its first check counts toward affective Organization.
 - Review changes 3 and 7. The shared items STRUCTURE and LANGUAGE score the structure and the language rules once per answer. The SELFTEST checks compare each count with the checker, with a tolerance of 2 words on the longest sentence. The evaluation tests are now version 1.5.
 - Review changes 6 and 12. The H2 check passes a holding statement that commits to no facts. K1 checks that each figure missing from the attachments is in the assumption log. K2 checks each cost against the 400k budget.
+- Review changes 8 and 9. Six checks are split so that each decides one thing, and two duplicate checks become judge notes. The T1 gate and the T3 track checks go to a judge. Leverage checks and the U1 and U2 domain checks fall back to a judge when the script misses.
 
 ## [0.4.0] - 2026-10-31
 
