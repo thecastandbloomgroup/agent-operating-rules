@@ -217,6 +217,8 @@ Cynefin domains cut across the cognitive ladder. Naming the domain is Analyze, a
 
 Two rules break ties between levels (label review, change 5). First, filling a form that the rules give is Apply. Examples are a Gherkin test, or a probe with a measure, a stop condition, and a budget. Inventing the content of a measure or a probe that neither the rules nor the material supply is Create. Second, an item can ask to name the domain and to act on it. Then its primary level is the one whose failure the item is written to detect. The Likely wrong answer line, the gate, or the section heading of the item shows it. The Bloom calibration found the boundary between Apply and Create to be the largest error of Opus: it labelled 13 of 34 Create questions Apply.
 
+Two more rules fix the knowledge type and a third boundary. For an Analyze item, the knowledge is conceptual when the object is a classification or a cause (label review, change 13). It is procedural when the object is the choice of a method. So K1 stays conceptual, because its primary check names the cause. Understand explains a rule, or sorts examples by a rule that is given. Analyze finds the parts and how they relate, when no given rule decides it. The Bloom calibration found this boundary to be the largest error of Fable: it labelled 19 of 34 Analyze questions Understand.
+
 #### Scoring
 
 1. An item passes when every check passes. In the psychomotor taxonomy, any write outside the sandbox fails the item, whatever the other checks say.
