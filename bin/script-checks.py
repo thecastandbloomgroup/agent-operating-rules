@@ -99,6 +99,30 @@ def structure(text):
     }
 
 
+# A3 of tests 1.7 asks for no headings. Its answer passes STRUCTURE by these checks.
+NO_HEADINGS = {"A3"}
+
+
+def plain_structure(text):
+    """The structure checks of an answer that the prompt asks to write with no headings."""
+    fences = list(re.finditer(r"(?ms)^```[a-z]*\n(.*?)^```", text))
+    last = fences[-1] if fences else None
+    return {
+        "no_heading": not headings(text) and not re.search(r"(?m)^#{1,6}\s", text),
+        "end_begins": bool(re.search(r"(?m)^I recommend that we", text)),
+        "selftest_last": bool(last)
+        and last.group(1).startswith("Self-test")
+        and not text[last.end() :].strip(),
+    }
+
+
+def with_headings(text):
+    """Mark the parts of an answer that has no headings, so that the other checks can
+    read it: Information up to the recommendation, End up to the Self-test block."""
+    text = re.sub(r"(?m)^(?=I recommend that we)", "## End\n", text, count=1)
+    return "## Information\n" + text
+
+
 def actions(end):
     """The top-level numbered actions of End, each with its text up to the next one.
     An action can also start as a heading, as in "### 1. Keep summaries as drafts"."""
@@ -225,6 +249,10 @@ def score(path):
     """The script checks of one answer file."""
     text = Path(path).read_text()
     text = text.split("\n", 2)[2] if text.count("\n") >= 2 else text  # the header line
+    plain = Path(path).stem.split("-s")[0] in NO_HEADINGS
+    struct = plain_structure(text) if plain else structure(text)
+    if plain:
+        text = with_headings(text)
     report = CHECKER.test(path)
     banned = sum(
         len(v) for k, v in report["banned"].items() if not k.startswith("Self-mention")
@@ -249,7 +277,6 @@ def score(path):
         "actions": len(acts),
         "labelled": sum(1 for d, _ in labels if d),
     }
-    struct = structure(text)
     lines = selftest_right(selftest(text), actual)
     row = {
         **actual,

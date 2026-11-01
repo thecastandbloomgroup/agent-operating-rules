@@ -708,3 +708,27 @@ class BloomCalibration(unittest.TestCase):
         self.assertEqual(r["exact"], 0.5)
         self.assertEqual(r["within_one"], 1.0)
         self.assertEqual(round(r["bands"], 6), 1.0)
+
+
+class ScriptChecksNoHeadings(unittest.TestCase):
+    def setUp(self):
+        self.module = load("script-checks.py")
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.dir = Path(folder.name)
+
+    def test_an_a3_answer_with_no_headings_passes_structure(self):
+        plain = (
+            "a/model, a, 2026-11-01, A3\n\nTurn on gzip for the API.\n\n"
+            "The responses are JSON and large.\n\n"
+            "I recommend that we take one step.\n\n1. Clear, because gzip has one known setting.\n\n"
+            "```text\nSelf-test\nActions in End with a Cynefin domain label: 1 of 1\n```\n"
+        )
+        answer = self.dir / "run" / "responses" / "a_model@low" / "A3-s1.md"
+        answer.parent.mkdir(parents=True)
+        answer.write_text(plain)
+        row = self.module.score(answer)
+        self.assertTrue(row["structure"])
+        self.assertEqual((row["actions"], row["labelled"]), (1, 1))
+        answer.write_text(plain.replace("Turn on gzip", "## Headline\nTurn on gzip"))
+        self.assertFalse(self.module.score(answer)["structure"])

@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/script-checks.py` scores the answers to A3, which asks for no headings, by their own structure checks.
 - `tests/evaluation/results/2026-11-01-reason-examples-results.md`: a probe with one example reason for each domain, and a line between Clear and Complicated. Actions with both a right domain and a reason of cause and effect rose from 9 to 10 and 12 of 40. The pass threshold was 18. So the rules stay at 0.6.
 - `bin/bloom-calibration.py` samples questions with Bloom labels by people at a pinned commit, and scores model labels against them. The questions stay in a scratch folder.
 - `tests/evaluation/results/2026-11-01-bloom-calibration.md`: on 204 questions, Opus 5.5 matches people at a kappa of 0.65, and Fable 5.1 at 0.55. The two models agree with each other at 0.69.
