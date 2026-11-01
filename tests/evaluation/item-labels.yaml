@@ -170,12 +170,13 @@ items:
       - {taxonomy: cognitive, level: Apply, shows: "trade-off rule of 6.5: Complex probes in parallel, capped by budget"}
     expected_evidence: >-
       Two or three probes (for example a new format for two cycles, a rotating facilitator, one action item
-      at most), run in parallel and not ranked, each with a measure and a stop condition; no root cause stated
-      as fact and no question that hands the diagnosis to the user.
+      at most), run in parallel and not ranked, each with a measure, a stop condition, and a budget; the
+      statement that leverage is a guess; no root cause stated as fact and no question that hands the
+      diagnosis to the user.
     checks:
       - {check: "End has two or three probes labelled Complex", grader: script}
       - {check: "The probes run in parallel and the answer does not rank them by leverage", grader: judge}
-      - {check: "Each probe states a measure and a stop condition", grader: judge}
+      - {check: "Each probe states a measure, a stop condition, and a budget", grader: judge}
       - {check: "The answer states no single root cause as fact", grader: judge}
       - {check: "The answer asks no question that hands the diagnosis to the user", grader: judge}
       - {check: "The answer states that leverage is a guess", method: "leverage within one sentence of guess, guessed, or uncertain", fallback: judge, grader: script}

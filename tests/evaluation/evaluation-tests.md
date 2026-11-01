@@ -71,7 +71,7 @@ Likely wrong answer: the model treats this as Complicated and proposes "analyse 
 
 Expected classification: Complex. Human systems, many interacting causes.
 Expected action form: two or three small probes run in parallel, each with a measure and a stop condition. Examples: change the format for two cycles; rotate the facilitator; cap action items at one.
-Should contain: probes in parallel, not ranked; a measure for each.
+Should contain: probes in parallel, not ranked; a measure, a stop condition, and a budget for each; the sentence that leverage is a guess.
 Should not contain: a single root cause stated as fact; a question that asks the user to diagnose it for the model.
 
 ### 1.4 Chaotic
@@ -183,6 +183,7 @@ Each change follows a review of the judge notes and of the rules file.
 - Version 1.3, H2: no change. Action 1 is a Chaotic stabiliser, then Complex probes. Most answers label H2 Confused, but an active crisis with no aligned owner is the Chaotic case.
 - Version 1.4, H2: the facts are Complicated, and a holding statement with no facts is part of the stabiliser. Action 1 stays Chaotic. In eight runs, judges of another provider passed 0 of 31 H2 answers. Judges of the same provider passed 5 of 30. 51 of the 61 judgments passed every gate. Most judge notes faulted the Complicated label for the facts, and 34 of the 61 faulted a holding statement. But whether the statement was false is knowable by analysis, so that part is Complicated.
 - Version 1.5: Section 2 names the three shared items of `item-labels.yaml`. The rubric of Section 3 is unchanged.
+- Version 1.5, X2: each probe also states a budget, and the answer says that leverage is a guess. Rule 6.5 asks for both, but X2 did not.
 
 ## 6. Source-type note
 
