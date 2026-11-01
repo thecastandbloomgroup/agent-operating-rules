@@ -11,6 +11,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-01
+
 ### Added
 
 - `tests/evaluation/results/2026-11-01-affective-baseline.md`: the first run of A1 to A3. Responding passes 18 of 18 answers, Valuing 17 of 18, and Organization 8 of 18.
@@ -25,6 +27,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Changed
 
+- The rules file says version 0.7. Its text is the same as 0.6, because this release changes the tests and the scripts.
 - **Breaking:** the evaluation tests are now version 1.6. A support step, such as paging a responder or building a measure, MAY carry its own domain. H1, H2, and X1 each name one. `bin/judge-actions.py` gives its judges the same rule.
 - Label review changes 4 and 5, in the design note. Evaluate covers judging options against fixed criteria, as well as grading an answer. Two tie-break rules separate Apply from Create, and Analyze from Apply.
 - Label review change 13, in the design note. The knowledge type of an Analyze item follows its object: a classification or a cause is conceptual, and a method is procedural. A new boundary separates Understand from Analyze.
@@ -159,4 +162,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.4.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.1...v0.4.0
 [0.5.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.4.0...v0.5.0
 [0.6.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.5.0...v0.6.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.6.0...main
+[0.7.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.6.0...v0.7.0
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.7.0...main

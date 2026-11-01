@@ -1,6 +1,6 @@
 # Operating Rules
 
-Version 0.6, 2026-11-01. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
+Version 0.7, 2026-11-01. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
 
 ## 0. Keywords and precedence
 
