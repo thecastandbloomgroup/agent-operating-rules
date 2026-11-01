@@ -11,8 +11,11 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-01
+
 ### Added
 
+- `tests/evaluation/results/2026-11-01-wording-results.md` and two script-only runs compare rules 0.4 with 0.5. A reason on every domain label rose from 12% to 78% of answers.
 - `bin/run-evaluation.py --rules FILE --no-judge` installs another rules file and calls the executors only.
 - `bin/script-checks.py` scores answers with the script checks of `item-labels.yaml`: STRUCTURE, LANGUAGE, SELFTEST, and the domain label of each action. It compares two runs with a 95% interval.
 - `tests/evaluation/item-labels.yaml` labels the 13 prompts and the self-test by Bloom's taxonomy. Opus 5.5 wrote the labels at high effort. `tests/evaluation/results/2026-10-31-labels/` keeps those labels, blind labels by Fable 5.1, and its review. The two models agree on 13 of 14 primary levels (kappa 0.90).
@@ -123,4 +126,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.3.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.2...v0.3.0
 [0.3.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.0...v0.3.1
 [0.4.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.3.1...v0.4.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.4.0...main
+[0.5.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.4.0...v0.5.0
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.5.0...main
