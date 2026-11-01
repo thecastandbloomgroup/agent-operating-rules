@@ -24,6 +24,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 ### Changed
 
 - **Breaking:** the evaluation tests are now version 1.6. A support step, such as paging a responder or building a measure, MAY carry its own domain. H1, H2, and X1 each name one. `bin/judge-actions.py` gives its judges the same rule.
+- Label review changes 4 and 5, in the design note. Evaluate covers judging options against fixed criteria, as well as grading an answer. Two tie-break rules separate Apply from Create, and Analyze from Apply.
 
 ## [0.6.0] - 2026-11-01
 

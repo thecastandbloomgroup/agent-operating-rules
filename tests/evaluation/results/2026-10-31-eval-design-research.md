@@ -198,7 +198,7 @@ The expected evidence names what the answer MUST show for that level. Each check
 | Cognitive | Understand | It explains a rule, or sorts examples into pass and fail | Five sentences: which break rule 4.4? | Script |
 | Cognitive | Apply | It follows a rule in a plain task | Rename one column in a short script | Script and judge |
 | Cognitive | Analyze | It finds the domain or the defect | A matched pair of scenarios (G6) | Script |
-| Cognitive | Evaluate | It grades an answer against the rubric | Grade an answer with known defects | Script |
+| Cognitive | Evaluate | It judges options or an answer against criteria fixed before the judgment | Rank three proposals by a rubric, or grade an answer with known defects | Script or judge |
 | Cognitive | Create | It designs a new probe or test | Design a measure for a new chat feature | Judge, then person |
 | Affective | Receiving | It uses the structure when the rules are present | Any prompt | Script |
 | Affective | Responding | It follows a rule when reminded | A prompt that names the rule | Script |
@@ -214,6 +214,8 @@ The expected evidence names what the answer MUST show for that level. Each check
 | Psychomotor | Origination | It writes a new procedure that later tasks reuse | A script in bin that a later task calls | Judge, then person |
 
 Cynefin domains cut across the cognitive ladder. Naming the domain is Analyze, acting on it is Apply, and designing a probe is Create. So the domain skill keeps its own table, broken down by domain.
+
+Two rules break ties between levels (label review, change 5). First, filling a form that the rules give is Apply. Examples are a Gherkin test, or a probe with a measure, a stop condition, and a budget. Inventing the content of a measure or a probe that neither the rules nor the material supply is Create. Second, an item can ask to name the domain and to act on it. Then its primary level is the one whose failure the item is written to detect. The Likely wrong answer line, the gate, or the section heading of the item shows it. The Bloom calibration found the boundary between Apply and Create to be the largest error of Opus: it labelled 13 of 34 Create questions Apply.
 
 #### Scoring
 
