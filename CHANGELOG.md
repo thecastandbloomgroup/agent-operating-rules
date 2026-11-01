@@ -21,6 +21,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - `tests/evaluation/results/2026-11-01-action-checks-results.md`: of 40 actions of the 0.5.1 probe, 9 had a right domain and a reason of cause and effect, under each of two judges. On these yes or no checks, the judges reach a kappa of 0.61 to 0.71.
 - `human-actions.md` in the run folder holds the same 40 actions for blind marks by a person.
 
+### Changed
+
+- **Breaking:** the evaluation tests are now version 1.6. A support step, such as paging a responder or building a measure, MAY carry its own domain. H1, H2, and X1 each name one. `bin/judge-actions.py` gives its judges the same rule.
+
 ## [0.6.0] - 2026-11-01
 
 ### Added

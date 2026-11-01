@@ -1,6 +1,6 @@
 # Evaluation Tests: Cynefin Classification in Recommendations
 
-Version 1.5, 2026-10-31. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
+Version 1.6, 2026-11-01. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
 
 ## Purpose
 
@@ -17,6 +17,8 @@ These tests are evaluative (rules file, 6.4). A deterministic test cannot grade 
 ## 1. Prompts by domain
 
 Each prompt names the domain it targets, the classification a correct response gives, the action form Section 6.5 requires, and the signals to look for.
+
+Support steps: the expected classification names the domain of the actions that do the main work of the prompt. A support step does not do that work. Examples are paging a responder, naming a channel, or building a measure. A support step MAY carry its own domain when that domain is right for the step.
 
 ### 1.1 Clear
 
@@ -65,6 +67,7 @@ Expected action form: safe-to-fail probes. Each probe states a measure, a stop c
 Should contain: at least one action tagged "stochastic, Complex"; a sample size and threshold for the acceptance test; the sentence that leverage is a guess.
 Should not contain: a committed rewrite of the prompt or model as action 1; a leverage ranking stated with confidence.
 Likely wrong answer: the model treats this as Complicated and proposes "analyse the failures" as if the failures were recorded. They are not; the first step is to create the record.
+Allowed: a support step labelled Clear that builds the measure, such as a feedback button with a deterministic test. An analysis of failures before the record exists is not a support step; it is the likely wrong answer.
 
 **Prompt X2 (non-software)**
 "Our team's retrospectives have stopped producing changes. People attend but nothing shifts. What should we do?"
@@ -83,6 +86,7 @@ Expected classification: Chaotic for the first action, then Complicated for the 
 Expected action form: action 1 stabilises (roll back the last deploy, or fail over) and comes first whatever its leverage. Action 2 establishes the record (capture logs and timeline). Later actions are Complicated analysis. The response tags them so.
 Should contain: the stabiliser first. An explicit domain change between actions. Example: "Steps 3 to 5 are Complicated and MUST NOT start until Step 1 restores service".
 Should not contain: a question; an analysis step before the stabiliser; more than one sentence of Background.
+Allowed: a support step labelled Clear, such as paging a second responder or briefing the execs, after the stabiliser.
 Gate: if action 1 is not a stabiliser, the response fails.
 
 **Prompt H2 (non-software)**
@@ -91,6 +95,7 @@ Gate: if action 1 is not a stabiliser, the response fails.
 Expected classification: Chaotic for action 1 (a single owner and a hold on substantive outbound statements). Then Complicated for the facts: was the statement false, and what does the record show. Then Complex for the response to the public and the board.
 Expected action form: stabiliser first; then an expert analysis of the facts; then probes with stop conditions.
 Allowed: a holding statement that commits to no facts. It counts as part of the stabiliser.
+Allowed: a support step labelled Clear, such as one channel for all advice, after the Chaotic stabiliser.
 Should not contain: a drafted public statement that says what happened, or whether the CEO was wrong. It commits before the facts are known.
 
 ### 1.5 Confused
@@ -184,6 +189,7 @@ Each change follows a review of the judge notes and of the rules file.
 - Version 1.4, H2: the facts are Complicated, and a holding statement with no facts is part of the stabiliser. Action 1 stays Chaotic. In eight runs, judges of another provider passed 0 of 31 H2 answers. Judges of the same provider passed 5 of 30. 51 of the 61 judgments passed every gate. Most judge notes faulted the Complicated label for the facts, and 34 of the 61 faulted a holding statement. But whether the statement was false is knowable by analysis, so that part is Complicated.
 - Version 1.5: Section 2 names the three shared items of `item-labels.yaml`. The rubric of Section 3 is unchanged.
 - Version 1.5, X2: each probe also states a budget, and the answer says that leverage is a guess. Rule 6.5 asks for both, but X2 did not.
+- Version 1.6: a support step MAY carry its own domain, with lines for H1, H2, and X1. In the blind marks of 40 actions, 11 of 26 right domains rested on this rule. The judges had no rule for it.
 
 ## 6. Source-type note
 

@@ -41,7 +41,9 @@ INSTRUCTIONS = """You check one action of an answer that followed a rules file.
 Decide two things, each yes or no, from the evidence given.
 1. domain_right: the Cynefin domain of this action fits the expected answer of the
    test for this prompt. When the expected answer gives several domains, judge the
-   domain of this action in its place in the list.
+   domain of this action in its place in the list. A support step (for example paging a
+   responder, naming a channel, or building a measure) does not do the main work of the
+   prompt, and it MAY carry its own domain when that domain is right for the step.
 2. reason_cause_effect: the reason given for the domain states how cause and effect
    relate in this work (for example "the effect shows only after a trial"), not only
    a restatement of the domain name or of the task.
