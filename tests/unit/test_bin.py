@@ -657,3 +657,30 @@ class ScriptChecks(unittest.TestCase):
         text = self.module.compare([old, new])
         self.assertIn("| no first person outside End | 0% | 100% | +100%", text)
         self.assertTrue((self.dir / "new" / "script-checks.csv").exists())
+
+
+class JudgeActions(unittest.TestCase):
+    def setUp(self):
+        self.module = load("judge-actions.py")
+
+    def test_samples_round_robin_across_executors(self):
+        actions = [{"executor": e, "n": i} for e in "ab" for i in range(5)]
+        picked = self.module.sample(actions, 4, 1)
+        self.assertEqual(sorted(a["executor"] for a in picked), ["a", "a", "b", "b"])
+        self.assertEqual(picked, self.module.sample(actions, 4, 1))
+
+    def test_a_judge_never_shares_the_provider_of_the_executor(self):
+        self.assertTrue(
+            self.module.judge_of("anthropic_claude-sonnet-5-5@medium")[
+                "model"
+            ].startswith("openai/")
+        )
+        self.assertTrue(
+            self.module.judge_of("xai_grok-4.7@low")["model"].startswith("anthropic/")
+        )
+
+    def test_scores_the_domain_twice_the_reason(self):
+        score = self.module.score
+        self.assertEqual(score({"domain_right": True, "reason_cause_effect": True}), 3)
+        self.assertEqual(score({"domain_right": True, "reason_cause_effect": False}), 2)
+        self.assertEqual(score({"domain_right": False, "reason_cause_effect": True}), 1)
