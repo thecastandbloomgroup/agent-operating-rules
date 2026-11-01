@@ -251,6 +251,8 @@ def score(path):
     text = text.split("\n", 2)[2] if text.count("\n") >= 2 else text  # the header line
     plain = Path(path).stem.split("-s")[0] in NO_HEADINGS
     struct = plain_structure(text) if plain else structure(text)
+    # Every row has every structure column, blank where it does not apply.
+    columns = {k: "" for k in ("headline_first", "brief_in_order", "no_heading")}
     if plain:
         text = with_headings(text)
     report = CHECKER.test(path)
@@ -281,6 +283,7 @@ def score(path):
     row = {
         **actual,
         "reasoned": sum(1 for d, r in labels if d and r),
+        **columns,
         **struct,
         "structure": all(struct.values()),
         "no_long_sentence": actual["long"] == 0,

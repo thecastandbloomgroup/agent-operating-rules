@@ -732,3 +732,10 @@ class ScriptChecksNoHeadings(unittest.TestCase):
         self.assertEqual((row["actions"], row["labelled"]), (1, 1))
         answer.write_text(plain.replace("Turn on gzip", "## Headline\nTurn on gzip"))
         self.assertFalse(self.module.score(answer)["structure"])
+
+    def test_a_run_with_a3_and_other_prompts_writes_one_csv(self):
+        self.test_an_a3_answer_with_no_headings_passes_structure()
+        (self.dir / "run" / "responses" / "a_model@low" / "C1-s1.md").write_text(ANSWER)
+        (self.dir / "run" / "run.json").write_text(json.dumps({"rules_version": "0.6"}))
+        _, rows = self.module.score_run(self.dir / "run")
+        self.assertEqual(len({tuple(r) for r in rows}), 1)
