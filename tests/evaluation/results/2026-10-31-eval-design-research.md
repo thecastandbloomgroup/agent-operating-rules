@@ -53,7 +53,7 @@ At an accuracy of 70%, the 95% interval is about 20 points each way with 20 item
 E4. The criteria mix three skills. R2 and R6 measure whether the model names the right domain. R1, R3, and R4 measure whether it acts on that domain. R5, R7, R8, and R9 measure general rules that do not depend on the domain.
 [3]
 
-Of 205 judgments by judges of another provider, 16 pass. Full points on R2 alone would raise that to 26, and full points on R1, R8, and R9 to 95. So the pass rate measures writing discipline more than the choice of domain.
+Of 205 judgments by judges of another provider, 16 pass. Full points on R2, R3, R4, and R6 would raise that to 102. Full points on R1, R8, and R9 would raise it to 95. So one pass rate hides two causes of about equal size.
 [4]
 
 E5. The plan for hand scoring shows a model's suggested score next to an empty column for the user. That layout invites the anchoring that theme T4 describes.
