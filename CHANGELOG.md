@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/item-labels.yaml` labels the 13 prompts and the self-test by Bloom's taxonomy. Opus 5.5 wrote the labels at high effort. `tests/evaluation/results/2026-10-31-labels/` keeps those labels, blind labels by Fable 5.1, and its review. The two models agree on 13 of 14 primary levels (kappa 0.90).
 - `tests/evaluation/results/2026-10-31-eval-design-research.md`: desk research on prior art for LLM evaluation and for Bloom's taxonomy, and the agreement of the two judges on each criterion. It proposes items labelled with a taxonomy type and a target level. Each of the three ladders gets a mastery score, and a geometric mean combines them. Human judgment gets three blind jobs.
 
 ## [0.4.0] - 2026-10-31

@@ -1,0 +1,469 @@
+# Bloom's taxonomy labels for the evaluation items. This is the living file: each change is a commit.
+# The first version is the Opus labels of tests/evaluation/results/2026-10-31-labels/, unchanged.
+# The review there (fable-review.md, Section 5) lists the changes, by number.
+# Labeller: model (claude-opus-5-5, effort high), blind to past scores and judgments.
+# Sources read: tests/evaluation/results/2026-10-31-eval-design-research.md (Design, B2 to B4),
+#   tests/evaluation/evaluation-tests.md v1.4 (Sections 1 to 3), sources/model-operating-rules.md v0.4.
+# Level definitions follow the design table "What each level asks of the agent" and the rule
+#   "Naming the domain is Analyze, acting on it is Apply, and designing a probe is Create."
+# Grader is the cheapest that can decide the check: script, then judge, then person.
+
+meta:
+  labeller: claude-opus-5-5
+  effort: high
+  date: 2026-10-31
+  tests_version: "1.4"
+  rules_version: "0.4"
+  blind: true
+
+# Strands that every answer exercises, because every answer follows the rules file.
+# Each item lists them again under secondary, so each item stands alone.
+common_secondary_note: >-
+  Every item also tests affective Receiving (the full Headline, BRIEF, Self-test structure),
+  cognitive Apply (the language rules of Section 4: no dashes, no banned words, sentence length),
+  and cognitive Evaluate with metacognitive knowledge (the self-test, labelled as item SELFTEST).
+
+items:
+
+  - id: C1
+    primary:
+      taxonomy: cognitive
+      level: Apply
+      knowledge: procedural
+      cynefin: [Clear]
+    primary_reason: >-
+      Apply is "follows a rule in a plain task"; the expected answer applies the Clear form of rule 6.5
+      (one-step actions, each a deterministic increment with a Gherkin test) to a known best practice.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Analyze, shows: "names Clear and avoids the likely wrong answer Complicated (criterion R6)"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules: zero dashes, zero banned words, sentence length"}
+      - {taxonomy: affective, level: Valuing, shows: "no hedge and no question although a careful-sounding answer would add one"}
+    expected_evidence: >-
+      Three to five one-step actions in End, each tagged deterministic and Clear, each with a Given/When/Then
+      test, ordered by leverage, with no probe, budget, rubric, question, or hedge.
+    checks:
+      - {check: "End has three to five numbered actions", grader: script}
+      - {check: "Every action is labelled Clear and no action carries another Cynefin domain", grader: script}
+      - {check: "Every action is tagged deterministic and has a Given, When, Then test", grader: script}
+      - {check: "The answer contains no question to the user (no sentence ends in '?' outside code)", grader: script}
+      - {check: "The answer contains no probe, budget, stop condition, or scoring rubric", grader: script}
+      - {check: "The actions replace print with the logging module at INFO level, as the prompt asks", grader: judge}
+
+  - id: C2
+    primary:
+      taxonomy: cognitive
+      level: Apply
+      knowledge: procedural
+      cynefin: [Clear]
+    primary_reason: >-
+      Apply is "follows a rule in a plain task"; the expected answer treats IEEE formatting as Clear,
+      one step per action, with a deterministic test that each entry matches the IEEE pattern.
+    confidence: high
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "factual knowledge of the IEEE reference pattern in the output or the test"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+      - {taxonomy: affective, level: Valuing, shows: "keeps the Cynefin note to one line, no padding on a trivial task"}
+    expected_evidence: >-
+      One-step actions labelled Clear, each with a deterministic test that checks entries against the IEEE
+      pattern, with no question, no probe, and a Cynefin note of one line at most.
+    checks:
+      - {check: "Every action is labelled Clear and no action carries another Cynefin domain", grader: script}
+      - {check: "Each action has a deterministic test (Given, When, Then) that checks entries against the IEEE pattern", grader: judge}
+      - {check: "The answer contains no question to the user", grader: script}
+      - {check: "The answer contains no probe", grader: script}
+      - {check: "The note that explains the Cynefin domain is one line or shorter", grader: judge}
+
+  - id: K1
+    primary:
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: conceptual
+      cynefin: [Complicated]
+    primary_reason: >-
+      Analyze is "finds the domain or the defect"; the expected answer names the analysis (bisect the diff,
+      compare traces) or names the cause with numbers from the attached logs, traces, and diff.
+    confidence: high
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "Complicated form: build actions depend on the analysis step with a dependency clause"}
+      - {taxonomy: cognitive, level: Evaluate, shows: "Kepner-Tregoe or Pugh layout if it proposes a choice between fixes"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; citations to the attachments by name (5.4 item 4)"}
+    expected_evidence: >-
+      An evidence section with numbers from the attachments, and either a first action that names the analysis
+      with later fixes gated on it, or a named cause backed by attachment numbers followed by its fix; no probe,
+      and no revert as action 1 without a named cause.
+    checks:
+      - {check: "The Information section quotes numbers with units from the attached logs, traces, or diff, and cites the attachment by name", grader: judge}
+      - {check: "Action 1 is an analysis of the attached material, or a fix of a cause that the answer names with numbers from the files", grader: judge}
+      - {check: "Action 1 is not 'revert the release' without a named cause", grader: judge}
+      - {check: "If action 1 is an analysis, a later step carries a dependency clause on it ('MUST NOT start until')", grader: script}
+      - {check: "No action is labelled Complex and the answer contains no probe", grader: script}
+
+  - id: K2
+    primary:
+      taxonomy: cognitive
+      level: Evaluate
+      knowledge: procedural
+      cynefin: [Complicated]
+    primary_reason: >-
+      Evaluate is judging against criteria and standards (B2); the expected answer fixes a rubric of criteria,
+      weights, threshold, and evidence before it scores the three vendor proposals and picks one.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Analyze, shows: "names Complicated, so no probe"}
+      - {taxonomy: cognitive, level: Apply, shows: "the evaluative test form of rule 6.4 (Kepner-Tregoe, Pugh, or ISO/IEC 25010)"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; assumption log format of 5.2"}
+    expected_evidence: >-
+      A rubric with criteria, weights, a pass threshold, and the evidence per criterion, placed before any score;
+      then a scored comparison of the three proposals within the 400k three-year budget, a pick, the strongest
+      alternative and why it loses, and an assumption log for gaps in the proposals.
+    checks:
+      - {check: "A rubric with criteria, weights, and a pass threshold appears before any vendor score", grader: judge}
+      - {check: "Each criterion names the evidence it needs from the proposals", grader: judge}
+      - {check: "All three proposals are scored against the rubric and one is recommended", grader: judge}
+      - {check: "The alternative considered names a second vendor and the scored reason it loses", grader: judge}
+      - {check: "The assumption log has at least one line with the four fields of 5.2", grader: script}
+      - {check: "The answer contains no probe", grader: script}
+
+  - id: X1
+    primary:
+      taxonomy: cognitive
+      level: Create
+      knowledge: procedural
+      cynefin: [Complex]
+    primary_reason: >-
+      Create is "designs a new probe or test" (example "design a measure for a new chat feature"); the expected
+      answer's first probe builds a measure that does not exist, a labelled sample and a scoring rubric.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Analyze, shows: "names Complex and avoids the likely wrong answer Complicated (R6)"}
+      - {taxonomy: cognitive, level: Apply, shows: "stochastic test form of 6.4: metric, baseline, threshold, sample size"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; 4.6 calibrated uncertainty"}
+    expected_evidence: >-
+      A first probe that creates the record and the measure (a labelled sample and a scoring rubric); probes
+      with a measure, stop condition, and budget; an acceptance test with sample size and threshold; the
+      statement that leverage is a guess; no committed rewrite as action 1.
+    checks:
+      - {check: "At least one action is tagged stochastic and Complex", grader: script}
+      - {check: "Action 1 builds the measure: a labelled sample of summaries and a scoring rubric", grader: judge}
+      - {check: "Each Complex probe states a measure, a stop condition, and a budget", grader: judge}
+      - {check: "The acceptance test states a sample size and a pass threshold as numbers", grader: judge}
+      - {check: "The answer states that leverage is a guess", grader: script}
+      - {check: "Action 1 is not a committed rewrite of the prompt or a change of model", grader: judge}
+
+  - id: X2
+    primary:
+      taxonomy: cognitive
+      level: Create
+      knowledge: procedural
+      cynefin: [Complex]
+    primary_reason: >-
+      Create is "designs a new probe or test"; the expected answer designs two or three small safe-to-fail
+      probes for a human system, each with its own measure and stop condition, run in parallel.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Analyze, shows: "names Complex and avoids a single root cause stated as fact"}
+      - {taxonomy: cognitive, level: Apply, shows: "trade-off rule of 6.5: Complex probes in parallel, capped by budget"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+    expected_evidence: >-
+      Two or three probes (for example a new format for two cycles, a rotating facilitator, one action item
+      at most), run in parallel and not ranked, each with a measure and a stop condition; no root cause stated
+      as fact and no question that hands the diagnosis to the user.
+    checks:
+      - {check: "End has two or three probes labelled Complex", grader: script}
+      - {check: "The probes run in parallel and the answer does not rank them by leverage", grader: judge}
+      - {check: "Each probe states a measure and a stop condition", grader: judge}
+      - {check: "The answer states no single root cause as fact", grader: judge}
+      - {check: "The answer asks no question that hands the diagnosis to the user", grader: judge}
+      - {check: "The answer states that leverage is a guess", grader: script}
+
+  - id: H1
+    primary:
+      taxonomy: cognitive
+      level: Apply
+      knowledge: procedural
+      cynefin: [Chaotic, Complicated]
+    primary_reason: >-
+      Apply is "follows a rule in a plain task"; the expected answer applies the Chaotic rule of 6.5
+      (stabilise first, whatever its leverage) and then the Complicated form, with an explicit domain change.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Analyze, shows: "splits the incident into a Chaotic first action and Complicated later actions"}
+      - {taxonomy: affective, level: Valuing, shows: "keeps the full structure and self-test under a ten-minute time pressure, with Background of one sentence"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+    expected_evidence: >-
+      Action 1 stabilises (roll back the last deploy or fail over) and is labelled Chaotic; action 2 captures
+      logs and the timeline; later actions are Complicated analysis gated on restored service; no question
+      and no analysis before the stabiliser.
+    checks:
+      - {check: "Action 1 is a stabiliser (roll back the last deploy, or fail over) (gate)", grader: judge}
+      - {check: "Action 1 is labelled Chaotic and the later analysis actions are labelled Complicated", grader: script}
+      - {check: "Action 2 captures the record: logs and a timeline", grader: judge}
+      - {check: "A dependency clause gates the Complicated steps on Step 1 ('MUST NOT start until')", grader: script}
+      - {check: "The answer contains no question to the user", grader: script}
+      - {check: "The Background section has at most one sentence", grader: script}
+
+  - id: H2
+    primary:
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: conceptual
+      cynefin: [Chaotic, Complicated, Complex]
+    primary_reason: >-
+      Analyze is "finds the domain"; the expected answer splits one crisis into three domains: a Chaotic
+      stabiliser, a Complicated check of the facts, and Complex probes for the public and board response.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "stabiliser first, then expert analysis, then probes with stop conditions"}
+      - {taxonomy: affective, level: Valuing, shows: "holds back a drafted statement of facts while three parties push for one"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+    expected_evidence: >-
+      Action 1 is Chaotic: one owner and a hold on substantive outbound statements (a holding statement with
+      no facts is allowed); a Complicated action checks whether the statement was false against the record;
+      Complex probes with stop conditions follow; no drafted statement that says what happened.
+    checks:
+      - {check: "Action 1 is labelled Chaotic and names a single owner and a hold on substantive outbound statements", grader: judge}
+      - {check: "No action is labelled Confused, and Chaotic is the first domain in the list", grader: script}
+      - {check: "A Complicated action checks the facts: whether the statement was false and what the record shows", grader: judge}
+      - {check: "The response to the public and the board is framed as Complex probes, each with a stop condition", grader: judge}
+      - {check: "The answer contains no drafted public statement that says what happened or whether the CEO was wrong", grader: judge}
+
+  - id: U1
+    primary:
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: metacognitive
+      cynefin: [Confused]
+    primary_reason: >-
+      Analyze is "finds the domain"; here the domain the agent must find is Confused, so it must recognise the
+      limit of what it knows (metacognitive) and make the first action gather what is needed to classify.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "Section 2 decision process: three questions at most, each with its use, or assume and log"}
+      - {taxonomy: affective, level: Valuing, shows: "does not offer a fix to a one-line prompt that invites a quick answer"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; assumption log format of 5.2"}
+    expected_evidence: >-
+      The word Confused or an equivalent statement that the domain is not yet known; either three questions or
+      fewer, each stating what the answer changes, or an assumption log plus a first action that gathers the
+      data to classify (for example the last 50 build results and the failing test names); no fix.
+    checks:
+      - {check: "The answer labels the domain Confused or states that the domain is not yet known", grader: script}
+      - {check: "The answer asks three questions or fewer", grader: script}
+      - {check: "Each question states what the answer changes, or the answer asks none and logs its assumptions", grader: judge}
+      - {check: "Action 1 gathers what is needed to classify (for example recent build results and failing test names)", grader: judge}
+      - {check: "No action is a fix of the build before the classification step", grader: judge}
+
+  - id: U2
+    primary:
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: metacognitive
+      cynefin: [Confused]
+    primary_reason: >-
+      Analyze is "finds the domain or the defect"; the domain is Confused, and the expected first action
+      locates the discrepancy (recompute the three headline figures from source and diff) before any theory.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "Section 2 decision process and the Confused-first ordering of 6.5"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; assumption log format of 5.2"}
+    expected_evidence: >-
+      The word Confused or an equivalent; a first action that recomputes the headline figures from source and
+      diffs them with the report; questions at three or fewer with stated use, or an assumption log; no
+      theory stated as the cause.
+    checks:
+      - {check: "The answer labels the domain Confused or states that the domain is not yet known", grader: script}
+      - {check: "Action 1 locates the discrepancy: recompute the headline figures from source and diff them with the report", grader: judge}
+      - {check: "The answer states no theory as the cause of the discrepancy", grader: judge}
+      - {check: "The answer asks three questions or fewer", grader: script}
+      - {check: "Each question states what the answer changes, or the answer asks none and logs its assumptions", grader: judge}
+
+  - id: T1
+    primary:
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: conceptual
+      cynefin: [Clear]
+    primary_reason: >-
+      Analyze is "finds the domain"; the expected answer names Clear despite the word "culture" and says why:
+      a formatter with a lock file ends the dispute.
+    confidence: high
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "Clear form: one-step deterministic actions with Gherkin tests"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+    expected_evidence: >-
+      The domain named Clear with the reason that the misleading wording points the wrong way; one-step actions
+      (adopt a formatter with a pinned configuration, add it to CI, run it once over the repo); no workshop,
+      survey, facilitated session, or probe.
+    checks:
+      - {check: "Every action is labelled Clear", grader: script}
+      - {check: "The answer says why the task is Clear although the prompt calls it a culture problem", grader: judge}
+      - {check: "The actions adopt a SQL formatter with a pinned configuration, add it to CI, and run it over the repo", grader: judge}
+      - {check: "End contains no workshop, survey, or facilitated session before the formatter (gate)", grader: script}
+      - {check: "The answer contains no probe", grader: script}
+
+  - id: T2
+    primary:
+      taxonomy: affective
+      level: Organization
+      knowledge: null
+      cynefin: [Complex]
+    primary_reason: >-
+      Organization is "resolves a conflict by the precedence of Section 0"; the expected answer honours the
+      explicit request (gives the prompt, rule 0 item 1) and the Complex rule (frames it as a probe with a measure).
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Analyze, shows: "names Complex despite 'just tell me the best', and says no prompt is known to stop hallucination"}
+      - {taxonomy: cognitive, level: Create, shows: "designs the measure: labelled set, hallucination rate, baseline, threshold, sample size"}
+      - {taxonomy: affective, level: Valuing, shows: "keeps the full structure and self-test when the prompt says 'just'"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+    expected_evidence: >-
+      One concrete starting prompt, framed as the first Complex probe and not as a final fix, with a measure
+      (a labelled set and a hallucination rate), a baseline, a threshold, a sample size, and the statement that
+      leverage is a guess; no refusal to give a prompt.
+    checks:
+      - {check: "The answer gives the text of one concrete starting prompt", grader: judge}
+      - {check: "The prompt is labelled Complex and framed as a probe, not as the final answer", grader: judge}
+      - {check: "The measure states a labelled set, a hallucination rate, a baseline, a threshold, and a sample size", grader: judge}
+      - {check: "The answer states that leverage is a guess", grader: script}
+      - {check: "The answer says why the task is Complex: no prompt is known to stop hallucination", grader: judge}
+
+  - id: T3
+    primary:
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: conceptual
+      cynefin: [Complicated, Complex]
+    primary_reason: >-
+      Analyze is "finds the domain", here by decomposing one ask; per rule 6.7 the expected answer splits a
+      Complicated JWT migration from a Complex conversion goal and sequences the two tracks separately.
+    confidence: high
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "different test forms: Gherkin for the migration, metric and sample size for conversion"}
+      - {taxonomy: cognitive, level: Create, shows: "designs the conversion probe and its measure"}
+      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
+      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
+    expected_evidence: >-
+      An explicit split into two tracks; migration actions labelled Complicated with a design choice on token
+      lifetime and revocation and Gherkin tests; conversion actions labelled Complex with a metric and sample
+      size; no single undifferentiated list.
+    checks:
+      - {check: "The answer splits the ask into a migration track and a conversion track and sequences them separately", grader: judge}
+      - {check: "Migration actions are labelled Complicated and conversion actions are labelled Complex", grader: script}
+      - {check: "The migration actions have Gherkin tests (Given, When, Then)", grader: script}
+      - {check: "The conversion actions have a metric, a threshold, and a sample size", grader: judge}
+      - {check: "The migration track names the analysis of token lifetime and revocation before the build", grader: judge}
+      - {check: "No single action mixes the migration and the conversion work", grader: judge}
+
+  - id: SELFTEST
+    primary:
+      taxonomy: cognitive
+      level: Evaluate
+      knowledge: metacognitive
+      cynefin: none
+    primary_reason: >-
+      Evaluate includes checking one's own work against criteria; the Section 7 block asks the agent to grade
+      its own answer (counts of dashes, banned words, sentence length, labels) and fix any failing line first.
+    confidence: medium
+    secondary:
+      - {taxonomy: affective, level: Receiving, shows: "the block is present and last in every answer"}
+      - {taxonomy: affective, level: Valuing, shows: "the block is present in H1 and T2, where the prompt invites a shortcut"}
+      - {taxonomy: affective, level: Characterization, shows: "the block is present and accurate across all 13 prompts and all samples"}
+      - {taxonomy: cognitive, level: Remember, shows: "the 15 lines reproduced in the order of Section 7"}
+    expected_evidence: >-
+      A Self-test block placed last with the 15 lines of Section 7 in order, every count equal to an
+      independent count of the answer, and no line that reports a failure.
+    checks:
+      - {check: "The Self-test block is the last section and has the 15 lines of Section 7 in order", grader: script}
+      - {check: "'Dashes (em or en)' equals the count of U+2014 and U+2013 in the answer", grader: script}
+      - {check: "'Banned words found' equals the checker's count of banned words", grader: script}
+      - {check: "'Longest sentence' equals the checker's word count of the longest sentence", grader: script}
+      - {check: "'Actions in End with a Cynefin domain label' equals the count of actions in End and of labelled actions", grader: script}
+      - {check: "No line reports a failure (every yes/no line says yes, and the dash, banned-word, and self-mention counts are 0)", grader: script}
+
+coverage:
+  primary_counts:
+    cognitive:
+      Remember: 0
+      Understand: 0
+      Apply: 3        # C1, C2, H1
+      Analyze: 6      # K1, H2, U1, U2, T1, T3
+      Evaluate: 2     # K2, SELFTEST
+      Create: 2       # X1, X2
+    affective:
+      Receiving: 0
+      Responding: 0
+      Valuing: 0
+      Organization: 1 # T2
+      Characterization: 0
+    psychomotor:
+      Perception: 0
+      Set: 0
+      Guided response: 0
+      Mechanism: 0
+      Complex overt response: 0
+      Adaptation: 0
+      Origination: 0
+  levels_with_no_primary_item:
+    - level: cognitive Remember
+      why: "No prompt asks the agent to state a rule; the self-test reproduces its own lines, which is only a secondary strand."
+    - level: cognitive Understand
+      why: "No prompt asks the agent to explain a rule or sort examples into pass and fail."
+    - level: affective Receiving
+      why: "Every item shows it as a secondary strand, but no item isolates it."
+    - level: affective Responding
+      why: "No prompt names a rule as a reminder."
+    - level: affective Valuing
+      why: "H1 ('ten minutes') and T2 ('just tell me') invite a shortcut, but neither asks to skip the format, so Valuing stays secondary."
+    - level: affective Characterization
+      why: "The run sends one prompt per session with no pushback turn; repeated samples alone give a partial signal (SELFTEST secondary)."
+    - level: psychomotor (all seven levels)
+      why: "The items are single-turn text answers with attached files; no item uses tools, reads tool state, or acts in a sandbox."
+  summary: >-
+    13 of 18 levels have no primary item. The set covers cognitive Apply to Create and one affective level.
+    The primaries crowd at Analyze (6 of 14), which matches the purpose of the file (Cynefin classification).
+  hard_to_decide:
+    - id: K2
+      why: >-
+        The design table defines Evaluate as "grades an answer against the rubric", which is about grading
+        answers; K2 is Evaluate in the general Bloom sense (judge vendors by criteria) but could be labelled
+        Apply (follow the evaluative test form of 6.4). This crosses the middle and upper bands.
+    - id: X2
+      why: >-
+        The expected answer lists example probes, so an answer that reuses them is Apply; an answer that designs
+        its own is Create. The label depends on whether the examples count as given to the agent; they are not
+        in the prompt, so Create is the label, but X1 is the stronger Create item.
+    - id: H1
+      why: >-
+        Apply (follow the Chaotic-first rule in an obvious outage) against Analyze (split the incident into
+        Chaotic and Complicated parts). The domain is not disguised, so Apply wins, but the domain change is an
+        Analyze strand. Same band, so a three-band fallback agrees either way.
+    - id: T2
+      why: >-
+        It sits in the 1.6 group (wrong-classification prompts), which points to cognitive Analyze, but the
+        version 1.3 change in evaluation-tests.md rests on Section 0 precedence, which is the design's example
+        of affective Organization. The label crosses taxonomies, so the score of each taxonomy depends on it.
+    - id: U1
+      why: >-
+        Analyze with metacognitive knowledge (recognise that the domain is unknown) against Evaluate (check
+        whether the material is enough to act). The design rule "naming the domain is Analyze" decides it.
+      also_applies_to: U2
+    - id: SELFTEST
+      why: >-
+        Presence of the block is affective Receiving, and its accuracy is cognitive Evaluate. The checks test
+        accuracy, so Evaluate is the label, but a run that only scores presence measures Receiving.
+    - id: C1
+      why: >-
+        It carries a "Likely wrong answer" line, so criterion R6 applies and the item also tests Analyze; the
+        domain is plain, so Apply stays primary. C2 has no such line and is a cleaner Apply item.

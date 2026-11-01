@@ -1,0 +1,94 @@
+# Blind labels, Phase 1. Written before reading any other labeller's file.
+# Labeller: Fable 5.1. Date: 2026-10-31.
+# Sources: eval design research (Design section, B2 to B4), evaluation-tests.md v1.4 sections 1 to 3, model-operating-rules.md 0.4.
+# Schema: id, taxonomy, level, knowledge (cognitive only), reason (one line).
+# Rule used from the design: naming the domain is Analyze, acting on it is Apply, designing a probe or measure is Create.
+
+items:
+  - id: C1
+    taxonomy: cognitive
+    level: Apply
+    knowledge: procedural
+    reason: The domain is plain from the material; the work is to follow rule 6.5 Clear form (one-step actions, Gherkin tests, no question) in a routine task, and to resist dressing it up as Complicated.
+
+  - id: C2
+    taxonomy: cognitive
+    level: Apply
+    knowledge: procedural
+    reason: A fixed procedure (IEEE pattern per entry) applied to given data with a deterministic test; no classification difficulty, no probe, no conflict.
+
+  - id: K1
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: procedural
+    reason: The agent must find the cause from attached logs, traces, and diff (or name the analysis that would) and refuse to commit a fix before it; the design row for Analyze is "finds the domain or the defect".
+
+  - id: K2
+    taxonomy: cognitive
+    level: Evaluate
+    knowledge: procedural
+    reason: Choose among three proposals by a rubric fixed before scoring, with weights, threshold, evidence per criterion, and a stated losing alternative; judging against criteria is the Evaluate definition.
+
+  - id: X1
+    taxonomy: cognitive
+    level: Create
+    knowledge: procedural
+    reason: No metric exists, so the expected first action designs the measure (labelled sample, scoring rubric, sample size, threshold) and the probes around it; the design says designing a probe or measure is Create.
+
+  - id: X2
+    taxonomy: cognitive
+    level: Create
+    knowledge: procedural
+    reason: The agent must generate two or three parallel probes for a human system, each with its own measure and stop condition, with no analysis to lean on; probe design is Create, and resisting a single root cause is secondary.
+
+  - id: H1
+    taxonomy: cognitive
+    level: Apply
+    knowledge: procedural
+    reason: Rule 6.5 states the Chaotic procedure (stabilise first whatever the leverage, then record, then analysis); the item checks that the agent follows it under time pressure, with the stabiliser as a gate.
+
+  - id: H2
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: conceptual
+    reason: One ask decomposes into three parts with three domains (Chaotic owner and hold, Complicated facts, Complex public response), and most answers mislabel it Confused; differentiating and attributing the parts is Analyze.
+
+  - id: U1
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: metacognitive
+    reason: The agent must recognise that the prompt does not let it classify (Confused) and act on Section 2 (three questions with stated use, or assume and gather); knowing what the task does not tell you is conditional, metacognitive knowledge.
+
+  - id: U2
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: metacognitive
+    reason: Same shape as U1 with a non-software surface; the pass depends on naming the domain as not yet known and making the first action locate the discrepancy rather than stating a cause.
+
+  - id: T1
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: conceptual
+    reason: The wording ("culture problem") points to Complex while the structure of the problem is Clear; separating the surface cue from the cause-and-effect relation is differentiating, with a gate on workshop before formatter.
+
+  - id: T2
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: conceptual
+    reason: Worded as Clear, the task is Complex, and the agent must name it so while still giving the requested prompt as the first probe; the Section 0 precedence (explicit request over the urge to refuse) is a secondary affective Organization strand.
+
+  - id: T3
+    taxonomy: cognitive
+    level: Analyze
+    knowledge: conceptual
+    reason: Two domains in one ask; the agent must split them per rule 6.7 and give each track its own test form (Gherkin versus metric with sample size), which is differentiating and organizing.
+
+  - id: SELFTEST
+    taxonomy: cognitive
+    level: Evaluate
+    knowledge: metacognitive
+    reason: The block is the agent checking its own answer against the Section 7 checklist, and the pass condition is that the counts match the response, so it is self-monitoring (checking) rather than recall of the template.
+
+notes:
+  - All fourteen items are one-turn text tasks with no tools, so none has a psychomotor primary; H1 (pressure) and T2 (Section 0 conflict) carry affective strands that a second label could record.
+  - Bands used by the design (lower Remember and Understand, middle Apply and Analyze, higher Evaluate and Create) give 3 Apply, 7 Analyze, 2 Evaluate, 2 Create; no item lands in the lower band, because every prompt demands a recommendation rather than a statement or explanation of a rule.
