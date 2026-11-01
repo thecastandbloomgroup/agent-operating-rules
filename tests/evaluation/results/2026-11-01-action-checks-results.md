@@ -73,6 +73,13 @@ E7. Fable had one rule that the judges did not: a small support step may carry i
 E8. On 10 reasons, both judges said no and Fable said yes. So its standard for a reason is looser. By a majority of the three graders, 11 of 40 actions score 3, and the test still fails.
 [1]
 
+### Note: judged again under tests 1.6
+
+E9. Tests 1.6 let a support step carry its own domain, and the judges now have that rule. Both judges checked the same 40 actions again under it. The domain was right in 27 and 29 of 40, against 22 and 16 above, and reasons stayed at 14 and 15.
+[2]
+
+The verdicts above are now in `action-checks-tests15.csv` and `action-checks-argon-tests15.csv`. The files without a suffix hold the verdicts under tests 1.6.
+
 ### Assumption log
 
 A1. A person marks the 40 actions in about 40 minutes. Why not measured: the user has not answered. Validate by: time the first 10 marks. If wrong: mark 20 actions, and accept the wider interval.
@@ -109,7 +116,9 @@ About 25.79 USD of the 50 USD remain.
 
 ### References
 
-[1] tests/evaluation/results/2026-11-01-gherkin-lines: action-checks.csv, action-checks-argon.csv, and action-checks-fable-blind.csv, 2026. [P]
+[1] tests/evaluation/results/2026-11-01-gherkin-lines: action-checks-tests15.csv, action-checks-argon-tests15.csv, and action-checks-fable-blind.csv, 2026. [P]
+
+[2] tests/evaluation/results/2026-11-01-gherkin-lines: action-checks.csv and action-checks-argon.csv, judged under tests 1.6, 2026. [P]
 
 ## Self-test
 
