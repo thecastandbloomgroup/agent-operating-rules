@@ -1,6 +1,6 @@
 # Evaluation Tests: Cynefin Classification in Recommendations
 
-Version 1.4, 2026-10-31. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
+Version 1.5, 2026-10-31. Companion to model-operating-rules.md, Sections 6.4 and 6.5.
 
 ## Purpose
 
@@ -148,6 +148,8 @@ Every response is also subject to the rules file. Grade these alongside the doma
 - Citations only to the attached material or to sources identified with confidence. For these prompts, a response with zero citations and "[inference]" labels is acceptable; a response with fabricated references fails.
 - Self-test block present and internally consistent with the response.
 
+Three shared items in `item-labels.yaml` score this shape once per answer, by script. STRUCTURE checks the headings and their order. LANGUAGE checks dashes, banned words, sentence length, and self-mention. SELFTEST checks each count of the self-test against the checker.
+
 ## 3. Rubric
 
 Score each criterion 0, 1, or 2. Gate criteria must score at least 1 or the test fails.
@@ -180,6 +182,7 @@ Each change follows a review of the judge notes and of the rules file.
 - Version 1.3, K1: an analysis on the attached data counts as the analysis step. Version 1.2 added the data.
 - Version 1.3, H2: no change. Action 1 is a Chaotic stabiliser, then Complex probes. Most answers label H2 Confused, but an active crisis with no aligned owner is the Chaotic case.
 - Version 1.4, H2: the facts are Complicated, and a holding statement with no facts is part of the stabiliser. Action 1 stays Chaotic. In eight runs, judges of another provider passed 0 of 31 H2 answers. Judges of the same provider passed 5 of 30. 51 of the 61 judgments passed every gate. Most judge notes faulted the Complicated label for the facts, and 34 of the 61 faulted a holding statement. But whether the statement was false is knowable by analysis, so that part is Complicated.
+- Version 1.5: Section 2 names the three shared items of `item-labels.yaml`. The rubric of Section 3 is unchanged.
 
 ## 6. Source-type note
 

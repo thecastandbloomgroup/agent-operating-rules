@@ -19,6 +19,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 ### Changed
 
 - Review changes 1 and 2. A check MAY name its own taxonomy and level, and a level counts checks, not items. T2 is now cognitive Analyze, and its first check counts toward affective Organization.
+- Review changes 3 and 7. The shared items STRUCTURE and LANGUAGE score the structure and the language rules once per answer. The SELFTEST checks compare each count with the checker, with a tolerance of 2 words on the longest sentence. The evaluation tests are now version 1.5.
 
 ## [0.4.0] - 2026-10-31
 

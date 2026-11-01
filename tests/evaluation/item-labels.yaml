@@ -18,11 +18,11 @@ meta:
   blind: true
 
 # Strands that every answer exercises, because every answer follows the rules file.
-# Each item lists them again under secondary, so each item stands alone.
+# The shared items STRUCTURE, LANGUAGE, and SELFTEST score them once per answer.
 common_secondary_note: >-
-  Every item also tests affective Receiving (the full Headline, BRIEF, Self-test structure),
-  cognitive Apply (the language rules of Section 4: no dashes, no banned words, sentence length),
-  and cognitive Evaluate with metacognitive knowledge (the self-test, labelled as item SELFTEST).
+  Every answer is also scored once on two shared items: STRUCTURE (affective Receiving: the Headline,
+  BRIEF, and Self-test structure) and LANGUAGE (cognitive Apply: the language rules of Section 4).
+  The self-test is item SELFTEST. So the 13 prompt items list only their own strands (review change 3).
 
 items:
 
@@ -38,8 +38,6 @@ items:
     confidence: medium
     secondary:
       - {taxonomy: cognitive, level: Analyze, shows: "names Clear and avoids the likely wrong answer Complicated (criterion R6)"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules: zero dashes, zero banned words, sentence length"}
       - {taxonomy: affective, level: Valuing, shows: "no hedge and no question although a careful-sounding answer would add one"}
     expected_evidence: >-
       Three to five one-step actions in End, each tagged deterministic and Clear, each with a Given/When/Then
@@ -64,8 +62,6 @@ items:
     confidence: high
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "factual knowledge of the IEEE reference pattern in the output or the test"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
       - {taxonomy: affective, level: Valuing, shows: "keeps the Cynefin note to one line, no padding on a trivial task"}
     expected_evidence: >-
       One-step actions labelled Clear, each with a deterministic test that checks entries against the IEEE
@@ -90,8 +86,7 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "Complicated form: build actions depend on the analysis step with a dependency clause"}
       - {taxonomy: cognitive, level: Evaluate, shows: "Kepner-Tregoe or Pugh layout if it proposes a choice between fixes"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; citations to the attachments by name (5.4 item 4)"}
+      - {taxonomy: cognitive, level: Apply, shows: "citations to the attachments by name (5.4 item 4)"}
     expected_evidence: >-
       An evidence section with numbers from the attachments, and either a first action that names the analysis
       with later fixes gated on it, or a named cause backed by attachment numbers followed by its fix; no probe,
@@ -116,8 +111,7 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Analyze, shows: "names Complicated, so no probe"}
       - {taxonomy: cognitive, level: Apply, shows: "the evaluative test form of rule 6.4 (Kepner-Tregoe, Pugh, or ISO/IEC 25010)"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; assumption log format of 5.2"}
+      - {taxonomy: cognitive, level: Apply, shows: "assumption log format of 5.2"}
     expected_evidence: >-
       A rubric with criteria, weights, a pass threshold, and the evidence per criterion, placed before any score;
       then a scored comparison of the three proposals within the 400k three-year budget, a pick, the strongest
@@ -143,8 +137,7 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Analyze, shows: "names Complex and avoids the likely wrong answer Complicated (R6)"}
       - {taxonomy: cognitive, level: Apply, shows: "stochastic test form of 6.4: metric, baseline, threshold, sample size"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; 4.6 calibrated uncertainty"}
+      - {taxonomy: cognitive, level: Apply, shows: "4.6 calibrated uncertainty"}
     expected_evidence: >-
       A first probe that creates the record and the measure (a labelled sample and a scoring rubric); probes
       with a measure, stop condition, and budget; an acceptance test with sample size and threshold; the
@@ -170,8 +163,6 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Analyze, shows: "names Complex and avoids a single root cause stated as fact"}
       - {taxonomy: cognitive, level: Apply, shows: "trade-off rule of 6.5: Complex probes in parallel, capped by budget"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
     expected_evidence: >-
       Two or three probes (for example a new format for two cycles, a rotating facilitator, one action item
       at most), run in parallel and not ranked, each with a measure and a stop condition; no root cause stated
@@ -197,8 +188,6 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Analyze, shows: "splits the incident into a Chaotic first action and Complicated later actions"}
       - {taxonomy: affective, level: Valuing, shows: "keeps the full structure and self-test under a ten-minute time pressure, with Background of one sentence"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
     expected_evidence: >-
       Action 1 stabilises (roll back the last deploy or fail over) and is labelled Chaotic; action 2 captures
       logs and the timeline; later actions are Complicated analysis gated on restored service; no question
@@ -224,8 +213,6 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "stabiliser first, then expert analysis, then probes with stop conditions"}
       - {taxonomy: affective, level: Valuing, shows: "holds back a drafted statement of facts while three parties push for one"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
     expected_evidence: >-
       Action 1 is Chaotic: one owner and a hold on substantive outbound statements (a holding statement with
       no facts is allowed); a Complicated action checks whether the statement was false against the record;
@@ -250,8 +237,7 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "Section 2 decision process: three questions at most, each with its use, or assume and log"}
       - {taxonomy: affective, level: Valuing, shows: "does not offer a fix to a one-line prompt that invites a quick answer"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; assumption log format of 5.2"}
+      - {taxonomy: cognitive, level: Apply, shows: "assumption log format of 5.2"}
     expected_evidence: >-
       The word Confused or an equivalent statement that the domain is not yet known; either three questions or
       fewer, each stating what the answer changes, or an assumption log plus a first action that gathers the
@@ -275,8 +261,7 @@ items:
     confidence: medium
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "Section 2 decision process and the Confused-first ordering of 6.5"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules; assumption log format of 5.2"}
+      - {taxonomy: cognitive, level: Apply, shows: "assumption log format of 5.2"}
     expected_evidence: >-
       The word Confused or an equivalent; a first action that recomputes the headline figures from source and
       diffs them with the report; questions at three or fewer with stated use, or an assumption log; no
@@ -300,8 +285,6 @@ items:
     confidence: high
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "Clear form: one-step deterministic actions with Gherkin tests"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
     expected_evidence: >-
       The domain named Clear with the reason that the misleading wording points the wrong way; one-step actions
       (adopt a formatter with a pinned configuration, add it to CI, run it once over the repo); no workshop,
@@ -328,8 +311,6 @@ items:
       - {taxonomy: affective, level: Organization, shows: "gives the requested prompt, per Section 0 item 1, while framing it as a Complex probe"}
       - {taxonomy: cognitive, level: Create, shows: "designs the measure: labelled set, hallucination rate, baseline, threshold, sample size"}
       - {taxonomy: affective, level: Valuing, shows: "keeps the full structure and self-test when the prompt says 'just'"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
     expected_evidence: >-
       One concrete starting prompt, framed as the first Complex probe and not as a final fix, with a measure
       (a labelled set and a hallucination rate), a baseline, a threshold, a sample size, and the statement that
@@ -354,8 +335,6 @@ items:
     secondary:
       - {taxonomy: cognitive, level: Apply, shows: "different test forms: Gherkin for the migration, metric and sample size for conversion"}
       - {taxonomy: cognitive, level: Create, shows: "designs the conversion probe and its measure"}
-      - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
-      - {taxonomy: cognitive, level: Apply, shows: "Section 4 language rules"}
     expected_evidence: >-
       An explicit split into two tracks; migration actions labelled Complicated with a design choice on token
       lifetime and revocation and Gherkin tests; conversion actions labelled Complex with a metric and sample
@@ -389,22 +368,67 @@ items:
     checks:
       - {check: "The Self-test block is the last section and has the 15 lines of Section 7 in order", grader: script}
       - {check: "'Dashes (em or en)' equals the count of U+2014 and U+2013 in the answer", grader: script}
-      - {check: "'Banned words found' equals the checker's count of banned words", grader: script}
-      - {check: "'Longest sentence' equals the checker's word count of the longest sentence", grader: script}
+      - {check: "'Banned words found' equals the checker's count over the published list, sources/banned-words.txt", grader: script}
+      - {check: "'Longest sentence' is within 2 words of the checker's count", grader: script}
       - {check: "'Actions in End with a Cynefin domain label' equals the count of actions in End and of labelled actions", grader: script}
-      - {check: "No line reports a failure (every yes/no line says yes, and the dash, banned-word, and self-mention counts are 0)", grader: script}
+      - {check: "'Assumptions logged' equals the count of lines that start with A<n>.", grader: script}
+      - {check: "'Self-mention outside End' equals the checker's count", grader: script}
+      - {check: "'Dashes (em or en)' is 0", grader: script}
+      - {check: "'Banned words found' is 0", grader: script}
+      - {check: "'Self-mention outside End' is 0", grader: script}
+      - {check: "No yes/no line says no", grader: script}
+
+  - id: STRUCTURE
+    primary:
+      taxonomy: affective
+      level: Receiving
+      knowledge: null
+      cynefin: none
+    primary_reason: >-
+      Receiving is "uses the structure when the rules are present"; every answer is scored on it once, so a
+      structure defect is not booked against a Cynefin item (review change 3).
+    confidence: high
+    secondary: []
+    expected_evidence: >-
+      The Headline first, the BRIEF headings in order, End that begins "I recommend that we", and the
+      Self-test last.
+    checks:
+      - {check: "The first section is the Headline", grader: script}
+      - {check: "Background, Relevance, Information, and End appear in that order, and Follow-up, when present, comes after End", grader: script}
+      - {check: "End begins with the words 'I recommend that we'", grader: script}
+      - {check: "The Self-test is the last section", grader: script}
+
+  - id: LANGUAGE
+    primary:
+      taxonomy: cognitive
+      level: Apply
+      knowledge: procedural
+      cynefin: none
+    primary_reason: >-
+      Apply is "follows a rule in a plain task"; the language rules of Section 4 apply to every answer, so
+      every answer is scored on them once (review change 3).
+    confidence: high
+    secondary: []
+    expected_evidence: >-
+      No em or en dash, no banned word, no sentence over the limit of Section 4.1, and no self-mention
+      outside End.
+    checks:
+      - {check: "The answer has 0 em or en dashes", grader: script}
+      - {check: "The answer has 0 words from the published list, sources/banned-words.txt", grader: script}
+      - {check: "No sentence is over 25 words, or over 20 words in End", grader: script}
+      - {check: "The answer has 0 self-mentions outside End", grader: script}
 
 coverage:
   primary_counts:
     cognitive:
       Remember: 0
       Understand: 0
-      Apply: 3        # C1, C2, H1
+      Apply: 4        # C1, C2, H1, LANGUAGE
       Analyze: 7      # K1, H2, U1, U2, T1, T2, T3
       Evaluate: 2     # K2, SELFTEST
       Create: 2       # X1, X2
     affective:
-      Receiving: 0
+      Receiving: 1    # STRUCTURE
       Responding: 0
       Valuing: 0
       Organization: 0 # T2 check 1 counts here (review change 2)
@@ -422,8 +446,6 @@ coverage:
       why: "No prompt asks the agent to state a rule; the self-test reproduces its own lines, which is only a secondary strand."
     - level: cognitive Understand
       why: "No prompt asks the agent to explain a rule or sort examples into pass and fail."
-    - level: affective Receiving
-      why: "Every item shows it as a secondary strand, but no item isolates it."
     - level: affective Responding
       why: "No prompt names a rule as a reminder."
     - level: affective Valuing
@@ -433,7 +455,7 @@ coverage:
     - level: psychomotor (all seven levels)
       why: "The items are single-turn text answers with attached files; no item uses tools, reads tool state, or acts in a sandbox."
   summary: >-
-    14 of 18 levels have no primary item; the affective ladder is not measured by this set. The set covers
+    13 of 18 levels have no primary item. The affective ladder has only Receiving (STRUCTURE). The set covers
     cognitive Apply to Create. The primaries crowd at Analyze (7 of 14), which matches the purpose of the file
     (Cynefin classification).
   hard_to_decide:
