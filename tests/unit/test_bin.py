@@ -684,3 +684,23 @@ class JudgeActions(unittest.TestCase):
         self.assertEqual(score({"domain_right": True, "reason_cause_effect": True}), 3)
         self.assertEqual(score({"domain_right": True, "reason_cause_effect": False}), 2)
         self.assertEqual(score({"domain_right": False, "reason_cause_effect": True}), 1)
+
+
+class BloomCalibration(unittest.TestCase):
+    def setUp(self):
+        self.module = load("bloom-calibration.py")
+
+    def test_perfect_agreement_has_kappa_1(self):
+        gold = {str(i): lv for i, lv in enumerate(self.module.LEVELS)}
+        r = self.module.agreement(dict(gold), gold)
+        self.assertEqual(
+            (r["exact"], round(r["kappa"], 6), r["within_one"]), (1.0, 1.0, 1.0)
+        )
+
+    def test_a_neighbour_level_counts_within_one_and_within_its_band(self):
+        gold = {"1": "Apply", "2": "Create", "3": "Remember", "4": "Evaluate"}
+        labels = {"1": "Analyze", "2": "Evaluate", "3": "Remember", "4": "Evaluate"}
+        r = self.module.agreement(labels, gold)
+        self.assertEqual(r["exact"], 0.5)
+        self.assertEqual(r["within_one"], 1.0)
+        self.assertEqual(round(r["bands"], 6), 1.0)

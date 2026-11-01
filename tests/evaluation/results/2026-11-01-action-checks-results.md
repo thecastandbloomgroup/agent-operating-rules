@@ -56,6 +56,23 @@ E5. The two runs of judges cost 1.36 USD in total.
 - Forty actions give wide intervals. A kappa of 0.66 on 40 items has an interval of about plus or minus 0.25 [inference].
 - The expected answers of tests 1.5 give one domain list per prompt. They do not say how to label a small step inside a larger domain (E4).
 
+### Addendum: blind marks by a third model
+
+E6. Fable 5.1 marked the 40 actions in a fresh context, with no view of the verdicts, in `action-checks-fable-blind.csv`. These are marks by a model, not by a person. So `human-actions.md` stays blank for a person.
+[1]
+
+| Check | First judges | Gemini 4 Argon | Fable, blind | Fable against first judges (kappa) |
+| --- | --- | --- | --- | --- |
+| Domain right | 22 | 16 | 26 | 0.79 |
+| Reason states cause and effect | 13 | 13 | 21 | 0.41 |
+| Score 3 | 9 | 9 | 17 | |
+
+E7. Fable had one rule that the judges did not: a small support step may carry its own domain. Of its 26 marks of a right domain, 11 rely on that rule. So the rule for support steps (Step 3) moves this rate more than any other choice [inference].
+[1]
+
+E8. On 10 reasons, both judges said no and Fable said yes. So its standard for a reason is looser. By a majority of the three graders, 11 of 40 actions score 3, and the test still fails.
+[1]
+
 ### Assumption log
 
 A1. A person marks the 40 actions in about 40 minutes. Why not measured: the user has not answered. Validate by: time the first 10 marks. If wrong: mark 20 actions, and accept the wider interval.
@@ -92,7 +109,7 @@ About 25.79 USD of the 50 USD remain.
 
 ### References
 
-[1] tests/evaluation/results/2026-11-01-gherkin-lines: action-checks.csv and action-checks-argon.csv, 2026. [P]
+[1] tests/evaluation/results/2026-11-01-gherkin-lines: action-checks.csv, action-checks-argon.csv, and action-checks-fable-blind.csv, 2026. [P]
 
 ## Self-test
 
