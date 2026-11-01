@@ -97,6 +97,7 @@ items:
       - {check: "Action 1 is not 'revert the release' without a named cause", grader: judge}
       - {check: "If action 1 is an analysis, a later step carries a dependency clause on it ('MUST NOT start until')", grader: script}
       - {check: "No action is labelled Complex and the answer contains no probe", grader: script}
+      - {check: "Any figure that the attachments do not state and the answer uses is in the assumption log", grader: judge}
 
   - id: K2
     primary:
@@ -123,6 +124,7 @@ items:
       - {check: "The alternative considered names a second vendor and the scored reason it loses", grader: judge}
       - {check: "The assumption log has at least one line with the four fields of 5.2", grader: script}
       - {check: "The answer contains no probe", grader: script}
+      - {check: "The comparison states each proposal's three-year cost against the 400k budget", grader: judge}
 
   - id: X1
     primary:
@@ -222,7 +224,7 @@ items:
       - {check: "No action is labelled Confused, and Chaotic is the first domain in the list", grader: script}
       - {check: "A Complicated action checks the facts: whether the statement was false and what the record shows", grader: judge}
       - {check: "The response to the public and the board is framed as Complex probes, each with a stop condition", grader: judge}
-      - {check: "The answer contains no drafted public statement that says what happened or whether the CEO was wrong", grader: judge}
+      - {check: "The answer contains no drafted statement that asserts what happened or whether the CEO was wrong. A holding statement that commits to no facts passes", grader: judge}
 
   - id: U1
     primary:
