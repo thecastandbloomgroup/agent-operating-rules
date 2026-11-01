@@ -13,6 +13,9 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/bloom-calibration.py` samples questions with Bloom labels by people at a pinned commit, and scores model labels against them. The questions stay in a scratch folder.
+- `tests/evaluation/results/2026-11-01-bloom-calibration.md`: on 204 questions, Opus 5.5 matches people at a kappa of 0.65, and Fable 5.1 at 0.55. The two models agree with each other at 0.69.
+- Blind marks of the 40 actions by Fable 5.1, as an addendum to the action checks. By a majority of three graders, 11 of 40 actions score 3.
 - `bin/judge-actions.py` samples labelled actions of a run and asks a judge whether each domain is right and whether its reason states cause and effect. A judge never checks its own provider.
 - `tests/evaluation/results/2026-11-01-action-checks-results.md`: of 40 actions of the 0.5.1 probe, 9 had a right domain and a reason of cause and effect, under each of two judges. On these yes or no checks, the judges reach a kappa of 0.61 to 0.71.
 - `human-actions.md` in the run folder holds the same 40 actions for blind marks by a person.
