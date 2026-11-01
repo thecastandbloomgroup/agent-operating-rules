@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-01",
+  "rules_version": "0.5.1",
+  "rules_file": "tests/evaluation/results/2026-11-01-gherkin-lines/rules.md",
+  "no_judge": true,
+  "prompts": [
+    "C1",
+    "C2",
+    "K1",
+    "K2",
+    "X1",
+    "X2",
+    "H1",
+    "H2",
+    "U1",
+    "U2",
+    "T1",
+    "T2",
+    "T3"
+  ],
+  "samples": 3
+}
