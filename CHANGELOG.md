@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `bin/ladder-scores.py` scores each model on the Bloom ladders from the script checks and the judge checks of runs. A taxonomy gets no score while a measured level has fewer than 20 trials. A ladder whose rates rise gets the mean rate in place of L.
+
 ## [0.7.0] - 2026-11-01
 
 ### Added

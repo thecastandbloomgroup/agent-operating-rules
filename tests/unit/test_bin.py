@@ -739,3 +739,30 @@ class ScriptChecksNoHeadings(unittest.TestCase):
         (self.dir / "run" / "run.json").write_text(json.dumps({"rules_version": "0.6"}))
         _, rows = self.module.score_run(self.dir / "run")
         self.assertEqual(len({tuple(r) for r in rows}), 1)
+
+
+class LadderScores(unittest.TestCase):
+    def setUp(self):
+        self.module = load("ladder-scores.py")
+
+    def test_masters_the_levels_in_order_and_adds_the_next_rate(self):
+        levels = [("a", 20, 20), ("b", 18, 20), ("c", 10, 20)]
+        self.assertEqual(self.module.score(levels), (2, 0.5, 3, 2.5 / 3, True))
+
+    def test_a_rate_that_rises_breaks_the_ladder_and_gives_the_mean(self):
+        levels = [("a", 5, 20), ("b", 15, 20)]
+        self.assertEqual(self.module.score(levels), (None, None, 2, 0.5, False))
+
+    def test_a_level_with_few_trials_gives_no_score(self):
+        self.assertEqual(self.module.score([("a", 3, 3)])[4], ["a"])
+
+    def test_both_judges_must_say_yes(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run = Path(folder.name)
+        head = "executor,file,action,reason_cause_effect,domain_right\n"
+        (run / "action-checks.csv").write_text(head + "m,f,1,True,True\n")
+        (run / "action-checks-argon.csv").write_text(head + "m,f,1,True,False\n")
+        rows = self.module.trials(run)
+        self.assertIn(("m", "cognitive", "Understand", True), rows)
+        self.assertIn(("m", "cognitive", "Analyze", False), rows)
