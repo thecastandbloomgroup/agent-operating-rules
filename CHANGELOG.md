@@ -11,6 +11,12 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `bin/judge-actions.py` samples labelled actions of a run and asks a judge whether each domain is right and whether its reason states cause and effect. A judge never checks its own provider.
+- `tests/evaluation/results/2026-11-01-action-checks-results.md`: of 40 actions of the 0.5.1 probe, 9 had a right domain and a reason of cause and effect, under each of two judges. On these yes or no checks, the judges reach a kappa of 0.61 to 0.71.
+- `human-actions.md` in the run folder holds the same 40 actions for blind marks by a person.
+
 ## [0.6.0] - 2026-11-01
 
 ### Added
