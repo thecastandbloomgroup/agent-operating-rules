@@ -1,0 +1,43 @@
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: 0 judgments, 0 failures
+google: google_gemini-3.8-flash@medium judged by no judge: 39 units, about 0.61 USD
+Estimate for 1 pairs: about 0.61 USD
+Wrote /Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/probe-split-first/tests/evaluation/results/2026-11-01-split-first-b/results/google.jsonl
+Merge with: bin/run-evaluation.py --merge /Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/probe-split-first/tests/evaluation/results/2026-11-01-split-first-b

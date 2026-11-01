@@ -13,6 +13,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/results/2026-11-01-split-first-results.md`: a probe that splits the problem first and keeps the domain. Under one judging rule, domains were right in 28 of 40 actions, against 27 at rules 0.6. So the rules stay at 0.7.
+- The 40 actions of rules 0.6 were judged again under tests 1.6. The main files of that run now hold those verdicts, and the files that end in -tests15 hold the old ones.
 - `bin/ladder-scores.py` scores each model on the Bloom ladders from the script checks and the judge checks of runs. A taxonomy gets no score while a measured level has fewer than 20 trials. A ladder whose rates rise gets the mean rate in place of L.
 
 ## [0.7.0] - 2026-11-01

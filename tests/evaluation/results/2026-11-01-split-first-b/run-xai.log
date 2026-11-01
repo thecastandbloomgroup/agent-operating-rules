@@ -1,0 +1,43 @@
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: 0 judgments, 0 failures
+xai: xai_grok-4.7@low judged by no judge: 39 units, about 1.17 USD
+Estimate for 1 pairs: about 1.17 USD
+Wrote /Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/probe-split-first/tests/evaluation/results/2026-11-01-split-first-b/results/xai.jsonl
+Merge with: bin/run-evaluation.py --merge /Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/probe-split-first/tests/evaluation/results/2026-11-01-split-first-b
