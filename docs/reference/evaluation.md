@@ -58,7 +58,7 @@ The judges check. They do not test. Each run lists answers for a human test. The
 
 ## Results
 
-`bin/record-evaluation.py` writes this table from the runs of all 13 prompts. Each run of `evaluation-results.md` has its own row and table there. Grader A is the judge of the same provider, and grader B is the judge of another provider.
+`bin/record-evaluation.py` writes this table from the runs of all 13 core prompts. Each run of `evaluation-results.md` has its own row and table there. Grader A is the judge of the same provider, and grader B is the judge of another provider.
 
 | Model                                | Runs | Answers | Pass, grader A | Pass, grader B | Mean score | Lowest criterion |
 | ------------------------------------ | ---- | ------- | -------------- | -------------- | ---------- | ---------------- |

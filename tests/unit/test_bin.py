@@ -211,8 +211,12 @@ class RunEvaluationScores(unittest.TestCase):
         self.assertIn("PoolTimeout", prompts["K1"]["prompt"])
         self.assertNotIn("# Attached file", prompts["T2"]["prompt"])
 
-    def test_reads_13_prompts_and_the_r6_prompts_of_the_rubric(self):
-        self.assertEqual(len(self.prompts), 13)
+    def test_reads_16_prompts_and_the_r6_prompts_of_the_rubric(self):
+        # 13 core prompts of Cynefin classification, and A1 to A3 of tests 1.7.
+        self.assertEqual(len(self.prompts), 16)
+        self.assertEqual(
+            sorted(i for i in self.prompts if i.startswith("A")), ["A1", "A2", "A3"]
+        )
         r6 = sorted(i for i, p in self.prompts.items() if p["r6"])
         self.assertEqual(r6, ["C1", "K1", "T1", "T2", "T3", "X1"])
 

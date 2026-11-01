@@ -26,6 +26,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - **Breaking:** the evaluation tests are now version 1.6. A support step, such as paging a responder or building a measure, MAY carry its own domain. H1, H2, and X1 each name one. `bin/judge-actions.py` gives its judges the same rule.
 - Label review changes 4 and 5, in the design note. Evaluate covers judging options against fixed criteria, as well as grading an answer. Two tie-break rules separate Apply from Create, and Analyze from Apply.
 - Label review change 13, in the design note. The knowledge type of an Analyze item follows its object: a classification or a cause is conceptual, and a method is procedural. A new boundary separates Understand from Analyze.
+- **Breaking:** label review change 11. Section 1.7 of the tests adds prompts A1 to A3 for the affective levels Responding, Valuing, and Organization. Each run now sends 16 prompts. Characterization waits for a harness that sends a second turn.
+- `bin/record-evaluation.py` counts a run as full when it has all 13 core prompts, so runs with A1 to A3 still count.
 
 ## [0.6.0] - 2026-11-01
 

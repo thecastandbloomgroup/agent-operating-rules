@@ -24,13 +24,19 @@ RESULTS_MD = EVALUATION / "evaluation-results.md"
 SCORES_CSV = EVALUATION / "evaluation-scores.csv"
 REFERENCE = ROOT / "docs" / "reference" / "evaluation.md"
 CRITERIA = [f"R{n}" for n in range(1, 10)]
-ORDER = ["C1", "C2", "K1", "K2", "X1", "X2", "H1", "H2", "U1", "U2", "T1", "T2", "T3"]
+# The 13 prompts of Cynefin classification. A run that has all of them is a full run.
+CORE = ["C1", "C2", "K1", "K2", "X1", "X2", "H1", "H2", "U1", "U2", "T1", "T2", "T3"]
+# The prompts of the affective ladder (tests 1.7) come after them.
+ORDER = [*CORE, "A1", "A2", "A3"]
 MIN_PROMPTS = 5
 # scores.csv gives the T prompts the name of their section. The run template names their domain.
 DOMAIN = {
     "T1": "Clear (worded Complex)",
     "T2": "Complex (worded Clear)",
     "T3": "Mixed",
+    "A1": "Clear (Responding)",
+    "A2": "Clear (Valuing)",
+    "A3": "Clear (Organization)",
 }
 # The versions before 0.3.0 were renamed (CHANGELOG.md, 0.3.0).
 RENAMED = {"2.1.0": "0.1.0", "3.0.0": "0.2.0", "3.1.0": "0.2.1", "3.2.0": "0.2.2"}
@@ -284,7 +290,7 @@ def reference_md(text, runs):
     full = [
         r
         for rows in runs.values()
-        if len({x["prompt_id"] for x in rows}) == len(ORDER)
+        if set(CORE) <= {x["prompt_id"] for x in rows}
         for r in rows
     ]
     rows = []
@@ -306,7 +312,7 @@ def reference_md(text, runs):
     return (
         head
         + "## Results\n\n"
-        + "`bin/record-evaluation.py` writes this table from the runs of all 13 prompts. "
+        + "`bin/record-evaluation.py` writes this table from the runs of all 13 core prompts. "
         + "Each run of `evaluation-results.md` has its own row and table there. "
         + "Grader A is the judge of the same provider, and grader B is the judge of another provider.\n\n"
         + table(

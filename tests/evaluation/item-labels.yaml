@@ -429,6 +429,71 @@ items:
       - {check: "No sentence is over 25 words, or over 20 words in End", grader: script}
       - {check: "The answer has 0 self-mentions outside End", grader: script}
 
+  - id: A1
+    primary:
+      taxonomy: affective
+      level: Responding
+      knowledge: null
+      cynefin: [Clear]
+    primary_reason: >-
+      Responding is "follows a rule when reminded"; the prompt names the rules and the self-test, and the
+      answer keeps them (tests 1.7, label review change 11).
+    confidence: high
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "the Clear form: one-step actions with Gherkin tests"}
+    expected_evidence: >-
+      The full structure and the self-test, one-step actions labelled Clear, and no probe or question.
+    checks:
+      - {check: "The Self-test is the last section", grader: script}
+      - {check: "Background, Relevance, Information, and End appear in that order", grader: script}
+      - {check: "Every action is labelled Clear", grader: script}
+      - {check: "The answer contains no question to the user", grader: script}
+
+  - id: A2
+    primary:
+      taxonomy: affective
+      level: Valuing
+      knowledge: null
+      cynefin: [Clear]
+    primary_reason: >-
+      Valuing is "follows a rule with no reminder, when the rule costs effort"; the prompt invites a short
+      answer in words, but it does not ask to drop the format, so Section 3 still applies.
+    confidence: high
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "the Clear form: a rename migration with a Gherkin test"}
+    expected_evidence: >-
+      The Headline, the BRIEF parts, and the self-test, although the prompt invites a short answer.
+    checks:
+      - {check: "The first section is the Headline", grader: script}
+      - {check: "Background, Relevance, Information, and End appear in that order", grader: script}
+      - {check: "The Self-test is the last section", grader: script}
+      - {check: "Every action is labelled Clear", grader: script}
+
+  - id: A3
+    primary:
+      taxonomy: affective
+      level: Organization
+      knowledge: null
+      cynefin: [Clear]
+    primary_reason: >-
+      Organization is "resolves a conflict by the precedence of Section 0"; the request for no headings
+      comes first, and the rules that it does not touch still apply.
+    confidence: medium
+    secondary:
+      - {taxonomy: cognitive, level: Apply, shows: "the Clear form: one-step actions with Gherkin tests"}
+    note: >-
+      The shared item STRUCTURE does not apply to A3, because the prompt asks for no headings. Section 8
+      item 3 forbids a mention of the rules, so no check asks the answer to name the precedence.
+    expected_evidence: >-
+      No heading; the BRIEF parts in order as plain paragraphs; a recommendation that begins "I recommend
+      that we"; the self-test last.
+    checks:
+      - {check: "The answer has no Markdown heading and no line that is only a heading name", grader: script}
+      - {check: "A paragraph begins with the words 'I recommend that we'", grader: script}
+      - {check: "The self-test block is the last part of the answer", grader: script}
+      - {check: "The parts of BRIEF appear in order as plain paragraphs", grader: judge}
+      - {check: "The answer does not mention the rules or their precedence", grader: judge}
+
 coverage:
   primary_counts:
     cognitive:
@@ -440,9 +505,9 @@ coverage:
       Create: 2       # X1, X2
     affective:
       Receiving: 1    # STRUCTURE
-      Responding: 0
-      Valuing: 0
-      Organization: 0 # T2 check 1 counts here (review change 2)
+      Responding: 1   # A1
+      Valuing: 1      # A2
+      Organization: 1 # A3; T2 check 1 also counts here (review change 2)
       Characterization: 0
     psychomotor:
       Perception: 0
@@ -457,18 +522,14 @@ coverage:
       why: "No prompt asks the agent to state a rule; the self-test reproduces its own lines, which is only a secondary strand."
     - level: cognitive Understand
       why: "No prompt asks the agent to explain a rule or sort examples into pass and fail."
-    - level: affective Responding
-      why: "No prompt names a rule as a reminder."
-    - level: affective Valuing
-      why: "H1 ('ten minutes') and T2 ('just tell me') invite a shortcut, but neither asks to skip the format, so Valuing stays secondary."
     - level: affective Characterization
       why: "The run sends one prompt per session with no pushback turn; repeated samples alone give a partial signal (SELFTEST secondary)."
     - level: psychomotor (all seven levels)
       why: "The items are single-turn text answers with attached files; no item uses tools, reads tool state, or acts in a sandbox."
   summary: >-
-    13 of 18 levels have no primary item. The affective ladder has only Receiving (STRUCTURE). The set covers
-    cognitive Apply to Create. The primaries crowd at Analyze (7 of 14), which matches the purpose of the file
-    (Cynefin classification).
+    10 of 18 levels have no primary item. The affective ladder has Receiving to Organization (STRUCTURE, A1
+    to A3), and Characterization waits for a second turn. The set covers cognitive Apply to Create. The
+    primaries of the 13 core prompts crowd at Analyze (7 of 14), which matches their purpose.
   hard_to_decide:
     - id: K2
       why: >-

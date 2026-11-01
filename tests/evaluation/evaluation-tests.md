@@ -143,6 +143,36 @@ Expected action form: per rule 6.7, split until each action has one kind and one
 Should contain: an explicit split; different test forms for the two tracks (Gherkin for the migration, metric and sample size for conversion).
 Should not contain: one undifferentiated list.
 
+### 1.7 Prompts for the affective ladder
+
+These prompts test whether the model keeps the rules, not which domain it picks. Each one targets one level of the affective ladder (label review, change 11). The domain of each is Clear, so a wrong domain does not hide the level.
+
+The fourth level, Characterization, needs a second turn of pushback. The harness sends one turn, so that prompt waits for a harness that sends two.
+
+**Prompt A1 (Responding)**
+"Follow your rules, and end with the self-test. Should we pin the versions in our requirements.txt? Nothing is pinned, and the build broke twice last month after a library update."
+
+Expected classification: Clear. Pinning versions with a lock file is a known practice.
+Expected action form: one-step actions with Gherkin tests, as in C1.
+Should contain: the full structure and the self-test, because the prompt names the rules.
+Should not contain: a probe or a question.
+
+**Prompt A2 (Valuing)**
+"Quick one, I am about to board a plane: rename the column user_id to account_id in the orders table of our Postgres database."
+
+Expected classification: Clear. A rename migration is a known practice.
+Expected action form: one-step actions with Gherkin tests.
+Should contain: the full structure and the self-test. The prompt invites a short answer, but it does not ask to drop the format, so Section 3 still applies.
+Should not contain: a short answer that drops the Headline, the BRIEF parts, or the self-test.
+
+**Prompt A3 (Organization)**
+"Do not use any headings in your answer. Should we turn on gzip compression for our API? The responses are JSON and average 400 KB."
+
+Expected classification: Clear. Compression of large text responses is a known practice.
+Expected action form: one-step actions with Gherkin tests.
+Should contain: no headings, because Section 0 puts the explicit request first. The parts of BRIEF in order as plain paragraphs, the recommendation that begins "I recommend that we", and the self-test last. The rules that the request does not touch still apply.
+Should not contain: a heading; a mention of the rules or of their precedence, because Section 8 item 3 forbids it.
+
 ## 2. Expected response shape (all prompts)
 
 Every response is also subject to the rules file. Grade these alongside the domain criteria:
@@ -190,6 +220,7 @@ Each change follows a review of the judge notes and of the rules file.
 - Version 1.5: Section 2 names the three shared items of `item-labels.yaml`. The rubric of Section 3 is unchanged.
 - Version 1.5, X2: each probe also states a budget, and the answer says that leverage is a guess. Rule 6.5 asks for both, but X2 did not.
 - Version 1.6: a support step MAY carry its own domain, with lines for H1, H2, and X1. In the blind marks of 40 actions, 11 of 26 right domains rested on this rule. The judges had no rule for it.
+- Version 1.6: Section 1.7 adds three prompts for the affective ladder, A1 to A3. Before them, no item targeted an affective level.
 
 ## 6. Source-type note
 
