@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `tests/evaluation/results/2026-10-31-eval-design-research.md`: desk research on prior art for LLM evaluation, the agreement of the two judges on each criterion, and five options for the evaluation design. It recommends separate measures per Cynefin domain, and three blind jobs for human judgment.
+
 ## [0.4.0] - 2026-10-31
 
 ### Added
