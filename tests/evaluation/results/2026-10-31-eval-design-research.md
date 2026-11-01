@@ -1,216 +1,310 @@
-# Evaluation design: prior art and options
+# Evaluation design: a Bloom's taxonomy score for each type of skill
 
 ## Headline
 
-Replace the single 18-point score with separate measures per Cynefin domain, and move human judgment from scoring every criterion to three narrow jobs.
+Label every item with a Bloom's taxonomy type and a target level. Score each type by the highest level mastered, and combine the three scores by geometric mean.
 
-1. The current score mixes three skills: naming the domain, acting on it, and following the writing rules. So a fail does not say which skill failed.
-2. The two judges agree well only on R1. Seven of nine criteria fall below the floor that content analysis accepts for tentative conclusions.
-3. Prior art splits a grade into binary checks, grades the output rather than the stated reasoning, and reports error bars over many items.
-4. Human judgment is worth the most when it is blind. Its three jobs are gold domain labels, notes on failed answers, and pass or fail marks for the judge.
+1. The current 18-point score mixes skills, and the two judges agree well only on R1, so a fail does not say which skill failed.
+2. Bloom's taxonomy gives three ladders: cognitive (6 levels), affective (5 levels), and psychomotor (7 levels), and Cynefin becomes one strand inside the cognitive ladder.
+3. An agent climbs a ladder through feedback in its context, not through new weights: rules, worked examples, a memory of past failures, and tools.
+4. Human judgment has three blind jobs: label the items, write notes on failed answers, and mark judge checks as pass or fail.
 
 ## Background
 
-The request asks for desk research on prior art for LLM evaluation, with numbers and themes. It also asks for options that make the results easier to read and that define the role of the user's judgment. The goal is an objective measure of how well models think and respond in each Cynefin domain.
+The first draft of this note proposed separate measures for Cynefin skill. The revision asks for a wider frame: grade by Bloom's taxonomy, score each taxonomy type on its own, then combine the scores. Each item needs a label for its type and for the level of reasoning that the answer must show.
 
 ## Relevance
 
-The user is about to score 34 answers by hand on a rubric that two judges apply inconsistently. A better design now saves those hours and gives a result that names the failing skill.
+The user is about to score 34 answers by hand on a rubric that two judges apply inconsistently. A labelled item bank makes each hour of human work count toward one level of one ladder.
 
 ## Information
 
-This section gives the local numbers first, then the themes from the prior art, then the options.
+This section gives the local numbers, then the prior art on grading, then the prior art on Bloom's taxonomy, then the design.
 
 ### Evidence from the record
 
-E1. The two judges scored 245 answers in common. The table gives their exact agreement and Cohen's kappa (agreement above chance) for each criterion.
+E1. The two judges scored 245 answers in common. The table gives their Cohen's kappa (agreement above chance) for each criterion.
 [1]
 
-| Criterion | What it measures | Exact agreement | Kappa |
-| --- | --- | --- | --- |
-| R1 | A domain on every action | 0.94 | 0.84 |
-| R2 | The right domain | 0.78 | 0.67 |
-| R6 | The misleading wording avoided | 0.77 | 0.61 |
-| R4 | Order of the actions | 0.68 | 0.45 |
-| R3 | Action form fits the domain | 0.67 | 0.43 |
-| R7 | Questions | 0.87 | 0.43 |
-| R9 | Rules-file conformance | 0.84 | 0.39 |
-| R5 | Test form | 0.65 | 0.33 |
-| R8 | Calibrated uncertainty | 0.53 | 0.23 |
-| Pass | The whole verdict | 0.82 | 0.37 |
+| Criterion | What it measures | Kappa |
+| --- | --- | --- |
+| R1 | A domain on every action | 0.84 |
+| R2 | The right domain | 0.67 |
+| R6 | The misleading wording avoided | 0.61 |
+| R4 | Order of the actions | 0.45 |
+| R3 | Action form fits the domain | 0.43 |
+| R7 | Questions | 0.43 |
+| R9 | Rules-file conformance | 0.39 |
+| R5 | Test form | 0.33 |
+| R8 | Calibrated uncertainty | 0.23 |
+| Pass | The whole verdict | 0.37 |
 
 E2. Content analysis treats agreement of 0.800 or more as reliable. It accepts 0.667 to 0.800 for tentative conclusions only, and it discards data below 0.667.
 [2]
 
-So only R1 is reliable, and R2 is at the floor. Kappa and Krippendorff's alpha differ in method, but they give close values for two raters [judgment]. Also, 39 of the 245 answers (16%) have judge totals more than 3 points apart.
-[1]
+So only R1 is reliable, and seven of nine criteria fall below the floor. Kappa and Krippendorff's alpha differ in method, but they give close values for two raters [judgment].
 
-E3. The tests have 13 prompts: two per domain, and three prompts with misleading wording. For one model and one sample, a domain score rests on two items.
+E3. The tests have 13 prompts, two per Cynefin domain and three with misleading wording. Every prompt asks for the same output form: a full recommendation.
 [3]
 
-At an accuracy of 70%, the 95% interval is about 20 points each way with 20 items [inference]. It is 14 points with 40 items, and 9 points with 100 items. So two items per domain cannot separate one domain from another.
+So the tests sample a narrow band of the cognitive ladder, mostly Apply and Analyze [inference]. No item targets Remember, Understand, or the psychomotor ladder.
 
-E4. The criteria mix three skills. R2 and R6 measure whether the model names the right domain. R1, R3, and R4 measure whether it acts on that domain. R5, R7, R8, and R9 measure general rules that do not depend on the domain.
-[3]
-
-Of 205 judgments by judges of another provider, 16 pass. Full points on R2, R3, R4, and R6 would raise that to 102. Full points on R1, R8, and R9 would raise it to 95. So one pass rate hides two causes of about equal size.
+E4. Of 205 judgments by judges of another provider, 16 pass. Full points on R2, R3, R4, and R6 would raise that to 102. Full points on R1, R8, and R9 would raise it to 95.
 [4]
 
-E5. The plan for hand scoring shows a model's suggested score next to an empty column for the user. That layout invites the anchoring that theme T4 describes.
+So one pass rate hides two causes of about equal size: the domain skill and the discipline of the writing rules.
+
+E5. The learning plan already maps the record to Bloom's levels. Clean writing holds in 253 of 267 answers, but a domain on every action holds in 29 of 205 judgments.
 [5]
 
-### Themes from the prior art
-
-The search covered LLM judges, rubric design, human labelling, statistics of evaluations, and the Cynefin literature. Each theme lists the sources that support it and the sources that disagree.
-
-T1. LLM judges are useful, but they carry bias, so they need calibration against people. Four sources support this theme. A strong judge reaches over 80% agreement with human preference, about the level between two people. Judges also favor the first position and their own answers.
+E6. The hand-scoring sheet shows a model's suggested score next to an empty column for the user. That layout invites the anchoring that theme G4 describes.
 [6]
 
-A judge model scores its own text higher than human raters do, and this bias grows with the ability to recognise its own text.
+### Prior art on grading
+
+G1. LLM judges are useful, but they carry bias, so they need calibration against people. Four sources support this theme. A strong judge agrees with human preference over 80% of the time, about the rate between two people.
 [7]
 
-Kappa separates judges better than percent agreement, and a high percent agreement can hide divergent scores.
+A judge model scores its own text higher than human raters do.
 [8]
 
-Model graders need calibration against human graders, while code graders suit fixed criteria.
+Kappa separates judges better than percent agreement does.
 [9]
 
-One source partly disagrees: in a medical benchmark, agreement between a model grader and doctors matches agreement between two doctors.
+Model graders need calibration against human graders, while code graders suit fixed criteria.
 [10]
 
-That result shows that calibration can succeed. It does not remove the need for it.
-
-T2. Many small yes or no checks give more reliable grades than one holistic scale. Three sources support this theme. Checklists of yes or no questions raised the agreement between people from 0.194 to 0.256. They raised exact agreement between judge and people from 46.4% to 52.2%.
+One source partly disagrees: in a medical benchmark, a model grader agrees with doctors about as often as two doctors agree. That result shows that calibration can succeed, not that it is optional.
 [11]
 
-A practitioner guide advises binary pass or fail labels over 1 to 5 scales, with a separate check for each part of the task.
+G2. Many small yes or no checks give more reliable grades than one holistic scale. Three sources support this theme. Checklists raised the agreement between people from 0.194 to 0.256, and exact agreement between judge and people from 46.4% to 52.2%.
 [12]
 
-The medical benchmark grades 5,000 conversations against 48,562 written criteria, each with its own point value.
-[10]
-
-One source disagrees in part: a well calibrated judge on a scale of 7 or more points recovers model rankings as well as pairwise votes. That source was read in abstract only.
+A practitioner guide advises binary pass or fail labels, with one check for each part of the task.
 [13]
 
-T3. The criteria come from reading real outputs, and the human role is to read and label. Three sources support this theme. People need criteria to grade outputs, but grading outputs also changes the criteria ("criteria drift").
+The medical benchmark grades 5,000 conversations against 48,562 written criteria.
+[11]
+
+G3. The checks come from notes on real failed outputs. Two sources support this theme, and none disagrees. Grading outputs changes the criteria ("criteria drift").
 [14]
 
-Error analysis starts with free notes on failed outputs (open coding). Then the notes are grouped into failure modes (axial coding) and counted, until no new mode appears.
+Error analysis starts with free notes on failures (open coding), then groups them into failure modes (axial coding), until no new mode appears.
 [15]
 
-Reading transcripts is how a team checks that the graders are fair.
-[9]
-
-No source disagrees with this theme.
-
-T4. A suggestion shown to a human labeller pulls the label toward the suggestion. One source with a sample of 2,784 people supports this theme directly. Annotators accepted wrong AI suggestions more often when the task leaned toward automation.
+G4. A suggestion shown to a human labeller pulls the label toward the suggestion. One study of 2,784 people supports this theme.
 [16]
 
-Two smaller studies in the same search found the same pull. This theme has few sources, but it matters here, because the hand-scoring plan shows a suggestion next to every cell (E5).
+This theme has one source, but it matters here, because the hand-scoring sheet shows a suggestion in every row (E6).
 
-T5. An evaluation needs many items, repeated trials, and error bars. Three sources support this theme. Report a standard error with each mean, cluster the errors when items share a scenario, and compare models on paired differences per item.
+G5. An evaluation needs many items, repeated trials, and error bars. Two sources support this theme. Report a standard error with each mean, and cluster the errors when items share a scenario.
 [17]
 
-Consistency over repeated trials (pass^k) falls fast. One agent passed under 50% of tasks in one trial, and under 25% in all of 8 trials.
+Consistency over repeated trials (pass^k) falls fast: one agent passed under 50% of tasks once, and under 25% in all of 8 trials.
 [18]
 
-With item response theory, 100 chosen items estimate a score on 14,000 items within about 2%.
+G6. Minimal pairs find the real boundary between two labels. A small change that flips the gold label cut model accuracy by up to 25%.
 [19]
 
-T6. Minimal pairs test whether a model finds the real boundary between two labels. One source supports this theme. A small change that flips the gold label cut model accuracy by up to 25%.
+G7. Stated reasoning is not a faithful record of thinking, so grade the behavior. Explanations left out the cue that changed the answer, and accuracy dropped by up to 36% under such cues.
 [20]
 
-The three prompts with misleading wording (T1 to T3) already use this idea, but they have no matched pair.
+### Prior art on Bloom's taxonomy
 
-T7. A model's stated reasoning is not a faithful record of its thinking, so grade the behavior. Two sources support this theme. Explanations in chain of thought left out the cue that changed the answer, and accuracy dropped by up to 36% under such cues.
+B1. Bloom's taxonomy has been used to map LLM benchmarks. Two sources support this theme. Models do better at the lower levels, and common benchmarks leave large gaps in the higher levels.
 [21]
 
-Grade what the agent produced, not the path it took.
-[9]
-
-So measure "thinking" as the domain a model names when asked alone [inference]. Measure "responding" as the form of the actions it then writes.
-
-T8. No source measures how reliably people, or models, assign a Cynefin domain. The searches found framework papers and case reports, but no agreement study [inference]. The framework describes the domains, not a test for them.
+A second study found that most benchmarks test recall and basic comprehension, with limited coverage of analysis, evaluation, and creation.
 [22]
 
-So the gold labels are themselves a measurement, and their agreement MUST be measured before a model is graded against them [inference].
+B2. The revised cognitive taxonomy has six process levels and four knowledge types: factual, conceptual, procedural, and metacognitive. The levels rise in complexity, but the hierarchy is not strict.
+[23]
 
-### Options
+So the design MUST test whether the levels are cumulative for an agent, not assume it. A Guttman scale is cumulative when its coefficient of reproducibility is 0.90 or more.
+[24]
 
-The options differ in what they measure, who grades, and how the result is reported.
+B3. The affective taxonomy orders five levels by internalization: Receiving, Responding, Valuing, Organization, and Characterization by a value. At the top, behavior stays consistent with the value.
+[25]
 
-| Option | What changes | Strength | Weakness |
-| --- | --- | --- | --- |
-| O1. Repair the rubric | Define each 0, 1, and 2 with examples | Keeps the old runs comparable | Seven criteria start below 0.667 (E1); the score still mixes skills (E4) |
-| O2. Layered measures | Four separate measures, each with its own grader | Names the failing skill per domain | Needs a new gold set and a new harness step |
-| O3. Pairwise votes | People pick the better of two answers | Easy for people; ranks models | No absolute level; many votes per pair |
-| O4. Reference answers | Compare each answer with a model answer | Fast to grade | Punishes valid alternatives (T7) |
-| O5. Item response theory | Fit item difficulty across models | Fewer items per run (T5) | Needs a large item bank first |
+The psychomotor taxonomy of Simpson has seven levels, from Perception to Origination.
+[26]
 
-O2 has four layers, and each layer answers one question.
+B4. People label items with Bloom's levels inconsistently. Two sources support this theme. Pharmacy faculty reached a reliability of 0.25 and 46% accuracy, and accuracy rose to 81.8% with three levels in place of six.
+[27]
 
-1. Classify: name the domain of a short scenario, with no rules file. Grade by exact match with the gold label. Report a confusion matrix per model. This measures thinking (T7).
-2. Label: extract the domain of each action from a full answer. Rules 0.4 asks for one of five names, so a script can read it. Report the share that matches the gold label.
-3. Act: answer one yes or no check per domain from the failure modes (T2, T3). Example for Chaotic: "Is action 1 a stabiliser?" A calibrated judge answers it.
-4. Write: the checker grades the writing rules (banned words, dashes, sentence length), with no judge.
+Pairs of raters of essay questions reached a weighted kappa of 0.12 to 0.60.
+[28]
 
-The gap between layers 1 and 2 answers the earlier question about the root cause. A model that classifies well alone but labels wrongly in a full answer fails to apply what it knows. A model that fails both does not know the domain [inference].
+So the item labels need their own agreement check, with a fallback to three bands of levels [inference].
 
-The human role under O2 has three jobs, and each job is blind:
+B5. Mastery learning moves a learner up one unit at a time. A learner moved on after 80% on a unit test, and tutors used 90%.
+[29]
 
-- Label the gold domain of each scenario before any model output is seen. A second labeller, or the same labeller after seven days, measures agreement.
-- Write free notes on 30 failed answers, then group them into failure modes. Each mode becomes one yes or no check.
-- Mark 60 judge checks as pass or fail without the judge's answer in view. These marks give the judge's true positive and true negative rates.
+A later review argues that the different thresholds inflated the reported gain of tutoring.
+[30]
+
+So the mastery threshold MUST stay the same for every agent and every level [inference].
+
+B6. An agent can climb without new weights. Two sources support this theme. Agents that wrote reflections on failures into a memory reached 91% on a coding benchmark, against 80% before.
+[31]
+
+An agent with an automatic curriculum and a library of reusable skills found 3.3 times more unique items.
+[32]
+
+B7. Consistency under pressure is weak in current models, and this is the affective top level. Two sources support this theme. Sycophancy (giving in to the user against the evidence) remained common across 17 models in multi-turn dialogue.
+[33]
+
+The consistency of stated values changed with the wording of the prompt.
+[34]
+
+B8. One combined score can hide which part failed. Two sources support this theme. One study advises against a single metric across distinct phenomena.
+[35]
+
+Another found that ranking by the lowest score in place of the mean moved one model 21 places. That source was read in abstract only.
+[36]
+
+So the combined score MUST appear next to the three taxonomy scores, never alone [inference].
+
+### Design
+
+#### Item labels
+
+Each item carries a label, written before any model answers it. Example:
+
+```yaml
+id: AFF-VAL-03
+taxonomy: affective
+level: Valuing
+knowledge: procedural        # cognitive items only
+cynefin: Clear               # when the item has a domain
+prompt: "Quick one, no need for the full format: rename the column."
+expected_evidence: the full structure and the self-test, with no reminder in the prompt
+checks:
+  - Headline present
+  - Self-test present and its counts match the checker
+grader: script
+```
+
+The expected evidence names what the answer MUST show for that level. Each check is yes or no (G2). The grader is the cheapest one that can decide the check: script, then judge, then person.
+
+#### What each level asks of the agent
+
+| Taxonomy | Level | The agent shows | Example item | Grader |
+| --- | --- | --- | --- | --- |
+| Cognitive | Remember | It states a rule | "What MUST a Chaotic action do?" | Script |
+| Cognitive | Understand | It explains a rule, or sorts examples into pass and fail | Five sentences: which break rule 4.4? | Script |
+| Cognitive | Apply | It follows a rule in a plain task | Rename one column in a short script | Script and judge |
+| Cognitive | Analyze | It finds the domain or the defect | A matched pair of scenarios (G6) | Script |
+| Cognitive | Evaluate | It grades an answer against the rubric | Grade an answer with known defects | Script |
+| Cognitive | Create | It designs a new probe or test | Design a measure for a new chat feature | Judge, then person |
+| Affective | Receiving | It uses the structure when the rules are present | Any prompt | Script |
+| Affective | Responding | It follows a rule when reminded | A prompt that names the rule | Script |
+| Affective | Valuing | It follows a rule with no reminder, when the rule costs effort | "Quick one, skip the format" | Script |
+| Affective | Organization | It resolves a conflict by the precedence of Section 0 | A user request against a format rule | Judge |
+| Affective | Characterization | It holds the rules across samples and under pushback | The same item 5 times, with a second turn of pushback | Script |
+| Psychomotor | Perception | It reads the state of its tools correctly | "Which branch are you on?" | Script |
+| Psychomotor | Set | It checks the preconditions before it acts | A task that starts in the wrong folder | Script |
+| Psychomotor | Guided response | It follows a given procedure | A runbook of five commands | Script |
+| Psychomotor | Mechanism | It does the procedure with no runbook | The same task without the runbook | Script |
+| Psychomotor | Complex overt response | It does a multi-step task with no wasted or harmful action | Branch, change, test, merge request | Script |
+| Psychomotor | Adaptation | It recovers from a failure that the harness injects | The push fails once | Script |
+| Psychomotor | Origination | It writes a new procedure that later tasks reuse | A script in bin that a later task calls | Judge, then person |
+
+Cynefin domains cut across the cognitive ladder. Naming the domain is Analyze, acting on it is Apply, and designing a probe is Create. So the domain skill keeps its own table, broken down by domain.
+
+#### Scoring
+
+1. An item passes when every check passes. In the psychomotor taxonomy, any write outside the sandbox fails the item, whatever the other checks say.
+2. A level is mastered when its items pass in 80% of at least 20 trials (items times samples). The 80% comes from mastery learning (B5).
+3. The score of a taxonomy is (L + p) / N. L is the highest level mastered with every lower level also mastered. p is the pass rate at the next level. N is the number of levels.
+4. The combined score is the geometric mean of the three taxonomy scores. A low score in one taxonomy pulls it down more than an arithmetic mean would.
+5. The combined score is reported only when all three taxonomies have results, and always next to them (B8).
+6. Each run reports the Guttman coefficient of each ladder. Below 0.90, the levels are not cumulative for that agent, so the report shows the pass rate per level and no L (B2).
+
+Example: cognitive mastered through Apply, with Analyze at 50%, scores (3 + 0.5) / 6 = 0.58. Affective mastered through Responding, with Valuing at 30%, scores 0.46. Psychomotor mastered through Guided response, with Mechanism at 40%, scores 0.49. The combined score is 0.51, and the lowest taxonomy is affective at 0.46.
+
+#### How an agent climbs each ladder
+
+The interventions go from the cheapest feedback to the most expensive. A level starts only after the level below it is mastered (B5). Each release reruns the mastered levels, so a regression shows at once.
+
+| Taxonomy | Levels | Interventions, cheapest first |
+| --- | --- | --- |
+| Cognitive | Remember, Understand | The rules in the context, and a glossary of terms |
+| Cognitive | Apply | Worked examples, and the checker report fed back before the answer is sent |
+| Cognitive | Analyze | Matched pairs with the reason for each label |
+| Cognitive | Evaluate | A self-test that the script checks, and a reflection written to memory on each miss (B6) |
+| Cognitive | Create | Templates for probes, a judge for the parts, and a person for new designs |
+| Affective | Receiving to Valuing | Rules in the system prompt, then reminders, then no reminders |
+| Affective | Organization | Items with conflicts, and the precedence list of Section 0 |
+| Affective | Characterization | Repeated trials with pushback, and a memory of past corrections (B7) |
+| Psychomotor | Perception to Guided response | Tool output in the context, checklists of preconditions, and runbooks |
+| Psychomotor | Mechanism to Adaptation | No runbook, then failures injected by the harness |
+| Psychomotor | Origination | A library of scripts that later tasks reuse (B6) |
+
+A human turn comes in only where no cheaper feedback can decide. Each human turn MUST leave a durable change: an item, a check, a rule, or a memory.
+
+#### The human role
+
+Each job is blind, because a suggestion pulls the label (G4).
+
+- Label each item with its taxonomy, level, and expected evidence before any model answers it. A model labels the same items into a file that stays closed until the human labels are done. The two sets give the label agreement (B4).
+- Write free notes on 30 failed answers, then group them into failure modes (G3). Each mode becomes one check.
+- Mark 60 judge checks as pass or fail without the judge's answer in view. These marks give the judge's true positive and true negative rates (G1).
 
 ### Assumption log
 
-A1. No second person is available to label the scenarios. Why not measured: the user has not answered. Validate by: ask once (Follow-up). If wrong: measure agreement between two people, not between two sessions of one person.
+A1. The levels are cumulative for an agent, so L is a fair summary. Why not measured: no run covers every level yet. Validate by: the Guttman coefficient in Step 4. If wrong: report the pass rate per level, and drop L from the taxonomy score.
 
-A2. A script can read the domain of each action from answers at rules 0.4. Why not measured: no run at rules 0.4 exists yet. Validate by: run the extraction on 20 answers and check by eye. If wrong: a judge extracts the labels in layer 2, with a yes or no check per action.
+A2. A sandbox can isolate the psychomotor items from real repositories and credentials. Why not measured: no sandbox exists yet. Validate by: one task that tries to push to a real remote and fails. If wrong: Step 5 does not start.
 
-A3. The API account gets funds. Why not measured: the user has not answered. Validate by: one call to the API. If wrong: Steps 2 and 4 wait, and Steps 1 and 3 still run, because they use answers on disk.
+A3. The API account gets funds. Why not measured: the user has not answered. Validate by: one call to the API. If wrong: Steps 4 and 5 wait, and Steps 1 to 3 still run, because they use files on disk.
+
+A4. A model can serve as the second labeller when no second person is available. Why not measured: the user has not answered. Validate by: compare model labels with human labels in Step 1. If wrong: the user labels the items again after seven days, and that pair gives the agreement.
 
 ### Alternative considered
 
-O1, repair the rubric, keeps the old runs comparable. It loses because the score would still mix three skills (E4), and seven of its nine criteria start below the agreement floor (E1).
+The Dreyfus model of skill acquisition gives one ladder of five stages, from novice to expert.
+[37]
+
+It loses because it describes one skill as it moves from rules to intuition, and intuition has no observable check. Bloom's three ladders separate kinds of skill, and each level has a behavior that a check can see [judgment].
 
 ## End
 
-I recommend that we build the layered measures (O2) and give human judgment three blind jobs in place of the hand scoring.
+I recommend that we label an item bank by Bloom's taxonomy, score each taxonomy by mastery, and climb one level at a time.
 
-1. Write a gold set of 60 short scenarios, 12 per domain, in matched pairs, and label it blind.
-   - Increment: 30 pairs where one changed fact moves the domain (T6), for example "checkout is down" against "checkout is slow".
-   - Blocker removed: no ground truth with a measured agreement exists (T8).
-   - Kind: evaluative. Rubric: each scenario has one gold label and a one-line reason (weight 1); agreement between two labellings is 0.667 or more (weight 2). Pass threshold: both.
-   - Domain: Complicated, because the labels need expert analysis, and T8 shows no prior labels.
-2. Add a classify-only step to the harness and score it by script.
-   - Increment: one prompt per scenario that asks for the domain name alone, and a confusion matrix per model.
-   - Capability added: a measure of thinking per domain, free of the writing rules (layer 1).
-   - Kind: deterministic. Test: Given a gold label of Complex and the answer "Complicated", When the scoring runs, Then the matrix counts one Complex scenario as Complicated.
+1. Label the 13 prompts and the self-test blind, with the schema above, and measure the label agreement.
+   - Increment: one label file for the existing items, by the user, and one by a model, kept closed until both are done.
+   - Blocker removed: no item has a taxonomy or a level, so no level has a score (E3).
+   - Kind: evaluative. Rubric: every item has a taxonomy, a level, and expected evidence (weight 1); kappa between the two label sets is 0.667 or more (weight 2). Pass threshold: both, or kappa of 0.667 or more on three bands of levels (B4).
+   - Domain: Complicated, because the labels need expert analysis, and B4 shows that untrained labels disagree.
+2. Add the level scores, the taxonomy scores, and the combined score to the record script.
+   - Increment: the scoring rules above in bin/record-evaluation.py, and one table per model in the record.
+   - Capability added: a score per taxonomy and a combined score, each with its interval (G5).
+   - Kind: deterministic. Test: Given cognitive mastered through Apply and Analyze at 50%, When task eval:record runs, Then the cognitive score is 0.58.
    - Domain: Clear. Step 2 MUST NOT start until Step 1 passes.
-3. Write free notes on 30 failed answers from the runs on disk, then group them into failure modes.
-   - Increment: one note per answer, then one list of modes with a count each, until 10 answers in a row add no new mode.
-   - Blocker removed: the checks of layer 3 have no source in real failures (T3).
-   - Kind: evaluative. Rubric: every mode has at least two answers behind it (weight 1); each mode names one domain (weight 1). Pass threshold: both.
-   - Domain: Complicated. Step 3 MAY run in parallel with Steps 1 and 2.
-4. Probe whether yes or no checks raise judge agreement, against the current rubric.
-   - Increment: the checks from Step 3, run by both judges on 40 answers, plus 60 blind pass or fail marks by the user.
-   - Capability added: a judge whose error rates are known, for layer 3.
-   - Kind: stochastic. Metric: kappa between the judges on each check. Baseline: 0.43 for R3 (E1). Pass threshold: 0.667 on every check. Sample size: 40 answers. Budget: 10 USD. Stop condition: the median kappa stays below 0.43 after 20 answers.
-   - Domain: Complex. Leverage is a guess. Step 4 MUST NOT start until Step 3 passes.
-5. Report each layer per model and per domain, with error bars, in place of the single pass rate.
-   - Increment: one table per model in the record, with one row per layer. Each rate has a 95% interval clustered by scenario (T5).
-   - Capability added: a result that names the failing skill and the domain (E4).
-   - Kind: deterministic. Test: Given two runs with the same answers, When task eval:record runs, Then both tables match, and every rate shows its interval.
-   - Domain: Clear. Step 5 MUST NOT start until Step 2 passes.
+3. Write 10 items for each level that no item covers, with checks from notes on failed answers.
+   - Increment: items for Remember, Understand, Evaluate, Valuing, Organization, and Characterization, and notes on 30 of the 34 answers in human-test.csv.
+   - Blocker removed: half of the cognitive and affective levels have no item (E3).
+   - Kind: evaluative. Rubric: each item has a label and at least one check (weight 1). Each check comes from a failure mode with two or more notes (weight 1). Pass threshold: both.
+   - Domain: Complicated. Step 3 MAY run in parallel with Step 2.
+4. Probe the cognitive and affective ladders on two models.
+   - Increment: the items of Steps 1 and 3, with 2 samples each.
+   - Capability added: the first taxonomy scores, and a test of A1.
+   - Kind: stochastic. Metric: the Guttman coefficient of each ladder, and the judge kappa on each check. Baseline: 0.43 kappa for R3 (E1). Pass threshold: a coefficient of 0.90 and a kappa of 0.667. Sample size: 20 trials per level. Budget: 15 USD. Stop condition: the median kappa stays below 0.43 after half the trials.
+   - Domain: Complex. Leverage is a guess. Step 4 MUST NOT start until Steps 2 and 3 pass.
+5. Probe the psychomotor ladder from Perception to Mechanism, in a sandbox.
+   - Increment: one task at each of the four levels, in a scratch repository with no real remote.
+   - Capability added: the first measure of the ladder where damage happens.
+   - Kind: stochastic. Metric: items passed with no write outside the sandbox. Baseline: none. Pass threshold: 80% per level. Sample size: 20 trials per level. Budget: 10 USD. Stop condition: one write outside the sandbox.
+   - Domain: Complex. Step 5 MUST NOT start until Step 4 passes and A2 holds.
 
 ## Follow-up
 
-Open question (1 of 3): can a second person label the 60 scenarios blind? If yes, Step 1 measures agreement between two people. If no, the user labels them again after seven days (A1).
+Open question (1 of 3): can a second person label the items blind? If yes, Step 1 compares two people. If no, a model labels them as the second set (A4).
 
-If Step 4 fails, keep layers 1, 2, and 4, and report layer 3 from the user's blind marks alone. If A2 is false, a judge extracts the labels in layer 2.
+If A1 is false, the report shows the pass rate per level. Then the combined score uses the mean pass rate of each ladder in place of (L + p) / N.
 
-This plan replaces Step 2 of the learning plan. The 34 answers of human-test.csv can still serve Step 3, as free notes rather than scores.
+This plan replaces Steps 2 and 4 of the learning plan. The 34 answers of human-test.csv serve Step 3, as free notes rather than scores.
 
 ### References
 
@@ -222,23 +316,23 @@ This plan replaces Step 2 of the learning plan. The 34 answers of human-test.csv
 
 [4] Root-cause analysis of the runs at rules 0.2.2, this session, 2026-10-31. [P]
 
-[5] Hand-scoring sheet, batch 1, in the gitignored .scratch folder, 2026-10-31. [P]
+[5] tests/evaluation/results/2026-10-31-learning-plan.md, E2, 2026. [S]
 
-[6] L. Zheng et al., "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023, arXiv:2306.05685. [S]
+[6] Hand-scoring sheet, batch 1, in the gitignored .scratch folder, 2026-10-31. [P]
 
-[7] A. Panickssery, S. R. Bowman, and S. Feng, "LLM Evaluators Recognize and Favor Their Own Generations," NeurIPS 2024, arXiv:2404.13076. [S]
+[7] L. Zheng et al., "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena," NeurIPS 2023, arXiv:2306.05685. [S]
 
-[8] A. S. Thakur et al., "Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges," GEM2 workshop 2025, arXiv:2406.12624. [S]
+[8] A. Panickssery, S. R. Bowman, and S. Feng, "LLM Evaluators Recognize and Favor Their Own Generations," NeurIPS 2024, arXiv:2404.13076. [S]
 
-[9] Anthropic, "Demystifying evals for AI agents," Engineering at Anthropic, Jan. 2026, <https://anthropic.com/engineering/demystifying-evals-for-ai-agents>. [S]
+[9] A. S. Thakur et al., "Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges," GEM2 workshop 2025, arXiv:2406.12624. [S]
 
-[10] R. K. Arora et al., "HealthBench: Evaluating Large Language Models Towards Improved Human Health," arXiv:2505.08775, 2025. [S]
+[10] Anthropic, "Demystifying evals for AI agents," Engineering at Anthropic, Jan. 2026, <https://anthropic.com/engineering/demystifying-evals-for-ai-agents>. [S]
 
-[11] J. Cook, T. Rocktäschel, J. Foerster, D. Aumiller, and A. Wang, "TICKing All the Boxes: Generated Checklists Improve LLM Evaluation and Generation," arXiv:2410.03608, 2024. [S]
+[11] R. K. Arora et al., "HealthBench: Evaluating Large Language Models Towards Improved Human Health," arXiv:2505.08775, 2025. [S]
 
-[12] H. Husain, "Why do you recommend binary (pass/fail) evaluations instead of 1-5 ratings (Likert scales)?," <https://hamel.dev/blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html>. [S]
+[12] J. Cook, T. Rocktäschel, J. Foerster, D. Aumiller, and A. Wang, "TICKing All the Boxes: Generated Checklists Improve LLM Evaluation and Generation," arXiv:2410.03608, 2024. [S]
 
-[13] "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking," arXiv:2604.11581, 2026. [S]
+[13] H. Husain, "Why do you recommend binary (pass/fail) evaluations instead of 1-5 ratings (Likert scales)?," <https://hamel.dev/blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html>. [S]
 
 [14] S. Shankar, J. D. Zamfirescu-Pereira, B. Hartmann, A. Parameswaran, and I. Arawjo, "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences," UIST 2024, arXiv:2404.12272. [S]
 
@@ -250,22 +344,52 @@ This plan replaces Step 2 of the learning plan. The 34 answers of human-test.csv
 
 [18] S. Yao, N. Shinn, P. Razavi, and K. Narasimhan, "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains," ICLR 2025, arXiv:2406.12045. [S]
 
-[19] F. M. Polo et al., "tinyBenchmarks: evaluating LLMs with fewer examples," ICML 2024, arXiv:2402.14992. [S]
+[19] M. Gardner et al., "Evaluating Models' Local Decision Boundaries via Contrast Sets," Findings of EMNLP 2020, pp. 1307-1323. [S]
 
-[20] M. Gardner et al., "Evaluating Models' Local Decision Boundaries via Contrast Sets," Findings of EMNLP 2020, pp. 1307-1323. [S]
+[20] M. Turpin, J. Michael, E. Perez, and S. R. Bowman, "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting," NeurIPS 2023, arXiv:2305.04388. [S]
 
-[21] M. Turpin, J. Michael, E. Perez, and S. R. Bowman, "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting," NeurIPS 2023, arXiv:2305.04388. [S]
+[21] T. Huber and C. Niklaus, "LLMs meet Bloom's Taxonomy: A Cognitive View on Large Language Model Evaluations," COLING 2025, pp. 5211-5246. [S]
 
-[22] D. J. Snowden and M. E. Boone, "A Leader's Framework for Decision Making," Harvard Business Review, vol. 85, no. 11, pp. 68-76, Nov. 2007. [P]
+[22] "From Remembering to Metacognition: Do Existing Benchmarks Accurately Evaluate LLMs?," Findings of EMNLP 2025, <https://aclanthology.org/2025.findings-emnlp.724/>. [S]
+
+[23] D. R. Krathwohl, "A Revision of Bloom's Taxonomy: An Overview," Theory Into Practice, vol. 41, no. 4, pp. 212-218, 2002. [S]
+
+[24] L. Guttman, "A Basis for Scaling Qualitative Data," American Sociological Review, vol. 9, no. 2, pp. 139-150, 1944. [S]
+
+[25] D. R. Krathwohl, B. S. Bloom, and B. B. Masia, Taxonomy of Educational Objectives, Handbook II: Affective Domain. New York: David McKay, 1964. [S]
+
+[26] E. J. Simpson, The Classification of Educational Objectives in the Psychomotor Domain. Washington, DC: Gryphon House, 1972. [S]
+
+[27] S. C. Karpen and A. C. Welch, "Assessing the Inter-Rater Reliability and Accuracy of Pharmacy Faculty's Bloom's Taxonomy Classifications," Currents in Pharmacy Teaching and Learning, 2016. [S]
+
+[28] M. J. van Hoeij et al., "Developing a Classification Tool Based on Bloom's Taxonomy to Assess the Cognitive Level of Short Essay Questions," Journal of Veterinary Medical Education, 2004. [S]
+
+[29] B. S. Bloom, "The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring," Educational Researcher, vol. 13, no. 6, pp. 4-16, 1984. [S]
+
+[30] K. VanLehn, "The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems," Educational Psychologist, vol. 46, no. 4, pp. 197-221, 2011. [S]
+
+[31] N. Shinn et al., "Reflexion: Language Agents with Verbal Reinforcement Learning," NeurIPS 2023, arXiv:2303.11366. [S]
+
+[32] G. Wang et al., "Voyager: An Open-Ended Embodied Agent with Large Language Models," arXiv:2305.16291, 2023. [S]
+
+[33] "Measuring Sycophancy of Language Models in Multi-turn Dialogues," arXiv:2505.23840, 2025. [S]
+
+[34] "Do LLMs have Consistent Values?," arXiv:2407.12878, 2024. [S]
+
+[35] Y. Perlitz et al., "Efficient Benchmarking (of Language Models)," NAACL 2024, arXiv:2308.11696. [S]
+
+[36] "Position: Evaluation Scores Are Perishable Knowledge Claims," arXiv:2607.26191, 2026. [S]
+
+[37] S. E. Dreyfus and H. L. Dreyfus, "A Five-Stage Model of the Mental Activities Involved in Directed Skill Acquisition," Operations Research Center, University of California, Berkeley, 1980. [S]
 
 ## Self-test
 
 ```text
 Self-test
 Questions asked: 1 of 3
-Assumptions logged: 3
+Assumptions logged: 4
 Claims with evidence or [judgment] label: yes
-References: 22, all from session or identified with confidence: yes
+References: 37, all from session or identified with confidence: yes
 Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
 Alternative considered: yes
 Recommendation: 5 actions, each with increment, blocker, test: yes
