@@ -181,6 +181,18 @@ class RunEvaluationPairs(unittest.TestCase):
         self.assertEqual(result.returncode, 0)
         self.assertIn("Estimate for 6 pairs", result.stdout)
 
+    def test_no_judge_plans_the_executors_only(self):
+        pair = self.cfg["providers"]["anthropic"]["pairs"][0]
+        both = EVAL.plan_cost(self.cfg, pair, 1)
+        alone = EVAL.plan_cost(self.cfg, pair, 1, no_judge=True)
+        self.assertLess(alone, both)
+        result = run("run-evaluation.py", "--plan", "--no-judge", "--prompts", "C1")
+        self.assertIn("judged by no judge", result.stdout)
+
+    def test_reads_the_version_of_a_rules_file(self):
+        self.assertEqual(EVAL.rules_version("# Rules\n\nVersion 0.5, 2026.\n"), "0.5")
+        self.assertEqual(EVAL.rules_version("# Rules\n"), "unknown")
+
 
 class RunEvaluationScores(unittest.TestCase):
     def setUp(self):
@@ -536,3 +548,97 @@ class RecordEvaluation(unittest.TestCase):
         self.assertIn("| T2 | Complex (worded Clear) |", text)
         self.assertIn("| First sentence. |", text)
         self.assertNotIn("Second sentence", text)
+
+
+ANSWER = """a/model, a, 2026-10-31, C1
+
+## Headline
+
+Use the logging module, but I cannot see the file.
+
+## Background
+
+The service prints. It needs logs.
+
+## Relevance
+
+Logs help.
+
+## Information
+
+The root logger hides INFO records.
+
+## End
+
+I recommend that we:
+
+1. **Add the setup.**
+   - Domain: Clear, because the standard module is a known practice.
+   - Test: Given the service starts, When it logs, Then one INFO line appears.
+2. **Replace the calls.**
+   - Domain: Clear. Kind: deterministic.
+
+## Self-test
+
+```text
+Self-test
+Banned words found: 0
+Self-mention outside End: 0
+Dashes (em or en): 0
+Actions in End with a Cynefin domain label: 2 of 2
+Sentences over the limit of Section 4.1 item 1: 0
+```
+"""
+
+
+class ScriptChecks(unittest.TestCase):
+    def setUp(self):
+        self.module = load("script-checks.py")
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.dir = Path(folder.name)
+
+    def write(self, text, run="run", version="0.5"):
+        answer = self.dir / run / "responses" / "a_model@low" / "C1-s1.md"
+        answer.parent.mkdir(parents=True)
+        answer.write_text(text)
+        (self.dir / run / "run.json").write_text(json.dumps({"rules_version": version}))
+        return answer
+
+    def test_counts_first_person_outside_end_only(self):
+        row = self.module.score(self.write(ANSWER))
+        self.assertEqual(row["first_person"], 1)
+        self.assertFalse(row["no_first_person"])
+        self.assertIn("Self-mention outside End", row["selftest_wrong"])
+
+    def test_labels_every_action_and_finds_one_reason(self):
+        row = self.module.score(self.write(ANSWER))
+        self.assertEqual((row["actions"], row["labelled"], row["reasoned"]), (2, 2, 1))
+        self.assertTrue(row["all_labelled"])
+        self.assertFalse(row["all_reasoned"])
+
+    def test_structure_passes_and_language_fails_on_the_first_person(self):
+        row = self.module.score(self.write(ANSWER))
+        self.assertTrue(row["structure"])
+        self.assertFalse(row["language"])
+
+    def test_a_next_field_is_not_a_reason(self):
+        label = self.module.label
+        self.assertEqual(
+            label("- Domain: Complicated. Kind: evaluative."), ("Complicated", False)
+        )
+        self.assertEqual(
+            label("- Cynefin: Clear. Apply a plain search."), ("Clear", True)
+        )
+        self.assertEqual(label("- Domain: Clear (a known practice)."), ("Clear", True))
+
+    def test_compares_two_runs(self):
+        self.write(ANSWER, "old", "0.4")
+        self.write(
+            ANSWER.replace("but I cannot see the file", "with no file"), "new", "0.5"
+        )
+        old = self.module.score_run(self.dir / "old")
+        new = self.module.score_run(self.dir / "new")
+        text = self.module.compare([old, new])
+        self.assertIn("| no first person outside End | 0% | 100% | +100%", text)
+        self.assertTrue((self.dir / "new" / "script-checks.csv").exists())

@@ -6,7 +6,7 @@ each score, call, or failure, as soon as it has them. So several processes can r
 the providers of one run in parallel, and --merge makes the final view of the run.
 Usage: bin/run-evaluation.py [--provider NAME] [--run-id ID] [--all-pairs]
                              [--prompts C1,K1] [--samples N] [--workers N]
-                             [--out DIR] [--plan]
+                             [--out DIR] [--rules FILE] [--no-judge] [--plan]
        bin/run-evaluation.py --merge RUN_DIR
        bin/run-evaluation.py --agreement RUN_DIR
   --provider   one provider of pairs.json; every provider when left out
@@ -16,6 +16,8 @@ Usage: bin/run-evaluation.py [--provider NAME] [--run-id ID] [--all-pairs]
   --samples    the runs of each prompt (default 3)
   --workers    the units of work in flight at one time (default 4)
   --out        the folder that gets one subfolder per run (default tests/evaluation/results)
+  --rules      the rules file to install (default sources/model-operating-rules.md)
+  --no-judge   call the executors only; bin/script-checks.py scores the answers
   --plan       check pairs.json, print the calls and the cost estimate, call nothing
   --merge      read the JSONL files of a run, and write scores.csv, calls.csv,
                human-test.csv, and summary.md
@@ -268,16 +270,22 @@ def judges(pair):
     )
 
 
-def plan_cost(cfg, pair, units):
+def plan_cost(cfg, pair, units, no_judge=False):
     def cost(model, role):
         tokens_in, tokens_out = ESTIMATE[role]
         price_in, price_out = cfg["prices_usd_per_million"][model["model"]]
         return (tokens_in * price_in + tokens_out * price_out) / 1_000_000
 
     per_unit = cost(pair["executor"], "executor") + sum(
-        cost(j, "judge") for j in judges(pair)
+        cost(j, "judge") for j in ([] if no_judge else judges(pair))
     )
     return per_unit * units
+
+
+def rules_version(text):
+    """The version on the second line of a rules file, such as 0.5."""
+    match = re.search(r"^Version (\d+(?:\.\d+)+)", text, re.MULTILINE)
+    return match.group(1) if match else "unknown"
 
 
 def slug(model):
@@ -439,6 +447,8 @@ def run_unit(cfg, key, run_dir, ctx, name, pair, prompt, sample):
     response_file.write_text(
         f"{ex['model']}, {name}, {ctx['date']}, {prompt['id']}\n\n{answer}\n"
     )
+    if ctx.get("no_judge"):
+        return calls, rows, errors
     report = check_report(response_file)
     for judge in judges(pair):
         text = JUDGE_INPUT.format(
@@ -676,6 +686,8 @@ def main():
     parser.add_argument("--out", default=str(ROOT / "tests/evaluation/results"))
     parser.add_argument("--pairs", default=str(PAIRS))
     parser.add_argument("--run-id")
+    parser.add_argument("--rules", default=str(RULES))
+    parser.add_argument("--no-judge", action="store_true")
     parser.add_argument("--plan", action="store_true")
     parser.add_argument("--merge")
     parser.add_argument("--agreement")
@@ -704,9 +716,11 @@ def main():
 
     total = 0.0
     for name, pair in selected:
-        cost = plan_cost(cfg, pair, units)
+        cost = plan_cost(cfg, pair, units, args.no_judge)
         total += cost
-        names = " and ".join(slug(j) for j in judges(pair))
+        names = (
+            "no judge" if args.no_judge else " and ".join(slug(j) for j in judges(pair))
+        )
         print(
             f"{name}: {slug(pair['executor'])} judged by {names}: {units} units, about {cost:.2f} USD"
         )
@@ -727,15 +741,33 @@ def main():
     taken = [str(f) for f in files.values() if f.exists()]
     if taken:
         sys.exit(f"{taken[0]} exists. Give the run a new --run-id.")
+    rules = Path(args.rules).read_text()
     ctx = {
         "date": now.strftime("%Y-%m-%d"),
-        "version": "{major}.{minor}.{patch}".format(**version),
-        "rules": RULES.read_text(),
+        "version": "{major}.{minor}.{patch}".format(**version)
+        if Path(args.rules) == RULES
+        else rules_version(rules),
+        "rules": rules,
+        "no_judge": args.no_judge,
         "schema": judge_schema(),
         "judge_instructions": JUDGE_INSTRUCTIONS.format(
-            rubric=rubric_text(tests), rules=RULES.read_text()
+            rubric=rubric_text(tests), rules=rules
         ),
     }
+    (run_dir / "run.json").write_text(
+        json.dumps(
+            {
+                "date": ctx["date"],
+                "rules_version": ctx["version"],
+                "rules_file": args.rules,
+                "no_judge": args.no_judge,
+                "prompts": [p["id"] for p in prompts],
+                "samples": args.samples,
+            },
+            indent=2,
+        )
+        + "\n"
+    )
     work = [
         (name, pair, prompt, sample)
         for name, pair in selected
