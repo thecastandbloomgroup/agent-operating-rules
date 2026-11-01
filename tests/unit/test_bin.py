@@ -631,6 +631,21 @@ class ScriptChecks(unittest.TestCase):
             label("- Cynefin: Clear. Apply a plain search."), ("Clear", True)
         )
         self.assertEqual(label("- Domain: Clear (a known practice)."), ("Clear", True))
+        self.assertEqual(
+            label("1. **Fix.**\n   **Deterministic; Clear**, because each print maps."),
+            ("Clear", True),
+        )
+        self.assertEqual(len(self.module.actions("### 1. One\nx\n### 2. Two\ny\n")), 2)
+        self.assertEqual(
+            label("1. **Clear the cache.**\n   Then restart."), (None, False)
+        )
+
+    def test_reads_plain_headings_a_bare_self_test_and_a_leading_domain(self):
+        plain = "a/model, a, 2026-10-31, C1\n\nHeadline\nUse logging.\n\nBackground\nIt prints.\n\nRelevance\nLogs help.\n\nInformation\nINFO is hidden.\n\nEnd\nI recommend that we take one step.\n\n1. Clear, because the module is standard.\nTest first: Given a start, When it logs, Then a line appears.\n\n```text\nSelf-test\nActions in End with a Cynefin domain label: 1 of 1\n```\n"
+        row = self.module.score(self.write(plain))
+        self.assertTrue(row["structure"])
+        self.assertEqual((row["actions"], row["labelled"], row["reasoned"]), (1, 1, 1))
+        self.assertTrue(row["selftest_right"])
 
     def test_compares_two_runs(self):
         self.write(ANSWER, "old", "0.4")

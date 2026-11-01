@@ -41,10 +41,41 @@ def load_checker():
 CHECKER = load_checker()
 
 
+HEADINGS = ("Headline", *BRIEF, "Follow-up", "Self-test")
+# A heading is a line that is only one of the seven names of Section 3: with or
+# without Markdown hashes, bold, or a colon. The rules fix the names, not the syntax.
+HEADING = re.compile(
+    r"(?im)^[ \t]*#{0,6}[ \t]*\**[ \t]*("
+    + "|".join(HEADINGS)
+    + r")[ \t]*\**:?\**[ \t]*$"
+)
+
+
+def headings(text):
+    """The heading lines of an answer that are not inside a code block."""
+    fences = [m.start() for m in re.finditer(r"(?m)^[ \t]*```", text)]
+    return [
+        m
+        for m in HEADING.finditer(text)
+        if sum(1 for f in fences if f < m.start()) % 2 == 0
+    ]
+
+
 def sections(text):
-    """The level-2 or level-3 headings of an answer, in order, with their bodies."""
-    parts = re.split(r"(?m)^#{2,3}\s+(.+?)\s*$", text)
-    return [(parts[i].strip(), parts[i + 1]) for i in range(1, len(parts) - 1, 2)]
+    """The sections of an answer under the seven heading names, in order, with their bodies.
+    A Self-test block with no heading of its own starts a Self-test section."""
+    marks = headings(text)
+    if not any(m.group(1).lower() == "self-test" for m in marks):
+        text = re.sub(r"(?m)^(```[a-z]*\n)(?=Self-test\s*\n)", r"Self-test\n\1", text)
+        marks = headings(text)
+    names = {h.lower(): h for h in HEADINGS}
+    return [
+        (
+            names[m.group(1).lower()],
+            text[m.end() : marks[i + 1].start() if i + 1 < len(marks) else len(text)],
+        )
+        for i, m in enumerate(marks)
+    ]
 
 
 def section(text, name):
@@ -69,33 +100,49 @@ def structure(text):
 
 
 def actions(end):
-    """The top-level numbered actions of End, each with its text up to the next one."""
-    starts = list(re.finditer(r"(?m)^\d+\.\s", end))
+    """The top-level numbered actions of End, each with its text up to the next one.
+    An action can also start as a heading, as in "### 1. Keep summaries as drafts"."""
+    starts = list(re.finditer(r"(?m)^(?:#{1,6}[ \t]*)?\d+\.\s", end))
     return [
         end[m.start() : starts[i + 1].start() if i + 1 < len(starts) else len(end)]
         for i, m in enumerate(starts)
     ]
 
 
+def reason(rest):
+    """Whether the text after a domain name gives a reason: the rest of its sentence,
+    or the next sentence on the line. A next field such as "Kind: deterministic."
+    or a dependency clause ("Step 3 MUST NOT start") is not a reason."""
+    first, *after = re.split(r"(?<=[.!?])\s+", rest.strip(), maxsplit=1)
+    if len(re.findall(r"[A-Za-z]+", first)) >= 3:
+        return True
+    nxt = after[0] if after else ""
+    return bool(nxt) and not re.match(r"(?:[A-Z]\w*(?: \w+)?:|Step \d)", nxt)
+
+
 def label(action):
-    """The domain named on a Cynefin or Domain line of an action, and whether a reason follows."""
+    """The domain of an action, and whether a reason follows. The domain is named on a
+    Cynefin or Domain line, first in the action, as in "1. Clear, because ...", or in
+    bold, as in "**Deterministic; Clear**, because ..."."""
+    names = "|".join(DOMAINS)
+    # A label is not followed by a lowercase word, so "**Clear the cache.**" is a title.
+    m = re.match(
+        r"\s*(?:#{1,6}\s*)?\d+\.\s+\**(" + names + r")\b(?!\s+[a-z])\**(.*)", action
+    )
+    if m:
+        return m.group(1), reason(m.group(2))
     for line in action.split("\n"):
         m = re.search(
-            r"\b(?:Cynefin|Domain)\b\W*(?:domain\W*)?("
-            + "|".join(DOMAINS)
-            + r")\b(.*)",
-            line,
+            r"\b(?:Cynefin|Domain)\b\W*(?:domain\W*)?(" + names + r")\b(.*)", line
         )
         if m:
-            # The reason is the rest of the sentence that names the domain, or the
-            # next sentence on the line. A next field such as "Kind: deterministic."
-            # or a dependency clause ("Step 3 MUST NOT start") is not a reason.
-            rest, *after = re.split(r"(?<=[.!?])\s+", m.group(2).strip(), maxsplit=1)
-            if len(re.findall(r"[A-Za-z]+", rest)) >= 3:
-                return m.group(1), True
-            nxt = after[0] if after else ""
-            field = re.match(r"(?:[A-Z]\w*(?: \w+)?:|Step \d)", nxt)
-            return m.group(1), bool(nxt) and not field
+            return m.group(1), reason(m.group(2))
+    for line in action.split("\n"):
+        m = re.search(
+            r"\*\*[^*\n]*\b(" + names + r")\b(?!\s+[a-z])[^*\n]*\*\*(.*)", line
+        )
+        if m:
+            return m.group(1), reason(m.group(2))
     return None, False
 
 
