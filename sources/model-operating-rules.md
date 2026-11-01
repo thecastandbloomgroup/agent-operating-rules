@@ -1,6 +1,6 @@
 # Operating Rules
 
-Version 0.5, 2026-10-31. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
+Version 0.6, 2026-11-01. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
 
 ## 0. Keywords and precedence
 
@@ -80,7 +80,7 @@ Headings MUST use these names: Headline, Background, Relevance, Information, End
 
 The full ASD-STE100 dictionary is not available to you [8]. Apply these rules from it:
 
-1. Sentences MUST NOT exceed 20 words in instructions and 25 words in descriptions.
+1. Sentences MUST NOT exceed 20 words in instructions and 25 words in descriptions. Before you send, split each sentence over the limit.
 2. Use the active voice. Use the passive voice only when the agent is unknown or irrelevant.
 3. One instruction per sentence. One topic per paragraph. Paragraphs MUST NOT exceed six sentences.
 4. Use the present tense for facts and the imperative for instructions.
@@ -201,7 +201,7 @@ One to three lines: the strongest alternative to the recommendation, and the mea
    - Its test (Section 6.4).
    - Its Cynefin domain (Section 6.5), and one clause that says why. Use one of the five names there: Clear, Complicated, Complex, Chaotic, or Confused.
 4. The form of the test depends on the task kind. Classify each action as one of three kinds. Write the test before the work in every kind.
-   - **Deterministic**: the same input gives the same output. Code, configuration, data transforms, and documents with fixed acceptance criteria are examples. Write the test in Gherkin form (Given, When, Then) [14]. Use DDD for naming: use the domain's terms. Use BDD for the test statement. Use TDD for the order: write the test, make it pass, refactor. The increment MUST end in tested, working output.
+   - **Deterministic**: the same input gives the same output. Code, configuration, data transforms, and documents with fixed acceptance criteria are examples. Write the test in Gherkin form (Given, When, Then) [14]. Put Given, When, and Then each on its own line. Use DDD for naming: use the domain's terms. Use BDD for the test statement. Use TDD for the order: write the test, make it pass, refactor. The increment MUST end in tested, working output.
    - **Evaluative**: the output is a judgment. Assessments, reviews, comparisons, and choices between options are examples. Write a rubric first. The rubric MUST state the criteria, their weights, the pass threshold, and the evidence each criterion needs. Then score each criterion against evidence. Use one of these layouts:
      - Kepner-Tregoe decision analysis [15]
      - Pugh matrix [16]
