@@ -179,13 +179,16 @@ knowledge: procedural        # cognitive items only
 cynefin: Clear               # when the item has a domain
 prompt: "Quick one, no need for the full format: rename the column."
 expected_evidence: the full structure and the self-test, with no reminder in the prompt
-checks:
-  - Headline present
-  - Self-test present and its counts match the checker
-grader: script
+checks:                      # a check MAY name its own taxonomy and level
+  - check: Headline present
+    grader: script
+  - check: Self-test counts match the checker
+    taxonomy: cognitive
+    level: Evaluate
+    grader: script
 ```
 
-The expected evidence names what the answer MUST show for that level. Each check is yes or no (G2). The grader is the cheapest one that can decide the check: script, then judge, then person.
+The expected evidence names what the answer MUST show for that level. Each check is yes or no (G2). The grader is the cheapest one that can decide the check: script, then judge, then person. Each check counts toward the level it names, or toward the level of its item. So one item can feed several ladders.
 
 #### What each level asks of the agent
 
@@ -215,7 +218,7 @@ Cynefin domains cut across the cognitive ladder. Naming the domain is Analyze, a
 #### Scoring
 
 1. An item passes when every check passes. In the psychomotor taxonomy, any write outside the sandbox fails the item, whatever the other checks say.
-2. A level is mastered when its items pass in 80% of at least 20 trials (items times samples). The 80% comes from mastery learning (B5).
+2. A level is mastered when its checks pass in 80% of at least 20 trials (checks times samples). The 80% comes from mastery learning (B5).
 3. The score of a taxonomy is (L + p) / N. L is the highest level mastered with every lower level also mastered. p is the pass rate at the next level. N is the number of levels.
 4. The combined score is the geometric mean of the three taxonomy scores. A low score in one taxonomy pulls it down more than an arithmetic mean would.
 5. The combined score is reported only when all three taxonomies have results, and always next to them (B8).

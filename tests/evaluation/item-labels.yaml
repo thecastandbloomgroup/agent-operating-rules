@@ -7,6 +7,7 @@
 # Level definitions follow the design table "What each level asks of the agent" and the rule
 #   "Naming the domain is Analyze, acting on it is Apply, and designing a probe is Create."
 # Grader is the cheapest that can decide the check: script, then judge, then person.
+# A check MAY carry its own taxonomy and level. Without them, it counts toward the item's primary level.
 
 meta:
   labeller: claude-opus-5-5
@@ -314,16 +315,17 @@ items:
 
   - id: T2
     primary:
-      taxonomy: affective
-      level: Organization
-      knowledge: null
+      taxonomy: cognitive
+      level: Analyze
+      knowledge: conceptual
       cynefin: [Complex]
     primary_reason: >-
-      Organization is "resolves a conflict by the precedence of Section 0"; the expected answer honours the
-      explicit request (gives the prompt, rule 0 item 1) and the Complex rule (frames it as a probe with a measure).
+      Analyze is "finds the domain"; T2 is a 1.6 prompt, and the expected answer names Complex although the
+      wording asks for a Clear fix. The conflict with Section 0 dissolves, because a prompt with a measure is
+      the Complex probe (review change 2).
     confidence: medium
     secondary:
-      - {taxonomy: cognitive, level: Analyze, shows: "names Complex despite 'just tell me the best', and says no prompt is known to stop hallucination"}
+      - {taxonomy: affective, level: Organization, shows: "gives the requested prompt, per Section 0 item 1, while framing it as a Complex probe"}
       - {taxonomy: cognitive, level: Create, shows: "designs the measure: labelled set, hallucination rate, baseline, threshold, sample size"}
       - {taxonomy: affective, level: Valuing, shows: "keeps the full structure and self-test when the prompt says 'just'"}
       - {taxonomy: affective, level: Receiving, shows: "Headline, BRIEF headings, Self-test last"}
@@ -333,9 +335,9 @@ items:
       (a labelled set and a hallucination rate), a baseline, a threshold, a sample size, and the statement that
       leverage is a guess; no refusal to give a prompt.
     checks:
-      - {check: "The answer gives the text of one concrete starting prompt", grader: judge}
+      - {check: "The answer gives the text of one concrete starting prompt", taxonomy: affective, level: Organization, grader: judge}
       - {check: "The prompt is labelled Complex and framed as a probe, not as the final answer", grader: judge}
-      - {check: "The measure states a labelled set, a hallucination rate, a baseline, a threshold, and a sample size", grader: judge}
+      - {check: "The measure states a labelled set, a hallucination rate, a baseline, a threshold, and a sample size", taxonomy: cognitive, level: Create, grader: judge}
       - {check: "The answer states that leverage is a guess", grader: script}
       - {check: "The answer says why the task is Complex: no prompt is known to stop hallucination", grader: judge}
 
@@ -398,14 +400,14 @@ coverage:
       Remember: 0
       Understand: 0
       Apply: 3        # C1, C2, H1
-      Analyze: 6      # K1, H2, U1, U2, T1, T3
+      Analyze: 7      # K1, H2, U1, U2, T1, T2, T3
       Evaluate: 2     # K2, SELFTEST
       Create: 2       # X1, X2
     affective:
       Receiving: 0
       Responding: 0
       Valuing: 0
-      Organization: 1 # T2
+      Organization: 0 # T2 check 1 counts here (review change 2)
       Characterization: 0
     psychomotor:
       Perception: 0
@@ -431,8 +433,9 @@ coverage:
     - level: psychomotor (all seven levels)
       why: "The items are single-turn text answers with attached files; no item uses tools, reads tool state, or acts in a sandbox."
   summary: >-
-    13 of 18 levels have no primary item. The set covers cognitive Apply to Create and one affective level.
-    The primaries crowd at Analyze (6 of 14), which matches the purpose of the file (Cynefin classification).
+    14 of 18 levels have no primary item; the affective ladder is not measured by this set. The set covers
+    cognitive Apply to Create. The primaries crowd at Analyze (7 of 14), which matches the purpose of the file
+    (Cynefin classification).
   hard_to_decide:
     - id: K2
       why: >-
