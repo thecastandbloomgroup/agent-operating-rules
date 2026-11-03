@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-03",
+  "rules_version": "0.7.2",
+  "rules_file": "tests/evaluation/results/2026-11-03-organization-line/rules.md",
+  "no_judge": true,
+  "prompts": [
+    "A3"
+  ],
+  "samples": 3
+}

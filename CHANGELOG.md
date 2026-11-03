@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/results/2026-11-03-second-turn-results.md`: desk research on levers for each Bloom ladder, and two pilots. A line in Section 0 lifted A3 structure from 8 to 12 of 18, short of 14. Under plain pushback, 17 of 18 answers to A2 kept their form.
 - `bin/second-turn.py` sends a second turn after answers of a run, under the same rules. Pushback tests the Characterization level. A judge note on one action, against a plain retry, tests feedback at the Understand level.
 - `bin/judge-actions.py --actions CSV` judges the same file and action as each row of a CSV. So the second answers are judged on the actions of the first.
 - `tests/evaluation/results/2026-11-01-split-first-results.md`: a probe that splits the problem first and keeps the domain. Under one judging rule, domains were right in 28 of 40 actions, against 27 at rules 0.6. So the rules stay at 0.7.
