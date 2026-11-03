@@ -48,7 +48,9 @@ Decide two things, each yes or no, from the evidence given.
    prompt, and it MAY carry its own domain when that domain is right for the step.
 2. reason_cause_effect: the reason given for the domain states how cause and effect
    relate in this work (for example "the effect shows only after a trial"), not only
-   a restatement of the domain name or of the task.
+   a restatement of the domain name or of the task. A reason that says what effort it
+   takes to know the effect (a known practice, analysis or expertise, a trial, or acting
+   first) states it. Judge the reason on its own: a wrong domain does not make it fail.
 Give the domain you expected, and one sentence of note. Judge; do not rewrite."""
 INPUT = """Prompt {id}:
 {prompt}
