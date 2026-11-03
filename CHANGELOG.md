@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/results/2026-11-03-reason-rejudge-results.md`: the first blind marks by a person, and a rejudge of 40 actions. Both judges pass the reason in 33 of 40 actions, not 11, so Evaluate is now the lowest level.
 - `tests/evaluation/results/2026-11-03-rule-changes-research.md`: desk research on changes to the rules for the higher Bloom levels. It ranks five changes, with a self-test checked item by item first, because the script measures it.
 - `tests/evaluation/results/2026-11-03-second-turn-results.md`: desk research on levers for each Bloom ladder, and two pilots. A line in Section 0 lifted A3 structure from 8 to 12 of 18, short of 14. Under plain pushback, 17 of 18 answers to A2 kept their form.
 - `bin/second-turn.py` sends a second turn after answers of a run, under the same rules. Pushback tests the Characterization level. A judge note on one action, against a plain retry, tests feedback at the Understand level.
@@ -20,6 +21,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - `tests/evaluation/results/2026-11-01-split-first-results.md`: a probe that splits the problem first and keeps the domain. Under one judging rule, domains were right in 28 of 40 actions, against 27 at rules 0.6. So the rules stay at 0.7.
 - The 40 actions of rules 0.6 were judged again under tests 1.6. The main files of that run now hold those verdicts, and the files that end in -tests15 hold the old ones.
 - `bin/ladder-scores.py` scores each model on the Bloom ladders from the script checks and the judge checks of runs. A taxonomy gets no score while a measured level has fewer than 20 trials. A ladder whose rates rise gets the mean rate in place of L.
+
+### Fixed
+
+- `bin/judge-actions.py` judges a reason on its own, so a wrong domain no longer fails it. A reason that says what effort it takes to know the effect states cause and effect.
 
 ## [0.7.0] - 2026-11-01
 
