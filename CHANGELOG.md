@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/results/2026-11-03-factored-selftest-results.md`: a probe that checks the self-test item by item. Right self-tests fell from 43 to 37, short of 58. The models write 0 long sentences whatever the count, so the checker SHOULD own that count.
 - `tests/evaluation/results/2026-11-03-reason-rejudge-results.md`: the first blind marks by a person, and a rejudge of 40 actions. Both judges pass the reason in 33 of 40 actions, not 11, so Evaluate is now the lowest level.
 - `tests/evaluation/results/2026-11-03-rule-changes-research.md`: desk research on changes to the rules for the higher Bloom levels. It ranks five changes, with a self-test checked item by item first, because the script measures it.
 - `tests/evaluation/results/2026-11-03-second-turn-results.md`: desk research on levers for each Bloom ladder, and two pilots. A line in Section 0 lifted A3 structure from 8 to 12 of 18, short of 14. Under plain pushback, 17 of 18 answers to A2 kept their form.

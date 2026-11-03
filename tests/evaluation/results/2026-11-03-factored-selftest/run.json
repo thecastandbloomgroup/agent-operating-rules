@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-03",
+  "rules_version": "0.7.3",
+  "rules_file": "tests/evaluation/results/2026-11-03-factored-selftest/rules.md",
+  "no_judge": true,
+  "prompts": [
+    "C1",
+    "K1",
+    "X1",
+    "H1",
+    "U1",
+    "T1"
+  ],
+  "samples": 3
+}
