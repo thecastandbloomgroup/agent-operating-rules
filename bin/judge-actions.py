@@ -1,12 +1,13 @@
 """Have a judge check the domain and the reason of sampled actions of a run.
 bin/script-checks.py sees that an action has a domain label and a reason. This
 script asks a judge whether the domain is right, per the expected answer of
-evaluation-tests.md, and whether the reason states cause and effect.
+evaluation-tests.md, whether the reason states cause and effect, and whether it
+says how sure that link is.
 Usage: bin/judge-actions.py RUN_DIR [--sample 40] [--seed 1] [--actions CSV] [--judge MODEL@EFFORT] [--out NAME] [--plan]
 It samples labelled actions round robin across the executors, sends each to a
 judge of another provider than its executor, and writes RUN_DIR/action-checks.csv.
 --actions takes the file and action of each row of a CSV in place of a sample, so a
-second turn is judged on the same actions as its first. A missing action fails both checks.
+second turn is judged on the same actions as its first. A missing action fails every check.
 --judge sends every action to one judge in place of that rule, and --out names the CSV.
 It reads the key from PERPLEXITY_TOKEN and never prints it.
 """
@@ -40,7 +41,7 @@ JUDGES = {
     "other": {"model": "anthropic/claude-opus-5-5", "effort": "high"},
 }
 INSTRUCTIONS = """You check one action of an answer that followed a rules file.
-Decide two things, each yes or no, from the evidence given.
+Decide three things, each yes or no, from the evidence given.
 1. domain_right: the Cynefin domain of this action fits the expected answer of the
    test for this prompt. When the expected answer gives several domains, judge the
    domain of this action in its place in the list. A support step (for example paging a
@@ -51,6 +52,11 @@ Decide two things, each yes or no, from the evidence given.
    a restatement of the domain name or of the task. A reason that says what effort it
    takes to know the effect (a known practice, analysis or expertise, a trial, or acting
    first) states it. Judge the reason on its own: a wrong domain does not make it fail.
+3. reason_certainty: the reason says how sure the link of cause and effect is. It passes
+   when it rests on a known rule or on analysis, or when it rests on cases or trials and
+   names what could break the pattern (for example a special cause that throws off an
+   estimate), or when no link is visible and acting comes first. A reason that does not
+   say how it knows the effect fails. Judge it on its own, as item 2.
 Give the domain you expected, and one sentence of note. Judge; do not rewrite."""
 INPUT = """Prompt {id}:
 {prompt}
@@ -67,11 +73,18 @@ The action to check (action {index} of End). Its label: {domain}.
 SCHEMA = {
     "type": "object",
     "additionalProperties": False,
-    "required": ["domain_right", "expected_domain", "reason_cause_effect", "note"],
+    "required": [
+        "domain_right",
+        "expected_domain",
+        "reason_cause_effect",
+        "reason_certainty",
+        "note",
+    ],
     "properties": {
         "domain_right": {"type": "boolean"},
         "expected_domain": {"type": "string"},
         "reason_cause_effect": {"type": "boolean"},
+        "reason_certainty": {"type": "boolean"},
         "note": {"type": "string"},
     },
 }
@@ -86,6 +99,7 @@ FIELDS = [
     "domain_right",
     "expected_domain",
     "reason_cause_effect",
+    "reason_certainty",
     "score",
     "note",
     "cost_usd",
@@ -161,6 +175,7 @@ def missing(a):
         "domain_right": False,
         "expected_domain": "",
         "reason_cause_effect": False,
+        "reason_certainty": False,
         "note": "No labelled action at this index.",
         "score": 0,
         "cost_usd": 0,

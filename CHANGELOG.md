@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/judge-actions.py` asks a third question: does the reason say how sure the link is? A reason from trials passes only when it names what could break the pattern.
 - `tests/evaluation/results/2026-11-03-factored-selftest-results.md`: a probe that checks the self-test item by item. Right self-tests fell from 43 to 37, short of 58. The models write 0 long sentences whatever the count, so the checker SHOULD own that count.
 - `tests/evaluation/results/2026-11-03-reason-rejudge-results.md`: the first blind marks by a person, and a rejudge of 40 actions. Both judges pass the reason in 33 of 40 actions, not 11, so Evaluate is now the lowest level.
 - `tests/evaluation/results/2026-11-03-rule-changes-research.md`: desk research on changes to the rules for the higher Bloom levels. It ranks five changes, with a self-test checked item by item first, because the script measures it.

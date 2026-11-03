@@ -708,6 +708,11 @@ class JudgeActions(unittest.TestCase):
         row = self.module.missing(picked[1])
         self.assertEqual((row["score"], row["reason_cause_effect"]), (0, False))
 
+    def test_asks_how_sure_the_reason_is_and_writes_it_as_a_column(self):
+        self.assertIn("reason_certainty", self.module.SCHEMA["required"])
+        self.assertIn("reason_certainty", self.module.FIELDS)
+        self.assertFalse(self.module.missing({"action": 1})["reason_certainty"])
+
 
 class SecondTurn(unittest.TestCase):
     def setUp(self):
