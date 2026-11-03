@@ -2,9 +2,11 @@
 bin/script-checks.py sees that an action has a domain label and a reason. This
 script asks a judge whether the domain is right, per the expected answer of
 evaluation-tests.md, and whether the reason states cause and effect.
-Usage: bin/judge-actions.py RUN_DIR [--sample 40] [--seed 1] [--judge MODEL@EFFORT] [--out NAME] [--plan]
+Usage: bin/judge-actions.py RUN_DIR [--sample 40] [--seed 1] [--actions CSV] [--judge MODEL@EFFORT] [--out NAME] [--plan]
 It samples labelled actions round robin across the executors, sends each to a
 judge of another provider than its executor, and writes RUN_DIR/action-checks.csv.
+--actions takes the file and action of each row of a CSV in place of a sample, so a
+second turn is judged on the same actions as its first. A missing action fails both checks.
 --judge sends every action to one judge in place of that rule, and --out names the CSV.
 It reads the key from PERPLEXITY_TOKEN and never prints it.
 """
@@ -128,6 +130,41 @@ def sample(actions, size, seed):
     return picked
 
 
+def same_actions(actions, csv_path):
+    """The actions at the file and index of each row of csv_path, in its order.
+    An action that the second answer lacks comes back with no label."""
+    by_key = {(a["file"], a["action"]): a for a in actions}
+    with Path(csv_path).open() as f:
+        rows = list(csv.DictReader(f))
+    return [
+        by_key.get(
+            (r["file"], int(r["action"])),
+            {
+                "executor": r["executor"],
+                "file": r["file"],
+                "prompt_id": r["prompt_id"],
+                "action": int(r["action"]),
+                "label": "",
+            },
+        )
+        for r in rows
+    ]
+
+
+def missing(a):
+    """The row of an action that the answer lacks: both checks fail, at no cost."""
+    return {
+        **{k: a[k] for k in FIELDS if k in a},
+        "judge": "none",
+        "domain_right": False,
+        "expected_domain": "",
+        "reason_cause_effect": False,
+        "note": "No labelled action at this index.",
+        "score": 0,
+        "cost_usd": 0,
+    }
+
+
 def judge_of(executor):
     return JUDGES["anthropic" if executor.startswith("anthropic") else "other"]
 
@@ -141,6 +178,7 @@ def main():
     parser.add_argument("run_dir")
     parser.add_argument("--sample", type=int, default=40)
     parser.add_argument("--seed", type=int, default=1)
+    parser.add_argument("--actions")
     parser.add_argument("--judge")
     parser.add_argument("--out", default="action-checks.csv")
     parser.add_argument("--plan", action="store_true")
@@ -149,7 +187,12 @@ def main():
     prompts = {
         p["id"]: p for p in EVAL.attach(EVAL.parse_prompts(EVAL.TESTS.read_text()))
     }
-    picked = sample(labelled_actions(run_dir), args.sample, args.seed)
+    found = labelled_actions(run_dir)
+    picked = (
+        same_actions(found, args.actions)
+        if args.actions
+        else sample(found, args.sample, args.seed)
+    )
     print(
         f"{len(picked)} actions from {len({a['executor'] for a in picked})} executors"
     )
@@ -161,6 +204,9 @@ def main():
     cfg = json.loads(EVAL.PAIRS.read_text())
     rows, total = [], 0.0
     for a in picked:
+        if not a["label"]:
+            rows.append(missing(a))
+            continue
         p, judge = prompts[a["prompt_id"]], judge_of(a["executor"])
         if args.judge:
             model, effort = args.judge.split("@")

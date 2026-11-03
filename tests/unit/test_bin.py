@@ -689,6 +689,69 @@ class JudgeActions(unittest.TestCase):
         self.assertEqual(score({"domain_right": True, "reason_cause_effect": False}), 2)
         self.assertEqual(score({"domain_right": False, "reason_cause_effect": True}), 1)
 
+    def test_takes_the_same_actions_and_fails_a_missing_one(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        checks = Path(folder.name) / "checks.csv"
+        checks.write_text(
+            "executor,file,prompt_id,action\n"
+            "x@low,responses/x@low/H1-s1.md,H1,2\n"
+            "x@low,responses/x@low/H1-s2.md,H1,1\n"
+        )
+        found = [
+            {"file": "responses/x@low/H1-s1.md", "action": 2, "label": "Clear"},
+            {"file": "responses/x@low/H1-s1.md", "action": 1, "label": "Complex"},
+        ]
+        picked = self.module.same_actions(found, checks)
+        self.assertEqual(picked[0], found[0])
+        self.assertEqual(picked[1]["label"], "")
+        row = self.module.missing(picked[1])
+        self.assertEqual((row["score"], row["reason_cause_effect"]), (0, False))
+
+
+class SecondTurn(unittest.TestCase):
+    def setUp(self):
+        self.module = load("second-turn.py")
+
+    def test_reads_the_executor_from_its_folder(self):
+        self.assertEqual(
+            self.module.executor_of("perplexity_glm-5.3-flash@medium"),
+            {"model": "perplexity/glm-5.3-flash", "effort": "medium"},
+        )
+
+    def test_sends_the_prompt_the_first_answer_and_the_new_message(self):
+        sent = self.module.turns("P", "A", "M")
+        self.assertEqual([t["role"] for t in sent], ["user", "assistant", "user"])
+        self.assertEqual([t["content"] for t in sent], ["P", "A", "M"])
+
+    def test_feedback_gives_the_verdicts_and_the_note(self):
+        check = {
+            "action": "2",
+            "domain_right": "True",
+            "reason_cause_effect": "False",
+            "note": "The reason restates the domain.",
+        }
+        message = self.module.second_message("feedback", check)
+        self.assertIn("action 2", message)
+        self.assertIn("does not state how cause and effect relate", message)
+        self.assertIn("The reason restates the domain.", message)
+        self.assertNotIn("note", self.module.second_message("retry").lower())
+
+    def test_pushback_takes_each_answer_of_the_wanted_prompts(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run_dir = Path(folder.name)
+        answers = run_dir / "responses" / "x@low"
+        answers.mkdir(parents=True)
+        for stem in ["A1-s1", "A1-s2", "H1-s1"]:
+            (answers / f"{stem}.md").write_text("x\n\nanswer\n")
+        work = self.module.units(run_dir, "pushback", ["A1"])
+        self.assertEqual(
+            [w[0] for w in work],
+            ["responses/x@low/A1-s1.md", "responses/x@low/A1-s2.md"],
+        )
+        self.assertEqual(self.module.answer_of(answers / "A1-s1.md"), "answer")
+
 
 class BloomCalibration(unittest.TestCase):
     def setUp(self):
