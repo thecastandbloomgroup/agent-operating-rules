@@ -348,11 +348,45 @@ class RunEvaluationUnit(unittest.TestCase):
         )
 
     def test_refuses_a_failed_background_answer(self):
-        failed = {"id": "r1", "status": "failed", "error": {"message": "overloaded"}}
-        cfg, _, _ = self.api([failed])
+        failed = {"id": "r1", "status": "failed", "error": {"message": "bad input"}}
+        cfg, requests, _ = self.api([failed])
         model = {"model": "xai/grok-4.7", "effort": "low"}
-        with self.assertRaisesRegex(RuntimeError, "failed: overloaded"):
+        with self.assertRaisesRegex(RuntimeError, "failed: bad input"):
             EVAL.call(cfg, "key", model, "executor", "", "text")
+        self.assertEqual(len(requests), 1)
+
+    def test_sends_a_job_again_when_the_model_is_overloaded(self):
+        overloaded = {
+            "id": "r1",
+            "status": "failed",
+            "error": {"message": "upstream model is overloaded"},
+        }
+        done = {
+            "id": "r2",
+            "status": "completed",
+            "usage": {"input_tokens": 3},
+            "output": [
+                {"type": "message", "content": [{"type": "output_text", "text": "OK"}]}
+            ],
+        }
+        cfg, requests, sleeps = self.api([overloaded, done])
+        model = {"model": "moonshot/kimi-k3", "effort": "high"}
+        text, usage, _ = EVAL.call(cfg, "key", model, "executor", "", "text")
+        self.assertEqual((text, usage), ("OK", {"input_tokens": 3}))
+        self.assertEqual([m for m, _, _ in requests], ["POST", "POST"])
+        self.assertEqual(len(sleeps), 1)
+
+    def test_refuses_a_job_that_stays_overloaded(self):
+        overloaded = {
+            "id": "r1",
+            "status": "failed",
+            "error": {"message": "Overloaded"},
+        }
+        cfg, requests, _ = self.api([dict(overloaded) for _ in range(EVAL.ATTEMPTS)])
+        model = {"model": "moonshot/kimi-k3", "effort": "high"}
+        with self.assertRaisesRegex(RuntimeError, "failed: Overloaded"):
+            EVAL.call(cfg, "key", model, "executor", "", "text")
+        self.assertEqual(len(requests), EVAL.ATTEMPTS)
 
     def test_refuses_an_answer_cut_by_max_output_tokens(self):
         cfg = json.loads((BIN.parent / "tests/evaluation/pairs.json").read_text())

@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Fixed
+
+- `bin/run-evaluation.py` sends a job again when it fails because the model is overloaded, with the backoff of HTTP errors. Before, such a call was lost until it was sent again by hand. `bin/judge-actions.py` and `bin/second-turn.py` share the retry.
+
 ## [0.8.0] - 2026-11-04
 
 ### Changed

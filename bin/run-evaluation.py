@@ -316,18 +316,17 @@ def call(cfg, key, model, role, instructions, text, schema=None):
         }
     body["background"] = True
     started = time.monotonic()
-    data = send(key, "POST", cfg["endpoint"], body)
-    # A background answer comes back at once, queued. Each poll is a short
-    # request, so no connection stays open while the model reasons.
-    while data.get("status") in PENDING:
-        if time.monotonic() - started > POLL_LIMIT:
-            raise CallError(f"no answer after {POLL_LIMIT} seconds")
-        time.sleep(POLL_SECONDS)
-        data = send(key, "GET", f"{cfg['endpoint']}/{data['id']}")
-    usage = data.get("usage") or {}
-    if data.get("status") in ("failed", "cancelled"):
+    # A job can fail because the upstream model is overloaded. Send it again
+    # with the backoff of HTTP errors, as an overload is not an answer.
+    for attempt in range(ATTEMPTS):
+        data = run_job(cfg, key, body, started)
+        usage = data.get("usage") or {}
+        if data.get("status") not in ("failed", "cancelled"):
+            break
         detail = (data.get("error") or {}).get("message", "no detail")
-        raise CallError(f"{data['status']}: {detail}", usage)
+        if "overloaded" not in detail.lower() or attempt == ATTEMPTS - 1:
+            raise CallError(f"{data['status']}: {detail}", usage)
+        time.sleep(5 * 2**attempt + random.uniform(0, 5))
     # Reasoning tokens count toward max_output_tokens, so a model that thinks
     # long can stop in the middle of its answer. Score no cut answer.
     if data.get("status") == "incomplete":
@@ -344,6 +343,19 @@ def call(cfg, key, model, role, instructions, text, schema=None):
         if part.get("type") == "output_text"
     )
     return text, usage, time.monotonic() - started
+
+
+def run_job(cfg, key, body, started):
+    """Send one background job and poll it until it ends. Return its JSON."""
+    data = send(key, "POST", cfg["endpoint"], body)
+    # A background answer comes back at once, queued. Each poll is a short
+    # request, so no connection stays open while the model reasons.
+    while data.get("status") in PENDING:
+        if time.monotonic() - started > POLL_LIMIT:
+            raise CallError(f"no answer after {POLL_LIMIT} seconds")
+        time.sleep(POLL_SECONDS)
+        data = send(key, "GET", f"{cfg['endpoint']}/{data['id']}")
+    return data
 
 
 def send(key, method, url, body=None):
