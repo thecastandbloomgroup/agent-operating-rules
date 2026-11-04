@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `sources/banned-words.txt` bans "verdict" and "verdicts" as attitude markers, because the word reads as hostile. Write "result" or "check".
 - The script checks of all 10 run folders were run again with the fixed checker. Only the label and self-test columns change. The write-ups of those runs keep the numbers of the old checker, and no probe changes its result. The factored self-test probe now has 44 of 107 against 48 of 108, still short of 58.
 - `bin/ladder-scores.py` scores Evaluate without the self-test lines that count words, because the checker owns those counts. At rules 0.6, Evaluate rises from 38% to 71% of 234 answers, and the cognitive score from 0.62 to 0.71.
 - `tests/evaluation/results/2026-11-03-cynefin-questions-results.md`: a probe of ordered domain questions and named inferences, from desk research by the user. Domains stayed at 26 of 40, short of 33. Reasons named an inference in 369 of 710 actions.
@@ -24,7 +25,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - `bin/second-turn.py` sends a second turn after answers of a run, under the same rules. Pushback tests the Characterization level. A judge note on one action, against a plain retry, tests feedback at the Understand level.
 - `bin/judge-actions.py --actions CSV` judges the same file and action as each row of a CSV. So the second answers are judged on the actions of the first.
 - `tests/evaluation/results/2026-11-01-split-first-results.md`: a probe that splits the problem first and keeps the domain. Under one judging rule, domains were right in 28 of 40 actions, against 27 at rules 0.6. So the rules stay at 0.7.
-- The 40 actions of rules 0.6 were judged again under tests 1.6. The main files of that run now hold those verdicts, and the files that end in -tests15 hold the old ones.
+- The 40 actions of rules 0.6 were judged again under tests 1.6. The main files of that run now hold those checks, and the files that end in -tests15 hold the old ones.
 - `bin/ladder-scores.py` scores each model on the Bloom ladders from the script checks and the judge checks of runs. A taxonomy gets no score while a measured level has fewer than 20 trials. A ladder whose rates rise gets the mean rate in place of L.
 
 ### Fixed

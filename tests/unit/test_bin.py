@@ -758,7 +758,7 @@ class SecondTurn(unittest.TestCase):
         self.assertEqual([t["role"] for t in sent], ["user", "assistant", "user"])
         self.assertEqual([t["content"] for t in sent], ["P", "A", "M"])
 
-    def test_feedback_gives_the_verdicts_and_the_note(self):
+    def test_feedback_gives_the_checks_and_the_note(self):
         check = {
             "action": "2",
             "domain_right": "True",

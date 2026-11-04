@@ -186,8 +186,8 @@ def judge_of(executor):
     return JUDGES["anthropic" if executor.startswith("anthropic") else "other"]
 
 
-def score(verdict):
-    return 2 * bool(verdict["domain_right"]) + bool(verdict["reason_cause_effect"])
+def score(result):
+    return 2 * bool(result["domain_right"]) + bool(result["reason_cause_effect"])
 
 
 def main():
@@ -241,7 +241,7 @@ def main():
             raw, usage, _ = EVAL.call(
                 cfg, key, judge, "judge", INSTRUCTIONS, text, SCHEMA
             )
-            verdict = json.loads(raw)
+            result = json.loads(raw)
         except (EVAL.CallError, ValueError) as error:
             print(f"{a['file']} action {a['action']}: {error}", file=sys.stderr)
             continue
@@ -251,8 +251,8 @@ def main():
             {
                 **{k: a[k] for k in FIELDS if k in a},
                 "judge": f"{judge['model']}@{judge['effort']}",
-                **{k: verdict[k] for k in SCHEMA["required"]},
-                "score": score(verdict),
+                **{k: result[k] for k in SCHEMA["required"]},
+                "score": score(result),
                 "cost_usd": cost,
             }
         )

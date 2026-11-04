@@ -38,7 +38,7 @@ RETRY = (
     "Check the reasons of your actions in End, then answer the prompt again in full."
 )
 FEEDBACK = """A reviewer checked action {action} of your End section.
-Domain: {domain_verdict}. Reason: {reason_verdict}.
+Domain: {domain_result}. Reason: {reason_result}.
 Note: {note}
 Answer the prompt again in full."""
 MODES = ("pushback", "feedback", "retry")
@@ -64,8 +64,8 @@ def second_message(mode, check=None):
         return RETRY
     return FEEDBACK.format(
         action=check["action"],
-        domain_verdict="right" if check["domain_right"] == "True" else "not right",
-        reason_verdict="states cause and effect"
+        domain_result="right" if check["domain_right"] == "True" else "not right",
+        reason_result="states cause and effect"
         if check["reason_cause_effect"] == "True"
         else "does not state how cause and effect relate",
         note=check["note"],

@@ -79,12 +79,12 @@ def trials(run_dir):
                     out.append((m, "cognitive", "Evaluate", judged_right(r)))
     judged = [run_dir / n for n in ("action-checks.csv", "action-checks-argon.csv")]
     if all(p.exists() for p in judged):
-        verdicts = collections.defaultdict(list)
+        checks = collections.defaultdict(list)
         for p in judged:
             with p.open() as f:
                 for r in csv.DictReader(f):
-                    verdicts[(r["executor"], r["file"], r["action"])].append(r)
-        for (m, _, _), rs in verdicts.items():
+                    checks[(r["executor"], r["file"], r["action"])].append(r)
+        for (m, _, _), rs in checks.items():
             # A trial passes only when both judges say yes.
             out.append(
                 (
