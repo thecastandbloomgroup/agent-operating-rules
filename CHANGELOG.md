@@ -13,6 +13,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `tests/evaluation/results/2026-11-03-reason-and-count-line-results.md`: two probes against a new baseline at rules 0.7. A reason that names its inference lifts how sure Complex reasons are from 2 to 23 of 40 actions. Removing the count line of the self-test fails its pass mark by 1 point.
+- `bin/judge-actions.py --label DOMAIN --prompts IDS` samples only the actions with that label, or of those prompts.
 - `sources/banned-words.txt` bans "verdict" and "verdicts" as attitude markers, because the word reads as hostile. Write "result" or "check".
 - The script checks of all 10 run folders were run again with the fixed checker. Only the label and self-test columns change. The write-ups of those runs keep the numbers of the old checker, and no probe changes its result. The factored self-test probe now has 44 of 107 against 48 of 108, still short of 58.
 - `bin/ladder-scores.py` scores Evaluate without the self-test lines that count words, because the checker owns those counts. At rules 0.6, Evaluate rises from 38% to 71% of 234 answers, and the cognitive score from 0.62 to 0.71.
@@ -30,6 +32,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Fixed
 
+- `bin/script-checks.py` reads a field named Reason after a domain label as its reason, as in "Domain: Clear. Reason: a known rule applies."
 - `bin/script-checks.py` reads more forms of domain labels and steps, such as "Clear:", "(Clear domain: ...)", and "**Step 1.**". Numbered fields under a step are no longer actions. At rules 0.6, wrong label counts fall from 53 to 10 of 234 self-tests. So Evaluate rises from 71% to 88%, and Apply from 62% to 72%.
 - `bin/judge-actions.py` judges a reason on its own, so a wrong domain no longer fails it. A reason that says what effort it takes to know the effect states cause and effect.
 

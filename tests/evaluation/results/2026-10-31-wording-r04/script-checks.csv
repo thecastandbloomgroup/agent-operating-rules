@@ -88,7 +88,7 @@ rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actio
 0.4,openai_gpt-6.1-sol@medium,H1,responses/openai_gpt-6.1-sol@medium/H1-s3.md,0,0,0,1,26,3,3,3,True,True,,True,True,True,False,True,5,,True,False,True,True
 0.4,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s1.md,0,0,0,4,24,3,3,0,True,True,,True,True,True,False,True,5,,True,False,True,False
 0.4,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s2.md,0,0,0,4,30,4,4,0,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,False
-0.4,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s3.md,0,0,0,3,24,3,3,0,True,True,,True,True,True,False,True,5,,True,False,True,False
+0.4,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s3.md,0,1,0,3,24,3,3,0,True,True,,True,True,True,False,True,5,Banned words found,False,False,True,False
 0.4,openai_gpt-6.1-sol@medium,K1,responses/openai_gpt-6.1-sol@medium/K1-s1.md,0,0,0,2,21,4,4,4,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,True
 0.4,openai_gpt-6.1-sol@medium,K1,responses/openai_gpt-6.1-sol@medium/K1-s2.md,0,0,0,1,24,3,3,1,True,True,,True,True,True,False,True,5,,True,False,True,False
 0.4,openai_gpt-6.1-sol@medium,K1,responses/openai_gpt-6.1-sol@medium/K1-s3.md,0,0,0,0,22,3,3,0,True,True,,True,True,True,True,True,5,Longest sentence,False,True,True,False
@@ -125,7 +125,7 @@ rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actio
 0.4,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s1.md,0,0,0,2,29,4,4,4,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,True
 0.4,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s2.md,0,0,1,4,34,4,4,4,True,True,,True,True,True,False,False,5,Self-mention outside End;Longest sentence,False,False,True,True
 0.4,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s3.md,0,0,0,3,29,4,4,2,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,False
-0.4,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s1.md,0,0,0,2,50,5,5,5,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,True
+0.4,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s1.md,0,3,0,2,50,5,5,5,True,True,,True,True,True,False,True,5,Banned words found;Longest sentence,False,False,True,True
 0.4,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s2.md,0,0,0,6,39,5,5,0,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,False
 0.4,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s3.md,0,0,0,5,34,4,4,1,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,False
 0.4,perplexity_glm-5.3-flash@medium,K1,responses/perplexity_glm-5.3-flash@medium/K1-s1.md,0,0,0,9,46,4,4,0,True,True,,True,True,True,False,True,5,Longest sentence,False,False,True,False

@@ -155,11 +155,14 @@ def actions(end):
 def reason(rest):
     """Whether the text after a domain name gives a reason: the rest of its sentence,
     or the next sentence on the line. A next field such as "Kind: deterministic."
-    or a dependency clause ("Step 3 MUST NOT start") is not a reason."""
+    or a dependency clause ("Step 3 MUST NOT start") is not a reason, but a field
+    named Reason is: "Domain: Clear. Reason: a known rule applies."."""
     first, *after = re.split(r"(?<=[.!?])\s+", rest.strip(), maxsplit=1)
     if len(re.findall(r"[A-Za-z]+", first)) >= 3:
         return True
     nxt = after[0] if after else ""
+    if re.match(r"\**Reason\**:", nxt):
+        return True
     return bool(nxt) and not re.match(r"(?:[A-Z]\w*(?: \w+)?:|Step \d)", nxt)
 
 

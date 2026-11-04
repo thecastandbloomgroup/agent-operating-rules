@@ -86,7 +86,7 @@ rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actio
 0.6.1,openai_gpt-6.1-sol@medium,H1,responses/openai_gpt-6.1-sol@medium/H1-s1.md,0,0,0,0,25,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.1,openai_gpt-6.1-sol@medium,H1,responses/openai_gpt-6.1-sol@medium/H1-s2.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.1,openai_gpt-6.1-sol@medium,H1,responses/openai_gpt-6.1-sol@medium/H1-s3.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
-0.6.1,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s1.md,0,0,0,0,19,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.6.1,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s1.md,0,1,0,0,19,3,3,3,True,True,,True,True,True,True,True,5,Banned words found,False,False,True,True
 0.6.1,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s2.md,0,0,0,3,30,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.6.1,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s3.md,0,0,0,0,21,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.1,openai_gpt-6.1-sol@medium,K1,responses/openai_gpt-6.1-sol@medium/K1-s1.md,0,0,0,0,22,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True

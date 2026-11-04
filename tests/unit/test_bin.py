@@ -636,6 +636,14 @@ class ScriptChecks(unittest.TestCase):
         )
         self.assertEqual(label("- Domain: Clear (a known practice)."), ("Clear", True))
         self.assertEqual(
+            label("- Domain: Complicated. Reason: expert analysis picks it."),
+            ("Complicated", True),
+        )
+        self.assertEqual(
+            label("- **Cynefin domain**: Clear. Reason: Best practice."),
+            ("Clear", True),
+        )
+        self.assertEqual(
             label("1. **Fix.**\n   **Deterministic; Clear**, because each print maps."),
             ("Clear", True),
         )
@@ -717,6 +725,17 @@ class JudgeActions(unittest.TestCase):
         self.assertEqual(score({"domain_right": True, "reason_cause_effect": True}), 3)
         self.assertEqual(score({"domain_right": True, "reason_cause_effect": False}), 2)
         self.assertEqual(score({"domain_right": False, "reason_cause_effect": True}), 1)
+
+    def test_keeps_only_the_actions_of_a_label_and_of_the_prompts(self):
+        actions = [
+            {"label": "Complex", "prompt_id": "X1"},
+            {"label": "Clear", "prompt_id": "X1"},
+            {"label": "Complex", "prompt_id": "C1"},
+        ]
+        only = self.module.only
+        self.assertEqual(only(actions, "Complex", None), [actions[0], actions[2]])
+        self.assertEqual(only(actions, "Complex", "X1,T2"), [actions[0]])
+        self.assertEqual(only(actions, None, None), actions)
 
     def test_takes_the_same_actions_and_fails_a_missing_one(self):
         folder = tempfile.TemporaryDirectory()

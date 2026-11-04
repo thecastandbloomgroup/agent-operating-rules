@@ -3,12 +3,14 @@ bin/script-checks.py sees that an action has a domain label and a reason. This
 script asks a judge whether the domain is right, per the expected answer of
 evaluation-tests.md, whether the reason states cause and effect, and whether it
 says how sure that link is.
-Usage: bin/judge-actions.py RUN_DIR [--sample 40] [--seed 1] [--actions CSV] [--judge MODEL@EFFORT] [--out NAME] [--plan]
+Usage: bin/judge-actions.py RUN_DIR [--sample 40] [--seed 1] [--actions CSV] [--judge MODEL@EFFORT]
+                             [--label DOMAIN] [--prompts X1,T2] [--out NAME] [--plan]
 It samples labelled actions round robin across the executors, sends each to a
 judge of another provider than its executor, and writes RUN_DIR/action-checks.csv.
 --actions takes the file and action of each row of a CSV in place of a sample, so a
 second turn is judged on the same actions as its first. A missing action fails every check.
 --judge sends every action to one judge in place of that rule, and --out names the CSV.
+--label and --prompts sample only the actions with that label, or of those prompts.
 It reads the key from PERPLEXITY_TOKEN and never prints it.
 """
 
@@ -130,6 +132,16 @@ def labelled_actions(run_dir):
     return out
 
 
+def only(actions, label, prompts):
+    """The actions with the label and of the prompts (a comma list); None keeps all."""
+    ids = set(prompts.split(",")) if prompts else None
+    return [
+        a
+        for a in actions
+        if (not label or a["label"] == label) and (not ids or a["prompt_id"] in ids)
+    ]
+
+
 def sample(actions, size, seed):
     """Round robin across the executors, each shuffled with the seed."""
     rng = random.Random(seed)
@@ -197,6 +209,8 @@ def main():
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--actions")
     parser.add_argument("--judge")
+    parser.add_argument("--label")
+    parser.add_argument("--prompts")
     parser.add_argument("--out", default="action-checks.csv")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
@@ -204,7 +218,7 @@ def main():
     prompts = {
         p["id"]: p for p in EVAL.attach(EVAL.parse_prompts(EVAL.TESTS.read_text()))
     }
-    found = labelled_actions(run_dir)
+    found = only(labelled_actions(run_dir), args.label, args.prompts)
     picked = (
         same_actions(found, args.actions)
         if args.actions
