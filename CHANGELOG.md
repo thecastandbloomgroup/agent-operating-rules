@@ -11,6 +11,12 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-11-04
+
+### Changed
+
+- **Breaking:** rules 0.8. The reason of each action names its inference: deduction from a known rule or analysis, induction from trials, or acting first. A reason from trials names what could break the pattern. In the probe, Complex reasons that say how sure they are rose from 2 to 23 of 40 actions.
+
 ### Added
 
 - `tests/evaluation/results/2026-11-03-reason-and-count-line-results.md`: two probes against a new baseline at rules 0.7. A reason that names its inference lifts how sure Complex reasons are from 2 to 23 of 40 actions. Removing the count line of the self-test fails its pass mark by 1 point.
@@ -188,4 +194,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.5.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.4.0...v0.5.0
 [0.6.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.5.0...v0.6.0
 [0.7.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.6.0...v0.7.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.7.0...main
+[0.8.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.7.0...v0.8.0
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.0...main

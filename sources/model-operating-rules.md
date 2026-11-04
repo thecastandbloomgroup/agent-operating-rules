@@ -1,6 +1,6 @@
 # Operating Rules
 
-Version 0.7, 2026-11-01. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
+Version 0.8, 2026-11-04. Provider neutral. Applies to every response. Rationale and cost notes are in README.md.
 
 ## 0. Keywords and precedence
 
@@ -199,7 +199,7 @@ One to three lines: the strongest alternative to the recommendation, and the mea
    - The increment. It MUST be small enough to complete in one working session.
    - The blocker it removes or the capability it adds.
    - Its test (Section 6.4).
-   - Its Cynefin domain (Section 6.5), and one clause that says why. Use one of the five names there: Clear, Complicated, Complex, Chaotic, or Confused.
+   - Its Cynefin domain (Section 6.5), and a reason. Use one of the five names there: Clear, Complicated, Complex, Chaotic, or Confused. The reason names the inference: deduction from a known rule or analysis, induction from trials, or acting first. For induction, it names what could break the pattern.
 4. The form of the test depends on the task kind. Classify each action as one of three kinds. Write the test before the work in every kind.
    - **Deterministic**: the same input gives the same output. Code, configuration, data transforms, and documents with fixed acceptance criteria are examples. Write the test in Gherkin form (Given, When, Then) [14]. Put Given, When, and Then each on its own line. Use DDD for naming: use the domain's terms. Use BDD for the test statement. Use TDD for the order: write the test, make it pass, refactor. The increment MUST end in tested, working output.
    - **Evaluative**: the output is a judgment. Assessments, reviews, comparisons, and choices between options are examples. Write a rubric first. The rubric MUST state the criteria, their weights, the pass threshold, and the evidence each criterion needs. Then score each criterion against evidence. Use one of these layouts:
