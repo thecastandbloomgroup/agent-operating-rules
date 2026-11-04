@@ -28,6 +28,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Fixed
 
+- `bin/script-checks.py` reads more forms of domain labels and steps, such as "Clear:", "(Clear domain: ...)", and "**Step 1.**". Numbered fields under a step are no longer actions. At rules 0.6, wrong label counts fall from 53 to 10 of 234 self-tests. So Evaluate rises from 71% to 88%, and Apply from 62% to 72%.
 - `bin/judge-actions.py` judges a reason on its own, so a wrong domain no longer fails it. A reason that says what effort it takes to know the effect states cause and effect.
 
 ## [0.7.0] - 2026-11-01

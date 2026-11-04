@@ -644,6 +644,35 @@ class ScriptChecks(unittest.TestCase):
             label("1. **Clear the cache.**\n   Then restart."), (None, False)
         )
 
+    def test_reads_the_label_forms_that_the_models_write(self):
+        label = self.module.label
+        forms = {
+            "1. Step 1 (Chaotic domain, because checkout fails): Roll back.": "Chaotic",
+            "1. Save the file (Clear domain: a known practice applies).": "Clear",
+            "1. **Add the logger.** Deterministic; Clear, because imports change.": "Clear",
+            "1. Given six records\nThen they match\nClear: the pattern is known.": "Clear",
+            "Step 1: paste the lines. It is a Clear action, because IEEE fixes it.": "Clear",
+            "**Step 1. Verify the facts (Complicated: experts can find them).**": "Complicated",
+            "3. Restore the TTL to 300. Clear. A known value fixes it.": "Clear",
+            "3. Evaluative, Complex probe: test retrieval on 10 questions.": "Complex",
+        }
+        for action, domain in forms.items():
+            self.assertEqual(label(action), (domain, True), action)
+        self.assertEqual(
+            label("1. **Clear the cache.**\n   Then restart."), (None, False)
+        )
+
+    def test_finds_steps_and_leaves_out_numbered_fields(self):
+        actions = self.module.actions
+        bold = "**Step 1.** Roll back.\n\n1. Increment: one change.\n2. Domain: Clear.\n\n**Step 2.** Raise the cap.\n\n1. Increment: a ticket.\n"
+        self.assertEqual(len(actions(bold)), 2)
+        prose = "We take two actions. Step 1: paste the lines. Step 2: check them after Step 1."
+        self.assertEqual(len(actions(prose)), 2)
+        headed = "### 1. Control\nx\n### 2. Test\n1. Old cache.\n2. New cache.\n"
+        self.assertEqual(len(actions(headed)), 2)
+        timed = "Step 1 (now). Domain: Chaotic.\n\n**Step 2, within an hour.** Clear.\n"
+        self.assertEqual(len(actions(timed)), 2)
+
     def test_reads_plain_headings_a_bare_self_test_and_a_leading_domain(self):
         plain = "a/model, a, 2026-10-31, C1\n\nHeadline\nUse logging.\n\nBackground\nIt prints.\n\nRelevance\nLogs help.\n\nInformation\nINFO is hidden.\n\nEnd\nI recommend that we take one step.\n\n1. Clear, because the module is standard.\nTest first: Given a start, When it logs, Then a line appears.\n\n```text\nSelf-test\nActions in End with a Cynefin domain label: 1 of 1\n```\n"
         row = self.module.score(self.write(plain))

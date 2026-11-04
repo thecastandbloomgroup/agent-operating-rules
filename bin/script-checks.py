@@ -124,9 +124,28 @@ def with_headings(text):
 
 
 def actions(end):
-    """The top-level numbered actions of End, each with its text up to the next one.
-    An action can also start as a heading, as in "### 1. Keep summaries as drafts"."""
-    starts = list(re.finditer(r"(?m)^(?:#{1,6}[ \t]*)?\d+\.\s", end))
+    """The top-level actions of End, each with its text up to the next one. An action
+    starts as a heading ("### 1. Keep summaries as drafts"), as a step at the start of
+    a line ("**Step 1.**", "Step 1:", or "Step 1 (now)"), or as a numbered line. The first form found wins,
+    so the numbered fields of a heading or a step are not actions. Prose with no list
+    can name its steps inline, as in "Step 1: paste the lines"."""
+    forms = (
+        r"(?m)^#{1,6}[ \t]*\d+\.\s",
+        r"(?m)^[ \t]*(?:#{1,6}[ \t]*)?\**Step (\d+)(?:[.:,)*]| \()",
+        r"(?m)^\d+\.\s",
+        r"\bStep (\d+):",
+    )
+    starts = []
+    for form in forms:
+        starts, seen = [], set()
+        for m in re.finditer(form, end):
+            # A step named again, as in "Step 2: check them after Step 1:", is not new.
+            n = m.group(1) if m.groups() else m.start()
+            if n not in seen:
+                seen.add(n)
+                starts.append(m)
+        if starts:
+            break
     return [
         end[m.start() : starts[i + 1].start() if i + 1 < len(starts) else len(end)]
         for i, m in enumerate(starts)
@@ -147,7 +166,7 @@ def reason(rest):
 def label(action):
     """The domain of an action, and whether a reason follows. The domain is named on a
     Cynefin or Domain line, first in the action, as in "1. Clear, because ...", or in
-    bold, as in "**Deterministic; Clear**, because ..."."""
+    bold, as in "**Deterministic; Clear**, because ...", or in a plain form below."""
     names = "|".join(DOMAINS)
     # A label is not followed by a lowercase word, so "**Clear the cache.**" is a title.
     m = re.match(
@@ -163,7 +182,18 @@ def label(action):
             return m.group(1), reason(m.group(2))
     for line in action.split("\n"):
         m = re.search(
-            r"\*\*[^*\n]*\b(" + names + r")\b(?!\s+[a-z])[^*\n]*\*\*(.*)", line
+            r"\*\*[^*\n]*\b(" + names + r")\b(?!\s+[a-z])([^*\n]*)\*\*(.*)", line
+        )
+        if m:
+            # The reason can sit inside the bold, as in "**Step 1. Verify (Complicated: ...)**".
+            return m.group(1), reason(m.group(2) + m.group(3))
+    # Plain forms, anywhere in a line: "(Clear domain: ...)", "Clear work, because",
+    # "a Complex probe", "; Clear, because", "Clear:", or "Clear." alone. A title such as "Clear the
+    # cache" has a lowercase word next, so it does not match.
+    for line in action.split("\n"):
+        m = re.search(
+            r"\b(" + names + r")\b((?:\s*[:,;.)]|\s+(?:domain|action|work|probe)\b).*)",
+            line,
         )
         if m:
             return m.group(1), reason(m.group(2))
