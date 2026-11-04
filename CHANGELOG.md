@@ -13,7 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
-- The script checks of all 10 run folders were run again with the fixed checker. Only the label and self-test columns change. The write-ups of those runs keep the numbers of the old checker, and no verdict changes. The factored self-test probe now has 44 of 107 against 48 of 108, still short of 58.
+- The script checks of all 10 run folders were run again with the fixed checker. Only the label and self-test columns change. The write-ups of those runs keep the numbers of the old checker, and no probe changes its result. The factored self-test probe now has 44 of 107 against 48 of 108, still short of 58.
 - `bin/ladder-scores.py` scores Evaluate without the self-test lines that count words, because the checker owns those counts. At rules 0.6, Evaluate rises from 38% to 71% of 234 answers, and the cognitive score from 0.62 to 0.71.
 - `tests/evaluation/results/2026-11-03-cynefin-questions-results.md`: a probe of ordered domain questions and named inferences, from desk research by the user. Domains stayed at 26 of 40, short of 33. Reasons named an inference in 369 of 710 actions.
 - `bin/judge-actions.py` asks a third question: does the reason say how sure the link is? A reason from trials passes only when it names what could break the pattern.
