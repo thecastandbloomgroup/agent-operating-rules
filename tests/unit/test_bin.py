@@ -834,3 +834,17 @@ class LadderScores(unittest.TestCase):
         rows = self.module.trials(run)
         self.assertIn(("m", "cognitive", "Understand", True), rows)
         self.assertIn(("m", "cognitive", "Analyze", False), rows)
+
+    def test_evaluate_leaves_out_the_word_counts_that_the_checker_owns(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run = Path(folder.name)
+        head = "model,prompt_id,structure,language,all_labelled,selftest_lines,selftest_wrong\n"
+        (run / "script-checks.csv").write_text(
+            head
+            + "m,C1,True,True,True,5,Sentences over the limit of Section 4.1 item 1\n"
+            + "m,C2,True,True,True,5,Longest sentence;Dashes (em or en)\n"
+            + "m,C3,True,True,True,0,\n"
+        )
+        evaluate = [ok for _, t, lv, ok in self.module.trials(run) if lv == "Evaluate"]
+        self.assertEqual(evaluate, [True, False, False])

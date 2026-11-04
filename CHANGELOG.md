@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/ladder-scores.py` scores Evaluate without the self-test lines that count words, because the checker owns those counts. At rules 0.6, Evaluate rises from 38% to 71% of 234 answers, and the cognitive score from 0.62 to 0.71.
 - `tests/evaluation/results/2026-11-03-cynefin-questions-results.md`: a probe of ordered domain questions and named inferences, from desk research by the user. Domains stayed at 26 of 40, short of 33. Reasons named an inference in 369 of 710 actions.
 - `bin/judge-actions.py` asks a third question: does the reason say how sure the link is? A reason from trials passes only when it names what could break the pattern.
 - `tests/evaluation/results/2026-11-03-factored-selftest-results.md`: a probe that checks the self-test item by item. Right self-tests fell from 43 to 37, short of 58. The models write 0 long sentences whatever the count, so the checker SHOULD own that count.

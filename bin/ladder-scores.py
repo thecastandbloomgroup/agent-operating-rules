@@ -2,6 +2,7 @@
 Usage: bin/ladder-scores.py RUN_DIR [RUN_DIR ...]
 It reads RUN_DIR/script-checks.csv (bin/script-checks.py) and, when present,
 RUN_DIR/action-checks.csv and RUN_DIR/action-checks-argon.csv (bin/judge-actions.py).
+Evaluate counts the self-test lines that the script checks, except the word counts.
 Each check counts as one trial of one level (MAP). A level is mastered at 80% of 20
 trials or more. The score of a taxonomy is (L + p) / N, where L is the highest level
 mastered with every measured level below it mastered, p is the rate of the next
@@ -42,6 +43,17 @@ LADDERS = {
 # The level of the structure check of each prompt of tests 1.7. Other prompts: Receiving.
 AFFECTIVE = {"A1": "Responding", "A2": "Valuing", "A3": "Organization"}
 MASTERY, MIN_TRIALS, TOLERANCE = 0.8, 20, 0.05
+# Self-test lines that count words. The models write 0 whatever the count, and a count is
+# the checker's job, so Evaluate leaves them out (2026-11-03 factored self-test probe).
+WORD_COUNTS = ("Sentences over", "Longest sentence")
+
+
+def judged_right(row):
+    """True when each self-test line that the script checks, other than a word count, is right."""
+    wrong = [k for k in row["selftest_wrong"].split(";") if k]
+    return int(row["selftest_lines"]) > 0 and all(
+        k.startswith(WORD_COUNTS) for k in wrong
+    )
 
 
 def trials(run_dir):
@@ -64,7 +76,7 @@ def trials(run_dir):
                 if r["prompt_id"] not in AFFECTIVE:
                     out.append((m, "cognitive", "Apply", yes("language")))
                     out.append((m, "cognitive", "Apply", yes("all_labelled")))
-                    out.append((m, "cognitive", "Evaluate", yes("selftest_right")))
+                    out.append((m, "cognitive", "Evaluate", judged_right(r)))
     judged = [run_dir / n for n in ("action-checks.csv", "action-checks-argon.csv")]
     if all(p.exists() for p in judged):
         verdicts = collections.defaultdict(list)
