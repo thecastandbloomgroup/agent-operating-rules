@@ -42,7 +42,7 @@ E3. The table gives the actions that pass each check.
 
 Both judges agree on a right domain in 24 of 38 actions before and 26 of 40 after. The gain is 2 points, with a 95% interval of -19 to +23.
 
-E4. The pass mark for the new question was 20 of 40, set before anyone measured its baseline. The baseline already passed it at 30 and 31, so the question cannot show a gain, and it does not count toward the verdict.
+E4. The pass mark for the new question was 20 of 40, set before anyone measured its baseline. The baseline already passed it at 30 and 31, so the question cannot show a gain, and it does not count toward the result.
 [2]
 
 E5. The new question bites only on Complex actions, where a reason from trials must name what could break the pattern. Those actions passed 3 and 0 of 4 before, and 6 and 4 of 7 after.
@@ -85,7 +85,7 @@ Keep the reason form of Section 6.3 and drop the questions, since the models ado
 I recommend that we keep rules 0.7, and test the reason form on Complex actions alone.
 
 1. Record the probe and the third judge question.
-   - Increment: this write-up, the run folder, and the verdicts of the baseline with three questions.
+   - Increment: this write-up, the run folder, and the results of the baseline with three questions.
    - Blocker removed: a stricter measure of reasons, which the user's marks asked for.
    - Kind: deterministic. Test:
      - Given the probe folder

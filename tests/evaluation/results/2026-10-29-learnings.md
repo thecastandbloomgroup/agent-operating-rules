@@ -57,7 +57,7 @@ The pass rule needs 80% of the available points and every gate above 0.
 R9 (conformance to the rules file) gets the full 2 points in 3 of 205 judgments from another provider. Therefore almost every answer starts one point short.
 [1]
 
-E5. The judges disagree on one answer by a mean of 1.98 points. Of 175 answers, 34 differ by more than 3 points, and 25 get opposite gate verdicts.
+E5. The judges disagree on one answer by a mean of 1.98 points. Of 175 answers, 34 differ by more than 3 points, and 25 get opposite gate results.
 [1]
 
 Only 10 answers pass with both judges.
@@ -103,7 +103,7 @@ I recommend that we test the judges first, then probe one change to the domain r
 
 1. Score 15 answers of human-test.csv from run 2026-10-29-tokens-s1c by hand, then run the agreement check.
    - Blocker removed: no evidence shows that any judge is valid.
-   - Kind: stochastic. Metric: the share of answers where the judge from another provider gives the same gate verdict as you. Baseline: the two judges agree on 150 of 175 answers (86%). Pass threshold: 80% or more, and a mean total difference of 2 points or less. Sample size: 15 answers.
+   - Kind: stochastic. Metric: the share of answers where the judge from another provider gives the same gate result as you. Baseline: the two judges agree on 150 of 175 answers (86%). Pass threshold: 80% or more, and a mean total difference of 2 points or less. Sample size: 15 answers.
    - Domain: Complicated. The agreement check is the analysis that picks the judge to trust.
 2. Show the pass share of each judge kind on its own line in summary.md.
    - Blocker removed: one combined number hides the three-times gap in E2.

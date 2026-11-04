@@ -55,7 +55,7 @@ T2 asks for one prompt, but its expected answer refuses to give one prompt as th
 
 T2 passes 0 of 29 answers. Therefore the test punishes the answers that follow the order of precedence [inference].
 
-E5. The expected domains are the judgment of the test author. The two judges give the same gate verdict on 150 of 175 answers (86%).
+E5. The expected domains are the judgment of the test author. The two judges give the same gate result on 150 of 175 answers (86%).
 [3]
 
 For example, K1 counts a rollback first as wrong. However, a rollback is a common first move after a release raised latency from 120 ms to 900 ms [judgment].
@@ -123,7 +123,7 @@ I recommend that we fix the test before we spend more on runs, then probe the st
    - Domain: Complicated. You decide, because the test and the rules are yours.
 4. Score 15 answers of human-test.csv by hand, then run the agreement check.
    - Blocker removed: no evidence shows that a judge agrees with a human (A2).
-   - Kind: stochastic. Metric: the share of answers where the judge from another provider gives your gate verdict. Baseline: 86% between the two judges (E5). Pass threshold: 80%. Sample size: 15 answers.
+   - Kind: stochastic. Metric: the share of answers where the judge from another provider gives your gate result. Baseline: 86% between the two judges (E5). Pass threshold: 80%. Sample size: 15 answers.
    - Domain: Complicated. The agreement check is the analysis that picks the judge to trust.
 5. Probe Opus 5.5 and GPT-6-Astra as executors at high effort on C1, K1, H2, T2, and X2.
    - Capability added: a measure of the limit of the models (E6).

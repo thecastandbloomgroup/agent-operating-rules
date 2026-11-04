@@ -37,7 +37,7 @@ E1. The two judges scored 245 answers in common. The table gives their Cohen's k
 | R9 | Rules-file conformance | 0.39 |
 | R5 | Test form | 0.33 |
 | R8 | Calibrated uncertainty | 0.23 |
-| Pass | The whole verdict | 0.37 |
+| Pass | The whole result | 0.37 |
 
 E2. Content analysis treats agreement of 0.800 or more as reliable. It accepts 0.667 to 0.800 for tentative conclusions only, and it discards data below 0.667.
 [2]

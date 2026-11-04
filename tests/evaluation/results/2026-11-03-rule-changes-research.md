@@ -131,7 +131,7 @@ I recommend that we probe the factored self-test first, because the script measu
 3. Mark the 40 actions of human-actions.md blind.
    - Increment: 80 marks by a person.
    - Blocker removed: Step 2 trusts the judges on reasons, and no person has checked them.
-   - Kind: evaluative. Rubric: two marks for every action (weight 1); no verdict read first (weight 2). Pass threshold: both.
+   - Kind: evaluative. Rubric: two marks for every action (weight 1); no judge result read first (weight 2). Pass threshold: both.
    - Domain: Complicated, because the marks need expert reading.
 
 ## Follow-up

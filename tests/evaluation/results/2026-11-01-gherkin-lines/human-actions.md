@@ -1,6 +1,6 @@
 # Blind marks: 40 actions of the 0.5.1 probe
 
-Mark each action yes or no on two questions. Do not open action-checks.csv or action-checks-argon.csv until all 40 are marked, because a judge verdict pulls a mark toward it.
+Mark each action yes or no on two questions. Do not open action-checks.csv or action-checks-argon.csv until all 40 are marked, because a judge result pulls a mark toward it.
 
 - Domain right: the domain of this action fits the expected answer of evaluation-tests.md for its prompt, in its place in the list.
 - Reason states cause and effect: the reason says how cause and effect relate in this work, not only the domain name or the task.

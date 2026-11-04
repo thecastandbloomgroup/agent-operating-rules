@@ -23,9 +23,9 @@ Label distributions (Fable / Opus): Apply 3 / 3, Analyze 7 / 6, Evaluate 2 / 2, 
 
 ## 2. Item by item
 
-Verdict is on the Opus primary label. "Agree" means the label fits the Bloom definition and the expected answer. "Change" names the replacement. "Unsure" means two labels fit about equally and the design needs a tie-break rule.
+The result is on the Opus primary label. "Agree" means the label fits the Bloom definition and the expected answer. "Change" names the replacement. "Unsure" means two labels fit about equally and the design needs a tie-break rule.
 
-| Item | Opus primary | Fable blind | Verdict | Reason |
+| Item | Opus primary | Fable blind | Result | Reason |
 | --- | --- | --- | --- | --- |
 | C1 | cognitive Apply, procedural | same | Agree | The domain is given by the material and the work is executing the Clear form of rule 6.5 (one-step actions, Gherkin). A&K Apply is "carrying out or using a procedure in a given situation". The "Likely wrong answer" line adds an Analyze strand that Opus records as secondary, which is right. |
 | C2 | cognitive Apply, procedural | same | Agree | The cleanest Apply item in the set: a known pattern applied to given data with a deterministic test. |
@@ -52,7 +52,7 @@ Three reasons still favour cognitive Analyze as the primary:
 2. The conflict dissolves on inspection. Rule 6.5 for Complex demands a probe; a prompt with a measure is a probe. The agent gives up nothing to satisfy both rules. The historical refusal failure came from over-reading "do not commit the full increment" as "do not give a prompt", which is a misreading of a rule, a cognitive error. Checks 2, 3, and 5 (framed as a probe, measure with labelled set and rate, says why Complex) are Analyze and Create evidence, and they are where an answer can fail.
 3. One item cannot carry a ladder. With T2 as the only affective primary, the affective score would rest on one item at level 4 with nothing measured at levels 1 to 3. Scoring rule 3 needs every lower level mastered to set L, and the Guttman coefficient is undefined on one item. The result is an affective score that looks measured and is not. The design's own fix is dedicated affective items (Section 4 of this review, change 11), and until they exist the honest affective result is "not measured".
 
-Verdict: change T2 primary to cognitive Analyze with conceptual knowledge, since the item sits in group 1.6 and R6 gates it. Record Organization as a secondary with check 1 attached to it, so that the strand is counted once the check-level labelling in change 1 exists.
+Result: change T2 primary to cognitive Analyze with conceptual knowledge, since the item sits in group 1.6 and R6 gates it. Record Organization as a secondary with check 1 attached to it, so that the strand is counted once the check-level labelling in change 1 exists.
 
 ## 3. The checks
 

@@ -23,7 +23,7 @@ This section gives the marks, the change, and the rejudge.
 
 ### The blind marks
 
-E1. The person marked 10 actions of rules 0.6, yes or no on the reason only, with no verdict in view. Eight of the 10 were actions where the three model graders disagreed.
+E1. The person marked 10 actions of rules 0.6, yes or no on the reason only, with no judge result in view. Eight of the 10 were actions where the three model graders disagreed.
 [1]
 
 | Grader | Agrees with the 7 clear marks |
@@ -62,7 +62,7 @@ E5. Both judges checked the same 40 actions again, at a cost of 1.21 USD.
 | Domain, Argon | 29 | 28 |
 | Agrees with the person, each judge | 3 and 2 of 7 | 6 and 6 of 7 |
 
-The domain verdicts did not move, so the change reached only the reason check. The judges agree on 98% of domains (kappa 0.94) and 88% of reasons (kappa 0.38). The kappa of reasons is low because 33 of 40 are yes.
+The domain results did not move, so the change reached only the reason check. The judges agree on 98% of domains (kappa 0.94) and 88% of reasons (kappa 0.38). The kappa of reasons is low because 33 of 40 are yes.
 
 E6. On the run of rules 0.6, bin/ladder-scores.py now gives these rates, pooled over the six executors:
 [2]

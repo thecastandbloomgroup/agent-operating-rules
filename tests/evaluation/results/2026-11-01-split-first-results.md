@@ -72,13 +72,13 @@ Keep the probe lines, because the domains rose from 22 and 16 to 31 and 30. It l
 
 I recommend that we keep rules 0.7, and point the next work at the Understand level.
 
-1. Record the probe and judge the baseline under tests 1.6 as its main verdicts.
+1. Record the probe and judge the baseline under tests 1.6 as its main results.
    - Increment: this write-up, the three run folders, and the files of the baseline renamed.
-   - Blocker removed: two sets of verdicts under two rules made the gain look real.
+   - Blocker removed: two sets of results under two rules made the gain look real.
    - Kind: deterministic. Test:
      - Given the baseline folder
      - When ladder-scores.py reads it
-     - Then it uses the verdicts under tests 1.6
+     - Then it uses the results under tests 1.6
    - Domain: Clear, because the rename has one right result.
 2. Fund a probe that feeds back failed reasons to the model, at the Understand level.
    - Increment: one run where each answer gets the judge note on its reasons, then a second answer.
@@ -87,8 +87,8 @@ I recommend that we keep rules 0.7, and point the next work at the Understand le
    - Domain: Complex, because no change has moved this rate yet, so leverage is a guess.
 3. Mark the 40 actions of human-actions.md by hand, under tests 1.6.
    - Increment: 80 yes or no marks by a person, and a kappa for each judge.
-   - Blocker removed: every verdict so far comes from a model.
-   - Kind: evaluative. Rubric: every action has two marks (weight 1); the marks come before any verdict is read (weight 2). Pass threshold: both.
+   - Blocker removed: every result so far comes from a model.
+   - Kind: evaluative. Rubric: every action has two marks (weight 1); the marks come before any judge result is read (weight 2). Pass threshold: both.
    - Domain: Complicated, because the marks need expert reading of the tests.
 
 ## Follow-up

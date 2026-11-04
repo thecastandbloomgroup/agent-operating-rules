@@ -121,7 +121,7 @@ I recommend that we mark the judge checks by hand, then fund the feedback probe 
 2. Mark the 40 actions of human-actions.md blind, yes or no for each check.
    - Increment: 80 marks by a person, and the judge accuracy on reasons.
    - Blocker removed: feedback helps only if the judge finds the failed reason in about 80% of cases (E2).
-   - Kind: evaluative. Rubric: two marks for every action (weight 1); no verdict read first (weight 2). Pass threshold: both.
+   - Kind: evaluative. Rubric: two marks for every action (weight 1); no judge result read first (weight 2). Pass threshold: both.
    - Domain: Complicated, because it needs expert reading.
 3. Fund the feedback probe on the 26 actions that failed the reason check.
    - Increment: one arm with the judge note, one arm with a plain retry.

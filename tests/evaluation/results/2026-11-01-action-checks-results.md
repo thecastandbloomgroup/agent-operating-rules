@@ -52,13 +52,13 @@ E5. The two runs of judges cost 1.36 USD in total.
 
 ### Limits
 
-- Neither judge is calibrated against a person yet. The file `human-actions.md` holds the same 40 actions with no verdict, for blind marks.
+- Neither judge is calibrated against a person yet. The file `human-actions.md` holds the same 40 actions with no judge result, for blind marks.
 - Forty actions give wide intervals. A kappa of 0.66 on 40 items has an interval of about plus or minus 0.25 [inference].
 - The expected answers of tests 1.5 give one domain list per prompt. They do not say how to label a small step inside a larger domain (E4).
 
 ### Addendum: blind marks by a third model
 
-E6. Fable 5.1 marked the 40 actions in a fresh context, with no view of the verdicts, in `action-checks-fable-blind.csv`. These are marks by a model, not by a person. So `human-actions.md` stays blank for a person.
+E6. Fable 5.1 marked the 40 actions in a fresh context, with no view of the results, in `action-checks-fable-blind.csv`. These are marks by a model, not by a person. So `human-actions.md` stays blank for a person.
 [1]
 
 | Check | First judges | Gemini 4 Argon | Fable, blind | Fable against first judges (kappa) |
@@ -78,7 +78,7 @@ E8. On 10 reasons, both judges said no and Fable said yes. So its standard for a
 E9. Tests 1.6 let a support step carry its own domain, and the judges now have that rule. Both judges checked the same 40 actions again under it. The domain was right in 27 and 29 of 40, against 22 and 16 above, and reasons stayed at 14 and 15.
 [2]
 
-The verdicts above are now in `action-checks-tests15.csv` and `action-checks-argon-tests15.csv`. The files without a suffix hold the verdicts under tests 1.6.
+The results above are now in `action-checks-tests15.csv` and `action-checks-argon-tests15.csv`. The files without a suffix hold the results under tests 1.6.
 
 ### Assumption log
 
@@ -95,7 +95,7 @@ I recommend that we get blind human marks first, then probe a fix for the conten
 1. Mark the 40 actions of `human-actions.md` blind, then compare the marks with both judges.
    - Increment: 80 yes or no marks by the user, and a kappa for each judge against them.
    - Blocker removed: no judge has a known error rate against a person (Limits).
-   - Kind: evaluative. Rubric: every action has two marks (weight 1); the marks were made before any verdict was opened (weight 2). Pass threshold: both.
+   - Kind: evaluative. Rubric: every action has two marks (weight 1); the marks were made before any judge result was opened (weight 2). Pass threshold: both.
    - Domain: Complicated, because the marks need expert reading of the tests.
 2. Probe two lines of rules: one example reason for each domain in 6.5, and the line between Clear and Complicated.
    - Increment: rules 0.6.1 in a run folder, one script-only run, and both judges on 40 sampled actions.
