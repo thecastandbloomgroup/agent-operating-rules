@@ -55,28 +55,28 @@ rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actio
 0.7.3,openai_gpt-6.1-sol@medium,X1,responses/openai_gpt-6.1-sol@medium/X1-s3.md,0,0,0,1,32,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,C1,responses/perplexity_glm-5.3-flash@medium/C1-s1.md,0,0,0,0,25,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,C1,responses/perplexity_glm-5.3-flash@medium/C1-s2.md,0,0,0,3,33,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,perplexity_glm-5.3-flash@medium,C1,responses/perplexity_glm-5.3-flash@medium/C1-s3.md,0,0,0,3,26,3,0,0,False,False,,True,True,False,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s1.md,0,0,0,2,33,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,perplexity_glm-5.3-flash@medium,C1,responses/perplexity_glm-5.3-flash@medium/C1-s3.md,0,0,0,3,26,3,3,1,False,False,,True,True,False,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,False
+0.7.3,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s1.md,0,0,0,2,33,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s2.md,0,0,0,0,0,0,0,0,False,False,,False,False,False,True,True,0,,False,True,False,False
-0.7.3,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s3.md,0,0,0,2,45,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,perplexity_glm-5.3-flash@medium,H1,responses/perplexity_glm-5.3-flash@medium/H1-s3.md,0,0,0,2,45,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,K1,responses/perplexity_glm-5.3-flash@medium/K1-s1.md,0,0,0,5,34,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,K1,responses/perplexity_glm-5.3-flash@medium/K1-s2.md,0,0,0,8,41,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,K1,responses/perplexity_glm-5.3-flash@medium/K1-s3.md,0,0,0,6,34,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,perplexity_glm-5.3-flash@medium,T1,responses/perplexity_glm-5.3-flash@medium/T1-s1.md,0,0,0,5,36,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_glm-5.3-flash@medium,T1,responses/perplexity_glm-5.3-flash@medium/T1-s2.md,0,1,0,3,30,4,0,0,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_glm-5.3-flash@medium,T1,responses/perplexity_glm-5.3-flash@medium/T1-s3.md,0,0,0,3,26,0,0,0,True,True,,True,True,True,False,True,0,,False,False,False,False
+0.7.3,perplexity_glm-5.3-flash@medium,T1,responses/perplexity_glm-5.3-flash@medium/T1-s1.md,0,0,0,5,36,4,4,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,False
+0.7.3,perplexity_glm-5.3-flash@medium,T1,responses/perplexity_glm-5.3-flash@medium/T1-s2.md,0,1,0,3,30,4,4,4,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.7.3,perplexity_glm-5.3-flash@medium,T1,responses/perplexity_glm-5.3-flash@medium/T1-s3.md,0,0,0,3,26,3,3,3,True,True,,True,True,True,False,True,0,,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,U1,responses/perplexity_glm-5.3-flash@medium/U1-s1.md,0,0,0,5,34,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,perplexity_glm-5.3-flash@medium,U1,responses/perplexity_glm-5.3-flash@medium/U1-s2.md,0,0,0,4,40,4,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_glm-5.3-flash@medium,U1,responses/perplexity_glm-5.3-flash@medium/U1-s3.md,0,0,0,7,47,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,perplexity_glm-5.3-flash@medium,U1,responses/perplexity_glm-5.3-flash@medium/U1-s2.md,0,0,0,4,40,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.7.3,perplexity_glm-5.3-flash@medium,U1,responses/perplexity_glm-5.3-flash@medium/U1-s3.md,0,0,0,7,47,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s1.md,1,0,0,11,64,5,4,4,True,True,,True,True,True,False,True,5,Dashes (em or en);Banned words found;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
 0.7.3,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s2.md,0,0,0,7,47,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s3.md,0,0,0,6,41,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s3.md,0,0,0,6,41,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_kimi-k3@low,C1,responses/perplexity_kimi-k3@low/C1-s1.md,1,0,0,0,22,3,3,2,True,True,,True,True,True,True,True,5,Dashes (em or en),False,False,True,False
 0.7.3,perplexity_kimi-k3@low,C1,responses/perplexity_kimi-k3@low/C1-s2.md,0,0,0,2,35,4,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_kimi-k3@low,C1,responses/perplexity_kimi-k3@low/C1-s3.md,0,0,0,0,19,3,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.7.3,perplexity_kimi-k3@low,C1,responses/perplexity_kimi-k3@low/C1-s3.md,0,0,0,0,19,3,3,1,True,True,,True,True,True,True,True,5,,True,True,True,False
 0.7.3,perplexity_kimi-k3@low,H1,responses/perplexity_kimi-k3@low/H1-s1.md,0,0,0,1,28,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,perplexity_kimi-k3@low,H1,responses/perplexity_kimi-k3@low/H1-s2.md,0,0,0,4,28,5,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_kimi-k3@low,H1,responses/perplexity_kimi-k3@low/H1-s3.md,0,0,0,2,29,4,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,perplexity_kimi-k3@low,H1,responses/perplexity_kimi-k3@low/H1-s2.md,0,0,0,4,28,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.7.3,perplexity_kimi-k3@low,H1,responses/perplexity_kimi-k3@low/H1-s3.md,0,0,0,2,29,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_kimi-k3@low,K1,responses/perplexity_kimi-k3@low/K1-s1.md,0,0,0,7,44,4,4,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,False
 0.7.3,perplexity_kimi-k3@low,K1,responses/perplexity_kimi-k3@low/K1-s2.md,0,0,0,9,33,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_kimi-k3@low,K1,responses/perplexity_kimi-k3@low/K1-s3.md,0,0,0,5,40,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
@@ -85,24 +85,24 @@ rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actio
 0.7.3,perplexity_kimi-k3@low,U1,responses/perplexity_kimi-k3@low/U1-s1.md,0,0,0,3,27,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_kimi-k3@low,U1,responses/perplexity_kimi-k3@low/U1-s2.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,perplexity_kimi-k3@low,U1,responses/perplexity_kimi-k3@low/U1-s3.md,0,0,0,3,32,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s1.md,0,0,0,5,28,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s2.md,0,0,0,6,35,5,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s1.md,0,0,0,5,28,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.7.3,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s2.md,0,0,0,6,35,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s3.md,0,0,0,2,23,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,xai_grok-4.7@low,C1,responses/xai_grok-4.7@low/C1-s1.md,0,0,0,0,14,3,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
-0.7.3,xai_grok-4.7@low,C1,responses/xai_grok-4.7@low/C1-s2.md,0,0,0,3,29,3,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.7.3,xai_grok-4.7@low,C1,responses/xai_grok-4.7@low/C1-s1.md,0,0,0,0,14,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.7.3,xai_grok-4.7@low,C1,responses/xai_grok-4.7@low/C1-s2.md,0,0,0,3,29,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.7.3,xai_grok-4.7@low,C1,responses/xai_grok-4.7@low/C1-s3.md,0,0,0,0,15,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,H1,responses/xai_grok-4.7@low/H1-s1.md,0,0,0,0,21,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
-0.7.3,xai_grok-4.7@low,H1,responses/xai_grok-4.7@low/H1-s2.md,0,0,0,0,19,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.7.3,xai_grok-4.7@low,H1,responses/xai_grok-4.7@low/H1-s2.md,0,0,0,0,19,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,H1,responses/xai_grok-4.7@low/H1-s3.md,0,0,0,0,22,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,K1,responses/xai_grok-4.7@low/K1-s1.md,0,0,0,3,28,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,xai_grok-4.7@low,K1,responses/xai_grok-4.7@low/K1-s2.md,0,0,0,1,24,4,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,xai_grok-4.7@low,K1,responses/xai_grok-4.7@low/K1-s3.md,0,0,0,0,21,5,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.7.3,xai_grok-4.7@low,K1,responses/xai_grok-4.7@low/K1-s2.md,0,0,0,1,24,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.7.3,xai_grok-4.7@low,K1,responses/xai_grok-4.7@low/K1-s3.md,0,0,0,0,21,5,5,5,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,T1,responses/xai_grok-4.7@low/T1-s1.md,0,0,0,0,15,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
-0.7.3,xai_grok-4.7@low,T1,responses/xai_grok-4.7@low/T1-s2.md,0,0,0,0,28,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.7.3,xai_grok-4.7@low,T1,responses/xai_grok-4.7@low/T1-s2.md,0,0,0,0,28,5,5,5,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,T1,responses/xai_grok-4.7@low/T1-s3.md,0,0,0,0,15,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,U1,responses/xai_grok-4.7@low/U1-s1.md,0,0,0,1,24,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
-0.7.3,xai_grok-4.7@low,U1,responses/xai_grok-4.7@low/U1-s2.md,0,0,0,0,19,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.7.3,xai_grok-4.7@low,U1,responses/xai_grok-4.7@low/U1-s2.md,0,0,0,0,19,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,U1,responses/xai_grok-4.7@low/U1-s3.md,0,0,0,0,16,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
-0.7.3,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s1.md,0,0,0,1,21,0,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.7.3,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s2.md,0,0,0,0,17,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.7.3,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s1.md,0,0,0,1,21,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.7.3,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s2.md,0,0,0,0,17,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.7.3,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s3.md,0,0,0,0,20,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True

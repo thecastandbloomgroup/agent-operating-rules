@@ -7,12 +7,12 @@ rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actio
 0.6.0,google_gemini-3.8-flash@medium,A2,responses/google_gemini-3.8-flash@medium/A2-s3.md,0,0,0,0,18,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.0,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s1.md,0,0,0,0,17,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.0,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s2.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
-0.6.0,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s3.md,0,0,0,0,20,3,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.6.0,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s3.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.0,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s1.md,0,0,0,5,35,0,0,0,False,False,,True,True,False,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
-0.6.0,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s2.md,0,1,1,6,31,3,0,0,True,True,,True,True,True,False,False,5,Banned words found;Self-mention outside End;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.6.0,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s2.md,0,1,1,6,31,3,1,1,True,True,,True,True,True,False,False,5,Banned words found;Self-mention outside End;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
 0.6.0,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s3.md,0,0,0,3,34,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.6.0,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s1.md,0,0,0,0,24,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
-0.6.0,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s2.md,0,0,0,1,28,4,0,0,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.6.0,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s2.md,0,0,0,1,28,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.6.0,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s3.md,0,0,0,1,22,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
 0.6.0,xai_grok-4.7@low,A2,responses/xai_grok-4.7@low/A2-s1.md,0,0,0,0,19,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
 0.6.0,xai_grok-4.7@low,A2,responses/xai_grok-4.7@low/A2-s2.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
