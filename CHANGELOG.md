@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Fixed
+
+- The marking page sent each answer one click late, so the last answer on a row never reached the file. The page now waits for its form to update before it sends it. It shows "Saved" only when the file holds the answers on screen.
+
 ### Changed
 
 - The rules drop coded labels such as "A2" and "E1". An assumption line now starts with "Assumption:", and a response points to its own parts by name. The user could not recall what the codes stood for.

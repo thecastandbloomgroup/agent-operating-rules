@@ -1,6 +1,6 @@
 <script>
 	// @ts-check
-	import { untrack } from 'svelte';
+	import { tick, untrack } from 'svelte';
 	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
@@ -42,8 +42,11 @@
 		save();
 	}
 
-	function save() {
+	// Wait for the hidden fields to take the new answer before the form is sent.
+	// Without the wait, each save carried the row as it was one click earlier.
+	async function save() {
 		status = 'Saving';
+		await tick();
 		form?.requestSubmit();
 	}
 
@@ -139,9 +142,21 @@
 					method="POST"
 					action="?/save"
 					class="flex flex-col gap-5"
-					use:enhance={() => {
+					use:enhance={({ formData }) => {
+						const sent = { domain: formData.get('domain'), reason: formData.get('reason') };
+						const row = Number(formData.get('index'));
 						return async ({ result }) => {
-							status = result.type === 'success' ? 'Saved' : 'Not saved, try again';
+							// Report "Saved" only when the file holds what the page shows.
+							const saved = /** @type {{ domain: Mark, reason: Mark } | undefined} */ (
+								result.type === 'success' ? result.data?.marks : undefined
+							);
+							const now = marks[row];
+							status =
+								saved && saved.domain === now.domain && saved.reason === now.reason
+									? 'Saved'
+									: saved && saved.domain === sent.domain && saved.reason === sent.reason
+										? 'Saving'
+										: 'Not saved, try again';
 						};
 					}}
 				>

@@ -24,6 +24,8 @@ export const actions = {
 		} catch (error) {
 			return fail(400, { message: error instanceof Error ? error.message : String(error) });
 		}
-		return { saved: index };
+		// Read the row back from the file, so the page can check what it holds.
+		const marks = marksOf(await loadSheet())[index];
+		return { saved: index, marks };
 	}
 };
