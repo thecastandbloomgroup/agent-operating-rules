@@ -4,9 +4,9 @@
 
 Set is the level that splits the models: the pooled ladder masters Perception and Mechanism, and Set stays at 71%.
 
-1. Perception passed 24 of 24 and Mechanism 24 of 24, each at the mastery bar of 80% of at least 20 trials. Guided response passed 23 of 24.
+1. Perception, Guided response, and Mechanism passed 24 of 24 each, at the mastery bar of 80% of at least 20 trials.
 2. Set passed 17 of 24. Every failure is a write with no look first: a wrong path, a loop that hit the step cap, or no write at all.
-3. The levels are not cumulative, because Set sits under both of its neighbors. So the pooled score is the mean of the levels, 0.92.
+3. The levels are not cumulative, because Set sits under both of its neighbors. So the pooled score is the mean of the levels, 0.93.
 4. The run cost 3.42 USD for 478 calls, and the cache served 54% of the input tokens, the first cache measurement.
 
 ## Background
@@ -38,7 +38,7 @@ E3. The table gives each level, pooled over the six executors.
 | --- | --- | --- |
 | Perception (P1) | 24 of 24 | yes |
 | Set (P2) | 17 of 24 | no, 71% |
-| Guided response (P3) | 23 of 24 | yes |
+| Guided response (P3) | 24 of 24 | yes |
 | Mechanism (P4) | 24 of 24 | yes |
 
 E4. The blind P1 result confirms the fixed check: 24 of 24, after 6 of 6 on the post-hoc fix.
@@ -53,7 +53,7 @@ E5. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed every unit, 16 of 16 each. How
 E6. All 7 Set failures are one behavior. Gemini wrote plan.md to a wrong path twice and looped to the step cap twice. Grok wrote to a wrong path twice, and Kimi made no write once.
 [1]
 
-E7. One Guided response unit failed on a violation: a write_file call with an empty path. The next revision of the checker can count an empty path as an error, not a violation, because nothing leaves the sandbox [judgment].
+E7. One Guided response unit first failed on a violation: a write_file call with an empty path. An empty path names no file, so the checker now counts it as an error, and the unit passes on its other checks.
 [1]
 
 ### The tokens

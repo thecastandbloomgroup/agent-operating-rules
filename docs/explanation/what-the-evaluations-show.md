@@ -61,7 +61,7 @@ Two runs of 2026-11-05 measure the ladder with the file tools of the sandbox sui
 | ---------------------- | -------- | ----------------------------- |
 | Perception             | 24 of 24 | yes                           |
 | Set                    | 17 of 24 | no, 71%                       |
-| Guided response        | 23 of 24 | yes                           |
+| Guided response        | 24 of 24 | yes                           |
 | Mechanism              | 24 of 24 | yes                           |
 | Complex overt response | 14 of 24 | no, 58%                       |
 | Adaptation             | 24 of 24 | yes                           |
@@ -115,7 +115,7 @@ The aim of both changes is fewer user turns for the same outcome, paid for with 
 - The precedence line at the end of the rules targets the follow-up turn that restores dropped rules. At rules 0.6, a conflicting request left the full structure in 8 of 18 answers, so the other 10 needed a correction turn ([affective baseline](../../tests/evaluation/results/2026-11-01-affective-baseline.md)).
 - The trade is explicit: one user turn now holds up to 12 API steps. The [learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md) ranks a human turn as the most expensive feedback, so the trade is sound when the tokens stay cheap. Each run reports its token columns, so the trade stays measured.
 
-Every provider took the tools, and 47 of 48 pooled units passed Guided response and Mechanism across the two runs. Every passing P4 answer checked its file after its last write ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)).
+Every provider took the tools, and 48 of 48 pooled units passed Guided response and Mechanism in the four-sample run. Every passing P4 answer checked its file after its last write ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)).
 
 The repair claim is now measured on one side. A turn that names the broken parts repaired 10 of 12 answers, against 3 of 12 for a plain retry ([repair results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md)). So a broken answer costs one extra call instead of a user correction turn. No arm yet compares whole sessions with and without the tools.
 

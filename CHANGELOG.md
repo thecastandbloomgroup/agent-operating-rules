@@ -13,7 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Fixed
 
-- `bin/tool-sandbox.py` refuses a tool call with an empty path as an error, not a violation. An empty path names no file, so it cannot leave the sandbox. Two runs had failed a Gemini unit on that call alone.
+- `bin/tool-sandbox.py` refuses a tool call with an empty path as an error, not a violation. An empty path names no file, so it cannot leave the sandbox. Two runs had failed a Gemini unit on that call. `bin/check-psychomotor.py` also ignores the empty-path violations of old transcripts, so the four-sample run now scores Guided response at 24 of 24.
 - `bin/run-psychomotor.py` writes `calls.csv` and `run.log` as each unit ends. Before, a run showed no calls until its end. So a slow run could look dead, as the first P1 to P6 run did at 108 of 144 units.
 
 ### Added

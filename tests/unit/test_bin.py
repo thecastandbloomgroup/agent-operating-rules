@@ -1461,3 +1461,23 @@ class MarkingItems(unittest.TestCase):
         self.assertTrue(item["action_text"].startswith("2. Probe the cache"))
         self.assertEqual(item["label"], "Complex")
         self.assertNotIn("domain_right", item)
+
+
+class CheckPsychomotorEmptyPath(unittest.TestCase):
+    def test_an_old_empty_path_violation_no_longer_fails_a_unit(self):
+        transcript = {
+            "violations": [
+                "write_file: the path is empty",
+                "read_file: the path leaves the sandbox: ../x",
+            ]
+        }
+        self.assertEqual(
+            CHECK_PSY.real_violations(transcript),
+            ["read_file: the path leaves the sandbox: ../x"],
+        )
+        self.assertEqual(
+            CHECK_PSY.real_violations(
+                {"violations": ["write_file: the path is empty"]}
+            ),
+            [],
+        )

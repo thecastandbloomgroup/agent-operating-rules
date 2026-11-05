@@ -183,6 +183,12 @@ CHECKS = {
 }
 
 
+def real_violations(transcript):
+    """The violations of a transcript, without an empty path. Old runs recorded an
+    empty path as a violation, but it names no file, so it cannot leave the sandbox."""
+    return [v for v in transcript.get("violations", []) if "the path is empty" not in v]
+
+
 def check_unit(run_dir, transcript_file):
     t = json.loads(transcript_file.read_text())
     stem = transcript_file.stem
@@ -190,8 +196,8 @@ def check_unit(run_dir, transcript_file):
     note = None
     if t.get("error"):
         note = t["error"]
-    elif t.get("violations"):
-        note = f"violation: {t['violations'][0]}"
+    elif real_violations(t):
+        note = f"violation: {real_violations(t)[0]}"
     elif "answer" not in t:
         note = "no answer"
     else:
@@ -202,7 +208,7 @@ def check_unit(run_dir, transcript_file):
         "sample": t["sample"],
         "level": LEVELS[t["prompt_id"]],
         "passed": note is None,
-        "violations": len(t.get("violations", [])),
+        "violations": len(real_violations(t)),
         "steps": len(t.get("steps", [])),
         "note": note or "",
     }
