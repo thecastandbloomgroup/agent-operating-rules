@@ -37,6 +37,7 @@ The script detects Claude Code from its environment, and every other target need
 | Claude Code, every project   | `~/.claude/CLAUDE.md`, with an absolute import path                                   | Pointer |
 | Claude, a Project in the app | The project instructions field                                                        | Copy    |
 | OpenAI Codex CLI             | `AGENTS.md` in the repository root                                                    | Copy    |
+| opencode                     | `AGENTS.md` in the project root. It reads `CLAUDE.md` only when no `AGENTS.md` exists | Copy    |
 | Gemini CLI                   | `GEMINI.md` in the repository root                                                    | Copy    |
 | Cursor                       | A rule file under `.cursor/rules/`, set to always apply                               | Copy    |
 | GitHub Copilot               | `.github/copilot-instructions.md`                                                     | Copy    |

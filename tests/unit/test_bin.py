@@ -1236,6 +1236,14 @@ class InstallScript(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertEqual((self.dest / "GEMINI.md").read_text(), "# Mine\n")
 
+    def test_opencode_shares_the_codex_file(self):
+        result = self.sh("--target", "opencode", "--dir", str(self.dest))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = (self.dest / "AGENTS.md").read_text()
+        self.assertTrue(text.startswith("# Operating Rules"))
+        again = self.sh("--target", "codex", "--dir", str(self.dest))
+        self.assertIn("already installed", again.stdout)
+
     def test_cursor_rule_always_applies(self):
         result = self.sh("--target", "cursor", "--dir", str(self.dest))
         self.assertEqual(result.returncode, 0, result.stderr)

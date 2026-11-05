@@ -2,7 +2,7 @@
 # Install sources/model-operating-rules.md for one agent harness.
 # Run it from a clone, or pipe it from curl with a repo to clone:
 #   curl -fsSL <raw url of install.sh> | sh -s -- --repo <repo url> --target codex
-# Targets: claude-code, codex, gemini, cursor, copilot.
+# Targets: claude-code, codex, opencode, gemini, cursor, copilot.
 # Without --target, the script detects Claude Code from its environment.
 # It never overwrites a file that has other content.
 set -eu
@@ -55,7 +55,7 @@ if [ -z "$TARGET" ]; then
     TARGET="claude-code"
   else
     echo "no --target given, and only Claude Code is detectable." >&2
-    echo "name one: claude-code, codex, gemini, cursor, copilot" >&2
+    echo "name one: claude-code, codex, opencode, gemini, cursor, copilot" >&2
     exit 1
   fi
 fi
@@ -91,6 +91,7 @@ case "$TARGET" in
     echo "installed rules $VERSION (pointer): $DEST/CLAUDE.md imports $RULES_NAME"
     ;;
   codex) copy_install "$DEST/AGENTS.md" ;;
+  opencode) copy_install "$DEST/AGENTS.md" ;;
   gemini) copy_install "$DEST/GEMINI.md" ;;
   copilot) copy_install "$DEST/.github/copilot-instructions.md" ;;
   cursor) copy_install "$DEST/.cursor/rules/operating-rules.mdc" "---
