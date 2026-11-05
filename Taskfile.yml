@@ -189,6 +189,15 @@ tasks:
       - task: eval
         vars: {PROVIDER: '{{.PROVIDER}}', PROMPTS: C1, SAMPLES: '1'}
 
+  marking:
+    desc: Write the items of the marking sheet, then start the marking app of tools/marking on http://localhost:5173. SHEET names the sheet folder of tests/evaluation/results (default 2026-11-05-human-marking)
+    vars:
+      SHEET: '{{.SHEET | default "2026-11-05-human-marking"}}'
+    cmds:
+      - python3 bin/marking-items.py tests/evaluation/results/{{.SHEET}}
+      - pnpm --dir tools/marking install --frozen-lockfile
+      - MARKING_SHEET={{.SHEET}} pnpm --dir tools/marking dev
+
   ci:
     desc: "Run every stage in the order of CI: review, build, test, docs, package"
     cmds:

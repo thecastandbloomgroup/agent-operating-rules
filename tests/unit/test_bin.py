@@ -1428,3 +1428,27 @@ class RunPsychomotorIncremental(unittest.TestCase):
             source.index("in as_completed(futures)"),
         )
         self.assertIn("calls_file.flush()", source)
+
+
+ITEMS = load("marking-items.py")
+
+
+class MarkingItems(unittest.TestCase):
+    def test_an_item_holds_the_action_text_and_no_judge_result(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        results = Path(folder.name)
+        answer = results / "run" / "responses" / "m@low" / "C1-s1.md"
+        answer.parent.mkdir(parents=True)
+        answer.write_text(
+            "m, p, 2026-11-05, C1\n\n## Headline\n\nX.\n\n## End\n\n"
+            "I recommend that we:\n\n1. Pin the versions. Domain: Clear. Reason: a known rule.\n"
+            "2. Probe the cache. Domain: Complex, because the effect shows only later.\n\n"
+            "## Self-test\n\nnone\n"
+        )
+        row = {"run": "run", "file": "responses/m@low/C1-s1.md", "action": "2"}
+        item = ITEMS.item(row, {"C1": "the prompt"}, results)
+        self.assertEqual(item["prompt"], "the prompt")
+        self.assertTrue(item["action_text"].startswith("2. Probe the cache"))
+        self.assertEqual(item["label"], "Complex")
+        self.assertNotIn("domain_right", item)

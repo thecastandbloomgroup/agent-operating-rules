@@ -17,6 +17,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `task marking` starts a local web page for the blind marking sheet. The page shows one action at a time and saves each Yes or No answer to `sheet.csv`. It shows the agreement of each judge only after the last mark. The app in `tools/marking` uses Svelte 5, SvelteKit 2, Tailwind CSS 4, and shadcn-svelte, and `bin/marking-items.py` writes its items.
 - Prompts P5 and P6 extend the psychomotor ladder to Complex overt response and Adaptation. P5 moves a line across two files with no wasted action. For P6, `bin/run-psychomotor.py` injects one failed write, and the task must still complete. `bin/check-psychomotor.py` grades both, per the plan of 2026-11-05.
 
 ## [0.8.1] - 2026-11-05
