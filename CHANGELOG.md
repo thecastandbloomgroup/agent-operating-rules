@@ -11,6 +11,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.8.2] - 2026-11-05
+
 ### Fixed
 
 - `bin/tool-sandbox.py` refuses a tool call with an empty path as an error, not a violation. An empty path names no file, so it cannot leave the sandbox. Two runs had failed a Gemini unit on that call. Also, `bin/check-psychomotor.py` ignores the empty-path violations of old transcripts, so the four-sample run now scores Guided response at 24 of 24.
@@ -220,4 +222,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.7.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.6.0...v0.7.0
 [0.8.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.7.0...v0.8.0
 [0.8.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.0...v0.8.1
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.1...main
+[0.8.2]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.1...v0.8.2
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.2...main
