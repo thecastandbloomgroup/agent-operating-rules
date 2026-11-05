@@ -1,0 +1,1 @@
+{"date": "2026-11-05", "harness": "claude-code", "model": "claude-fable-5", "rules_version": "0.8", "breaks": [{"rule": "4.1.1", "note": "three long sentences in a results write-up, found by the checker before commit"}]}

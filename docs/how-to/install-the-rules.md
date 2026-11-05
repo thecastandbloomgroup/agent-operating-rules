@@ -29,7 +29,7 @@ The file names above come from the docs of each product on 2026-11-05. Check the
 
 ## This repository
 
-This repository installs the rules for Claude Code through `CLAUDE.md`, as a pointer. So every session that changes the rules also runs under them, and a rule that hurts the work shows up here first. The README notes that no harness result existed before this install, so treat early sessions as the first trial.
+This repository installs the rules for Claude Code through `CLAUDE.md`, as a pointer. So every session that changes the rules also runs under them, and a rule that hurts the work shows up here first. The README notes that no harness result existed before this install, so treat early sessions as the first trial. The [memory page](../explanation/memory.md) says where each type of memory lives, and the rules file holds none.
 
 ## Caveats
 
