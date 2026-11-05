@@ -1417,3 +1417,14 @@ class PsychomotorUpper(unittest.TestCase):
         self.assertEqual(transcript["steps"][0]["output"], RUN_PSY.FAULT_TEXT)
         target = self.run_dir / "sandbox" / slug / "P6-s1" / "notes/update.md"
         self.assertEqual(target.read_text(), "A short clean line.\n")
+
+
+class RunPsychomotorIncremental(unittest.TestCase):
+    def test_calls_csv_exists_before_the_run_ends(self):
+        source = (BIN / "run-psychomotor.py").read_text()
+        # The header is written before the pool starts, and each unit flushes.
+        self.assertLess(
+            source.index("writer.writeheader()"),
+            source.index("in as_completed(futures)"),
+        )
+        self.assertIn("calls_file.flush()", source)

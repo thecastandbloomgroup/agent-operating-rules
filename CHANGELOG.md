@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Fixed
+
+- `bin/run-psychomotor.py` writes `calls.csv` and `run.log` as each unit ends. Before, a run killed midway lost its whole bill, as the first P1 to P6 run did at 108 of 144 units.
+
 ### Added
 
 - Prompts P5 and P6 extend the psychomotor ladder to Complex overt response and Adaptation. P5 moves a line across two files with no wasted action. For P6, `bin/run-psychomotor.py` injects one failed write, and the task must still complete. `bin/check-psychomotor.py` grades both, per the plan of 2026-11-05.

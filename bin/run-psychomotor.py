@@ -262,26 +262,30 @@ def main():
         for prompt in prompts
         for sample in range(1, args.samples + 1)
     ]
-    all_calls, errors = [], []
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+    errors = []
+    # Write each unit's calls and errors as the unit ends, so a run that is
+    # killed midway keeps its bill and its failures.
+    with (
+        (run_dir / "calls.csv").open("w", newline="") as calls_file,
+        ThreadPoolExecutor(max_workers=args.workers) as pool,
+    ):
+        writer = csv.DictWriter(calls_file, fieldnames=EVAL.CALL_FIELDS)
+        writer.writeheader()
         futures = [
             pool.submit(run_unit, cfg, key, run_dir, ctx, *unit) for unit in work
         ]
         for future in as_completed(futures):
             calls, error = future.result()
-            all_calls.extend(calls)
+            writer.writerows(calls)
+            calls_file.flush()
             if error:
                 errors.append(error)
+                with (run_dir / "run.log").open("a") as log:
+                    log.write(error + "\n")
             done = sum(1 for f in futures if f.done())
             print(
                 f"{done} of {len(work)} units, {len(errors)} failures", file=sys.stderr
             )
-    with (run_dir / "calls.csv").open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=EVAL.CALL_FIELDS)
-        writer.writeheader()
-        writer.writerows(all_calls)
-    if errors:
-        (run_dir / "run.log").write_text("\n".join(sorted(errors)) + "\n")
     # A failed unit is a result too, so the run exits 0 and the log names it.
     print(f"Wrote {run_dir}. Grade with: bin/check-psychomotor.py {run_dir}")
     return 0
