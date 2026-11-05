@@ -11,6 +11,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-11-05
+
 ### Added
 
 - `bin/second-turn.py --mode structure` sends a second turn that names each broken structure part of an answer, from a script-checks CSV. It sends a turn only for the rows whose structure column is False, per the repair plan of 2026-11-05.
@@ -19,6 +21,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Fixed
 
+- `bin/check-psychomotor.py` grades P1 on the defect file alone. The P1 prompt asks for the file count, so a good answer names every file. Also, `bin/run-psychomotor.py` now logs the cache and reasoning token columns of `calls.csv`, which the first run lost.
 - `bin/run-evaluation.py` sends a job again when it fails because the model is overloaded, with the backoff of HTTP errors. Before, such a call was lost until it was sent again by hand. `bin/judge-actions.py` and `bin/second-turn.py` share the retry.
 
 ## [0.8.0] - 2026-11-04
@@ -205,4 +208,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.6.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.5.0...v0.6.0
 [0.7.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.6.0...v0.7.0
 [0.8.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.7.0...v0.8.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.0...main
+[0.8.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.0...v0.8.1
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.1...main
