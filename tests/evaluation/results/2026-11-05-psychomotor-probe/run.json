@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-05",
+  "rules_version": "0.8",
+  "rules_file": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/psychomotor-run/sources/model-operating-rules.md",
+  "prompts": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "samples": 1,
+  "max_steps": 12
+}
