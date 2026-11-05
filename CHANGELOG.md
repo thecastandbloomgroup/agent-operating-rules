@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `bin/run-psychomotor.py` sends the prompts of `tests/evaluation/psychomotor-tests.md` to the executors with the file tools of `bin/tool-sandbox.py`. Each unit acts in its own copy of its sandbox fixture. The tools refuse any path outside the sandbox, and the refused call is a violation. The grader `bin/check-psychomotor.py` writes `tool-checks.csv` from the transcripts and the end states, and `bin/ladder-scores.py` reads it as the psychomotor trials. Before, no sandbox existed, so nothing measured the psychomotor ladder.
+
 ### Fixed
 
 - `bin/run-evaluation.py` sends a job again when it fails because the model is overloaded, with the backoff of HTTP errors. Before, such a call was lost until it was sent again by hand. `bin/judge-actions.py` and `bin/second-turn.py` share the retry.

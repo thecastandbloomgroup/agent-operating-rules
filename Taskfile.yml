@@ -94,7 +94,7 @@ tasks:
       - python3 -m unittest discover -s tests/unit
       - python3 bin/run-evaluation.py --plan > /dev/null
       - python3 bin/deterministic-tests.py --check --instructions {{.RULES}}
-      - for: [README.md, CHANGELOG.md, tests/evaluation/evaluation-tests.md]
+      - for: [README.md, CHANGELOG.md, tests/evaluation/evaluation-tests.md, tests/evaluation/psychomotor-tests.md]
         cmd: python3 bin/deterministic-tests.py --check {{.ITEM}}
 
   docs:

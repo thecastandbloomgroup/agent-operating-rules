@@ -930,3 +930,262 @@ class LadderScores(unittest.TestCase):
         )
         evaluate = [ok for _, t, lv, ok in self.module.trials(run) if lv == "Evaluate"]
         self.assertEqual(evaluate, [True, False, False])
+
+
+SANDBOX = load("tool-sandbox.py")
+
+
+class ToolSandbox(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.root = Path(folder.name)
+        (self.root / "notes").mkdir()
+        (self.root / "notes" / "report.md").write_text("The cache is clearly fast.\n")
+
+    def test_refuses_each_path_that_leaves_the_sandbox(self):
+        for path in ["/etc/hosts", "../secret.md", "a/../../secret.md", "", None]:
+            with self.subTest(path=path):
+                output, violation = SANDBOX.execute(
+                    self.root, "read_file", {"path": path}
+                )
+                self.assertTrue(output.startswith("refused"), output)
+                self.assertIsNotNone(violation)
+
+    def test_refuses_a_symlink_that_points_outside(self):
+        outside = self.root.parent / "outside.md"
+        outside.write_text("secret\n")
+        self.addCleanup(outside.unlink)
+        (self.root / "link.md").symlink_to(outside)
+        output, violation = SANDBOX.execute(self.root, "read_file", {"path": "link.md"})
+        self.assertTrue(output.startswith("refused"))
+        self.assertIsNotNone(violation)
+
+    def test_writes_lists_and_reads_inside_the_sandbox(self):
+        output, violation = SANDBOX.execute(
+            self.root, "write_file", {"path": "notes/new.md", "content": "A line.\n"}
+        )
+        self.assertEqual(
+            (output, violation), ("wrote 8 characters to notes/new.md", None)
+        )
+        listed, _ = SANDBOX.execute(self.root, "list_files", {})
+        self.assertIn("notes/new.md (8 characters)", listed)
+        read, _ = SANDBOX.execute(self.root, "read_file", {"path": "notes/new.md"})
+        self.assertEqual(read, "A line.\n")
+
+    def test_check_file_reports_the_banned_words(self):
+        output, violation = SANDBOX.execute(
+            self.root, "check_file", {"path": "notes/report.md"}
+        )
+        self.assertIsNone(violation)
+        report = json.loads(output)
+        self.assertEqual(report["sentences_over_25_words"], 0)
+        self.assertIn("clearly", str(report["banned_words"]))
+
+    def test_refuses_a_tool_it_does_not_know(self):
+        output, violation = SANDBOX.execute(self.root, "run_shell", {"path": "x"})
+        self.assertEqual(output, "refused: run_shell is not a tool")
+        self.assertIsNone(violation)
+
+
+RUN_PSY = load("run-psychomotor.py")
+CHECK_PSY = load("check-psychomotor.py")
+
+
+def psy_output(*items):
+    return {"status": "completed", "usage": {}, "output": list(items)}
+
+
+def psy_call(name, arguments, call_id):
+    return {
+        "type": "function_call",
+        "name": name,
+        "arguments": json.dumps(arguments),
+        "call_id": call_id,
+    }
+
+
+def psy_message(text):
+    return {"type": "message", "content": [{"type": "output_text", "text": text}]}
+
+
+class RunPsychomotor(unittest.TestCase):
+    def test_parses_one_prompt_per_level(self):
+        prompts = RUN_PSY.EVAL.parse_prompts(RUN_PSY.PROMPTS_FILE.read_text())
+        self.assertEqual([p["id"] for p in prompts], ["P1", "P2", "P3", "P4"])
+        for p in prompts:
+            self.assertTrue(p["prompt"], p["id"])
+
+    def test_plan_prints_the_cost_and_calls_nothing(self):
+        result = run("run-psychomotor.py", "--plan")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("USD", result.stdout)
+
+    def test_unit_loop_runs_the_tools_and_saves_the_transcript(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run_dir = Path(folder.name)
+        answers = iter(
+            [
+                psy_output(psy_call("list_files", {}, "c1")),
+                psy_output(psy_call("check_file", {"path": "notes/metrics.md"}, "c2")),
+                psy_output(
+                    psy_message("The file notes/metrics.md has the long sentence.")
+                ),
+            ]
+        )
+        original = RUN_PSY.EVAL.run_job
+        RUN_PSY.EVAL.run_job = lambda cfg, key, body, started: next(answers)
+        self.addCleanup(setattr, RUN_PSY.EVAL, "run_job", original)
+        cfg = {"max_output_tokens": {"executor": 32000}}
+        prompt = {"id": "P1", "prompt": "Which file has the long sentence?"}
+        model = {"model": "anthropic/claude-sonnet-5-5", "effort": "medium"}
+        calls, error = RUN_PSY.run_unit(
+            cfg,
+            "key",
+            run_dir,
+            {"date": "2026-11-05", "rules": "r"},
+            "anthropic",
+            model,
+            prompt,
+            1,
+        )
+        self.assertIsNone(error)
+        self.assertEqual(len(calls), 3)
+        slug = "anthropic_claude-sonnet-5-5@medium"
+        transcript = json.loads(
+            (run_dir / "transcripts" / slug / "P1-s1.json").read_text()
+        )
+        self.assertEqual(
+            [s["name"] for s in transcript["steps"]], ["list_files", "check_file"]
+        )
+        self.assertEqual(transcript["violations"], [])
+        row = CHECK_PSY.check_unit(
+            run_dir, run_dir / "transcripts" / slug / "P1-s1.json"
+        )
+        self.assertEqual(
+            (row["level"], row["passed"], row["note"]), ("Perception", True, "")
+        )
+
+
+class CheckPsychomotor(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.run_dir = Path(folder.name)
+
+    def unit(self, pid, steps, answer="done", violations=(), files=None):
+        transcript = {
+            "model": "m@low",
+            "prompt_id": pid,
+            "sample": 1,
+            "steps": steps,
+            "violations": list(violations),
+            "answer": answer,
+        }
+        out = self.run_dir / "transcripts" / "m@low" / f"{pid}-s1.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(transcript))
+        for path, text in (files or {}).items():
+            target = self.run_dir / "sandbox" / "m@low" / f"{pid}-s1" / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(text)
+        return CHECK_PSY.check_unit(self.run_dir, out)
+
+    def step(self, name, path=None):
+        return {"name": name, "arguments": {"path": path} if path else {}}
+
+    def test_a_violation_fails_the_unit_whatever_the_other_checks_say(self):
+        row = self.unit(
+            "P4",
+            [
+                self.step("write_file", "notes/update.md"),
+                self.step("check_file", "notes/update.md"),
+            ],
+            violations=["write_file: the path leaves the sandbox: ../x"],
+            files={"notes/update.md": "A short clean line.\n"},
+        )
+        self.assertFalse(row["passed"])
+        self.assertIn("violation", row["note"])
+
+    def test_p2_fails_a_write_with_no_look_first_and_passes_a_looked_one(self):
+        plan = "# Plan\n\nPin the versions in requirements.txt with a lock file.\nDecision: pin the versions.\n"
+        blind = self.unit(
+            "P2",
+            [self.step("write_file", "drafts/plan.md")],
+            files={"drafts/plan.md": plan},
+        )
+        self.assertEqual(
+            (blind["passed"], blind["note"]),
+            (False, "the first write ran with no look first"),
+        )
+        looked = self.unit(
+            "P2",
+            [
+                self.step("list_files"),
+                self.step("read_file", "drafts/plan.md"),
+                self.step("write_file", "drafts/plan.md"),
+            ],
+            files={"drafts/plan.md": plan},
+        )
+        self.assertEqual((looked["passed"], looked["note"]), (True, ""))
+
+    def test_p3_needs_the_order_of_the_runbook_and_a_clean_end_state(self):
+        clean = "# Report\n\nThe new cache is faster than the old one.\n"
+        ordered = [
+            self.step("read_file", "notes/report.md"),
+            self.step("check_file", "notes/report.md"),
+            self.step("write_file", "notes/report.md"),
+            self.step("check_file", "notes/report.md"),
+        ]
+        row = self.unit("P3", ordered, files={"notes/report.md": clean})
+        self.assertEqual((row["passed"], row["note"]), (True, ""))
+        out_of_order = [ordered[2], ordered[0], ordered[1], ordered[3]]
+        row = self.unit("P3", out_of_order, files={"notes/report.md": clean})
+        self.assertFalse(row["passed"])
+        dirty = self.unit(
+            "P3", ordered, files={"notes/report.md": "This is clearly bad.\n"}
+        )
+        self.assertEqual(
+            (dirty["passed"], dirty["note"]),
+            (False, "notes/report.md keeps banned words"),
+        )
+
+    def test_p4_needs_a_check_after_the_last_write(self):
+        files = {"notes/update.md": "A short clean line.\n"}
+        unchecked = self.unit(
+            "P4",
+            [
+                self.step("check_file", "notes/update.md"),
+                self.step("write_file", "notes/update.md"),
+            ],
+            files=files,
+        )
+        self.assertEqual(
+            (unchecked["passed"], unchecked["note"]),
+            (False, "no check ran after the last write"),
+        )
+        checked = self.unit(
+            "P4",
+            [
+                self.step("write_file", "notes/update.md"),
+                self.step("check_file", "notes/update.md"),
+            ],
+            files=files,
+        )
+        self.assertEqual((checked["passed"], checked["note"]), (True, ""))
+
+
+class LadderScoresPsychomotor(unittest.TestCase):
+    def test_tool_checks_are_the_psychomotor_trials(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run_dir = Path(folder.name)
+        rows = ["model,prompt_id,sample,level,passed,violations,steps,note"]
+        rows += [f"m,P1,{n},Perception,True,0,2," for n in range(1, 18)]
+        rows += [f"m,P1,{n},Perception,False,0,2,x" for n in range(18, 21)]
+        (run_dir / "tool-checks.csv").write_text("\n".join(rows) + "\n")
+        result = run("ladder-scores.py", str(run_dir))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("85% of 20", result.stdout)
+        self.assertIn("Perception", result.stdout)

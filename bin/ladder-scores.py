@@ -1,7 +1,8 @@
 """Score each model on the Bloom ladders of the evaluation design, from the checks of runs.
 Usage: bin/ladder-scores.py RUN_DIR [RUN_DIR ...]
 It reads RUN_DIR/script-checks.csv (bin/script-checks.py) and, when present,
-RUN_DIR/action-checks.csv and RUN_DIR/action-checks-argon.csv (bin/judge-actions.py).
+RUN_DIR/action-checks.csv and RUN_DIR/action-checks-argon.csv (bin/judge-actions.py)
+and RUN_DIR/tool-checks.csv (bin/check-psychomotor.py), the psychomotor trials.
 Evaluate counts the self-test lines that the script checks, except the word counts.
 Each check counts as one trial of one level (MAP). A level is mastered at 80% of 20
 trials or more. The score of a taxonomy is (L + p) / N, where L is the highest level
@@ -77,6 +78,13 @@ def trials(run_dir):
                     out.append((m, "cognitive", "Apply", yes("language")))
                     out.append((m, "cognitive", "Apply", yes("all_labelled")))
                     out.append((m, "cognitive", "Evaluate", judged_right(r)))
+    path = run_dir / "tool-checks.csv"
+    if path.exists():
+        with path.open() as f:
+            for r in csv.DictReader(f):
+                out.append(
+                    (r["model"], "psychomotor", r["level"], r["passed"] == "True")
+                )
     judged = [run_dir / n for n in ("action-checks.csv", "action-checks-argon.csv")]
     if all(p.exists() for p in judged):
         checks = collections.defaultdict(list)
