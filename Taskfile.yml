@@ -196,7 +196,16 @@ tasks:
     cmds:
       - python3 bin/marking-items.py tests/evaluation/results/{{.SHEET}}
       - pnpm --dir tools/marking install --frozen-lockfile
+      - task: marking-check
+        vars: {SHEET: '{{.SHEET}}'}
       - MARKING_SHEET={{.SHEET}} pnpm --dir tools/marking dev
+
+  marking-check:
+    desc: Click the marking page in headless Chrome against a blank copy of the sheet, and fail unless each answer reaches the file. The marking task runs it before it starts the page
+    vars:
+      SHEET: '{{.SHEET | default "2026-11-05-human-marking"}}'
+    cmds:
+      - uv run -q --with websockets python tools/marking/tests/browser-save.py {{.SHEET}}
 
   ci:
     desc: "Run every stage in the order of CI: review, build, test, docs, package"

@@ -7,6 +7,7 @@ The rules below apply to every response in this repository. So each session self
 1. Do branch work in a sibling worktree, one per branch. Do not switch branches in `main/`.
 2. Merge a merge request when its pipeline passes. Then remove its worktree and its branches.
 3. Log each break of the rules in `tests/evaluation/results/harness-log.jsonl`, one line per session.
+4. Before the user works in a tool that saves their work, run it end to end in a browser or shell. Then read the saved file back. A status on screen is not proof of a save. For the marking page, `task marking-check` does this.
 
 The [memory page](docs/explanation/memory.md) says where each type of memory lives.
 

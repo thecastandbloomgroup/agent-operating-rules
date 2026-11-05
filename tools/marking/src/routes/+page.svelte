@@ -28,6 +28,11 @@
 	let done = $derived(marks.filter((m) => m.domain && m.reason).length);
 	let complete = $derived(done === marks.length);
 
+	// Mark the page ready once its scripts run, so the browser check knows when keys work.
+	$effect(() => {
+		document.documentElement.dataset.ready = 'true';
+	});
+
 	const DOMAINS = [
 		['Clear', 'Cause and effect are known to everyone. A best practice exists. One step.'],
 		['Complicated', 'Cause and effect are knowable with analysis or expertise. The action names the analysis.'],

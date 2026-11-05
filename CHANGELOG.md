@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `task marking-check` clicks the marking page in headless Chrome against a blank copy of the sheet. It fails unless each answer reaches the file, and `task marking` runs it first. It fails on the page from before the save fix.
+
 ### Fixed
 
 - The marking page sent each answer one click late, so the last answer on a row never reached the file. The page now waits for its form to update before it sends it. It shows "Saved" only when the file holds the answers on screen.
