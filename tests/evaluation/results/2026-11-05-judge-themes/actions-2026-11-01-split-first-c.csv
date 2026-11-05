@@ -1,0 +1,3 @@
+executor,file,prompt_id,action
+openai_gpt-6.1-sol@medium,responses/openai_gpt-6.1-sol@medium/U1-s2.md,U1,1
+perplexity_kimi-k3@low,responses/perplexity_kimi-k3@low/K2-s1.md,K2,1

@@ -1,0 +1,7 @@
+executor,file,prompt_id,action
+xai_grok-4.7@low,responses/xai_grok-4.7@low/X1-s1.md,X1,1
+openai_gpt-6.1-sol@medium,responses/openai_gpt-6.1-sol@medium/K2-s1.md,K2,2
+xai_grok-4.7@low,responses/xai_grok-4.7@low/U1-s3.md,U1,4
+perplexity_kimi-k3@low,responses/perplexity_kimi-k3@low/U2-s2.md,U2,4
+xai_grok-4.7@low,responses/xai_grok-4.7@low/C2-s3.md,C2,2
+anthropic_claude-sonnet-5-5@medium,responses/anthropic_claude-sonnet-5-5@medium/U2-s3.md,U2,4

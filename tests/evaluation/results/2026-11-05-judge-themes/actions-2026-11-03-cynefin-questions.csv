@@ -1,0 +1,3 @@
+executor,file,prompt_id,action
+perplexity_kimi-k3@low,responses/perplexity_kimi-k3@low/K1-s3.md,K1,5
+google_gemini-3.8-flash@medium,responses/google_gemini-3.8-flash@medium/X2-s1.md,X2,2

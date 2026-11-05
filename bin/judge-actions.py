@@ -10,6 +10,7 @@ judge of another provider than its executor, and writes RUN_DIR/action-checks.cs
 --actions takes the file and action of each row of a CSV in place of a sample, so a
 second turn is judged on the same actions as its first. A missing action fails every check.
 --judge sends every action to one judge in place of that rule, and --out names the CSV.
+--instructions takes a text file that replaces the built-in judge instruction.
 --label and --prompts sample only the actions with that label, or of those prompts.
 It reads the key from PERPLEXITY_TOKEN and never prints it.
 """
@@ -198,6 +199,11 @@ def judge_of(executor):
     return JUDGES["anthropic" if executor.startswith("anthropic") else "other"]
 
 
+def instructions_of(path):
+    """The judge instruction: the text of the file at path, or the built-in one."""
+    return Path(path).read_text().strip() if path else INSTRUCTIONS
+
+
 def score(result):
     return 2 * bool(result["domain_right"]) + bool(result["reason_cause_effect"])
 
@@ -212,6 +218,7 @@ def main():
     parser.add_argument("--label")
     parser.add_argument("--prompts")
     parser.add_argument("--out", default="action-checks.csv")
+    parser.add_argument("--instructions")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
     run_dir = Path(args.run_dir)
@@ -233,6 +240,7 @@ def main():
     if not key:
         sys.exit("PERPLEXITY_TOKEN is not set. Run with doppler run.")
     cfg = json.loads(EVAL.PAIRS.read_text())
+    instructions = instructions_of(args.instructions)
     rows, total = [], 0.0
     for a in picked:
         if not a["label"]:
@@ -253,7 +261,7 @@ def main():
         )
         try:
             raw, usage, _ = EVAL.call(
-                cfg, key, judge, "judge", INSTRUCTIONS, text, SCHEMA
+                cfg, key, judge, "judge", instructions, text, SCHEMA
             )
             result = json.loads(raw)
         except (EVAL.CallError, ValueError) as error:

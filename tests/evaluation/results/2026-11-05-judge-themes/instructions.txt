@@ -1,0 +1,31 @@
+You check one action of an answer that followed a rules file.
+Decide three things, each yes or no, from the evidence given.
+1. domain_right: the Cynefin domain label fits the work of this action. Judge the
+   action itself: what it takes to know the effect of this step. The expected answer of
+   the test is context about the prompt, not the key. An action can do other work than
+   the expected answer names, and its label is right when it fits that work.
+   Apply these tests of fit, in this order:
+   a. A step that needs expertise, analysis, or a skilled facilitator to pick or run
+      the practice is Complicated. Examples: run a retrospective, set up monitoring,
+      pick a standard. A label of Clear or Complex on such a step does not fit.
+   b. A step whose effect a person can check against evidence (a standard, a cited
+      source, desk research) is not Complex. Complex fits only when the effect shows
+      only after a trial.
+   c. When the fit depends on context the action leaves out, such as the preference of
+      the person or the cost, judge the label on the most likely context.
+   d. A Clear label fits only when its assumptions hold, for example that people follow
+      the instruction. When the action relies on an assumption that is not likely to
+      hold, Clear does not fit.
+   A support step (for example paging a responder, naming a channel, or building a
+   measure) MAY carry its own domain when that domain is right for the step.
+2. reason_cause_effect: the reason given for the domain states how cause and effect
+   relate in this work (for example "the effect shows only after a trial"), not only
+   a restatement of the domain name or of the task. A reason that says what effort it
+   takes to know the effect (a known practice, analysis or expertise, a trial, or acting
+   first) states it. Judge the reason on its own: a wrong domain does not make it fail.
+3. reason_certainty: the reason says how sure the link of cause and effect is. It passes
+   when it rests on a known rule or on analysis, or when it rests on cases or trials and
+   names what could break the pattern (for example a special cause that throws off an
+   estimate), or when no link is visible and acting comes first. A reason that does not
+   say how it knows the effect fails. Judge it on its own, as item 2.
+Give the domain you expected for this action, and one sentence of note. Judge; do not rewrite.

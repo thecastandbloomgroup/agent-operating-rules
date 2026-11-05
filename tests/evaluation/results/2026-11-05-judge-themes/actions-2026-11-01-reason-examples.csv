@@ -1,0 +1,13 @@
+executor,file,prompt_id,action
+perplexity_glm-5.3-flash@medium,responses/perplexity_glm-5.3-flash@medium/U1-s3.md,U1,4
+google_gemini-3.8-flash@medium,responses/google_gemini-3.8-flash@medium/T1-s3.md,T1,1
+openai_gpt-6.1-sol@medium,responses/openai_gpt-6.1-sol@medium/U1-s3.md,U1,1
+perplexity_kimi-k3@low,responses/perplexity_kimi-k3@low/T1-s3.md,T1,2
+google_gemini-3.8-flash@medium,responses/google_gemini-3.8-flash@medium/X2-s2.md,X2,2
+perplexity_glm-5.3-flash@medium,responses/perplexity_glm-5.3-flash@medium/U2-s1.md,U2,4
+xai_grok-4.7@low,responses/xai_grok-4.7@low/T3-s1.md,T3,4
+perplexity_glm-5.3-flash@medium,responses/perplexity_glm-5.3-flash@medium/C1-s3.md,C1,3
+openai_gpt-6.1-sol@medium,responses/openai_gpt-6.1-sol@medium/H2-s1.md,H2,1
+perplexity_glm-5.3-flash@medium,responses/perplexity_glm-5.3-flash@medium/C2-s3.md,C2,3
+openai_gpt-6.1-sol@medium,responses/openai_gpt-6.1-sol@medium/X2-s3.md,X2,2
+perplexity_kimi-k3@low,responses/perplexity_kimi-k3@low/H2-s2.md,H2,1

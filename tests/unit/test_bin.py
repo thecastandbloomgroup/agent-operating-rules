@@ -795,6 +795,15 @@ class JudgeActions(unittest.TestCase):
         self.assertIn("reason_certainty", self.module.FIELDS)
         self.assertFalse(self.module.missing({"action": 1})["reason_certainty"])
 
+    def test_an_instruction_file_replaces_the_built_in_instruction(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        path = Path(folder.name) / "instructions.txt"
+        path.write_text("Judge the fit of the label to the work.\n")
+        of = self.module.instructions_of
+        self.assertEqual(of(None), self.module.INSTRUCTIONS)
+        self.assertEqual(of(path), "Judge the fit of the label to the work.")
+
 
 class SecondTurn(unittest.TestCase):
     def setUp(self):
