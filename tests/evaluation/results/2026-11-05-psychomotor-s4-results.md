@@ -68,7 +68,7 @@ E9. The cost was 3.42 USD against the estimate of 9.96. So the estimate stays ab
 ## Limits
 
 - Four trials per level per model cannot give a per-model mastery call. Mastery here is pooled over the six executors.
-- The Set prompt names no folder, by design. A stricter reading of the task could call a root-level plan.md a fair answer, but the fixture holds one plan.md, and the check follows the tests page.
+- The Set prompt names no folder, by design. A reader can call a root-level plan.md a fair answer. However, the fixture holds one plan.md, and the check follows the tests page.
 - The levels above Mechanism are still unmeasured.
 
 ### References
