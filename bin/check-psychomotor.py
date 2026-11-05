@@ -31,7 +31,6 @@ LEVELS = {"P1": "Perception", "P2": "Set", "P3": "Guided response", "P4": "Mecha
 # The fixture facts that the checks of each prompt name. A change to a fixture
 # of tests/evaluation/sandbox/ MUST change these with it.
 P1_DEFECT = "metrics.md"
-P1_CLEAN = ("summary.md", "todo.md")
 P2_FILE = "drafts/plan.md"
 P2_LINE = "Decision: pin the versions."
 P2_KEPT = "Pin the versions in requirements.txt"
@@ -63,14 +62,15 @@ def clean(sandbox_dir, path):
 
 
 def check_p1(steps, answer, sandbox_dir):
+    # The prompt asks how many files there are, so a good answer names them
+    # all. The check asks only that the defect lands on the right file.
     if calls(steps, "write_file"):
         return "a write ran"
     if not calls(steps, "list_files"):
         return "no list_files call"
     if P1_DEFECT not in answer:
         return f"the answer does not name {P1_DEFECT}"
-    named_clean = [f for f in P1_CLEAN if f in answer and "metrics" not in f]
-    return None if not named_clean else f"the answer names {named_clean[0]} too"
+    return None
 
 
 def check_p2(steps, answer, sandbox_dir):

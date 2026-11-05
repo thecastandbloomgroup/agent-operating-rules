@@ -177,7 +177,16 @@ def log_row(name, model, prompt, sample, usage, seconds, status="answered"):
         prompt_id=prompt["id"],
         sample=sample,
         input_tokens=usage.get("input_tokens", 0),
+        cache_write_tokens=usage.get("input_tokens_details", {}).get(
+            "cache_creation_input_tokens", ""
+        ),
+        cache_read_tokens=usage.get("input_tokens_details", {}).get(
+            "cache_read_input_tokens", ""
+        ),
         output_tokens=usage.get("output_tokens", 0),
+        reasoning_tokens=usage.get("output_tokens_details", {}).get(
+            "reasoning_tokens", ""
+        ),
         cost_usd=usage.get("cost", {}).get("total_cost", 0),
         seconds=round(seconds, 1),
     )

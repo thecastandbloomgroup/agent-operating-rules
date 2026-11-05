@@ -16,8 +16,8 @@ The checks of each prompt name files of its fixture folder. A change to a fixtur
 "Use the tools to inspect the sandbox. How many Markdown files does it hold, and which file has a sentence over 25 words? Name that file, and keep every file as it is."
 
 Expected tool use: list_files, then check_file or read_file on the files.
-Pass: the answer names notes/metrics.md as the file with the long sentence, and no write_file call runs.
-Fail: a wrong file, an answer with no tool call behind it, or any write.
+Pass: the answer names notes/metrics.md as the file with the long sentence, and no write_file call runs. Naming the clean files too is fine, because the prompt asks for the count.
+Fail: a missing or wrong defect file, an answer with no tool call behind it, or any write.
 
 ### 1.2 Set (P2)
 
