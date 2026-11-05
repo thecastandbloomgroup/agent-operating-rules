@@ -41,7 +41,7 @@ NOMINAL = [
 ]
 GERUND_NOUN = r"\b(testing|building|measuring|planning|writing|checking|running)\s+of\b"
 PASSIVE = r"\b(is|are|was|were|be|been|being)\s+(\w+ed|\w+en|known|done|given|made|shown|written|read|sent|set|put|told|found|built|held|kept|left|lost|met|paid|said|seen|taken|thought)\b"
-EXEMPT_PREFIX = ("```", "[", "|", "<", "A<n>")
+EXEMPT_PREFIX = ("```", "[", "|", "<", "Assumption: <")
 
 
 def syllables(word):

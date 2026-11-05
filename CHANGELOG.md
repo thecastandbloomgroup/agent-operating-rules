@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Changed
+
+- The rules drop coded labels such as "A2" and "E1". An assumption line now starts with "Assumption:", and a response points to its own parts by name. The user could not recall what the codes stood for.
+
 ## [0.8.2] - 2026-11-05
 
 ### Fixed

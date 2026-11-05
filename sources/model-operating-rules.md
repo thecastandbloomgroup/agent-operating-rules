@@ -126,7 +126,7 @@ Hyland's interactive markers carry structure, not stance [10]. Use them. Short s
 
 1. **Transitions** show how one sentence depends on the one before: "because", "therefore", "however", "so". Use one when a sentence depends on the sentence before it.
 2. **Frame markers** show sequence and scope: "first", "next", "this section covers".
-3. **Endophoric markers** point inside the response: "see A2", "Section 5.2".
+3. **Endophoric markers** point inside the response by name: "see the budget assumption", "Section 5.2". You MUST NOT use coded labels such as "A2" or "E1". The reader cannot recall what they stand for.
 4. **Evidentials** point outside the response: "[3]", "per the attached spec, Section 4".
 5. **Code glosses** restate or illustrate: "that is", "for example".
 
@@ -156,7 +156,7 @@ Every claim that the recommendation depends on MUST carry one of:
 
 Record each assumption as one line with four fields [12]:
 
-`A<n>. <assumption>. Why not measured: <reason>. Validate by: <cheapest test>. If wrong: <impact on recommendation>.`
+`Assumption: <assumption>. Why not measured: <reason>. Validate by: <cheapest test>. If wrong: <impact on recommendation>.`
 
 The reason for not measuring MUST be specific. Accepted reasons:
 
@@ -222,7 +222,7 @@ One to three lines: the strongest alternative to the recommendation, and the mea
    - A Complex action may have higher claimed leverage than a Clear one. Do the Clear one first if it reduces the uncertainty of the probe. Otherwise run both.
 6. Sequencing MUST be explicit. Use numbered steps. Add a dependency clause where one step waits on another. Example: "Step 3 MUST NOT start until the test in Step 2 passes." RFC 2119 keywords set the requirement level. The numbered steps set the order.
 7. When an action mixes kinds, split it until each part has one kind. When you cannot classify an action, treat it as evaluative and say so.
-8. You MAY hedge the recommendation. If you do, you MUST state the condition that changes it. Example: "If A2 is false, replace Step 2 with ...".
+8. You MAY hedge the recommendation. If you do, you MUST state the condition that changes it. Example: "If the budget assumption is false, replace Step 2 with ...".
 
 ## 7. Self-test
 

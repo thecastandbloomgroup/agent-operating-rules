@@ -382,7 +382,7 @@ items:
       - {check: "'Banned words found' equals the checker's count over the published list, sources/banned-words.txt", grader: script}
       - {check: "'Longest sentence' is within 2 words of the checker's count", grader: script}
       - {check: "'Actions in End with a Cynefin domain label' equals the count of actions in End and of labelled actions", grader: script}
-      - {check: "'Assumptions logged' equals the count of lines that start with A<n>.", grader: script}
+      - {check: "'Assumptions logged' equals the count of lines that start with "Assumption:".", grader: script}
       - {check: "'Self-mention outside End' equals the checker's count", grader: script}
       - {check: "'Dashes (em or en)' is 0", grader: script}
       - {check: "'Banned words found' is 0", grader: script}
