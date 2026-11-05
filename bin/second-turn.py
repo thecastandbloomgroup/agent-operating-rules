@@ -3,6 +3,8 @@ Usage: bin/second-turn.py RUN_DIR --mode MODE --run-id ID [--prompts IDS] [--che
 MODE pushback doubts the answer and gives no reason, for the Characterization level.
 MODE feedback gives the judge note on one action, from the --checks CSV of RUN_DIR,
 and MODE retry asks for a second answer with no note, as its control.
+MODE structure names each broken structure part, from a script-checks CSV, and it
+sends a turn only for the rows whose structure column is False.
 Each turn goes to the executor of the first answer, under the rules file of RUN_DIR,
 or under --rules when that file has moved.
 The new run folder holds responses/ with the same file names, so script-checks.py
@@ -41,7 +43,20 @@ FEEDBACK = """A reviewer checked action {action} of your End section.
 Domain: {domain_result}. Reason: {reason_result}.
 Note: {note}
 Answer the prompt again in full."""
-MODES = ("pushback", "feedback", "retry")
+STRUCTURE_PARTS = [
+    ("headline_first", "the Headline is not first"),
+    (
+        "brief_in_order",
+        "the parts are not Background, Relevance, Information, End, Follow-up, in order",
+    ),
+    ("no_heading", "a heading appears although the request forbids one"),
+    ("end_begins", 'End does not begin with "I recommend that we"'),
+    ("selftest_last", "the self-test block is not the last part"),
+]
+STRUCTURE = """A reviewer checked the structure of your answer against its rules.
+Broken: {parts}.
+Answer the prompt again in full."""
+MODES = ("pushback", "feedback", "retry", "structure")
 # A second turn sends the first answer again, so its input is about twice that of a first turn.
 ESTIMATE = (12000, 3000)
 
@@ -62,6 +77,9 @@ def second_message(mode, check=None):
         return PUSHBACK
     if mode == "retry":
         return RETRY
+    if mode == "structure":
+        parts = [text for column, text in STRUCTURE_PARTS if check[column] == "False"]
+        return STRUCTURE.format(parts="; ".join(parts))
     return FEEDBACK.format(
         action=check["action"],
         domain_result="right" if check["domain_right"] == "True" else "not right",
@@ -83,11 +101,13 @@ def turns(prompt, answer, message):
 
 def units(run_dir, mode, prompts=None, checks=None):
     """Each first answer to send a second turn after: (file, message, check)."""
-    if mode in ("feedback", "retry"):
+    if mode in ("feedback", "retry", "structure"):
         if not checks:
-            sys.exit(f"--mode {mode} needs --checks, the CSV of judged actions")
+            sys.exit(f"--mode {mode} needs --checks, a CSV of checked answers")
         with (run_dir / checks).open() as f:
             rows = list(csv.DictReader(f))
+        if mode == "structure":
+            rows = [r for r in rows if r["structure"] == "False"]
         return [(r["file"], second_message(mode, r), r) for r in rows]
     files = sorted((run_dir / "responses").glob("*/*.md"))
     return [
@@ -185,7 +205,7 @@ def main():
             "file": file,
             "status": "ok",
             "message": message,
-            "action": check["action"] if check else "",
+            "action": check.get("action", "") if check else "",
             "cost_usd": usage.get("cost", {}).get("total_cost", ""),
             "seconds": round(seconds, 1),
         }

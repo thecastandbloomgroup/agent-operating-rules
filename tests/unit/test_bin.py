@@ -1249,3 +1249,42 @@ class InstallScript(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         text = (self.dest / ".cursor/rules/operating-rules.mdc").read_text()
         self.assertTrue(text.startswith("---\nalwaysApply: true\n---"))
+
+
+SECOND = load("second-turn.py")
+
+
+class SecondTurnStructure(unittest.TestCase):
+    def row(self, **broken):
+        columns = [c for c, _ in SECOND.STRUCTURE_PARTS]
+        row = {c: "True" for c in columns}
+        row.update({"file": "responses/m@low/A3-s1.md", "structure": "False"})
+        row.update(broken)
+        return row
+
+    def test_the_message_names_only_the_broken_parts(self):
+        message = SECOND.second_message(
+            "structure", self.row(no_heading="False", selftest_last="False")
+        )
+        self.assertIn("a heading appears", message)
+        self.assertIn("self-test block is not the last part", message)
+        self.assertNotIn("Headline", message)
+
+    def test_structure_units_keep_only_the_broken_rows(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run = Path(folder.name)
+        columns = ["file", "structure"] + [c for c, _ in SECOND.STRUCTURE_PARTS]
+        rows = [
+            "responses/m@low/A3-s1.md,False,True,True,False,True,True",
+            "responses/m@low/A1-s1.md,True,True,True,True,True,True",
+        ]
+        (run / "checks.csv").write_text(
+            ",".join(columns) + "\n" + "\n".join(rows) + "\n"
+        )
+        work = SECOND.units(run, "structure", checks="checks.csv")
+        self.assertEqual([w[0] for w in work], ["responses/m@low/A3-s1.md"])
+        self.assertIn("a heading appears", work[0][1])
+        retry = SECOND.units(run, "retry", checks="checks.csv")
+        self.assertEqual(len(retry), 2)
+        self.assertEqual(retry[0][1], SECOND.RETRY)
