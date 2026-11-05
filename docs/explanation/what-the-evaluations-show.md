@@ -16,7 +16,7 @@ In short, the rules shape the form of the answers. They move the quality of judg
 
 - **Wording does not lift judgment.** The domain was right in about 60% to 65% of actions. Three probes did not move it: ordered questions, example reasons, and a split before the label ([Cynefin questions results](../../tests/evaluation/results/2026-11-03-cynefin-questions-results.md), [reason examples results](../../tests/evaluation/results/2026-11-01-reason-examples-results.md), [split first results](../../tests/evaluation/results/2026-11-01-split-first-results.md)). The models pick a familiar action first, then the domain that fits it ([assessment](../../tests/evaluation/results/2026-10-30-assessment.md)).
 - **A model cannot count its own words.** Self-test counts were right in 37 of 107 answers. The models reported 0 long sentences in 105 of 107 answers, whatever the real count ([factored self-test results](../../tests/evaluation/results/2026-11-03-factored-selftest-results.md)). With the word counts in, Evaluate was 38% ([reason rejudge results](../../tests/evaluation/results/2026-11-03-reason-rejudge-results.md)). Without them, the other self-test lines are right in 87% of answers. So the weak part is the count, not the self-check as a whole.
-- **A conflicting request breaks rules that it does not touch.** When a request conflicted with one rule, only 8 of 18 answers kept the full structure. A line in Section 0 lifted this to 12 of 18, under the pass mark of 14 ([affective baseline](../../tests/evaluation/results/2026-11-01-affective-baseline.md), [second turn results](../../tests/evaluation/results/2026-11-03-second-turn-results.md)).
+- **A conflicting request breaks rules that it does not touch.** When a request conflicted with one rule, only 8 of 18 answers kept the full structure. A line in Section 0 lifted this to 12 of 18, under the pass mark of 14 ([affective baseline](../../tests/evaluation/results/2026-11-01-affective-baseline.md), [second turn results](../../tests/evaluation/results/2026-11-03-second-turn-results.md)). However, a second turn that names the dropped parts repairs 10 of 12 such answers after the fact ([repair results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md)).
 - **Each rule has a cost.** The reason form made answers longer: answers with no long sentence fell from 35 to 29 of 72. The interval includes 0, so the drop can be noise. A limit of 20 words on each reason did not bring them back ([short reason results](../../tests/evaluation/results/2026-11-04-short-reason-results.md)). Published evals agree: each added rule lowers compliance with all the rules ([rule changes research](../../tests/evaluation/results/2026-11-03-rule-changes-research.md)).
 
 ## Where each model sits on the Bloom ladders
@@ -55,7 +55,16 @@ No run measures Characterization.
 
 ### Psychomotor
 
-The first psychomotor run came on 2026-11-05, with the file tools of the sandbox suite and one sample per prompt ([probe results](../../tests/evaluation/results/2026-11-05-psychomotor-probe-results.md)). Pooled over the six executors: Perception 6 of 6, Set 5 of 6, Guided response 6 of 6, and Mechanism 6 of 6. Six trials per level cannot show mastery, which needs 20. The levels above Mechanism have no prompts yet.
+Two runs of 2026-11-05 measure the ladder with the file tools of the sandbox suite, at one and then four samples ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)). The table pools the four-sample run over the six executors, 24 trials per level.
+
+| Level           | Passed   | Mastered at 80% of 20 or more |
+| --------------- | -------- | ----------------------------- |
+| Perception      | 24 of 24 | yes                           |
+| Set             | 17 of 24 | no, 71%                       |
+| Guided response | 23 of 24 | yes                           |
+| Mechanism       | 24 of 24 | yes                           |
+
+Set is the level that splits the models, and every Set failure is a write with no look first. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed 16 of 16 each, while Gemini, Grok, and Kimi dropped the Set trials. Prompts for the next two levels are planned with marks ([upper plan](../../tests/evaluation/results/2026-11-05-psychomotor-upper-plan.md)).
 
 ### How to read the tables
 
@@ -76,7 +85,7 @@ The first psychomotor run came on 2026-11-05, with the file tools of the sandbox
 
 ## Tokens and turns
 
-This section assesses the cost of the changes of 2026-11-05 in tokens and in turns: the psychomotor tool suite and the rule-sequence probe. The token counts use one token per four characters, the method and caveat of the [cost page](cost.md). The runs of the two probes replace these estimates with the real columns of `calls.csv`. That file logs input, cache write, cache read, and output tokens per call. The first psychomotor run sent 701,181 input tokens and 27,465 output tokens over 115 calls, for 0.94 USD. Its cache columns came back empty because of a logging defect, fixed for later runs.
+This section assesses the cost of the changes of 2026-11-05 in tokens and in turns: the psychomotor tool suite and the rule-sequence probe. The token counts use one token per four characters, the method and caveat of the [cost page](cost.md). The runs of the two probes replace these estimates with the real columns of `calls.csv`. That file logs input, cache write, cache read, and output tokens per call. The four-sample run sent 2,931,985 input tokens over 478 calls for 3.42 USD, and the cache served 54% of that input. So the loop's growing-prefix shape pays off as the cache section expects.
 
 ### Input tokens
 
@@ -104,11 +113,13 @@ The aim of both changes is fewer user turns for the same outcome, paid for with 
 - The precedence line at the end of the rules targets the follow-up turn that restores dropped rules. At rules 0.6, a conflicting request left the full structure in 8 of 18 answers, so the other 10 needed a correction turn ([affective baseline](../../tests/evaluation/results/2026-11-01-affective-baseline.md)).
 - The trade is explicit: one user turn now holds up to 12 API steps. The [learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md) ranks a human turn as the most expensive feedback, so the trade is sound when the tokens stay cheap. Each run reports its token columns, so the trade stays measured.
 
-The psychomotor probe has run: every provider took the tools, and 23 of 24 units passed. Every P4 answer checked its file after its last write ([probe results](../../tests/evaluation/results/2026-11-05-psychomotor-probe-results.md)). The turn claims themselves are still unmeasured, because no arm compares user turns with and without the tools.
+Every provider took the tools, and 47 of 48 pooled units passed Guided response and Mechanism across the two runs. Every passing P4 answer checked its file after its last write ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)).
+
+The repair claim is now measured on one side. A turn that names the broken parts repaired 10 of 12 answers, against 3 of 12 for a plain retry ([repair results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md)). So a broken answer costs one extra call instead of a user correction turn. No arm yet compares whole sessions with and without the tools.
 
 ## Limits
 
-- **Few tool trials.** One psychomotor run exists, at one sample: 6 trials per level, against the 20 that mastery needs. The levels above Mechanism, where an agent plans and recovers on its own, have no prompts yet ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
+- **Pooled tool trials.** The ladder has 24 pooled trials per level, but each model has 4, under the 20 that a per-model mastery call needs. The levels above Mechanism, where an agent plans and recovers on its own, run their first probe next ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
 - **Small samples.** Most probes have 40 to 108 items, so some intervals are wide.
 - **Mostly one turn.** Only two small pilots test a second turn.
 - **Mid-tier executors.** Most runs used mid-tier models at low or medium effort.
