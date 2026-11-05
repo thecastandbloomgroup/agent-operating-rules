@@ -70,6 +70,38 @@ No run measures Characterization. No run measures any level of the psychomotor l
 5. **Replace rule text, do not add to it.** A new rule lowers compliance with the others.
 6. **Check the order of precedence with a tool.** An agent that takes overrides from a user drops rules that the override did not name.
 
+## Tokens and turns
+
+This section assesses the cost of the changes of 2026-11-05 in tokens and in turns: the psychomotor tool suite and the rule-sequence probe. The token counts use one token per four characters, the method and caveat of the [cost page](cost.md). The runs of the two probes will replace these estimates with the real columns of `calls.csv`. That file logs input, cache write, cache read, and output tokens per call.
+
+### Input tokens
+
+- The rules file is about 5,000 tokens by this count, and every request sends it. The rule-sequence variant adds about 36 tokens, under 1% ([plan](../../tests/evaluation/results/2026-11-05-rule-sequence-plan.md)).
+- The tool suite adds about 274 tokens of tool schemas to each step of a unit. A unit of n steps also sends the rules n times, once per step, plus the growing transcript. So a four-step unit sends about four times the input of a one-step answer.
+
+### Cache
+
+- The rules go in the instructions field, a stable prefix, so a provider with prompt caching serves the repeats from cache. Caching cuts the price of the resends. It does not cut their place in the context window ([cost page](cost.md)).
+- Inside a tool loop, each step extends the prior input instead of changing it. So the prefix of step n is the whole input of step n minus one, the shape that caching rewards most.
+- The checklist line of the sequence variant asks for a check of one line at a time. On a reasoning model, that check spends reasoning tokens, which count toward the output limit ([evaluation reference](../reference/evaluation.md)). The run measures this in `calls.csv`.
+
+### Output tokens
+
+- The self-test block is about 180 output tokens per answer, and the rules that define it are about 216 input tokens. Two of its lines are word counts that the models get wrong in 105 of 107 answers ([factored self-test results](../../tests/evaluation/results/2026-11-03-factored-selftest-results.md)). A later change can move those lines to the checker and save that output.
+- A tool call costs little output: a name and short arguments. The exception is write_file, which sends the whole new file as its argument. The fixtures are small, under 900 characters in all, so a full rewrite stays under about 250 output tokens.
+- The reason form of rules 0.8 made answers longer. Answers with no long sentence fell from 35 to 29 of 72, and the interval includes 0 ([short reason results](../../tests/evaluation/results/2026-11-04-short-reason-results.md)).
+
+### Turns
+
+The aim of both changes is fewer user turns for the same outcome, paid for with more tokens inside one turn.
+
+- A model that cannot count its own words needs a user turn to catch each length defect. The check_file tool puts the counter inside the first turn, so the model can test its file before it finishes. P4 passes only when a check ran after the last write ([psychomotor tests](../../tests/evaluation/psychomotor-tests.md)).
+- Feedback lifts an answer only when it names the failed part and comes from outside the model. A plain retry often makes it worse ([second turn results](../../tests/evaluation/results/2026-11-03-second-turn-results.md)). A tool result is exactly that feedback, and it arrives without a user turn.
+- The precedence line at the end of the rules targets the follow-up turn that restores dropped rules. At rules 0.6, a conflicting request left the full structure in 8 of 18 answers, so the other 10 needed a correction turn ([affective baseline](../../tests/evaluation/results/2026-11-01-affective-baseline.md)).
+- The trade is explicit: one user turn now holds up to 12 API steps. The [learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md) ranks a human turn as the most expensive feedback, so the trade is sound when the tokens stay cheap. Each run reports its token columns, so the trade stays measured.
+
+No run has measured any of this yet. The two funded probes report first, against the pass marks set before them.
+
 ## Limits
 
 - **No tools.** The harness gives the models no tools. So nothing measures the psychomotor domain, where an agent acts and damage happens ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
