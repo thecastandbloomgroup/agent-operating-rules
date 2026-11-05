@@ -201,7 +201,9 @@ def check_unit(run_dir, transcript_file):
     elif "answer" not in t:
         note = "no answer"
     else:
-        note = CHECKS[t["prompt_id"]](t["steps"], t["answer"], sandbox_dir)
+        # A second turn is graded on the earlier steps and its own, as one history.
+        steps = t.get("prior_steps", []) + t["steps"]
+        note = CHECKS[t["prompt_id"]](steps, t["answer"], sandbox_dir)
     return {
         "model": t["model"],
         "prompt_id": t["prompt_id"],

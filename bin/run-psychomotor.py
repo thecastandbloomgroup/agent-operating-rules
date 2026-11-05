@@ -104,17 +104,24 @@ def answer_text(output):
     )
 
 
-def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample):
-    """One prompt in one fresh sandbox copy. Return (calls, error or None)."""
+def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample, seed=None):
+    """One prompt in one fresh sandbox copy. Return (calls, error or None).
+    A seed starts the unit from an earlier one, for a second turn: "sandbox" is
+    the folder to copy, "input" the conversation so far, "prior_steps" the steps
+    of the earlier unit, and "max_steps" the cap of the new turn."""
+    seed = seed or {}
     slug = EVAL.slug(model)
     stem = f"{prompt['id']}-s{sample}"
     sandbox_dir = run_dir / "sandbox" / slug / stem
-    shutil.copytree(FIXTURES / prompt["id"], sandbox_dir)
+    shutil.copytree(seed.get("sandbox", FIXTURES / prompt["id"]), sandbox_dir)
     transcript = {"model": slug, "prompt_id": prompt["id"], "sample": sample}
+    if seed:
+        transcript["prior_steps"] = seed.get("prior_steps", [])
     steps, calls, error = [], [], None
-    fault = FAULTS.get(prompt["id"])
-    input_items = [{"role": "user", "content": prompt["prompt"]}]
-    for _ in range(MAX_STEPS):
+    fault = None if seed else FAULTS.get(prompt["id"])
+    input_items = seed.get("input") or [{"role": "user", "content": prompt["prompt"]}]
+    cap = seed.get("max_steps", MAX_STEPS)
+    for _ in range(cap):
         try:
             data, usage, seconds = step(cfg, key, model, ctx["rules"], input_items)
         except EVAL.CallError as exc:
@@ -157,7 +164,7 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample):
                 }
             )
     else:
-        error = f"{stem} {model['model']}: no answer after {MAX_STEPS} steps"
+        error = f"{stem} {model['model']}: no answer after {cap} steps"
     transcript["steps"] = steps
     transcript["violations"] = [s["violation"] for s in steps if s["violation"]]
     if error:

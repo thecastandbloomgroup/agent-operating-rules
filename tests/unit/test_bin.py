@@ -1481,3 +1481,85 @@ class CheckPsychomotorEmptyPath(unittest.TestCase):
             ),
             [],
         )
+
+
+REPAIR = load("repair-psychomotor.py")
+
+
+class RepairPsychomotor(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.run_dir = Path(folder.name)
+        head = "model,prompt_id,sample,level,passed,violations,steps,note\n"
+        (self.run_dir / "tool-checks.csv").write_text(
+            head
+            + "m@low,P5,1,Complex overt response,False,0,4,no check ran after the last write\n"
+            + "m@low,P5,2,Complex overt response,False,0,12,P5-s2 m: no answer after 12 steps\n"
+            + "m@low,P5,3,Complex overt response,True,0,5,\n"
+        )
+        transcript = {
+            "model": "m@low",
+            "prompt_id": "P5",
+            "sample": 1,
+            "answer": "Moved.",
+            "steps": [
+                {"name": "write_file", "arguments": {"path": "notes/decisions.md"}}
+            ],
+        }
+        out = self.run_dir / "transcripts" / "m@low" / "P5-s1.json"
+        out.parent.mkdir(parents=True)
+        out.write_text(json.dumps(transcript))
+
+    def test_units_keep_only_the_failures_a_turn_can_name(self):
+        self.assertEqual([r["sample"] for r in REPAIR.units(self.run_dir)], ["1"])
+
+    def test_the_seed_carries_the_answer_the_message_and_the_steps(self):
+        row = REPAIR.units(self.run_dir)[0]
+        prompts = {"P5": {"prompt": "Move the line."}}
+        named = REPAIR.seed(self.run_dir, row, "named", prompts)
+        self.assertEqual(
+            [m["role"] for m in named["input"]], ["user", "assistant", "user"]
+        )
+        self.assertIn("No check_file call ran", named["input"][2]["content"])
+        self.assertEqual(named["prior_steps"][0]["name"], "write_file")
+        retry = REPAIR.seed(self.run_dir, row, "retry", prompts)
+        self.assertEqual(retry["input"][2]["content"], REPAIR.RETRY_TEXT)
+
+    def test_the_grader_reads_the_earlier_steps_and_the_new_ones_as_one_history(self):
+        files = {
+            "drafts/plan.md": "# Plan\n\nPin the versions in requirements.txt with a lock file.\n",
+            "notes/decisions.md": "Decision: pin the versions.\n",
+        }
+        for path, text in files.items():
+            target = self.run_dir / "sandbox" / "m@low" / "P5-s1" / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(text)
+        out = self.run_dir / "transcripts" / "m@low" / "P5-s1.json"
+        out.write_text(
+            json.dumps(
+                {
+                    "model": "m@low",
+                    "prompt_id": "P5",
+                    "sample": 1,
+                    "answer": "Checked.",
+                    "violations": [],
+                    "prior_steps": [
+                        {
+                            "name": "write_file",
+                            "arguments": {"path": "notes/decisions.md"},
+                        },
+                        {"name": "write_file", "arguments": {"path": "drafts/plan.md"}},
+                    ],
+                    "steps": [
+                        {
+                            "name": "check_file",
+                            "arguments": {"path": "notes/decisions.md"},
+                        },
+                        {"name": "check_file", "arguments": {"path": "drafts/plan.md"}},
+                    ],
+                }
+            )
+        )
+        row = CHECK_PSY.check_unit(self.run_dir, out)
+        self.assertEqual((row["passed"], row["note"]), (True, ""))
