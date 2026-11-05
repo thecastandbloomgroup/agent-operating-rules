@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- The judge trust results compare both judges with a blind marking of 24 actions by the user. Neither judge matches the user on domain fit: kappa -0.20 and -0.40. The evaluations page now calls the domain rates the judges' view.
 - `task marking-check` clicks the marking page in headless Chrome against a blank copy of the sheet. It fails unless each answer reaches the file, and `task marking` runs it first. It fails on the page from before the save fix.
 
 ### Fixed

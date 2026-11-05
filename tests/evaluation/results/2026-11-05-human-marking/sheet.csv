@@ -1,25 +1,25 @@
 run,file,action,domain_right_human,reason_cause_effect_human,note
-2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/U1-s3.md,4,,,
-2026-11-01-split-first-c,responses/openai_gpt-6.1-sol@medium/U1-s2.md,1,,,
-2026-11-01-gherkin-lines,responses/xai_grok-4.7@low/X1-s1.md,1,,,
-2026-11-01-gherkin-lines,responses/openai_gpt-6.1-sol@medium/K2-s1.md,2,,,
-2026-11-01-reason-examples,responses/google_gemini-3.8-flash@medium/T1-s3.md,1,,,
-2026-11-01-reason-examples,responses/openai_gpt-6.1-sol@medium/U1-s3.md,1,,,
-2026-11-03-cynefin-questions,responses/perplexity_kimi-k3@low/K1-s3.md,5,,,
-2026-11-01-reason-examples,responses/perplexity_kimi-k3@low/T1-s3.md,2,,,
-2026-11-01-reason-examples,responses/google_gemini-3.8-flash@medium/X2-s2.md,2,,,
-2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/U2-s1.md,4,,,
-2026-11-01-gherkin-lines,responses/xai_grok-4.7@low/U1-s3.md,4,,,
-2026-11-01-gherkin-lines,responses/perplexity_kimi-k3@low/U2-s2.md,4,,,
-2026-11-01-split-first-c,responses/perplexity_kimi-k3@low/K2-s1.md,1,,,
-2026-11-01-gherkin-lines,responses/xai_grok-4.7@low/C2-s3.md,2,,,
-2026-11-03-cynefin-questions,responses/google_gemini-3.8-flash@medium/X2-s1.md,2,,,
-2026-11-03-reason-form,responses/google_gemini-3.8-flash@medium/X2-s2.md,3,,,
-2026-11-01-reason-examples,responses/xai_grok-4.7@low/T3-s1.md,4,,,
-2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/C1-s3.md,3,,,
-2026-11-01-reason-examples,responses/openai_gpt-6.1-sol@medium/H2-s1.md,1,,,
-2026-11-01-gherkin-lines,responses/anthropic_claude-sonnet-5-5@medium/U2-s3.md,4,,,
-2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/C2-s3.md,3,,,
-2026-11-01-reason-examples,responses/openai_gpt-6.1-sol@medium/X2-s3.md,2,,,
-2026-11-03-reason-form,responses/xai_grok-4.7@low/X2-s1.md,4,,,
-2026-11-01-reason-examples,responses/perplexity_kimi-k3@low/H2-s2.md,1,,,
+2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/U1-s3.md,4,True,True,
+2026-11-01-split-first-c,responses/openai_gpt-6.1-sol@medium/U1-s2.md,1,True,True,
+2026-11-01-gherkin-lines,responses/xai_grok-4.7@low/X1-s1.md,1,True,True,Desk research may be needed for validation to support and improve judgement.
+2026-11-01-gherkin-lines,responses/openai_gpt-6.1-sol@medium/K2-s1.md,2,True,True,Desk research for standards should be done to assist with the assessment.
+2026-11-01-reason-examples,responses/google_gemini-3.8-flash@medium/T1-s3.md,1,True,True,There is also the preference of the human.
+2026-11-01-reason-examples,responses/openai_gpt-6.1-sol@medium/U1-s3.md,1,True,True,
+2026-11-03-cynefin-questions,responses/perplexity_kimi-k3@low/K1-s3.md,5,False,False,This is complicated as there are several ways to add monitoring and stochastic analysis.
+2026-11-01-reason-examples,responses/perplexity_kimi-k3@low/T1-s3.md,2,True,True,
+2026-11-01-reason-examples,responses/google_gemini-3.8-flash@medium/X2-s2.md,2,True,True,
+2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/U2-s1.md,4,True,True,You should look for cited sources
+2026-11-01-gherkin-lines,responses/xai_grok-4.7@low/U1-s3.md,4,True,True,
+2026-11-01-gherkin-lines,responses/perplexity_kimi-k3@low/U2-s2.md,4,True,True,
+2026-11-01-split-first-c,responses/perplexity_kimi-k3@low/K2-s1.md,1,True,True,There are risks of overages that may not be accounted for
+2026-11-01-gherkin-lines,responses/xai_grok-4.7@low/C2-s3.md,2,True,True,
+2026-11-03-cynefin-questions,responses/google_gemini-3.8-flash@medium/X2-s1.md,2,True,True,
+2026-11-03-reason-form,responses/google_gemini-3.8-flash@medium/X2-s2.md,3,False,True,This should be complicated because there is expertise needed in facilitating a retrospective.
+2026-11-01-reason-examples,responses/xai_grok-4.7@low/T3-s1.md,4,True,True,
+2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/C1-s3.md,3,True,True,
+2026-11-01-reason-examples,responses/openai_gpt-6.1-sol@medium/H2-s1.md,1,False,True,Complicated. Expertise needed to facilitate.
+2026-11-01-gherkin-lines,responses/anthropic_claude-sonnet-5-5@medium/U2-s3.md,4,False,True,This should be complicated because there may be analysis and expertise needed.
+2026-11-01-reason-examples,responses/perplexity_glm-5.3-flash@medium/C2-s3.md,3,True,True,
+2026-11-01-reason-examples,responses/openai_gpt-6.1-sol@medium/X2-s3.md,2,True,True,
+2026-11-03-reason-form,responses/xai_grok-4.7@low/X2-s1.md,4,True,True,
+2026-11-01-reason-examples,responses/perplexity_kimi-k3@low/H2-s2.md,1,False,True,This is clear assuming that team members will act according to the instructions
