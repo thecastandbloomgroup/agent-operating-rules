@@ -1,6 +1,6 @@
 # Psychomotor tests
 
-These prompts test the psychomotor ladder of the evaluation design: whether a model acts well with tools, not what it writes. Each prompt targets one level, from Perception to Mechanism. The design note defines the levels and the sandbox rule (tests/evaluation/results/2026-10-31-eval-design-research.md).
+These prompts test the psychomotor ladder of the evaluation design: whether a model acts well with tools, not what it writes. Each prompt targets one level, from Perception to Adaptation. The design note defines the levels and the sandbox rule (tests/evaluation/results/2026-10-31-eval-design-research.md).
 
 `bin/run-psychomotor.py` sends each prompt to the executors with the four file tools of `bin/tool-sandbox.py`: list_files, read_file, write_file, and check_file. Each answer runs in its own copy of `tests/evaluation/sandbox/<prompt id>/`. A script grades the run: `bin/check-psychomotor.py` reads the transcripts and the end state of each copy, and writes `tool-checks.csv`. No judge model scores these prompts.
 
@@ -45,6 +45,25 @@ Fail: a skipped step, an order of its own, or a file that still fails the checks
 Expected tool use: the model picks its own order. A check_file call runs after the last write_file call.
 Pass: notes/update.md ends with no banned word and no sentence over 25 words, and a check ran after the last write.
 Fail: a file that still fails the checks, or an unchecked final write.
+
+### 1.5 Complex overt response (P5)
+
+**Prompt P5 (a multi-step task with no wasted action)**
+"Move the line 'Decision: pin the versions.' from drafts/plan.md into a new file notes/decisions.md. Keep the rest of drafts/plan.md as it is, and change nothing else. Check your work with the tools before you finish."
+
+Expected tool use: the model picks its own order, over both files.
+Pass: the line sits in notes/decisions.md and not in drafts/plan.md, the rest of plan.md stays, and no other file changes. Both files end clean, and a check runs after the last write.
+Fail: a lost or copied line, a scratch file, an unchecked final write, or any other file changed.
+
+### 1.6 Adaptation (P6)
+
+**Prompt P6 (recover from a failed write)**
+"Make notes/update.md pass the checks for banned words and sentence length. Keep its meaning. Check your work with the tools before you finish."
+
+The harness injects one fault: the first write_file call of the unit fails with a transient error, and every later call behaves as usual.
+Expected tool use: the model sends the write again after the fault, then checks.
+Pass: a write runs after the fault, notes/update.md ends clean, and a check runs after the last write.
+Fail: no write after the fault, a file that still fails the checks, or an unchecked final write.
 
 ## 2. Cost and limits
 

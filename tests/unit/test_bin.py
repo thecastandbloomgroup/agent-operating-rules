@@ -1012,7 +1012,9 @@ def psy_message(text):
 class RunPsychomotor(unittest.TestCase):
     def test_parses_one_prompt_per_level(self):
         prompts = RUN_PSY.EVAL.parse_prompts(RUN_PSY.PROMPTS_FILE.read_text())
-        self.assertEqual([p["id"] for p in prompts], ["P1", "P2", "P3", "P4"])
+        self.assertEqual(
+            [p["id"] for p in prompts], ["P1", "P2", "P3", "P4", "P5", "P6"]
+        )
         for p in prompts:
             self.assertTrue(p["prompt"], p["id"])
 
@@ -1288,3 +1290,130 @@ class SecondTurnStructure(unittest.TestCase):
         retry = SECOND.units(run, "retry", checks="checks.csv")
         self.assertEqual(len(retry), 2)
         self.assertEqual(retry[0][1], SECOND.RETRY)
+
+
+class PsychomotorUpper(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.run_dir = Path(folder.name)
+
+    def unit(self, pid, steps, files):
+        transcript = {
+            "model": "m@low",
+            "prompt_id": pid,
+            "sample": 1,
+            "steps": steps,
+            "violations": [],
+            "answer": "done",
+        }
+        out = self.run_dir / "transcripts" / "m@low" / f"{pid}-s1.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(transcript))
+        for path, text in files.items():
+            target = self.run_dir / "sandbox" / "m@low" / f"{pid}-s1" / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(text)
+        return CHECK_PSY.check_unit(self.run_dir, out)
+
+    def step(self, name, path=None, fault=False):
+        s = {"name": name, "arguments": {"path": path} if path else {}}
+        if fault:
+            s["fault"] = True
+        return s
+
+    def p5_files(self):
+        return {
+            "drafts/plan.md": "# Plan\n\nPin the versions in requirements.txt with a lock file.\n",
+            "notes/decisions.md": "Decision: pin the versions.\n",
+        }
+
+    def p5_steps(self):
+        return [
+            self.step("read_file", "drafts/plan.md"),
+            self.step("write_file", "notes/decisions.md"),
+            self.step("write_file", "drafts/plan.md"),
+            self.step("check_file", "drafts/plan.md"),
+            self.step("check_file", "notes/decisions.md"),
+        ]
+
+    def test_p5_passes_a_clean_move_and_fails_a_scratch_file(self):
+        row = self.unit("P5", self.p5_steps(), self.p5_files())
+        self.assertEqual(
+            (row["level"], row["passed"], row["note"]),
+            ("Complex overt response", True, ""),
+        )
+        files = dict(self.p5_files())
+        files["scratch.txt"] = "temp\n"
+        row = self.unit("P5", self.p5_steps(), files)
+        self.assertFalse(row["passed"])
+        self.assertIn("another file changed", row["note"])
+
+    def test_p5_fails_a_copied_line(self):
+        files = self.p5_files()
+        files["drafts/plan.md"] += "Decision: pin the versions.\n"
+        row = self.unit("P5", self.p5_steps(), files)
+        self.assertEqual(row["note"], "drafts/plan.md keeps the moved line")
+
+    def test_p6_needs_a_write_after_the_fault(self):
+        files = {"notes/update.md": "A short clean line.\n"}
+        steps = [
+            self.step("write_file", "notes/update.md", fault=True),
+            self.step("write_file", "notes/update.md"),
+            self.step("check_file", "notes/update.md"),
+        ]
+        row = self.unit("P6", steps, files)
+        self.assertEqual(
+            (row["level"], row["passed"], row["note"]), ("Adaptation", True, "")
+        )
+        gave_up = self.unit("P6", steps[:1], files)
+        self.assertEqual(gave_up["note"], "no write ran after the fault")
+
+    def test_the_runner_injects_the_fault_once(self):
+        answers = iter(
+            [
+                psy_output(
+                    psy_call(
+                        "write_file",
+                        {"path": "notes/update.md", "content": "A short clean line.\n"},
+                        "c1",
+                    )
+                ),
+                psy_output(
+                    psy_call(
+                        "write_file",
+                        {"path": "notes/update.md", "content": "A short clean line.\n"},
+                        "c2",
+                    )
+                ),
+                psy_output(psy_call("check_file", {"path": "notes/update.md"}, "c3")),
+                psy_output(psy_message("done")),
+            ]
+        )
+        original = RUN_PSY.EVAL.run_job
+        RUN_PSY.EVAL.run_job = lambda cfg, key, body, started: next(answers)
+        self.addCleanup(setattr, RUN_PSY.EVAL, "run_job", original)
+        cfg = {"max_output_tokens": {"executor": 32000}}
+        prompt = {"id": "P6", "prompt": "Fix the file."}
+        model = {"model": "perplexity/kimi-k3", "effort": "low"}
+        _, error = RUN_PSY.run_unit(
+            cfg,
+            "key",
+            self.run_dir,
+            {"date": "2026-11-05", "rules": "r"},
+            "moonshot",
+            model,
+            prompt,
+            1,
+        )
+        self.assertIsNone(error)
+        slug = "perplexity_kimi-k3@low"
+        transcript = json.loads(
+            (self.run_dir / "transcripts" / slug / "P6-s1.json").read_text()
+        )
+        self.assertEqual(
+            [s.get("fault") for s in transcript["steps"]], [True, False, False]
+        )
+        self.assertEqual(transcript["steps"][0]["output"], RUN_PSY.FAULT_TEXT)
+        target = self.run_dir / "sandbox" / slug / "P6-s1" / "notes/update.md"
+        self.assertEqual(target.read_text(), "A short clean line.\n")

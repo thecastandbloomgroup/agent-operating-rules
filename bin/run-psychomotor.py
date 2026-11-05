@@ -43,6 +43,10 @@ def load(name):
 EVAL = load("run-evaluation.py")
 SANDBOX = load("tool-sandbox.py")
 MAX_STEPS = 12
+# The fault of each prompt: the first call of that tool fails once with a
+# transient error, for the Adaptation level. Every later call runs as usual.
+FAULTS = {"P6": "write_file"}
+FAULT_TEXT = "error: the write failed this time. Send it again."
 # Tokens of one unit for --plan only: the rules go in each step, so the input
 # grows with the steps. Each unit logs its real cost in calls.csv.
 ESTIMATE = (40000, 5000)
@@ -108,6 +112,7 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample):
     shutil.copytree(FIXTURES / prompt["id"], sandbox_dir)
     transcript = {"model": slug, "prompt_id": prompt["id"], "sample": sample}
     steps, calls, error = [], [], None
+    fault = FAULTS.get(prompt["id"])
     input_items = [{"role": "user", "content": prompt["prompt"]}]
     for _ in range(MAX_STEPS):
         try:
@@ -129,15 +134,19 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample):
             except json.JSONDecodeError:
                 arguments, result, violation = {}, "refused: bad arguments", None
             else:
-                result, violation = SANDBOX.execute(
-                    sandbox_dir, call.get("name", ""), arguments
-                )
+                if fault and call.get("name") == fault:
+                    result, violation, fault = FAULT_TEXT, None, None
+                else:
+                    result, violation = SANDBOX.execute(
+                        sandbox_dir, call.get("name", ""), arguments
+                    )
             steps.append(
                 {
                     "name": call.get("name"),
                     "arguments": arguments,
                     "output": result[:2000],
                     "violation": violation,
+                    "fault": result == FAULT_TEXT,
                 }
             )
             input_items.append(

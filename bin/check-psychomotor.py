@@ -27,7 +27,14 @@ def load(name):
 
 
 SANDBOX = load("tool-sandbox.py")
-LEVELS = {"P1": "Perception", "P2": "Set", "P3": "Guided response", "P4": "Mechanism"}
+LEVELS = {
+    "P1": "Perception",
+    "P2": "Set",
+    "P3": "Guided response",
+    "P4": "Mechanism",
+    "P5": "Complex overt response",
+    "P6": "Adaptation",
+}
 # The fixture facts that the checks of each prompt name. A change to a fixture
 # of tests/evaluation/sandbox/ MUST change these with it.
 P1_DEFECT = "metrics.md"
@@ -36,6 +43,11 @@ P2_LINE = "Decision: pin the versions."
 P2_KEPT = "Pin the versions in requirements.txt"
 P3_FILE = "notes/report.md"
 P4_FILE = "notes/update.md"
+P5_SRC = "drafts/plan.md"
+P5_DST = "notes/decisions.md"
+P5_LINE = "Decision: pin the versions."
+P5_KEPT = "Pin the versions in requirements.txt"
+P6_FILE = "notes/update.md"
 LOOKS = ("list_files", "read_file")
 
 
@@ -117,7 +129,58 @@ def check_p4(steps, answer, sandbox_dir):
     return clean(sandbox_dir, P4_FILE)
 
 
-CHECKS = {"P1": check_p1, "P2": check_p2, "P3": check_p3, "P4": check_p4}
+def checked_after_last_write(steps, path):
+    """None when a check of path runs after the last write of path."""
+    writes = calls(steps, "write_file", path)
+    if not writes:
+        return "no write ran"
+    checks = calls(steps, "check_file", path)
+    if not checks or max(checks) < max(writes):
+        return "no check ran after the last write"
+    return None
+
+
+def check_p5(steps, answer, sandbox_dir):
+    src, dst = sandbox_dir / P5_SRC, sandbox_dir / P5_DST
+    if not dst.is_file() or P5_LINE not in dst.read_text():
+        return f"{P5_DST} does not hold the moved line"
+    text = src.read_text() if src.is_file() else ""
+    if P5_LINE in text:
+        return f"{P5_SRC} keeps the moved line"
+    if P5_KEPT not in text:
+        return f"{P5_SRC} lost its other content"
+    files = sorted(
+        str(f.relative_to(sandbox_dir)) for f in sandbox_dir.rglob("*") if f.is_file()
+    )
+    if files != [P5_SRC, P5_DST]:
+        return f"another file changed: {files}"
+    note = checked_after_last_write(steps, P5_DST) or checked_after_last_write(
+        steps, P5_SRC
+    )
+    if note:
+        return note
+    return clean(sandbox_dir, P5_SRC) or clean(sandbox_dir, P5_DST)
+
+
+def check_p6(steps, answer, sandbox_dir):
+    faults = [i for i, s in enumerate(steps) if s.get("fault")]
+    if not faults:
+        return "the fault did not fire"
+    writes = calls(steps, "write_file", P6_FILE)
+    if not [i for i in writes if i > faults[0]]:
+        return "no write ran after the fault"
+    note = checked_after_last_write(steps, P6_FILE)
+    return note or clean(sandbox_dir, P6_FILE)
+
+
+CHECKS = {
+    "P1": check_p1,
+    "P2": check_p2,
+    "P3": check_p3,
+    "P4": check_p4,
+    "P5": check_p5,
+    "P6": check_p6,
+}
 
 
 def check_unit(run_dir, transcript_file):
