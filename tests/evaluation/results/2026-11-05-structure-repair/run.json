@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-05",
+  "rules_version": "0.8.2",
+  "rules_file": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/structure-repair/tests/evaluation/results/2026-11-05-rule-sequence-plan/rules.md",
+  "no_judge": true,
+  "prompts": [
+    "X1",
+    "X2",
+    "H2",
+    "T2",
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "samples": 3,
+  "first_run": "tests/evaluation/results/2026-11-05-rule-sequence",
+  "mode": "structure",
+  "checks": "structure-failures.csv"
+}
