@@ -6,7 +6,7 @@ Moving two rules to the point of use did not lift the targeted levels, so the ru
 
 1. A3 structure passed in 12 of 18 answers, under the mark of 14. The line in Section 0 had also scored 12, so the end position adds nothing.
 2. The self-test lines without the word counts were right in 94 of 126 answers, 75%. The mark was 84%, so the checklist line fails too.
-3. Both guards held: answers with no long sentence were 32 of 72 against the mark of 29, and labels with a reason were 59 of 72 against 55.
+3. Both guards held. Answers with no long sentence were 32 of 72 against the mark of 29. Labels with a reason were 59 of 72 against 55.
 4. The run cost 4.30 USD, with 126 answers and no failed call.
 
 ## Background
@@ -51,10 +51,10 @@ E5. The end position matched the Section 0 position: 12 of 18 on A3, against 8 o
 
 ### The model split
 
-E6. A3 drives on one model: GPT-6.1 Sol passed 0 of 3 on A3, while it passed 17 and 18 of 18 on A1 and A2 with the other models pooled. Sonnet, Gemini, and Grok passed 3 of 3 each on A3.
+E6. A3 drives on one model. GPT-6.1 Sol passed 0 of 3 on A3. Pooled over the six models, A1 passed 17 of 18 and A2 passed 18 of 18. Sonnet, Gemini, and Grok passed 3 of 3 each on A3.
 [1]
 
-E7. The language rate splits the same way as in prior runs: GLM at 0% and Kimi at 5% of answers with no long sentence, against 48% to 86% for the other four.
+E7. The language rate splits as in prior runs. GLM had 0% and Kimi 5% of answers with no long sentence, against 48% to 86% for the other four.
 [1]
 
 ## Limits
