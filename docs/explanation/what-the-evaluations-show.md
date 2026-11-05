@@ -57,14 +57,16 @@ No run measures Characterization.
 
 Two runs of 2026-11-05 measure the ladder with the file tools of the sandbox suite, at one and then four samples ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)). The table pools the four-sample run over the six executors, 24 trials per level.
 
-| Level           | Passed   | Mastered at 80% of 20 or more |
-| --------------- | -------- | ----------------------------- |
-| Perception      | 24 of 24 | yes                           |
-| Set             | 17 of 24 | no, 71%                       |
-| Guided response | 23 of 24 | yes                           |
-| Mechanism       | 24 of 24 | yes                           |
+| Level                  | Passed   | Mastered at 80% of 20 or more |
+| ---------------------- | -------- | ----------------------------- |
+| Perception             | 24 of 24 | yes                           |
+| Set                    | 17 of 24 | no, 71%                       |
+| Guided response        | 23 of 24 | yes                           |
+| Mechanism              | 24 of 24 | yes                           |
+| Complex overt response | 14 of 24 | no, 58%                       |
+| Adaptation             | 24 of 24 | yes                           |
 
-Set is the level that splits the models, and every Set failure is a write with no look first. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed 16 of 16 each, while Gemini, Grok, and Kimi dropped the Set trials. Prompts for the next two levels are planned with marks ([upper plan](../../tests/evaluation/results/2026-11-05-psychomotor-upper-plan.md)).
+The last two rows come from a later run of P1 to P6, where the first four levels held within two answers ([upper results](../../tests/evaluation/results/2026-11-05-psychomotor-full-results.md)). Set is the level that splits the models, and every Set failure is a write with no look first. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed 16 of 16 each, while Gemini, Grok, and Kimi dropped the Set trials. Complex overt response is where most models stop. A move across two files failed for an unchecked final write, a loop to the step cap, or a scratch file. Every model recovered from an injected failed write, so Adaptation passes.
 
 ### How to read the tables
 
@@ -119,7 +121,7 @@ The repair claim is now measured on one side. A turn that names the broken parts
 
 ## Limits
 
-- **Pooled tool trials.** The ladder has 24 pooled trials per level, but each model has 4, under the 20 that a per-model mastery call needs. The levels above Mechanism, where an agent plans and recovers on its own, run their first probe next ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
+- **Pooled tool trials.** The ladder has 24 pooled trials per level, but each model has 4, under the 20 that a per-model mastery call needs. Origination, the top level, has no prompt yet ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
 - **Small samples.** Most probes have 40 to 108 items, so some intervals are wide.
 - **Mostly one turn.** Only two small pilots test a second turn.
 - **Mid-tier executors.** Most runs used mid-tier models at low or medium effort.

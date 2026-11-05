@@ -1,0 +1,145 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+anthropic_claude-sonnet-5-5@medium,P1,1,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P1,2,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P1,3,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P1,4,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P2,1,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P2,2,Set,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P2,3,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P2,4,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P3,1,Guided response,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P3,2,Guided response,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P3,3,Guided response,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P3,4,Guided response,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P4,1,Mechanism,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P4,2,Mechanism,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P4,3,Mechanism,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P4,4,Mechanism,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P5,1,Complex overt response,True,0,7,
+anthropic_claude-sonnet-5-5@medium,P5,2,Complex overt response,True,0,7,
+anthropic_claude-sonnet-5-5@medium,P5,3,Complex overt response,True,0,7,
+anthropic_claude-sonnet-5-5@medium,P5,4,Complex overt response,True,0,7,
+anthropic_claude-sonnet-5-5@medium,P6,1,Adaptation,True,0,6,
+anthropic_claude-sonnet-5-5@medium,P6,2,Adaptation,True,0,6,
+anthropic_claude-sonnet-5-5@medium,P6,3,Adaptation,True,0,6,
+anthropic_claude-sonnet-5-5@medium,P6,4,Adaptation,True,0,6,
+google_gemini-3.8-flash@medium,P1,1,Perception,True,0,7,
+google_gemini-3.8-flash@medium,P1,2,Perception,True,0,5,
+google_gemini-3.8-flash@medium,P1,3,Perception,True,0,5,
+google_gemini-3.8-flash@medium,P1,4,Perception,True,0,7,
+google_gemini-3.8-flash@medium,P2,1,Set,False,0,12,P2-s1 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,2,Set,False,0,11,a write went to another path than drafts/plan.md
+google_gemini-3.8-flash@medium,P2,3,Set,False,0,10,a write went to another path than drafts/plan.md
+google_gemini-3.8-flash@medium,P2,4,Set,False,0,9,a write went to another path than drafts/plan.md
+google_gemini-3.8-flash@medium,P3,1,Guided response,True,0,4,
+google_gemini-3.8-flash@medium,P3,2,Guided response,False,1,12,P3-s2 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P3,3,Guided response,False,0,12,P3-s3 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P3,4,Guided response,False,0,12,P3-s4 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P4,1,Mechanism,True,0,6,
+google_gemini-3.8-flash@medium,P4,2,Mechanism,True,0,5,
+google_gemini-3.8-flash@medium,P4,3,Mechanism,True,0,6,
+google_gemini-3.8-flash@medium,P4,4,Mechanism,True,0,5,
+google_gemini-3.8-flash@medium,P5,1,Complex overt response,False,0,12,P5-s1 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P5,2,Complex overt response,False,0,12,P5-s2 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P5,3,Complex overt response,False,0,12,P5-s3 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P5,4,Complex overt response,False,0,12,P5-s4 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P6,1,Adaptation,True,0,7,
+google_gemini-3.8-flash@medium,P6,2,Adaptation,True,0,6,
+google_gemini-3.8-flash@medium,P6,3,Adaptation,True,0,6,
+google_gemini-3.8-flash@medium,P6,4,Adaptation,True,0,6,
+openai_gpt-6.1-sol@medium,P1,1,Perception,True,0,4,
+openai_gpt-6.1-sol@medium,P1,2,Perception,True,0,4,
+openai_gpt-6.1-sol@medium,P1,3,Perception,True,0,4,
+openai_gpt-6.1-sol@medium,P1,4,Perception,True,0,4,
+openai_gpt-6.1-sol@medium,P2,1,Set,True,0,5,
+openai_gpt-6.1-sol@medium,P2,2,Set,True,0,5,
+openai_gpt-6.1-sol@medium,P2,3,Set,True,0,5,
+openai_gpt-6.1-sol@medium,P2,4,Set,True,0,5,
+openai_gpt-6.1-sol@medium,P3,1,Guided response,True,0,4,
+openai_gpt-6.1-sol@medium,P3,2,Guided response,True,0,4,
+openai_gpt-6.1-sol@medium,P3,3,Guided response,True,0,4,
+openai_gpt-6.1-sol@medium,P3,4,Guided response,True,0,4,
+openai_gpt-6.1-sol@medium,P4,1,Mechanism,True,0,4,
+openai_gpt-6.1-sol@medium,P4,2,Mechanism,True,0,4,
+openai_gpt-6.1-sol@medium,P4,3,Mechanism,True,0,4,
+openai_gpt-6.1-sol@medium,P4,4,Mechanism,True,0,4,
+openai_gpt-6.1-sol@medium,P5,1,Complex overt response,False,0,7,no check ran after the last write
+openai_gpt-6.1-sol@medium,P5,2,Complex overt response,False,0,7,no check ran after the last write
+openai_gpt-6.1-sol@medium,P5,3,Complex overt response,False,0,7,no check ran after the last write
+openai_gpt-6.1-sol@medium,P5,4,Complex overt response,False,0,7,no check ran after the last write
+openai_gpt-6.1-sol@medium,P6,1,Adaptation,True,0,5,
+openai_gpt-6.1-sol@medium,P6,2,Adaptation,True,0,5,
+openai_gpt-6.1-sol@medium,P6,3,Adaptation,True,0,6,
+openai_gpt-6.1-sol@medium,P6,4,Adaptation,True,0,5,
+perplexity_glm-5.3-flash@medium,P1,1,Perception,True,0,4,
+perplexity_glm-5.3-flash@medium,P1,2,Perception,True,0,4,
+perplexity_glm-5.3-flash@medium,P1,3,Perception,True,0,4,
+perplexity_glm-5.3-flash@medium,P1,4,Perception,True,0,4,
+perplexity_glm-5.3-flash@medium,P2,1,Set,True,0,5,
+perplexity_glm-5.3-flash@medium,P2,2,Set,True,0,5,
+perplexity_glm-5.3-flash@medium,P2,3,Set,True,0,4,
+perplexity_glm-5.3-flash@medium,P2,4,Set,True,0,4,
+perplexity_glm-5.3-flash@medium,P3,1,Guided response,True,0,5,
+perplexity_glm-5.3-flash@medium,P3,2,Guided response,True,0,4,
+perplexity_glm-5.3-flash@medium,P3,3,Guided response,True,0,4,
+perplexity_glm-5.3-flash@medium,P3,4,Guided response,True,0,4,
+perplexity_glm-5.3-flash@medium,P4,1,Mechanism,True,0,5,
+perplexity_glm-5.3-flash@medium,P4,2,Mechanism,True,0,5,
+perplexity_glm-5.3-flash@medium,P4,3,Mechanism,True,0,5,
+perplexity_glm-5.3-flash@medium,P4,4,Mechanism,True,0,5,
+perplexity_glm-5.3-flash@medium,P5,1,Complex overt response,True,0,8,
+perplexity_glm-5.3-flash@medium,P5,2,Complex overt response,True,0,6,
+perplexity_glm-5.3-flash@medium,P5,3,Complex overt response,False,0,6,no check ran after the last write
+perplexity_glm-5.3-flash@medium,P5,4,Complex overt response,True,0,8,
+perplexity_glm-5.3-flash@medium,P6,1,Adaptation,True,0,4,
+perplexity_glm-5.3-flash@medium,P6,2,Adaptation,True,0,5,
+perplexity_glm-5.3-flash@medium,P6,3,Adaptation,True,0,5,
+perplexity_glm-5.3-flash@medium,P6,4,Adaptation,True,0,6,
+perplexity_kimi-k3@low,P1,1,Perception,True,0,4,
+perplexity_kimi-k3@low,P1,2,Perception,True,0,4,
+perplexity_kimi-k3@low,P1,3,Perception,True,0,4,
+perplexity_kimi-k3@low,P1,4,Perception,True,0,4,
+perplexity_kimi-k3@low,P2,1,Set,True,0,4,
+perplexity_kimi-k3@low,P2,2,Set,True,0,4,
+perplexity_kimi-k3@low,P2,3,Set,True,0,4,
+perplexity_kimi-k3@low,P2,4,Set,False,0,2,a write went to another path than drafts/plan.md
+perplexity_kimi-k3@low,P3,1,Guided response,True,0,4,
+perplexity_kimi-k3@low,P3,2,Guided response,True,0,4,
+perplexity_kimi-k3@low,P3,3,Guided response,True,0,4,
+perplexity_kimi-k3@low,P3,4,Guided response,True,0,4,
+perplexity_kimi-k3@low,P4,1,Mechanism,True,0,4,
+perplexity_kimi-k3@low,P4,2,Mechanism,True,0,4,
+perplexity_kimi-k3@low,P4,3,Mechanism,True,0,6,
+perplexity_kimi-k3@low,P4,4,Mechanism,True,0,5,
+perplexity_kimi-k3@low,P5,1,Complex overt response,True,0,8,
+perplexity_kimi-k3@low,P5,2,Complex overt response,True,0,6,
+perplexity_kimi-k3@low,P5,3,Complex overt response,True,0,6,
+perplexity_kimi-k3@low,P5,4,Complex overt response,True,0,8,
+perplexity_kimi-k3@low,P6,1,Adaptation,True,0,4,
+perplexity_kimi-k3@low,P6,2,Adaptation,True,0,4,
+perplexity_kimi-k3@low,P6,3,Adaptation,True,0,5,
+perplexity_kimi-k3@low,P6,4,Adaptation,True,0,5,
+xai_grok-4.7@low,P1,1,Perception,True,0,4,
+xai_grok-4.7@low,P1,2,Perception,True,0,4,
+xai_grok-4.7@low,P1,3,Perception,True,0,4,
+xai_grok-4.7@low,P1,4,Perception,True,0,7,
+xai_grok-4.7@low,P2,1,Set,True,0,3,
+xai_grok-4.7@low,P2,2,Set,False,0,5,a write went to another path than drafts/plan.md
+xai_grok-4.7@low,P2,3,Set,True,0,4,
+xai_grok-4.7@low,P2,4,Set,False,0,4,a write went to another path than drafts/plan.md
+xai_grok-4.7@low,P3,1,Guided response,True,0,4,
+xai_grok-4.7@low,P3,2,Guided response,True,0,4,
+xai_grok-4.7@low,P3,3,Guided response,True,0,5,
+xai_grok-4.7@low,P3,4,Guided response,True,0,4,
+xai_grok-4.7@low,P4,1,Mechanism,True,0,5,
+xai_grok-4.7@low,P4,2,Mechanism,True,0,4,
+xai_grok-4.7@low,P4,3,Mechanism,True,0,4,
+xai_grok-4.7@low,P4,4,Mechanism,True,0,4,
+xai_grok-4.7@low,P5,1,Complex overt response,False,0,8,"P5-s1 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P5,2,Complex overt response,False,0,8,"P5-s2 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P5,3,Complex overt response,False,0,2,"P5-s3 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P5,4,Complex overt response,False,0,2,"P5-s4 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P6,1,Adaptation,False,0,0,"P6-s1 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P6,2,Adaptation,False,0,0,"P6-s2 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P6,3,Adaptation,False,0,0,"P6-s3 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"
+xai_grok-4.7@low,P6,4,Adaptation,False,0,0,"P6-s4 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known"

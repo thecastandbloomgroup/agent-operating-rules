@@ -1,0 +1,9 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+xai_grok-4.7@low,P5,1,Complex overt response,True,0,8,
+xai_grok-4.7@low,P5,2,Complex overt response,False,0,10,"another file changed: ['drafts/plan.md', 'notes/decisions.md', 'tmp/response_check.md']"
+xai_grok-4.7@low,P5,3,Complex overt response,True,0,9,
+xai_grok-4.7@low,P5,4,Complex overt response,True,0,8,
+xai_grok-4.7@low,P6,1,Adaptation,True,0,5,
+xai_grok-4.7@low,P6,2,Adaptation,True,0,5,
+xai_grok-4.7@low,P6,3,Adaptation,True,0,5,
+xai_grok-4.7@low,P6,4,Adaptation,True,0,5,

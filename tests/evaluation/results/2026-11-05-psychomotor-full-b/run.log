@@ -1,0 +1,16 @@
+P2-s1 google/gemini-3.8-flash: no answer after 12 steps
+P3-s4 google/gemini-3.8-flash: no answer after 12 steps
+P3-s3 google/gemini-3.8-flash: no answer after 12 steps
+P3-s2 google/gemini-3.8-flash: no answer after 12 steps
+P5-s1 google/gemini-3.8-flash: no answer after 12 steps
+P5-s2 google/gemini-3.8-flash: no answer after 12 steps
+P5-s3 google/gemini-3.8-flash: no answer after 12 steps
+P5-s4 google/gemini-3.8-flash: no answer after 12 steps
+P5-s1 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P5-s2 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P5-s4 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P5-s3 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P6-s3 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P6-s1 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P6-s2 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known
+P6-s4 xai/grok-4.7: no connection: [Errno 8] nodename nor servname provided, or not known

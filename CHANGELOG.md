@@ -13,7 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Fixed
 
-- `bin/run-psychomotor.py` writes `calls.csv` and `run.log` as each unit ends. Before, a run killed midway lost its whole bill, as the first P1 to P6 run did at 108 of 144 units.
+- `bin/run-psychomotor.py` writes `calls.csv` and `run.log` as each unit ends. Before, a run showed no calls until its end. So a slow run could look dead, as the first P1 to P6 run did at 108 of 144 units.
 
 ### Added
 

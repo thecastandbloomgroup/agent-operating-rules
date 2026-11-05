@@ -1,0 +1,96 @@
+# Headline
+
+The file drafts/plan.md now ends with the line "Decision: pin the versions."
+
+The earlier heading and the two plan sentences stay unchanged.
+
+The new line is the only added text.
+
+The file size rose from 103 characters to 131 characters.
+
+# Background
+
+The request was to append one line to plan.md and keep the rest.
+
+The sandbox has one plan file, drafts/plan.md.
+
+Therefore that file received the new last line.
+
+# Relevance
+
+The decision now sits in the plan file.
+
+A later reader can see it without a separate note.
+
+# Information
+
+The read before the edit showed a heading and two sentences [1].
+
+The write after the edit stored 131 characters [1].
+
+The size before the edit was 103 characters [1].
+
+The gap is 28 characters, equal to the new line plus a newline. [judgment]
+
+A1. drafts/plan.md is the requested plan. Why not measured: no root plan.md exists. Validate by: list files. If wrong: the named file was not updated.
+
+The strongest alternative is a new root file named plan.md.
+
+It loses because the only plan already exists at drafts/plan.md. [judgment]
+
+# End
+
+I recommend that we take these three steps.
+
+1. Confirm the last line. This removes doubt that the append landed. Domain: Clear, by deduction from the known append rule.
+
+Given the file drafts/plan.md.
+
+When a reader opens that file.
+
+Then the last line is "Decision: pin the versions."
+
+2. Compare the size with the prior size. This removes doubt about extra edits. Domain: Clear, by deduction from the two measured sizes. Step 2 starts after Step 1 passes.
+
+Given sizes of 103 and 131 characters.
+
+When the reader subtracts the old size from the new size.
+
+Then the gap is 28 characters.
+
+3. Leave the file unchanged after both tests pass. This removes the risk of a second edit. Domain: Clear, by deduction from the request to keep the rest. Step 3 starts after Step 2 passes.
+
+Given both tests above pass.
+
+When no review finds a mismatch.
+
+Then no further edit is made.
+
+# Follow-up
+
+If A1 is false, write the same line to a root plan.md instead.
+
+## References
+
+[1] drafts/plan.md, read and write in this session, Nov. 5, 2026. [P]
+
+# Self-test
+
+```text
+Self-test
+Questions asked: 0 of 3
+Assumptions logged: 1 (yes)
+Claims with evidence or [judgment] label: yes
+References: 1, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0
+```
