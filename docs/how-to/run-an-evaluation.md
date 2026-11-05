@@ -61,6 +61,17 @@ To add the run to the record of all runs in `evaluation-results.md`, `evaluation
 task eval:record
 ```
 
+## Run the psychomotor prompts
+
+The psychomotor prompts need tools, so `bin/run-psychomotor.py` runs them, not `task eval`:
+
+```sh
+doppler run --only-secrets PERPLEXITY_TOKEN -- \
+  python3 bin/run-psychomotor.py --samples 3 --run-id <run>
+```
+
+Use `--plan` to see the cost first, and `--prompts P1,P2` to send fewer prompts. Grade the run with `bin/check-psychomotor.py tests/evaluation/results/<run>`. It writes `tool-checks.csv`, which `bin/ladder-scores.py` reads as the psychomotor trials. The [psychomotor tests](../../tests/evaluation/psychomotor-tests.md) page gives the prompts and the checks.
+
 ## Run in GitLab
 
 1. Open **Build**, then **Pipelines**, and open a pipeline of `main`.

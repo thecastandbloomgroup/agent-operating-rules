@@ -7,4 +7,6 @@ One folder for each evaluation run, named by its run ID. `task eval` writes each
 - `responses/`: the answers, one file for each prompt and sample.
 - `judgments/`: the JSON of each judge.
 
+A run of `bin/run-psychomotor.py` holds `transcripts/`, `sandbox/` and `tool-checks.csv` in place of the judge files. The [psychomotor tests](../psychomotor-tests.md) page says how to grade one.
+
 A response that you score by hand, without `task eval`, goes in `<model>/<prompt-id>.md`. Its first line is `<model>, <provider>, <date>, <prompt-id>`. Paste the response unchanged below that line. Scores go in evaluation-results.md and evaluation-scores.csv.

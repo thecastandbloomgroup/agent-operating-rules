@@ -51,7 +51,11 @@ No run measures Remember or Create. Evaluate leaves out the word counts of the s
 | Grok 4.7, low            | 95% of 39  | 100% of 3\*  | 100% of 3\* | 100% of 3\*  | Organization         |
 | All six                  | 96% of 234 | 100% of 18\* | 94% of 18\* | 44% of 18\*  | Valuing              |
 
-No run measures Characterization. No run measures any level of the psychomotor ladder, because the harness gives the models no tools.
+No run measures Characterization.
+
+### Psychomotor
+
+The first psychomotor run came on 2026-11-05, with the file tools of the sandbox suite and one sample per prompt ([probe results](../../tests/evaluation/results/2026-11-05-psychomotor-probe-results.md)). Pooled over the six executors: Perception 6 of 6, Set 5 of 6, Guided response 6 of 6, and Mechanism 6 of 6. Six trials per level cannot show mastery, which needs 20. The levels above Mechanism have no prompts yet.
 
 ### How to read the tables
 
@@ -72,7 +76,7 @@ No run measures Characterization. No run measures any level of the psychomotor l
 
 ## Tokens and turns
 
-This section assesses the cost of the changes of 2026-11-05 in tokens and in turns: the psychomotor tool suite and the rule-sequence probe. The token counts use one token per four characters, the method and caveat of the [cost page](cost.md). The runs of the two probes will replace these estimates with the real columns of `calls.csv`. That file logs input, cache write, cache read, and output tokens per call.
+This section assesses the cost of the changes of 2026-11-05 in tokens and in turns: the psychomotor tool suite and the rule-sequence probe. The token counts use one token per four characters, the method and caveat of the [cost page](cost.md). The runs of the two probes replace these estimates with the real columns of `calls.csv`. That file logs input, cache write, cache read, and output tokens per call. The first psychomotor run sent 701,181 input tokens and 27,465 output tokens over 115 calls, for 0.94 USD. Its cache columns came back empty because of a logging defect, fixed for later runs.
 
 ### Input tokens
 
@@ -100,11 +104,11 @@ The aim of both changes is fewer user turns for the same outcome, paid for with 
 - The precedence line at the end of the rules targets the follow-up turn that restores dropped rules. At rules 0.6, a conflicting request left the full structure in 8 of 18 answers, so the other 10 needed a correction turn ([affective baseline](../../tests/evaluation/results/2026-11-01-affective-baseline.md)).
 - The trade is explicit: one user turn now holds up to 12 API steps. The [learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md) ranks a human turn as the most expensive feedback, so the trade is sound when the tokens stay cheap. Each run reports its token columns, so the trade stays measured.
 
-No run has measured any of this yet. The two funded probes report first, against the pass marks set before them.
+The psychomotor probe has run: every provider took the tools, and 23 of 24 units passed. Every P4 answer checked its file after its last write ([probe results](../../tests/evaluation/results/2026-11-05-psychomotor-probe-results.md)). The turn claims themselves are still unmeasured, because no arm compares user turns with and without the tools.
 
 ## Limits
 
-- **No tools.** The harness gives the models no tools. So nothing measures the psychomotor domain, where an agent acts and damage happens ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
+- **Few tool trials.** One psychomotor run exists, at one sample: 6 trials per level, against the 20 that mastery needs. The levels above Mechanism, where an agent plans and recovers on its own, have no prompts yet ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
 - **Small samples.** Most probes have 40 to 108 items, so some intervals are wide.
 - **Mostly one turn.** Only two small pilots test a second turn.
 - **Mid-tier executors.** Most runs used mid-tier models at low or medium effort.
