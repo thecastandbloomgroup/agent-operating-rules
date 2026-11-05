@@ -48,6 +48,18 @@ The file names above come from the docs of each product on 2026-11-05. Check the
 
 This repository installs the rules for Claude Code through `CLAUDE.md`, as a pointer. So every session that changes the rules also runs under them, and a rule that hurts the work shows up here first. The README notes that no harness result existed before this install, so treat early sessions as the first trial. The [memory page](../explanation/memory.md) says where each type of memory lives, and the rules file holds none.
 
+## Repair a broken answer
+
+A probe showed that a named second turn repairs dropped structure: 10 of 12 answers, against 3 of 12 for a plain retry. So when an answer of a run breaks the structure, send the repair:
+
+```sh
+python3 bin/script-checks.py <run folder>
+python3 bin/second-turn.py <run folder> --mode structure \
+  --checks script-checks.csv --run-id <new id>
+```
+
+The second command sends one turn per broken answer, and each turn names the broken parts. The [probe results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md) give the marks.
+
 ## Caveats
 
 - An agent harness adds its own system prompt, tools, and memory on top of the rules. The evaluation results come from the bare API, so a harness result can differ [judgment].
