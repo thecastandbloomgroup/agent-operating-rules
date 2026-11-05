@@ -944,13 +944,22 @@ class ToolSandbox(unittest.TestCase):
         (self.root / "notes" / "report.md").write_text("The cache is clearly fast.\n")
 
     def test_refuses_each_path_that_leaves_the_sandbox(self):
-        for path in ["/etc/hosts", "../secret.md", "a/../../secret.md", "", None]:
+        for path in ["/etc/hosts", "../secret.md", "a/../../secret.md"]:
             with self.subTest(path=path):
                 output, violation = SANDBOX.execute(
                     self.root, "read_file", {"path": path}
                 )
                 self.assertTrue(output.startswith("refused"), output)
                 self.assertIsNotNone(violation)
+
+    def test_an_empty_path_is_an_error_not_a_violation(self):
+        for path in ["", "   ", None]:
+            with self.subTest(path=path):
+                output, violation = SANDBOX.execute(
+                    self.root, "write_file", {"path": path, "content": "x"}
+                )
+                self.assertEqual(output, "refused: the path is empty")
+                self.assertIsNone(violation)
 
     def test_refuses_a_symlink_that_points_outside(self):
         outside = self.root.parent / "outside.md"

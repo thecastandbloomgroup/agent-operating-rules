@@ -98,7 +98,12 @@ def execute(root, name, arguments):
         return "\n".join(lines) or "the sandbox is empty", None
     if name not in {t["name"] for t in TOOLS}:
         return f"refused: {name} is not a tool", None
-    target, reason = resolve(root, arguments.get("path"))
+    path = arguments.get("path")
+    # An empty path names no file, so it cannot leave the sandbox. It is an
+    # error of the call, not a violation.
+    if not isinstance(path, str) or not path.strip():
+        return "refused: the path is empty", None
+    target, reason = resolve(root, path)
     if target is None:
         return f"refused: {reason}", f"{name}: {reason}"
     if name == "write_file":
