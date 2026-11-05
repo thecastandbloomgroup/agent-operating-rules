@@ -10,7 +10,7 @@ A second turn that names the dropped part targets Organization, because wording 
 
 ## Background
 
-Two wording levers failed on A3: the precedence line in Section 0 scored 12 of 18, and the same line at the end of the file scored 12 of 18. The structure columns of the script checks already name the dropped part of each answer, such as a heading used or a self-test out of place. So the harness can write the feedback, and no judge is needed.
+Two wording levers failed on A3. The precedence line in Section 0 scored 12 of 18. The same line at the end of the file also scored 12 of 18. The structure columns of the script checks already name the dropped part of each answer. Examples: a heading used, or a self-test out of place. So the harness can write the feedback, and no judge is needed.
 
 ## Design
 
