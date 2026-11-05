@@ -12,7 +12,7 @@ The same request gets the same shape of answer from every model, so a reader can
 
 ## Use the rules
 
-1. Paste `sources/model-operating-rules.md` into the system prompt of your model. The [tutorial](docs/tutorials/check-a-response.md) shows each step.
+1. Install the rules with `sh install.sh --target <name>`, or paste `sources/model-operating-rules.md` into the system prompt of your model. The [install page](docs/how-to/install-the-rules.md) lists each target, and the [tutorial](docs/tutorials/check-a-response.md) shows each step. An agent that reads this repository SHOULD run the installer for its own harness.
 2. Test a response with `python3 bin/deterministic-tests.py --check FILE`. Add `--instructions` to apply the 20-word sentence limit instead of the 25-word limit.
 3. Run every check of CI on your machine with `task ci`. The [how-to guide](docs/how-to/run-the-checks.md) explains each stage.
 

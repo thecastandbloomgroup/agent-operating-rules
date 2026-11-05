@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `install.sh` installs the rules file for one agent harness: a pointer for Claude Code, and a copy for Codex, Gemini CLI, Cursor, and Copilot. It runs from a clone or from curl with `--repo`, detects Claude Code from its environment, and never overwrites a file with other content. The release zip ships it.
 - `bin/run-psychomotor.py` sends the prompts of `tests/evaluation/psychomotor-tests.md` to the executors with the file tools of `bin/tool-sandbox.py`. Each unit acts in its own copy of its sandbox fixture. The tools refuse any path outside the sandbox, and the refused call is a violation. The grader `bin/check-psychomotor.py` writes `tool-checks.csv` from the transcripts and the end states, and `bin/ladder-scores.py` reads it as the psychomotor trials. Before, no sandbox existed, so nothing measured the psychomotor ladder.
 
 ### Fixed

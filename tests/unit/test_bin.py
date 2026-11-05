@@ -1189,3 +1189,55 @@ class LadderScoresPsychomotor(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("85% of 20", result.stdout)
         self.assertIn("Perception", result.stdout)
+
+
+INSTALL = BIN.parent / "install.sh"
+
+
+class InstallScript(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        self.dest = Path(folder.name)
+
+    def sh(self, *args):
+        return subprocess.run(
+            ["sh", str(INSTALL), *args],
+            capture_output=True,
+            text=True,
+            cwd=BIN.parent,
+            check=False,
+        )
+
+    def test_codex_gets_a_copy_and_a_second_run_changes_nothing(self):
+        result = self.sh("--target", "codex", "--dir", str(self.dest))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = (self.dest / "AGENTS.md").read_text()
+        self.assertTrue(text.startswith("# Operating Rules"))
+        again = self.sh("--target", "codex", "--dir", str(self.dest))
+        self.assertEqual(again.returncode, 0)
+        self.assertIn("already installed", again.stdout)
+
+    def test_claude_code_gets_the_pointer_and_the_rules_file(self):
+        result = self.sh("--target", "claude-code", "--dir", str(self.dest))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(
+            "@model-operating-rules.md", (self.dest / "CLAUDE.md").read_text()
+        )
+        rules = (self.dest / "model-operating-rules.md").read_text()
+        self.assertTrue(rules.startswith("# Operating Rules"))
+        again = self.sh("--target", "claude-code", "--dir", str(self.dest))
+        self.assertEqual(again.returncode, 0)
+        self.assertIn("already installed", again.stdout)
+
+    def test_refuses_a_file_with_other_content(self):
+        (self.dest / "GEMINI.md").write_text("# Mine\n")
+        result = self.sh("--target", "gemini", "--dir", str(self.dest))
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual((self.dest / "GEMINI.md").read_text(), "# Mine\n")
+
+    def test_cursor_rule_always_applies(self):
+        result = self.sh("--target", "cursor", "--dir", str(self.dest))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        text = (self.dest / ".cursor/rules/operating-rules.mdc").read_text()
+        self.assertTrue(text.startswith("---\nalwaysApply: true\n---"))

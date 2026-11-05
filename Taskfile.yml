@@ -21,7 +21,7 @@ vars:
   TEST_DATA: tests/evaluation/results,tests/evaluation/attachments
   # The files and folders of a release. They keep their paths in .build/ and
   # in the zip, so bin/deterministic-tests.py finds sources/banned-words.txt.
-  RELEASE_FILES: README.md CHANGELOG.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md
+  RELEASE_FILES: README.md CHANGELOG.md version.json sources bin/deterministic-tests.py tests/evaluation/evaluation-tests.md install.sh
   VERSION:
     sh: |
       python3 -c 'import json; print("{major}.{minor}.{patch}".format(**json.load(open("version.json"))))'

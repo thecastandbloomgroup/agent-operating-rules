@@ -28,7 +28,7 @@
 
 `task build` skips its copy when the release files, `Taskfile.yml` and `.build/` are the same as at the last build. Task keeps their checksum in `.task/`. So `task package` and `task ci` do not copy the files a second time.
 
-The release files are `README.md`, `CHANGELOG.md`, `version.json`, the folder `sources/`, `bin/deterministic-tests.py` and `tests/evaluation/evaluation-tests.md`. They keep their paths in the zip, so the script finds `sources/banned-words.txt`.
+The release files are `README.md`, `CHANGELOG.md`, `version.json`, `install.sh`, the folder `sources/`, `bin/deterministic-tests.py` and `tests/evaluation/evaluation-tests.md`. They keep their paths in the zip, so the script finds `sources/banned-words.txt`.
 
 ## CI
 
