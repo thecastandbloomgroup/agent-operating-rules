@@ -1700,3 +1700,34 @@ class FilesPage(unittest.TestCase):
             if p.suffix in (".py", ".sh") and f"| bin/{p.name} " not in page
         ]
         self.assertEqual(missing, [])
+
+
+PROCEDURES = load("judge-procedures.py")
+
+
+class JudgeProcedures(unittest.TestCase):
+    def test_the_weighted_score_runs_from_0_to_100(self):
+        self.assertEqual(
+            PROCEDURES.weighted({"complete": 2, "executable": 2, "general": 2}), 100
+        )
+        self.assertEqual(
+            PROCEDURES.weighted({"complete": 0, "executable": 0, "general": 0}), 0
+        )
+        self.assertEqual(
+            PROCEDURES.weighted({"complete": 2, "executable": 1, "general": 1}), 70
+        )
+        self.assertEqual(
+            PROCEDURES.weighted({"complete": 5, "executable": -1, "general": 2}), 70
+        )
+
+    def test_only_passed_p7_units_are_judged(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run_dir = Path(folder.name)
+        (run_dir / "tool-checks.csv").write_text(
+            "model,prompt_id,sample,level,passed,violations,steps,note\n"
+            "m@low,P7,1,Origination,True,0,12,\n"
+            "m@low,P7,2,Origination,False,0,12,x\n"
+            "m@low,P5,1,Complex overt response,True,0,8,\n"
+        )
+        self.assertEqual([u["sample"] for u in PROCEDURES.passed_p7(run_dir)], ["1"])

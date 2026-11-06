@@ -22,7 +22,7 @@ The [P7 results](2026-11-06-p7-origination-results.md) found that P7 passed as o
 
 1. **Coverage.** Each level has at least 22 of 24 units free of network and API errors after the rerun.
 2. **Guard.** P1, P4, and P6 each pass 22 or more of 24, as they did on 2026-11-05.
-3. **Measures to report.** The pass rate of each level, P5 against its 14 and 19 of 24, P7 against its 19 of 24, and whether the pooled rates fall from level to level.
+3. **Measures to report.** The pass rate of each level, with P5 against its 14 and 19 of 24, and P7 against its 19 of 24. Also whether the pooled rates fall from level to level.
 4. **Cost.** The run costs under 9 USD.
 
 A failed guard means the day or the rules moved the ladder, and the write-up says which levels moved.
