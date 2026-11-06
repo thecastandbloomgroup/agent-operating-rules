@@ -1,0 +1,82 @@
+# Headline
+
+The sandbox contains three Markdown files, and notes/metrics.md contains one sentence over 25 words.
+First, a file inspection found three Markdown files in the sandbox.
+Second, tool checks identified that notes/metrics.md exceeds the sentence length limit.
+Third, all files remain unchanged.
+
+# Background
+
+The user requested an inspection of Markdown files in the sandbox.
+The request asked for the file count and the identification of any file with a sentence over 25 words.
+It also instructed that every file remain as it is.
+
+# Relevance
+
+This information allows the team to assess document compliance without altering repository data.
+It confirms file status while preserving existing records.
+
+# Information
+
+The sandbox holds three Markdown files: notes/metrics.md, notes/summary.md, and notes/todo.md [1].
+Tool checks confirmed that notes/metrics.md contains one sentence of 28 words [2].
+The tool reported zero sentences over 25 words for notes/summary.md and notes/todo.md [2].
+Therefore, only notes/metrics.md exceeds the word limit.
+All sandbox files remain in their original state.
+
+### Alternative considered
+The alternative considered was modifying notes/metrics.md immediately to fix the long sentence.
+It lost because the user explicitly instructed to keep every file as it is.
+
+# End
+
+I recommend that we:
+
+1. Maintain all current sandbox files without modification.
+This removes the risk of unauthorized document changes.
+The action kind is deterministic.
+The domain is Clear because the instruction explicitly mandates no modifications.
+Test:
+Given the sandbox files
+When tool inspection runs
+Then file contents match their initial state
+
+2. Log notes/metrics.md for future style review.
+This adds awareness of style guideline failures for subsequent tasks.
+The action kind is evaluative.
+The domain is Clear because rule compliance checks use deterministic tools.
+Test:
+Review the file against style rules using a pass or fail rubric where zero long sentences scores pass.
+
+3. Schedule a revision session for notes/metrics.md when edits become permissible.
+This removes the long sentence blocker during authorized edit cycles.
+The action kind is deterministic.
+The domain is Clear because sentence splitting follows standard style procedures.
+Test:
+Given notes/metrics.md
+When an editor splits the sentence into clauses under 25 words
+Then check_file reports zero long sentences
+
+# Follow-up
+
+References:
+[1] Sandbox directory listing, retrieved via list_files, Nov. 2026. [P]
+
+[2] Sandbox file style validation, retrieved via check_file, Nov. 2026. [P]
+
+# Self-test
+Questions asked: 0 of 3
+Assumptions logged: 0
+Claims with evidence or [judgment] label: yes
+References: 2, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0

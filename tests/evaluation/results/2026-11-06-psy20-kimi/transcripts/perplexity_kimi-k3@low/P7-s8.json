@@ -1,0 +1,8 @@
+{
+  "model": "perplexity_kimi-k3@low",
+  "prompt_id": "P7",
+  "sample": 8,
+  "steps": [],
+  "violations": [],
+  "error": "P7-s8 perplexity/kimi-k3: HTTP 402: {\"error\":{\"message\":\"Your API Project has insufficient API credits. Add API credits at https://www.perplexity.ai/account/api/billing\",\"type\":\"payment_required\",\"code\":402}}\n"
+}

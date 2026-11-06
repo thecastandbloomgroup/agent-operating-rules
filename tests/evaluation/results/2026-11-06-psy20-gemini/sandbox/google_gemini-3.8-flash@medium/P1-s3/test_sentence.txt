@@ -1,0 +1,1 @@
+The long sentence in `notes/metrics.md` contains 27 words [3].

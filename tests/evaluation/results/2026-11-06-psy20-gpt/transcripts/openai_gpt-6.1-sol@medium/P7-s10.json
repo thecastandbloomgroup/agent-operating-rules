@@ -1,0 +1,8 @@
+{
+  "model": "openai_gpt-6.1-sol@medium",
+  "prompt_id": "P7",
+  "sample": 10,
+  "steps": [],
+  "violations": [],
+  "error": "P7-s10 openai/gpt-6.1-sol: HTTP 401: {\"error\":{\"message\":\"You exceeded your current quota, add credits at https://console.perplexity.ai/project/billing.\",\"type\":\"insufficient_quota\",\"code\":401}}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "model": "openai_gpt-6.1-sol@medium",
+  "prompt_id": "P6",
+  "sample": 10,
+  "steps": [],
+  "violations": [],
+  "error": "P6-s10 openai/gpt-6.1-sol: HTTP 402: {\"error\":{\"message\":\"Your API Project has insufficient API credits. Add API credits at https://www.perplexity.ai/account/api/billing\",\"type\":\"payment_required\",\"code\":402}}\n"
+}

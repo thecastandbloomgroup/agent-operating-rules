@@ -1,0 +1,8 @@
+{
+  "model": "xai_grok-4.7@low",
+  "prompt_id": "P7",
+  "sample": 14,
+  "steps": [],
+  "violations": [],
+  "error": "P7-s14 xai/grok-4.7: HTTP 401: {\"error\":{\"message\":\"You exceeded your current quota, add credits at https://console.perplexity.ai/project/billing.\",\"type\":\"insufficient_quota\",\"code\":401}}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "model": "xai_grok-4.7@low",
+  "prompt_id": "P4",
+  "sample": 1,
+  "steps": [],
+  "violations": [],
+  "error": "P4-s1 xai/grok-4.7: HTTP 402: {\"error\":{\"message\":\"Your API Project has insufficient API credits. Add API credits at https://www.perplexity.ai/account/api/billing\",\"type\":\"payment_required\",\"code\":402}}\n"
+}

@@ -1,0 +1,8 @@
+{
+  "model": "google_gemini-3.8-flash@medium",
+  "prompt_id": "P7",
+  "sample": 12,
+  "steps": [],
+  "violations": [],
+  "error": "P7-s12 google/gemini-3.8-flash: HTTP 401: {\"error\":{\"message\":\"You exceeded your current quota, add credits at https://console.perplexity.ai/project/billing.\",\"type\":\"insufficient_quota\",\"code\":401}}\n"
+}
