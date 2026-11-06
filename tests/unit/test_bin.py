@@ -1639,3 +1639,14 @@ class JudgeLeaveOneOut(unittest.TestCase):
         self.assertNotIn("Example 25.", instructions)
         self.assertIn("fits the work of this action", instructions)
         self.assertNotIn("Expected answer", template)
+
+
+class FilesPage(unittest.TestCase):
+    def test_every_script_in_bin_has_a_row_on_the_files_page(self):
+        page = (BIN.parent / "docs" / "reference" / "files.md").read_text()
+        missing = [
+            p.name
+            for p in sorted(BIN.iterdir())
+            if p.suffix in (".py", ".sh") and f"| bin/{p.name} " not in page
+        ]
+        self.assertEqual(missing, [])

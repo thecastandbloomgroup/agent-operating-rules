@@ -11,6 +11,8 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-11-06
+
 ### Added
 
 - `bin/judge-actions.py --work MARKING_DIR` judges fit to the work: no expected answer, and the human marks as examples. On 104 actions it found 76% of domains right, against 69% for fit to the test.
@@ -26,7 +28,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Changed
 
-- The rules drop coded labels such as "A2" and "E1". An assumption line now starts with "Assumption:", and a response points to its own parts by name. The user could not recall what the codes stood for.
+- **Breaking:** The rules drop coded labels such as "A2" and "E1". An assumption line now starts with "Assumption:", and a response points to its own parts by name. The user could not recall what the codes stood for.
 
 ## [0.8.2] - 2026-11-05
 
@@ -240,4 +242,5 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.8.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.7.0...v0.8.0
 [0.8.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.0...v0.8.1
 [0.8.2]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.1...v0.8.2
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.2...main
+[0.9.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.2...v0.9.0
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.9.0...main
