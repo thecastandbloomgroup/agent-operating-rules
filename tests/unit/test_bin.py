@@ -1572,3 +1572,48 @@ class RepairPsychomotor(unittest.TestCase):
         )
         row = CHECK_PSY.check_unit(self.run_dir, out)
         self.assertEqual((row["passed"], row["note"]), (True, ""))
+
+
+LOO = load("judge-loo.py")
+
+
+class JudgeLeaveOneOut(unittest.TestCase):
+    def test_the_examples_leave_out_the_held_row(self):
+        items = [
+            {
+                "prompt_id": f"P{n}",
+                "prompt": "p",
+                "label": "Clear",
+                "action_text": f"act {n}",
+            }
+            for n in range(3)
+        ]
+        marks = [
+            {
+                "domain_right_human": "True",
+                "reason_cause_effect_human": "True",
+                "note": "",
+            },
+            {
+                "domain_right_human": "False",
+                "reason_cause_effect_human": "True",
+                "note": "needs expertise",
+            },
+            {
+                "domain_right_human": "True",
+                "reason_cause_effect_human": "False",
+                "note": "",
+            },
+        ]
+        block = LOO.examples(items, marks, 1)
+        self.assertIn("act 0", block)
+        self.assertIn("act 2", block)
+        self.assertNotIn("act 1", block)
+        self.assertNotIn("needs expertise", block)
+        self.assertIn("Example 2. Prompt P2", block)
+
+    def test_kappa_is_zero_at_chance_and_one_at_full_agreement(self):
+        self.assertEqual(LOO.kappa([True, False], [True, False]), (1.0, 1.0))
+        self.assertEqual(
+            LOO.kappa([True, True, False, False], [True, False, True, False])[1], 0.0
+        )
