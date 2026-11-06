@@ -1046,7 +1046,7 @@ class RunPsychomotor(unittest.TestCase):
     def test_parses_one_prompt_per_level(self):
         prompts = RUN_PSY.EVAL.parse_prompts(RUN_PSY.PROMPTS_FILE.read_text())
         self.assertEqual(
-            [p["id"] for p in prompts], ["P1", "P2", "P3", "P4", "P5", "P6"]
+            [p["id"] for p in prompts], ["P1", "P2", "P3", "P4", "P5", "P6", "P7"]
         )
         for p in prompts:
             self.assertTrue(p["prompt"], p["id"])
@@ -1209,6 +1209,41 @@ class CheckPsychomotor(unittest.TestCase):
             files=files,
         )
         self.assertEqual((checked["passed"], checked["note"]), (True, ""))
+
+    def test_p7_passes_a_procedure_first_reused_on_each_file(self):
+        procedure = "1. Run check_file.\n2. Fix each defect with write_file.\n3. Run check_file again.\n"
+        clean = "A short clean line.\n"
+        files = {
+            "notes/procedure.md": procedure,
+            "notes/a.md": clean,
+            "notes/b.md": clean,
+            "notes/c.md": clean,
+        }
+        each = [
+            self.step(name, f)
+            for f in ("notes/a.md", "notes/b.md", "notes/c.md")
+            for name in ("check_file", "write_file", "check_file")
+        ]
+        good = self.unit(
+            "P7", [self.step("write_file", "notes/procedure.md"), *each], files=files
+        )
+        self.assertEqual((good["passed"], good["note"]), (True, ""))
+        late = self.unit(
+            "P7", [*each, self.step("write_file", "notes/procedure.md")], files=files
+        )
+        self.assertEqual(
+            late["note"], "the procedure came after the first write to a notes file"
+        )
+        other = each[:6] + [
+            self.step("write_file", "notes/c.md"),
+            self.step("check_file", "notes/c.md"),
+        ]
+        differs = self.unit(
+            "P7", [self.step("write_file", "notes/procedure.md"), *other], files=files
+        )
+        self.assertEqual(
+            differs["note"], "the tools ran in another order on another file"
+        )
 
 
 class LadderScoresPsychomotor(unittest.TestCase):

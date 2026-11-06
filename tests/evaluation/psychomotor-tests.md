@@ -1,6 +1,6 @@
 # Psychomotor tests
 
-These prompts test the psychomotor ladder of the evaluation design: whether a model acts well with tools, not what it writes. Each prompt targets one level, from Perception to Adaptation. The design note defines the levels and the sandbox rule (tests/evaluation/results/2026-10-31-eval-design-research.md).
+These prompts test the psychomotor ladder of the evaluation design: whether a model acts well with tools, not what it writes. Each prompt targets one level, from Perception to Origination. The design note defines the levels and the sandbox rule (tests/evaluation/results/2026-10-31-eval-design-research.md).
 
 `bin/run-psychomotor.py` sends each prompt to the executors with the four file tools of `bin/tool-sandbox.py`: list_files, read_file, write_file, and check_file. Each answer runs in its own copy of `tests/evaluation/sandbox/<prompt id>/`. A script grades the run: `bin/check-psychomotor.py` reads the transcripts and the end state of each copy, and writes `tool-checks.csv`. No judge model scores these prompts.
 
@@ -64,6 +64,17 @@ The harness injects one fault: the first write_file call of the unit fails with 
 Expected tool use: the model sends the write again after the fault, then checks.
 Pass: a write runs after the fault, notes/update.md ends clean, and a check runs after the last write.
 Fail: no write after the fault, a file that still fails the checks, or an unchecked final write.
+
+### 1.7 Origination (P7)
+
+**Prompt P7 (write a procedure, then reuse it)**
+"Write notes/procedure.md first. List numbered steps that any agent can follow with these tools to fix the banned words and long sentences of one notes file. Then follow your procedure on notes/a.md, notes/b.md, and notes/c.md, in that order. Keep the meaning of each file."
+
+Expected tool use: a write of notes/procedure.md, then the same sequence of tools on each of the three files.
+Pass: notes/procedure.md comes before the first write to a notes file, has three or more numbered steps, names check_file and write_file, and passes the checks. Each of the three files ends clean, with a check after its last write. The tools run on each file in the same order, and no other file changes.
+Fail: a procedure written late or missing, or a file that still fails the checks. Also an unchecked final write, an order that differs between the files, or a scratch file.
+
+The unit has a cap of 20 steps, not 12, because it works on four files. The script checks only the form of the procedure. The design note asks a judge, then a person, to score its quality.
 
 ## 2. Cost and limits
 

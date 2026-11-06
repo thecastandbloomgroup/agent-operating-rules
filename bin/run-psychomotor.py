@@ -44,6 +44,8 @@ def load(name):
 EVAL = load("run-evaluation.py")
 SANDBOX = load("tool-sandbox.py")
 MAX_STEPS = 12
+# A prompt that works on more files gets more steps.
+STEP_CAPS = {"P7": 20}
 # The fault of each prompt: the first call of that tool fails once with a
 # transient error, for the Adaptation level. Every later call runs as usual.
 FAULTS = {"P6": "write_file"}
@@ -121,7 +123,7 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample, seed=None):
     steps, calls, error = [], [], None
     fault = None if seed else FAULTS.get(prompt["id"])
     input_items = seed.get("input") or [{"role": "user", "content": prompt["prompt"]}]
-    cap = seed.get("max_steps", MAX_STEPS)
+    cap = seed.get("max_steps", STEP_CAPS.get(prompt["id"], MAX_STEPS))
     for _ in range(cap):
         try:
             data, usage, seconds = step(

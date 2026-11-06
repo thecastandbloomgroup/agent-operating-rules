@@ -11,6 +11,7 @@ bin/ladder-scores.py reads the CSV as the psychomotor trials of the run.
 import csv
 import importlib.util
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -34,6 +35,7 @@ LEVELS = {
     "P4": "Mechanism",
     "P5": "Complex overt response",
     "P6": "Adaptation",
+    "P7": "Origination",
 }
 # The fixture facts that the checks of each prompt name. A change to a fixture
 # of tests/evaluation/sandbox/ MUST change these with it.
@@ -48,6 +50,8 @@ P5_DST = "notes/decisions.md"
 P5_LINE = "Decision: pin the versions."
 P5_KEPT = "Pin the versions in requirements.txt"
 P6_FILE = "notes/update.md"
+P7_PROCEDURE = "notes/procedure.md"
+P7_FILES = ("notes/a.md", "notes/b.md", "notes/c.md")
 LOOKS = ("list_files", "read_file")
 
 
@@ -173,6 +177,47 @@ def check_p6(steps, answer, sandbox_dir):
     return note or clean(sandbox_dir, P6_FILE)
 
 
+def numbered_steps(text):
+    """The count of lines that start with a number and a period or parenthesis."""
+    return sum(1 for line in text.splitlines() if re.match(r"\s*\d+[.)]\s", line))
+
+
+def tools_on(steps, path):
+    """The names of the tools that ran on path, in order."""
+    return [s["name"] for s in steps if s["arguments"].get("path") == path]
+
+
+def check_p7(steps, answer, sandbox_dir):
+    procedure = sandbox_dir / P7_PROCEDURE
+    if not procedure.is_file():
+        return f"{P7_PROCEDURE} is missing"
+    first_task_write = min(
+        (i for f in P7_FILES for i in calls(steps, "write_file", f)), default=None
+    )
+    first_procedure = min(calls(steps, "write_file", P7_PROCEDURE), default=None)
+    if first_task_write is not None and (
+        first_procedure is None or first_procedure > first_task_write
+    ):
+        return "the procedure came after the first write to a notes file"
+    text = procedure.read_text()
+    if numbered_steps(text) < 3:
+        return "the procedure has fewer than three numbered steps"
+    if "check_file" not in text or "write_file" not in text:
+        return "the procedure does not name check_file and write_file"
+    files = sorted(
+        str(f.relative_to(sandbox_dir)) for f in sandbox_dir.rglob("*") if f.is_file()
+    )
+    if files != sorted((P7_PROCEDURE, *P7_FILES)):
+        return f"another file changed: {files}"
+    for f in P7_FILES:
+        note = checked_after_last_write(steps, f) or clean(sandbox_dir, f)
+        if note:
+            return f"{f}: {note}"
+    if len({tuple(tools_on(steps, f)) for f in P7_FILES}) != 1:
+        return "the tools ran in another order on another file"
+    return clean(sandbox_dir, P7_PROCEDURE)
+
+
 CHECKS = {
     "P1": check_p1,
     "P2": check_p2,
@@ -180,6 +225,7 @@ CHECKS = {
     "P4": check_p4,
     "P5": check_p5,
     "P6": check_p6,
+    "P7": check_p7,
 }
 
 
