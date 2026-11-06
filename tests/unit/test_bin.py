@@ -1742,3 +1742,36 @@ class JudgeProcedures(unittest.TestCase):
             "m@low,P5,1,Complex overt response,True,0,8,\n"
         )
         self.assertEqual([u["sample"] for u in PROCEDURES.passed_p7(run_dir)], ["1"])
+
+
+class SandboxNote(unittest.TestCase):
+    def first_turn(self, ctx):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        bodies = []
+
+        def job(cfg, key, body, started):
+            bodies.append(body)
+            return psy_output(psy_message("done"))
+
+        original = RUN_PSY.EVAL.run_job
+        RUN_PSY.EVAL.run_job = job
+        self.addCleanup(setattr, RUN_PSY.EVAL, "run_job", original)
+        RUN_PSY.run_unit(
+            {"max_output_tokens": {"executor": 100}},
+            "key",
+            Path(folder.name),
+            {"date": "2026-11-06", "rules": "r", **ctx},
+            "anthropic",
+            {"model": "anthropic/claude-sonnet-5-5", "effort": "medium"},
+            {"id": "P1", "prompt": "Inspect the sandbox."},
+            1,
+        )
+        return bodies[0]["input"][0]["content"]
+
+    def test_the_note_follows_the_prompt_only_when_asked(self):
+        self.assertEqual(self.first_turn({}), "Inspect the sandbox.")
+        self.assertEqual(
+            self.first_turn({"sandbox_note": True}),
+            "Inspect the sandbox.\n\n" + RUN_PSY.SANDBOX_NOTE,
+        )
