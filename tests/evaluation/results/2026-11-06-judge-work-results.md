@@ -47,7 +47,7 @@ The test arm and the original judges differ by one action. So the newer built-in
 
 - **Complicated is accepted every time.** A step that needs analysis is Complicated in the user's notes, and the work judge follows that view. The test judge rejects 11 of these labels, because the expected answer of the test names another domain for the prompt.
   [1]
-- **Chaotic is rejected 4 of 5 times.** All four are first steps of prompt H2: name one lead and freeze replies. The work judge calls three of them a known crisis practice, so Clear, and one a step that needs facilitation. Its notes cite the user's calls on the same kind of step on the sheet. The test judge accepts all five, because the expected answer names Chaotic for that step.
+- **Chaotic is rejected 4 of 5 times.** All four are first steps of prompt H2: name one lead and freeze replies. The work judge calls three of them a known crisis practice, so Clear, and one a step that needs facilitation. Its notes cite the user's calls on similar steps of the sheet. The test judge accepts all five, because the expected answer names Chaotic for that step.
   [1]
 - **Clear moves both ways.** The arms swap 15 of 48 Clear labels, so on Clear the two questions disagree the most.
   [1]
