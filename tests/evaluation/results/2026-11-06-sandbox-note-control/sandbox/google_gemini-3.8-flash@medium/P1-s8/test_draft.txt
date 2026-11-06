@@ -1,0 +1,82 @@
+### Headline
+The sandbox holds three Markdown files, and notes/metrics.md contains one sentence over 25 words.
+First, a file listing shows three files with the .md extension.
+Second, deterministic checks show that notes/metrics.md has one sentence over 25 words.
+Third, all other files pass the sentence length check.
+
+### Background
+The user requested an inspection of Markdown files in the sandbox.
+The request asked for the file count and the name of any file with a sentence over 25 words.
+It also directed that all files remain unchanged.
+
+### Relevance
+This inspection identifies files that fail rule limits.
+Therefore, the user can plan documentation updates without unintended file edits.
+
+### Information
+First, the file listing tool returned three files [1]:
+notes/metrics.md, notes/summary.md, and notes/todo.md.
+All three files end with the Markdown extension (.md).
+Next, deterministic checks on each file confirmed sentence lengths [2]:
+notes/metrics.md has one sentence with 28 words.
+In contrast, notes/summary.md and notes/todo.md have zero sentences over 25 words.
+Per notes/metrics.md, the long sentence describes API error rates caused by client retries [3].
+Finally, no files were modified during this inspection [judgment].
+
+Alternative considered:
+Splitting the long sentence in notes/metrics.md now was considered, but rejected because the user instructed to keep every file as it is [judgment].
+
+### End
+I recommend that we:
+1. Retain the current files without edits [judgment].
+- Increment: Verify that all sandbox files match their initial states.
+- Capability: Keeps file integrity intact per user instructions.
+- Test: Deterministic.
+Given the initial file list,
+When we compare current file paths,
+Then all original files remain unchanged.
+- Cynefin domain: Clear, deduction from explicit user constraints.
+
+2. Document the long sentence in notes/metrics.md for future editing [judgment].
+- Increment: Log the 28-word sentence in review notes.
+- Blocker removed: Clarifies which line violates Section 4.1 item 1.
+- Test: Deterministic.
+Given the text of notes/metrics.md,
+When we count words in sentence one,
+Then the count equals 28 words.
+- Cynefin domain: Clear, deduction from rule 4.1 item 1.
+
+3. Plan a separate task to split the long sentence into two parts [judgment].
+- Increment: Draft a two-sentence replacement in a separate ticket.
+- Blocker removed: Prepares a compliant version without altering the sandbox now.
+- Test: Deterministic.
+Given the 28-word sentence,
+When split into two sentences,
+Then each sentence contains at most 25 words.
+- Cynefin domain: Clear, deduction from rule 4.1 item 1.
+
+### Follow-up
+References:
+[1] default_api:list_files tool output, this session. [P]
+
+[2] default_api:check_file tool output, this session. [P]
+
+[3] notes/metrics.md, Section Metrics. [P]
+
+### Self-test
+Self-test
+Questions asked: 0 of 3
+Assumptions logged: 0
+Claims with evidence or [judgment] label: yes
+References: 3, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0

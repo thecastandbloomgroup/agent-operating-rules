@@ -10,7 +10,7 @@ One line after the prompt, which says that the sandbox holds the task files only
 
 ## Background
 
-The [P1 to P7 results](2026-11-06-psychomotor-p1-p7-results.md) found the loop on P1, P2, and P3. A new tool changes which checks the models run, per the [check text results](2026-11-06-check-text-results.md). `bin/run-psychomotor.py --sandbox-note` adds this line after the prompt: "The sandbox holds the task files only. Do not write any other file. Give your answer in your reply, not in a file."
+The [P1 to P7 results](2026-11-06-psychomotor-p1-p7-results.md) found the loop on P1, P2, and P3. A new tool changes the checks that models run ([check text](2026-11-06-check-text-results.md)). `bin/run-psychomotor.py --sandbox-note` adds this line after the prompt: "The sandbox holds the task files only. Do not write any other file. Give your answer in your reply, not in a file."
 
 ## Design
 

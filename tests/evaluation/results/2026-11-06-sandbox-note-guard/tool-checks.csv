@@ -1,0 +1,13 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+anthropic_claude-sonnet-5-5@medium,P1,1,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P1,2,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P1,3,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P1,4,Perception,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P2,1,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P2,2,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P2,3,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P2,4,Set,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P3,1,Guided response,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P3,2,Guided response,True,0,4,
+anthropic_claude-sonnet-5-5@medium,P3,3,Guided response,True,0,5,
+anthropic_claude-sonnet-5-5@medium,P3,4,Guided response,True,0,4,
