@@ -22,27 +22,43 @@ workflow:
   auto_cancel:
     on_new_commit: interruptible
 
-# A job gets no cache unless it names one. A job with dependencies: [] gets
-# no artifacts of an earlier job. So each job downloads only what its task uses.
+# Each job gets the cache of the Task archive. Only review also gets the cache
+# of uv. A job with dependencies: [] gets no artifacts of an earlier job. So
+# each job downloads only what its task uses.
 default:
   image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-alpine
   interruptible: true
+  cache:
+    - &task-cache
+      key: task-3.53.1
+      paths: [.task-bin/]
   before_script: &install-task
-    # Task 3.53.1 for the architecture of the runner. The checksum stops any
-    # other file.
+    # Task 3.53.1 for the architecture of the runner. The archive comes from
+    # the cache when it is there, so a GitHub outage does not fail the job.
+    # A download retries on any error, such as a 504. The checksum runs on
+    # every job, so it stops any other file, from the cache or the network.
     - apk add --no-cache curl
     - |
       case "$(uname -m)" in
         x86_64) arch=amd64; sum=a54a408f6861ff921f6e87774180db31bacd8c1e7c944ca696db9fea49a82fc7 ;;
         aarch64) arch=arm64; sum=e3ad19101493a0112e1f22ae8ccc54bf03e533b1076a0ca1e6c782a09ad2e588 ;;
       esac
-      curl -fsSL -o /tmp/task.tar.gz "https://github.com/go-task/task/releases/download/v3.53.1/task_linux_$arch.tar.gz"
-      echo "$sum  /tmp/task.tar.gz" | sha256sum -c -
-      tar -xzf /tmp/task.tar.gz -C /usr/local/bin task
+      archive=".task-bin/task_linux_$arch.tar.gz"
+      mkdir -p .task-bin
+      if [ -f "$archive" ] && echo "$sum  $archive" | sha256sum -c -s -; then
+        echo "Task 3.53.1 from the cache"
+      else
+        echo "Task 3.53.1 from GitHub"
+        curl -fsSL --retry 5 --retry-all-errors --retry-delay 10 -o "$archive" "https://github.com/go-task/task/releases/download/v3.53.1/task_linux_$arch.tar.gz"
+      fi
+      echo "$sum  $archive" | sha256sum -c -
+      tar -xzf "$archive" -C /usr/local/bin task
 
-# Only review runs the tools of uv, so only it gets its cache.
+# Only review runs the tools of uv, so only it gets its cache, next to the
+# cache of Task.
 .uv-cache:
   cache:
+    - *task-cache
     - key:
         files: [Taskfile.yml]
       paths: [$UV_CACHE_DIR]
