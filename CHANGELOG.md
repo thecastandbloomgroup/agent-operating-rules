@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/judge-actions.py --work MARKING_DIR` judges fit to the work: no expected answer, and the human marks as examples. On 104 actions it found 76% of domains right, against 69% for fit to the test.
 - `bin/judge-loo.py --no-expected` leaves the expected answer out of each judge call, and asks whether the label fits the work. A probe lifted the judges to a label kappa of 0.24 and 0.18, under the mark of 0.40.
 - `bin/judge-loo.py` judges each marked row with the user's marks on the other rows as examples. A probe on the 24 marked rows lifted both judges to a label kappa of -0.01. The mark was 0.40, so the built-in instruction stays.
 - `bin/judge-actions.py` takes `--instructions FILE` in place of its built-in instruction. A probe used it to judge the 24 marked rows with the themes of the user's notes. Both label marks failed at kappa -0.20, so the built-in instruction stays.
