@@ -1775,3 +1775,7 @@ class SandboxNote(unittest.TestCase):
             self.first_turn({"sandbox_note": True}),
             "Inspect the sandbox.\n\n" + RUN_PSY.SANDBOX_NOTE,
         )
+        self.assertEqual(
+            self.first_turn({"answer_note": True}),
+            "Inspect the sandbox.\n\n" + RUN_PSY.ANSWER_NOTE,
+        )

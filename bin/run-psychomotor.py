@@ -8,7 +8,8 @@ Usage: bin/run-psychomotor.py [--provider NAME] [--run-id ID] [--prompts P1,P2]
                               [--samples N] [--workers N] [--out DIR]
                               [--rules FILE] [--check-text] [--plan]
 --check-text also offers check_text, a check of a draft answer that writes no file.
---sandbox-note adds SANDBOX_NOTE after the prompt in the first user turn.
+--sandbox-note adds SANDBOX_NOTE after the prompt in the first user turn, and
+--answer-note adds only ANSWER_NOTE, which names no fail of any prompt.
 The executors are the main pair of each provider of pairs.json. The first run
 is also the probe of tool support: a provider that refuses the tools field
 fails with an API error in run.log. It reads the key from PERPLEXITY_TOKEN and
@@ -50,6 +51,7 @@ SANDBOX_NOTE = (
     "The sandbox holds the task files only. Do not write any other file. "
     "Give your answer in your reply, not in a file."
 )
+ANSWER_NOTE = "Give your answer in your reply, not in a file."
 # A prompt that works on more files gets more steps.
 STEP_CAPS = {"P7": 20}
 # The fault of each prompt: the first call of that tool fails once with a
@@ -131,6 +133,8 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample, seed=None):
     first = prompt["prompt"]
     if ctx.get("sandbox_note"):
         first = f"{first}\n\n{SANDBOX_NOTE}"
+    elif ctx.get("answer_note"):
+        first = f"{first}\n\n{ANSWER_NOTE}"
     input_items = seed.get("input") or [{"role": "user", "content": first}]
     cap = seed.get("max_steps", STEP_CAPS.get(prompt["id"], MAX_STEPS))
     for _ in range(cap):
@@ -237,6 +241,7 @@ def main():
     parser.add_argument("--rules", default=str(EVAL.RULES))
     parser.add_argument("--check-text", action="store_true")
     parser.add_argument("--sandbox-note", action="store_true")
+    parser.add_argument("--answer-note", action="store_true")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
     cfg = json.loads(EVAL.PAIRS.read_text())
@@ -272,6 +277,7 @@ def main():
         "rules": rules,
         "check_text": args.check_text,
         "sandbox_note": args.sandbox_note,
+        "answer_note": args.answer_note,
     }
     (run_dir / "run.json").write_text(
         json.dumps(
@@ -284,6 +290,7 @@ def main():
                 "max_steps": MAX_STEPS,
                 "check_text": args.check_text,
                 "sandbox_note": args.sandbox_note,
+                "answer_note": args.answer_note,
             },
             indent=2,
         )
