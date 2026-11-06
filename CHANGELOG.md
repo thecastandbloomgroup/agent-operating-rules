@@ -11,6 +11,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+### Added
+
+- `bin/run-psychomotor.py --check-text` also offers `check_text`, a check of a draft answer that writes no file. A probe found that it costs passes on P5, so the default tools stay the four file tools.
+
 ## [0.9.0] - 2026-11-06
 
 ### Added

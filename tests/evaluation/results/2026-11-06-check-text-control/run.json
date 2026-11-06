@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-06",
+  "rules_version": "0.9",
+  "rules_file": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/check-text/sources/model-operating-rules.md",
+  "prompts": [
+    "P3",
+    "P5"
+  ],
+  "samples": 4,
+  "max_steps": 12,
+  "check_text": false
+}
