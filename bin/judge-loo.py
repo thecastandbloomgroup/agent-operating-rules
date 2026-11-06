@@ -2,7 +2,9 @@
 The sheet of a human marking session holds one mark per row. For each row, this
 script gives the judge the other rows with their human marks and notes, then asks
 it to judge the row held out. It prints the agreement and kappa with the human.
-Usage: bin/judge-loo.py MARKING_DIR [--judge MODEL@EFFORT] [--out CSV] [--plan]
+Usage: bin/judge-loo.py MARKING_DIR [--judge MODEL@EFFORT] [--out CSV] [--no-expected] [--plan]
+--no-expected leaves the expected answer of the test out of each call, and asks
+whether the label fits the work of the action, as the marking page asks the human.
 With no --judge, each row goes to a judge of another provider than its executor.
 MARKING_DIR holds sheet.csv and items.json. It reads the key from PERPLEXITY_TOKEN.
 """
@@ -39,6 +41,34 @@ Its label: {label}.
 {action}
 Human answer: domain_right {domain}, reason_cause_effect {reason}. Note: {note}
 """
+WORK = """1. domain_right: the Cynefin domain of this action fits the work of this action,
+   that is, how cause and effect relate in what this step does. Judge the step itself
+   against these definitions, the same ones the human saw:
+   - Clear: cause and effect are known to everyone. A best practice exists. One step.
+   - Complicated: cause and effect are knowable with analysis or expertise.
+   - Complex: cause and effect are visible only afterward. A small, safe-to-fail probe.
+   - Chaotic: no cause and effect are visible. The action stabilises first.
+   - Confused: the domain cannot be told. The action gathers what is needed to classify.
+2. reason_cause_effect:"""
+NO_EXPECTED = "Expected answer (evaluation-tests.md):\n{expected}\n\n"
+
+
+def instructions_of(no_expected):
+    """The built-in instruction, with item 1 judged against the work when no_expected."""
+    if not no_expected:
+        return JUDGE.INSTRUCTIONS
+    start = JUDGE.INSTRUCTIONS.index("1. domain_right:")
+    end = JUDGE.INSTRUCTIONS.index("2. reason_cause_effect:")
+    return (
+        JUDGE.INSTRUCTIONS[:start]
+        + WORK
+        + JUDGE.INSTRUCTIONS[end + len("2. reason_cause_effect:") :]
+    )
+
+
+def input_of(no_expected):
+    """The input template of each call, with no expected answer when no_expected."""
+    return JUDGE.INPUT.replace(NO_EXPECTED, "") if no_expected else JUDGE.INPUT
 
 
 def truth(text):
@@ -77,6 +107,7 @@ def main():
     parser.add_argument("marking_dir")
     parser.add_argument("--judge")
     parser.add_argument("--out", default="loo.csv")
+    parser.add_argument("--no-expected", action="store_true")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
     folder = Path(args.marking_dir)
@@ -105,7 +136,7 @@ def main():
         if args.judge:
             model, effort = args.judge.split("@")
             judge = {"model": model, "effort": effort}
-        text = JUDGE.INPUT.format(
+        text = input_of(args.no_expected).format(
             id=p["id"],
             prompt=p["prompt"],
             expected=p["expected"],
@@ -114,7 +145,9 @@ def main():
             domain=item["label"],
             action=item["action_text"],
         )
-        instructions = JUDGE.INSTRUCTIONS + "\n" + examples(items, marks, k)
+        instructions = (
+            instructions_of(args.no_expected) + "\n" + examples(items, marks, k)
+        )
         try:
             raw, usage, _ = JUDGE.EVAL.call(
                 cfg, key, judge, "judge", instructions, text, JUDGE.SCHEMA

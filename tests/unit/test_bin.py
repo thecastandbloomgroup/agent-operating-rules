@@ -1617,3 +1617,14 @@ class JudgeLeaveOneOut(unittest.TestCase):
         self.assertEqual(
             LOO.kappa([True, True, False, False], [True, False, True, False])[1], 0.0
         )
+
+    def test_no_expected_drops_the_expected_answer_and_judges_the_work(self):
+        self.assertNotIn("Expected answer", LOO.input_of(True))
+        self.assertIn("{action}", LOO.input_of(True))
+        self.assertEqual(LOO.input_of(False), LOO.JUDGE.INPUT)
+        text = LOO.instructions_of(True)
+        self.assertNotIn("expected answer", text)
+        self.assertIn("fits the work of this action", text)
+        self.assertEqual(text.count("2. reason_cause_effect:"), 1)
+        self.assertIn("3. reason_certainty:", text)
+        self.assertEqual(LOO.instructions_of(False), LOO.JUDGE.INSTRUCTIONS)
