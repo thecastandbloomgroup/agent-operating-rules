@@ -991,6 +991,21 @@ class ToolSandbox(unittest.TestCase):
         read, _ = SANDBOX.execute(self.root, "read_file", {"path": "notes/new.md"})
         self.assertEqual(read, "A line.\n")
 
+    def test_check_text_reports_and_writes_no_file(self):
+        before = sorted(self.root.rglob("*"))
+        output, violation = SANDBOX.execute(
+            self.root, "check_text", {"text": "This is clearly fine."}, True
+        )
+        self.assertIsNone(violation)
+        self.assertTrue(json.loads(output)["banned_words"])
+        self.assertEqual(sorted(self.root.rglob("*")), before)
+
+    def test_check_text_is_refused_unless_offered(self):
+        output, _ = SANDBOX.execute(self.root, "check_text", {"text": "x"})
+        self.assertEqual(output, "refused: check_text is not a tool")
+        self.assertNotIn("check_text", [t["name"] for t in SANDBOX.tools()])
+        self.assertIn("check_text", [t["name"] for t in SANDBOX.tools(True)])
+
     def test_check_file_reports_the_banned_words(self):
         output, violation = SANDBOX.execute(
             self.root, "check_file", {"path": "notes/report.md"}

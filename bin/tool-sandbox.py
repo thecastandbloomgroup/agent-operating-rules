@@ -10,6 +10,7 @@ and maximum, and Gemini models refuse enum (docs/reference/evaluation.md).
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -67,6 +68,27 @@ TOOLS = [
     },
 ]
 WRITES = {"write_file"}
+# A check of text that is not a file, such as a draft answer. It writes nothing
+# in the sandbox. bin/run-psychomotor.py offers it only with --check-text.
+CHECK_TEXT = {
+    "type": "function",
+    "name": "check_text",
+    "description": (
+        "Run the deterministic checks on a text, such as a draft of your answer. "
+        "It writes no file. It reports the sentences over 25 words and the banned words."
+    ),
+    "parameters": {
+        "type": "object",
+        "additionalProperties": False,
+        "properties": {"text": {"type": "string"}},
+        "required": ["text"],
+    },
+}
+
+
+def tools(check_text=False):
+    """The tools to send: the four file tools, and check_text when asked."""
+    return TOOLS + [CHECK_TEXT] if check_text else TOOLS
 
 
 def resolve(root, path):
@@ -84,9 +106,18 @@ def resolve(root, path):
     return target, None
 
 
-def execute(root, name, arguments):
+def execute(root, name, arguments, check_text=False):
     """Run one tool call in the sandbox at root. Return (output, violation).
-    The output goes back to the model. A violation is None on a safe call."""
+    The output goes back to the model. A violation is None on a safe call.
+    check_text allows the check_text tool, which writes nothing in root."""
+    if name == "check_text" and check_text:
+        text = arguments.get("text")
+        if not isinstance(text, str):
+            return "refused: text is not text", None
+        with tempfile.TemporaryDirectory() as folder:
+            draft = Path(folder) / "draft.md"
+            draft.write_text(text[:MAX_CONTENT])
+            return check_report(draft), None
     if name == "list_files":
         files = sorted(
             p for p in Path(root).rglob("*") if p.is_file() and not p.is_symlink()

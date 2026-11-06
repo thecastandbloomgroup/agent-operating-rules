@@ -6,7 +6,8 @@ final answer, and the end state of the copy stay in the run folder, and
 bin/check-psychomotor.py grades them. No judge model runs.
 Usage: bin/run-psychomotor.py [--provider NAME] [--run-id ID] [--prompts P1,P2]
                               [--samples N] [--workers N] [--out DIR]
-                              [--rules FILE] [--plan]
+                              [--rules FILE] [--check-text] [--plan]
+--check-text also offers check_text, a check of a draft answer that writes no file.
 The executors are the main pair of each provider of pairs.json. The first run
 is also the probe of tool support: a provider that refuses the tools field
 fails with an API error in run.log. It reads the key from PERPLEXITY_TOKEN and
@@ -66,7 +67,7 @@ def plan_cost(cfg, model, units):
     return units * (tokens_in * price_in + tokens_out * price_out) / 1_000_000
 
 
-def step(cfg, key, model, rules, input_items):
+def step(cfg, key, model, rules, input_items, check_text=False):
     """One call of the loop. Return the API data and its usage.
     An overloaded job is sent again, as in run-evaluation.py call()."""
     body = {
@@ -75,7 +76,7 @@ def step(cfg, key, model, rules, input_items):
         "input": input_items,
         "reasoning": {"effort": model["effort"]},
         "max_output_tokens": cfg["max_output_tokens"]["executor"],
-        "tools": SANDBOX.TOOLS,
+        "tools": SANDBOX.tools(check_text),
         "background": True,
     }
     started = time.monotonic()
@@ -123,7 +124,9 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample, seed=None):
     cap = seed.get("max_steps", MAX_STEPS)
     for _ in range(cap):
         try:
-            data, usage, seconds = step(cfg, key, model, ctx["rules"], input_items)
+            data, usage, seconds = step(
+                cfg, key, model, ctx["rules"], input_items, ctx.get("check_text", False)
+            )
         except EVAL.CallError as exc:
             error, usage = f"{stem} {model['model']}: {exc}", exc.usage
             calls.append(log_row(name, model, prompt, sample, usage, 0, "failed"))
@@ -145,7 +148,10 @@ def run_unit(cfg, key, run_dir, ctx, name, model, prompt, sample, seed=None):
                     result, violation, fault = FAULT_TEXT, None, None
                 else:
                     result, violation = SANDBOX.execute(
-                        sandbox_dir, call.get("name", ""), arguments
+                        sandbox_dir,
+                        call.get("name", ""),
+                        arguments,
+                        ctx.get("check_text", False),
                     )
             steps.append(
                 {
@@ -218,6 +224,7 @@ def main():
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--out", default=str(ROOT / "tests/evaluation/results"))
     parser.add_argument("--rules", default=str(EVAL.RULES))
+    parser.add_argument("--check-text", action="store_true")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
     cfg = json.loads(EVAL.PAIRS.read_text())
@@ -248,7 +255,11 @@ def main():
         sys.exit(f"{run_dir} exists. Give the run a new --run-id.")
     run_dir.mkdir(parents=True)
     rules = Path(args.rules).read_text()
-    ctx = {"date": now.strftime("%Y-%m-%d"), "rules": rules}
+    ctx = {
+        "date": now.strftime("%Y-%m-%d"),
+        "rules": rules,
+        "check_text": args.check_text,
+    }
     (run_dir / "run.json").write_text(
         json.dumps(
             {
@@ -258,6 +269,7 @@ def main():
                 "prompts": [p["id"] for p in prompts],
                 "samples": args.samples,
                 "max_steps": MAX_STEPS,
+                "check_text": args.check_text,
             },
             indent=2,
         )
