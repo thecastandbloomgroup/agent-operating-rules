@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/judge-loo.py --no-expected` leaves the expected answer out of each judge call, and asks whether the label fits the work. A probe lifted the judges to a label kappa of 0.24 and 0.18, under the mark of 0.40.
 - `bin/judge-loo.py` judges each marked row with the user's marks on the other rows as examples. A probe on the 24 marked rows lifted both judges to a label kappa of -0.01. The mark was 0.40, so the built-in instruction stays.
 - `bin/judge-actions.py` takes `--instructions FILE` in place of its built-in instruction. A probe used it to judge the 24 marked rows with the themes of the user's notes. Both label marks failed at kappa -0.20, so the built-in instruction stays.
 - The judge trust results compare both judges with a blind marking of 24 actions by the user. Neither judge matches the user on domain fit: kappa -0.20 and -0.40. The evaluations page now calls the domain rates the judges' view.
