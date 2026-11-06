@@ -1720,6 +1720,17 @@ class JudgeProcedures(unittest.TestCase):
             PROCEDURES.weighted({"complete": 5, "executable": -1, "general": 2}), 70
         )
 
+    def test_a_zero_on_any_criterion_fails_whatever_the_score(self):
+        self.assertFalse(
+            PROCEDURES.passes({"complete": 2, "executable": 0, "general": 2})
+        )
+        self.assertFalse(
+            PROCEDURES.passes({"complete": 1, "executable": 2, "general": 2})
+        )
+        self.assertTrue(
+            PROCEDURES.passes({"complete": 2, "executable": 1, "general": 2})
+        )
+
     def test_only_passed_p7_units_are_judged(self):
         folder = tempfile.TemporaryDirectory()
         self.addCleanup(folder.cleanup)

@@ -83,6 +83,11 @@ So a pass of the rubric does not mean that another agent can follow the procedur
 - **Four samples per provider.** Each provider has 4 trials per level, under the 20 that a mastery call needs.
 - **The judge has no person check.** The plan asks a person to score 6 procedures blind before the judge can be trusted.
 
+## Addendum: a stricter pass mark
+
+`bin/judge-procedures.py` now passes a procedure at 85 or more, with no criterion at 0. The scores above stay as they were, and only the pass changes. Under the new mark, 11 of 19 procedures of the first P7 run pass, and 17 of 24 of this run. So 28 of 43 pass, against 43 of 43 at the old mark.
+[2]
+
 ## End
 
 I recommend that we:

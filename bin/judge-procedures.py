@@ -4,7 +4,8 @@ It reads RUN_DIR/tool-checks.csv (bin/check-psychomotor.py), and for each passed
 P7 unit it sends notes/procedure.md of its sandbox to a judge of another
 provider than the executor. The judge sees only the procedure. It scores three
 criteria 0, 1, or 2, and the weighted score runs from 0 to 100. The rubric is in
-tests/evaluation/results/2026-11-06-p7-quality-plan.md. It writes
+tests/evaluation/results/2026-11-06-p7-quality-plan.md. A procedure passes at 85
+or more with no criterion at 0, per the addendum of the P1 to P7 results. It writes
 RUN_DIR/procedure-checks.csv, and reads the key from PERPLEXITY_TOKEN.
 """
 
@@ -30,7 +31,8 @@ def load(name):
 
 JUDGE = load("judge-actions.py")
 WEIGHTS = {"complete": 40, "executable": 30, "general": 30}
-PASS_MARK = 70
+# 70 let a procedure pass with two steps that need a guess (0 on executable).
+PASS_MARK = 85
 INSTRUCTIONS = """You score one procedure that an agent wrote for other agents.
 The task of the procedure: make one notes file pass the checks for banned words and
 sentences over 25 words, with the tools list_files, read_file, write_file, and
@@ -55,6 +57,11 @@ SCHEMA = {
         "note": {"type": "string"},
     },
 }
+
+
+def passes(scores):
+    """A procedure passes at PASS_MARK or more, with no criterion at 0."""
+    return weighted(scores) >= PASS_MARK and min(int(scores[k]) for k in WEIGHTS) > 0
 
 
 def weighted(scores):
@@ -110,7 +117,7 @@ def main():
                 "judge": f"{judge['model']}@{judge['effort']}",
                 **{k: result[k] for k in WEIGHTS},
                 "score": score,
-                "passed": score >= PASS_MARK,
+                "passed": passes(result),
                 "note": result["note"],
                 "cost_usd": cost,
             }
@@ -123,7 +130,7 @@ def main():
         writer.writerows(rows)
     good = sum(r["passed"] for r in rows)
     print(
-        f"{good} of {len(rows)} procedures score {PASS_MARK} or more. Cost: {total:.2f} USD"
+        f"{good} of {len(rows)} procedures pass: {PASS_MARK} or more, no criterion at 0. Cost: {total:.2f} USD"
     )
     return 0
 

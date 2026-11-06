@@ -13,7 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
-- `bin/judge-procedures.py` has a judge of another provider score the procedure of each passed P7 unit on three criteria, from 0 to 100. On 43 procedures of two runs, every one scored 70 or more.
+- `bin/judge-procedures.py` has a judge of another provider score the procedure of each passed P7 unit on three criteria, from 0 to 100. A procedure passes at 85 or more with no criterion at 0, so 28 of 43 procedures of two runs pass. A first mark of 70 passed all 43, including procedures with two steps that need a guess.
 - Prompt P7 tests Origination, the top psychomotor level. The model writes a procedure, then reuses it on three files, and `bin/check-psychomotor.py` grades its form and reuse. P7 gets a cap of 20 steps. Its first run passed 19 of 24.
 - `bin/run-psychomotor.py --check-text` also offers `check_text`, a check of a draft answer that writes no file. A probe found that it costs passes on P5, so the default tools stay the four file tools.
 
