@@ -1,0 +1,46 @@
+{
+  "model": "perplexity_glm-5.3-flash@medium",
+  "prompt_id": "P3",
+  "sample": 3,
+  "answer": "## Headline\n\nThe runbook is complete. The first check found two banned words, and the last check found none. Only the two banned words changed in the file.\n\n## Background\n\nThe request asked for a strict runbook on notes/report.md: read the file, run check_file, rewrite each banned word, and repeat until the check reports no banned word. The file held two sentences about a cache and a failover design.\n\n## Relevance\n\nThe final file now passes the banned-word check, so it is ready for use as-is. The word counts below are the requested record of the pass.\n\n## Information\n\nFirst check: the tool reported two banned words, \"clearly\" and \"robust\", under the Boosters category. Second check: the tool reported no banned words, so no further pass was needed. The rewrites were \"clearly faster\" to \"faster\" and \"robust\" to \"stable\". No other text changed, per the runbook.\n\n## End\n\nI recommend that we keep the rewritten file, because it now passes the check with the smallest possible edit.\n\n## Follow-up\n\nNone.\n\n## Self-test\n\n```text\nSelf-test\nQuestions asked: 0 of 3\nAssumptions logged: no\nClaims with evidence or [judgment] label: yes (tool outputs in session)\nReferences: 0, all from session or identified with confidence: yes\nSource types tagged (P/S/T/U): not applicable, no external sources\nAlternative considered: not applicable\nRecommendation: 1 action, with increment, blocker, test: yes\nEach action classified (deterministic/evaluative/stochastic) with test written first: yes (deterministic, test = check_file reports no banned word)\nActions in End with a Cynefin domain label: 1 of 1 (Clear, cause and effect follow from the check output)\nChaotic and Confused actions first, Complex actions as capped probes: not applicable\nBanned words found: 0\nSelf-mention outside End: 0\nTransition present where a sentence depends on the prior one: yes\nDashes (em or en): 0\nSentences over the limit of Section 4.1 item 1: 0\n```",
+  "steps": [
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/report.md"
+      },
+      "output": "# Report\n\nThe new cache is clearly faster than the old one. It serves a read in two milliseconds.\nThe failover design is robust under a lost node. We tested it with three nodes down.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/report.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {\"Boosters (4.4.1)\": [\"clearly\", \"robust\"]}, \"failures\": [\"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Report\n\nThe new cache is faster than the old one. It serves a read in two milliseconds.\nThe failover design is stable under a lost node. We tested it with three nodes down.\n",
+        "path": "notes/report.md"
+      },
+      "output": "wrote 175 characters to notes/report.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/report.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    }
+  ],
+  "violations": []
+}

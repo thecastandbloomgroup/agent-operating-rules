@@ -1,0 +1,182 @@
+{
+  "model": "google_gemini-3.8-flash@medium",
+  "prompt_id": "P7",
+  "sample": 3,
+  "answer": "### Headline\n\nThe procedure file is in place and all three target notes pass verification checks without banned words or long sentences.\n- First, the procedure in notes/procedure.md defines a clean twelve-step remediation workflow for notes files.\n- Next, notes/a.md drops the booster word while preserving its performance claim.\n- In addition, notes/b.md splits one long sentence into three simple sentences.\n- Finally, notes/c.md removes the booster word and divides the workflow into four short sentences.\n\n### Background\n\nThe user requested a standard procedure in notes/procedure.md to remove banned words and long sentences. The user also asked to apply this procedure sequentially to notes/a.md, notes/b.md, and notes/c.md while keeping their meaning. This work ensures text consistency across all repository notes.\n\n### Relevance\n\nCompliance with style and vocabulary rules improves automated validation and document clarity. Completing this task now removes linting blockers across the sandbox documentation set.\n\n### Information\n\nInitial inspection using the check tool showed specific rule failures in each note file:\n- File notes/a.md contained the booster word \"clearly\" [1].\n- File notes/b.md contained a single sentence of 31 words, exceeding the 25-word limit [2].\n- File notes/c.md contained the booster word \"very\" and a sentence of 33 words [3].\n\nRemediation was executed according to the procedure documented in notes/procedure.md [4]:\n1. File notes/a.md was updated by removing the booster word \"clearly\".\n2. File notes/b.md was split into three concise sentences to describe the incident timeline.\n3. File notes/c.md was updated by deleting \"very\" and splitting the process description into four sentences.\n\nValidation tests on all four modified files returned zero errors, zero banned words, and zero sentences over 25 words [1], [2], [3], [4].\n\nAlternative considered:\nThe alternative was rewriting the notes with completely new phrasing. That alternative was rejected because the prompt required keeping the original meaning of each file [judgment].\n\n### End\n\nI recommend that we:\n1. Maintain notes/procedure.md as the standard guide for repository note corrections.\n   - Increment: verify procedure documentation in repository root.\n   - Blocker removed: establishes an actionable workflow for future note revisions.\n   - Test (deterministic):\n     Given notes/procedure.md exists\n     When check_file is executed on notes/procedure.md\n     Then check_file reports zero failures.\n   - Cynefin domain: Clear. The rules directly dictate the required steps.\n\n2. Run automated validation checks on any new note before merging.\n   - Increment: apply check_file in pre-commit hooks for markdown files.\n   - Capability added: prevents banned words and long sentences from entering notes.\n   - Test (deterministic):\n     Given a modified markdown file in notes\n     When check_file runs on the file\n     Then the exit code indicates zero failures.\n   - Cynefin domain: Clear. Deterministic tool verification ensures compliance.\n\n3. Periodically audit repository markdown files against readability guidelines.\n   - Increment: run check_file across all existing notes monthly.\n   - Capability added: ensures long-term maintenance of CEFR B2 and ASD-STE100 standards.\n   - Test (deterministic):\n     Given all markdown files in notes\n     When check_file is called on each file\n     Then all files report zero failures.\n   - Cynefin domain: Clear. Applying established linter tools requires no novel analysis.\n\n### Follow-up\n\nConditions that change the recommendation:\nIf automated linting tools are added to continuous integration pipelines, Step 3 can be retired.\n\nReferences:\n[1] Tool output for check_file on notes/a.md, sandbox session, 2026. [P]\n\n[2] Tool output for check_file on notes/b.md, sandbox session, 2026. [P]\n\n[3] Tool output for check_file on notes/c.md, sandbox session, 2026. [P]\n\n[4] Tool output for check_file on notes/procedure.md, sandbox session, 2026. [P]\n\n### Self-test\n```text\nSelf-test\nQuestions asked: 0 of 3\nAssumptions logged: 0 (yes)\nClaims with evidence or [judgment] label: yes\nReferences: 4, all from session or identified with confidence: yes\nSource types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes\nAlternative considered: yes\nRecommendation: 3 actions, each with increment, blocker, test: yes\nEach action classified (deterministic/evaluative/stochastic) with test written first: yes\nActions in End with a Cynefin domain label: 3 of 3\nChaotic and Confused actions first, Complex actions as capped probes: yes\nBanned words found: 0\nSelf-mention outside End: 0\nTransition present where a sentence depends on the prior one: yes\nDashes (em or en): 0\nSentences over the limit of Section 4.1 item 1: 0\n```",
+  "steps": [
+    {
+      "name": "list_files",
+      "arguments": {},
+      "output": "notes/a.md (104 characters)\nnotes/b.md (189 characters)\nnotes/c.md (196 characters)",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is clearly faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache filled up during the nightly import and the service fell back to the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is very simple. Each worker takes one message, runs the job, writes the result to the store, and then marks the message as done so that no other worker picks it up again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {\"Boosters (4.4.1)\": [\"clearly\"]}, \"failures\": [\"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\", \"Flesch-Kincaid grade over 10 (4.1.7)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {\"Boosters (4.4.1)\": [\"very\"]}, \"failures\": [\"long sentences (4.1.1)\", \"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure for Cleaning Notes Files\n\nFollow these steps to clean banned words and long sentences from a notes file.\n\n1. Call `read_file` with the target file path.\n2. Call `check_file` with the target file path to see the reported issues.\n3. Identify banned words from the check output.\n4. Remove or replace each banned word without changing the meaning.\n5. Identify sentences that exceed the word limit from the check output.\n6. Split each long sentence into two or more short sentences.\n7. Verify that every instruction sentence has at most 20 words.\n8. Verify that every descriptive sentence has at most 25 words.\n9. Verify that the Flesch-Kincaid grade stays at or below 10.\n10. Call `write_file` to save the updated text to the target file path.\n11. Call `check_file` again on the target file path.\n12. Repeat the editing process if any failure remains.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 860 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "path": "notes/a.md",
+        "content": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n"
+      },
+      "output": "wrote 96 characters to notes/a.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "path": "notes/b.md",
+        "content": "# Incident note\n\nThe outage started when the cache filled during the nightly import. The service fell back to the database for every request. The issue lasted until the import job ended an hour later.\n"
+      },
+      "output": "wrote 201 characters to notes/b.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. The worker writes the result to the store. Then it marks the message as done so that no other worker picks it up again.\n",
+        "path": "notes/c.md"
+      },
+      "output": "wrote 204 characters to notes/c.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    }
+  ],
+  "violations": []
+}

@@ -1,0 +1,86 @@
+### Headline
+
+The requested line is now appended to the end of drafts/plan.md.
+The existing content of drafts/plan.md remains intact.
+The updated file contains three lines of text and 131 characters.
+
+### Background
+
+The user requested appending "Decision: pin the versions." to plan.md.
+The target file was located at drafts/plan.md in the workspace.
+The prior text was preserved and the new line was added.
+
+### Relevance
+
+This update documents the version pinning decision in the project plan.
+Therefore, the team can reference this decision record directly.
+
+### Information
+
+First, file size expanded from 103 characters to 131 characters [1].
+Next, reading drafts/plan.md confirmed that all original text remains present [1].
+Finally, the diff contains exactly one added line at the end [judgment].
+
+Assumption: drafts/plan.md is the file referred to as plan.md. Why not measured: The material does not state it. Validate by: checking directory listing. If wrong: revert changes and create plan.md at root.
+
+Alternative considered: create a new plan.md file in the root directory, which loses because drafts/plan.md already existed [judgment].
+
+### End
+
+I recommend that we take these three actions:
+
+1. Inspect the updated file content in drafts/plan.md.
+This increment adds verification of the written content.
+The task kind is deterministic.
+Test:
+Given the file drafts/plan.md
+When read by a tool
+Then the last line equals "Decision: pin the versions."
+Cynefin domain: Clear, deduction from a known rule.
+
+2. Stage and commit the updated file in version control.
+This action MUST NOT start until the test in Step 1 passes.
+This increment adds persistent change tracking.
+The task kind is deterministic.
+Test:
+Given the modified file drafts/plan.md
+When git status runs
+Then the file appears in the staging area
+Cynefin domain: Clear, deduction from standard git workflows.
+
+3. Lock the package versions specified in requirements.txt.
+This action MUST NOT start until the test in Step 2 passes.
+This increment adds dependency stability to the project.
+The task kind is deterministic.
+Test:
+Given requirements.txt
+When pip-compile runs
+Then requirements.txt produces pinned version numbers
+Cynefin domain: Clear, deduction from standard package locking rules.
+
+### Follow-up
+
+If the file path assumption in Section 5.2 is false, replace Step 1 with moving the content to root plan.md.
+
+References:
+
+[1] drafts/plan.md, project plan file, 2026. [P]
+
+### Self-test
+
+Self-test
+Questions asked: 0 of 3
+Assumptions logged: 1
+Claims with evidence or [judgment] label: yes
+References: 1, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0

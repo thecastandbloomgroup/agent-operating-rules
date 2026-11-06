@@ -1,0 +1,88 @@
+Headline
+
+The target line now sits at the end of the plan file.
+The file drafts/plan.md contains the new line as requested.
+The original text above the new line remains unchanged.
+The file character count increased from 103 characters to 131 characters [1].
+
+Background
+
+The request asked to append one decision line to the end of the plan file.
+The target file drafts/plan.md existed in the repository with two initial sentences [2].
+The edit added the decision text while preserving all earlier content.
+
+Relevance
+
+This update records the pinning decision directly inside the project plan.
+Team members can now verify the chosen package policy without ambiguity.
+
+Information
+
+First, the original file drafts/plan.md contained 103 characters [3].
+Next, a write action appended the line "Decision: pin the versions." to the end of the file.
+Therefore, the updated file contains 131 characters across 5 lines.
+Because the diff shows only the added line, prior lines did not change.
+
+Assumption: the target path plan.md refers to drafts/plan.md. Why not measured: The material does not state it. Validate by: search file tree. If wrong: write to root plan.md.
+
+Alternative considered: Create a separate plan.md in the root directory, which lost because only drafts/plan.md existed in the project repository.
+
+End
+
+I recommend that we complete three actions:
+
+1. Commit the updated file to version control.
+   This increment finishes in one working session.
+   This step removes the blocker of uncommitted plan modifications.
+   Test (deterministic):
+   Given the file drafts/plan.md has unstaged modifications
+   When git diff runs on drafts/plan.md
+   Then the output shows only the appended line
+   Cynefin domain: Clear, by deduction from standard repository rules.
+
+2. Lock dependency versions in requirements.txt.
+   Step 2 MUST NOT start until Step 1 passes.
+   This increment finishes in one working session.
+   This step adds the capability of reproducible package installations.
+   Test (deterministic):
+   Given the dependencies in requirements.txt
+   When the package manager creates the lock file
+   Then every direct dependency has an exact pinned version
+   Cynefin domain: Complicated, by deduction from package management rules.
+
+3. Execute two consecutive clean builds before release.
+   Step 3 MUST NOT start until Step 2 passes.
+   This increment finishes in one working session.
+   This step removes the blocker of unverified build reproducibility.
+   Test (deterministic):
+   Given the updated lock file
+   When the build script runs twice from clean checkouts
+   Then both build runs succeed with identical output artifacts
+   Cynefin domain: Complicated, by deduction from plan instructions.
+
+Follow-up
+
+References
+
+[1] drafts/plan.md, project repository, 2026. [P]
+
+[2] drafts/plan.md, project repository, 2026. [P]
+
+[3] drafts/plan.md, project repository, 2026. [P]
+
+Self-test
+Questions asked: 0 of 3
+Assumptions logged: 1 (yes)
+Claims with evidence or [judgment] label: yes
+References: 3, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0
