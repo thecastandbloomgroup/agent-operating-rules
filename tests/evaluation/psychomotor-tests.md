@@ -78,6 +78,6 @@ The unit has a cap of 20 steps, not 12, because it works on four files. The scri
 
 ## 2. Cost and limits
 
-Each prompt runs as a loop of background calls: one call per tool step, up to 12 steps. So one answer costs more than one answer of the main evaluation. Run `bin/run-psychomotor.py --plan` for the estimate before a run.
+Each prompt runs as a loop of background calls: one call per tool step, up to 12 steps, or 20 for P7. So one answer costs more than one answer of the main evaluation. Run `bin/run-psychomotor.py --plan` for the estimate before a run.
 
 The first run is also the probe of tool support. The Agent API takes the tools of each call, and no run has sent one yet. When a provider refuses the tools field, its executor fails with an API error, and the run log shows it.

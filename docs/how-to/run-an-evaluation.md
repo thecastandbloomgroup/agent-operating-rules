@@ -72,6 +72,22 @@ doppler run --only-secrets PERPLEXITY_TOKEN -- \
 
 Use `--plan` to see the cost first, and `--prompts P1,P2` to send fewer prompts. Grade the run with `bin/check-psychomotor.py tests/evaluation/results/<run>`. It writes `tool-checks.csv`, which `bin/ladder-scores.py` reads as the psychomotor trials. The [psychomotor tests](../../tests/evaluation/psychomotor-tests.md) page gives the prompts and the checks.
 
+Each unit stops after 12 tool steps, and P7 after 20, because it works on four files. Three options change a unit, and each one stays off by default, so runs stay comparable:
+
+| Option           | What it changes                                                     | Result                                                                                                                                                           |
+| ---------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--check-text`   | Adds `check_text`, a check of a text that writes no file            | It cost Sonnet passes on P5 ([check text results](../../tests/evaluation/results/2026-11-06-check-text-results.md))                                              |
+| `--sandbox-note` | Adds a note after the prompt: the sandbox holds the task files only | It ends the Gemini loop at the cap, but it names a fail of P2 and P5 ([sandbox note results](../../tests/evaluation/results/2026-11-06-sandbox-note-results.md)) |
+| `--answer-note`  | Adds only a note that the answer goes in the reply                  | It does not end the loop, and it cost Sonnet passes on P5 ([answer note results](../../tests/evaluation/results/2026-11-06-answer-note-results.md))              |
+
+After the grade, `bin/judge-procedures.py tests/evaluation/results/<run>` has a judge score the procedure of each passed P7 unit. It writes `procedure-checks.csv`. A procedure passes at 85 of 100 or more, with no criterion at 0.
+
+## Check the domain of the actions
+
+`bin/judge-actions.py tests/evaluation/results/<run>` samples 40 labelled actions of a run. A judge of another provider than the executor checks the domain and the reason of each, and the script writes `action-checks.csv`. Each call shows the judge the expected answer of the test, so its domain rate measures fit to the test.
+
+Add `--work tests/evaluation/results/2026-11-05-human-marking` to measure fit to the work in place of fit to the test. Then each call has no expected answer, and the 24 marks of the user come as examples. The script `bin/judge-loo.py` tests a judge against a marking sheet, with each row held out once. The [evaluations page](../explanation/what-the-evaluations-show.md) gives how far each judge matches the user.
+
 ## Run in GitLab
 
 1. Open **Build**, then **Pipelines**, and open a pipeline of `main`.

@@ -56,18 +56,21 @@ No run measures Characterization.
 
 ### Psychomotor
 
-Two runs of 2026-11-05 measure the ladder with the file tools of the sandbox suite, at one and then four samples ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)). The table pools the four-sample run over the six executors, 24 trials per level.
+One run of 2026-11-06 measures all seven levels on one day. It used rules 0.9 and the four file tools of the sandbox suite ([P1 to P7 results](../../tests/evaluation/results/2026-11-06-psychomotor-p1-p7-results.md)). The table pools it over the six executors, 24 trials per level. The last column counts the units that hit the step cap, all of them Gemini.
 
-| Level                  | Passed   | Mastered at 80% of 20 or more |
-| ---------------------- | -------- | ----------------------------- |
-| Perception             | 24 of 24 | yes                           |
-| Set                    | 17 of 24 | no, 71%                       |
-| Guided response        | 24 of 24 | yes                           |
-| Mechanism              | 24 of 24 | yes                           |
-| Complex overt response | 14 of 24 | no, 58%                       |
-| Adaptation             | 24 of 24 | yes                           |
+| Level                  | Passed   | Mastered at 80% of 20 or more | At the step cap |
+| ---------------------- | -------- | ----------------------------- | --------------- |
+| Perception             | 21 of 24 | yes, 88%                      | 2               |
+| Set                    | 19 of 24 | no, 79%                       | 3               |
+| Guided response        | 22 of 24 | yes, 92%                      | 2               |
+| Mechanism              | 24 of 24 | yes                           | 0               |
+| Complex overt response | 18 of 24 | no, 75%                       | 0               |
+| Adaptation             | 24 of 24 | yes                           | 0               |
+| Origination            | 24 of 24 | yes                           | 0               |
 
-The last two rows come from a later run of P1 to P6, where the first four levels held within two answers ([upper results](../../tests/evaluation/results/2026-11-05-psychomotor-full-results.md)). Set is the level that splits the models, and every Set failure is a write with no look first. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed 16 of 16 each, while Gemini, Grok, and Kimi dropped the Set trials. Complex overt response is where most models stop. A later control with rules 0.9 passed P5 in 19 of 24, so this level varies by day. In that run, a check of text that writes no file cost Sonnet 4 passes ([check text results](../../tests/evaluation/results/2026-11-06-check-text-results.md)). A move across two files failed for an unchecked final write, a loop to the step cap, or a scratch file. Every model recovered from an injected failed write, so Adaptation passes. The main P5 failure, a final write that no check follows, has a repair. A second turn that names the missing check fixed 5 of 5 such units, against 1 of 5 for a plain retry ([P5 repair results](../../tests/evaluation/results/2026-11-05-p5-repair-results.md)).
+So the levels are not cumulative: Origination passes more often than Complex overt response. The runs of 2026-11-05 gave Set 17 of 24 and Complex overt response 14 of 24 ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)).
+
+The first P1 to P6 run held the first four levels within two answers ([upper results](../../tests/evaluation/results/2026-11-05-psychomotor-full-results.md)). Set is the level that splits the models, and every Set failure is a write with no look first. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed 16 of 16 each, while Gemini, Grok, and Kimi dropped the Set trials. Complex overt response is where most models stop. A later control with rules 0.9 passed P5 in 19 of 24, so this level varies by day. In that run, a check of text that writes no file cost Sonnet 4 passes ([check text results](../../tests/evaluation/results/2026-11-06-check-text-results.md)). A move across two files failed for an unchecked final write, a loop to the step cap, or a scratch file. Every model recovered from an injected failed write, so Adaptation passes. The main P5 failure, a final write that no check follows, has a repair. A second turn that names the missing check fixed 5 of 5 such units, against 1 of 5 for a plain retry ([P5 repair results](../../tests/evaluation/results/2026-11-05-p5-repair-results.md)).
 
 ### How to read the tables
 
