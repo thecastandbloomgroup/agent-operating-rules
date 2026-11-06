@@ -1628,3 +1628,14 @@ class JudgeLeaveOneOut(unittest.TestCase):
         self.assertEqual(text.count("2. reason_cause_effect:"), 1)
         self.assertIn("3. reason_certainty:", text)
         self.assertEqual(LOO.instructions_of(False), LOO.JUDGE.INSTRUCTIONS)
+
+    def test_work_mode_gives_every_mark_and_no_expected_answer(self):
+        folder = (
+            Path(__file__).resolve().parents[2]
+            / "tests/evaluation/results/2026-11-05-human-marking"
+        )
+        instructions, template = load("judge-actions.py").work_mode(folder)
+        self.assertIn("Example 24.", instructions)
+        self.assertNotIn("Example 25.", instructions)
+        self.assertIn("fits the work of this action", instructions)
+        self.assertNotIn("Expected answer", template)

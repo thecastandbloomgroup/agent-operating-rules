@@ -11,6 +11,8 @@ judge of another provider than its executor, and writes RUN_DIR/action-checks.cs
 second turn is judged on the same actions as its first. A missing action fails every check.
 --judge sends every action to one judge in place of that rule, and --out names the CSV.
 --instructions takes a text file that replaces the built-in judge instruction.
+--work MARKING_DIR judges fit to the work: each call has no expected answer, and the
+human marks of MARKING_DIR come as examples (see bin/judge-loo.py --no-expected).
 --label and --prompts sample only the actions with that label, or of those prompts.
 It reads the key from PERPLEXITY_TOKEN and never prints it.
 """
@@ -204,6 +206,18 @@ def instructions_of(path):
     return Path(path).read_text().strip() if path else INSTRUCTIONS
 
 
+def work_mode(marking_dir):
+    """The instruction and input of a judge of fit to the work, with every human mark
+    of marking_dir as an example."""
+    loo = load("judge-loo.py")
+    folder = Path(marking_dir)
+    items = json.loads((folder / "items.json").read_text())
+    with (folder / "sheet.csv").open() as f:
+        marks = list(csv.DictReader(f))
+    block = loo.examples(items, marks, -1)
+    return loo.instructions_of(True) + "\n" + block, loo.input_of(True)
+
+
 def score(result):
     return 2 * bool(result["domain_right"]) + bool(result["reason_cause_effect"])
 
@@ -219,6 +233,7 @@ def main():
     parser.add_argument("--prompts")
     parser.add_argument("--out", default="action-checks.csv")
     parser.add_argument("--instructions")
+    parser.add_argument("--work")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
     run_dir = Path(args.run_dir)
@@ -240,7 +255,9 @@ def main():
     if not key:
         sys.exit("PERPLEXITY_TOKEN is not set. Run with doppler run.")
     cfg = json.loads(EVAL.PAIRS.read_text())
-    instructions = instructions_of(args.instructions)
+    instructions, template = instructions_of(args.instructions), INPUT
+    if args.work:
+        instructions, template = work_mode(args.work)
     rows, total = [], 0.0
     for a in picked:
         if not a["label"]:
@@ -250,7 +267,7 @@ def main():
         if args.judge:
             model, effort = args.judge.split("@")
             judge = {"model": model, "effort": effort}
-        text = INPUT.format(
+        text = template.format(
             id=p["id"],
             prompt=p["prompt"],
             expected=p["expected"],
