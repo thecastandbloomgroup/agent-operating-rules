@@ -69,8 +69,17 @@ I recommend that we:
    Test (stochastic): the harm counts as real when Sonnet passes 7 or more of 8 without the note, and 4 or fewer of 8 with it.
    Domain: Complex. Reason: induction from runs, and the day could break the pattern.
 
+## Addendum: the Sonnet rerun of P5
+
+Step 3 ran at once, with its test fixed in this file before the run. With the narrow note, Sonnet passed P5 in 2 of 8 units, and each failure checked one file, not both. Without the note, it passed 8 of 8. So the harm counts as real, with a one-sided Fisher exact p of 0.004. The two arms cost 0.53 USD.
+[2]
+
+The full sandbox note of the earlier probe ran its Sonnet guard on P1 to P3 only. So its effect on Sonnet's P5 is not measured, and option 1 needs that test first [inference].
+
 ## Follow-up
 
 References:
 
 [1] `2026-11-06-answer-note-probe/`, `-control/`, `-guard/`, and `-p5/`: tool-checks.csv, calls.csv, and the transcripts, run 2026-11-06. [P]
+
+[2] `2026-11-06-sonnet-p5-note/` and `2026-11-06-sonnet-p5-plain/`: tool-checks.csv and calls.csv, run 2026-11-06. [P]
