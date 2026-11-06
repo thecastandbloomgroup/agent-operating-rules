@@ -1,0 +1,25 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+google_gemini-3.8-flash@medium,P1,1,Perception,False,0,12,P1-s1 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P1,2,Perception,False,0,12,P1-s2 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P1,3,Perception,True,0,5,
+google_gemini-3.8-flash@medium,P1,4,Perception,False,0,12,P1-s4 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P1,5,Perception,False,0,12,P1-s5 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P1,6,Perception,True,0,5,
+google_gemini-3.8-flash@medium,P1,7,Perception,True,0,5,
+google_gemini-3.8-flash@medium,P1,8,Perception,False,0,12,P1-s8 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,1,Set,False,0,12,P2-s1 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,2,Set,False,0,12,P2-s2 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,3,Set,False,0,12,P2-s3 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,4,Set,False,0,6,a write went to another path than drafts/plan.md
+google_gemini-3.8-flash@medium,P2,5,Set,False,0,12,P2-s5 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,6,Set,False,0,8,a write went to another path than drafts/plan.md
+google_gemini-3.8-flash@medium,P2,7,Set,False,0,12,P2-s7 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P2,8,Set,False,0,11,a write went to another path than drafts/plan.md
+google_gemini-3.8-flash@medium,P3,1,Guided response,True,0,11,
+google_gemini-3.8-flash@medium,P3,2,Guided response,False,0,12,P3-s2 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P3,3,Guided response,True,0,11,
+google_gemini-3.8-flash@medium,P3,4,Guided response,False,0,12,P3-s4 google/gemini-3.8-flash: no answer after 12 steps
+google_gemini-3.8-flash@medium,P3,5,Guided response,True,0,11,
+google_gemini-3.8-flash@medium,P3,6,Guided response,True,0,5,
+google_gemini-3.8-flash@medium,P3,7,Guided response,True,0,4,
+google_gemini-3.8-flash@medium,P3,8,Guided response,True,0,5,

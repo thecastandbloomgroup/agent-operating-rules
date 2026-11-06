@@ -2,7 +2,7 @@
 
 ## Headline
 
-One narrow note says only where the answer goes: "Give your answer in your reply, not in a file." It tests the cause of the Gemini loop with no hint about any fail of a prompt.
+A narrow note says only where the answer goes. It tests the cause of the Gemini loop with no hint about any fail of a prompt.
 
 1. The full sandbox note ended the loop: Gemini passed 24 of 24 on P1 to P3, against 11 of 24 in the control.
 2. However, its sentence "Do not write any other file" names a fail of P2 and P5, so it cannot be the default.

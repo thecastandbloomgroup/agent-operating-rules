@@ -1,0 +1,84 @@
+### Headline
+
+The requested decision line was appended to drafts/plan.md without other modifications.
+The original content of two lines remains intact.
+The new line records the decision to pin package versions.
+This change completes the requested update to the plan file.
+
+### Background
+
+The user requested appending "Decision: pin the versions." to the end of plan.md.
+The existing plan.md contained two sentences outlining version pinning and build runs.
+Therefore, this request required preserving all prior content while adding the decision record.
+
+### Relevance
+
+Recording the decision formally sets the dependency baseline for upcoming builds.
+So a clear decision record prevents confusion during release preparation.
+
+### Information
+
+The file drafts/plan.md originally contained 103 characters across three lines [1].
+Next, a new line with the exact text "Decision: pin the versions." was appended [1].
+Therefore, the updated file contains 131 characters [1].
+However, all preceding lines were retained without edits [judgment].
+
+Alternative considered:
+Create a separate decision log file, but it loses because the request explicitly required appending to plan.md.
+
+### End
+
+I recommend that we:
+
+1. Review the updated drafts/plan.md file to confirm content formatting.
+Kind: Deterministic.
+Test:
+Given the file drafts/plan.md
+When inspecting the final line
+Then it reads "Decision: pin the versions."
+Increment: Inspect file drafts/plan.md in one review session.
+Blocker: Verifies that no syntax or formatting defects were introduced.
+Cynefin domain: Clear, deduction from visual comparison with the user request.
+
+2. Run dependency resolution tooling to generate pinned lock files.
+Kind: Deterministic.
+Test:
+Given requirements.txt
+When running the lock generator
+Then a valid lock file is produced
+Increment: Execute the package manager lock command in one session.
+Blocker: Resolves concrete package versions required by the plan.
+Cynefin domain: Clear, deduction from standard release practice. Step 2 MUST NOT start until the test in Step 1 passes.
+
+3. Verify the build reproducibility twice using the generated lock file.
+Kind: Deterministic.
+Test:
+Given the pinned lock file
+When running the build twice
+Then both builds succeed with identical outputs
+Increment: Run two sequential clean builds in one session.
+Blocker: Validates that the pinned dependencies satisfy the plan rule.
+Cynefin domain: Complicated, analysis of build artifacts across sequential runs. Step 3 MUST NOT start until the test in Step 2 passes.
+
+### Follow-up
+
+References:
+
+[1] drafts/plan.md, repository workspace, 2026. [P]
+
+### Self-test
+Questions asked: 0 of 3
+Assumptions logged: 0
+Claims with evidence or [judgment] label: yes
+References: 1, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0

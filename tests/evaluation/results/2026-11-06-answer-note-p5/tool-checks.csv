@@ -1,0 +1,25 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+anthropic_claude-sonnet-5-5@medium,P5,1,Complex overt response,False,0,8,no check ran after the last write
+anthropic_claude-sonnet-5-5@medium,P5,2,Complex overt response,False,0,8,no check ran after the last write
+anthropic_claude-sonnet-5-5@medium,P5,3,Complex overt response,False,0,8,no check ran after the last write
+anthropic_claude-sonnet-5-5@medium,P5,4,Complex overt response,True,0,7,
+google_gemini-3.8-flash@medium,P5,1,Complex overt response,True,0,9,
+google_gemini-3.8-flash@medium,P5,2,Complex overt response,True,0,7,
+google_gemini-3.8-flash@medium,P5,3,Complex overt response,True,0,8,
+google_gemini-3.8-flash@medium,P5,4,Complex overt response,True,0,7,
+openai_gpt-6.1-sol@medium,P5,1,Complex overt response,False,0,7,no check ran after the last write
+openai_gpt-6.1-sol@medium,P5,2,Complex overt response,True,0,9,
+openai_gpt-6.1-sol@medium,P5,3,Complex overt response,False,0,7,no check ran after the last write
+openai_gpt-6.1-sol@medium,P5,4,Complex overt response,False,0,7,no check ran after the last write
+perplexity_glm-5.3-flash@medium,P5,1,Complex overt response,True,0,8,
+perplexity_glm-5.3-flash@medium,P5,2,Complex overt response,False,0,6,no check ran after the last write
+perplexity_glm-5.3-flash@medium,P5,3,Complex overt response,True,0,8,
+perplexity_glm-5.3-flash@medium,P5,4,Complex overt response,True,0,8,
+perplexity_kimi-k3@low,P5,1,Complex overt response,True,0,8,
+perplexity_kimi-k3@low,P5,2,Complex overt response,True,0,5,
+perplexity_kimi-k3@low,P5,3,Complex overt response,True,0,6,
+perplexity_kimi-k3@low,P5,4,Complex overt response,True,0,6,
+xai_grok-4.7@low,P5,1,Complex overt response,True,0,8,
+xai_grok-4.7@low,P5,2,Complex overt response,True,0,8,
+xai_grok-4.7@low,P5,3,Complex overt response,True,0,8,
+xai_grok-4.7@low,P5,4,Complex overt response,True,0,8,
