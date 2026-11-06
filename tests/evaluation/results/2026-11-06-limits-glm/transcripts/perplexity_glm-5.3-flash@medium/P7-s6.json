@@ -1,0 +1,333 @@
+{
+  "model": "perplexity_glm-5.3-flash@medium",
+  "prompt_id": "P7",
+  "sample": 6,
+  "steps": [
+    {
+      "name": "list_files",
+      "arguments": {},
+      "output": "notes/a.md (104 characters)\nnotes/b.md (189 characters)\nnotes/c.md (196 characters)",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is clearly faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache filled up during the nightly import and the service fell back to the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is very simple. Each worker takes one message, runs the job, writes the result to the store, and then marks the message as done so that no other worker picks it up again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\n## Fix list\n\nThe checks run on one file are:\n\n1. Sentences over the word limit. Instructions: 20 words. Descriptions: 25 words.\n2. Banned words: boosters and uncalibrated hedges. Examples: clearly, very, might, perhaps, obviously, significantly.\n\n## Steps\n\n1. Read the target file.\n2. Run `check_file` on the target file. Record every line it reports.\n3. Classify each reported word as a booster or as a hedge. Correct prose is usually passable without intensifiers, so the first attempt is `default to removal-with-context`. Use deletion rather than generic neutralization: notices lose meaning if you flatten whole claims, so preserve the factual measure (\"50% faster\" beats \"notably faster\").\n4. Classify each reported sentence: does it contain one instruction or more than one fact? If it lists steps, split at each step boundary so each result is its own sentence. If it gives background that leads to one fact, extract the background into its own sentence first. Do not lose any detail, including conditions, durations, and sequence.\n5. If the banned word is load-bearing (it changes the claim), replace it with the specific value: use a number, a comparison, or a state from the sample. Verify the substitute is in the material or is a direct quote from it. Do not invent values.\n6. Run `check_file` again on the target file. Expect a clean result, a MECE fix list versus the first run, and no > word limit sentences. If a banned word survives, go to step 3.\n7. Merge the whole fixed text back into the file only after step 6 passes.\n8. Stop the check-report loop. A file that reports no banned words and no long sentences is done; do not polish further.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1712 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {\"Boosters (4.4.1)\": [\"clearly\"]}, \"failures\": [\"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\", \"Flesch-Kincaid grade over 10 (4.1.7)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {\"Boosters (4.4.1)\": [\"very\"]}, \"failures\": [\"long sentences (4.1.1)\", \"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n",
+        "path": "notes/a.md"
+      },
+      "output": "wrote 96 characters to notes/a.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Incident note\n\nThe outage started when the cache filled up during the nightly import. The service fell back to the database for every request until the import job ended an hour later.\n",
+        "path": "notes/b.md"
+      },
+      "output": "wrote 186 characters to notes/b.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. It writes the result to the store and then marks the message as done. This stops another worker from picking up the same message again.\n",
+        "path": "notes/c.md"
+      },
+      "output": "wrote 220 characters to notes/c.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\n## Fix list\n\nThe checks run on one file cover two failure types:\n\n1. Sentences over the word limit. Instructions: 20 words. Descriptions: 25 words.\n2. Banned words: boosters and uncalibrated hedges. Examples: clearly, very, might, perhaps, obviously, significantly.\n\n## Steps\n\n1. Read the target file.\n2. Run `check_file` on the target file. Record every line it reports.\n3. Classify each reported word as a booster or as a hedge. Correct prose keeps its meaning without intensifiers, so the first attempt is deletion, not generic neutralization. Use deletion rather than rewriting when the claim survives it: notices lose meaning if you flatten the whole claim.\n4. Classify each reported sentence: does it contain one instruction or more than one fact? If it lists steps, split at each step boundary so each result is its own sentence. If it gives background that leads to one fact, extract the background into its own sentence first. Do not lose any detail, including conditions, durations, and sequence.\n5. If the banned word is load-bearing (it changes the claim), replace it with the specific value: a number, a comparison, or a state from the sample. Verify the substitute is in the material or is a direct quote from it. Do not invent values.\n6. Run `check_file` again on the target file. Expect a clean result, a MECE fix list versus the first run, and no word limit violations. If a banned word survives, go to step 3.\n7. Merge the whole fixed text back into the file only after step 6 passes.\n8. Stop the check-report loop. A file that reports no banned words and no long sentences is done. Do not polish further.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1674 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "# Procedure: fix banned words and long sentences\n\n## Fix list\n\nThe checks run on one file cover two failure types:\n\n1. Sentences over the word limit. Instructions: 20 words. Descriptions: 25 words.\n2. Banned words: boosters and uncalibrated hedges. Examples: clearly, very, might, perhaps, obviously, significantly.\n\n## Steps\n\n1. Read the target file.\n2. Run `check_file` on the target file. Record every line it reports.\n3. Classify each reported word as a booster or as a hedge. Correct prose keeps its meaning without intensifiers, so the first attempt is deletion, not generic neutralization. Use deletion rather than rewriting when the claim survives it: notices lose meaning if you flatten the whole claim.\n4. Classify each reported sentence: does it contain one instruction or more than one fact? If it lists steps, split at each step boundary so each result is its own sentence. If it gives background that leads to one fact, extract the background into its own sentence first. Do not lose any detail, including conditions, durations, and sequence.\n5. If the banned word is load-bearing (it changes the claim), replace it with the specific value: a number, a comparison, or a state from the sample. Verify the substitute is in the material or is a direct quote from it. Do not invent values.\n6. Run `check_file` again on the target file. Expect a clean result, a MECE fix list versus the first run, and no word limit violations. If a banned word survives, go to step 3.\n7. Merge the whole fixed text back into the file only after step 6 passes.\n8. Stop the check-report loop. A file that reports no banned words and no long sentences is done. Do not polish further.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\n## Fix list\n\nThe checks run on one file cover two failure types:\n\n1. Sentences over the word limit. Instructions: 20 words. Descriptions: 25 words.\n2. Banned words: boosters and uncalibrated hedges. Examples: clearly, very, might, perhaps, obviously, significantly.\n\n## Steps\n\n1. Read the target file.\n2. Run `check_file` on the target file. Record every line it reports.\n3. Classify each reported word as a booster or as a hedge. Correct prose keeps its meaning without intensifiers, so the first attempt is deletion, not generic neutralization. If the claim still stands without the word, delete it. Notices lose meaning if you flatten the whole claim.\n4. Classify each reported sentence: does it contain one instruction or more than one fact?\n   4a. If it lists steps, split at each step boundary so each result is its own sentence.\n   4b. If it gives background that leads to one fact, extract the background into its own sentence first.\n   4c. Do not lose any detail, including conditions, durations, and sequence.\n5. If the banned word is load-bearing (it changes the claim), replace it with the specific value: a number, a comparison, or a state from the sample. Verify the substitute is in the material or is a direct quote from it. Do not invent values.\n6. Run `check_file` again on the target file. Expect a clean result, a MECE fix list versus the first run, and no word limit violations. If a banned word survives, go to step 3.\n7. Merge the whole fixed text back into the file only after step 6 passes.\n8. Stop the check-report loop. A file that reports no banned words and no long sentences is done. Do not polish further.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1687 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\n## Fix list\n\nThe checks run on one file cover two failure types:\n\n1. Sentences over the word limit. Instructions: 20 words. Descriptions: 25 words.\n2. Banned words: boosters and uncalibrated hedges. Examples: clearly, very, might, perhaps, obviously, significantly.\n\n## Fix policy\n\nCorrect prose keeps its meaning without intensifiers, so the first attempt for each banned word is deletion, not generic neutralization. If the claim still stands without the word, delete it. If it does not, replace the word with the specific value: a number, a comparison, or a state from the material. Verify the substitute is a direct quote or a numeric fact from the material. Do not invent values.\n\n## Steps for one file\n\n1. Read the target file.\n2. Run `check_file` on the target file. Record every line it reports.\n3. For each reported banned word, decide: delete it, or replace it with a specific value from the material. Use the fix policy above.\n4. For each reported long sentence, classify it: does it contain one instruction or more than one fact?\n   4a. If it lists steps, split at each step boundary so each result is its own sentence.\n   4b. If it gives background that leads to one fact, extract the background into its own sentence first.\n   4c. Do not lose any detail, including conditions, durations, and sequence.\n5. Run `check_file` again on the target file. Expect a clean result and no word limit violations. The fix list over the first run must be MECE: each reported item maps to exactly one fix type.\n6. If a banned word or a long sentence survives, go to step 3. Merge the whole fixed text back into the file only after step 5 passes.\n7. Stop the check-report loop. A file that reports no banned words and no long sentences is done. Do not polish further.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1815 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache filled up during the nightly import. The service fell back to the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. It writes the result to the store and then marks the message as done. This stops another worker from picking up the same message again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n",
+        "path": "notes/a.md"
+      },
+      "output": "wrote 96 characters to notes/a.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Incident note\n\nThe outage started when the cache filled up during the nightly import. The service fell back to the database for every request until the import job ended an hour later.\n",
+        "path": "notes/b.md"
+      },
+      "output": "wrote 186 characters to notes/b.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. It writes the result to the store and then marks the message as done. This stops another worker from picking up the same message again.\n",
+        "path": "notes/c.md"
+      },
+      "output": "wrote 220 characters to notes/c.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\n## Fix policy\n\nCorrect prose keeps its meaning without intensifiers, so the first attempt for each banned word is deletion, not generic neutralization. If the claim still stands without the word, delete it. If it does not, replace the word with the specific value: a number, a comparison, or a state from the material. Verify the substitute is a direct quote or a numeric fact from the material. Do not invent values. This keeps meaning intact while meeting the style rules.\n\n## Fix list\n\nThe checks run on one file cover two failure types:\n\n1. Sentences over the word limit. Instructions: 20 words. Descriptions: 25 words.\n2. Banned words: boosters and uncalibrated hedges. Examples: clearly, very, might, perhaps, obviously, significantly.\n\n## Steps for one file\n\n1. Read the target file.\n2. Run `check_file` on the target file. Record every line it reports.\n3. For each reported banned word, decide: delete it, or replace it with a specific value from the material. Use the fix policy above.\n4. For each reported long sentence, classify it: does it contain one instruction or more than one fact?\n   4a. If it lists steps, split at each step boundary so each result is its own sentence.\n   4b. If it gives background that leads to one fact, extract the background into its own sentence first.\n   4c. Do not lose any detail, including conditions, durations, and sequence.\n5. Run `check_file` again on the target file. Expect a clean result and no word limit violations. The fix list over the first run must be MECE: each reported item maps to exactly one fix type.\n6. If a banned word or a long sentence survives, go to step 3. Merge the whole fixed text back into the file only after step 5 passes.\n7. Stop the check-report loop. A file that reports no banned words and no long sentences is done. Do not polish further.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1872 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    }
+  ],
+  "violations": [],
+  "error": "P7-s6 perplexity/glm-5.3-flash: no answer after 20 steps"
+}
