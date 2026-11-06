@@ -1,0 +1,166 @@
+{
+  "model": "openai_gpt-6.1-sol@medium",
+  "prompt_id": "P7",
+  "sample": 1,
+  "answer": "## Headline\n\nCreated `notes/procedure.md` first, then fixed `notes/a.md`, `notes/b.md`, and `notes/c.md` in order. [1]\n\n- All four files pass the automated checks. [1]\n- The edits preserve the original facts and sequence of events. [judgment]\n\n## Background\n\nThe procedure gives numbered steps for use with the available tools. Each notes file received an initial check, an edit, a final check, and a final read. [1]\n\n## Relevance\n\nThe saved procedure supports repeat use on other notes files. The three revised notes have no reported banned words or sentences over 25 words. [1]\n\n## Information\n\nThe checks found these issues and confirmed their removal. [1]\n\n| File | Initial issue | Final result |\n|---|---|---|\n| `notes/a.md` | One banned word | Pass |\n| `notes/b.md` | One long sentence; reading grade above 10 | Pass |\n| `notes/c.md` | One banned word; one long sentence | Pass |\n\nThe edits retain the parser\u2019s two-second result, the incident\u2019s cause and duration, and the worker\u2019s ordered actions. [1]\n\n**Alternative considered:** Rewrite each note in full. Targeted edits reduce the risk of changing meaning, so a full rewrite loses. [judgment]\n\n## End\n\nI recommend that we retain these tested edits:\n\n1. **Deterministic test**\n   \n   Given the original release note  \n   When the revised note receives a check  \n   Then it passes and retains the speed comparison and two-second result.\n\n   **Increment:** Retain `notes/a.md`; it removes the banned word without changing the measured result. [1]  \n   **Domain:** Clear, by deduction from the word rule.\n\n2. **Deterministic test**\n   \n   Given the original incident note  \n   When the revised note receives a check  \n   Then it passes and retains the cause, database use, and duration.\n\n   **Increment:** Retain `notes/b.md`; it replaces the long sentence with two shorter sentences. [1]  \n   **Domain:** Clear, by deduction from the sentence limit.  \n   **Dependency:** Step 1\u2019s check passes before Step 2 starts. [1]\n\n3. **Deterministic test**\n   \n   Given the original design note  \n   When the revised note receives a check  \n   Then it passes and retains the worker\u2019s action order and prevention of repeat work.\n\n   **Increment:** Retain `notes/c.md`; it removes the banned word and splits the long sentence. [1]  \n   **Domain:** Clear, by deduction from the word and sentence rules.  \n   **Dependency:** Step 2\u2019s check passes before Step 3 starts. [1]\n\n## Follow-up\n\n### References\n\n[1] Session file records and `functions.check_file` results for `notes/procedure.md`, `notes/a.md`, `notes/b.md`, and `notes/c.md`. [P]\n\n## Self-test\n\n```text\nSelf-test\nQuestions asked: 0 of 3\nAssumptions logged: 0\nClaims with evidence or [judgment] label: yes\nReferences: 1, all from session or identified with confidence: yes\nSource types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes\nAlternative considered: yes\nRecommendation: 3 actions, each with increment, blocker, test: yes\nEach action classified (deterministic/evaluative/stochastic) with test written first: yes\nActions in End with a Cynefin domain label: 3 of 3\nChaotic and Confused actions first, Complex actions as capped probes: yes\nBanned words found: 0\nSelf-mention outside End: 0\nTransition present where a sentence depends on the prior one: yes\nDashes (em or en): 0\nSentences over the limit of Section 4.1 item 1: 0\n```",
+  "steps": [
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\n1. Read the target notes file with `functions.read_file`.\n2. Record its facts, qualifications, instructions, and intended meaning before you edit.\n3. Run `functions.check_file` on the target file to locate banned words and sentences over 25 words.\n4. Replace each banned word with plain wording that preserves its meaning, or remove it if it adds no meaning.\n5. Preserve uncertainty and factual claims; do not invent evidence, probabilities, or confidence levels.\n6. Split long descriptions into sentences of at most 25 words.\n7. Split instructions into sentences of at most 20 words, with one instruction per sentence.\n8. Compare the revised text with the original to verify facts, scope, qualifications, and instructions remain intact.\n9. Save the full revised file with `functions.write_file`.\n10. Run `functions.check_file` again on the saved file.\n11. If the check reports a banned word or long sentence, revise the text and repeat steps 8 through 10.\n12. Read the saved file and confirm its meaning matches the original before you continue to the next file.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1114 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is clearly faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {\"Boosters (4.4.1)\": [\"clearly\"]}, \"failures\": [\"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n",
+        "path": "notes/a.md"
+      },
+      "output": "wrote 96 characters to notes/a.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache filled up during the nightly import and the service fell back to the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\", \"Flesch-Kincaid grade over 10 (4.1.7)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Incident note\n\nThe outage started when the cache became full during the nightly import. The service then used the database for every request until the import job ended an hour later.\n",
+        "path": "notes/b.md"
+      },
+      "output": "wrote 185 characters to notes/b.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache became full during the nightly import. The service then used the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is very simple. Each worker takes one message, runs the job, writes the result to the store, and then marks the message as done so that no other worker picks it up again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {\"Boosters (4.4.1)\": [\"very\"]}, \"failures\": [\"long sentences (4.1.1)\", \"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. The worker writes the result to the store, then marks the message as done. This prevents other workers from taking that message again.\n",
+        "path": "notes/c.md"
+      },
+      "output": "wrote 219 characters to notes/c.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. The worker writes the result to the store, then marks the message as done. This prevents other workers from taking that message again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    }
+  ],
+  "violations": []
+}

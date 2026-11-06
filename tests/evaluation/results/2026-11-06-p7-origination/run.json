@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-06",
+  "rules_version": "0.9",
+  "rules_file": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/p7/sources/model-operating-rules.md",
+  "prompts": [
+    "P7"
+  ],
+  "samples": 4,
+  "max_steps": 12
+}

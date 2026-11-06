@@ -1,0 +1,25 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+anthropic_claude-sonnet-5-5@medium,P7,1,Origination,True,0,14,
+anthropic_claude-sonnet-5-5@medium,P7,2,Origination,True,0,13,
+anthropic_claude-sonnet-5-5@medium,P7,3,Origination,True,0,14,
+anthropic_claude-sonnet-5-5@medium,P7,4,Origination,True,0,13,
+google_gemini-3.8-flash@medium,P7,1,Origination,True,0,16,
+google_gemini-3.8-flash@medium,P7,2,Origination,True,0,21,
+google_gemini-3.8-flash@medium,P7,3,Origination,True,0,15,
+google_gemini-3.8-flash@medium,P7,4,Origination,True,0,15,
+openai_gpt-6.1-sol@medium,P7,1,Origination,True,0,17,
+openai_gpt-6.1-sol@medium,P7,2,Origination,True,0,17,
+openai_gpt-6.1-sol@medium,P7,3,Origination,True,0,16,
+openai_gpt-6.1-sol@medium,P7,4,Origination,True,0,17,
+perplexity_glm-5.3-flash@medium,P7,1,Origination,True,0,15,
+perplexity_glm-5.3-flash@medium,P7,2,Origination,False,0,13,the tools ran in another order on another file
+perplexity_glm-5.3-flash@medium,P7,3,Origination,False,0,20,the procedure does not name check_file and write_file
+perplexity_glm-5.3-flash@medium,P7,4,Origination,False,0,16,the tools ran in another order on another file
+perplexity_kimi-k3@low,P7,1,Origination,False,0,14,the procedure does not name check_file and write_file
+perplexity_kimi-k3@low,P7,2,Origination,False,0,12,the tools ran in another order on another file
+perplexity_kimi-k3@low,P7,3,Origination,True,0,12,
+perplexity_kimi-k3@low,P7,4,Origination,True,0,14,
+xai_grok-4.7@low,P7,1,Origination,True,0,15,
+xai_grok-4.7@low,P7,2,Origination,True,0,15,
+xai_grok-4.7@low,P7,3,Origination,True,0,12,
+xai_grok-4.7@low,P7,4,Origination,True,0,15,

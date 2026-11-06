@@ -122,7 +122,7 @@ The repair claim is now measured on one side. A turn that names the broken parts
 
 ## Limits
 
-- **Pooled tool trials.** The ladder has 24 pooled trials per level, but each model has 4, under the 20 that a per-model mastery call needs. Origination, the top level, has no prompt yet ([learning plan](../../tests/evaluation/results/2026-10-31-learning-plan.md)).
+- **Pooled tool trials.** The ladder has 24 pooled trials per level, but each model has 4, under the 20 that a per-model mastery call needs. Origination, the top level, has one prompt, P7, from 2026-11-06. It passed 19 of 24, and a script grades only the form of its procedure ([P7 results](../../tests/evaluation/results/2026-11-06-p7-origination-results.md)).
 - **Small samples.** Most probes have 40 to 108 items, so some intervals are wide.
 - **Mostly one turn.** Only two small pilots test a second turn.
 - **Mid-tier executors.** Most runs used mid-tier models at low or medium effort.

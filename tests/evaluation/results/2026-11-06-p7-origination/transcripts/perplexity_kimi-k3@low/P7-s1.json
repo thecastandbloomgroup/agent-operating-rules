@@ -1,0 +1,138 @@
+{
+  "model": "perplexity_kimi-k3@low",
+  "prompt_id": "P7",
+  "sample": 1,
+  "answer": "All four files pass the checks.\n\n- notes/procedure.md: written first, a nine-step procedure any agent can follow.\n- notes/a.md: removed the booster, kept the two-second fact.\n- notes/b.md: split the 43-word sentence into three sentences.\n- notes/c.md: removed the booster and split the long sentence.\n\nThe checker reports zero sentences over 25 words and zero banned words in every file.",
+  "steps": [
+    {
+      "name": "list_files",
+      "arguments": {},
+      "output": "notes/a.md (104 characters)\nnotes/b.md (189 characters)\nnotes/c.md (196 characters)",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is clearly faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache filled up during the nightly import and the service fell back to the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is very simple. Each worker takes one message, runs the job, writes the result to the store, and then marks the message as done so that no other worker picks it up again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\nFollow these steps in order for one notes file.\n\n1. Count the words in each sentence of the file.\n\n2. Split any sentence with more than 25 words into two or more sentences. Keep each idea in one sentence. Keep the original meaning.\n\n3. Scan the file for banned words: clearly, obviously, very, extremely, significantly without a number, definitely, undoubtedly, of course, might, perhaps, somewhat, arguably. Also scan for em dashes and en dashes.\n\n4. Remove each booster word. If the sentence loses meaning, restate it with a number or a fact instead.\n\n5. Replace each hedge with a probability or a confidence statement with a basis. If no value is known, state the fact without the hedge.\n\n6. Replace each em dash or en dash with a comma, colon, or period.\n\n7. Use the active voice. Use the present tense. Use one instruction per sentence.\n\n8. Read the file again. Confirm the meaning matches the original.\n\n9. Repeat steps 1 to 8 until the file is clean.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 1008 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n",
+        "path": "notes/a.md"
+      },
+      "output": "wrote 96 characters to notes/a.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Incident note\n\nThe outage started when the cache filled up during the nightly import. The service fell back to the database for every request. The outage lasted until the import job ended an hour later.\n",
+        "path": "notes/b.md"
+      },
+      "output": "wrote 205 characters to notes/b.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Design note\n\nThe queue has a simple design. Each worker takes one message and runs the job. The worker writes the result to the store and marks the message as done. Therefore, no other worker picks up the same message.\n",
+        "path": "notes/c.md"
+      },
+      "output": "wrote 221 characters to notes/c.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {\"Boosters (4.4.1)\": [\"clearly\", \"obviously\", \"very\", \"extremely\", \"definitely\", \"undoubtedly\", \"of course\", \"significantly\"], \"Uncalibrated hedges (4.4.2)\": [\"might\", \"perhaps\", \"somewhat\", \"arguably\"]}, \"failures\": [\"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "content": "# Procedure: fix banned words and long sentences\n\nFollow these steps in order for one notes file.\n\n1. Count the words in each sentence of the file.\n\n2. Split any sentence with more than 25 words into two or more sentences. Keep each idea in one sentence. Keep the original meaning.\n\n3. Scan the file for banned booster words, banned hedge words, em dashes, and en dashes.\n\n4. Remove each booster word. If the sentence loses meaning, restate it with a number or a fact instead.\n\n5. Replace each hedge with a probability or a confidence statement with a basis. If no value is known, state the fact without the hedge.\n\n6. Replace each em dash or en dash with a comma, colon, or period.\n\n7. Use the active voice. Use the present tense. Use one instruction per sentence.\n\n8. Read the file again. Confirm the meaning matches the original.\n\n9. Repeat steps 1 to 8 until the check on the file passes.\n",
+        "path": "notes/procedure.md"
+      },
+      "output": "wrote 893 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/procedure.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    }
+  ],
+  "violations": []
+}
