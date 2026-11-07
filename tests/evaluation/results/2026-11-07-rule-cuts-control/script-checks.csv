@@ -1,0 +1,127 @@
+rules_version,model,prompt_id,file,dashes,banned,first_person,long,longest,actions,labelled,reasoned,headline_first,brief_in_order,no_heading,end_begins,selftest_last,structure,no_long_sentence,no_first_person,selftest_lines,selftest_wrong,selftest_right,language,all_labelled,all_reasoned
+0.10,anthropic_claude-sonnet-5-5@medium,A1,responses/anthropic_claude-sonnet-5-5@medium/A1-s1.md,0,0,0,1,25,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A1,responses/anthropic_claude-sonnet-5-5@medium/A1-s2.md,0,0,0,0,23,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A1,responses/anthropic_claude-sonnet-5-5@medium/A1-s3.md,0,0,0,1,26,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A2,responses/anthropic_claude-sonnet-5-5@medium/A2-s1.md,0,0,0,1,23,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A2,responses/anthropic_claude-sonnet-5-5@medium/A2-s2.md,0,0,0,0,22,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A2,responses/anthropic_claude-sonnet-5-5@medium/A2-s3.md,0,0,0,1,26,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A3,responses/anthropic_claude-sonnet-5-5@medium/A3-s1.md,0,1,0,4,30,5,5,5,,,True,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A3,responses/anthropic_claude-sonnet-5-5@medium/A3-s2.md,0,0,0,0,25,4,4,4,,,True,True,True,True,True,True,5,,True,True,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,A3,responses/anthropic_claude-sonnet-5-5@medium/A3-s3.md,0,1,0,2,36,4,4,4,,,True,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,H2,responses/anthropic_claude-sonnet-5-5@medium/H2-s1.md,0,0,0,0,20,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,H2,responses/anthropic_claude-sonnet-5-5@medium/H2-s2.md,0,0,0,0,20,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,H2,responses/anthropic_claude-sonnet-5-5@medium/H2-s3.md,0,0,0,1,27,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,T2,responses/anthropic_claude-sonnet-5-5@medium/T2-s1.md,0,0,0,1,27,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,T2,responses/anthropic_claude-sonnet-5-5@medium/T2-s2.md,0,0,0,1,22,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,T2,responses/anthropic_claude-sonnet-5-5@medium/T2-s3.md,0,0,0,0,24,4,4,3,True,True,,True,True,True,True,True,5,,True,True,True,False
+0.10,anthropic_claude-sonnet-5-5@medium,X1,responses/anthropic_claude-sonnet-5-5@medium/X1-s1.md,0,0,0,1,23,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,X1,responses/anthropic_claude-sonnet-5-5@medium/X1-s2.md,0,0,0,3,24,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,X1,responses/anthropic_claude-sonnet-5-5@medium/X1-s3.md,0,0,0,1,22,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,X2,responses/anthropic_claude-sonnet-5-5@medium/X2-s1.md,0,0,0,2,26,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,X2,responses/anthropic_claude-sonnet-5-5@medium/X2-s2.md,0,0,0,1,22,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,anthropic_claude-sonnet-5-5@medium,X2,responses/anthropic_claude-sonnet-5-5@medium/X2-s3.md,0,0,0,2,25,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,google_gemini-3.8-flash@medium,A1,responses/google_gemini-3.8-flash@medium/A1-s1.md,0,0,0,0,19,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,A1,responses/google_gemini-3.8-flash@medium/A1-s2.md,0,1,0,1,27,3,3,3,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,google_gemini-3.8-flash@medium,A1,responses/google_gemini-3.8-flash@medium/A1-s3.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,A2,responses/google_gemini-3.8-flash@medium/A2-s1.md,0,0,0,0,18,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,A2,responses/google_gemini-3.8-flash@medium/A2-s2.md,0,0,0,0,18,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,A2,responses/google_gemini-3.8-flash@medium/A2-s3.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,A3,responses/google_gemini-3.8-flash@medium/A3-s1.md,0,3,0,1,27,3,3,0,,,True,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,False
+0.10,google_gemini-3.8-flash@medium,A3,responses/google_gemini-3.8-flash@medium/A3-s2.md,0,1,0,2,32,4,4,4,,,True,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,google_gemini-3.8-flash@medium,A3,responses/google_gemini-3.8-flash@medium/A3-s3.md,0,1,0,1,23,3,3,3,,,True,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,google_gemini-3.8-flash@medium,H2,responses/google_gemini-3.8-flash@medium/H2-s1.md,0,0,0,0,18,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,H2,responses/google_gemini-3.8-flash@medium/H2-s2.md,0,0,0,0,22,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,H2,responses/google_gemini-3.8-flash@medium/H2-s3.md,0,0,0,0,20,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,T2,responses/google_gemini-3.8-flash@medium/T2-s1.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,T2,responses/google_gemini-3.8-flash@medium/T2-s2.md,0,0,0,0,22,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,T2,responses/google_gemini-3.8-flash@medium/T2-s3.md,0,0,0,0,20,3,3,0,True,True,,True,True,True,True,True,5,,True,True,True,False
+0.10,google_gemini-3.8-flash@medium,X1,responses/google_gemini-3.8-flash@medium/X1-s1.md,0,0,0,0,25,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,X1,responses/google_gemini-3.8-flash@medium/X1-s2.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,X1,responses/google_gemini-3.8-flash@medium/X1-s3.md,0,0,0,0,21,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,X2,responses/google_gemini-3.8-flash@medium/X2-s1.md,0,0,0,1,24,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,google_gemini-3.8-flash@medium,X2,responses/google_gemini-3.8-flash@medium/X2-s2.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,google_gemini-3.8-flash@medium,X2,responses/google_gemini-3.8-flash@medium/X2-s3.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,A1,responses/openai_gpt-6.1-sol@medium/A1-s1.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,A1,responses/openai_gpt-6.1-sol@medium/A1-s2.md,0,0,0,2,29,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,A1,responses/openai_gpt-6.1-sol@medium/A1-s3.md,0,0,0,0,20,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s1.md,0,0,0,0,12,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s2.md,0,0,0,0,19,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,A2,responses/openai_gpt-6.1-sol@medium/A2-s3.md,0,0,0,0,17,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,A3,responses/openai_gpt-6.1-sol@medium/A3-s1.md,0,0,0,2,33,3,3,3,,,True,True,False,False,False,True,0,,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,A3,responses/openai_gpt-6.1-sol@medium/A3-s2.md,0,0,0,2,34,3,3,3,,,True,True,False,False,False,True,0,,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,A3,responses/openai_gpt-6.1-sol@medium/A3-s3.md,0,0,0,2,42,3,3,3,,,True,True,False,False,False,True,0,,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s1.md,0,0,0,1,31,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s2.md,0,0,0,5,32,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,H2,responses/openai_gpt-6.1-sol@medium/H2-s3.md,0,0,0,1,31,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,T2,responses/openai_gpt-6.1-sol@medium/T2-s1.md,0,0,0,0,0,0,0,0,False,False,,False,False,False,True,True,0,,False,True,False,False
+0.10,openai_gpt-6.1-sol@medium,T2,responses/openai_gpt-6.1-sol@medium/T2-s2.md,0,0,0,0,0,0,0,0,False,False,,False,False,False,True,True,0,,False,True,False,False
+0.10,openai_gpt-6.1-sol@medium,T2,responses/openai_gpt-6.1-sol@medium/T2-s3.md,0,0,0,0,0,0,0,0,False,False,,False,False,False,True,True,0,,False,True,False,False
+0.10,openai_gpt-6.1-sol@medium,X1,responses/openai_gpt-6.1-sol@medium/X1-s1.md,0,0,0,1,28,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,X1,responses/openai_gpt-6.1-sol@medium/X1-s2.md,0,0,0,2,30,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,X1,responses/openai_gpt-6.1-sol@medium/X1-s3.md,0,0,0,1,27,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,X2,responses/openai_gpt-6.1-sol@medium/X2-s1.md,0,0,0,2,31,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,openai_gpt-6.1-sol@medium,X2,responses/openai_gpt-6.1-sol@medium/X2-s2.md,0,0,0,0,21,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,openai_gpt-6.1-sol@medium,X2,responses/openai_gpt-6.1-sol@medium/X2-s3.md,0,0,0,2,29,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,A1,responses/perplexity_glm-5.3-flash@medium/A1-s1.md,0,0,0,2,29,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,A1,responses/perplexity_glm-5.3-flash@medium/A1-s2.md,0,0,0,1,36,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,A1,responses/perplexity_glm-5.3-flash@medium/A1-s3.md,0,0,1,4,34,3,3,3,True,True,,True,True,True,False,False,5,Self-mention outside End;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s1.md,0,0,0,5,31,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s2.md,0,0,1,2,30,0,0,0,False,False,,False,True,False,False,False,5,Self-mention outside End;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_glm-5.3-flash@medium,A2,responses/perplexity_glm-5.3-flash@medium/A2-s3.md,0,0,0,0,25,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,perplexity_glm-5.3-flash@medium,A3,responses/perplexity_glm-5.3-flash@medium/A3-s1.md,0,0,1,2,32,0,0,0,,,False,False,False,False,False,False,5,Self-mention outside End;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_glm-5.3-flash@medium,A3,responses/perplexity_glm-5.3-flash@medium/A3-s2.md,0,0,1,6,65,0,0,0,,,True,False,True,False,False,False,5,Self-mention outside End;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_glm-5.3-flash@medium,A3,responses/perplexity_glm-5.3-flash@medium/A3-s3.md,0,1,1,2,43,0,0,0,,,True,False,True,False,False,False,5,Banned words found;Self-mention outside End;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s1.md,0,0,0,4,42,4,4,4,True,True,,True,True,True,False,True,5,Self-mention outside End;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s2.md,0,3,0,4,29,4,4,4,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,H2,responses/perplexity_glm-5.3-flash@medium/H2-s3.md,0,0,0,6,35,4,4,4,False,True,,True,True,False,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,T2,responses/perplexity_glm-5.3-flash@medium/T2-s1.md,0,0,0,5,42,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,T2,responses/perplexity_glm-5.3-flash@medium/T2-s2.md,0,0,0,2,27,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,T2,responses/perplexity_glm-5.3-flash@medium/T2-s3.md,0,0,0,4,36,3,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s1.md,0,0,0,5,39,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s2.md,0,0,0,5,46,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,X1,responses/perplexity_glm-5.3-flash@medium/X1-s3.md,0,0,0,2,33,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,X2,responses/perplexity_glm-5.3-flash@medium/X2-s1.md,0,0,0,3,37,4,4,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,False
+0.10,perplexity_glm-5.3-flash@medium,X2,responses/perplexity_glm-5.3-flash@medium/X2-s2.md,0,0,0,3,40,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_glm-5.3-flash@medium,X2,responses/perplexity_glm-5.3-flash@medium/X2-s3.md,0,2,0,5,34,4,4,4,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,A1,responses/perplexity_kimi-k3@low/A1-s1.md,0,0,0,4,37,4,4,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,False
+0.10,perplexity_kimi-k3@low,A1,responses/perplexity_kimi-k3@low/A1-s2.md,0,0,0,5,30,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,A1,responses/perplexity_kimi-k3@low/A1-s3.md,0,0,0,3,31,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s1.md,0,0,0,1,33,4,4,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,False
+0.10,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s2.md,0,0,0,0,20,3,3,1,True,True,,True,True,True,True,True,5,,True,True,True,False
+0.10,perplexity_kimi-k3@low,A2,responses/perplexity_kimi-k3@low/A2-s3.md,0,0,0,3,30,2,2,2,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,A3,responses/perplexity_kimi-k3@low/A3-s1.md,0,0,0,1,27,0,0,0,,,True,False,False,False,False,True,0,,False,False,False,False
+0.10,perplexity_kimi-k3@low,A3,responses/perplexity_kimi-k3@low/A3-s2.md,0,1,0,2,39,0,0,0,,,True,True,False,False,False,True,0,,False,False,False,False
+0.10,perplexity_kimi-k3@low,A3,responses/perplexity_kimi-k3@low/A3-s3.md,0,2,0,2,22,3,0,0,,,True,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_kimi-k3@low,H2,responses/perplexity_kimi-k3@low/H2-s1.md,0,0,0,1,27,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,H2,responses/perplexity_kimi-k3@low/H2-s2.md,0,1,0,4,30,5,5,5,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,H2,responses/perplexity_kimi-k3@low/H2-s3.md,0,0,0,0,22,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,perplexity_kimi-k3@low,T2,responses/perplexity_kimi-k3@low/T2-s1.md,0,0,0,0,22,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,perplexity_kimi-k3@low,T2,responses/perplexity_kimi-k3@low/T2-s2.md,0,0,0,2,33,4,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_kimi-k3@low,T2,responses/perplexity_kimi-k3@low/T2-s3.md,0,0,1,2,26,3,3,3,True,True,,True,True,True,False,False,5,Self-mention outside End;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s1.md,0,0,0,3,33,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s2.md,0,0,0,1,26,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,X1,responses/perplexity_kimi-k3@low/X1-s3.md,0,0,0,4,28,5,3,3,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1;Actions in End with a Cynefin domain label,False,False,False,False
+0.10,perplexity_kimi-k3@low,X2,responses/perplexity_kimi-k3@low/X2-s1.md,0,0,0,3,36,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,X2,responses/perplexity_kimi-k3@low/X2-s2.md,0,1,0,1,28,3,3,3,True,True,,True,True,True,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,perplexity_kimi-k3@low,X2,responses/perplexity_kimi-k3@low/X2-s3.md,0,0,0,0,21,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,A1,responses/xai_grok-4.7@low/A1-s1.md,0,0,0,0,16,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,A1,responses/xai_grok-4.7@low/A1-s2.md,0,0,0,0,19,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.10,xai_grok-4.7@low,A1,responses/xai_grok-4.7@low/A1-s3.md,0,0,0,0,16,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,A2,responses/xai_grok-4.7@low/A2-s1.md,0,0,0,0,20,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,A2,responses/xai_grok-4.7@low/A2-s2.md,0,0,0,1,21,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,xai_grok-4.7@low,A2,responses/xai_grok-4.7@low/A2-s3.md,0,0,0,0,18,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,A3,responses/xai_grok-4.7@low/A3-s1.md,0,1,0,2,23,4,4,4,,,True,True,False,False,False,True,5,Banned words found;Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,xai_grok-4.7@low,A3,responses/xai_grok-4.7@low/A3-s2.md,0,0,0,1,23,4,4,4,,,True,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,xai_grok-4.7@low,A3,responses/xai_grok-4.7@low/A3-s3.md,0,1,0,0,16,4,4,4,,,True,True,True,True,True,True,5,Banned words found,False,False,True,True
+0.10,xai_grok-4.7@low,H2,responses/xai_grok-4.7@low/H2-s1.md,0,0,0,1,21,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,xai_grok-4.7@low,H2,responses/xai_grok-4.7@low/H2-s2.md,0,0,0,0,17,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,H2,responses/xai_grok-4.7@low/H2-s3.md,0,0,0,0,17,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,T2,responses/xai_grok-4.7@low/T2-s1.md,0,0,1,0,15,1,1,1,True,True,,True,True,True,True,False,5,Self-mention outside End;Actions in End with a Cynefin domain label,False,False,True,True
+0.10,xai_grok-4.7@low,T2,responses/xai_grok-4.7@low/T2-s2.md,0,0,0,0,23,3,3,3,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,T2,responses/xai_grok-4.7@low/T2-s3.md,0,0,0,0,14,4,4,0,True,True,,True,True,True,True,True,5,,True,True,True,False
+0.10,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s1.md,0,0,0,2,21,5,5,5,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True
+0.10,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s2.md,0,0,0,0,18,4,4,0,True,True,,True,True,True,True,True,5,,True,True,True,False
+0.10,xai_grok-4.7@low,X1,responses/xai_grok-4.7@low/X1-s3.md,0,0,0,0,18,4,4,4,True,True,,True,True,True,True,True,5,,True,True,True,True
+0.10,xai_grok-4.7@low,X2,responses/xai_grok-4.7@low/X2-s1.md,0,0,0,0,22,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.10,xai_grok-4.7@low,X2,responses/xai_grok-4.7@low/X2-s2.md,0,0,0,0,15,0,0,0,True,True,,True,True,True,True,True,5,Actions in End with a Cynefin domain label,False,True,False,False
+0.10,xai_grok-4.7@low,X2,responses/xai_grok-4.7@low/X2-s3.md,0,0,0,1,25,4,4,4,True,True,,True,True,True,False,True,5,Sentences over the limit of Section 4.1 item 1,False,False,True,True

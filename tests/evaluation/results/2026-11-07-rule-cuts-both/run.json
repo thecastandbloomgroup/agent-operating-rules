@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-07",
+  "rules_version": "0.10",
+  "rules_file": "tests/evaluation/results/2026-11-07-rule-cuts-plan/rules-both.md",
+  "no_judge": true,
+  "prompts": [
+    "X1",
+    "X2",
+    "H2",
+    "T2",
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "samples": 3
+}
