@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-07",
+  "rules_version": "0.9",
+  "rules_file": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/psy-20-all/sources/model-operating-rules.md",
+  "prompts": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7"
+  ],
+  "samples": 16,
+  "max_steps": 6,
+  "check_text": false,
+  "sandbox_note": false,
+  "answer_note": false,
+  "first_run": "tests/evaluation/results/2026-11-06-psy20-gpt",
+  "mode": "named"
+}

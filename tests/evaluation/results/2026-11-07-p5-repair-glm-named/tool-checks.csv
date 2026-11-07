@@ -1,0 +1,7 @@
+model,prompt_id,sample,level,passed,violations,steps,note
+perplexity_glm-5.3-flash@medium,P5,10,Complex overt response,True,0,5,
+perplexity_glm-5.3-flash@medium,P5,13,Complex overt response,True,0,5,
+perplexity_glm-5.3-flash@medium,P5,14,Complex overt response,True,0,4,
+perplexity_glm-5.3-flash@medium,P5,3,Complex overt response,True,0,5,
+perplexity_glm-5.3-flash@medium,P5,8,Complex overt response,True,0,4,
+perplexity_glm-5.3-flash@medium,P5,9,Complex overt response,True,0,5,

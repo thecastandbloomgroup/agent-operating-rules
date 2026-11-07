@@ -1,0 +1,8 @@
+provider,role,status,model,effort,prompt_id,sample,input_tokens,cache_write_tokens,cache_read_tokens,output_tokens,reasoning_tokens,cost_usd,seconds
+repair,executor,answered,perplexity/kimi-k3,low,P5,16,5925,,,132,71,0.01976,5.8
+repair,executor,answered,perplexity/kimi-k3,low,P5,16,6082,0,5760,49,0,0.00344,6.6
+repair,executor,answered,perplexity/kimi-k3,low,P5,16,6170,0,5760,467,0,0.00997,6.0
+repair,executor,answered,perplexity/kimi-k3,low,P5,2,6020,,,49,23,0.0188,5.8
+repair,executor,answered,perplexity/kimi-k3,low,P5,2,6101,,,103,24,0.01985,6.0
+repair,executor,answered,perplexity/kimi-k3,low,P5,2,6265,,,104,25,0.02036,6.3
+repair,executor,answered,perplexity/kimi-k3,low,P5,2,6447,0,5888,621,0,0.01277,5.8

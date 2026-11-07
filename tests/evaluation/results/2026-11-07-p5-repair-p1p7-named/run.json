@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-07",
+  "rules_version": "0.9",
+  "rules_file": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/psy-full/sources/model-operating-rules.md",
+  "prompts": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7"
+  ],
+  "samples": 4,
+  "max_steps": 6,
+  "check_text": false,
+  "first_run": "tests/evaluation/results/2026-11-06-psychomotor-p1-p7",
+  "mode": "named"
+}
