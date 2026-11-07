@@ -11,18 +11,20 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-11-07
+
 ### Added
 
 - `bin/run-psychomotor.py --rerun-failed RUN_DIR` runs again, in place, only the units that the API refused, for example for lack of credits. Every other unit stays as it is.
 - `bin/run-psychomotor.py --answer-note` adds only a note on where the answer goes. A probe found that it does not end the Gemini loop: 12 of 24 units at the cap, against 7 of 24 without it.
 - `bin/run-psychomotor.py --sandbox-note` adds a line on the use of the sandbox after the prompt. With it, Gemini passed P1 to P3 in 24 of 24 units, against 11 of 24 without. It stays an option, because its text also names a fail of P2 and P5.
 - `bin/judge-procedures.py` has a judge of another provider score the procedure of each passed P7 unit on three criteria, from 0 to 100. A procedure passes at 85 or more with no criterion at 0, so 28 of 43 procedures of two runs pass. A first mark of 70 passed all 43, including procedures with two steps that need a guess.
-- Prompt P7 tests Origination, the top psychomotor level. The model writes a procedure, then reuses it on three files, and `bin/check-psychomotor.py` grades its form and reuse. P7 gets a cap of 20 steps. Its first run passed 19 of 24.
 - `bin/run-psychomotor.py --check-text` also offers `check_text`, a check of a draft answer that writes no file. A probe found that it costs passes on P5, so the default tools stay the four file tools.
 
 ### Changed
 
-- `sources/banned-words.txt` bans "master", "masters", "mastery", and "mastered". Write "passes", "reaches 80%", or "pass call" in their place. To name the framework, quote it: "mastery learning". `bin/ladder-scores.py` now says that a level counts as passed.
+- **Breaking:** `sources/banned-words.txt` bans "master", "masters", "mastery", and "mastered". Write "passes", "reaches 80%", or "pass call" in their place. To name the framework, quote it: "mastery learning". `bin/ladder-scores.py` now says that a level counts as passed.
+- **Breaking:** Prompt P7 tests Origination, the top psychomotor level. The model writes a procedure, then reuses it on three files, and `bin/check-psychomotor.py` grades its form and reuse. P7 gets a cap of 20 steps. Its first run passed 19 of 24.
 
 ## [0.9.0] - 2026-11-06
 
@@ -243,6 +245,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - `bin/deterministic-tests.py` gives no grade for a page with no prose.
 
 [0.1.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/tags/v0.1.0
+[0.10.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.9.0...v0.10.0
 [0.2.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.1.0...v0.2.0
 [0.2.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.0...v0.2.1
 [0.2.2]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.2.1...v0.2.2
@@ -256,4 +259,4 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 [0.8.1]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.0...v0.8.1
 [0.8.2]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.1...v0.8.2
 [0.9.0]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.8.2...v0.9.0
-[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.9.0...main
+[unreleased]: https://gitlab.com/thecastandbloomgroup/private/agent-operating-rules/-/compare/v0.10.0...main
