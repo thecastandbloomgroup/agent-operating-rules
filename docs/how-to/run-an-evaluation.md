@@ -80,6 +80,8 @@ Each unit stops after 12 tool steps, and P7 after 20, because it works on four f
 | `--sandbox-note` | Adds a note after the prompt: the sandbox holds the task files only | It ends the Gemini loop at the cap, but it names a fail of P2 and P5 ([sandbox note results](../../tests/evaluation/results/2026-11-06-sandbox-note-results.md)) |
 | `--answer-note`  | Adds only a note that the answer goes in the reply                  | It does not end the loop, and it cost Sonnet passes on P5 ([answer note results](../../tests/evaluation/results/2026-11-06-answer-note-results.md))              |
 
+When the API refuses units, for example for lack of credits, add credits first. Then run `bin/run-psychomotor.py --rerun-failed tests/evaluation/results/<run>`. It runs again, in place, only the units with an HTTP 401 or 402 error, and it keeps every other unit.
+
 After the grade, `bin/judge-procedures.py tests/evaluation/results/<run>` has a judge score the procedure of each passed P7 unit. It writes `procedure-checks.csv`. A procedure passes at 85 of 100 or more, with no criterion at 0.
 
 ## Check the domain of the actions

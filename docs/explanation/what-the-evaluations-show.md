@@ -56,23 +56,23 @@ No run measures Characterization.
 
 ### Psychomotor
 
-One run of 2026-11-06 measures all seven levels on one day. It used rules 0.9 and the four file tools of the sandbox suite ([P1 to P7 results](../../tests/evaluation/results/2026-11-06-psychomotor-p1-p7-results.md)). The table pools it over the six executors, 24 trials per level. The last column counts the units that hit the step cap, all of them Gemini.
+The table pools the runs of 2026-11-06 and 2026-11-07 over the six executors: 20 trials per model and 120 per level ([20-trial results](../../tests/evaluation/results/2026-11-07-psychomotor-20-results.md)). They used rules 0.9 and the four file tools of the sandbox suite. The interval is a 95% Wilson interval, and the last column counts the units that hit the step cap.
 
-| Level                  | Passed   | Mastered at 80% of 20 or more | At the step cap |
-| ---------------------- | -------- | ----------------------------- | --------------- |
-| Perception             | 21 of 24 | yes, 88%                      | 2               |
-| Set                    | 19 of 24 | no, 79%                       | 3               |
-| Guided response        | 22 of 24 | yes, 92%                      | 2               |
-| Mechanism              | 24 of 24 | yes                           | 0               |
-| Complex overt response | 18 of 24 | no, 75%                       | 0               |
-| Adaptation             | 24 of 24 | yes                           | 0               |
-| Origination            | 24 of 24 | yes                           | 0               |
+| Level                  | Passed     | 95% interval | Mastered at 80% of 20 or more | At the step cap |
+| ---------------------- | ---------- | ------------ | ----------------------------- | --------------- |
+| Perception             | 110 of 120 | 85% to 95%   | yes, 92%                      | 7               |
+| Set                    | 106 of 120 | 81% to 93%   | yes, 88%                      | 4               |
+| Guided response        | 113 of 120 | 88% to 97%   | yes, 94%                      | 7               |
+| Mechanism              | 112 of 120 | 87% to 97%   | yes, 93%                      | 8               |
+| Complex overt response | 90 of 120  | 67% to 82%   | no, 75%                       | 0               |
+| Adaptation             | 109 of 120 | 84% to 95%   | yes, 91%                      | 11              |
+| Origination            | 105 of 120 | 80% to 92%   | yes, 88%                      | 1               |
 
-So the levels are not cumulative: Origination passes more often than Complex overt response. The runs of 2026-11-05 gave Set 17 of 24 and Complex overt response 14 of 24 ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)).
+So the levels are not cumulative: Origination passes more often than Complex overt response. Complex overt response is the one level that the pool does not master. In 27 of its 30 failures, a move across two files ends with a write that no check follows. GPT-6.1 Sol has 17 of them. In 10 of the 14 Set failures, a model writes plan.md to another folder with no look first. The other 4 are Gemini units at the cap, and each step-cap unit but one is Gemini's.
 
-The first P1 to P6 run held the first four levels within two answers ([upper results](../../tests/evaluation/results/2026-11-05-psychomotor-full-results.md)). Set is the level that splits the models, and every Set failure is a write with no look first. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed 16 of 16 each, while Gemini, Grok, and Kimi dropped the Set trials. Complex overt response is where most models stop. A later control with rules 0.9 passed P5 in 19 of 24, so this level varies by day. In that run, a check of text that writes no file cost Sonnet 4 passes ([check text results](../../tests/evaluation/results/2026-11-06-check-text-results.md)). A move across two files failed for an unchecked final write, a loop to the step cap, or a scratch file. Every model recovered from an injected failed write, so Adaptation passes. The main P5 failure, a final write that no check follows, has a repair. A second turn that names the missing check fixed 5 of 5 such units, against 1 of 5 for a plain retry ([P5 repair results](../../tests/evaluation/results/2026-11-05-p5-repair-results.md)).
+The earlier runs of 2026-11-05 gave Set 17 of 24 and Complex overt response 14 of 24 ([four-sample results](../../tests/evaluation/results/2026-11-05-psychomotor-s4-results.md)). A later control with rules 0.9 passed P5 in 19 of 24, so this level varies by day. In that run, a check of text that writes no file cost Sonnet 4 passes ([check text results](../../tests/evaluation/results/2026-11-06-check-text-results.md)). The main P5 failure has a repair. A second turn that names the missing check fixed 5 of 5 such units, against 1 of 5 for a plain retry ([P5 repair results](../../tests/evaluation/results/2026-11-05-p5-repair-results.md)).
 
-Gemini lost P1 to P3 to a loop at the step cap. In that loop, it checks drafts of its answer in scratch files ([P1 to P7 results](../../tests/evaluation/results/2026-11-06-psychomotor-p1-p7-results.md)). Gemini passed 24 of 24 on P1 to P3 with a three-sentence note, against 11 of 24 without ([sandbox note results](../../tests/evaluation/results/2026-11-06-sandbox-note-results.md)). The sentence that does the work forbids other files, and it also names a fail of P2 and P5. A note on where the answer goes did not help alone ([answer note results](../../tests/evaluation/results/2026-11-06-answer-note-results.md)). A script grades the form of each P7 procedure, and a judge scores its quality. The judge passes 28 of 43 procedures at 85 of 100 with no criterion at 0 ([P7 results](../../tests/evaluation/results/2026-11-06-p7-origination-results.md)).
+Gemini loses its low levels to a loop at the step cap. In that loop, it checks drafts of its answer in scratch files ([P1 to P7 results](../../tests/evaluation/results/2026-11-06-psychomotor-p1-p7-results.md)). Gemini passed 24 of 24 on P1 to P3 with a three-sentence note, against 11 of 24 without ([sandbox note results](../../tests/evaluation/results/2026-11-06-sandbox-note-results.md)). The sentence that does the work forbids other files, and it also names a fail of P2 and P5. A note on where the answer goes did not help alone ([answer note results](../../tests/evaluation/results/2026-11-06-answer-note-results.md)). A script grades the form of each P7 procedure, and a judge scores its quality. The judge passes 28 of 43 procedures at 85 of 100 with no criterion at 0 ([P7 results](../../tests/evaluation/results/2026-11-06-p7-origination-results.md)).
 
 Each of the six models has 20 trials per level from 2026-11-06 and 2026-11-07 ([20-trial results](../../tests/evaluation/results/2026-11-07-psychomotor-20-results.md)). Only Sonnet 5.5 masters every level.
 
