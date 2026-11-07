@@ -20,6 +20,10 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - Prompt P7 tests Origination, the top psychomotor level. The model writes a procedure, then reuses it on three files, and `bin/check-psychomotor.py` grades its form and reuse. P7 gets a cap of 20 steps. Its first run passed 19 of 24.
 - `bin/run-psychomotor.py --check-text` also offers `check_text`, a check of a draft answer that writes no file. A probe found that it costs passes on P5, so the default tools stay the four file tools.
 
+### Changed
+
+- `sources/banned-words.txt` bans "master" and "masters". Write "passes" or "reaches 80%" in their place.
+
 ## [0.9.0] - 2026-11-06
 
 ### Added

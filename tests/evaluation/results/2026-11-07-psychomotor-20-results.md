@@ -2,7 +2,7 @@
 
 ## Headline
 
-All six models now have 20 trials at each of the seven psychomotor levels, and only Sonnet 5.5 masters every level.
+All six models now have 20 trials at each of the seven psychomotor levels, and only Sonnet 5.5 reaches 80% on every level.
 
 1. The scores are Sonnet 1.00, Kimi K3 0.96, Grok 4.7 0.91, GLM 5.3 Flash 0.89, GPT-6.1 Sol 0.88, and Gemini 3.8 Flash 0.70.
 2. Each model below 1.00 fails on one or two levels. For example, GPT-6.1 Sol passed Complex overt response in 3 of 20, and Grok passed Set in 13 of 20.

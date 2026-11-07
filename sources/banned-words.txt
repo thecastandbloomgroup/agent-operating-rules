@@ -77,6 +77,9 @@ i feel
 personally
 
 ## Idioms and non-literal phrases (4.2.3)
+# master and masters: banned by the user on 2026-11-07. Say "passes" or "reaches 80%".
+master
+masters
 trap
 bait
 dog-fooding

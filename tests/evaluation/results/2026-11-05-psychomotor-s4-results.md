@@ -2,7 +2,7 @@
 
 ## Headline
 
-Set is the level that splits the models: the pooled ladder masters Perception and Mechanism, and Set stays at 71%.
+Set is the level that splits the models: the pooled ladder reaches 80% on Perception and Mechanism, and Set stays at 71%.
 
 1. Perception, Guided response, and Mechanism passed 24 of 24 each, at the mastery bar of 80% of at least 20 trials.
 2. Set passed 17 of 24. Every failure is a write with no look first: a wrong path, a loop that hit the step cap, or no write at all.
