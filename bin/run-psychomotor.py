@@ -10,6 +10,8 @@ Usage: bin/run-psychomotor.py [--provider NAME] [--run-id ID] [--prompts P1,P2]
 --check-text also offers check_text, a check of a draft answer that writes no file.
 --sandbox-note adds SANDBOX_NOTE after the prompt in the first user turn, and
 --answer-note adds only ANSWER_NOTE, which names no fail of any prompt.
+--rerun-failed RUN_DIR runs again, in RUN_DIR, each unit that the API refused, for
+example for lack of credits, and keeps every other unit as it is.
 The executors are the main pair of each provider of pairs.json. The first run
 is also the probe of tool support: a provider that refuses the tools field
 fails with an API error in run.log. It reads the key from PERPLEXITY_TOKEN and
@@ -61,6 +63,24 @@ FAULT_TEXT = "error: the write failed this time. Send it again."
 # Tokens of one unit for --plan only: the rules go in each step, so the input
 # grows with the steps. Each unit logs its real cost in calls.csv.
 ESTIMATE = (40000, 5000)
+
+
+REFUSALS = (
+    "HTTP 401",
+    "HTTP 402",
+    "insufficient API credits",
+    "exceeded your current quota",
+)
+
+
+def refused_units(run_dir):
+    """(model slug, prompt ID, sample) of each unit of run_dir that the API refused."""
+    out = []
+    for f in sorted(Path(run_dir).glob("transcripts/*/*.json")):
+        t = json.loads(f.read_text())
+        if any(r in (t.get("error") or "") for r in REFUSALS):
+            out.append((t["model"], t["prompt_id"], t["sample"]))
+    return out
 
 
 def executors(cfg, provider=None):
@@ -242,9 +262,12 @@ def main():
     parser.add_argument("--check-text", action="store_true")
     parser.add_argument("--sandbox-note", action="store_true")
     parser.add_argument("--answer-note", action="store_true")
+    parser.add_argument("--rerun-failed")
     parser.add_argument("--plan", action="store_true")
     args = parser.parse_args()
     cfg = json.loads(EVAL.PAIRS.read_text())
+    if args.rerun_failed:
+        return rerun_failed(cfg, Path(args.rerun_failed), args)
     wanted = args.prompts.split(",") if args.prompts else None
     prompts = [
         p
@@ -328,6 +351,64 @@ def main():
             )
     # A failed unit is a result too, so the run exits 0 and the log names it.
     print(f"Wrote {run_dir}. Grade with: bin/check-psychomotor.py {run_dir}")
+    return 0
+
+
+def rerun_failed(cfg, run_dir, args):
+    """Run again each refused unit of run_dir, in place, with the settings of its run.json."""
+    meta = json.loads((run_dir / "run.json").read_text())
+    rules = Path(args.rules).read_text()
+    if EVAL.rules_version(rules) != meta["rules_version"]:
+        sys.exit(
+            f"rules {EVAL.rules_version(rules)} differ from the run's {meta['rules_version']}"
+        )
+    prompts = {p["id"]: p for p in EVAL.parse_prompts(PROMPTS_FILE.read_text())}
+    models = {EVAL.slug(m): (n, m) for n, m in executors(cfg)}
+    work = [
+        (*models[slug], prompts[pid], sample)
+        for slug, pid, sample in refused_units(run_dir)
+    ]
+    print(f"{len(work)} refused units to run again in {run_dir}")
+    if args.plan:
+        return 0
+    key = os.environ.get("PERPLEXITY_TOKEN")
+    if not key:
+        sys.exit("PERPLEXITY_TOKEN is not set. Run with doppler run.")
+    ctx = {
+        "date": meta["date"],
+        "rules": rules,
+        **{
+            k: meta.get(k, False) for k in ("check_text", "sandbox_note", "answer_note")
+        },
+    }
+    for _, model, prompt, sample in work:
+        stem = f"{prompt['id']}-s{sample}"
+        shutil.rmtree(run_dir / "sandbox" / EVAL.slug(model) / stem, ignore_errors=True)
+    log = run_dir / "run.log"
+    if log.exists():
+        log.rename(run_dir / "run-refused.log")
+    errors = []
+    with (
+        (run_dir / "calls.csv").open("a", newline="") as calls_file,
+        ThreadPoolExecutor(max_workers=args.workers) as pool,
+    ):
+        writer = csv.DictWriter(calls_file, fieldnames=EVAL.CALL_FIELDS)
+        futures = [
+            pool.submit(run_unit, cfg, key, run_dir, ctx, *unit) for unit in work
+        ]
+        for future in as_completed(futures):
+            calls, error = future.result()
+            writer.writerows(calls)
+            calls_file.flush()
+            if error:
+                errors.append(error)
+                with log.open("a") as f:
+                    f.write(error + "\n")
+            done = sum(1 for f in futures if f.done())
+            print(
+                f"{done} of {len(work)} units, {len(errors)} failures", file=sys.stderr
+            )
+    print(f"Ran again in {run_dir}. Grade with: bin/check-psychomotor.py {run_dir}")
     return 0
 
 

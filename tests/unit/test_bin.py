@@ -1779,3 +1779,31 @@ class SandboxNote(unittest.TestCase):
             self.first_turn({"answer_note": True}),
             "Inspect the sandbox.\n\n" + RUN_PSY.ANSWER_NOTE,
         )
+
+
+class RerunFailed(unittest.TestCase):
+    def test_lists_only_the_units_that_the_api_refused(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run_dir = Path(folder.name)
+        out = run_dir / "transcripts" / "m@low"
+        out.mkdir(parents=True)
+        cases = {
+            "P1-s1": "P1-s1 m: HTTP 402: insufficient API credits",
+            "P1-s2": "P1-s2 m: HTTP 401: You exceeded your current quota",
+            "P1-s3": "P1-s3 m: no answer after 12 steps",
+            "P1-s4": None,
+        }
+        for stem, error in cases.items():
+            t = {
+                "model": "m@low",
+                "prompt_id": "P1",
+                "sample": int(stem[-1]),
+                "steps": [],
+            }
+            if error:
+                t["error"] = error
+            (out / f"{stem}.json").write_text(json.dumps(t))
+        self.assertEqual(
+            RUN_PSY.refused_units(run_dir), [("m@low", "P1", 1), ("m@low", "P1", 2)]
+        )
