@@ -60,6 +60,15 @@ python3 bin/second-turn.py <run folder> --mode structure \
 
 The second command sends one turn per broken answer, and each turn names the broken parts. The [probe results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md) give the marks.
 
+A second probe showed the same for tool work. A turn that names the missing check repaired 26 of 27 units that left a write unchecked. A plain retry repaired 8 of 27. So when a psychomotor unit fails with "no check ran after the last write", send the repair:
+
+```sh
+python3 bin/check-psychomotor.py <run folder>
+python3 bin/repair-psychomotor.py <run folder> --mode named --run-id <new id>
+```
+
+Each unit starts again from the end state of its sandbox, and the turn names `check_file`. The [P5 repair results](../../tests/evaluation/results/2026-11-07-p5-repair-results.md) give the marks.
+
 ## Caveats
 
 - An agent harness adds its own system prompt, tools, and memory on top of the rules. The evaluation results come from the bare API, so a harness result can differ [judgment].
