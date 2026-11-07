@@ -1,8 +1,8 @@
 # What the evaluations show
 
-This page sums up what the evaluation runs from 2026-10-28 to 2026-11-05 say about the use of the rules with agents. Each claim links to the write-up that holds its numbers. The rules were at versions 0.2 to 0.8 in these runs.
+This page sums up what the evaluation runs from 2026-10-28 to 2026-11-07 say about the use of the rules with agents. Each claim links to the write-up that holds its numbers. The rules were at versions 0.2 to 0.9 in these runs.
 
-In short, the rules shape the form of the answers. They move the quality of judgment less. The models cannot count the words of their own answers. No run gave the models tools, so these results cover agents that answer, not agents that act.
+In short, the rules shape the form of the answers. They move the quality of judgment less. The models cannot count the words of their own answers. The psychomotor runs gave the models file tools in a sandbox, so the page covers agents that act as well as agents that answer.
 
 ## What works
 
