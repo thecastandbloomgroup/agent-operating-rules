@@ -13,6 +13,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Added
 
+- `bin/run-psychomotor.py --rerun-failed RUN_DIR` runs again, in place, only the units that the API refused, for example for lack of credits. Every other unit stays as it is.
 - `bin/run-psychomotor.py --answer-note` adds only a note on where the answer goes. A probe found that it does not end the Gemini loop: 12 of 24 units at the cap, against 7 of 24 without it.
 - `bin/run-psychomotor.py --sandbox-note` adds a line on the use of the sandbox after the prompt. With it, Gemini passed P1 to P3 in 24 of 24 units, against 11 of 24 without. It stays an option, because its text also names a fail of P2 and P5.
 - `bin/judge-procedures.py` has a judge of another provider score the procedure of each passed P7 unit on three criteria, from 0 to 100. A procedure passes at 85 or more with no criterion at 0, so 28 of 43 procedures of two runs pass. A first mark of 70 passed all 43, including procedures with two steps that need a guess.

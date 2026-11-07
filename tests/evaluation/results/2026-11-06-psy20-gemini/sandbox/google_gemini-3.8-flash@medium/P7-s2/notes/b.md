@@ -1,3 +1,3 @@
 # Incident note
 
-The outage started when the cache filled up during the nightly import and the service fell back to the database for every request until the import job ended an hour later.
+The cache filled up during the nightly import. The service then sent every request to the database. This state continued until the import job finished one hour later.

@@ -2,7 +2,136 @@
   "model": "xai_grok-4.7@low",
   "prompt_id": "P7",
   "sample": 10,
-  "steps": [],
-  "violations": [],
-  "error": "P7-s10 xai/grok-4.7: HTTP 402: {\"error\":{\"message\":\"Your API Project has insufficient API credits. Add API credits at https://www.perplexity.ai/account/api/billing\",\"type\":\"payment_required\",\"code\":402}}\n"
+  "answer": "Headline: The procedure is in notes/procedure.md, and notes/a.md, notes/b.md, and notes/c.md now pass check_file with the same facts.\n\n- notes/a.md lost the booster \"clearly\" and still says the parser is faster and reads a large log in two seconds.\n- notes/b.md splits the outage sentence into three sentences and keeps the cache, import, database fallback, and one-hour end.\n- notes/c.md drops \"very\" and splits the worker steps so each sentence stays under the word limit.\n\nBackground: Three notes files failed a style check. The request was to write a numbered procedure first, then apply it to notes/a.md, notes/b.md, and notes/c.md in that order. Meaning had to stay.\n\nRelevance: A clean check lets the next reader use the notes without a style failure. The procedure lets any agent repeat the same fix.\n\nInformation: check_file on notes/a.md listed one booster, \"clearly\", and zero sentences over 25 words. The rewrite removed that word. The second check_file report is empty.\n\nnotes/b.md had one sentence over 25 words and no banned word. The rewrite splits that sentence into three. The second check_file report is empty. The cache fill, nightly import, database fallback, and one-hour end remain.\n\nnotes/c.md had the booster \"very\" and one sentence over 25 words. The rewrite drops \"very\" and splits the worker path into four sentences. The second check_file report is empty. The take, run, store, and done steps remain.\n\nAssumption: A clean check_file report means the file meets the word and sentence rules. Why not measured: the tool does not print the grade number. Validate by: call check_file and read the failures list. If wrong: run another rewrite until failures is empty.\n\nAlternative considered: Leave long sentences and only delete boosters. That loses because check_file still fails on notes/b.md and notes/c.md for length.\n\nEnd: I recommend that we keep the four files as written and reuse the procedure on the next notes file.\n\n1. Open notes/procedure.md and follow steps 1 to 5 on the next file. This removes the missing-method blocker. Domain: Clear, because the steps are a known rule. Kind: deterministic. Test first:\nGiven a notes file with a known booster or a sentence over 25 words\nWhen the five steps run and the last check_file returns\nThen failures is an empty list and the heading and facts remain\n2. Do not start step 2 until step 1's last check_file is empty. This adds a stop so a dirty file is not treated as done. Domain: Clear, because the stop rule is already written. Kind: deterministic. Test first:\nGiven a check_file report that still lists a failure\nWhen the agent decides whether to stop\nThen the agent returns to rewrite and does not stop\n\nFollow-up: No open question remains. If a later check_file adds a new failure class, add one step to the procedure before the rewrite.\n\nReferences:\n\n[1] check_file reports on notes/a.md, notes/b.md, and notes/c.md in this session. [P]\n\n```text\nSelf-test\nQuestions asked: 0 of 3\nAssumptions logged: 1 (yes)\nClaims with evidence or [judgment] label: yes\nReferences: 1, all from session or identified with confidence: yes\nSource types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes\nAlternative considered: yes\nRecommendation: 2 actions, each with increment, blocker, test: yes\nEach action classified (deterministic/evaluative/stochastic) with test written first: yes\nActions in End with a Cynefin domain label: 2 of 2\nChaotic and Confused actions first, Complex actions as capped probes: yes\nBanned words found: 0\nSelf-mention outside End: 0\nTransition present where a sentence depends on the prior one: yes\nDashes (em or en): 0\nSentences over the limit of Section 4.1 item 1: 0\n```",
+  "steps": [
+    {
+      "name": "list_files",
+      "arguments": {},
+      "output": "notes/a.md (104 characters)\nnotes/b.md (189 characters)\nnotes/c.md (196 characters)",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "# Release note\n\nThe new parser is clearly faster than the old one. It reads a large log in two seconds.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "# Incident note\n\nThe outage started when the cache filled up during the nightly import and the service fell back to the database for every request until the import job ended an hour later.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "read_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "# Design note\n\nThe queue is very simple. Each worker takes one message, runs the job, writes the result to the store, and then marks the message as done so that no other worker picks it up again.\n",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "path": "notes/procedure.md",
+        "content": "# Procedure: fix one notes file\n\nUse these steps on one notes file. Use only read_file, check_file, and write_file.\n\n1. Call read_file with the path of that file. Keep the heading and the facts.\n2. Call check_file with the same path. Note each banned word. Note each sentence over 25 words.\n3. Rewrite the full file. Delete each banned word. Split each long sentence into shorter sentences. Do not add facts. Do not drop facts.\n4. Call write_file with the same path and the full new text.\n5. Call check_file again. If it still lists a banned word or a long sentence, go back to step 3. Stop when the report is clean.\n"
+      },
+      "output": "wrote 617 characters to notes/procedure.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {\"Boosters (4.4.1)\": [\"clearly\"]}, \"failures\": [\"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "path": "notes/a.md",
+        "content": "# Release note\n\nThe new parser is faster than the old one. It reads a large log in two seconds.\n"
+      },
+      "output": "wrote 96 characters to notes/a.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/a.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {}, \"failures\": [\"long sentences (4.1.1)\", \"Flesch-Kincaid grade over 10 (4.1.7)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "path": "notes/b.md",
+        "content": "# Incident note\n\nThe outage started when the cache filled up during the nightly import. The service then fell back to the database for every request. This continued until the import job ended an hour later.\n"
+      },
+      "output": "wrote 207 characters to notes/b.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/b.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 1, \"banned_words\": {\"Boosters (4.4.1)\": [\"very\"]}, \"failures\": [\"long sentences (4.1.1)\", \"banned words (4.2.3, 4.2.6, 4.4)\"]}",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "write_file",
+      "arguments": {
+        "path": "notes/c.md",
+        "content": "# Design note\n\nThe queue is simple. Each worker takes one message and runs the job. It writes the result to the store. It then marks the message as done so that no other worker picks it up again.\n"
+      },
+      "output": "wrote 196 characters to notes/c.md",
+      "violation": null,
+      "fault": false
+    },
+    {
+      "name": "check_file",
+      "arguments": {
+        "path": "notes/c.md"
+      },
+      "output": "{\"sentences_over_25_words\": 0, \"banned_words\": {}, \"failures\": []}",
+      "violation": null,
+      "fault": false
+    }
+  ],
+  "violations": []
 }

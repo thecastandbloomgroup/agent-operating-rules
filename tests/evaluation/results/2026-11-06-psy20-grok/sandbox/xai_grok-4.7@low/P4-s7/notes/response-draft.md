@@ -1,0 +1,134 @@
+# Headline
+
+The notes file now passes the banned-word and sentence-length checks.
+
+The intensifier without a number is gone.
+
+The long sentence is now three short sentences.
+
+The queue fix meaning stays the same.
+
+The tool reports zero failures.
+
+# Background
+
+The file notes/update.md held one long sentence and one banned intensifier.
+
+The request was to keep the meaning and pass both checks.
+
+The file is rewritten and the tool confirms a pass.
+
+# Relevance
+
+A clean note lets the next reader use the update without a style failure.
+
+# Information
+
+The tool reports zero sentences over 25 words and no banned words [1].
+
+The old text said the queue depth fell after the fix, but used a banned intensifier [2].
+
+No measured drop is in the file, so the rewrite says "by a large amount" [judgment].
+
+Therefore the batch facts stay as written.
+
+Those facts are ten thousand messages, under a minute, a batch size from ten to five hundred, and no shared connection [2].
+
+Assumption: "by a large amount" keeps the intent of the intensifier. Why not measured: the material does not state a number. Validate by: read the queue metric for the drop. If wrong: replace the phrase with that number.
+
+The strongest alternative is to split the sentence and keep the intensifier.
+
+It loses because the banned-word check would still fail [judgment].
+
+# End
+
+I recommend that we take these three actions.
+
+1. Keep the rewritten note as the current file.
+
+Increment: the one note, already written in this session.
+
+Blocker: style failures block a clean update.
+
+Test, written first:
+
+Given the file notes/update.md,
+
+When the checker runs on that file,
+
+Then banned words are zero and no sentence exceeds 25 words.
+
+Kind: deterministic.
+
+Domain: Clear, because a known style rule applies by deduction.
+
+2. Record the real queue drop if a metric exists.
+
+Increment: one number with a unit, in one edit.
+
+Blocker: the phrase "by a large amount" is not a measured drop.
+
+This step MUST NOT start until the metric is in hand.
+
+Test, written first:
+
+Given a queue metric with a unit,
+
+When the note is edited,
+
+Then the note states that number and the checker still passes.
+
+Kind: deterministic.
+
+Domain: Complicated, because analysis of the metric picks the number.
+
+3. Re-run the checker after any later edit.
+
+Increment: one checker run.
+
+Blocker: a later edit can bring back a long sentence or a banned word.
+
+Step 3 waits on Step 2 when Step 2 edits the file.
+
+Test, written first:
+
+Given a later edit to notes/update.md,
+
+When the checker runs,
+
+Then the failure list is empty.
+
+Kind: deterministic.
+
+Domain: Clear, because the same known rule applies by deduction.
+
+# Follow-up
+
+If the metric shows a small drop, replace "by a large amount" with the measured drop.
+
+# References
+
+[1] check_file on notes/update.md, this session, zero failures. [P]
+
+[2] notes/update.md, original and rewritten text, this session. [P]
+
+# Self-test
+
+```text
+Self-test
+Questions asked: 0 of 3
+Assumptions logged: 1 (yes)
+Claims with evidence or [judgment] label: yes
+References: 2, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0
+```

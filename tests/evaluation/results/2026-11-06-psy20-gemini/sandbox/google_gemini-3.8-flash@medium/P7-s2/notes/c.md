@@ -1,3 +1,3 @@
 # Design note
 
-The queue is very simple. Each worker takes one message, runs the job, writes the result to the store, and then marks the message as done so that no other worker picks it up again.
+The queue design is simple. Each worker takes one message and runs the job. Next, the worker writes the result to the store. The worker then marks the message as done. Therefore, no other worker picks up the message again.

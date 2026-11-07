@@ -74,6 +74,19 @@ The first P1 to P6 run held the first four levels within two answers ([upper res
 
 Gemini lost P1 to P3 to a loop at the step cap. In that loop, it checks drafts of its answer in scratch files ([P1 to P7 results](../../tests/evaluation/results/2026-11-06-psychomotor-p1-p7-results.md)). Gemini passed 24 of 24 on P1 to P3 with a three-sentence note, against 11 of 24 without ([sandbox note results](../../tests/evaluation/results/2026-11-06-sandbox-note-results.md)). The sentence that does the work forbids other files, and it also names a fail of P2 and P5. A note on where the answer goes did not help alone ([answer note results](../../tests/evaluation/results/2026-11-06-answer-note-results.md)). A script grades the form of each P7 procedure, and a judge scores its quality. The judge passes 28 of 43 procedures at 85 of 100 with no criterion at 0 ([P7 results](../../tests/evaluation/results/2026-11-06-p7-origination-results.md)).
 
+Each of the six models has 20 trials per level from 2026-11-06 and 2026-11-07 ([20-trial results](../../tests/evaluation/results/2026-11-07-psychomotor-20-results.md)). Only Sonnet 5.5 masters every level.
+
+| Model            | Score | Weakest level                    | Units at the step cap |
+| ---------------- | ----- | -------------------------------- | --------------------- |
+| Sonnet 5.5       | 1.00  | Origination, 18 of 20            | 0                     |
+| Kimi K3          | 0.96  | Complex overt response, 17 of 20 | 0                     |
+| Grok 4.7         | 0.91  | Set, 13 of 20                    | 0                     |
+| GLM 5.3 Flash    | 0.89  | Complex overt response, 12 of 20 | 1                     |
+| GPT-6.1 Sol      | 0.88  | Complex overt response, 3 of 20  | 0                     |
+| Gemini 3.8 Flash | 0.70  | Adaptation, 9 of 20              | 37                    |
+
+GPT-6.1 Sol fails P5 because it skips the last check. Gemini's low levels come from the loop at the step cap, and it passes P5 and P7 in 20 of 20.
+
 ### How to read the tables
 
 - **No model has a score of mastery yet.** Each model has fewer than 20 trials at Understand and Analyze, and at the upper affective levels. So `bin/ladder-scores.py` gives no score for any one model.
@@ -127,7 +140,7 @@ The repair claim is now measured on one side. A turn that names the broken parts
 
 ## Limits
 
-- **Few trials per model.** Each model has 4 tool trials per level in most runs, under the 20 that a mastery call needs. Two models now have 20 trials per level. Sonnet 5.5 mastered all seven levels and scores 1.00. GLM 5.3 Flash scores 0.89, because Complex overt response (60%) and Origination (65%) fall under 80% ([limits results](../../tests/evaluation/results/2026-11-06-limits-results.md)). The other four models need about 22 USD more for the same.
+- **Twenty trials is a floor.** Each model has 20 tool trials per level, the least that a mastery call needs. A 95% Wilson interval on 20 of 20 runs from 84% to 100%, so a call at 20 trials can flip on a rerun.
 - **Wide intervals.** With 24 trials, a 95% Wilson interval spans about 30 points. For example, Complex overt response at 18 of 24 runs from 55% to 88%, and Perception at 21 of 24 from 69% to 96%. So a level marked as mastered at 24 trials can fall under 80% on a rerun. A model with a true rate of 90% needs about 53 trials before its interval clears 80%. The large pools are tighter: Apply at 72% of 468 runs from 68% to 76%.
 - **Few second turns.** Three studies test a second turn, with 5 to 18 units per arm, and none tests a third. A turn that names the failed part repaired 10 of 12 broken answers and 5 of 5 unchecked writes, against 3 of 12 and 1 of 5 for a plain retry ([structure repair results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md), [P5 repair results](../../tests/evaluation/results/2026-11-05-p5-repair-results.md)). A plain "Are you sure?" changed no decision in 18 answers ([second turn results](../../tests/evaluation/results/2026-11-03-second-turn-results.md)).
 - **Mid-tier executors.** Most runs used mid-tier models at low or medium effort. A run of strong executors on every ladder costs more than the funds left, so it waits on a budget decision.

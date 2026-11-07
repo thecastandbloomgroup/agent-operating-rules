@@ -1,0 +1,99 @@
+# Headline
+
+The decision line now sits only in notes/decisions.md.
+
+The source file no longer contains that line.
+The other two plan lines stay in place.
+Both tool checks report zero failures.
+
+# Background
+
+The request was to move one line out of drafts/plan.md.
+The new path is notes/decisions.md.
+The rest of the plan file had to stay as it was.
+
+# Relevance
+
+A bad edit would drop a release step or leave the decision in two files.
+The reads below show that neither error remains.
+
+# Information
+
+drafts/plan.md now holds the heading, the lock-file sentence, and the build sentence.
+[1]
+
+notes/decisions.md holds only the text "Decision: pin the versions."
+[2]
+
+The check on drafts/plan.md reports 0 sentences over 25 words and no banned words.
+[3]
+
+The check on notes/decisions.md reports the same clean result.
+[4]
+
+Assumption: the new file needs no heading. Why not measured: the request does not state a heading. Validate by: ask the author to read notes/decisions.md. If wrong: add one heading in a later edit.
+
+Alternative considered: copy the line and also keep it in the plan. That loses because the request says move, not copy. [judgment]
+
+# End
+
+I recommend that we treat the move as done and keep these three checks as the close-out.
+
+1. Domain: Clear. Cause and effect follow a known file compare, so this is deduction from a known rule.
+Increment: one read of drafts/plan.md.
+Blocker removed: doubt that a plan line was dropped.
+Test first:
+Given drafts/plan.md after the edit,
+When a reader lists its lines,
+Then the decision line is absent and the other two sentences remain.
+
+2. Step 2 can run with Step 1. Domain: Clear. The expected text is known, so this is deduction from a known rule.
+Increment: one read of notes/decisions.md.
+Blocker removed: doubt that the line was altered.
+Test first:
+Given notes/decisions.md,
+When a reader reads the file,
+Then the only line is "Decision: pin the versions."
+
+3. Step 3 MUST NOT change either file. Domain: Clear. The checker output is a fixed rule, so this is deduction from a known rule.
+Increment: one check_file call on each path.
+Blocker removed: doubt that a long sentence or a banned word was added.
+Test first:
+Given both files,
+When check_file runs on each path,
+Then failures is empty for both.
+
+# Follow-up
+
+If the author wanted a heading in notes/decisions.md, add that heading and do not edit drafts/plan.md.
+
+# References
+
+[1] drafts/plan.md, read in this session after the edit. [P]
+
+[2] notes/decisions.md, read in this session after the write. [P]
+
+[3] check_file on drafts/plan.md, this session. [P]
+
+[4] check_file on notes/decisions.md, this session. [P]
+
+# Self-test
+
+```text
+Self-test
+Questions asked: 0 of 3
+Assumptions logged: 1 (yes)
+Claims with evidence or [judgment] label: yes
+References: 4, all from session or identified with confidence: yes
+Source types tagged (P/S/T/U): yes, primary or secondary behind each driving claim: yes
+Alternative considered: yes
+Recommendation: 3 actions, each with increment, blocker, test: yes
+Each action classified (deterministic/evaluative/stochastic) with test written first: yes
+Actions in End with a Cynefin domain label: 3 of 3
+Chaotic and Confused actions first, Complex actions as capped probes: yes
+Banned words found: 0
+Self-mention outside End: 0
+Transition present where a sentence depends on the prior one: yes
+Dashes (em or en): 0
+Sentences over the limit of Section 4.1 item 1: 0
+```
