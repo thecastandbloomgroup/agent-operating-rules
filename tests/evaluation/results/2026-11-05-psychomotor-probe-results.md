@@ -62,7 +62,7 @@ E8. The cache and reasoning columns of calls.csv came back empty, because the ru
 
 ## Limits
 
-- One sample gives 6 trials per level, and mastery needs 20 of at least 80%. A run at four samples gives 24 pooled trials per level for about 4 USD.
+- One sample gives 6 trials per level, and a pass call needs 20 of at least 80%. A run at four samples gives 24 pooled trials per level for about 4 USD.
 - The P1 rate of this run follows a post-hoc fix, so only the next run can confirm it.
 - The levels above Mechanism have no prompts yet, and the tools cover files only.
 

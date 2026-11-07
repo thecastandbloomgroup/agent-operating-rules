@@ -94,13 +94,19 @@ class DeterministicTests(unittest.TestCase):
         self.assertIsInstance(report["fk_grade"], float)
         self.assertIsInstance(report["flesch_ease"], float)
 
-    def test_flags_master_and_masters(self):
+    def test_flags_master_mastery_and_mastered_but_not_a_quoted_framework(self):
         for text in ("Only one model masters the level.\n", "Keep the master copy.\n"):
             with self.subTest(text=text):
                 code, report = self.report(text)
                 self.assertEqual(code, 1)
                 self.assertIn("banned words (4.2.3, 4.2.6, 4.4)", report["failures"])
-        code, _ = self.report("The model reached mastery at 20 trials.\n")
+        for text in (
+            "The model reached mastery at 20 trials.\n",
+            "The level is mastered.\n",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(self.report(text)[0], 1)
+        code, _ = self.report('The bar of 80% comes from "mastery learning".\n')
         self.assertEqual(code, 0)
 
     def test_names_an_acronym_that_has_an_alias(self):

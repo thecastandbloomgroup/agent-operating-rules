@@ -48,7 +48,7 @@ No unit hit the cap, and no unit wrote a scratch file. The steps count tool call
 
 - **Form, not quality.** The script checks the form of the procedure and its reuse. The design note asks a judge, then a person, to score its quality, and neither has run.
 - **Easier than the level below.** P7 passed 19 of 24, the same as the control of P5 that day and above its 14 of 24 of 2026-11-05. So the levels are not cumulative here. The ladder reports the Guttman coefficient for this reason.
-- **Four samples per provider.** A level needs 20 trials per model for a mastery call, so each provider has 4 of the 20.
+- **Four samples per provider.** A level needs 20 trials per model for a pass call, so each provider has 4 of the 20.
 
 ## End
 

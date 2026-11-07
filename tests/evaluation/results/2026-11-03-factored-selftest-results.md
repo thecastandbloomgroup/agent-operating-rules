@@ -67,7 +67,7 @@ So the models do not count the words; they assert that they kept the rule [infer
 ### What the results show
 
 - The model is the wrong tool for a count of words. The checker, bin/deterministic-tests.py, makes this count in milliseconds.
-- Without that line, self-assessment is right in about 74% of answers, near the mastery mark of 80%.
+- Without that line, self-assessment is right in about 74% of answers, near the pass mark of 80%.
 - This is the split between deterministic and probabilistic work that the user raised before. A count is deterministic, so a script owns it, and the model owns the judgments.
 
 ### Limits

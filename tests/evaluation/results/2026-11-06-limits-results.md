@@ -4,7 +4,7 @@
 
 Three limits moved with no person: two models now have psychomotor scores, the intervals have numbers, and the count of second turns is right.
 
-1. **Few trials per model.** With 20 trials per level, Sonnet 5.5 mastered all seven psychomotor levels and scores 1.00. GLM 5.3 Flash scores 0.89, as the mean of levels that are not cumulative.
+1. **Few trials per model.** With 20 trials per level, Sonnet 5.5 passed all seven psychomotor levels and scores 1.00. GLM 5.3 Flash scores 0.89, as the mean of levels that are not cumulative.
 2. **Wide intervals.** With 24 trials, a 95% Wilson interval spans about 30 points, so a level at 21 of 24 can fall under 80% on a rerun.
 3. **Few second turns.** Three studies in five runs test a second turn, not the two pilots that the page named.
 4. The two runs cost 2.96 USD, under the mark of 5 USD.
@@ -15,7 +15,7 @@ The [plan](2026-11-06-limits-plan.md) fixed three marks before any call. It adde
 
 ## Relevance
 
-A per-model mastery call is now possible on the psychomotor ladder, so the page can rank two models, not only pool them. The other four models need about 22 USD more for the same.
+A per-model pass call is now possible on the psychomotor ladder, so the page can rank two models, not only pool them. The other four models need about 22 USD more for the same.
 
 ## Information
 
@@ -55,7 +55,7 @@ No unit failed on the network, so no unit ran again. One GLM unit of P7 hit the 
 
 ### The intervals
 
-The intervals are 95% Wilson intervals, computed from the counts of each table. With 24 trials, 18 of 24 runs from 55% to 88%, and 21 of 24 from 69% to 96%. A model with a true rate of 90% needs about 53 trials before its interval clears 80%. So 20 trials is the floor of a mastery call, not proof of mastery [inference].
+The intervals are 95% Wilson intervals, computed from the counts of each table. With 24 trials, 18 of 24 runs from 55% to 88%, and 21 of 24 from 69% to 96%. A model with a true rate of 90% needs about 53 trials before its interval clears 80%. So 20 trials is the floor of a pass call, not proof that the level passes [inference].
 
 ### A correction to the plan
 

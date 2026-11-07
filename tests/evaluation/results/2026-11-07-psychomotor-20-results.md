@@ -66,7 +66,7 @@ The [sandbox note results](2026-11-06-sandbox-note-results.md) found that a note
 ### Limits
 
 - **One day, one rules version.** All trials ran on 2026-11-06 and 2026-11-07 with rules 0.9.
-- **20 trials is a floor.** A 95% Wilson interval on 20 of 20 runs from 84% to 100%, so a mastery call at 20 trials can flip on a rerun.
+- **20 trials is a floor.** A 95% Wilson interval on 20 of 20 runs from 84% to 100%, so a pass call at 20 trials can flip on a rerun.
 
 ## End
 

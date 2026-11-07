@@ -22,7 +22,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 
 ### Changed
 
-- `sources/banned-words.txt` bans "master" and "masters". Write "passes" or "reaches 80%" in their place.
+- `sources/banned-words.txt` bans "master", "masters", "mastery", and "mastered". Write "passes", "reaches 80%", or "pass call" in their place. To name the framework, quote it: "mastery learning". `bin/ladder-scores.py` now says that a level counts as passed.
 
 ## [0.9.0] - 2026-11-06
 
@@ -142,7 +142,7 @@ Each commit subject is a [Conventional Commit 1.0.0](https://www.conventionalcom
 - `bin/run-evaluation.py --rules FILE --no-judge` installs another rules file and calls the executors only.
 - `bin/script-checks.py` scores answers with the script checks of `item-labels.yaml`: STRUCTURE, LANGUAGE, SELFTEST, and the domain label of each action. It compares two runs with a 95% interval.
 - `tests/evaluation/item-labels.yaml` labels the 13 prompts and the self-test by Bloom's taxonomy. Opus 5.5 wrote the labels at high effort. `tests/evaluation/results/2026-10-31-labels/` keeps those labels, blind labels by Fable 5.1, and its review. The two models agree on 13 of 14 primary levels (kappa 0.90).
-- `tests/evaluation/results/2026-10-31-eval-design-research.md`: desk research on prior art for LLM evaluation and for Bloom's taxonomy, and the agreement of the two judges on each criterion. It proposes items labelled with a taxonomy type and a target level. Each of the three ladders gets a mastery score, and a geometric mean combines them. Human judgment gets three blind jobs.
+- `tests/evaluation/results/2026-10-31-eval-design-research.md`: desk research on prior art for LLM evaluation and for Bloom's taxonomy, and the agreement of the two judges on each criterion. It proposes items labelled with a taxonomy type and a target level. Each of the three ladders gets a score, and a geometric mean combines them. Human judgment gets three blind jobs.
 
 ### Changed
 

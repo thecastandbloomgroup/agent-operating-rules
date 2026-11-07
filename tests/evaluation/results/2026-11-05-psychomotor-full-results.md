@@ -4,7 +4,7 @@
 
 Adaptation passes its mark at 24 of 24, and Complex overt response fails at 14 of 24, so the ladder stops at the multi-step task.
 
-1. Every model recovered from the injected failed write. So recovery from a transient fault is mastered across the six executors.
+1. Every model recovered from the injected failed write. So recovery from a transient fault passes across the six executors.
 2. P5 failed for three behaviors: an unchecked final write, a loop to the step cap, and a scratch file left in the sandbox.
 3. The guard held: P1 to P4 stayed within two answers of their four-sample rates.
 4. The run and its rerun cost 4.98 USD, and the cache served 58% of the input tokens.
@@ -68,7 +68,7 @@ E8. The main run cost 4.48 USD for 733 calls, and the Grok rerun cost 0.50 USD. 
 
 ## Limits
 
-- Four trials per model per level give a direction per model, not a mastery call per model.
+- Four trials per model per level give a direction per model, not a pass call per model.
 - The first attempt billed 5.31 USD and is not scored, because the check that called it dead was wrong. The runner now writes its calls as each unit ends, so a live run shows its progress in calls.csv.
 - Origination, the top level, has no prompt.
 

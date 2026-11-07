@@ -4,9 +4,9 @@ It reads RUN_DIR/script-checks.csv (bin/script-checks.py) and, when present,
 RUN_DIR/action-checks.csv and RUN_DIR/action-checks-argon.csv (bin/judge-actions.py)
 and RUN_DIR/tool-checks.csv (bin/check-psychomotor.py), the psychomotor trials.
 Evaluate counts the self-test lines that the script checks, except the word counts.
-Each check counts as one trial of one level (MAP). A level is mastered at 80% of 20
+Each check counts as one trial of one level (MAP). A level passes at 80% of 20
 trials or more. The score of a taxonomy is (L + p) / N, where L is the highest level
-mastered with every measured level below it mastered, p is the rate of the next
+passed with every measured level below it passed, p is the rate of the next
 level, and N counts the measured levels. When a pass rate rises by more than 5
 points from one measured level to the next, the levels are not cumulative for
 that model, and the score is the mean rate of the measured levels (design note,
@@ -43,7 +43,7 @@ LADDERS = {
 }
 # The level of the structure check of each prompt of tests 1.7. Other prompts: Receiving.
 AFFECTIVE = {"A1": "Responding", "A2": "Valuing", "A3": "Organization"}
-MASTERY, MIN_TRIALS, TOLERANCE = 0.8, 20, 0.05
+PASS_RATE, MIN_TRIALS, TOLERANCE = 0.8, 20, 0.05
 # Self-test lines that count words. The models write 0 whatever the count, and a count is
 # the checker's job, so Evaluate leaves them out (2026-11-03 factored self-test probe).
 WORD_COUNTS = ("Sentences over", "Longest sentence")
@@ -140,18 +140,14 @@ def score(levels):
     if not cumulative(measured):
         mean = sum(ok / n for _, ok, n in measured) / len(measured)
         return None, None, len(measured), mean, False
-    mastered = 0
+    passed = 0
     for _, ok, n in measured:
-        if n >= MIN_TRIALS and ok / n >= MASTERY:
-            mastered += 1
+        if n >= MIN_TRIALS and ok / n >= PASS_RATE:
+            passed += 1
         else:
             break
-    nxt = (
-        measured[mastered][1] / measured[mastered][2]
-        if mastered < len(measured)
-        else 0.0
-    )
-    return mastered, nxt, len(measured), (mastered + nxt) / len(measured), True
+    nxt = measured[passed][1] / measured[passed][2] if passed < len(measured) else 0.0
+    return passed, nxt, len(measured), (passed + nxt) / len(measured), True
 
 
 def report(run_dirs):
@@ -187,7 +183,7 @@ def report(run_dirs):
         out.append("| Score (L + p) / N | " + " | ".join(cells) + " |")
         out += [
             "",
-            "* fewer than 20 trials, so the level cannot count as mastered.",
+            "* fewer than 20 trials, so the level cannot count as passed.",
             "",
         ]
     scores = {t: score(ladder(per_model["All"], t)) for t in LADDERS}

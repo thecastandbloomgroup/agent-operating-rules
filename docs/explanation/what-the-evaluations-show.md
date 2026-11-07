@@ -24,7 +24,7 @@ In short, the rules shape the form of the answers. They move the quality of judg
 
 The tables give the pass rate of each model at each level of Bloom's taxonomy ([evaluation design research](../../tests/evaluation/results/2026-10-31-eval-design-research.md)). `bin/ladder-scores.py` computes them. The cognitive rates come from the run of rules 0.6, with the reason check of tests 1.6 ([run folder](../../tests/evaluation/results/2026-11-01-gherkin-lines/)). The affective rates come from the affective baseline ([run folder](../../tests/evaluation/results/2026-11-01-affective-baseline/)). This pair of runs has the widest set of checks.
 
-A level is mastered at 80% of 20 trials or more. A rate with an asterisk comes from fewer than 20 trials, so it cannot count as mastered. "Highest level at 80%" is the top level that the model passes at 80% or more. Each level below it is also at 80% or more. It ignores the floor of 20 trials, so it is a direction, not a result of mastery.
+A level passes at 80% of 20 trials or more. A rate with an asterisk comes from fewer than 20 trials, so it cannot count as passed. "Highest level at 80%" is the top level that the model passes at 80% or more. Each level below it is also at 80% or more. It ignores the floor of 20 trials, so it is a direction, not a pass call.
 
 ### Cognitive
 
@@ -58,15 +58,15 @@ No run measures Characterization.
 
 The table pools the runs of 2026-11-06 and 2026-11-07 over the six executors: 20 trials per model and 120 per level ([20-trial results](../../tests/evaluation/results/2026-11-07-psychomotor-20-results.md)). They used rules 0.9 and the four file tools of the sandbox suite. The interval is a 95% Wilson interval, and the last column counts the units that hit the step cap.
 
-| Level                  | Passed     | 95% interval | Mastered at 80% of 20 or more | At the step cap |
-| ---------------------- | ---------- | ------------ | ----------------------------- | --------------- |
-| Perception             | 110 of 120 | 85% to 95%   | yes, 92%                      | 7               |
-| Set                    | 106 of 120 | 81% to 93%   | yes, 88%                      | 4               |
-| Guided response        | 113 of 120 | 88% to 97%   | yes, 94%                      | 7               |
-| Mechanism              | 112 of 120 | 87% to 97%   | yes, 93%                      | 8               |
-| Complex overt response | 90 of 120  | 67% to 82%   | no, 75%                       | 0               |
-| Adaptation             | 109 of 120 | 84% to 95%   | yes, 91%                      | 11              |
-| Origination            | 105 of 120 | 80% to 92%   | yes, 88%                      | 1               |
+| Level                  | Passed     | 95% interval | Passed at 80% of 20 or more | At the step cap |
+| ---------------------- | ---------- | ------------ | --------------------------- | --------------- |
+| Perception             | 110 of 120 | 85% to 95%   | yes, 92%                    | 7               |
+| Set                    | 106 of 120 | 81% to 93%   | yes, 88%                    | 4               |
+| Guided response        | 113 of 120 | 88% to 97%   | yes, 94%                    | 7               |
+| Mechanism              | 112 of 120 | 87% to 97%   | yes, 93%                    | 8               |
+| Complex overt response | 90 of 120  | 67% to 82%   | no, 75%                     | 0               |
+| Adaptation             | 109 of 120 | 84% to 95%   | yes, 91%                    | 11              |
+| Origination            | 105 of 120 | 80% to 92%   | yes, 88%                    | 1               |
 
 So the levels are not cumulative: Origination passes more often than Complex overt response. Complex overt response is the one level where the pool stays under 80%. In 27 of its 30 failures, a move across two files ends with a write that no check follows. GPT-6.1 Sol has 17 of them. In 10 of the 14 Set failures, a model writes plan.md to another folder with no look first. The other 4 are Gemini units at the cap, and each step-cap unit but one is Gemini's.
 
@@ -89,7 +89,7 @@ GPT-6.1 Sol fails P5 because it skips the last check. Gemini's low levels come f
 
 ### How to read the tables
 
-- **No model has a score of mastery yet.** Each model has fewer than 20 trials at Understand and Analyze, and at the upper affective levels. So `bin/ladder-scores.py` gives no score for any one model.
+- **No model has a full score yet.** Each model has fewer than 20 trials at Understand and Analyze, and at the upper affective levels. So `bin/ladder-scores.py` gives no score for any one model.
 - **The cognitive levels are not cumulative.** Pooled, Evaluate (87%) is above Apply (72%), and Understand (82%) is above Apply. So the pooled score is the mean of the levels, 0.77, not a rank on the ladder.
 - **Apply splits the models.** Sonnet, Gemini and Grok label and word their answers at 81% to 86%. GLM and Kimi do this at 49% and 58%.
 - **Organization splits the models too.** It is the first affective level that most models fail. However, each model has only 3 trials there, so one answer moves the rate by 33 points.
@@ -140,8 +140,8 @@ The repair claim is now measured on one side. A turn that names the broken parts
 
 ## Limits
 
-- **Twenty trials is a floor.** Each model has 20 tool trials per level, the least that a mastery call needs. A 95% Wilson interval on 20 of 20 runs from 84% to 100%, so a call at 20 trials can flip on a rerun.
-- **Wide intervals.** With 24 trials, a 95% Wilson interval spans about 30 points. For example, Complex overt response at 18 of 24 runs from 55% to 88%, and Perception at 21 of 24 from 69% to 96%. So a level marked as mastered at 24 trials can fall under 80% on a rerun. A model with a true rate of 90% needs about 53 trials before its interval clears 80%. The large pools are tighter: Apply at 72% of 468 runs from 68% to 76%.
+- **Twenty trials is a floor.** Each model has 20 tool trials per level, the least that a pass call needs. A 95% Wilson interval on 20 of 20 runs from 84% to 100%, so a call at 20 trials can flip on a rerun.
+- **Wide intervals.** With 24 trials, a 95% Wilson interval spans about 30 points. For example, Complex overt response at 18 of 24 runs from 55% to 88%, and Perception at 21 of 24 from 69% to 96%. So a level marked as passed at 24 trials can fall under 80% on a rerun. A model with a true rate of 90% needs about 53 trials before its interval clears 80%. The large pools are tighter: Apply at 72% of 468 runs from 68% to 76%.
 - **Few second turns.** Three studies test a second turn, with 5 to 18 units per arm, and none tests a third. A turn that names the failed part repaired 10 of 12 broken answers and 5 of 5 unchecked writes, against 3 of 12 and 1 of 5 for a plain retry ([structure repair results](../../tests/evaluation/results/2026-11-05-structure-repair-results.md), [P5 repair results](../../tests/evaluation/results/2026-11-05-p5-repair-results.md)). A plain "Are you sure?" changed no decision in 18 answers ([second turn results](../../tests/evaluation/results/2026-11-03-second-turn-results.md)).
 - **Mid-tier executors.** Most runs used mid-tier models at low or medium effort. A run of strong executors on every ladder costs more than the funds left, so it waits on a budget decision.
 - **One human marker.** One person marked 24 actions, chosen to hold every judge split. So the judge kappas below 0 say the judges miss this user. They are not a rate for every user ([judge trust results](../../tests/evaluation/results/2026-11-05-judge-trust-results.md)). A second marker needs a person.

@@ -77,9 +77,12 @@ i feel
 personally
 
 ## Idioms and non-literal phrases (4.2.3)
-# master and masters: banned by the user on 2026-11-07. Say "passes" or "reaches 80%".
+# master, masters, mastery, mastered: banned by the user on 2026-11-07. Say "passes",
+# "reaches 80%", or "pass call". To name the framework, quote it: "mastery learning".
 master
 masters
+mastery
+mastered
 trap
 bait
 dog-fooding

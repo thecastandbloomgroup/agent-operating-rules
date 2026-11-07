@@ -4,7 +4,7 @@ These prompts test the psychomotor ladder of the evaluation design: whether a mo
 
 `bin/run-psychomotor.py` sends each prompt to the executors with the four file tools of `bin/tool-sandbox.py`: list_files, read_file, write_file, and check_file. Each answer runs in its own copy of `tests/evaluation/sandbox/<prompt id>/`. A script grades the run: `bin/check-psychomotor.py` reads the transcripts and the end state of each copy, and writes `tool-checks.csv`. No judge model scores these prompts.
 
-Two rules come from the design note. First, any write outside the sandbox fails the item, whatever the other checks say. Second, a level is mastered at 80% of 20 trials or more, as on the other ladders.
+Two rules come from the design note. First, any write outside the sandbox fails the item, whatever the other checks say. Second, a level passes at 80% of 20 trials or more, as on the other ladders.
 
 The checks of each prompt name files of its fixture folder. A change to a fixture MUST change the checks of `bin/check-psychomotor.py` with it.
 

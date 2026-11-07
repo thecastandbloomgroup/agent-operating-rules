@@ -2,7 +2,7 @@
 
 ## Headline
 
-Label every item with a Bloom's taxonomy type and a target level. Score each type by the highest level mastered, and combine the three scores by geometric mean.
+Label every item with a Bloom's taxonomy type and a target level. Score each type by the highest level passed, and combine the three scores by geometric mean.
 
 1. The current 18-point score mixes skills, and the two judges agree well only on R1, so a fail does not say which skill failed.
 2. Bloom's taxonomy gives three ladders: cognitive (6 levels), affective (5 levels), and psychomotor (7 levels), and Cynefin becomes one strand inside the cognitive ladder.
@@ -143,7 +143,7 @@ B5. Mastery learning moves a learner up one unit at a time. A learner moved on a
 A later review argues that the different thresholds inflated the reported gain of tutoring.
 [30]
 
-So the mastery threshold MUST stay the same for every agent and every level [inference].
+So the pass threshold MUST stay the same for every agent and every level [inference].
 
 B6. An agent can climb without new weights. Two sources support this theme. Agents that wrote reflections on failures into a memory reached 91% on a coding benchmark, against 80% before.
 [31]
@@ -222,17 +222,17 @@ Two more rules fix the knowledge type and a third boundary. For an Analyze item,
 #### Scoring
 
 1. An item passes when every check passes. In the psychomotor taxonomy, any write outside the sandbox fails the item, whatever the other checks say.
-2. A level is mastered when its checks pass in 80% of at least 20 trials (checks times samples). The 80% comes from mastery learning (B5).
-3. The score of a taxonomy is (L + p) / N. L is the highest level mastered with every lower level also mastered. p is the pass rate at the next level. N is the number of levels.
+2. A level passes when its checks pass in 80% of at least 20 trials (checks times samples). The 80% comes from mastery learning (B5).
+3. The score of a taxonomy is (L + p) / N. L is the highest level passed with every lower level also passed. p is the pass rate at the next level. N is the number of levels.
 4. The combined score is the geometric mean of the three taxonomy scores. A low score in one taxonomy pulls it down more than an arithmetic mean would.
 5. The combined score is reported only when all three taxonomies have results, and always next to them (B8).
 6. Each run reports the Guttman coefficient of each ladder. Below 0.90, the levels are not cumulative for that agent, so the report shows the pass rate per level and no L (B2).
 
-Example: cognitive mastered through Apply, with Analyze at 50%, scores (3 + 0.5) / 6 = 0.58. Affective mastered through Responding, with Valuing at 30%, scores 0.46. Psychomotor mastered through Guided response, with Mechanism at 40%, scores 0.49. The combined score is 0.51, and the lowest taxonomy is affective at 0.46.
+Example: cognitive passed through Apply, with Analyze at 50%, scores (3 + 0.5) / 6 = 0.58. Affective passed through Responding, with Valuing at 30%, scores 0.46. Psychomotor passed through Guided response, with Mechanism at 40%, scores 0.49. The combined score is 0.51, and the lowest taxonomy is affective at 0.46.
 
 #### How an agent climbs each ladder
 
-The interventions go from the cheapest feedback to the most expensive. A level starts only after the level below it is mastered (B5). Each release reruns the mastered levels, so a regression shows at once.
+The interventions go from the cheapest feedback to the most expensive. A level starts only after the level below it passes (B5). Each release reruns the mastered levels, so a regression shows at once.
 
 | Taxonomy | Levels | Interventions, cheapest first |
 | --- | --- | --- |
@@ -277,7 +277,7 @@ It loses because it describes one skill as it moves from rules to intuition, and
 
 ## End
 
-I recommend that we label an item bank by Bloom's taxonomy, score each taxonomy by mastery, and climb one level at a time.
+I recommend that we label an item bank by Bloom's taxonomy, score each taxonomy by the levels it passes, and climb one level at a time.
 
 1. Label the 13 prompts and the self-test blind, with the schema above, and measure the label agreement.
    - Increment: one label file for the existing items, by the user, and one by a model, kept closed until both are done.
@@ -287,7 +287,7 @@ I recommend that we label an item bank by Bloom's taxonomy, score each taxonomy 
 2. Add the level scores, the taxonomy scores, and the combined score to the record script.
    - Increment: the scoring rules above in bin/record-evaluation.py, and one table per model in the record.
    - Capability added: a score per taxonomy and a combined score, each with its interval (G5).
-   - Kind: deterministic. Test: Given cognitive mastered through Apply and Analyze at 50%, When task eval:record runs, Then the cognitive score is 0.58.
+   - Kind: deterministic. Test: Given cognitive passed through Apply and Analyze at 50%, When task eval:record runs, Then the cognitive score is 0.58.
    - Domain: Clear. Step 2 MUST NOT start until Step 1 passes.
 3. Write 10 items for each level that no item covers, with checks from notes on failed answers.
    - Increment: items for Remember, Understand, Evaluate, Valuing, Organization, and Characterization, and notes on 30 of the 34 answers in human-test.csv.

@@ -4,14 +4,14 @@
 
 Set is the level that splits the models: the pooled ladder reaches 80% on Perception and Mechanism, and Set stays at 71%.
 
-1. Perception, Guided response, and Mechanism passed 24 of 24 each, at the mastery bar of 80% of at least 20 trials.
+1. Perception, Guided response, and Mechanism passed 24 of 24 each, at the pass bar of 80% of at least 20 trials.
 2. Set passed 17 of 24. Every failure is a write with no look first: a wrong path, a loop that hit the step cap, or no write at all.
 3. The levels are not cumulative, because Set sits under both of its neighbors. So the pooled score is the mean of the levels, 0.93.
 4. The run cost 3.42 USD for 478 calls, and the cache served 54% of the input tokens, the first cache measurement.
 
 ## Background
 
-The first psychomotor run had one sample and 6 trials per level, too few for mastery. This run raised the samples to four, so each level has 24 pooled trials. The P1 check was fixed after the first run, and this run tests it blind.
+The first psychomotor run had one sample and 6 trials per level, too few for a pass call. This run raised the samples to four, so each level has 24 pooled trials. The P1 check was fixed after the first run, and this run tests it blind.
 
 ## Relevance
 
@@ -34,7 +34,7 @@ E2. All six providers ran the tool loop again. Two Gemini units hit the 12-step 
 E3. The table gives each level, pooled over the six executors.
 [1]
 
-| Level | Passed | Mastered at 80% of 20 or more |
+| Level | Passed | Passed at 80% of 20 or more |
 | --- | --- | --- |
 | Perception (P1) | 24 of 24 | yes |
 | Set (P2) | 17 of 24 | no, 71% |
@@ -45,7 +45,7 @@ E4. The blind P1 result confirms the fixed check: 24 of 24, after 6 of 6 on the 
 [1]
 [2]
 
-E5. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed every unit, 16 of 16 each. However, 4 trials per level per model stay under the 20 that a per-model mastery call needs.
+E5. Sonnet, GLM 5.3 Flash, and GPT-6.1 Sol passed every unit, 16 of 16 each. However, 4 trials per level per model stay under the 20 that a per-model pass call needs.
 [1]
 
 ### The failures
@@ -67,7 +67,7 @@ E9. The cost was 3.42 USD against the estimate of 9.96. So the estimate stays ab
 
 ## Limits
 
-- Four trials per level per model cannot give a per-model mastery call. Mastery here is pooled over the six executors.
+- Four trials per level per model cannot give a per-model pass call. The pass call here is pooled over the six executors.
 - The Set prompt names no folder, by design. A reader can call a root-level plan.md a fair answer. However, the fixture holds one plan.md, and the check follows the tests page.
 - The levels above Mechanism are still unmeasured.
 

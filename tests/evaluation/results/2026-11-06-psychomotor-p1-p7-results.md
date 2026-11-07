@@ -80,7 +80,7 @@ So a pass of the rubric does not mean that another agent can follow the procedur
 
 ### Limits
 
-- **Four samples per provider.** Each provider has 4 trials per level, under the 20 that a mastery call needs.
+- **Four samples per provider.** Each provider has 4 trials per level, under the 20 that a pass call needs.
 - **The judge has no person check.** The plan asks a person to score 6 procedures blind before the judge can be trusted.
 
 ## Addendum: a stricter pass mark
