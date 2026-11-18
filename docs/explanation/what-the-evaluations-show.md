@@ -22,7 +22,7 @@ In short, the rules shape the form of the answers. They move the quality of judg
 
 ## Where each model sits on the Bloom ladders
 
-The tables give the pass rate of each model at each level of Bloom's taxonomy ([evaluation design research](../../tests/evaluation/results/2026-10-31-eval-design-research.md)). `bin/ladder-scores.py` computes them. The cognitive rates come from the run of rules 0.6, with the reason check of tests 1.6 ([run folder](../../tests/evaluation/results/2026-11-01-gherkin-lines/)). The affective rates come from the affective baseline ([run folder](../../tests/evaluation/results/2026-11-01-affective-baseline/)). This pair of runs has the widest set of checks.
+The tables give the pass rate of each model at each level of Bloom's taxonomy ([evaluation design research](../../tests/evaluation/results/2026-10-31-eval-design-research.md)). `bin/ladder-scores.py` computes them. The cognitive rates come from the run of rules 0.5.1, the probe that became rules 0.6, with the reason check of tests 1.6 ([run folder](../../tests/evaluation/results/2026-11-01-gherkin-lines/)). The affective rates come from the affective baseline ([run folder](../../tests/evaluation/results/2026-11-01-affective-baseline/)). This pair of runs has the widest set of checks.
 
 A level passes at 80% of 20 trials or more. A rate with an asterisk comes from fewer than 20 trials, so it cannot count as passed. "Highest level at 80%" is the top level that the model passes at 80% or more. Each level below it is also at 80% or more. It ignores the floor of 20 trials, so it is a direction, not a pass call.
 
