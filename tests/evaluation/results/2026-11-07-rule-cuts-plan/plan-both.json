@@ -1,0 +1,14 @@
+{
+  "plan": "2026-11-07-rule-cuts-both-plan.md",
+  "added_later": "2026-11-18: written after the run, from the marks of the plan, as an example of the format; not pre-registered",
+  "control": {"rules": "tests/evaluation/results/2026-11-07-rule-cuts-plan/rules-control.md", "run": "tests/evaluation/results/2026-11-07-rule-cuts-control"},
+  "candidate": {"rules": "tests/evaluation/results/2026-11-07-rule-cuts-plan/rules-both.md", "run": "tests/evaluation/results/2026-11-07-rule-cuts-both"},
+  "sample": {"prompts": ["A1", "A2", "A3", "X1", "X2", "H2", "T2"], "samples": 3, "answers_per_arm": 126, "judge": false},
+  "marks": [
+    {"id": "false-lines", "metric": "share of answers with a false self-test line", "compare": "fall", "threshold_points": 20},
+    {"id": "checks", "metric": ["no_long_sentence", "banned", "dashes", "no_first_person", "structure", "all_labelled", "all_reasoned"], "compare": "within", "threshold_points": 10},
+    {"id": "tokens", "metric": "mean input tokens per call", "compare": "fall", "threshold_percent": 10},
+    {"id": "cost", "metric": "cost of the candidate arm in USD", "compare": "below", "threshold_usd": 5, "arms": "candidate"}
+  ],
+  "interval": "Wilson 95%"
+}

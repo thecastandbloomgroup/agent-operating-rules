@@ -1845,3 +1845,47 @@ class RerunFailed(unittest.TestCase):
         self.assertEqual(
             RUN_PSY.refused_units(run_dir), [("m@low", "P1", 1), ("m@low", "P1", 2)]
         )
+
+
+class ScoreArms(unittest.TestCase):
+    RESULTS = Path(__file__).resolve().parent.parent / "evaluation" / "results"
+    PLANS = (
+        RESULTS / "2026-11-07-rule-cuts-plan" / "plan-both.json",
+        RESULTS / "2026-11-18-rule-cuts-form-plan" / "plan.json",
+    )
+
+    def setUp(self):
+        self.module = load("score-arms.py")
+
+    def test_each_plan_has_the_fields_of_the_format(self):
+        for path in self.PLANS:
+            with self.subTest(plan=path.name):
+                plan = json.loads(path.read_text())
+                self.assertGreater(plan["sample"]["answers_per_arm"], 0)
+                for arm in ("control", "candidate"):
+                    self.assertIn("run", plan[arm])
+                for mark in plan["marks"]:
+                    self.assertIn("metric", mark)
+                    self.assertIn(mark["compare"], ("fall", "within", "below"))
+                    self.assertTrue(any(k.startswith("threshold_") for k in mark))
+
+    def test_reproduces_the_combined_arm_of_2026_11_07(self):
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder) / "result.json"
+            with contextlib.redirect_stdout(io.StringIO()):
+                code = self.module.main([str(self.PLANS[0]), "--out", str(out)])
+            result = json.loads(out.read_text())
+        self.assertEqual(code, 0)
+        self.assertTrue(result["pass"])
+        marks = {m["id"]: m for m in result["marks"]}
+        lines = marks["false-lines"]["measures"][0]
+        self.assertEqual(
+            (lines["control"]["rate"], lines["candidate"]["rate"]), (0.5952, 0.0714)
+        )
+        self.assertEqual(marks["tokens"]["measures"][0]["fall_percent"], 21.5)
+        self.assertEqual(marks["cost"]["measures"][0]["value"], 3.73)
+
+    def test_wilson_interval_of_a_known_rate(self):
+        low, high = self.module.wilson(75, 126)
+        self.assertAlmostEqual(low, 0.508, places=3)
+        self.assertAlmostEqual(high, 0.677, places=3)
