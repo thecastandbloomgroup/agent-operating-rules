@@ -1,0 +1,231 @@
+{
+  "plan": "tests/evaluation/results/2026-11-18-rule-cuts-form-plan/plan.json",
+  "control": {
+    "run": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/rule-cuts-form-run/tests/evaluation/results/2026-11-18-rule-cuts-form-control",
+    "answers": 126,
+    "rules_version": "0.10"
+  },
+  "candidate": {
+    "run": "/Users/cavellebenjamin/Developer/TheCastAndBloomGroup/agent-operating-rules/rule-cuts-form-run/tests/evaluation/results/2026-11-18-rule-cuts-form-candidate",
+    "answers": 126,
+    "rules_version": "0.10"
+  },
+  "interval": "Wilson 95% per arm; Newcombe 95% for a difference",
+  "marks": [
+    {
+      "id": "false-lines",
+      "metric": "share of answers with a false self-test line",
+      "compare": "fall",
+      "threshold_points": 20,
+      "measures": [
+        {
+          "metric": "share of answers with a false self-test line",
+          "control": {
+            "rate": 0.5873,
+            "n": 126,
+            "wilson_low": 0.5,
+            "wilson_high": 0.6694
+          },
+          "candidate": {
+            "rate": 0.0635,
+            "n": 126,
+            "wilson_low": 0.0325,
+            "wilson_high": 0.1203
+          },
+          "difference_points": -52.4,
+          "difference_interval_points": [
+            -61.2,
+            -42.0
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "checks",
+      "metric": [
+        "no_long_sentence",
+        "banned",
+        "dashes",
+        "no_first_person",
+        "structure",
+        "all_labelled",
+        "all_reasoned"
+      ],
+      "compare": "within",
+      "threshold_points": 10,
+      "measures": [
+        {
+          "metric": "no_long_sentence",
+          "control": {
+            "rate": 0.4683,
+            "n": 126,
+            "wilson_low": 0.3834,
+            "wilson_high": 0.555
+          },
+          "candidate": {
+            "rate": 0.381,
+            "n": 126,
+            "wilson_low": 0.3009,
+            "wilson_high": 0.4681
+          },
+          "difference_points": -8.7,
+          "difference_interval_points": [
+            -20.5,
+            3.4
+          ]
+        },
+        {
+          "metric": "banned",
+          "control": {
+            "rate": 0.8492,
+            "n": 126,
+            "wilson_low": 0.7765,
+            "wilson_high": 0.9013
+          },
+          "candidate": {
+            "rate": 0.8254,
+            "n": 126,
+            "wilson_low": 0.7498,
+            "wilson_high": 0.8818
+          },
+          "difference_points": -2.4,
+          "difference_interval_points": [
+            -11.6,
+            6.8
+          ]
+        },
+        {
+          "metric": "dashes",
+          "control": {
+            "rate": 0.9921,
+            "n": 126,
+            "wilson_low": 0.9564,
+            "wilson_high": 0.9986
+          },
+          "candidate": {
+            "rate": 0.9841,
+            "n": 126,
+            "wilson_low": 0.944,
+            "wilson_high": 0.9956
+          },
+          "difference_points": -0.8,
+          "difference_interval_points": [
+            -4.9,
+            3.0
+          ]
+        },
+        {
+          "metric": "no_first_person",
+          "control": {
+            "rate": 0.9603,
+            "n": 126,
+            "wilson_low": 0.9105,
+            "wilson_high": 0.9829
+          },
+          "candidate": {
+            "rate": 0.9286,
+            "n": 126,
+            "wilson_low": 0.8698,
+            "wilson_high": 0.962
+          },
+          "difference_points": -3.2,
+          "difference_interval_points": [
+            -9.5,
+            2.8
+          ]
+        },
+        {
+          "metric": "structure",
+          "control": {
+            "rate": 0.881,
+            "n": 126,
+            "wilson_low": 0.8128,
+            "wilson_high": 0.9265
+          },
+          "candidate": {
+            "rate": 0.8889,
+            "n": 126,
+            "wilson_low": 0.8221,
+            "wilson_high": 0.9327
+          },
+          "difference_points": 0.8,
+          "difference_interval_points": [
+            -7.3,
+            8.9
+          ]
+        },
+        {
+          "metric": "all_labelled",
+          "control": {
+            "rate": 0.8492,
+            "n": 126,
+            "wilson_low": 0.7765,
+            "wilson_high": 0.9013
+          },
+          "candidate": {
+            "rate": 0.8889,
+            "n": 126,
+            "wilson_low": 0.8221,
+            "wilson_high": 0.9327
+          },
+          "difference_points": 4.0,
+          "difference_interval_points": [
+            -4.5,
+            12.5
+          ]
+        },
+        {
+          "metric": "all_reasoned",
+          "control": {
+            "rate": 0.7619,
+            "n": 126,
+            "wilson_low": 0.6805,
+            "wilson_high": 0.8278
+          },
+          "candidate": {
+            "rate": 0.8016,
+            "n": 126,
+            "wilson_low": 0.7235,
+            "wilson_high": 0.8618
+          },
+          "difference_points": 4.0,
+          "difference_interval_points": [
+            -6.3,
+            14.1
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "tokens",
+      "metric": "mean input tokens per call",
+      "compare": "fall",
+      "threshold_percent": 10,
+      "measures": [
+        {
+          "metric": "mean input tokens per call",
+          "control": 5725.6,
+          "candidate": 4516.7,
+          "fall_percent": 21.1
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "cost",
+      "metric": "total cost of both arms in USD",
+      "compare": "below",
+      "threshold_usd": 10,
+      "measures": [
+        {
+          "metric": "cost_usd of both",
+          "value": 7.01
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "pass": true
+}
