@@ -1,0 +1,13 @@
+{
+  "plan": "2026-11-18-rule-cuts-form-plan.md",
+  "control": {"rules": "sources/model-operating-rules.md", "tag": "v0.10.0", "run": "tests/evaluation/results/2026-11-18-rule-cuts-form-control"},
+  "candidate": {"rules": "tests/evaluation/results/2026-11-18-rule-cuts-form-plan/rules-candidate.md", "run": "tests/evaluation/results/2026-11-18-rule-cuts-form-candidate"},
+  "sample": {"prompts": ["A1", "A2", "A3", "X1", "X2", "H2", "T2"], "samples": 3, "answers_per_arm": 126, "judge": false},
+  "marks": [
+    {"id": "false-lines", "metric": "share of answers with a false self-test line", "compare": "fall", "threshold_points": 20},
+    {"id": "checks", "metric": ["no_long_sentence", "banned", "dashes", "no_first_person", "structure", "all_labelled", "all_reasoned"], "compare": "within", "threshold_points": 10},
+    {"id": "tokens", "metric": "mean input tokens per call", "compare": "fall", "threshold_percent": 10},
+    {"id": "cost", "metric": "total cost of both arms in USD", "compare": "below", "threshold_usd": 10}
+  ],
+  "interval": "Wilson 95%"
+}
