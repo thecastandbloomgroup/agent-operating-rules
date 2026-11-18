@@ -942,7 +942,7 @@ class LadderScores(unittest.TestCase):
     def setUp(self):
         self.module = load("ladder-scores.py")
 
-    def test_masters_the_levels_in_order_and_adds_the_next_rate(self):
+    def test_passes_the_levels_in_order_and_adds_the_next_rate(self):
         levels = [("a", 20, 20), ("b", 18, 20), ("c", 10, 20)]
         self.assertEqual(self.module.score(levels), (2, 0.5, 3, 2.5 / 3, True))
 
@@ -1889,3 +1889,32 @@ class ScoreArms(unittest.TestCase):
         low, high = self.module.wilson(75, 126)
         self.assertAlmostEqual(low, 0.508, places=3)
         self.assertAlmostEqual(high, 0.677, places=3)
+
+
+class LadderScoresJson(unittest.TestCase):
+    def test_writes_one_record_per_model_and_level_with_the_schema_fields(self):
+        module = load("ladder-scores.py")
+        schema = json.loads(
+            (
+                BIN.parent / "docs" / "reference" / "ladder-scores.schema.json"
+            ).read_text()
+        )
+        required = schema["properties"]["records"]["items"]["required"]
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        run_dir = Path(folder.name)
+        rows = ["model,prompt_id,sample,level,passed,violations,steps,note"]
+        rows += [f"m,P1,{n},Perception,{n <= 17},0,2," for n in range(1, 21)]
+        (run_dir / "tool-checks.csv").write_text("\n".join(rows) + "\n")
+        (run_dir / "calls.csv").write_text("cost_usd\n0.5\n0.25\n")
+        (run_dir / "run.json").write_text(json.dumps({"rules_version": "0.10"}))
+        data = json.loads(module.write_json(run_dir).read_text())
+        (record,) = data["records"]
+        self.assertEqual(sorted(record), sorted(required))
+        self.assertEqual((record["trials"], record["passes"]), (20, 17))
+        self.assertEqual(record["graded_by"], "script")
+        self.assertIsNone(record["judge_kappa"])
+        self.assertTrue(record["passed"])
+        self.assertEqual((record["rules_version"], record["cost_usd"]), ("0.10", 0.75))
+        self.assertLess(record["wilson_low"], 0.85)
+        self.assertGreater(record["wilson_high"], 0.85)

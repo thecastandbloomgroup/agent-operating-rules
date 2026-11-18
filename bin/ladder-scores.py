@@ -1,5 +1,7 @@
 """Score each model on the Bloom ladders of the evaluation design, from the checks of runs.
-Usage: bin/ladder-scores.py RUN_DIR [RUN_DIR ...]
+Usage: bin/ladder-scores.py [--json] RUN_DIR [RUN_DIR ...]
+--json also writes RUN_DIR/ladder-scores.json for each run: one record per model,
+ladder and level, in the schema of docs/reference/ladder-scores.schema.json.
 It reads RUN_DIR/script-checks.csv (bin/script-checks.py) and, when present,
 RUN_DIR/action-checks.csv and RUN_DIR/action-checks-argon.csv (bin/judge-actions.py)
 and RUN_DIR/tool-checks.csv (bin/check-psychomotor.py), the psychomotor trials.
@@ -19,6 +21,8 @@ only when all three are measured.
 import collections
 import csv
 import itertools
+import json
+import math
 import sys
 from pathlib import Path
 
@@ -44,6 +48,12 @@ LADDERS = {
 # The level of the structure check of each prompt of tests 1.7. Other prompts: Receiving.
 AFFECTIVE = {"A1": "Responding", "A2": "Valuing", "A3": "Organization"}
 PASS_RATE, MIN_TRIALS, TOLERANCE = 0.8, 20, 0.05
+SCHEMA_VERSION = "1.0"
+# The levels that a judge grades, with the lower kappa of the two judges against a
+# person (judge trust results, 2026-11-05). A trial needs both judges, so the lower one
+# bounds it. The kit trusts a judged level only at a kappa of 0.667 or more.
+KAPPA_SOURCE = "tests/evaluation/results/2026-11-05-judge-trust-results.md"
+JUDGED = {"Understand": 0.08, "Analyze": -0.40}
 # Self-test lines that count words. The models write 0 whatever the count, and a count is
 # the checker's job, so Evaluate leaves them out (2026-11-03 factored self-test probe).
 WORD_COUNTS = ("Sentences over", "Longest sentence")
@@ -198,10 +208,89 @@ def report(run_dirs):
     return "\n".join(out)
 
 
+def wilson(passes, n, z=1.96):
+    """The 95% Wilson interval of passes of n, as (low, high)."""
+    if not n:
+        return 0.0, 0.0
+    p = passes / n
+    centre = (p + z * z / (2 * n)) / (1 + z * z / n)
+    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
+    return centre - half, centre + half
+
+
+def run_cost(run_dir):
+    path = Path(run_dir) / "calls.csv"
+    if not path.exists():
+        return None
+    with path.open() as f:
+        return round(sum(float(r.get("cost_usd") or 0) for r in csv.DictReader(f)), 4)
+
+
+def records(run_dir):
+    """One record per model, ladder and measured level of one run."""
+    run_dir = Path(run_dir)
+    meta = run_dir / "run.json"
+    version = (
+        json.loads(meta.read_text()).get("rules_version") if meta.exists() else None
+    )
+    cost = run_cost(run_dir)
+    per_model = collections.defaultdict(list)
+    for m, t, lv, ok in trials(run_dir):
+        per_model[m].append((t, lv, ok))
+    out = []
+    for m in sorted(per_model):
+        for taxonomy in LADDERS:
+            for lv, ok, n in ladder(per_model[m], taxonomy):
+                if not n:
+                    continue
+                low, high = wilson(ok, n)
+                judged = taxonomy == "cognitive" and lv in JUDGED
+                out.append(
+                    {
+                        "model": m,
+                        "ladder": taxonomy,
+                        "level": lv,
+                        "trials": n,
+                        "passes": ok,
+                        "rate": round(ok / n, 4),
+                        "wilson_low": round(low, 4),
+                        "wilson_high": round(high, 4),
+                        "passed": n >= MIN_TRIALS and ok / n >= PASS_RATE,
+                        "graded_by": "judge" if judged else "script",
+                        "judge_kappa": JUDGED[lv] if judged else None,
+                        "rules_version": version,
+                        "cost_usd": cost,
+                    }
+                )
+    return out
+
+
+def write_json(run_dir):
+    path = Path(run_dir) / "ladder-scores.json"
+    data = {
+        "schema": "docs/reference/ladder-scores.schema.json",
+        "schema_version": SCHEMA_VERSION,
+        "run": str(run_dir),
+        "pass_rule": f"{PASS_RATE:.0%} of {MIN_TRIALS} trials or more",
+        "cost_usd_is": "the cost of the whole run, repeated on each record",
+        "judge_kappa_source": KAPPA_SOURCE,
+        "records": records(run_dir),
+    }
+    path.write_text(json.dumps(data, indent=2) + "\n")
+    return path
+
+
 def main(argv):
+    argv = list(argv)
+    as_json = "--json" in argv
+    if as_json:
+        argv.remove("--json")
     if not argv:
         sys.exit(__doc__)
     print(report(argv))
+    if as_json:
+        for d in argv:
+            print(f"wrote {write_json(d)}", file=sys.stderr)
     return 0
 
 

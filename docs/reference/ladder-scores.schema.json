@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-operating-rules/ladder-scores.schema.json",
+  "title": "Ladder scores of one evaluation run",
+  "description": "Written by bin/ladder-scores.py --json as RUN_DIR/ladder-scores.json. Version 1.0.",
+  "type": "object",
+  "required": ["schema", "schema_version", "run", "pass_rule", "judge_kappa_source", "records"],
+  "properties": {
+    "schema": {"type": "string"},
+    "schema_version": {"const": "1.0"},
+    "run": {"type": "string", "description": "The run folder."},
+    "pass_rule": {"type": "string", "description": "A level passes at 80% of 20 trials or more."},
+    "cost_usd_is": {"type": "string"},
+    "judge_kappa_source": {"type": "string", "description": "The results page that measured the judge kappas."},
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["model", "ladder", "level", "trials", "passes", "rate", "wilson_low", "wilson_high", "passed", "graded_by", "judge_kappa", "rules_version", "cost_usd"],
+        "properties": {
+          "model": {"type": "string", "description": "The executor and its effort, as the run folder names it."},
+          "ladder": {"enum": ["cognitive", "affective", "psychomotor"]},
+          "level": {"enum": ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create", "Receiving", "Responding", "Valuing", "Organization", "Characterization", "Perception", "Set", "Guided response", "Mechanism", "Complex overt response", "Adaptation", "Origination"]},
+          "trials": {"type": "integer", "minimum": 1},
+          "passes": {"type": "integer", "minimum": 0},
+          "rate": {"type": "number", "minimum": 0, "maximum": 1},
+          "wilson_low": {"type": "number", "minimum": 0, "maximum": 1},
+          "wilson_high": {"type": "number", "minimum": 0, "maximum": 1},
+          "passed": {"type": "boolean", "description": "True at 80% of 20 trials or more in this run alone."},
+          "graded_by": {"enum": ["script", "judge"]},
+          "judge_kappa": {"type": ["number", "null"], "description": "The lower kappa of the two judges against a person; null when a script grades the level."},
+          "rules_version": {"type": ["string", "null"]},
+          "cost_usd": {"type": ["number", "null"], "description": "The cost of the whole run, from calls.csv."}
+        }
+      }
+    }
+  }
+}

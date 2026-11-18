@@ -70,3 +70,13 @@ The judges check. They do not test. Each run lists answers for a human test. The
 | `perplexity/glm-5.3-flash@medium`    | 3    | 34      | 10 of 28       | 0 of 34        | 10.6       | R9 (0.92)        |
 
 The criterion with the lowest mean across all models is R2 (0.96). It names the rule to fix first: Section 6.5, the domain of each action.
+
+## Ladder scores file
+
+`bin/ladder-scores.py --json RUN_DIR` also writes `RUN_DIR/ladder-scores.json`. It holds one record for each model, ladder and level that the run measures. Each record gives the trials, the passes, the rate, and its 95% Wilson interval. It also says whether a script or a judge grades the level. [The schema](ladder-scores.schema.json) defines each field.
+
+- A record that a judge grades carries `judge_kappa`: the lower kappa of the two judges against a person. No judged level reaches the floor of 0.667 yet.
+- `passed` holds for one run only. To pool runs, add the trials and the passes of their records.
+- `cost_usd` is the cost of the whole run, so the same value repeats on each record.
+
+The runs behind the [summary page](../explanation/what-the-evaluations-show.md) each have this file. These are the cognitive and affective runs of 2026-11-01, and the seven psychomotor runs of 2026-11-06 and 2026-11-07.
