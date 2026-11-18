@@ -1,7 +1,8 @@
 """First-party conformity assessment: test a Markdown file against model-operating-rules.md.
-Usage: bin/deterministic-tests.py FILE [--instructions] [--check]
+Usage: bin/deterministic-tests.py FILE [--instructions] [--check] [--banned LIST]
   --instructions  treat all sentences as instructions: 20-word limit
   --check         add the failed tests to the report, and exit 1 when one fails
+  --banned LIST   read the banned words from LIST, not sources/banned-words.txt
 """
 
 import json
@@ -11,18 +12,22 @@ from pathlib import Path
 
 
 def load_words(path=None):
-    """Read banned-words.txt into {category: [entries]}."""
+    """Read a banned-word list into {category: [entries]}.
+    A category starts at a line "## Name" or "[Name]"; lines that start with # are notes."""
     path = (
         path or Path(__file__).resolve().parent.parent / "sources" / "banned-words.txt"
     )
     cats, cur = {}, None
     for line in Path(path).read_text().splitlines():
         line = line.strip()
-        if not line or line.startswith("# "):
-            continue
         if line.startswith("## "):
             cur = line[3:]
             cats[cur] = []
+        elif line.startswith("[") and line.endswith("]"):
+            cur = line[1:-1]
+            cats[cur] = []
+        elif not line or line.startswith("#"):
+            continue
         elif cur:
             cats[cur].append(line.lower())
     return cats
@@ -103,7 +108,7 @@ def split_references(text):
     return text[: heads[-1].start()], text[heads[-1].end() :]
 
 
-def test(path, instructions=False):
+def test(path, instructions=False, words=None):
     text = Path(path).read_text()
     body, refs = split_references(text)
     R = {}
@@ -149,7 +154,7 @@ def test(path, instructions=False):
                 found.append((w, ctx))
         return found
 
-    R["banned"] = {cat: hits(words) for cat, words in WORDS.items()}
+    R["banned"] = {cat: hits(words) for cat, words in (words or WORDS).items()}
     R["banned_total"] = sum(len(v) for v in R["banned"].values())
 
     def unquoted(pattern):
@@ -216,8 +221,13 @@ def failures(R):
 
 if __name__ == "__main__":
     args = sys.argv[1:]
+    banned = None
+    if "--banned" in args:
+        i = args.index("--banned")
+        banned = load_words(args[i + 1])
+        del args[i : i + 2]
     path = next(a for a in args if not a.startswith("--"))
-    report = test(path, "--instructions" in args)
+    report = test(path, "--instructions" in args, banned)
     if "--check" in args:
         report["failures"] = failures(report)
     print(json.dumps(report, indent=1, ensure_ascii=False))

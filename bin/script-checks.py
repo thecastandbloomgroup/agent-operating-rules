@@ -1,6 +1,7 @@
 """Score the answers of runs with the script checks of item-labels.yaml: STRUCTURE,
 LANGUAGE, SELFTEST, and the domain label of each action in End. No judge, no API call.
-Usage: bin/script-checks.py RUN_DIR [RUN_DIR ...]
+Usage: bin/script-checks.py [--banned LIST] RUN_DIR [RUN_DIR ...]
+--banned LIST reads the banned words from LIST, not sources/banned-words.txt.
 Each run folder needs run.json (written by bin/run-evaluation.py) and responses/.
 It writes RUN_DIR/script-checks.csv for each run, and prints one table per run and,
 for two runs, the difference of each rate with its 95% interval.
@@ -278,8 +279,8 @@ def selftest_right(reported, actual):
     return results
 
 
-def score(path):
-    """The script checks of one answer file."""
+def score(path, words=None):
+    """The script checks of one answer file. words: a banned-word list, as load_words gives."""
     text = Path(path).read_text()
     text = text.split("\n", 2)[2] if text.count("\n") >= 2 else text  # the header line
     plain = Path(path).stem.split("-s")[0] in NO_HEADINGS
@@ -288,7 +289,7 @@ def score(path):
     columns = {k: "" for k in ("headline_first", "brief_in_order", "no_heading")}
     if plain:
         text = with_headings(text)
-    report = CHECKER.test(path)
+    report = CHECKER.test(path, words=words)
     banned = sum(
         len(v) for k, v in report["banned"].items() if not k.startswith("Self-mention")
     )
@@ -336,7 +337,7 @@ def score(path):
     return row
 
 
-def score_run(run_dir):
+def score_run(run_dir, words=None):
     run_dir = Path(run_dir)
     meta = json.loads((run_dir / "run.json").read_text())
     rows = []
@@ -347,7 +348,7 @@ def score_run(run_dir):
                 "model": path.parent.name,
                 "prompt_id": path.stem.split("-s")[0],
                 "file": str(path.relative_to(run_dir)),
-                **score(path),
+                **score(path, words),
             }
         )
     if rows:
@@ -404,9 +405,14 @@ def compare(runs):
 
 
 def main(argv):
+    argv, words = list(argv), None
+    if "--banned" in argv:
+        i = argv.index("--banned")
+        words = CHECKER.load_words(argv[i + 1])
+        del argv[i : i + 2]
     if not argv:
         sys.exit(__doc__)
-    runs = [score_run(d) for d in argv]
+    runs = [score_run(d, words) for d in argv]
     for meta, rows in runs:
         print(table(meta, rows) + "\n")
     if len(runs) == 2:

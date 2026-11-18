@@ -94,6 +94,19 @@ class DeterministicTests(unittest.TestCase):
         self.assertIsInstance(report["fk_grade"], float)
         self.assertIsInstance(report["flesch_ease"], float)
 
+    def test_banned_option_reads_another_list(self):
+        with tempfile.TemporaryDirectory() as folder:
+            words = Path(folder) / "words.txt"
+            words.write_text("# notes\n[Animals]\nzebra\n")
+            page = Path(folder) / "page.md"
+            page.write_text("The zebra sat on the mat. It slept there.\n")
+            result = run("deterministic-tests.py", str(page), "--banned", str(words))
+            plain = json.loads(run("deterministic-tests.py", str(page)).stdout)
+        report = json.loads(result.stdout)
+        self.assertEqual(sum(len(v) for v in report["banned"].values()), 1)
+        self.assertEqual(list(report["banned"]), ["Animals"])
+        self.assertEqual(sum(len(v) for v in plain["banned"].values()), 0)
+
     def test_flags_master_mastery_and_mastered_but_not_a_quoted_framework(self):
         for text in ("Only one model masters the level.\n", "Keep the master copy.\n"):
             with self.subTest(text=text):
@@ -674,6 +687,16 @@ class ScriptChecks(unittest.TestCase):
         row = self.module.score(self.write(ANSWER))
         self.assertTrue(row["structure"])
         self.assertFalse(row["language"])
+
+    def test_banned_option_counts_a_word_of_another_list(self):
+        answer = self.write(ANSWER + "\nThe zebra ran.\n")
+        words = self.dir / "words.txt"
+        words.write_text("## Animals\nzebra\n")
+        checker = self.module.CHECKER
+        self.assertEqual(self.module.score(answer)["banned"], 0)
+        self.assertEqual(
+            self.module.score(answer, checker.load_words(words))["banned"], 1
+        )
 
     def test_a_next_field_is_not_a_reason(self):
         label = self.module.label

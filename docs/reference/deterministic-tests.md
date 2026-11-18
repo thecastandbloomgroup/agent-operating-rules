@@ -1,15 +1,18 @@
 # Deterministic tests
 
-`bin/deterministic-tests.py` tests one Markdown file against the rules that have a fixed expected result. It reads the banned words from `sources/banned-words.txt`.
+`bin/deterministic-tests.py` tests one Markdown file against the rules that have a fixed expected result. It reads the banned words from `sources/banned-words.txt`, or from the list that `--banned` names.
 
 ```sh
-python3 bin/deterministic-tests.py FILE [--instructions] [--check]
+python3 bin/deterministic-tests.py FILE [--instructions] [--check] [--banned LIST]
 ```
 
 | Option           | Effect                                                                          |
 | ---------------- | ------------------------------------------------------------------------------- |
 | `--instructions` | Use the limit of 20 words for each sentence. Without it, the limit is 25 words. |
 | `--check`        | Add the list `failures` to the report. Exit with 1 when the list has an entry.  |
+| `--banned LIST`  | Read the banned words from LIST. A category starts at `## Name` or `[Name]`.    |
+
+`bin/script-checks.py` takes the same `--banned LIST` option before its run folders. So a candidate's own list is the one scored.
 
 Without `--check`, the script prints the report and exits with 0.
 
